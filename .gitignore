@@ -18,3 +18,5 @@ _freeze/
 *.out
 *.toc
 *.synctex.gz
+/.quarto/
+**/*.quarto_ipynb

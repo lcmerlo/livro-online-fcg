@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>18&nbsp; Distância: Entre Ponto e Reta e Entre Retas – Livro Online</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/19-posicoes-relativas-reta-circulo.html" rel="next">
+<link href="../capitulos/17-posicao-relativa-retas.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-22b4aaf4c2978829df3684e8f2c068db.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-axe/axe-check.js" type="module"></script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/custom.scss">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/18-distancia-ponto_reta-reta_reta.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Distância: Entre Ponto e Reta e Entre Retas</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Livro Online</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Biblioteca de ambientes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proposta de redação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01-primeiras-nocoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Primeiras Noções</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02-segmentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Segmentos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03-segmentos-orientados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Segmentos Orientados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-eixos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Eixos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05-coordenadas-plano.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Coordenadas no plano</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06-circulos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Círculos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07-vetores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Vetores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08-produto-numero-vetor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Produto entre Número e Vetor</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/09-soma-subtracao-vetores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Soma e Subtração de Vetores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10-combinacao-linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Combinação Linear</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11-produto-interno-escalar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Produto Interno ou Escalar</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/12-projecao-ortogonal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projeção Ortogonal</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/13-area-triangulos-paralelogramos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Área de triângulos e paralelogramos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/15-equacao-cartesiana-reta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equação Cartesiana da Reta</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/16-intersecao-retas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interseção de Retas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/17-posicao-relativa-retas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Posição Relativa Entre Retas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/18-distancia-ponto_reta-reta_reta.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Distância: Entre Ponto e Reta e Entre Retas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/19-posicoes-relativas-reta-circulo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Posições Relativas entre Reta e Círculo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/20-posicao-relativa-circulos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Posição Relativa entre Círculos</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Neste capítulo</h2>
+   
+  <ul class="collapse">
+  <li><a href="#distância-entre-retas" id="toc-distância-entre-retas" class="nav-link active" data-scroll-target="#distância-entre-retas"><span class="header-section-number">19</span> Distância entre retas</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Distância: Entre Ponto e Reta e Entre Retas</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="definição" class="level3">
+<h3 class="anchored" data-anchor-id="definição">Definição</h3>
+<p>A <strong>distância de um ponto</strong> <span class="math inline">\(P\)</span> a uma reta <span class="math inline">\(r,\)</span> denotada por <span class="math inline">\(d(P,r),\)</span> é a distância de <span class="math inline">\(P\)</span> até o ponto <span class="math inline">\(Q\in r\)</span> que está mais próximo de <span class="math inline">\(P.\)</span></p>
+<p>Se <span class="math inline">\(P\in r\)</span> então o ponto de <span class="math inline">\(r\)</span> mais próximo de <span class="math inline">\(P\)</span> é o próprio <span class="math inline">\(P\)</span> e <span class="math inline">\(d(P,r)=d(P,P)=0.\)</span></p>
+</section>
+<section id="proposição" class="level3">
+<h3 class="anchored" data-anchor-id="proposição">Proposição</h3>
+<p>Se <span class="math inline">\(P\notin r\)</span> então <span class="math inline">\(d(P,r)=d(P,Q),\)</span> onde <span class="math inline">\(Q\)</span> é o <strong>Pé da Perpendicular a</strong> <span class="math inline">\(r\)</span> <strong>por</strong> <span class="math inline">\(P,\)</span> ou seja, <span class="math inline">\(Q\)</span> é o ponto de interseção da reta <span class="math inline">\(r\)</span> com a reta perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P.\)</span></p>
+<p>Para ver isso, devemos mostrar que o ponto <span class="math inline">\(Q,\)</span> com as propriedades acima, é o ponto de <span class="math inline">\(r\)</span> mais próximo de <span class="math inline">\(P.\)</span></p>
+<p>De fato, se <span class="math inline">\(R\in r\)</span> e <span class="math inline">\(R\neq Q,\)</span> então o <span class="math inline">\(\bigtriangleup PQR\)</span> (figura abaixo) é retângulo em <span class="math inline">\(Q,\)</span> com hipotenusa <span class="math inline">\(PR\)</span> e um dos catetos <span class="math inline">\(PQ.\)</span> Como a hipotenusa é sempre maior que qualquer cateto, segue que <span class="math inline">\(d(P,R)&gt;d(P,Q).\)</span></p>
+<p><img src="https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png" class="img-fluid"></p>
+<p><strong>.</strong></p>
+<p>.</p>
+</section>
+<section id="proposição-fórmula-da-distância-entre-ponto-e-reta" class="level3">
+<h3 class="anchored" data-anchor-id="proposição-fórmula-da-distância-entre-ponto-e-reta">Proposição (Fórmula da distância entre ponto e reta)</h3>
+<p>Se <span class="math inline">\(P=(x_0,y_0)\)</span> e <span class="math inline">\(r:ax+by+c=0,\)</span> então</p>
+<p><span class="math display">\[
+d(P,r)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+\]</span></p>
+<p>De fato, seja <span class="math inline">\(s\)</span> a única reta que passa por <span class="math inline">\(P=(x_0,y_0)\)</span> e é perpendicular a <span class="math inline">\(r:ax+by+c=0,\)</span> logo <span class="math inline">\(s\parallel (a,b)\)</span> pois <span class="math inline">\(r\perp (a,b)\)</span>.</p>
+<p><span class="math display">\[
+s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \R,
+\]</span></p>
+<p>são umas equações paramétricas de <span class="math inline">\(s\)</span>.</p>
+<p>Seja <span class="math inline">\(Q\)</span> o pé da perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P,\)</span> isto é, <span class="math inline">\(Q=r\cap s\)</span>.</p>
+<p>Então:</p>
+<p><span class="math display">\[
+Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right.
+\]</span></p>
+<p>para algum <span class="math inline">\(t' \in \R\)</span>, isso é <span class="math inline">\(Q=(x_0+at', x_0+bt')\)</span> para algum <span class="math inline">\(t' \in \R\)</span>.</p>
+<p>Como <span class="math inline">\(Q \in r\)</span>, temos:</p>
+<p><span class="math inline">\(a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c\)</span></p>
+<p><span class="math inline">\(\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}\)</span>.</p>
+<p>Temos então que <span class="math inline">\(d(P,r)=d(P,Q)=||\overrightarrow{PQ}||\)</span> e <span class="math inline">\(\overrightarrow{PQ}=(a,b)t',\)</span> portanto:</p>
+<p><span class="math display">\[
+d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+\]</span></p>
+<p><strong>Exemplo</strong></p>
+<p>Determine a distância do ponto <span class="math inline">\(P=(3,4)\)</span> até a reta <span class="math inline">\(r:2x-y=1\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
+<p><strong>Resolução 1</strong>. <strong>Usando a fórmula da Proposição 1</strong>. Colocando <span class="math inline">\(r\)</span> no formato da Proposição 1, temos <span class="math inline">\(r:2x-y-1=0\)</span>. Assim,</p>
+<p><span class="math inline">\(d(P,r)=\frac{|2(3)-(4)-1|}{\sqrt{2^2+(-1)^2}}=\frac{1}{\sqrt{5}}.\)</span></p>
+<p><strong>Resolução 2. Podemos resolver calculando o pé da perpendicular.</strong> A reta perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P\)</span> é <span class="math inline">\(p:x+2y=11\)</span>. Calculando <span class="math inline">\(r\cap p\)</span> obtemos o ponto <span class="math inline">\(Q=\left(\frac{13}{5},\frac{21}{5}\right)\)</span>. Portanto, <span class="math inline">\(d(P,r)=d(P,Q)=\sqrt{\left(3-\frac{13}{5}\right)^2+\left(4-\frac{21}{5}\right)^2}=\frac{\sqrt{5}}{5}=\frac{1}{\sqrt{5}}.\)</span></p></li>
+</ul>
+<p><strong>Exemplo</strong></p>
+<p>Determine os pontos da reta <span class="math inline">\(m:\{(t,-t) \mid t \in \mathbb{R} \}\)</span> que distam uma unidade da reta <span class="math inline">\(\ell:3x+4y=2\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\leftarrow\)</span> Click para ver a solução <strong>Resolução:</strong> Colocando a reta <span class="math inline">\(\ell\)</span> na forma da Proposição 1, temos <span class="math inline">\(\ell:3x+4y-2=0\)</span>. Como os pontos de <span class="math inline">\(m\)</span> são da forma <span class="math inline">\(P=(t,-t)\)</span>, temos <span class="math inline">\(d(P,\ell)=\frac{|3(t)+4(-t)-2|}{\sqrt{3^2+4^2}}=1 \Leftrightarrow |-t-2|=5 \Leftrightarrow t=3 \text{ ou } t=-7,\)</span> donde segue o resultado: <span class="math inline">\(P=(3,-3) \text{ ou } P=(-7,7).\)</span></li>
+</ul>
+</section>
+<section id="distância-entre-retas" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Distância entre retas</h1>
+<section id="definição-1" class="level3">
+<h3 class="anchored" data-anchor-id="definição-1">Definição</h3>
+<p>A <strong>distância entre as retas</strong> <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span> denotada por <span class="math inline">\(d(r,s)\)</span> é o menor valor possível de <span class="math inline">\(d(P,Q)\)</span> com <span class="math inline">\(P\in r\)</span> e <span class="math inline">\(Q\in s\)</span>.</p>
+<ul>
+<li><p>Se <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span> são <strong>concorrentes:</strong> temos <span class="math inline">\(d(r,s) = 0\)</span>, pois neste caso, o menor valor possível de <span class="math inline">\(d(P,Q)\)</span> com <span class="math inline">\(P\in r\)</span> e <span class="math inline">\(Q\in s\)</span> é <span class="math inline">\(d(P_0,P_0) = 0\)</span>, onde <span class="math inline">\(P_0\)</span> é o ponto de interseção entre <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span> são <strong>paralelas:</strong></p>
+<p>Nesse caso basta tomar um ponto qualquer <span class="math inline">\(P \in s\)</span>, e calcular a distância entre <span class="math inline">\(r\)</span> e <span class="math inline">\(P\)</span>.</p>
+<p><span class="math display">\[
+  d(r,s)=d(r,P).
+  \]</span></p></li>
+</ul>
+<p>💡 <strong>Observação:</strong></p>
+<p>Também podemos calcular a distância usando a perpendicular.</p>
+<ul>
+<li><p>Clique para ver a explicação</p>
+<p>Em particular podemos calcular a distância entre paralelas tomando qualquer reta <span class="math inline">\(p\)</span> perpendicular a <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>, temos <span class="math inline">\(d(r,s) = d(R,S)\)</span>, onde <span class="math inline">\(\{R\} = r\cap p\)</span> e <span class="math inline">\(\{S\} = s\cap p\)</span>. Em particular, segue que <span class="math inline">\(d(r,s) = d(R,s) = d(S,r)\)</span>, onde <span class="math inline">\(R\)</span> é um ponto qualquer de <span class="math inline">\(r\)</span> e <span class="math inline">\(S\)</span> é um ponto qualquer de <span class="math inline">\(s\)</span>.</p>
+<p><img src="https://www.geogebra.org/resource/v7qykdrq/1TWkyQov707XEdtW/material-v7qykdrq.png" class="img-fluid"></p></li>
+</ul>
+</section>
+<section id="proposição-fórmula-da-distância-entre-duas-retas-paralelas" class="level3">
+<h3 class="anchored" data-anchor-id="proposição-fórmula-da-distância-entre-duas-retas-paralelas">Proposição (<strong>Fórmula da distância entre duas retas paralelas</strong>)</h3>
+<p>Dadas duas retas paralelas na forma <span class="math inline">\(r: ax+by+c=0 \quad \text{e} \quad s: ax+by+c'=0,\)</span></p>
+<p><span class="math display">\[
+d(r,s)=\frac{|c-c'|}{\sqrt{a^2+b^2}}.
+\]</span></p>
+<p>De fato, seja <span class="math inline">\(P=(x_0,y_0)  \in s\)</span>,</p>
+<p><span class="math display">\[
+d(r,s)=d(r,P)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}},(*)
+\]</span></p>
+<p>mas como <span class="math inline">\(P  \in s\)</span>, <span class="math inline">\(ax_0+by_0+c'=0 \Rightarrow ax_0+by_0=-c'\)</span>, substituindo em (*) obtemos:</p>
+<p><span class="math display">\[
+d(r,s)=d(r,P)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}=\frac{|c-c'|}{\sqrt{a^2+b^2}}.
+\]</span></p>
+<p><strong>Exemplo</strong></p>
+<p>Determine as retas que distam uma unidade da reta <span class="math inline">\(r: x-y+1=0.\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
+<p>Como a distância é positiva, a reta <span class="math inline">\(\ell\)</span> procurada deve ser paralela à reta <span class="math inline">\(r\)</span>, portanto é da forma <span class="math inline">\(\ell: x-y+c=0\)</span>. Pela Proposição acima, temos <span class="math inline">\(d(\ell,r)=\frac{|c-1|}{\sqrt{1^2+(-1)^2}}=1,\)</span> logo, <span class="math inline">\(|c-1|=\sqrt{2}\)</span>, e portanto <span class="math inline">\(c=1+\sqrt{2}\)</span> ou <span class="math inline">\(c=1-\sqrt{2}\)</span>, donde seguem as soluções. <span class="math inline">\(\ell_1: x-y+1+\sqrt{2}=0 \quad \text{e} \quad \ell_2: x-y+1-\sqrt{2}=0.\)</span></p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/17-posicao-relativa-retas.html" class="pagination-link" aria-label="Posição Relativa Entre Retas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Posição Relativa Entre Retas</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/19-posicoes-relativas-reta-circulo.html" class="pagination-link" aria-label="Posições Relativas entre Reta e Círculo">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Posições Relativas entre Reta e Círculo</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

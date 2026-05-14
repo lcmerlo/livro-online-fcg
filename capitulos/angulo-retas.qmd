@@ -1,0 +1,147 @@
+# Ângulo Entre Retas
+
+### Definição 1
+
+
+ O **ângulo entre duas retas** $r$ e $s$, denotado por $\sphericalangle(r,s),$ é, por definição:
+
+- $0$  radianos se $r$ e $s$ são **paralelas** ou **coincidentes**;
+- a menor medida positiva dos ângulos determinados pelas retas $r$ e $s$ se elas são **concorrentes**.
+
+
+![fig1.svg](%C3%82ngulo%20Entre%20Retas/fig1.svg)
+
+Note que para retas temos $0 \leq \sphericalangle(r,s) \leq \frac{\pi}{2}$. Já para vetores temos $0 \leq \sphericalangle(\vec{u},\vec{v}) \leq\pi$.
+
+Para determinar o ângulo entre retas, usaremos os vetores diretores ou os vetores normais às mesmas. Veja os possíveis casos abaixo.
+
+![fig1 (1).svg](%C3%82ngulo%20Entre%20Retas/fig1_(1).svg)
+
+$$
+cos \sphericalangle(r,s) = cos \sphericalangle(\vec{u},\vec{v})
+$$
+
+$$
+cos \sphericalangle(r,s) = -cos \sphericalangle(\vec{u},\vec{v})
+$$
+
+---
+
+![a.svg](%C3%82ngulo%20Entre%20Retas/a.svg)
+
+$$
+cos \sphericalangle(r,s) = cos \sphericalangle(\vec{m},\vec{n})
+$$
+
+$$
+cos \sphericalangle(r,s) = -cos \sphericalangle(\vec{m},\vec{n})
+$$
+
+Das relações entre os cossenos acima segue:
+
+### Proposição 1
+
+
+ Dadas duas retas $r$ e $s$, temos:
+
+- Se $\vec{u}\parallel r$ e $\vec{v}\parallel s$, então $cos\sphericalangle(r,s) = |cos\sphericalangle(\vec{u},\vec{v} ) | = \frac{|\langle \vec{u},\vec{v} \rangle | }{\lVert \vec{u} \rVert \lVert \vec{v} \rVert }$.
+- Se $\vec{m}\perp r$ e $\vec{n}\perp s$, então $cos\sphericalangle(r,s) = |cos\sphericalangle(\vec{m},\vec{n} ) | = \frac{|\langle \vec{m},\vec{n} \rangle | }{\lVert \vec{m} \rVert \lVert \vec{n} \rVert }$.
+
+
+
+💡 **Observação**  na proposição acima usamos o módulo no cosseno para garantir que estamos tomando o ângulo correto entre as retas isso é, o ângulo menor que $\frac{\pi}{2}$.
+
+
+
+### Definição 2
+
+
+ Duas retas $r$ e $s$ são ditas **perpendiculares** ou **ortogonais**, e denotamos $r\perp s,$ se $\sphericalangle(r,s) = \frac{\pi}{2}.$
+
+
+
+Para verificar se duas retas são perpendiculares verificamos se seus vetores diretores são perpendiculares. Em particular, dadas as retas $r:ax+by=c$ e $s:a'x+b'y=c',$ temos:
+
+$$
+
+r\perp s\quad\Leftrightarrow\quad(a',b')=\lambda(b,-a)  ,
+$$
+
+ para algum $\lambda\neq 0$.
+
+
+**Exemplo**
+
+Determine o ângulo entre as retas $r:x+2y+1=0$ e $s=\{(-3t, 1-t) \: | \: t \in \mathbb{R} \}$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    Da equação de  $r:x+2y+1=0$ obtemos: $r\parallel \vec{u} = (1,2)$ e
+    
+    da equação de  $s=\{(-3t, 1-t) \: | \: t \in \mathbb{R} \}$ obtemos: $s\parallel \vec{v} = (-3,-1)$.
+    $\cos\sphericalangle(r,s) = 
+    \cos\sphericalangle(\vec{u},\vec{v}) = 
+    \frac{| \langle \vec{u},\vec{v} \rangle |}{\lVert \vec{u}\rVert \lVert \vec{v} \rVert}=
+    \frac{| \langle (2,-1), (-3,-1) \rangle |}{\lVert (2,-1)\rVert \lVert (-3,-1) \rVert}= 
+    \frac{|-5|}{\sqrt{5} \sqrt{10}} = 
+    \frac{\sqrt{2}}{2}$
+    
+    Como $0 \leq \sphericalangle(r,s) \leq \frac{\pi}{2}$ e $\cos\sphericalangle(r,s) = \frac{\sqrt{2}}{2}$, segue que $\sphericalangle(r,s) =\frac{\pi}{4}$.
+    
+
+
+
+**Exemplo 2**
+
+Determine as retas que passam pelo ponto $A=(0,3)$ e que formam um ângulo de $\pi/6$ com a reta $r:x-y=1.$
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resolução**
+    
+    Pela equação de $r$ segue que  $\vec{m}=(1,-1)\perp r$.  Portanto, se uma reta $s$ é solução do problema e $\vec{n}\perp s$ é seu vetor normal, temos pela Proposição 1 que vale a expressão
+    
+    $$
+     |\langle \vec{m},\vec{n}\rangle| = \lVert \vec{m}\rVert\lVert \vec{n} \rVert \cos 30^{\circ}.  \qquad (\ast)
+    $$
+    
+    Para simplificar as contas,  vamos considerar dois casos:
+    
+    **Caso 1:**  $*s$ é uma reta vertical.* 
+    
+     Neste caso, podemos supor que $s$ tem equação da forma $x=c$ e portanto  $\vec{n}=(1,0)$.  Substituindo as coordenadas de $m$ e $n$ em $(\ast)$  obtemos 
+    
+    $$
+    1 = \tfrac{\sqrt{6}}{2}, 
+    $$
+    
+    o que é um absurdo. Portanto nenhuma reta vertical pode ser solução do problema.
+    
+    **Caso 2:**  $*s$ **não** é uma reta vertical.* 
+    
+    Neste caso, podemos supor que $s$ tem equação da forma  $ax+y+c=0$  e portanto $\vec{n}=(a,1).$  Novamente substituindo as coordenadas de $m$ e $n$ em $(\ast)$ obtemos agora que 
+    
+    $$
+    2|a-1| = \sqrt{6} \sqrt{a^2+1}.
+    $$
+    
+    Elevando ambos os lados ao quadrado segue que 
+    
+    $$
+    4(a-1)^2=6(a^2+1)\Rightarrow a^2+4a+1=0.
+    $$
+    
+    Assim, resolvendo a última equação, obtemos as soluções $a=-2\pm\sqrt{3}.$Consequentemente, 
+    
+    $$
+    s: (-2+\sqrt{3})x+y =c \quad \text{ou} \quad s: (-2 -\sqrt{3})x+y=c.
+    $$
+    
+    Como a reta $s$ passa por $A=(0,3)$, este ponto deve satisfazer sua equação. Portanto, substituindo as coordenadas de $A$ nas duas equações acima obtemos em ambos os casos que $c=3$. Logo, temos duas soluções para o problema, a saber
+    
+    $$
+    s: (-2+\sqrt{3})x+y =3 \quad \text{ou} \quad s': (-2 -\sqrt{3})x+y=3.
+    $$
+    
+    ![Retas30GrausEmRad.png](%C3%82ngulo%20Entre%20Retas/Retas30GrausEmRad.png)
+    

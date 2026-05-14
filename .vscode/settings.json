@@ -1,0 +1,57 @@
+{
+  "cSpell.enabled": true,
+  "cSpell.language": "pt,pt_BR,en",
+
+  "cSpell.enabledLanguageIds": [
+    "markdown",
+    "quarto",
+    "latex",
+    "plaintext",
+    "yaml",
+    "bibtex",
+    "biblatex"
+  ],
+
+  "cSpell.diagnosticLevel": "Information",
+  "cSpell.maxNumberOfProblems": 200,
+  "cSpell.minWordLength": 4,
+
+  "cSpell.ignoreRegExpList": [
+  "/(#|\\.)[A-Za-z][A-Za-z0-9_-]*/g"
+  ],
+
+  "cSpell.ignorePaths": [
+    ".git",
+    ".quarto",
+    "_site",
+    "_book",
+    "_freeze",
+    "node_modules",
+    "renv",
+    "*.pdf",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.svg"
+  ],
+
+  "cSpell.words": [
+    "Quarto",
+    "LuaLaTeX",
+    "MathJax",
+    "KaTeX",
+    "JSXGraph",
+    "GeoGebra",
+    "Desmos",
+    "frontmatter",
+    "crossref",
+    "bibliografia",
+    "bloco",
+    "callout",
+    "objetivo"
+  ]
+}
+
+"[quarto]": {
+  "editor.defaultFormatter": "quarto.quarto"
+}

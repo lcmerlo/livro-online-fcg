@@ -1,0 +1,69 @@
+# Círculos
+
+Dados um ponto $A=\left(x_0,y_0\right)$ e um número real $r>0$, o **círculo de centro $A$ e raio $r$** é o conjunto formado por todos os pontos $P$ que distam $r$ do ponto $A$, ou seja, o conjunto formado pelos pontos $P$ que satisfazem a equação $d\left(P,A\right)=r$.
+
+Logo, o círculo de  centro $A=\left(x_0,y_0\right)$ e raio $r$ é  formado exatamente pelos pontos $P=\left(x,y\right)$ que satisfazem a equação
+
+$$
+(x-x_0)^2+(y-y_0)^2=r^2.
+$$
+
+Isso pode ser visualizado no applet a seguir.
+
+[Você pode mover o centro $A$ e alterar o raio $r$.](geogebra/h6vdnv3c)
+
+Você pode mover o centro $A$ e alterar o raio $r$.
+
+**Exemplo**
+
+Verifique se a equação representa um círculo e, em caso afirmativo, determine o centro e o raio:
+
+1.  $x^2+y^2-2x+4y+2=0$
+2.  $x^2+y^2-4x+6y+13=0$
+3. $x^2+y^2+3x-5y+9=0$
+- $\leftarrow$ Clique para ver a solução
+    
+    Para as equações descreverem círculos deve ser possível reescrevê-las na forma 
+    
+    $(x-x_0)^2+(y-y_0)^2=r^2$.   O processo usado para isso se chama completamento de quadrados e nele usamos o produto notável
+    
+    $$
+     (u \pm a)^2 = u^2 \pm 2a u +a^2.
+    $$
+    
+    1. Para saber se a equação representa um círculo, vamos completar quadrados, usando o produto notável descrito  acima:        
+        
+        
+        | $\qquad \ x^2-2x\ \ + \ \ y^2+4y \ \ +2=0$ |
+        | --- |
+        |  $\Rightarrow \quad x^2-2x+{\color{blue}1-1}+y^2+4y+{\color{blue}4-4}+2=0$ |
+        | $\Rightarrow \quad{\color{green}(x^2-2x+1)}-1+{\color{blue}(y^2+4y+4)}-4+2=0$  |
+        | $\Rightarrow \quad{\color{green}(x-1)^2}-1+{\color{blue}(y+2)^2}-4+2=0$ |
+        | $\Rightarrow \quad (x-1)^2+(y+2)^2=3$. |
+        
+        Assim temos um círculo de centro em $(1,-2)$ e raio $r=\sqrt{3}$.
+        
+    2. Procedemos de forma  análoga ao que fizemos no item 1: 
+        
+        
+        | $\qquad \ x^2-4x\ \ + \ \ y^2+6y \ \ +13=0$ |
+        | --- |
+        |  $\Rightarrow \quad x^2-4x+{\color{blue}4-4}+y^2+6y+{\color{blue}9-9}+13=0$ |
+        | $\Rightarrow \quad{\color{green}(x^2-4x+4)}-4+{\color{blue}(y^2+6y+9)}-9+13=0$  |
+        | $\Rightarrow \quad{\color{green}(x-2)^2}-1+{\color{blue}(y+3)^2}-9+13=0$ |
+        | $\Rightarrow \quad (x-2)^2+(y+3)^2=0$. |
+        
+        Note que na equação final obtemos $r=0$, mas não existe um círculo de raio zero. Na verdade esta equação representa o ponto $(2,3)$, pois este é o único ponto que satisfaz a equação. 
+        
+    3. 
+        
+        
+        | $\qquad \ x^2+3x \ \ + \ \ y^2-5y+9=0$ |
+        | --- |
+        |  $\Rightarrow \quad x^2+3x+{\color{blue}\frac{9}{4}-\frac{9}{4}}+y^2-5y+{\color{blue}\frac{25}{4}-\frac{25}{4}}+9=0$ |
+        | $\Rightarrow \quad{\color{green}(x^2+3x+\frac{9}{4})}-\frac{9}{4}+{\color{blue}(y^2-5y+\frac{25}{4})}-\frac{25}{4}+9=0$  |
+        | $\Rightarrow \quad {\color{green}(x+\frac{3}{2})^2}-\frac{9}{4}+{\color{blue}(y-\frac{5}{2})^2}-\frac{25}{4}+9=0$ |
+        | $\Rightarrow \quad (x+\frac{3}{2})^2+ (y-\frac{5}{2})^2=-\frac{1}{2}$. |
+        
+        A equação não determina um círculo. Note que a equação é “absurda”, pois o lado direito não é negativo e o lado esquerdo é negativo!  Sempre que temos uma equação absurda, ela representa o conjunto vazio, pois nenhum ponto pode satisfaze-la. 
+        

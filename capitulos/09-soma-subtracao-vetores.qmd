@@ -1,0 +1,63 @@
+# Soma e Subtração de Vetores
+
+### Definição
+
+
+ Se $\vec{u}=(a_1,a_2)$ e  $\vec{v}=(b_1,b_2)$, a soma de $\vec{u}$ e $\vec{v}$ e a subtração de $\vec{u}$ por $\vec{v}$ são os vetores dados, respectivamente, por
+
+$$
+ ﻿\vec{u}+\vec{v}=(a_1+b_1,a_2+b_2)    \quad \text{ e } \quad  \vec{u}-\vec{v}=(a_1-b_1,a_2-b_2).
+$$
+
+
+
+
+**Exemplo**
+
+Se $\vec{u}=(2,-1)$ e  $\vec{v}=(4,3)$ então:
+
+$$
+\vec{u}+\vec{v}=(6,2), \ \vec{u}-\vec{v}=(-2,-4)  \quad \text{e} \quad   \vec{v}-\vec{u}=(2,4).
+$$
+
+
+
+### Proposição
+
+
+ Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\mathbb{R}$. Valem as seguintes propriedades:
+
+1. ﻿$\vec{u}+\vec{0}=\vec{u}$; 
+2. $\vec{u}+(-\vec{u})=\vec{0}$; 
+3. $\vec{u}+(-\vec{v})=\vec{u}-\vec{v}$; 
+4. $\vec{u}+\vec{v}=\vec{v}+\vec{u}$; 
+5. $\vec{u}\pm(\vec{v}\pm\vec{w})=(\vec{u}\pm\vec{v})\pm\vec{w}$; 
+6. $(a\pm b)\vec{v}=a\vec{v}\pm b\vec{v}$; 
+7. $a(\vec{v}\pm\vec{u})=a\vec{v}\pm a\vec{u};$ 
+8. $\lVert \vec{u} + \vec{v} \rVert \leq \lVert \vec{u} \rVert + \lVert \vec{v} \rVert.$  *Desigualdade Triangular para Vetores.*
+
+
+### Interpretação Geométrica da Soma e Subtração de Vetores
+
+Dados vetores $\vec{u}$ e $\vec{v}$, podemos representar $\vec{u}+\vec{v}$ e $\vec{u}-\vec{v}$ geometricamente  como segue.
+
+Para a soma, escolhemos um representante qualquer para $\vec{u}$, digamos  $\vec{u}=\vec{AB}$, e  para o vetor $\vec{v}$ tomamos o representante com ponto inicial em $B$, obtendo $\vec{v}=\vec{BC}$ (o ponto inicial do representante do segundo vetor é o ponto final do representante do primeiro vetor). A soma dos vetores é dada  por
+
+$$
+ \vec{u}+\vec{v}=\vec{AB}+\vec{BC}=\vec{AC}.
+$$
+
+Para obter geometricamente subtração de $\vec{u}$ por $\vec{v}$, de acordo com a propriedade  $\vec{u}-\vec{v}=\vec{u}+(-\vec{v})$, basta aplicar a regra geométrica da soma aos vetores $\vec{u}$   e $-\vec{v}$.
+
+
+**Exemplo**
+
+[geogebra/acdycnxx](geogebra/acdycnxx)
+
+
+
+
+💡 Note  no exemplo interativo acima que:                                                                                                           • se $\vec{u}$ e $\vec{v}$ não forem paralelos, então $\vec{u},\vec{v}$ e $\vec{u}\pm\vec{v}$  podem ser dispostos sobre os lados de um triângulo.
+
+• se  $\vec{u}$ e $\vec{v}$ forem paralelos, então $\vec{u},\vec{v}$ e $\vec{u}\pm\vec{v}$  podem ser dispostos sobre uma mesma reta.  
+

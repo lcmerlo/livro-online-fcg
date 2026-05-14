@@ -1,0 +1,70 @@
+# Segmentos
+
+
+Introduzir rapidamente e exemplificar com figura,  a noção primitiva de um ponto **estar entre** dois pontos.
+
+::: {#def-segmento}
+Dados dois pontos distintos $A$ e $B$, sabemos que existe uma única reta $r$ que passa por eles. Chamamos de **segmento de reta** $AB$, ou simplesmente, **segmento** $AB$ ao conjunto formado pelos pontos $A$ e $B$ e pelos pontos da reta $r$ que estão entre $A$ e $B$.
+
+Neste contexto, a reta $r$ é chamada de **reta suporte** do segmento $AB$ e os pontos $A$ e $B$ são chamados de **extremos do segmento** $AB$.
+:::
+
+Note que se um ponto $P$ está entre $A$ e $B$, seque ele também está entre $B$ e $A$, portanto vale que  $AB=BA$.
+
+::: {.fig-leg #fig-segmentos}
+![](../assets/img/02-segmentos/Untitled.png){#fig-segmento}
+:::
+
+::: {#def-comprimento-segmento}
+O **comprimento** ou o **tamanho** de um segmento é a distância entre seus extremos, ou seja, o comprimento do segmento $AB$ é  $d\left(A,B\right)$.
+:::
+
+Na definição abaixo apresentamos algumas relações importantes entre dois segmentos. 
+
+::: {#def-relacoes-segmentos}
+Dois segmentos $AB$ e $CD$ são ditos:
+
+- **Congruentes:** Se eles tem mesmo comprimento, isto é $d\left(A,B\right)=d\left(C,D\right)$.
+- **Paralelos** ou com **mesma direção**: Se suas retas suporte são paralelas ou a mesma. Neste caso denotamos $AB\parallel CD$.
+- **Perpendiculares** ou **ortogonais**:  Se suas respectivas retas suporte forem perpendiculares. Neste caso denotamos  $AB\perp CD$.
+:::
+ 
+::: {.fig-leg #fig-segmentos-posicao-relativa}
+![](../assets/img/02-segmentos/Untitled1.png)
+
+A figura representa as três relações entre segmentos descritas acima.
+:::
+
+
+Chamamos de segmento **degenerado** $AA$ ao conjunto formado apenas pelo ponto $A$.
+
+::: {.fig-leg .w30 #fig-segmento-degenerado}
+![](../assets/img/02-segmentos/Untitled2.png)
+
+O segmento degenerado $AA$ está contido em infinitas retas.
+:::
+
+Note que ao contrário do que ocorre com os segmentos “não degenerados” definidos acima, que estão contidos em uma única reta, os segmentos degenerados estão contidos em infinitas retas.
+
+::: {#exrr-coprimento-segmento-deg}
+O comprimento de um segmento não degenerado pode ser zero? 
+:::
+
+::: {.callout-note title="Resolução" collapse="true"}   
+ Não. Pois se $AB$ é um segmento não degenerado então  $A\neq B$, e portanto $d\left(A,B\right)>0$, o que significa que o comprimento de $AB$ não é zero! 
+:::
+
+
+::: {#prp-testando}
+## Testando
+Enunciado da proposição
+:::
+
+::: {.proof}
+fdslfaj;dskf 
+fdas;ldkjf asdkjf;
+
+f;daslkjf;asdjk 
+jf;askdf 
+
+:::

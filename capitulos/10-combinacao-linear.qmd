@@ -1,0 +1,110 @@
+# Combinação Linear
+
+### Definição
+
+
+ Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{\ell}$ da forma
+
+$$
+a_1\vec{v}_1 +  \cdots + a_n\vec{v}_n, 
+$$
+
+onde   $a_1, \dots, a_n$  são números reais. 
+
+
+
+
+**Exemplo**
+
+No exemplo interativo abaixo, abordaremos o caso $n=3$, ou seja, veremos algumas combinações lineares de três vetores  $\vec{v}_1, \ \vec{v}_2$ e  $\vec{v}_3$.
+
+[geogebra/kbvp4xpt](geogebra/kbvp4xpt)
+
+
+
+
+**Exemplo**
+
+Quais vetores são obtidos como combinação linear de um único vetor $\vec{v}$  ?
+
+- $\leftarrow$ Click para ver a solução
+    
+    Qualquer vetor $\vec{\ell}$  que for múltiplo de $\vec{v}$, ou seja, $\vec{\ell} = a \vec{v}$, com $a\in \R$. 
+    
+
+
+### Proposição
+
+
+ Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \mathbb{R}$ e existe um único $b\in \mathbb{R}$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
+
+
+
+[geogebra/zmcpatqc](geogebra/zmcpatqc)
+
+
+**Exemplo**
+
+Determine o vetor $\vec{w}=(3,-5)$ como combinação linear de $\vec{u}=(1,-1)$ e $\vec{v}=(2,3)$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    Devemos encontrar $a$ e $b$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$   Substituindo as coordenadas dos vetores na expressão anterior temos
+    $(3,-5)=a(1,-1)+b(2,3)=(a+2b,-a+3b)$, e portanto  
+    
+    $$
+    ﻿\left\{ \begin{array}{l} a +2b = 3 \\ -a + 3b = -5. \end{array} \right.
+    $$
+    
+    Resolvendo o sistema obtemos  $a=\frac{19}{5}$ e $b=-\frac{2}{5}$. Logo temos a combinação linear
+    
+    $$
+    \vec{w}=\frac{19}{5}\vec{u}-\frac{2}{5}\vec{v}
+    $$
+    
+
+
+
+**Exemplo**
+
+Escreva o vetor $\vec{p}=(1,3)$ como combinação linear dos vetores $\vec{u}=(1,0),\vec{v}=(0,-1)$ e $\vec{w}=(-1,1)$ de três maneiras distintas.
+
+- $\leftarrow$ Click para ver a solução
+    
+    Existem infinitas possibilidades, de acordo com a proposição acima. Por exemplo:
+    
+     $\vec{p}=\vec{u}-3\vec{v}$  ou  $\vec{p}=2\vec{u}-2\vec{v}+\vec{w}$  ou $\vec{p}=4\vec{u}+3\vec{w}$.
+    
+    **Resolução:** Devemos encontrar $a,b$ e $c$ tais que $\vec{p}=a\vec{u}+b\vec{v}+c\vec{w}.$  Substituindo as coordenadas dos vetores dados, na expressão anterior, temos
+    
+    $$
+    (1,3)=a(1,0)+b(0,-1)+c(-1,1)=(a-c,-b+c) 
+    $$
+    
+    e portanto 
+    
+    $$
+    \left\{ \begin{array}{l}  a-c=1\\ -b+c=3. \end{array} \right.
+    $$
+    
+    Como o sistema acima possui duas equações e três variáveis, ele tem infinitas soluções. Por exemplo, resolvendo $a$ e $b$ em função de $c$,  segue que  
+    
+    $$
+    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \mathbb{R}.
+    $$
+    
+    Assim, vejamos três possibilidades de combinações, fazendo  $c=0,\ c=1$ e  $c=3$, respectivamente:
+    
+    $$
+    \vec{p}=\vec{u}-3\vec{v}
+    $$
+    
+    $$
+    \vec{p}=2\vec{u}-2\vec{v}+\vec{w}
+    $$
+    
+    $$
+    \vec{p}=4\vec{u}+3\vec{w}
+    $$
+    
+

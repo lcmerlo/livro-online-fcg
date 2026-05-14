@@ -1,0 +1,86 @@
+# Eixos
+
+### Definição de Eixo
+
+ Algumas características intuitivas de tais objetos são:
+
+
+::: {#def-eixo} 
+MELHORAR!!
+
+Um **eixo** consiste de uma reta orientada $r$ com um ponto  $O$ fixado sobre ela, chamado de **origem**. Deste modo, $r$ é formada por duas semirretas com origem O, sendo que uma dessas semirretas será dita ***semieixo positiv*o** e será indicada com uma seta na extremidade do desenho, e a outra semirreta (sem a seta) será dita **semieixo negativ**o.
+:::
+
+![Untitled](Eixos/Untitled.png)
+
+Podemos associar cada ponto de um eixo com um número real da seguinte forma:
+
+- A origem $O$ sempre corresponde ao número zero;
+- Se $P$ é um ponto sobre o semieixo positivo então $P$ corresponde ao número $p=d(P,O)$, onde $d(P,O)$ é a distância do ponto $P$ até a origem $O$.
+- Se $P$ é um ponto sobre o semieixo negativo então $P$ corresponde ao número  $p=-d(P,O)$.
+- Se $P$ é um ponto do eixo, então o número $p$ obtido pelo processo acima é dito **coordenada** de $P$.
+
+[geogebra/f2zqppmu](geogebra/f2zqppmu)
+
+### Proposição
+
+Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então a distância entre $P$ e $Q$ é dada pela fórmula $d\left(P,Q\right)= | p-q|$.
+
+[geogebra/zt4dnqjy](geogebra/zt4dnqjy)
+
+
+### Definição de Ponto Médio
+
+O **ponto médio** de um segmento $PQ$ é o ponto $M$ que pertencente ao segmento e tal que $d\left(P,M\right)=d\left(Q,M\right)$.
+
+
+
+### Proposição
+
+Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então:
+
+﻿$M$ é ponto médio de $PQ     \Longleftrightarrow$  a coordenada de $M$ é  $\dfrac{p+q}{2}$
+
+
+ **Exemplo**
+
+Se $A$ e $B$ são pontos de um eixo, tais que $A$ tem coordenada $1$ e $B$ dista $\frac{5}{4}$ de $A$, então $B$ tem coordenada:
+
+- $\leftarrow$ Clique para ver a solução
+    
+    $B$ tem coordenada  $-\frac{1}{4}$ ou  $\frac{9}{4}$.
+    
+    De fato, suponha que $B$ tem coordenada $b$.  Pela fórmula da distância em eixos temos  $\frac{5}{4}=d(A,B)=|1-b|$, logo temos duas possibilidades: $1-b=\frac{5}{4}$ e portanto $b=-\frac{1}{4}$ ou  $1-b=-\frac{5}{4}$ e portanto $b=\frac{9}{4}$.
+    
+
+ **Exemplo**
+
+Sejam $A$ e $B$ pontos de um eixo, tais que $A$ tem coordenada $-1$ e o ponto médio $M$ de $AB$ tem coordenada $\frac{1}{2}$, então $B$ tem coordenada:
+
+- $\leftarrow$ Clique para ver a solução
+    
+    $B$ tem coordenada 2.
+    
+    De fato, suponha que $B$ tem coordenada $b$. Pela Proposição acima temos  
+    
+    $\dfrac{1}{2}=\dfrac{-1+b}{2}$.
+    
+    E resolvendo a esta equação obtemos $b=2$.
+    
+**Exemplo**
+
+Seja $\alpha$ um eixo sobre uma reta $r$ e sejam $A$, $B$ e $C$ pontos de $\alpha$ com coordenadas $1$, $-2$ e $3$, respectivamente. Suponha agora que $\beta$ é um outro eixo sobre a mesma reta $r$ e com mesma unidade de medida de $\alpha$, de modo que a origem é o ponto $A$ e que $B$ tem coordenada positiva. Qual é a coordenada de $C$ no eixo $\beta?$
+
+Dica: Faça um esboço. 
+
+- $\leftarrow$ Click para ver a solução
+    
+    A coordenada de $C$ no eixo $\beta$ é $-2$.
+    
+    De acordo com as coordenadas de $\alpha$, o ponto $A$ está entre $B$ e $C$.  Como o ponto $B$ tem coordenada negativa no eixo $\alpha$ e coordenada positiva no eixo $\beta$ os dois eixos tem setas em sentidos opostos (veja a figura abaixo). No eixo $\alpha$ temos temos $d(A,C)=|1-3|=2$. Esta distância não muda no eixo $\beta$, porém neste eixo $C$ está no semieixo negativo e $A$ é a origem, portanto a coordenada de $C$ em $\beta$ tem sinal negativo, isto é $-d(A,C)=-2$.
+    
+    ![Untitled](Eixos/Untitled%201.png)
+    
+
+
+### **Coordenadas de Pontos no Plano**

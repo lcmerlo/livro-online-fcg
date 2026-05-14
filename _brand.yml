@@ -1,0 +1,32 @@
+meta:
+  name: "Livro Online FCG"
+
+color:
+  palette:
+    fundo: "#F7F4ED"
+    superficie: "#FFFFFF"
+    texto: "#1F2933"
+    texto-suave: "#5B677A"
+    azul-principal: "#1E5B8A"
+    azul-objeto: "#1D4ED8"
+    verde-manipulavel: "#0F766E"
+    roxo-construido: "#7C3AED"
+    cinza-auxiliar: "#64748B"
+    amarelo-invariante: "#B45309"
+    vermelho-erro: "#B91C1C"
+  foreground: texto
+  background: fundo
+  primary: azul-principal
+  secondary: texto-suave
+
+typography:
+  fonts:
+    - family: Atkinson Hyperlegible
+      source: google
+    - family: Source Serif 4
+      source: google
+  base: Atkinson Hyperlegible
+  headings: Source Serif 4
+
+
+

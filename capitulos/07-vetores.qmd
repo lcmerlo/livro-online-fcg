@@ -1,0 +1,64 @@
+# Vetores
+
+Primeiro  introduziremos o conceito de vetor geometricamente e, em seguida, trataremos do conceito via coordenadas.
+
+### Definição de Vetor
+
+
+ Um **vetor não nulo** é um objeto representado por um segmento orientado (lembre que só consideramos segmentos orientados não degenerados, logo $A\neq B$), de modo que um outro segmento orientado $CD$ ($C\neq D$ ) representa o mesmo vetor se ambos os segmentos orientados tiverem:
+
+- mesmo comprimento;
+- mesma direção;
+- mesmo sentido.
+
+![](https://www.geogebra.org/resource/ncqb8w2b/g48riCxSQeWTuZFF/material-ncqb8w2b.png)
+
+Na situação acima, o vetor $\vec{v}$ também pode ser denotado por $\overrightarrow{AB}$ ou por $\overrightarrow{CD}$.
+
+
+  Destacamos que um vetor é representado por um segmento orientado, contudo, o vetor não é o próprio segmento orientado. O vetor pode ser representado por qualquer segmento orientado que possua o mesmo comprimento, direção e sentido.  É por isso que comumente falamos sobre o movimento do vetor, no entanto, é importante lembrar que estamos, na verdade, nos referindo a  a "trocar o representante do vetor”.
+
+
+**Exemplo**
+
+Na seguinte figura interativa mova os vetores com o mouse para determinar quais os segmentos orientados formados pelos pontos abaixo os representam.
+
+[geogebra/fjcqnvew](geogebra/fjcqnvew)
+
+
+
+[](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+PC9zdmc+)
+
+### Definição de Vetor Nulo
+
+
+ O **vetor nulo** é um vetor especial que é representado por qualquer segmento degenerado $AA$ , onde $A$ é um ponto qualquer, e é denotado por $\vec{0}$.
+
+
+
+Observe que só existe um vetor nulo e que, embora ele possa ser representado por qualquer ponto ele não deve ser confundido com algum ponto específico.
+
+![Untitled](Vetores/Untitled.png)
+
+### Definição
+
+
+ Dois vetores são ditos respectivamente **paralelos**, **perpendiculares**, **de mesmo sentido** ou **de sentidos opostos** se quaisquer de seus representantes forem respectivamente paralelos, perpendiculares, de mesmo sentido ou de sentidos opostos.
+
+
+
+### Definição módulo de um vetor
+
+
+ O **módulo**, **comprimento** ou **norma** de um vetor $\vec{v}$, denotado por $\|\vec{v}\|$, é o comprimento de segmento qualquer segmento orientado que representa  $\vec{v}$,  ou seja, se  $\vec{v} = \vec{AB}$  então  $\| \vec{AB}\| = d(A,B)$.
+
+Chamamos de **vetor unitário** a qualquer vetor de comprimento $1$.
+
+
+
+
+**Obs:**  O vetor nulo é o único vetor que:
+
+- tem comprimento 0 , ou seja, vale: $\|\vec{v}\|=0 \Leftrightarrow \vec{v}=\vec{0}$;
+- não tem direção;
+- não tem sentido.

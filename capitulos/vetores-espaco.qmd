@@ -1,0 +1,128 @@
+# Vetores no Espaço
+
+## Introdução
+
+Boa parte da teoria de vetores no espaço é análoga a teoria de vetores no plano. Por exemplo, a definição geométrica de vetor, bem como as noções de *sentido*, *paralelismo*, *perpendicularidade* e *comprimento* são as mesmas vistas na parte de geometria plana.  Além disso, a noção de *coordenadas de vetores, combinação linear, projeção* e as demais operações já vistas na geometria plana também são análogas na geometria espacial, com a mesma interpretação geométrica, porém com suas fórmulas envolvendo uma coordenada a mais, como será visto abaixo nesta seção.  
+
+Na geometria espacial veremos também duas novas operações vetoriais que não possuem análogos na geometria plana, são elas o "produto vetorial" e o "produto misto", as quais serão introduzidas nas seções subsequentes. 
+
+A medida que você for lendo o conteúdo desta seção sugerimos que retorne aos tópicos correspondentes da geometria plana para rever suas interpretações geométricas, imaginando, agora, que as figuras estão no espaço. 
+
+### Definições
+
+
+ Se  $A=(a_1, a_2, a_3)$  e  $B=(b_1, b_2, b_3)$ são pontos no espaço, então as **coordenadas do vetor $\overrightarrow{AB}$** são:
+
+$$
+\overrightarrow{AB} := B-A := \left(b_1-a_1, b_2-a_2, b_3 - a_3 \right).
+$$
+
+Se  $\vec{u} = (a_1, a_2, a_3)$  e  $\vec{v} = (b_1, b_2, b_3)$ são vetores e  $\lambda\in\mathbb{R}$, então definimos a **multiplicação entre número e vetor**, a **soma de vetores**, a **subtração de vetores** e o **produto escalar de vetores**, respectivamente, pelas fórmulas:
+
+- $\lambda\vec{u} = \lambda(a_1, a_2, a_3) := (\lambda a_1, \lambda a_2, \lambda a_3)$;
+- $\vec{u} + \vec{v} = (a_1, a_2, a_3) + (b_1, b_2, b_3) := (a_1 + b_1, a_2 + b_2, a_3 + b_3)$;
+- $\vec{u} - \vec{v} = (a_1, a_2, a_3) - (b_1, b_2, b_3) := (a_1 - b_1, a_2 - b_2, a_3 - b_3)$;
+- $\langle\vec{u}, \vec{v}\rangle = \langle (a_1, a_2, a_3), (b_1, b_2, b_3)\rangle := a_1b_1 + a_2b_2 + a_3b_3$;
+
+As definições de vetores **múltiplos ou colineares,** de **combinação linear** e de **projeção ortogonal** são as mesmas dadas na geometria plana.
+
+
+
+Na Proposição abaixo, destacamos as seguintes interpretações geométricas, análogas ao caso plano.
+
+### Proposição
+
+
+ Se $\vec{u}$ e $\vec{v}$ são vetores *não nulos*, temos que
+
+$$
+\langle\vec{u}, \vec{v}\rangle  = \|\vec{u}\| \|\vec{v}\| \cos \sphericalangle (\vec{u},\vec{v}).
+$$
+
+Além disso,
+
+- $\vec{u}\ \text{ e }\ \vec{v} \ \text{ são múltiplos } \ \Leftrightarrow \ \vec{u}\ \text{ e }\ \vec{v} \ \text{ são colineares }  \ \Leftrightarrow \ \vec{u}\parallel \vec{v}$;
+- $\langle\vec{u}, \vec{v}\rangle =0 \ \Leftrightarrow \ \vec{u}\perp \vec{v}$;
+
+
+### Definição
+
+
+ Os vetores  $\vec{v}_1,\ldots ,\vec{v}_n$  são ditos **coplanares** se todos eles podem ser representados num mesmo plano.
+
+
+
+![VetCopl.png](Vetores%20no%20Espa%C3%A7o/VetCopl.png)
+
+
+Dois vetores sempre são coplanares, pois é sempre possível representá-los em um mesmo plano (veja a Figura 1). Por outro lado, três ou mais podem não ser coplanares (veja a Figura 2).
+
+
+
+![Figura 1: Vetores coplanares](Vetores%20no%20Espa%C3%A7o/DoisVetSaoCoplanares.png)
+
+              Figura 1: Vetores coplanares
+
+![Figura 2: Vetores não coplanares](Vetores%20no%20Espa%C3%A7o/VetNCopl.png)
+
+      Figura 2: Vetores não coplanares
+
+Vimos que qualquer vetor “do plano” pode ser escrito como combinação linear de apenas dois vetores não múltiplos fixados ([veja aqui](https://www.notion.so/Combina-o-Linear-5b1fb32d3b09475fa901be1543ad5572?pvs=21)). Como enunciado na proposição abaixo, no espaço temos uma propriedade similar, trocando agora a condição de *fixar dois vetores não colineares* pela condição de *fixar três vetores não coplanares.*   
+
+### Proposição
+
+
+ Fixados três vetores não coplanares  $\vec{u}$, $\vec{v}$  e  $\vec{w}$, qualquer outro vetor do espaço $\vec{t}$  se escreve de maneira única como combinação linear de  $\vec{u}$, $\vec{v}$  e  $\vec{w}$, ou seja, para cada  $\vec{t}$  existem únicos $a, b, c\in\mathbb{R}$  tais que  $\vec{t} = a\vec{u} + b\vec{v} + c\vec{w}$.
+
+
+
+Na proposição acima, também se diz que $\vec{t}$, $\vec{u}$, $\vec{v}$ e $\vec{w}$ são **linearmente dependentes (LD)**, isto é, conseguimos uma combinação linear entre eles resultando no vetor nulo, com pelos menos um dos coeficientes não nulos:
+
+$$
+a\vec{u}+b\vec{v}+c\vec{w}-\vec{t}=\vec{0},
+$$
+
+com o coeficiente de $\vec{t}$ igual a -1.  Generalizando temos:
+
+### Definição
+
+
+ Os vetores  $\vec{v}_1,\ldots ,\vec{v}_n$  são ditos **Linearmente Independentes (LI)**                                     se $a_1\vec{v_1}+ \dots +a_n\vec{v} =\vec{0}$, implicar em $a_1=\dots =a_n=0$.  Se for possível escrever uma combinação linear da forma  $a_1\vec{v_1}+ \dots +a_n\vec{v} =\vec{0}$, com pelo menos um dos coeficientes $a_1,…., a_n$ não nulo (como, por exemplo, na observação acima), dizemos que os vetores $\vec{v}_1,\ldots ,\vec{v}_n$ são **Linearmente Dependentes** **(LD)**.
+
+
+
+
+**Exemplo**
+
+Considere os seguintes vetores no espaço tridimensional:
+
+$$
+\vec{v}_1=(1,2,3),\, \vec{v}_2=(−1,0,1),\, \vec{v}_3=(2,1,−1).
+$$
+
+Determine se o vetor $\vec{w}=(3,4,1)$ pode ser representado como uma combinação linear dos vetores  $\vec{v}_1, \vec{v}_2$ e $\vec{v}_3$. Em caso afirmativo, encontre os coeficientes da combinação linear.
+
+- $\leftarrow$ Clique para ver a solução
+    
+    Para determinar se o vetor   $\vec{w}$  pode ser representado como uma combinação linear dos vetores  $\vec{v}_1, \vec{v}_2 \text{ e } \vec{v}_3$, vamos verificar se existem constantes $a, b$ e $c$ que satisfazem a equação
+    
+    $$
+    \vec{w}= a\vec{v}_1 + b\vec{v}_2 + c\vec{v}_3. 
+    $$
+    
+    Substituindo as coordenadas de  $\vec{w},\vec{v}_1, \vec{v}_2$ e $\vec{v}_3$ na equação acima obtemos o sistema
+    
+    $$
+    \left \{ \! \! \begin{array}{l}
+    a - b + 2c = 3 \\
+    2a + c = 4\\
+    3a + b - c = 1.\\
+    \end{array} \right.
+    $$
+    
+    Resolvendo o sistema obtemos os coeficientes $a=0, b=5$ e $c=4$ e portanto  $\vec{w}$ pode ser representado como combinação linear de  $\vec{v}_1, \vec{v}_2$ e $\vec{v}_3$ da forma:
+    
+    $$
+    \vec{w}= 0\vec{v}_1 + 5\vec{v}_2 + 4\vec{v}_3 = 5\vec{v}_2 + 4\vec{v}_3. 
+    $$
+    

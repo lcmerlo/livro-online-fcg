@@ -1,0 +1,624 @@
+
+# Especificações Pedagógico-Visuais {.unnumbered}
+
+## Introdução {.unnumbered}
+
+Este relatório consolida diretrizes para a produção de um livro online interativo de revisão matemática, voltado a um público heterogêneo, com prevalência de estudantes com conhecimento matemático frágil. O material previsto combina revisão teórica resumida, exemplos e exercícios resolvidos, applets de matemática dinâmica e exploração geométrica guiada.
+
+O documento está organizado em três capítulos:
+
+1. **Relatório teórico**: fundamentos cognitivos e psicológicos para desenho de materiais digitais de aprendizagem.
+2. **Guia de design visual**: layout, tipografia, paleta de cores e acessibilidade, primeiro em nível geral e depois com seção específica para Quarto.
+3. **Especificação de applets matemáticos**: princípios gerais para applets e padrões práticos para JSXGraph, GeoGebra, CindyJS e Desmos.
+
+A tese operacional do relatório é a seguinte: **em um curso intensivo de revisão para alunos com base precária, a interatividade deve ser guiada, progressiva e cognitivamente econômica**. Applets devem orientar a atenção, não competir com a explicação; paletas devem carregar função didática, não apenas aparência; o layout deve reduzir ruído visual, não apenas ornamentar o conteúdo.
+
+## Relatório teórico: fundamentos cognitivos
+
+### Perfil cognitivo do público-alvo
+
+O público descrito possui três características didaticamente relevantes:
+
+1. **heterogeneidade**: estudantes chegam com repertórios e lacunas muito diferentes;
+2. **fragilidade de pré-requisitos**: parte significativa não domina notação, manipulação algébrica, leitura gráfica ou conceitos básicos;
+3. **pressão temporal**: por se tratar de revisão intensiva, o material deve acelerar recuperação e consolidação sem sobrecarregar a memória de trabalho.
+
+Essas características impõem uma regra editorial central: cada página deve ensinar uma ideia principal, explicitar pré-requisitos mínimos e oferecer rotas de remediação. O livro não deve assumir que o aluno sabe ler uma fórmula, um gráfico ou um controle interativo apenas porque esses elementos estão visíveis.
+
+### Teoria da Carga Cognitiva
+
+A Teoria da Carga Cognitiva, associada a Sweller e colaboradores, parte da limitação da memória de trabalho durante a aprendizagem de conteúdos novos (Sweller, 1988; van Gog, Paas & Sweller, 2010). Para o livro interativo, interessa distinguir três tipos de carga:
+
+**Carga intrínseca**  
+Dificuldade própria do conteúdo: por exemplo, compreender função afim, composição de transformações, razão trigonométrica ou derivada.
+
+**Carga extrínseca**  
+Esforço desnecessário causado por apresentação confusa: legenda distante, cores inconsistentes, muitos controles, símbolos não explicados, applet sem instrução.
+
+**Carga relevante**  
+Esforço produtivo usado para construir esquemas mentais: comparar casos, prever resultados, justificar invariantes, relacionar fórmula e figura.
+
+#### Diretrizes derivadas
+
+1. Reduzir carga extrínseca antes de aumentar desafio matemático.
+2. Evitar que o aluno precise procurar instruções, legenda, controle, fórmula e gráfico em regiões distantes da tela.
+3. Usar sinalização visual para indicar o que deve ser observado.
+4. Introduzir controles do applet antes da tarefa matemática principal.
+5. Dividir problemas longos em passos visíveis.
+6. Oferecer exemplos resolvidos antes de exercícios abertos para alunos iniciantes.
+
+### Aprendizagem multimídia
+
+A Cognitive Theory of Multimedia Learning de Mayer organiza a aprendizagem por imagens, palavras e sons em torno da seleção, organização e integração de informações (Mayer, 2009; Mayer, 2014; Fiorella & Mayer, 2014). Para um livro matemático interativo, os princípios mais úteis são:
+
+**Coerência**  
+Remover elementos decorativos que não ajudam a compreender a ideia matemática.
+
+**Sinalização**  
+Destacar visualmente a parte relevante de uma fórmula, gráfico ou construção.
+
+**Contiguidade espacial**  
+Aproximar texto explicativo e objeto correspondente.
+
+**Contiguidade temporal**  
+Sincronizar animação e comentário.
+
+**Segmentação**  
+Permitir que o aluno avance por etapas curtas.
+
+**Pré-treinamento**  
+Apresentar nomes, controles e objetos antes da exploração.
+
+**Redundância**  
+Evitar repetir simultaneamente o mesmo conteúdo em formatos concorrentes que sobrecarreguem a tela.
+
+### Memória de trabalho, atenção e foco
+
+A memória de trabalho é limitada, especialmente quando o estudante ainda não dispõe de esquemas consolidados. A literatura sobre capacidade de memória de curto prazo e memória de trabalho aponta que poucos elementos independentes podem ser mantidos simultaneamente com precisão (Cowan, 2001). Em matemática, essa limitação é agravada porque símbolos, gráficos, instruções e procedimentos competem por atenção.
+
+#### Implicações para página digital
+
+1. Não exibir teoria, applet, solução completa e vários exercícios simultaneamente sem hierarquia.
+2. Usar blocos visuais com função estável: ideia, exemplo, erro comum, applet, checkpoint.
+3. Manter a instrução do applet imediatamente antes ou ao lado do applet.
+4. Reduzir escolhas simultâneas: poucos botões, poucos sliders, poucos objetos móveis.
+5. Usar uma coluna principal para leitura contínua; reservar colunas laterais apenas para navegação ou notas auxiliares.
+
+### Worked examples, fading e autoexplicação
+
+Alunos iniciantes se beneficiam de exemplos resolvidos porque ainda não conseguem distribuir bem a atenção entre objetivo, estratégia e execução (Renkl, 2002; van Gog, Paas & Sweller, 2010). No entanto, o exemplo resolvido não deve se limitar a mostrar uma solução; ele precisa revelar decisões.
+
+#### Modelo recomendado para exemplos resolvidos
+
+1. Enunciar o objetivo do exemplo.
+2. Indicar o pré-requisito usado.
+3. Resolver em passos curtos.
+4. Explicar por que cada passo é permitido.
+5. Conectar a solução algébrica a uma interpretação geométrica.
+6. Inserir uma pergunta de autoexplicação: “por que este termo mudou de sinal?”, “o que permaneceu invariante?”, “qual ponto do gráfico representa esta informação?”.
+7. Aplicar *fading*: reduzir gradualmente a quantidade de passos dados nos exemplos seguintes.
+
+### Autonomia, motivação e engajamento
+
+A autonomia do estudante não deve ser confundida com exploração sem suporte. A Self-Determination Theory destaca que motivação de qualidade depende de autonomia, competência e pertencimento (Deci & Ryan, 2000). Para alunos com histórico de dificuldade em matemática, a sensação de competência é particularmente decisiva.
+
+#### Autonomia guiada
+
+O relatório recomenda um modelo de autonomia em três níveis:
+
+1. **Demonstração**: o applet mostra uma relação com poucos controles ou com animação controlada.
+2. **Manipulação guiada**: o aluno move um ponto ou slider para verificar uma conjectura já formulada.
+3. **Exploração orientada**: o aluno escolhe casos, registra padrões e responde a checkpoints.
+
+Exploração aberta deve aparecer apenas depois de o aluno saber o que observar. Caso contrário, a liberdade vira carga cognitiva extrínseca.
+
+### Arquitetura recomendada para uma lição
+
+Para cada tópico do livro, recomenda-se uma estrutura estável:
+
+1. **Objetivo da lição**: uma frase observável.
+2. **Antes de começar**: pré-requisitos mínimos.
+3. **Ideia central**: explicação breve, sem excesso formal.
+4. **Exemplo resolvido**: com passos comentados.
+5. **Interpretação geométrica**: figura estática ou microanimação.
+6. **Applet guiado**: uma tarefa principal, controles mínimos.
+7. **Erro comum**: contraste entre resposta incorreta e correção.
+8. **Checkpoint**: 1 a 3 perguntas de verificação.
+9. **Remediação**: link para pré-requisito ou explicação alternativa.
+10. **Exercício de fixação**: baixa carga inicial.
+11. **Desafio opcional**: para alunos mais avançados.
+
+## Guia de design visual: layout, tipografia, cores e acessibilidade
+
+### Parte geral independente da plataforma
+
+#### Princípios visuais centrais
+
+O design visual deve seguir quatro princípios:
+
+1. **Hierarquia**: o aluno deve perceber rapidamente título, objetivo, explicação, exemplo, applet e tarefa.
+2. **Consistência**: blocos semelhantes devem ter aparência semelhante ao longo do livro.
+3. **Economia**: cada cor, linha, ícone ou caixa deve ter função didática.
+4. **Acessibilidade**: contraste, teclado, reflow, foco e descrição textual não são opcionais.
+
+### Layout de página
+
+#### Recomendações gerais
+
+- Usar uma coluna principal para leitura, com largura entre 60 e 72 caracteres.
+- Evitar três colunas fixas em páginas de conteúdo matemático.
+- Manter margens generosas e espaços verticais previsíveis.
+- Posicionar applets imediatamente após a pergunta que orienta seu uso.
+- Colocar legendas e instruções junto ao objeto correspondente.
+- Usar sumário lateral apenas se não competir com o conteúdo principal.
+
+#### Estrutura visual de página
+
+| Elemento | Função cognitiva | Recomendação visual |
+|---|---|---|
+| Objetivo | Preparar atenção | Bloco breve no início, com uma frase acionável |
+| Pré-requisitos | Reduzir lacunas | Lista curta, com links de remediação |
+| Teoria essencial | Construir esquema inicial | Texto curto, subtítulos claros, exemplos próximos |
+| Exemplo resolvido | Modelar procedimento | Passos numerados, comentários laterais discretos |
+| Applet | Exploração orientada | Instrução antes do applet, controles mínimos, botão reset |
+| Checkpoint | Verificar compreensão | 1 a 3 itens, feedback imediato quando possível |
+| Erro comum | Prevenir equívocos | Caixa de alerta moderada, sem vermelho como único canal |
+
+### Tipografia
+
+#### Texto corrido
+
+- Corpo do texto: 16–18px em HTML; em PDF, 11–12pt.
+- Altura de linha: 1.55–1.70.
+- Evitar blocos longos sem subtítulos.
+- Usar negrito para termos, não para frases inteiras.
+- Evitar itálico prolongado em tela.
+
+#### Matemática
+
+- Introduzir notação antes do uso intensivo.
+- Evitar muitas fórmulas consecutivas sem comentário verbal.
+- Separar fórmulas longas em linhas alinhadas.
+- Usar MathML ou renderização matemática acessível sempre que possível.
+- Evitar fórmulas como imagens, exceto em casos inevitáveis; se usadas, devem ter texto alternativo.
+
+### Paleta de cores para texto e interface
+
+A paleta deve funcionar em telas comuns, ser suficientemente contrastante e evitar saturação excessiva. A tabela abaixo propõe uma base clara e sóbria.
+
+| Papel | Cor sugerida | Uso |
+|---|---:|---|
+| Fundo principal | `#F7F4ED` | Fundo quente, menos agressivo que branco puro |
+| Superfície | `#FFFFFF` | Caixas, cartões, applets |
+| Texto principal | `#1F2933` | Texto corrido |
+| Texto secundário | `#5B677A` | Legendas e metadados |
+| Primária | `#1E5B8A` | Links, títulos funcionais, foco conceitual |
+| Secundária | `#5B7C99` | Elementos de apoio |
+| Sucesso | `#276749` | Confirmação, resposta correta |
+| Atenção | `#946200` | Alerta moderado, cuidado conceitual |
+| Erro | `#9F2D2D` | Erro, desde que acompanhado de texto/ícone |
+
+### Paleta funcional para objetos matemáticos dinâmicos
+
+| Objeto | Cor | Estilo | Função |
+|---|---:|---|---|
+| Objeto principal | `#1D4ED8` | Linha contínua, espessura média/alta | Conceito central da tarefa |
+| Ponto manipulável | `#0F766E` | Ponto maior, contorno forte | Controle direto do aluno |
+| Objeto construído | `#7C3AED` | Linha contínua moderada | Resultado dependente |
+| Objeto auxiliar | `#64748B` | Linha tracejada ou fina | Apoio geométrico, grade, projeções |
+| Invariante | `#B45309` | Destaque persistente discreto | Relação que permanece estável |
+| Região | mesma família do objeto | Preenchimento 10–18% | Área, domínio, intervalo, conjunto |
+| Erro/alerta | `#B91C1C` | Nunca apenas por cor | Indicar conflito, hipótese falsa, limite |
+
+### Acessibilidade
+
+O padrão mínimo recomendado é mirar conformidade com WCAG 2.2 nível AA, sabendo que conformidade automática não garante plena acessibilidade pedagógica (W3C, 2024). Para matemática interativa, os pontos críticos são:
+
+1. **Contraste**: texto e controles devem ter contraste suficiente.
+2. **Foco visível**: todo controle navegável por teclado deve mostrar foco claro.
+3. **Alternativa ao arraste**: qualquer tarefa de arrastar deve possuir alternativa por teclado, input numérico, botões ou sliders acessíveis.
+4. **Tamanho de alvo**: botões e pontos manipuláveis devem ser grandes o bastante para toque e baixa precisão motora.
+5. **Não depender só de cor**: usar rótulo, padrão de linha, ícone ou texto.
+6. **Movimento controlável**: animações devem ser pausáveis e respeitar preferência por movimento reduzido.
+7. **Descrição textual**: gráficos e applets devem ter descrição do objetivo, dos objetos e da relação matemática principal.
+8. **Reflow**: o conteúdo deve se reorganizar em telas estreitas sem perda de informação.
+
+### Seção específica para Quarto
+
+#### Estrutura de projeto recomendada
+
+```text
+livro-revisao-matematica/
+  _quarto.yml
+  _brand.yml
+  custom.scss
+  index.qmd
+  capitulos/
+    00-apresentacao.qmd
+    01-funcoes.qmd
+    02-geometria-analitica.qmd
+  applets/
+    jsxgraph/
+    geogebra/
+    cindyjs/
+    desmos/
+  recursos/
+    imagens/
+    dados/
+  referencias.bib
+```
+
+#### Modelo de `_quarto.yml`
+
+```yaml
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "Revisão Matemática Interativa"
+  subtitle: "Curso intensivo com interpretação geométrica"
+  author: "Seu Nome"
+  lang: pt-BR
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - capitulos/00-apresentacao.qmd
+    - capitulos/01-funcoes.qmd
+
+format:
+  html:
+    lang: pt-BR
+    theme:
+      - cosmo
+      - custom.scss
+    brand: _brand.yml
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    smooth-scroll: true
+    callout-appearance: simple
+    code-fold: false
+    axe: true
+```
+
+A opção `axe: true` pode ser usada em versões recentes do Quarto para acionar verificações de acessibilidade baseadas em `axe-core` no HTML (Quarto, 2026).
+
+#### Modelo de `_brand.yml`
+
+```yaml
+color:
+  palette:
+    fundo: "#F7F4ED"
+    superficie: "#FFFFFF"
+    texto: "#1F2933"
+    texto-suave: "#5B677A"
+    azul-principal: "#1E5B8A"
+    azul-objeto: "#1D4ED8"
+    verde-manipulavel: "#0F766E"
+    roxo-construido: "#7C3AED"
+    cinza-auxiliar: "#64748B"
+    amarelo-invariante: "#B45309"
+    vermelho-erro: "#B91C1C"
+  foreground: texto
+  background: fundo
+  primary: azul-principal
+  secondary: texto-suave
+
+typography:
+  fonts:
+    - family: Atkinson Hyperlegible
+      source: google
+    - family: Source Serif 4
+      source: google
+  base: Atkinson Hyperlegible
+  headings: Source Serif 4
+```
+
+Quarto permite usar `_brand.yml` para definir cores, tipografia e identidade visual compartilhadas entre formatos (Quarto, 2026).
+
+#### Modelo de `custom.scss`
+
+```scss
+/*-- scss:defaults --*/
+$body-bg: #F7F4ED;
+$body-color: #1F2933;
+$link-color: #1E5B8A;
+$font-size-base: 1.05rem;
+$line-height-base: 1.65;
+
+/*-- scss:rules --*/
+:root {
+  --cor-objeto-principal: #1D4ED8;
+  --cor-manipulavel: #0F766E;
+  --cor-construido: #7C3AED;
+  --cor-auxiliar: #64748B;
+  --cor-invariante: #B45309;
+  --cor-erro: #B91C1C;
+}
+
+body {
+  max-width: none;
+}
+
+main.content {
+  max-width: 76ch;
+}
+
+p, li {
+  line-height: 1.65;
+}
+
+.bloco-objetivo,
+.bloco-exemplo,
+.bloco-applet,
+.bloco-erro,
+.bloco-checkpoint {
+  border-radius: 0.75rem;
+  padding: 1rem 1.1rem;
+  margin: 1.25rem 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(31, 41, 51, 0.12);
+}
+
+.bloco-objetivo { border-left: 6px solid #1E5B8A; }
+.bloco-exemplo { border-left: 6px solid #7C3AED; }
+.bloco-applet { border-left: 6px solid #0F766E; }
+.bloco-erro { border-left: 6px solid #B91C1C; }
+.bloco-checkpoint { border-left: 6px solid #B45309; }
+
+:focus-visible {
+  outline: 3px solid #1E5B8A;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+#### Mapeamento de callouts
+
+| Callout Quarto | Uso no livro | Observação |
+|---|---|---|
+| `callout-note` | Ideia central | Explicação curta, não suplementar demais |
+| `callout-tip` | Estratégia ou atalho | Usar para procedimento produtivo |
+| `callout-warning` | Erro comum | Mostrar o erro e a correção |
+| `callout-important` | Resultado fundamental | Reservar para fatos estruturantes |
+| `callout-caution` | Atenção operacional | Usar para limitações de applet ou notação |
+
+## Especificação de applets matemáticos
+
+### Conceitos gerais
+
+Um applet didático não é apenas uma figura manipulável. Ele é um instrumento de atenção. Sua função é tornar observável uma relação matemática que, no texto, poderia ficar abstrata demais.
+
+#### Regra do objetivo único
+
+Cada applet deve ter um objetivo cognitivo dominante. Exemplos:
+
+- observar a variação do coeficiente angular;
+- perceber que uma distância permanece constante;
+- comparar crescimento linear e quadrático;
+- visualizar o efeito de um parâmetro;
+- distinguir objeto livre, objeto dependente e invariante.
+
+Se um applet tenta ensinar muitos conceitos ao mesmo tempo, ele tende a virar uma interface de exploração difusa.
+
+### Anatomia mínima de um applet
+
+Todo applet publicado deve conter:
+
+1. **Título**: curto e específico.
+2. **Objetivo**: “Neste applet, observe...”.
+3. **Controles**: o que pode ser movido e como reiniciar.
+4. **Tarefa guiada**: uma pergunta de observação.
+5. **Descrição textual**: resumo da construção para acessibilidade.
+6. **Estado inicial limpo**: poucos objetos visíveis.
+7. **Reset**: botão ou instrução para voltar ao caso inicial.
+8. **Alternativa sem mouse**: slider, input, teclado ou descrição equivalente.
+
+### Níveis de interatividade
+
+| Nível | Descrição | Uso recomendado |
+|---|---|---|
+| 0. Figura estática | Sem manipulação | Primeiro contato ou resumo |
+| 1. Demonstração | Animação controlada ou botão único | Mostrar fenômeno sem carga de controle |
+| 2. Manipulação guiada | Um ponto ou slider principal | Verificar conjectura específica |
+| 3. Exploração orientada | Vários casos, roteiro claro | Comparar padrões |
+| 4. Construção | Aluno cria objetos | Depois de domínio mínimo |
+| 5. Investigação aberta | Livre exploração | Desafio opcional, não núcleo inicial |
+
+### Convenções visuais para objetos matemáticos
+
+| Categoria | Exemplos | Padrão visual | Selecionável? |
+|---|---|---|---|
+| Livre/manipulável | ponto livre, slider | verde, maior, contorno forte | Sim |
+| Dado/fixo | eixo, ponto fixo, parâmetro fixo | azul escuro ou preto suave | Não, salvo necessidade |
+| Dependente | imagem, projeção, lugar geométrico | roxo ou azul médio | Geralmente não |
+| Auxiliar | paralelas, perpendiculares, grade local | cinza tracejado | Não |
+| Resultado | curva final, região solução | azul principal, espessura maior | Não |
+| Invariante | ângulo, distância, razão | âmbar/laranja, rótulo explícito | Não |
+| Feedback | correto, incorreto, limite | verde/vermelho com texto | Não |
+
+### Roteiro didático para uso de applet
+
+1. Antes de abrir o applet, formular uma previsão.
+2. Manipular apenas um controle por vez.
+3. Registrar o que muda.
+4. Registrar o que permanece constante.
+5. Comparar com a fórmula correspondente.
+6. Responder ao checkpoint.
+
+### JSXGraph
+
+JSXGraph é apropriado quando se deseja integração web nativa, controle visual fino, componentes personalizados e acessibilidade implementada pelo autor via ARIA, `tabIndex` e controles de teclado (JSXGraph, 2026). É uma boa escolha para um livro em Quarto quando os applets precisam ser versionáveis e integrados ao HTML/CSS do projeto.
+
+#### Padrões recomendados
+
+- Criar um contêiner HTML para cada applet com `aria-label` ou `aria-describedby`.
+- Definir `tabIndex` para objetos manipuláveis relevantes.
+- Usar `aria-live="polite"` para atualizações textuais importantes.
+- Implementar botões externos para reset, mostrar/ocultar auxiliares e alternar etapas.
+- Usar precisão de toque ampliada para pontos manipuláveis.
+- Manter estado inicial simples e evitar dezenas de objetos ativos.
+
+#### Esqueleto conceitual
+
+```html
+<div class="bloco-applet" id="applet-funcao-afim">
+  <p id="desc-afim">
+    Mova o ponto A e observe como a reta muda. Compare a inclinação
+    visual com o valor do coeficiente angular.
+  </p>
+  <div id="jxg-afim" class="jxgbox" aria-describedby="desc-afim"></div>
+  <button id="reset-afim">Reiniciar</button>
+</div>
+
+<script>
+const board = JXG.JSXGraph.initBoard('jxg-afim', {
+  boundingbox: [-5, 5, 5, -5],
+  axis: true,
+  showCopyright: false,
+  showNavigation: false
+});
+
+const A = board.create('point', [1, 2], {
+  name: 'A',
+  size: 5,
+  color: '#0F766E',
+  tabIndex: 0,
+  aria: {
+    enabled: true,
+    label: self => `Ponto A em x igual a ${self.X().toFixed(1)} e y igual a ${self.Y().toFixed(1)}`,
+    live: 'polite'
+  }
+});
+</script>
+```
+
+### GeoGebra
+
+GeoGebra é apropriado para autoria rápida de construções, geometria dinâmica clássica, álgebra integrada, atividades com professores e prototipagem. Suas ferramentas de acessibilidade incluem navegação por teclado, suporte a leitores de tela, atalhos, modo de notação linear e recursos como `altText` e `ReadText` em contextos compatíveis (GeoGebra, 2026).
+
+#### Padrões recomendados
+
+- Usar fonte grande e linhas espessas desde o início da construção.
+- Desativar seleção de objetos auxiliares.
+- Nomear objetos com convenções legíveis.
+- Usar texto na própria construção apenas quando necessário; instruções longas devem ficar no HTML ao redor.
+- Criar `altText`, `altText2` ou `altText3D` quando aplicável.
+- Oferecer instruções de teclado: Tab, setas, Espaço, Enter, + e -.
+- Evitar que a barra de ferramentas completa apareça em applets de revisão básica.
+
+#### Uso ideal
+
+- Geometria euclidiana elementar.
+- Transformações geométricas.
+- Relações entre álgebra e gráfico.
+- Construções em que o professor deseja editar visualmente antes de publicar.
+
+### CindyJS
+
+CindyJS é apropriado para conteúdo matemático interativo na web, especialmente quando se deseja explorar construções geométricas, simulações e scripts próximos da tradição do Cinderella/CindyScript (CindyJS, 2026). É uma boa opção para applets com comportamento geométrico sofisticado ou simulações visuais customizadas.
+
+#### Padrões recomendados
+
+- Usar CindyJS quando a lógica geométrica ou simulação justificar a ferramenta.
+- Envolver o applet em HTML acessível, com descrição externa, controles por botões e estado textual.
+- Não depender exclusivamente de manipulação por mouse.
+- Usar camadas: objetos essenciais visíveis; objetos auxiliares ocultáveis.
+- Manter scripts comentados e versionáveis.
+
+#### Uso ideal
+
+- Simulações geométricas ou físicas com forte componente visual.
+- Atividades em que invariantes e dependências são mais importantes que entrada algébrica tradicional.
+- Applets que precisam de comportamento gráfico expressivo.
+
+### Desmos
+
+Desmos é especialmente forte para funções, gráficos, sliders, regressões, inequações, exploração algébrica e acessibilidade em gráficos. A documentação do Desmos destaca recursos como navegação por teclado, modo de áudio para traçado de gráficos e suporte a configurações de acessibilidade; na API, opções como `settingsMenu` e `brailleControls` têm implicações de acessibilidade e não devem ser removidas sem alternativa equivalente (Desmos, 2025; Desmos, 2026).
+
+#### Padrões recomendados
+
+- Usar Desmos para funções, famílias de curvas, sliders e comparação de expressões.
+- Manter lista de expressões curta e nomeada.
+- Preservar menus de configuração quando possível.
+- Não esconder controles de acessibilidade sem fornecer substituto.
+- Usar cores consistentes com a paleta do livro quando a API permitir.
+- Associar cada gráfico a uma pergunta clara de observação.
+
+#### Uso ideal
+
+- Funções afins, quadráticas, exponenciais e trigonométricas.
+- Efeito de parâmetros.
+- Sistemas, inequações e interseções.
+- Comparação entre representação algébrica e gráfica.
+
+### Matriz de decisão por plataforma
+
+| Plataforma | Melhor uso | Vantagem | Cuidado |
+|---|---|---|---|
+| JSXGraph | Applets integrados ao site | Controle fino, HTML nativo, versionável | Exige programação e desenho de acessibilidade |
+| GeoGebra | Construções geométricas rápidas | Autoria visual, familiaridade educacional | Pode ficar pesado ou visualmente heterogêneo |
+| CindyJS | Simulações e geometria customizada | Forte expressividade geométrica | Acessibilidade depende muito do entorno HTML |
+| Desmos | Funções, sliders, gráficos | Excelente experiência gráfica e acessibilidade própria | Menos flexível para geometria arbitrária |
+
+### Checklist de publicação de applet
+
+Antes de publicar um applet, verificar:
+
+1. O objetivo cognitivo está explícito?
+2. Há apenas uma tarefa principal?
+3. O aluno sabe o que pode mover?
+4. Existe botão ou instrução de reset?
+5. Existe alternativa ao arraste?
+6. Os objetos manipuláveis são grandes e distinguíveis?
+7. Cores não são o único canal de significado?
+8. Objetos auxiliares podem ser ocultados ou estão discretos?
+9. A instrução está próxima do applet?
+10. Há descrição textual para leitores de tela?
+11. O applet funciona em tela estreita?
+12. O applet não exige precisão motora excessiva?
+13. Há checkpoint após a exploração?
+
+## Conclusão operacional {.unnumbered}
+
+Para o livro interativo de revisão matemática, recomenda-se adotar um sistema estável composto por:
+
+1. arquitetura fixa de lição;
+2. blocos didáticos padronizados;
+3. paleta funcional para texto e applets;
+4. tipografia legível e espaçamento generoso;
+5. padrão WCAG 2.2 AA como referência mínima;
+6. applets com objetivo único e exploração guiada;
+7. checklist editorial antes de publicação.
+
+O sucesso do projeto dependerá menos de acumular recursos interativos e mais de criar uma experiência previsível, acessível e cognitivamente segura. Para alunos com base frágil, clareza, consistência e feedback formativo são mais importantes que complexidade visual.
+
+## Referências {.unnumbered}
+
+- CindyJS. (2026). *What is CindyJS?* CindyJS Documentation.
+- Cowan, N. (2001). The magical number 4 in short-term memory: A reconsideration of mental storage capacity. *Behavioral and Brain Sciences*, 24(1), 87–114.
+- Deci, E. L., & Ryan, R. M. (2000). The “what” and “why” of goal pursuits: Human needs and the self-determination of behavior. *Psychological Inquiry*, 11(4), 227–268.
+- Desmos. (2025). *What accessibility features does Desmos offer?* Desmos Help Center.
+- Desmos. (2026). *Desmos API documentation*. Desmos API Docs.
+- Fiorella, L., & Mayer, R. E. (2014). Principles for reducing extraneous processing in multimedia learning. In R. E. Mayer (Ed.), *The Cambridge Handbook of Multimedia Learning*.
+- GeoGebra. (2026). *Accessibility*. GeoGebra Help Center.
+- GeoGebra Manual. (2026). *ReadText Command*. GeoGebra Documentation.
+- JSXGraph. (2026). *Accessibility*. JSXGraph Documentation.
+- Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. *Educational Psychologist*, 41(2), 75–86.
+- Mayer, R. E. (2009). *Multimedia Learning* (2nd ed.). Cambridge University Press.
+- Mayer, R. E. (Ed.). (2014). *The Cambridge Handbook of Multimedia Learning* (2nd ed.). Cambridge University Press.
+- Quarto. (2026). *HTML Accessibility Checks*. Quarto Documentation.
+- Quarto. (2026). *Multiformat branding with `_brand.yml`*. Quarto Documentation.
+- Renkl, A. (2002). Worked-out examples: Instructional explanations support learning by self-explanations. *Learning and Instruction*, 12(5), 529–556.
+- Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. *Cognitive Science*, 12(2), 257–285.
+- van Gog, T., Paas, F., & Sweller, J. (2010). Cognitive Load Theory: Advances in research on worked examples, animations, and cognitive load measurement. *Educational Psychology Review*, 22, 375–378.
+- W3C. (2024). *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation.

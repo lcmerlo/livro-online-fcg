@@ -1,0 +1,86 @@
+# Primeiras Noções da Geometria Espacial
+
+A partir de agora estudaremos a geometria analítica espacial. Nestas parte, muitos conceitos são similares aos da geometria plana, mas alguns outros novos e próprios de um espaço com três dimensões serão apresentados.
+
+Os principais objetos desta parte são os **pontos**, as **retas** e os **planos** e todos eles *"vivem"* no **espaço**.
+
+### Propriedades
+
+
+ Destacamos as seguintes propriedades básicas:
+
+- *Por dois pontos* **distintos** *passa uma única reta;*
+- *Por três pontos **não colineares** (isto é, não estão sobre uma mesma reta) passa um único plano.*
+
+![material-tzrpdy9e.png](Primeiras%20No%C3%A7%C3%B5es%20da%20Geometria%20Espacial/material-tzrpdy9e.png)
+
+
+
+Vejamos as posições relativas possíveis entre retas e planos:
+
+### Posições Relativas entre Planos
+
+
+ Dados dois planos  $\alpha$  e  $\beta$ , temos três possibilidades quanto às suas posições relativas. Eles podem ser:
+
+- **coincidentes**, isto é,  $\alpha = \beta$ ;
+- **paralelos**, isto é,  $\alpha\cap\beta = \emptyset$ . Neste caso, denotamos  $\alpha\, ||\, \beta$ ;
+- **concorrentes**, isto é,  $\alpha\neq\beta$  e  $\alpha\cap\beta\neq\emptyset$ . Neste caso, $\alpha\cap\beta$  é uma reta.
+    
+    ![material-kxszwvdp.png](Primeiras%20No%C3%A7%C3%B5es%20da%20Geometria%20Espacial/material-kxszwvdp.png)
+    
+
+
+### Posições Relativas entre Reta e Plano
+
+
+ Dados uma reta $r$ e um plano $\alpha$ temos as seguintes possibilidades quanto à sua posição relativa:
+
+- $r\subset\alpha$ ;
+- $r$  é **paralela** a  $\alpha$, isto é,  $r\cap\alpha\neq\emptyset$ . Neste caso, denotamos  $r\, ||\, \alpha$ ;
+- $r$  e  $\alpha$  são **concorrentes**, isto é,  $r\subsetneq \alpha$  e   $r\cap\alpha\neq\emptyset$ . Neste caso,  $r\cap\alpha = \{P\}$.
+
+![material-jnv8nqg7.png](Primeiras%20No%C3%A7%C3%B5es%20da%20Geometria%20Espacial/material-jnv8nqg7.png)
+
+
+
+
+<img src="https://www.notion.so/icons/target_lightgray.svg" alt="https://www.notion.so/icons/target_lightgray.svg" width="40px" /> Dizemos que uma **reta  $r$  é perpendicular a um plano  $\alpha$** , e denotamos  $r \perp \alpha$ , se  $r$   e  $\alpha$  são concorrentes e toda reta  $s\subset\alpha$  que intersecta  $r$  é perpendicular a  $r$
+
+![material-dwatqntf.png](Primeiras%20No%C3%A7%C3%B5es%20da%20Geometria%20Espacial/material-dwatqntf.png)
+
+
+
+### Posições Relativas entre Retas
+
+
+ Duas retas  $r$  e  $s$  são **coplanares** se elas estão contidas num mesmo plano. Caso contrário, elas são ditas **não coplanares** ou **reversas.**
+
+Se r e s são coplanares temos as três possibilidades de posições relativas:
+
+- **coincidentes** se **** $r=s$ ;
+- **paralelas** se **** $r\cap s = \emptyset$ ;
+- **concorrentes** se  **$r\cap s = \{P\}$ .**
+
+![material-vjvwumtf.png](Primeiras%20No%C3%A7%C3%B5es%20da%20Geometria%20Espacial/material-vjvwumtf.png)
+
+
+
+
+💡 Note que se  $r$  e  $s$  são reversas então   $r\cap s =\emptyset$.  Portanto, no espaço, duas retas não se intersectarem não garante que elas sejam paralelas.
+
+
+
+### Proposição
+
+
+ Como na geometria plana, fixada uma unidade de comprimento, podemos medir **distância  $d(A,B)$**  entre quaisquer dois pontos  $A$  e  $B$ . Como antes valem as seguintes propriedades:
+
+1. $d(A,B) \geq 0$ ;
+2. $d(A,B) = 0 \Leftrightarrow A=B$ ;
+3. $d(A,B) = d(B,A)$ ;
+4. $d(A,B) + d(B,C) \geq d(A,C)$ **(desigualdade triangular)** ;
+5. $d(A,B) + d(B,C) = d(A,C) \Leftrightarrow A$ ,  $B$   e  $C$  são colineares e  $B$  está entre  $A$  e  $C$ .
+
+
+As noções de **segmento** e **segmento orientado** são análogas às da geometria plana. Antes de prosseguir, revise tais conceitos ([clique aqui](Segmentos%20943e617882ad4963b6108f4051a08e95.md)), considerando agora que estamos no espaço.

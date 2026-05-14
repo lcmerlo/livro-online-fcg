@@ -1,0 +1,118 @@
+# Produto Interno ou Escalar
+
+### Definição 1
+
+
+ Dados vetores $\vec{u}=(a_1,a_2)$ e $\vec{v}=(b_1,b_2)$, o produto interno ou escalar entre eles é definido por
+
+$$
+\left\langle\vec{u},\vec{v}\right\rangle=a_1b_1+a_2b_2.
+$$
+
+
+
+
+💡 Alguns livros usam a seguinte notação para produto interno: $\vec{u}.\vec{v}$
+
+
+
+
+**Exemplo**
+
+Por exemplo, se $\vec{u}=(1,-4)$ e $\vec{v}=(3,2)$ então ﻿﻿
+
+$$
+\langle \vec{u} ,\vec{v}\rangle=1\cdot3+(-4)\cdot2=-5.
+$$
+
+
+
+### Proposição 1
+
+
+ Valem as seguintes propriedades:
+
+1. $\langle \vec{u}, \vec{u} \rangle = \|\vec{u}\|^2$;
+2. $\left\langle\vec{u},\vec{v}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle$;
+3. $\left\langle
+a\vec{u},\vec{v}\right\rangle=\left\langle\vec{u},a\vec{v}\right\rangle=a\left\langle\vec{u},\vec{v}\right\rangle$;
+4. $\left\langle\vec{v}+\vec{w},\vec{u}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle+\left\langle\vec{w},\vec{u}\right\rangle$;
+5. $\left\langle\vec{u,}\vec{v}+\vec{w}\right\rangle=\left\langle\vec{u},\vec{v}\right\rangle+\left\langle\vec{u},\vec{w}\right\rangle$.
+
+
+### **Interpretação geométrica do produto interno.**
+
+O produto interno entre dois vetores está intimamente relacionado com o comprimento dos vetores e o ângulo formado por eles, como veremos.
+
+### Definição 2
+
+
+ Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vec{OA}$ e $\vec{v}=\vec{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
+
+
+
+[geogebra/nqbrkaya](geogebra/nqbrkaya)
+
+### Proposição 2
+
+
+ O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
+
+$$
+\left\langle\vec{u},\vec{v}\right\rangle=\|\vec{u}\|\:\|\vec{v}\| \cos \sphericalangle
+(﻿\vec{u},\vec{v}).
+$$
+
+
+
+A próxima proposição é consequência do resultado acima e e será muito utilizada ao longo do curso.
+
+### Proposição 3
+
+
+ Se $\vec{u}$ e $\vec{v}$  são vetores não nulos, dizemos que eles são perpendiculares ( $\vec{u}\perp\vec{v}$ ) se, e somente se
+
+$$
+\langle\vec{u},\vec{v}\rangle=0\Leftrightarrow
+\sphericalangle(\vec{u},\vec{v}) = 90^\circ.
+$$
+
+
+
+
+**Exemplo**
+
+Dado um número $a\ne0$, determine o ângulo entre o vetores $\vec{u}=(1,-1)$ e $\vec{v}=(0,a)$, de acordo com o sinal de $a$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resposta:** $\sphericalangle(\vec{u},\vec{v})=135^\circ \text{ se } a>0 \quad \text{ e }  \quad \sphericalangle(\vec{u},\vec{v})=45^\circ  \text{ se } a<0$.
+    
+    **Resolução :**
+    Pela Proposição 1 temos
+    
+    $$
+     \langle\vec{u},\vec{v}\rangle=\lVert\vec{u}\rVert\lVert\vec{v}\rVert cos\sphericalangle(\vec{u},\vec{v}).
+    $$
+    
+    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\lVert\vec{u}\rVert\lVert\vec{v}\rVert\neq0$. Dividindo a equação acima por $\lVert\vec{u}\rVert\lVert\vec{v}\rVert$ obtemos 
+    
+    $$
+    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\lVert\vec{u}\rVert\lVert\vec{v}\rVert} \quad (\ast).
+    
+    $$
+    
+    Mas note que 
+    
+    $$
+    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \lVert\vec{u}\rVert=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\lVert\vec{v}\rVert=\sqrt{0^2+a^2}=|a| .
+    $$
+    
+    Portanto, por $(\ast)$, temos
+    
+    $\cos\sphericalangle\left(\vec{u},\vec{v}\right)=\frac{-a}{\sqrt{2}\mid a\mid}=\frac{-a\sqrt{2}}{\mid a\mid2}=\begin{cases}
+    \frac{-\sqrt{2}}{2}\quad  se\quad a>0 \\
+    \frac{\sqrt{2}}{2}\quad  se\quad a<0
+    \end{cases}$
+    Donde segue o resultado!
+    

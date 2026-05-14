@@ -1,0 +1,85 @@
+# sintáxe de comentário no quarto 
+
+project:
+  type: book
+  output-dir: _book
+
+brand: _brand.yml
+
+lang: pt-BR
+
+crossref:
+  custom:
+    - key: exrr
+      kind: float
+      reference-prefix: Exercício Resolvido
+      caption-prefix: "Exercício Resolvido"
+      caption-location: top
+
+book:
+  title: "Livro Online"
+  author: "Projeto FCG"
+  date: today
+  page-navigation: true
+  search:
+    location: navbar
+    type: overlay
+  chapters:
+    - index.qmd
+    #- summary.qmd
+    #- intro.qmd
+    - extras/relatorio-design-pedagogico.qmd
+    - extras/biblioteca-estruturas-site-diretrizes.qmd
+    - extras/proposta.qmd
+    
+    - capitulos/01-primeiras-nocoes.qmd
+    - capitulos/02-segmentos.qmd
+    - capitulos/03-segmentos-orientados.qmd
+    - capitulos/04-eixos.qmd
+    - capitulos/05-coordenadas-plano.qmd
+    - capitulos/06-circulos.qmd
+    - capitulos/07-vetores.qmd
+    - capitulos/08-produto-numero-vetor.qmd
+    - capitulos/09-soma-subtracao-vetores.qmd
+    - capitulos/10-combinacao-linear.qmd
+    - capitulos/11-produto-interno-escalar.qmd
+    - capitulos/12-projecao-ortogonal.qmd
+    - capitulos/13-area-triangulos-paralelogramos.qmd
+    - capitulos/14-equacao-parametrica-reta.qmd
+    - capitulos/15-equacao-cartesiana-reta.qmd
+    - capitulos/16-intersecao-retas.qmd
+    - capitulos/17-posicao-relativa-retas.qmd
+    - capitulos/18-distancia-ponto_reta-reta_reta.qmd
+    - capitulos/19-posicoes-relativas-reta-circulo.qmd
+    - capitulos/20-posicao-relativa-circulos.qmd
+    
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      # - sandstone
+      - cosmo
+      - assets/css/custom.scss
+    toc: true
+    toc-location: left
+    toc-title: "Neste capítulo"
+    toc-depth: 2
+    toc-expand: 1
+    number-sections: true
+    number-depth: 2
+    smooth-scroll: true
+    anchor-sections: true
+    css: assets/css/custom.scss
+    callout-appearance: simple
+    code-fold: false
+    axe: true
+  pdf:
+    documentclass: scrreprt
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  error: false
+

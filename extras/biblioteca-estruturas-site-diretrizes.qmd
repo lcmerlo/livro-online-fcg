@@ -1,0 +1,969 @@
+# Biblioteca de ambientes {.unnumbered}
+
+Este arquivo é uma **página-laboratório** para testar e copiar estruturas úteis nos capítulos do livro. Cada seção mostra o **código** e o **resultado renderizado** correspondente.
+
+::: {.callout-note title="Uso recomendado" appearance="simple"}
+Coloque este arquivo em `extras/` ou `capitulos/apoio/` e inclua-o temporariamente em `_quarto.yml` durante a produção do livro. Depois de consolidar os padrões, use-o como referência editorial.
+:::
+
+## Premissas adotadas
+
+Esta versão segue três decisões estruturais:
+
+1. cada página deve trabalhar uma ideia principal;
+2. cada bloco visual deve ter função cognitiva clara;
+3. applets e figuras devem orientar a atenção, não competir com a explicação.
+
+## Convenções de rótulos e classes
+
+| Tipo de estrutura | Prefixo recomendado | Exemplo |
+|---|---:|---|
+| Seção | `sec-` | `#sec-funcao-afim` |
+| Figura | `fig-` | `#fig-reta-afim` |
+| Tabela | `tbl-` | `#tbl-padroes-visuais` |
+| Equação | `eq-` | `#eq-afim` |
+| Definição | `def-` | `#def-funcao` |
+| Teorema | `thm-` | `#thm-exemplo` |
+| Proposição | `prp-` | `#prp-exemplo` |
+| Exemplo | `exm-` | `#exm-afim-1` |
+| Exercício | `exr-` | `#exr-afim-1` |
+
+Evite espaços, acentos e `_` em rótulos. Prefira nomes curtos, em minúsculas, com hífen.
+
+
+## 1. Molde completo de uma lição
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-objetivo}
+**Objetivo da lição.** Ao final desta página, você deve conseguir reconhecer como o coeficiente angular altera a inclinação da reta.
+:::
+
+::: {.bloco-pre-requisitos}
+**Antes de começar.** Revise rapidamente:
+
+- coordenadas de pontos no plano;
+- substituição de valores em uma fórmula;
+- leitura básica de gráficos cartesianos.
+:::
+
+::: {.callout-note title="Ideia central" appearance="simple"}
+Na função afim, o número $a$ controla a inclinação da reta no gráfico de $f(x)=ax+b$.
+:::
+
+::: {#exm-funcao-afim-inicial}
+**Exemplo resolvido.** Para $f(x)=2x+1$, temos:
+
+1. se $x=0$, então $f(0)=1$;
+2. se $x=1$, então $f(1)=3$;
+3. a reta passa por $(0,1)$ e $(1,3)$.
+
+**Autoexplicação.** O que mudou quando $x$ aumentou de $0$ para $1$?
+:::
+
+::: {.bloco-applet}
+**Applet guiado.** Mova apenas o controle do coeficiente $a$ e observe a inclinação da reta.
+
+**Pergunta.** O que acontece quando $a$ fica negativo?
+:::
+
+::: {.callout-warning title="Erro comum" appearance="simple"}
+Não confunda o coeficiente angular $a$ com o termo independente $b$. O primeiro altera a inclinação; o segundo desloca a reta verticalmente.
+:::
+
+::: {.bloco-checkpoint}
+**Checkpoint.** Em $f(x)=-3x+2$, a reta é crescente ou decrescente? Justifique em uma frase.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-objetivo}
+**Objetivo da lição.** Ao final desta página, você deve conseguir reconhecer como o coeficiente angular altera a inclinação da reta.
+:::
+
+::: {.bloco-pre-requisitos}
+**Antes de começar.** Revise rapidamente:
+
+- coordenadas de pontos no plano;
+- substituição de valores em uma fórmula;
+- leitura básica de gráficos cartesianos.
+:::
+
+::: {.callout-note title="Ideia central" appearance="simple"}
+Na função afim, o número $a$ controla a inclinação da reta no gráfico de $f(x)=ax+b$.
+:::
+
+::: {#exm-funcao-afim-inicial}
+**Exemplo resolvido.** Para $f(x)=2x+1$, temos:
+
+1. se $x=0$, então $f(0)=1$;
+2. se $x=1$, então $f(1)=3$;
+3. a reta passa por $(0,1)$ e $(1,3)$.
+
+**Autoexplicação.** O que mudou quando $x$ aumentou de $0$ para $1$?
+:::
+
+::: {.bloco-applet}
+**Applet guiado.** Mova apenas o controle do coeficiente $a$ e observe a inclinação da reta.
+
+**Pergunta.** O que acontece quando $a$ fica negativo?
+:::
+
+::: {.callout-warning title="Erro comum" appearance="simple"}
+Não confunda o coeficiente angular $a$ com o termo independente $b$. O primeiro altera a inclinação; o segundo desloca a reta verticalmente.
+:::
+
+::: {.bloco-checkpoint}
+**Checkpoint.** Em $f(x)=-3x+2$, a reta é crescente ou decrescente? Justifique em uma frase.
+:::
+
+:::::
+
+
+## 2. Bloco de objetivo com frase observável
+
+Use este bloco no início de cada página. O objetivo deve ser observável, curto e verificável.
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-objetivo}
+**Objetivo.** Identificar, em uma expressão da forma $f(x)=ax+b$, qual número controla a inclinação da reta.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-objetivo}
+**Objetivo.** Identificar, em uma expressão da forma $f(x)=ax+b$, qual número controla a inclinação da reta.
+:::
+
+:::::
+
+
+## 3. Bloco de pré-requisitos com orientação 
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-pre-requisitos}
+**Antes de começar.** Você precisa lembrar:
+
+- como localizar um ponto $(x,y)$ no plano cartesiano;
+- como calcular o valor de uma expressão para um valor dado de $x$.
+
+**orientação rápida.** Se esses itens ainda estiverem frágeis, revise a seção @sec-coordenadas-plano antes de continuar.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-pre-requisitos}
+**Antes de começar.** Você precisa lembrar:
+
+- como localizar um ponto $(x,y)$ no plano cartesiano;
+- como calcular o valor de uma expressão para um valor dado de $x$.
+
+**orientação  rápida.** Se esses itens ainda estiverem frágeis, revise a seção @sec-coordenadas-plano antes de continuar.
+:::
+
+:::::
+
+
+## 4. Ideia central em callout-note
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.callout-note title="Ideia central" appearance="simple"}
+Uma função afim transforma cada valor de $x$ em um valor de $y$ por meio da regra
+
+$$
+f(x)=ax+b.
+$$ {#eq-funcao-afim-modelo}
+
+O gráfico dessa regra é uma reta.
+:::
+`````
+
+#### Resultado
+
+::: {.callout-note title="Ideia central" appearance="simple"}
+Uma função afim transforma cada valor de $x$ em um valor de $y$ por meio da regra
+
+$$
+f(x)=ax+b.
+$$ {#eq-funcao-afim-modelo}
+
+O gráfico dessa regra é uma reta.
+:::
+
+:::::
+
+
+## 5. Exemplo resolvido com carga cognitiva reduzida
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {#exm-afim-pontos}
+**Exemplo resolvido.** Determine dois pontos do gráfico de $f(x)=2x+1$.
+
+**Objetivo do exemplo.** Construir pontos substituindo valores simples de $x$.
+
+**Pré-requisito usado.** Substituição numérica em uma expressão algébrica.
+
+| Valor escolhido | Cálculo | Ponto obtido |
+|---:|---:|---:|
+| $x=0$ | $f(0)=2\cdot 0+1=1$ | $(0,1)$ |
+| $x=1$ | $f(1)=2\cdot 1+1=3$ | $(1,3)$ |
+
+**Por que este passo é permitido?** Porque a regra da função informa como calcular o valor de $y$ a partir do valor escolhido para $x$.
+
+**Autoexplicação.** Por que escolher $x=0$ costuma simplificar o cálculo?
+:::
+`````
+
+#### Resultado
+
+::: {#exm-afim-pontos}
+**Exemplo resolvido.** Determine dois pontos do gráfico de $f(x)=2x+1$.
+
+**Objetivo do exemplo.** Construir pontos substituindo valores simples de $x$.
+
+**Pré-requisito usado.** Substituição numérica em uma expressão algébrica.
+
+| Valor escolhido | Cálculo | Ponto obtido |
+|---:|---:|---:|
+| $x=0$ | $f(0)=2\cdot 0+1=1$ | $(0,1)$ |
+| $x=1$ | $f(1)=2\cdot 1+1=3$ | $(1,3)$ |
+
+**Por que este passo é permitido?** Porque a regra da função informa como calcular o valor de $y$ a partir do valor escolhido para $x$.
+
+**Autoexplicação.** Por que escolher $x=0$ costuma simplificar o cálculo?
+:::
+
+:::::
+
+
+## 6. Sequência com fading
+
+Use a sequência com redução gradual de apoio quando o tópico for novo para alunos com pré-requisitos frágeis.
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-exemplo}
+**Exemplo 1, com apoio completo.** Calcule dois pontos de $f(x)=x+2$.
+
+1. Escolha $x=0$: $f(0)=0+2=2$, então o ponto é $(0,2)$.
+2. Escolha $x=1$: $f(1)=1+2=3$, então o ponto é $(1,3)$.
+:::
+
+::: {.bloco-exemplo}
+**Exemplo 2, com apoio parcial.** Calcule dois pontos de $g(x)=3x-1$.
+
+1. Para $x=0$, temos $g(0)=\_\_\_\_\_$, então o ponto é $\_\_\_\_\_$.
+2. Para $x=1$, temos $g(1)=\_\_\_\_\_$, então o ponto é $\_\_\_\_\_$.
+:::
+
+::: {.bloco-exemplo}
+**Exemplo 3, quase independente.** Calcule dois pontos de $h(x)=-2x+4$ e explique o procedimento em uma frase.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-exemplo}
+**Exemplo 1, com apoio completo.** Calcule dois pontos de $f(x)=x+2$.
+
+1. Escolha $x=0$: $f(0)=0+2=2$, então o ponto é $(0,2)$.
+2. Escolha $x=1$: $f(1)=1+2=3$, então o ponto é $(1,3)$.
+:::
+
+::: {.bloco-exemplo}
+**Exemplo 2, com apoio parcial.** Calcule dois pontos de $g(x)=3x-1$.
+
+1. Para $x=0$, temos $g(0)=\_\_\_\_\_$, então o ponto é $\_\_\_\_\_$.
+2. Para $x=1$, temos $g(1)=\_\_\_\_\_$, então o ponto é $\_\_\_\_\_$.
+:::
+
+::: {.bloco-exemplo}
+**Exemplo 3, quase independente.** Calcule dois pontos de $h(x)=-2x+4$ e explique o procedimento em uma frase.
+:::
+
+:::::
+
+
+## 7. Erro comum com correção explícita
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.callout-warning title="Erro comum" appearance="simple"}
+**Erro.** Em $f(x)=2x+5$, dizer que a inclinação é $5$.
+
+**Correção.** A inclinação é controlada por $2$, pois ele multiplica o $x$. O número $5$ indica onde a reta corta o eixo vertical.
+
+**Como verificar.** Compare $f(0)=5$ e $f(1)=7$: quando $x$ aumenta uma unidade, $f(x)$ aumenta duas unidades.
+:::
+`````
+
+#### Resultado
+
+::: {.callout-warning title="Erro comum" appearance="simple"}
+**Erro.** Em $f(x)=2x+5$, dizer que a inclinação é $5$.
+
+**Correção.** A inclinação é controlada por $2$, pois ele multiplica o $x$. O número $5$ indica onde a reta corta o eixo vertical.
+
+**Como verificar.** Compare $f(0)=5$ e $f(1)=7$: quando $x$ aumenta uma unidade, $f(x)$ aumenta duas unidades.
+:::
+
+:::::
+
+
+## 8. Checkpoint curto com solução recolhida
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-checkpoint}
+**Checkpoint.** Considere $f(x)=-x+4$.
+
+1. O gráfico é crescente ou decrescente?
+2. Qual é o valor de $f(0)$?
+
+::: {.callout-tip title="Solução comentada" appearance="simple" collapse="true"}
+O gráfico é **decrescente**, porque o coeficiente de $x$ é negativo. Além disso, $f(0)=-0+4=4$.
+:::
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-checkpoint}
+**Checkpoint.** Considere $f(x)=-x+4$.
+
+1. O gráfico é crescente ou decrescente?
+2. Qual é o valor de $f(0)$?
+
+::: {.callout-tip title="Solução comentada" appearance="simple" collapse="true"}
+O gráfico é **decrescente**, porque o coeficiente de $x$ é negativo. Além disso, $f(0)=-0+4=4$.
+:::
+:::
+
+:::::
+
+
+## 9. Bloco de applet guiado com acessibilidade
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-applet #applet-afim}
+**Applet: inclinação da reta.**
+
+**Objetivo.** Observe como o valor de $a$ altera a inclinação da reta $y=ax+b$.
+
+**Controle principal.** Altere apenas o valor de $a$.
+
+**Tarefa guiada.** Faça uma previsão: o que deve acontecer com a reta quando $a$ mudar de positivo para negativo?
+
+<div id="applet-afim-placeholder" role="img" aria-describedby="desc-applet-afim" style="border: 1px solid #64748B; border-radius: 0.75rem; padding: 1rem; background: #FFFFFF;">
+  <p><strong>Área do applet.</strong> Aqui entraria JSXGraph, GeoGebra, Desmos ou CindyJS.</p>
+  <button type="button">Reiniciar</button>
+</div>
+
+<p id="desc-applet-afim">
+Descrição textual: o applet mostra uma reta no plano cartesiano. Um controle altera o coeficiente angular. Quando o coeficiente é positivo, a reta sobe da esquerda para a direita; quando é negativo, desce.
+</p>
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-applet #applet-afim}
+**Applet: inclinação da reta.**
+
+**Objetivo.** Observe como o valor de $a$ altera a inclinação da reta $y=ax+b$.
+
+**Controle principal.** Altere apenas o valor de $a$.
+
+**Tarefa guiada.** Faça uma previsão: o que deve acontecer com a reta quando $a$ mudar de positivo para negativo?
+
+<div id="applet-afim-placeholder" role="img" aria-describedby="desc-applet-afim" style="border: 1px solid #64748B; border-radius: 0.75rem; padding: 1rem; background: #FFFFFF;">
+  <p><strong>Área do applet.</strong> Aqui entraria JSXGraph, GeoGebra, Desmos ou CindyJS.</p>
+  <button type="button">Reiniciar</button>
+</div>
+
+<p id="desc-applet-afim">
+Descrição textual: o applet mostra uma reta no plano cartesiano. Um controle altera o coeficiente angular. Quando o coeficiente é positivo, a reta sobe da esquerda para a direita; quando é negativo, desce.
+</p>
+:::
+
+:::::
+
+
+## 10. Instruções de uso antes do applet
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-applet}
+**Antes de manipular.** Responda mentalmente: se o coeficiente angular dobrar, você espera que a reta fique mais inclinada ou menos inclinada?
+
+**Durante a manipulação.** Mova apenas um controle por vez.
+
+**Depois da manipulação.** Registre:
+
+- o que mudou;
+- o que permaneceu constante;
+- como isso aparece na fórmula.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-applet}
+**Antes de manipular.** Responda mentalmente: se o coeficiente angular dobrar, você espera que a reta fique mais inclinada ou menos inclinada?
+
+**Durante a manipulação.** Mova apenas um controle por vez.
+
+**Depois da manipulação.** Registre:
+
+- o que mudou;
+- o que permaneceu constante;
+- como isso aparece na fórmula.
+:::
+
+:::::
+
+
+## 11. Figura estática ou diagrama com legenda próxima
+
+Este padrão usa Mermaid, que o Quarto renderiza como diagrama. A legenda deve explicar a função do diagrama, não apenas nomeá-lo.
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+```{mermaid}
+%%| label: fig-fluxo-licao
+%%| fig-cap: "Fluxo recomendado para uma lição curta."
+flowchart TD
+  A[Objetivo] --> B[Pré-requisitos]
+  B --> C[Ideia central]
+  C --> D[Exemplo resolvido]
+  D --> E[Applet guiado]
+  E --> F[Checkpoint]
+  F --> G[orientação  ou avanço]
+```
+`````
+
+#### Resultado
+
+```{mermaid}
+%%| label: fig-fluxo-licao
+%%| fig-cap: "Fluxo recomendado para uma lição curta."
+flowchart TD
+  A[Objetivo] --> B[Pré-requisitos]
+  B --> C[Ideia central]
+  C --> D[Exemplo resolvido]
+  D --> E[Applet guiado]
+  E --> F[Checkpoint]
+  F --> G[orientação  ou avanço]
+```
+Fluxo recomendado para uma lição curta.
+
+:::::
+
+
+## 12. Tabela funcional, curta e com legenda
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+| Bloco | Função cognitiva | Uso recomendado |
+|---|---|---|
+| Objetivo | Preparar a atenção | Uma frase observável no início |
+| Pré-requisitos | Reduzir lacunas | Lista curta com links de revisão |
+| Exemplo resolvido | Modelar procedimento | Passos curtos e justificados |
+| Applet | Guiar exploração | Uma tarefa principal |
+| Checkpoint | Verificar compreensão | 1 a 3 perguntas |
+: Função dos blocos didáticos da página. {#tbl-blocos-didaticos}
+`````
+
+#### Resultado
+
+| Bloco | Função cognitiva | Uso recomendado |
+|---|---|---|
+| Objetivo | Preparar a atenção | Uma frase observável no início |
+| Pré-requisitos | Reduzir lacunas | Lista curta com links de revisão |
+| Exemplo resolvido | Modelar procedimento | Passos curtos e justificados |
+| Applet | Guiar exploração | Uma tarefa principal |
+| Checkpoint | Verificar compreensão | 1 a 3 perguntas |
+: Função dos blocos didáticos da página. {#tbl-blocos-didaticos}
+
+:::::
+
+
+## 13. Definição, proposição e prova compacta
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {#def-coeficiente-angular}
+O **coeficiente angular** de uma reta não vertical é o número que mede a variação vertical da reta para cada unidade de variação horizontal.
+:::
+
+::: {#prp-afim-crescente}
+Se $a>0$, então a função afim $f(x)=ax+b$ é crescente.
+:::
+
+::: {.proof}
+Se $x_2>x_1$, então $x_2-x_1>0$. Como $a>0$, temos $a(x_2-x_1)>0$. Logo,
+
+$$
+f(x_2)-f(x_1)=a(x_2-x_1)>0.
+$$
+
+Portanto, $f(x_2)>f(x_1)$.
+:::
+`````
+
+#### Resultado
+
+::: {#def-coeficiente-angular}
+O **coeficiente angular** de uma reta não vertical é o número que mede a variação vertical da reta para cada unidade de variação horizontal.
+:::
+
+::: {#prp-afim-crescente}
+Se $a>0$, então a função afim $f(x)=ax+b$ é crescente.
+:::
+
+::: {.proof}
+Se $x_2>x_1$, então $x_2-x_1>0$. Como $a>0$, temos $a(x_2-x_1)>0$. Logo,
+
+$$
+f(x_2)-f(x_1)=a(x_2-x_1)>0.
+$$
+
+Portanto, $f(x_2)>f(x_1)$.
+:::
+
+:::::
+
+
+## 14. Exercício com pista e solução
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {#exr-afim-crescimento}
+Considere $f(x)=4x-7$.
+
+1. Calcule $f(0)$.
+2. Calcule $f(1)$.
+3. Explique por que o gráfico é crescente.
+
+::: {.callout-tip title="Pista" appearance="simple" collapse="true"}
+Observe o sinal do coeficiente que multiplica $x$.
+:::
+
+::: {.callout-note title="Solução" appearance="simple" collapse="true"}
+Temos $f(0)=-7$ e $f(1)=-3$. Como o coeficiente de $x$ é $4>0$, a função é crescente.
+:::
+:::
+`````
+
+#### Resultado
+
+::: {#exr-afim-crescimento}
+Considere $f(x)=4x-7$.
+
+1. Calcule $f(0)$.
+2. Calcule $f(1)$.
+3. Explique por que o gráfico é crescente.
+
+::: {.callout-tip title="Pista" appearance="simple" collapse="true"}
+Observe o sinal do coeficiente que multiplica $x$.
+:::
+
+::: {.callout-note title="Solução" appearance="simple" collapse="true"}
+Temos $f(0)=-7$ e $f(1)=-3$. Como o coeficiente de $x$ é $4>0$, a função é crescente.
+:::
+:::
+
+:::::
+
+
+## 15. Bloco de orientação 
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-remediacao}
+**Precisa revisar?** Antes de continuar, retome:
+
+- @sec-coordenadas-plano, se a dificuldade estiver na leitura de pontos;
+- @sec-substituicao-algebrica, se a dificuldade estiver em calcular $f(x)$;
+- @sec-graficos-basicos, se a dificuldade estiver na interpretação visual da reta.
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-remediacao}
+**Precisa revisar?** Antes de continuar, retome:
+
+- @sec-coordenadas-plano, se a dificuldade estiver na leitura de pontos;
+- @sec-substituicao-algebrica, se a dificuldade estiver em calcular $f(x)$;
+- @sec-graficos-basicos, se a dificuldade estiver na interpretação visual da reta.
+:::
+
+:::::
+
+
+## 16. Checklist editorial antes de publicar a página
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.callout-caution title="Checklist de publicação" appearance="simple" collapse="true"}
+Antes de publicar esta página, verifique:
+
+- há uma ideia principal clara?
+- os pré-requisitos aparecem antes da tarefa?
+- o exemplo resolvido explica decisões, não apenas contas?
+- o applet tem uma tarefa principal?
+- há alternativa textual para figura, gráfico ou applet?
+- o erro comum não depende apenas de cor?
+- há checkpoint curto depois da exploração?
+:::
+`````
+
+#### Resultado
+
+::: {.callout-caution title="Checklist de publicação" appearance="simple" collapse="true"}
+Antes de publicar esta página, verifique:
+
+- há uma ideia principal clara?
+- os pré-requisitos aparecem antes da tarefa?
+- o exemplo resolvido explica decisões, não apenas contas?
+- o applet tem uma tarefa principal?
+- há alternativa textual para figura, gráfico ou applet?
+- o erro comum não depende apenas de cor?
+- há checkpoint curto depois da exploração?
+:::
+
+:::::
+
+
+## 17. Comentários editoriais invisíveis
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+<!-- TODO: verificar se o objetivo da lição está observável. -->
+<!-- FIXME: conferir se o applet possui alternativa sem mouse. -->
+<!-- REVIEW: reduzir número de fórmulas consecutivas nesta seção. -->
+
+Texto visível para o leitor.
+`````
+
+#### Resultado
+
+<!-- TODO: verificar se o objetivo da lição está observável. -->
+<!-- FIXME: conferir se o applet possui alternativa sem mouse. -->
+<!-- REVIEW: reduzir número de fórmulas consecutivas nesta seção. -->
+
+Texto visível para o leitor.
+
+:::::
+
+
+## 18. Bloco HTML para JSXGraph acessível
+
+Este bloco é um esqueleto seguro: renderiza a área do applet, mas deixa o JavaScript comentado para não quebrar o build se JSXGraph ainda não estiver configurado.
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+<div class="bloco-applet" id="applet-funcao-afim-jsxgraph">
+  <p id="desc-funcao-afim-jsxgraph">
+    Mova o ponto A e observe como a reta muda. Compare a inclinação visual com o valor do coeficiente angular.
+  </p>
+
+  <div
+    id="jxg-funcao-afim"
+    class="jxgbox"
+    aria-describedby="desc-funcao-afim-jsxgraph"
+    style="width: 100%; height: 360px; border: 1px solid #64748B; border-radius: 0.75rem; background: #FFFFFF;">
+  </div>
+
+  <button id="reset-funcao-afim" type="button">Reiniciar</button>
+</div>
+
+```{=html}
+<script>
+// Esqueleto para ativar apenas quando JSXGraph estiver carregado no projeto.
+// const board = JXG.JSXGraph.initBoard('jxg-funcao-afim', {
+//   boundingbox: [-5, 5, 5, -5],
+//   axis: true,
+//   showCopyright: false,
+//   showNavigation: false
+// });
+</script>
+```
+`````
+
+#### Resultado
+
+<div class="bloco-applet" id="applet-funcao-afim-jsxgraph">
+  <p id="desc-funcao-afim-jsxgraph">
+    Mova o ponto A e observe como a reta muda. Compare a inclinação visual com o valor do coeficiente angular.
+  </p>
+
+  <div
+    id="jxg-funcao-afim"
+    class="jxgbox"
+    aria-describedby="desc-funcao-afim-jsxgraph"
+    style="width: 100%; height: 360px; border: 1px solid #64748B; border-radius: 0.75rem; background: #FFFFFF;">
+  </div>
+
+  <button id="reset-funcao-afim" type="button">Reiniciar</button>
+</div>
+
+```{=html}
+<script>
+// Esqueleto para ativar apenas quando JSXGraph estiver carregado no projeto.
+// const board = JXG.JSXGraph.initBoard('jxg-funcao-afim', {
+//   boundingbox: [-5, 5, 5, -5],
+//   axis: true,
+//   showCopyright: false,
+//   showNavigation: false
+// });
+</script>
+```
+
+:::::
+
+
+## 19. Padrão de bloco para Desmos
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+::: {.bloco-applet #applet-desmos-parametro}
+**Applet Desmos: efeito do parâmetro.**
+
+**Objetivo.** Compare os gráficos de $y=ax$ para diferentes valores de $a$.
+
+**Roteiro.**
+
+1. Comece com $a=1$.
+2. Aumente $a$.
+3. Depois use valores negativos.
+4. Registre o que muda na inclinação.
+
+<div id="desmos-parametro" role="img" aria-describedby="desc-desmos-parametro" style="min-height: 300px; border: 1px solid #64748B; border-radius: 0.75rem; padding: 1rem; background: #FFFFFF;">
+  Área reservada para o gráfico Desmos.
+</div>
+
+<p id="desc-desmos-parametro">
+Descrição textual: o gráfico mostra uma família de retas passando pela origem. O parâmetro altera a inclinação e o sentido de crescimento.
+</p>
+:::
+`````
+
+#### Resultado
+
+::: {.bloco-applet #applet-desmos-parametro}
+**Applet Desmos: efeito do parâmetro.**
+
+**Objetivo.** Compare os gráficos de $y=ax$ para diferentes valores de $a$.
+
+**Roteiro.**
+
+1. Comece com $a=1$.
+2. Aumente $a$.
+3. Depois use valores negativos.
+4. Registre o que muda na inclinação.
+
+<div id="desmos-parametro" role="img" aria-describedby="desc-desmos-parametro" style="min-height: 300px; border: 1px solid #64748B; border-radius: 0.75rem; padding: 1rem; background: #FFFFFF;">
+  Área reservada para o gráfico Desmos.
+</div>
+
+<p id="desc-desmos-parametro">
+Descrição textual: o gráfico mostra uma família de retas passando pela origem. O parâmetro altera a inclinação e o sentido de crescimento.
+</p>
+:::
+
+:::::
+
+
+## 20. Estrutura final recomendada para um capítulo
+
+::::: {.panel-tabset}
+
+#### Código
+
+`````markdown
+# Função afim {#sec-funcao-afim}
+
+::: {.bloco-objetivo}
+**Objetivo.** Reconhecer o papel dos parâmetros $a$ e $b$ em $f(x)=ax+b$.
+:::
+
+## Antes de começar
+
+::: {.bloco-pre-requisitos}
+- Coordenadas no plano.
+- Substituição numérica.
+- Leitura de gráficos simples.
+:::
+
+## Ideia central
+
+::: {.callout-note title="Ideia central" appearance="simple"}
+O parâmetro $a$ controla a inclinação, e o parâmetro $b$ controla o ponto em que a reta corta o eixo vertical.
+:::
+
+## Exemplo resolvido
+
+Use um exemplo curto, com passos comentados e pergunta de autoexplicação.
+
+## Exploração guiada
+
+Coloque o applet imediatamente depois da pergunta que orienta sua manipulação.
+
+## Checkpoint
+
+Inclua de 1 a 3 perguntas de verificação.
+
+## Exercícios
+
+Comece com exercícios de baixa carga e deixe desafios como opcionais.
+`````
+
+#### Resultado
+
+# Função afim {#sec-funcao-afim}
+
+::: {.bloco-objetivo}
+**Objetivo.** Reconhecer o papel dos parâmetros $a$ e $b$ em $f(x)=ax+b$.
+:::
+
+## Antes de começar
+
+::: {.bloco-pre-requisitos}
+- Coordenadas no plano.
+- Substituição numérica.
+- Leitura de gráficos simples.
+:::
+
+## Ideia central
+
+::: {.callout-note title="Ideia central" appearance="simple"}
+O parâmetro $a$ controla a inclinação, e o parâmetro $b$ controla o ponto em que a reta corta o eixo vertical.
+:::
+
+## Exemplo resolvido
+
+Use um exemplo curto, com passos comentados e pergunta de autoexplicação.
+
+## Exploração guiada
+
+Coloque o applet imediatamente depois da pergunta que orienta sua manipulação.
+
+## Checkpoint
+
+Inclua de 1 a 3 perguntas de verificação.
+
+## Exercícios
+
+Comece com exercícios de baixa carga e deixe desafios como opcionais.
+
+:::::
+
+
+
+## Observação sobre `custom.scss`
+
+Os blocos com classes como `.bloco-objetivo`, `.bloco-applet`, `.bloco-checkpoint`, `.bloco-erro` e `.bloco-remediacao` ficam melhores quando o projeto possui regras SCSS correspondentes. Uma base mínima seria:
+
+```scss
+.bloco-objetivo,
+.bloco-pre-requisitos,
+.bloco-exemplo,
+.bloco-applet,
+.bloco-checkpoint,
+.bloco-remediacao {
+  border-radius: 0.75rem;
+  padding: 1rem 1.1rem;
+  margin: 1.25rem 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(31, 41, 51, 0.12);
+}
+
+.bloco-objetivo { border-left: 6px solid #1E5B8A; }
+.bloco-pre-requisitos { border-left: 6px solid #5B7C99; }
+.bloco-exemplo { border-left: 6px solid #7C3AED; }
+.bloco-applet { border-left: 6px solid #0F766E; }
+.bloco-checkpoint { border-left: 6px solid #B45309; }
+.bloco-remediacao { border-left: 6px solid #64748B; }
+
+:focus-visible {
+  outline: 3px solid #1E5B8A;
+  outline-offset: 3px;
+}
+```
+
+## Ordem operacional sugerida
+
+1. Copie o molde completo da lição.
+2. Substitua o conteúdo matemático mantendo a ordem dos blocos.
+3. Teste a página sem applet.
+4. Insira a figura ou applet com descrição textual.
+5. Verifique a leitura em tela estreita.
+6. Execute `quarto preview` ou `quarto render`.
+7. Corrija avisos de links, referências e acessibilidade.

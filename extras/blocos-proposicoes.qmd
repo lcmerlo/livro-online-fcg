@@ -1,0 +1,110 @@
+# Estruturas: blocos-props-defs {.unnumbered}
+
+
+`<!-- comentário em arquivos .qmd -->`
+
+
+### Definições, Proposições, etc
+
+::: {#def-rotulo}
+Aqui vai a definição
+:::
+
+::: {#prp-rotulo}
+Aqui vai a proposição 
+:::
+
+::: {#thm-rotulo}
+Aqui vai o teorema
+:::
+
+::: {#lem-rotulo}
+Aqui vai o lema
+:::
+
+::: {#cor-rotulo}
+Aqui vai o corolário
+:::
+
+::: {#exm-função-1}
+Aqui vai o exemplo
+::: 
+
+::: {.proof}
+Aqui vai a demonstração!!!!
+:::
+
+
+### Blocos 
+
+::: {.border}
+This content can be styled with a border
+:::
+
+
+:::{.callout-note title="Nota" appearance="minimal"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-note title="Nota" appearance="simple"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+
+:::{.callout-note title="Nota" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="cuidado" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="cuidado" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="Cuidadod" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+
+#### Figuras Estáticas 
+
+![Legenda da Figura](Fundamentos-Calculo-Geometria/assets/images/Funções/DiagFun.png)
+

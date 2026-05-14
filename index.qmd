@@ -1,0 +1,36 @@
+# Fundamentos de Cálculo e Geometria {.unnumbered}
+
+Este livro é um material de revisão matemática com foco em explicações curtas, exemplos resolvidos, interpretação geométrica e atividades interativas.
+
+## Para quem é este livro
+
+Este material foi pensado para estudantes que precisam revisar conceitos fundamentais
+de matemática, especialmente aqueles que têm lacunas em álgebra, funções, geometria
+analítica e leitura de gráficos.
+
+## Como usar
+
+Recomenda-se seguir os capítulos na ordem apresentada. Cada lição combina:
+
+- uma ideia central;
+- pré-requisitos mínimos;
+- exemplos resolvidos;
+- interpretação geométrica;
+- applets guiados;
+- exercícios de verificação.
+
+## Estrutura do percurso
+
+1. Blocos, proposições e linguagem matemática.
+2. Primeiras noções.
+3. Segmentos.
+4. Segmentos orientados.
+5. Eixos.
+6. Coordenadas no plano.
+
+## Sobre os applets
+
+Algumas páginas incluem construções interativas. Antes de manipular os controles,
+leia a pergunta orientadora e observe o que deve mudar ou permanecer constante.
+
+## Comece por aqui

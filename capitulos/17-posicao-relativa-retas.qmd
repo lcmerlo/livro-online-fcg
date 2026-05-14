@@ -1,0 +1,75 @@
+# Posição Relativa Entre Retas
+
+### Definição **posições relativas entre retas**
+
+
+ 
+
+Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** entre elas. Elas podem ser:
+
+- **Coincidentes**: quando são iguais, isto é, $r=s;$
+- **Paralelas**: quando não se intersectam, isto é, $r\cap s=\varnothing.$ Neste caso, denotamos $r\parallel s;$
+- **Concorrentes**: quando se intersectam em um ponto, isto é, $r\cap s=\{P\}.$
+
+
+![](https://www.geogebra.org/resource/sgp8k4n7/dpUTQdM80b6ukp4J/material-sgp8k4n7.png)
+
+### Proposição
+
+
+ Sejam $r$ e $s$ duas retas tais que $\vec{u}\parallel r$, $\vec{v}\parallel s$, $\vec{m}\perp r$ e $\vec{n}\perp s$.
+
+Para que $r$ e $s$ sejam **coincidentes** ($r=s$), basta valer um dos casos:
+
+- $\vec{u}\parallel\vec{v}$ e um ponto qualquer de uma reta **está** na outra;
+- $\vec{m}\parallel\vec{n}$ e um ponto qualquer de uma reta **está** na outra;
+- $\vec{u}\perp\vec{n}$ e um ponto qualquer de uma reta **está** na outra.
+
+Para que $r$ e $s$ sejam **paralelas** ($r\parallel s$), basta valer um dos casos:
+
+- $\vec{u}\parallel\vec{v}$ e um ponto qualquer de uma reta **não está** na outra;
+- $\vec{m}\parallel\vec{n}$ e um ponto qualquer de uma reta **não está** na outra;
+- $\vec{u}\perp\vec{n}$ e um ponto qualquer de uma reta **não está** na outra.
+
+Para que $r$ e $s$ sejam **concorrentes**, basta valer um dos casos:
+
+- $\vec{u} \nparallel \vec{v}$;
+- $\vec{m} \nparallel \vec{n}$;
+- $\vec{u} \not\perp  \vec{n}$.
+
+
+![](https://www.geogebra.org/resource/eskf8qpv/UvXJ0VLajvdEDIb8/material-eskf8qpv.png)
+
+### Proposição
+
+
+ Dadas as retas $r:ax+by=c$ e $s:a'x+b'y=c'$ temos:
+
+- $r=s \Leftrightarrow (a',b')=\lambda(a,b)$ e $c'=\lambda c$ para algum $\lambda \neq 0;$
+- $r \parallel s \Leftrightarrow (a',b')=\lambda(a,b)$ e $c' \neq \lambda c$ para algum $\lambda \neq 0;$
+
+
+
+**Exemplo**
+
+Determine a equação cartesiana da reta $r$ que é paralela à reta $s:5x-7y=-11$ e passa pelo ponto $C=(3,2)$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resolução**: 
+    
+    Note que $\vec{n}=(5,-7)\perp s$, portanto como $r\parallel s$ também temos $\vec{n}\perp r$. Logo, $r:5x-7y=c$. Como o ponto $C=(3,2)$ satisfaz a equação de $r$, temos $5(3)-7(2)=c\Rightarrow c=1$, donde temos o resultado,  $r:5x-7y=1$.
+    
+
+
+
+**Exemplo**
+
+Seja $r$ a reta que passa pela origem $O=(0,0)$ e pelo ponto $A=(1,k)$. Determine o valor de $k$ para que $r$ seja paralela à reta $s:x-2y=3$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resolução**:
+    
+    Primeiramente, obteremos uma equação cartesiana de $r$. Como $\overrightarrow{OA} = (1,k) \parallel r$, segue que $\vec{n}=(k,-1)\perp r$. Logo, $r:kx-y=c$. Como a origem satisfaz a equação de $r$, temos $k(0)-(0)=c\Rightarrow c=0$. Assim, $r:kx-y=0$. Pela Proposição 2, para que $r$ seja paralela a $s$, deve existir um número $\lambda$ tal que $\vec{n} = \lambda (1,-2)$ e $0 \neq \lambda \iff  \left\{ \begin{array}{l} k= \lambda \\ -1 = -2\lambda \end{array} \right.$ e $\lambda \neq 0 \iff  k = \lambda = \frac{1}{2}$.
+    

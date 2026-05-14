@@ -1,0 +1,228 @@
+# Equação Cartesiana de Plano no Espaço
+
+
+ Dizemos que um vetor **não nulo** $\vec{n}$ é **perpendicular** ou **normal a um plano** $\pi$ quando ele possui representante sobre uma reta perpendicular a $\pi$.
+
+
+
+### Proposição
+
+
+ Dados um ponto $P_0$ e um vetor não nulo $\vec{n}$, existe um único plano $\pi$ que contém $P_0$ e é perpendicular a $\vec{n}$. Neste caso, se $P_0 =(x_0,y_0,z_0)$ e $\vec{n}=(a,b,c)$ são constantes e $P =(x,y,z)$ é um ponto variável em $\pi$, então
+
+$$
+\pi: ax+by+cz=d,
+$$
+
+onde $d$ é uma constante. 
+
+- ← Clique para ver a explicação.
+    
+    De fato, se $\pi$ é o plano que passa pelo ponto $P_0$  e é normal ao vetor $\vec{n}$, então:
+    
+    $$
+    \begin{array}{rcl}P\in\pi & \Leftrightarrow  & \overrightarrow{AP} \perp \vec{n} \\ & \Leftrightarrow & \langle \overrightarrow{AP} , \vec{n}\rangle =0\end{array}
+    $$
+    
+    ![VetNormPlano.png](Equa%C3%A7%C3%A3o%20Cartesiana%20de%20Plano%20no%20Espa%C3%A7o/VetNormPlano.png)
+    
+    Usando coordenadas, se 
+    
+    $$
+     P_0 =(x_0,y_0,z_0), \quad \vec{n}=(a,b,c) \quad\text{e}\quad  P=(x,y,z) \in \pi,
+    $$
+    
+    então, substituindo na última equação acima, temos:
+    
+    $$
+    \begin{array}{lcl} \langle \overrightarrow{P_0P}, \vec{n} \rangle =0 & \Leftrightarrow &
+    \langle (x - x_0, y - y_0, z-z_0), (a, b) \rangle = 0 \\  & \Leftrightarrow &  a(x - x_0) + b(y - y_0) + c(z-z_0)= 0 \\           &\Leftrightarrow &  ax + by + cz + \underbrace{(-ax_0 - by_0 -cz_0)}_{\text{constante}} = 0.\end{array}
+    $$
+    
+    Deste modo, tomando $d= ax_0+by_0+cz_0$, concluímos que um ponto $P=(x,y,z)$ pertence ao plano $\pi$, se, somente se, ele satisfaz na equação
+    
+    $$
+     \pi: ax+by+cz=d. 
+    $$
+    
+
+
+### **Definição**
+
+
+ Uma equação como a da proposição acima é dita **equação cartesiana** do plano $\pi$.
+
+
+
+
+**Exemplo**
+
+Determine a equação cartesiana do plano $\pi$  que passa pelo ponto $A=(1,2,3)$ e é normal ao vetor $\vec{n}=(-1,2,1)$.
+
+- $\leftarrow$ Clique para ver a solução
+    
+    Como $\vec{n}=(-1,2,1) \perp \pi$  temos $\pi: -x+2y-z=d.$ Por outro lado, como o ponto  $A=(1,2,3) \in \pi$, ele deve satisfazer sua equação, logo
+    
+    $$
+    -1(1)+2(2)-(3)=d \quad  \Rightarrow \quad \ d=0. 
+    $$
+    
+    Assim,  $\pi:-x+2y-z=0$.
+    
+
+
+# Relação entre equação paramétrica e cartesiana
+
+
+**Exemplo 2 (paramétrica para cartesiana)**
+
+Determine a equação cartesiana do plano:
+
+$$
+\pi: \left\{\begin{array}{l} x=-1+s+2t \\ y=1-s+t \\ z=3+2t \end{array} \right. , \quad t \in \mathbb{R}.
+$$
+
+- $\leftarrow$ Clique para ver a solução
+    
+    **$1^a$ Resolução:** Das equações paramétricas obtemos um ponto $A=(-1,1,3) \in \pi$, e  os vetores:
+    
+    $$
+    \vec{u}=(1,-1,0)\parallel\pi \quad \text{ e } \quad \vec{v}=(2,1,2)\parallel\pi.
+    $$
+    
+    Assim podemos determinar um vetor $\vec{n}$  perpendicular ao plano utilizando o produto vetorial
+    
+    $$
+    \vec{n}=\vec{u}\times\vec{v}=(-2,-2,3).
+    $$
+    
+    Portanto $\pi$ é da forma:
+    
+    $$
+    \pi:-2x-2y+3z=d.
+    $$
+    
+    Como $A=(-1,1,3) \in \pi$ temos 
+    
+    $$
+    -2(-1)-2(1)+3(3)=d \quad \Rightarrow \quad d= 9.
+    $$
+    
+    Portanto uma equação cartesiana do plano $\pi$ é 
+    
+    $$
+    \pi:-2x-2y+3z=9.
+    $$
+    
+    **$2^a$ Resolução** (Eliminação de parâmetros)**:**
+    
+    Obteremos a equação cartesiana do plano eliminando os parâmetros da equação dada, como se estivéssemos resolvendo um sistema. 
+    
+    Por exemplo,  isolando o parâmetro $t$ da segunda equação de $\pi$ e substituindo na outras equações obtemos:
+    
+    $$
+    \left\{\begin{array}{l} x=-1+s+2(-1+s+y) \\ z=3+2(-1+s+y) \end{array} \right. \quad \Leftrightarrow \quad  \left\{\begin{array}{l} x=-3+3s+2y \\ z=1+2s+2y. \end{array} \right.
+    $$
+    
+    Isolando $s$ na segunda equação do último sistema e substituindo na primeira obtemos
+    
+    $$
+    x=-3+ 3( \tfrac{z-1}{2} -y ) + 2y \  \Leftrightarrow \ x + y -\tfrac{3}{2}z=-\tfrac{9}{2}.
+    $$
+    
+    Logo, uma equação para o plano $\pi$ é 
+    
+    $$
+    \pi: x + y -\tfrac{3}{2}z=-\tfrac{9}{2}.
+    $$
+    
+    **Observações.**
+    
+    1. Embora em cada resolução tenhamos obtido equações diferentes, ambas representam o mesmo plano $\pi$, pois multiplicando ambos os lados da equação obtida na segunda resolução por $-2$ obteremos a equação da primeira resolução. 
+    2. Em geral a primeira resolução é mais trabalhosa, contudo ela tem a vantagem de dar mais informações geométricas que podem ser úteis em outros contextos.
+    
+
+
+
+**Exemplo 3 (cartesiana para paramétrica)**
+
+Determine a equação paramétrica do plano:
+
+$$
+\pi:-x+2y-z=6
+$$
+
+- $\leftarrow$ Clique para ver a solução
+    
+    **$1^a$ Resolução:** Determinando três pontos $A,B$  e $C$ no plano $\pi$  de modo que os vetores $\overrightarrow{AB}$ e $\overrightarrow{AC}$ não sejam múltiplos, podemos construir, por exemplo, a equação paramétrica 
+    
+    $$
+    \pi : P = A + s\overrightarrow{AB} + t \overrightarrow{AC}, \quad s, t \in \mathbb{R} \qquad (\ast)
+    $$
+    
+    Note que para se determinar as coordenadas de um ponto de $\pi$ basta substituir valores para duas das variáveis e determinar a variável remanescente a partir da equação cartesiana do plano. 
+    
+    Por exemplo, fazendo $x=0$ e $y=0$  e substituindo na equação cartesiana de $\pi$obtemos
+    
+    $$
+     -(0)+2(0)-z=6 \ \Rightarrow \   z=-6 \ \quad \therefore \  A=(0,0,-6)\in\pi. 
+    $$
+    
+    De maneira análoga, fazendo $x=1$ e  $y=0$  obtemos $B=(1,0,-5)\in\pi$ e fazendo $x=0$ e  $y=1$ obtemos $C=(0,1,-8)\in\pi$.
+    
+    Note que os vetores
+    
+    $$
+     \overrightarrow{AB}=(-1,0,1)\parallel \pi \quad \text{e} \quad  \overrightarrow{AC}=(0,1,-2)\parallel \pi
+    $$
+    
+    não são múltiplos. (Se fossem múltiplos deveríamos procurar outros pontos!) Com isso, a equação $(\ast)$ pode ser dada em coordenadas por
+    
+    $$
+    \pi: \left\{\begin{array}{l}
+    x=0+ -1s+ 0t \\ y=0 +0 s +1t \\ z=-6 + 1s -2t  \end{array} \right. , \quad  s,t \in \mathbb{R},
+    $$
+    
+    ou seja, 
+    
+    $$
+    \pi: \left\{\begin{array}{l}
+    x=-s \\ y=t \\ z=-6 +s -2t  \end{array} \right., \quad  s,t \in \mathbb{R}.
+    $$
+    
+    **$2^a$ Resolução:**  
+    
+    Determinando um ponto $P_0\in \pi$ e dois vetores não múltiplos  $\vec{u}$ e  $\vec{v}$,  ambos paralelos a $\pi$ obtemos a equação paramétrica: 
+    
+    $$
+    \pi: P = P_0 + s\vec{u} + t \vec{v}, \quad s, t \in \mathbb{R} \qquad (\ast \ast)
+    $$
+    
+    O ponto $P_0$ pode ser determinado como na resolução anterior, por exemplo, fazendo 
+    
+    $x=1$ e $z=1$ e substituindo na equação cartesiana de $\pi$ obtemos  $y=4$. Logo $P_0=(1,4,1)$.
+    
+    Como $\vec{n}=(-1,2,-1) \perp \pi$, para determinarmos um vetor $(a,b,c)\parallel \pi$  devemos encontrar uma solução da equação
+    
+    $$
+    \bigl\langle \vec{n},(a,b,c)\bigr\rangle = 0 \ \Leftrightarrow \ -a + 2b -c = 0.
+    $$
+    
+    Por exemplo, tomando $a=0$ e $b=1$, obtemos  $c= 2$, logo   $\vec{u}= (0,1,2) \parallel \pi$. 
+    
+    Tomando $a=1$ e $b=0$, obtemos  $c= -1$ e portanto  $\vec{v}= (1,0,-1) \parallel \pi$. 
+    
+    Note que os vetores $\vec{u}$ e $\vec{v}$ obtidos não são múltiplos. (Se fossem múltiplos deveríamos procurar outros vetores!)  Desta forma, a equação $(\ast \ast)$ pode ser dada em coordenadas por
+    
+    $$
+    \pi: \left\{\begin{array}{l}
+    x=1+ 0s+ 1t \\ y=4 +1s +0t \\ z=1 + 2s -1t  \end{array} \right. , \quad  s,t \in \mathbb{R},
+    $$
+    
+    ou seja,
+    
+    $$
+    \pi: \left\{\begin{array}{l}
+    x=1+ t \\ y=4 +s \\ z=1 + 2s -t  \end{array} \right., \quad  s,t \in \mathbb{R}.
+    $$
+    

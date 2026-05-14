@@ -1,0 +1,159 @@
+# Interseção de Retas
+
+### Proposição
+
+
+ O ponto de interseção entre retas dadas por equações é o ponto $(x,y)$, onde $x$ e $y$ são soluções do sistema obtido pelas equações das retas envolvidas.
+
+
+
+  
+
+
+**Exemplo**
+
+Determine o ponto de interseção entre as retas
+
+$$
+ \ell: x-2y=0 \quad \text{ e } \quad m: \left\{ \begin{array}{l} x= 1+t \\ y =2 -t\end{array} \right. , t \in \mathbb{R}.
+$$
+
+- $\leftarrow$ Click para ver a solução
+    
+    O sistema obtido com as equações das retas é
+    
+    $$
+    \left\{ \begin{array}{lc}
+    x-2y=0 & (1) \\
+    x=1+t & (2) \\
+    y= 2-t & (3)
+    \end{array}\right..
+    $$
+    
+    Substituindo as equações (2) e (3) na equação (1), obtemos
+    
+    $$
+    (1+t)-2(2-t)=0 \Rightarrow t=1.
+    $$
+    
+    Agora, substituindo $t=1$ em (2) e (3), obtemos $x=2$ e $y=1$.
+    
+    Portanto o ponto de interseção entre as retas $\ell$ e $m$ é o ponto $(2,1)$.
+    
+
+
+
+**Exemplo**
+
+Determine o ponto de interseção entre as retas
+
+$$
+ r:x-2y=1  \quad \text{ e } \quad   s:y=\frac{x}{2}+1.
+$$
+
+- $\leftarrow$ Click para ver a solução
+    
+    O sistema obtido com as equações das retas é
+    
+    $$
+    
+    \left\{ \begin{array}{lr}
+    x-2y=1 & (1) \\
+    x-2y=-2 & (2)
+    \end{array} \right.
+    
+    $$
+    
+    Subtraindo a equação (2) da equação (1) obtemos $0=3$, que é impossível. Portanto, o sistema não possui solução, ou seja, não existe ponto de interseção entre as retas $r$  e $s$, isto é,  $r\cap s=\varnothing$.
+    
+
+
+
+💡 **Importante**:                                                                                                                          **Em um sistema, sempre devemos usar letras diferentes para parâmetros de equações diferentes**, pois o parâmetro de um ponto ao longo de uma reta pode não ser igual ao parâmetro do mesmo ponto ao longo da outra reta.
+
+
+
+
+**Exemplo**
+
+Determine o ponto de interseção entre as retas
+
+$$
+ r:\left\{
+\begin{array}{l}
+x = -1 +  t \\
+y =         t
+\end{array}
+\right., \ t\in\mathbb{R} \quad \text{ e } \quad s:\left\{
+\begin{array}{l}
+x = 3 +2  t \\
+y = 1 -  t
+\end{array}
+\right., \ t\in\mathbb{R}.
+$$
+
+- $\leftarrow$ Click para ver a solução
+    
+    Trocando o parâmetro $t$ da reta $s$ por $t'$ e formando o sistema com as equações de $r$ e $s$  obtemos
+    
+    $$
+    \left\{
+    \begin{array}{l}x=-1+t \\
+    y=   t \\
+    x = 3+2t' \\
+    y = 1 - t'.
+    \end{array}
+    \right. \Leftrightarrow  \left\{
+    \begin{array}{l} -1+t = 3+2t' \\
+    t  = 1 - t'.
+    \end{array}
+    \right.  \Leftrightarrow  \left\{
+    \begin{array}{l}  t = 2 \\
+    t'  = -1.
+    \end{array}
+    \right.
+    $$
+    
+    Substituindo $t=2$ na equação de r obtemos $x=1$ e $y=2$. Logo  $I=(1,2)$ é o ponto de interseção de $r$ e $s$. Obteremos o mesmo ponto se substituirmos  $t'=-1$ no lugar de $t$ na equação de $s$ (Ver figura abaixo).  
+    
+    ![ $r\parallel\vec{u}=(1,1)$  e   $s\parallel\vec{v}=(2,-1)$. .](https://www.geogebra.org/resource/tjmypfkw/nebkmQonwASglbIR/material-tjmypfkw.png)
+    
+     $r\parallel\vec{u}=(1,1)$  e   $s\parallel\vec{v}=(2,-1)$. .
+    
+    De fato, neste exemplo, o ponto de interseção é obtido com $t=2$ na equação de $r$ e com $t'=1$ na equação de $s$. Se não mudássemos a letra de um dos parâmetros não chegaríamos a solução correta.
+    
+
+
+
+**Exemplo**
+
+Determine o ponto de interseção entre as retas
+
+$$
+ \ell:\left\{ \begin{array}{l} x=2t \\ y = 1-t  \end{array} \right., \ t \in \mathbb{R} \quad \text{ e } \quad m:\left\{ \begin{array}{l} x=-3+t \\ y = 2+2t  \end{array} \right. , \ t \in \mathbb{R}.
+$$
+
+- $\leftarrow$ Click para ver a solução
+    
+    O sistema obtido com as equações das retas, (já modificando um dos parâmetros) é
+    
+    $$
+    \left\{ \begin{array}{l}
+    x=2t  \\
+    y = 1-t  \\
+    x=-3+t' \\
+    y = 2+2t'
+    \end{array} \right.  \Leftrightarrow \left\{ \begin{array}{l}
+    2t -t'=-3 \\
+    -t -2t' =1
+    \end{array} \right. \Leftrightarrow \left\{
+    \begin{array}{l}  t=-\frac{7}{5} \\
+    t'=\frac{1}{5}.
+    \end{array}
+    \right.
+    $$
+    
+    Substituindo $t=-\frac{7}{5}$ nas equações de $\ell$ obtemos $x=-\frac{14}{5}$ e $y=\frac{12}{5}$. Portanto o ponto de interseção é $\left(-\frac{14}{5},\frac{12}{5}\right)$.
+    
+    Se substituirmos $t'=\frac{1}{5}$ nas equações de $m$ obteremos o mesmo resultado. Verifique!
+    

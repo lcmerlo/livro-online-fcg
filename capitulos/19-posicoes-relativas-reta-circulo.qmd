@@ -1,0 +1,57 @@
+# Posições Relativas entre Reta e Círculo
+
+### Definição
+
+
+ Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
+
+- $\mathcal{C} \cap \ell = \{ P,Q\},$ com $P\ne Q.$ Neste caso, dizemos que $\ell$ é **secante a** $\mathcal{C}$ em $P$ e $Q;$
+- $\mathcal{C}\cap \ell = \{T\}.$ Neste caso, dizemos que $\ell$ **é tangente** a $\mathcal{C}$ em $T;$
+- $\mathcal{C} \cap \ell = \emptyset.$ Neste caso, dizemos que $\ell$ **é exterior a** $\mathcal{C}.$
+
+
+### Proposição
+
+
+ Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:
+
+- $\ell$ é secante a $\mathcal{C} \Leftrightarrow  d(A, \ell) < r;$
+- $\ell$ é tangente a $\mathcal{C} \Leftrightarrow  d(A, \ell) = r;$
+- $\ell$ é exterior a $\mathcal{C} \Leftrightarrow  d(A, \ell) > r.$
+
+![Untitled](Posi%C3%A7%C3%B5es%20Relativas%20entre%20Reta%20e%20C%C3%ADrculo/Untitled.png)
+
+
+
+
+💡 Dado um círculo $\mathcal{C}$ com centro $A,$ e dadas duas retas $\ell$ e $m$ tais que $A\in m$ e $\ell\perp m,$ temos:
+
+- Se $\ell$ é secante a $\mathcal{C}$ em $P$ e $Q,$ então $\ell\cap m = \{M\},$ onde $M$ é **ponto médio** de $PQ;$
+- Se $\ell$ é tangente a $\mathcal{C}$ em $T,$ então $\ell\cap m = \{T\}.$
+    
+    ![](https://www.geogebra.org/resource/axdbn9e5/Iz2nur6p0lII8Qhi/material-axdbn9e5.png)
+    
+
+
+
+**Exemplo**
+
+Seja $\mathcal{C}$ um círculo de raio $5$ e suponha que uma reta $\ell$ é secante a $\mathcal{C}$ em $P=(1,2)$ e $Q=(3,-2).$ Determine a equação de $\mathcal{C}.$
+
+- $\leftarrow$ Clique para ver a solução
+    
+    Como conhecemos o raio de $\mathcal{C},$ para obter sua equação basta encontrar seu centro $A.$ De acordo com a observação anterior, a reta $m$ que é perpendicular à $\ell$ e passa pelo ponto médio $M$ de $PQ$ contém o ponto $A.$ Vamos determinar uma equação paramétrica de $m.$ Para isso, basta determinar $M$ e um vetor $\vec{u}\parallel m.$
+    
+    Note que $M=\left(\frac{1+3}{2},\frac{2+(-2)}{2}\right)=(2,0).$ Além disso, como $\overrightarrow{PQ} =Q-P = (2,-4)\parallel \ell,$ podemos tomar $\vec{u}=(2,1),$ pois $\vec{u} \perp \overrightarrow{PQ}.$ Assim, 
+    
+    $m: \left\{ \begin{array}{c}
+    x= 2 + 2t, \\
+    y= t
+    \end{array} \right. ,  t\in \mathbb{R}.$
+    
+    Como $A\in m,$ segue que $A=(2+2t,t)$ para algum número $t.$ Agora, como $\mathcal{C}$ tem raio $5$ e  $P\in \mathcal{C},$ segue que $\sqrt{(1+2t)^2+(t-2)^2}=5\Rightarrow(1+2t)^2+(t-2)^2=25\Rightarrow t^2=4\Rightarrow t=\pm2.$
+    
+    Substituindo os valores obtidos para $t$ na expressão de $A$ acima, obtemos $A=(6,2)$ ou $A=(-2,-2),$ de onde segue o resultado:
+    
+     $\mathcal{C}: (x-6)^2 + (y-2)^2=25$ ou $\mathcal{C}: (x+2)^2 + (y+2)^2=25.$
+    

@@ -1,0 +1,201 @@
+# Equações de Reta no Espaço
+
+As noções de vetor paralelo a uma reta e de equação paramétrica de reta no espaço são análogas às vistas no plano.
+
+### Definição (equação paramétrica)
+
+
+ Fixados um ponto $P_0$ e um vetor $\vec{v}\ne\vec{0}$, existe uma única reta $r$ tal que $P_0\in r$ e $\vec{v}\parallel r.$ Neste caso a **equação paramétrica** da reta $r$ é:
+
+$$
+r: \: P = P_0 + t \vec{v}, \quad t \in \mathbb{R}.
+$$
+
+A variável $t$ é chamada de **parâmetro da equação**.
+
+
+
+### Definição (equação paramétrica em coordenadas no espaço)
+
+
+ Se $P_0=(x_0,y_0,z_0)\in r, \vec{v}=(a,b,c)\parallel r$ estão fixados e $P=(x,y,z) \in r,$ então a equação paramétrica de $r$ dada acima se reescreve em coordenadas como:
+
+$$
+r: \left\{\begin{array}{l} x=x_0 + at \\ y=y_0 + bt \\ z=z_0 +c t \end{array} \right. , \quad t \in \mathbb{R}.
+$$
+
+
+
+### Definição (equação simétrica)
+
+
+ Além disso, se nenhuma das coordenadas do vetor $\vec{v}=(a,b,c)\parallel r$ é nula então podemos isolar o parâmetro $t$ de cada uma das três equações paramétricas de $r$ obtendo
+
+$$
+r: \:  \frac{x-x_0}{ a} = \frac{y-y_0}{b} =\frac{z-z_0}{c}.
+$$
+
+Neste caso, as equações acima são ditas **equações simétricas** de $r$.
+
+
+
+
+**Exemplo**
+
+Determine as equações cartesianas e simétricas da reta $r$ sabendo que $P_0=(1,3,-2)\in r$ e $\vec{v}=(2,-5,4)\parallel r$ .
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resolução**: 
+    
+    Se $P_0=(1,3,-2)\in r$ e $\vec{v}=(2,-5,4)\parallel r$ então:
+    
+    $$
+    r: \left\{ \begin{array}{l} x= 1 + 2t\\ y = 3-5t \\ z= -2 +4t \end{array} \right. , \quad t \in \mathbb{R}
+    $$
+    
+    $$
+    r: \frac{x-1}{2}=\frac{y- 3}{-5} =\frac{ z +2}{4}
+    $$
+    
+
+
+
+**Exemplo**
+
+Determine as equações cartesianas e simétricas da reta $r$ sabendo que $P_0=(4,2,1)\in r$ e $\vec{v}=(2,0,1)\parallel r$
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Resolução**: 
+    
+    $$
+    r: \left\{ \begin{array}{l} x= 4 + 2t\\ y = 2 \\ z= 1 +t \end{array} \right. , \quad t \in \mathbb{R},
+    $$
+    
+    são equações paramétricas de $r$. Mas neste caso, como uma das coordenadas de $\vec{v}$ é nula, não existem as equações simétricas de $r$.
+    
+
+
+Já vimos que dois planos concorrentes $\alpha$ e $\beta$ se intersectam ao longo de uma reta. Reciprocamente, dada uma reta $r$ é possível determinar dois planos $\alpha$ e $\beta$ tais que $r= \alpha\cap \beta$. Usaremos este fato para descrever a reta $r$ por meio de equações cartesianas.
+
+Suponha que $r= \alpha\cap \beta$ onde:
+
+$$
+\alpha : \: a_1x +b_1y+c_1z=d_1 \quad \text{e} \quad \beta : \: a_2x +b_2y+c_2z=d_2
+$$
+
+são as equações de planos $\alpha$ e $\beta$. Neste caso estamos assumindo que  os vetores 
+$\vec{n}_\alpha = (a_1,b_1,c_1) \perp \alpha$  *e $\vec{n}_\beta = (a_2,b_2,c_2) \perp \beta$*  **não são** múltiplos, pois caso contrário, teríamos $\alpha \parallel \beta$ ou $\alpha = \beta$ e a interseção dos planos não seria uma reta.  Assim os pontos da reta $r$ satisfazem o sistema:
+
+$$
+r: \left\{ \begin{array}{l} a_1x +b_1y+c_1z=d_1  \\  a_2x +b_2y+c_2z=d_2 \end{array} \right.
+$$
+
+com   $(a_1,b_1,c_1) \nparallel (a_2,b_2,c_2)$.
+
+### Definição (equação cartesiana da reta)
+
+
+ As equações do sistema são ditas **equações cartesianas** da reta $r$.
+
+
+
+
+💡 Como uma reta $r$ sempre está contida em infinitos planos temos infinitas maneiras de representar $r$ com equações cartesianas.
+
+
+
+### Proposição
+
+
+ Suponha que uma reta $r$ é dada pela interseção de dois planos $\alpha$ e $\beta$ tais que $\vec{n}_\alpha \perp \alpha$ *e $\vec{n}_\beta \perp \beta$*, então $(\vec{n}_\alpha \times \vec{n}_\beta) \parallel r$. Como exibido na seguinte figura.
+
+
+
+![](https://www.geogebra.org/resource/mjwtcyxv/17TE4xZtKYvS8kSN/material-mjwtcyxv.png)
+
+
+**Exemplo**
+
+Determine quais dos sistemas de equações abaixo descreve uma reta e encontre uma equação paramétrica para a mesma. 
+
+$$
+\ell: \left\{
+\begin{array}{l}
+2x - y = 1 \\
+x + z = 0
+\end{array}
+\right. \quad \text{e}\quad m: \left\{
+\begin{array}{l}
+3x - 6y + 21z = 1 \\
+-x + 2y - 7z = 2
+\end{array}
+\right.    
+$$
+
+- $\leftarrow$ Clique para ver a solução
+    
+    **Resolução:**  No conjunto $\ell$ os vetores dados pelos coeficientes de cada equação são  $*(2, -1, 0)$ e $(1, 0, 1)$.*  Como eles não são paralelos segue que  $\ell$  é uma reta. Por outro lado, os vetores dados pelos coeficientes das equações de $m$ são  *$(3, -6, 21)$  e  $(-1, 2, -7)$*, os quais são paralelos já que $*(3, -6, 21)  =-3  (-1, 2, -7)$.* Logo o conjunto m não é uma reta.
+    
+    Para determinar uma equação paramétrica de $\ell$ precisamos de um ponto $P_0 \in \ell$ e de um vetor $\vec{v} \parallel \ell$. 
+    
+    Para encontrar $P_0$ basta tomar uma solução do sistema dado por $\ell$, por exemplo, tomando $x = 0$ obteremos $y = -1$ e $z = 0$, logo $P_0 = (0, -1, 0) \in \ell$. 
+    
+    Para determinar $\vec{v}$ usamos a Proposição 1. Portanto, 
+    
+    $$
+    \vec{v} = (2, -1, 0) \times (1, 0, 1) = (-1, -2, 1) \parallel \ell,
+    $$
+    
+     donde obtemos:
+    
+    $$
+    
+    \ell: \left\{
+    \begin{array}{l}
+    x = -t \\
+    y = -1 - 2t \\
+    z = t
+    \end{array}
+    \right.,
+    t \in \mathbb{R}.
+    $$
+    
+
+
+
+**Exemplo**
+
+Seja a reta $r: \left\{ \begin{array}{l} x +y+z=1  \\  2x -y+z=0 \end{array} \right.,$ determine sua equação paramétrica.
+
+ 
+
+- $\leftarrow$ Clique para ver a solução
+    
+    **Solução**:
+    
+    Note que o vetor $\vec{u}\times \vec{v}\parallel  r$ onde $\vec{u}=(1,1,1)$ e $\vec{v}=(2,-1,1)$.
+    
+    calculamos $\vec{u}\times \vec{v}=(-1,-2,1)$. 
+    
+    Fazendo $x=0$:
+    $\left\{ \begin{array}{l} y+z=1  \\  -y+z=0 \end{array} \right.,$ obtemos, $y=\frac{1}{2},z=\frac{1}{2}$.
+    
+    logo o ponto $A=(0,\frac{1}{2},\frac{1}{2}) \in r$.
+    
+    Temos então um ponto e o vetor diretor da reta. 
+    
+    $r: \: P = A + t (\vec{u}\times \vec{v}), \quad t \in \mathbb{R}.$
+    
+    $r: \: (x,y,z) = (0,\frac{1}{2},\frac{1}{2}) + t (-1,-2,1), \quad t \in \mathbb{R}.$
+    
+    $r: \left\{
+    \begin{array}{l}
+    x = -t \\
+    y = \frac{1}{2} - 2t \\
+    z = \frac{1}{2} + t
+    \end{array}
+    \right.,
+    t \in \mathbb{R}.$
+    

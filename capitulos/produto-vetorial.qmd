@@ -1,0 +1,108 @@
+# Produto Vetorial
+
+### Definição
+
+
+ O **produto vetorial** entre  $\vec{u} = (a_1, a_2, a_3)$  e  $\vec{v} = (b_1, b_2, b_3)$, nesta ordem, é o vetor dado por
+
+$$
+\vec{u}\times\vec{v} = (a_2b_3-a_3b_2, a_3b_1-a_1b_3, a_1b_2-a_2b_1).
+$$
+
+
+
+
+💡 O produto vetorial $\vec{u}\times\vec{v}$ também é comumente denotado por:
+
+$$
+\vec{u}\wedge\vec{v} \quad \text{ou} \quad  \vec{u}\otimes\vec{v}.
+$$
+
+
+
+Se denotamos  $\vec{i}=(1,0,0)$,  $\vec{j}=(0,1,0)$  e  $\vec{k}=(0,0,1)$,  então o produto vetorial é dado pela expressão formal do seguinte determinante
+
+$$
+{\color{#993300}\vec{u}}\times {\color{#CC6600}\vec{v}} =\det
+\begin{pmatrix}
+\vec{i}  & \vec{j} & \vec{k} \\
+\color{#993300}a_1 & \color{#993300}a_2 & \color{#993300}a_3 \\
+\color{#CC6600}b_1 & \color{#CC6600}b_2 & \color{#CC6600}b_3
+\end{pmatrix}\begin{array}{cl}
+&  \\
+\color{grey}\leftrightsquigarrow  &\text{{\small coordenadas de }} {\color{#993300}\vec{u}} \\
+\color{grey}\leftrightsquigarrow  &\text{{\small coordenadas de }} {\color{#CC6600}\vec{v}}
+\end{array}
+
+$$
+
+
+**Exemplo**
+
+Dados os vetores   $\vec{u}=(1,2,3)$  e  $\vec{v}=(2,0,1)$  determine  $\vec{u}\times\vec{v}$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    $$
+    {\color{#AA6E00}\vec{u}}\times {\color{#CC6600}\vec{v}} =\det
+    \begin{pmatrix}
+    \vec{i}  & \vec{j} & \vec{k} \\
+    \color{#AA6E00}1 & \color{#AA6E00}2 & \color{#AA6E00}3 \\
+    \color{#CC6600}2 & \color{#CC6600}0 & \color{#CC6600}1
+    \end{pmatrix}=2\vec{i}+5\vec{j}-4\vec{k} = (2,5,-4).
+    $$
+    
+
+
+### Proposição
+
+
+ Dados vetores $\vec{u}, \vec{v}$ e $\vec{w}$ e um número real $\alpha$, valem as seguintes propriedades:
+
+- $\vec{u}\times\vec{v} = \vec{0} \Longleftrightarrow \vec{u}$   e  $\vec{v}$  são múltiplos;
+- $\vec{u}\times\vec{v} = -(\vec{v}\times\vec{u})$;
+- $(\alpha\vec{u})\times\vec{v} = \alpha(\vec{u}\times\vec{v}) = \vec{u}\times(\alpha\vec{v})$;
+- $\vec{u}\times(\vec{v}+\vec{w}) = \vec{u}\times\vec{v} + \vec{u}\times\vec{w}$;
+- $(\vec{u}+\vec{v})\times\vec{w} = \vec{u}\times\vec{w} + \vec{v}\times\vec{w}$.
+
+
+## **Interpretação geométrica do produto vetorial**
+
+Lembre que um vetor fica determinado pelo seu comprimento, sua direção e seu sentido. Na proposição abaixo, determinaremos o produto vetorial estabelecendo algumas regras para obtermos  seu comprimento, sua direção e seu sentido.
+
+### Proposição
+
+
+ Dados dois vetores  $\vec{u}$  e  $\vec{v}$ , o produto vetorial  $\vec{u}\times\vec{v}$  é o único vetor tal que:
+
+- Seu comprimento é dado por  $\|\vec{u}\times\vec{v}\| = \|\vec{u}\|\|\vec{v}\|\text{sen}\sphericalangle(\vec{u},\vec{v})$ ;
+- Sua direção é  tal que   $\vec{u}\times\vec{v}\perp\vec{u}$  e  $\vec{u}\times\vec{v}\perp\vec{v}$;
+- Seu sentido é dado pela **regra da mão direita**:
+    
+    
+    1. Comece a palma da mão direita aberta e com o polegar formando um ângulo reto com os demais dedos;
+    2. Imagine que o vetor  $\vec{u}$  se encontra sobre o indicador;
+    3. Mantendo o polegar esticado, feche os demais dedos indo na direção de  $\vec{v}$  percorrendo o menor ângulo possível;
+    4. Neste processo o polegar indicará o sentido de  $\vec{u}\times\vec{v}$.
+    
+    ![material-nkjykzw9.png](Produto%20Vetorial/material-nkjykzw9.png)
+    
+
+
+Da fórmula do comprimento do produto vetorial dada na proposição acima, deduzimos a seguinte.
+
+### Proposição
+
+
+ Dados dois vetores  $\vec{u}$  e  $\vec{v}$, temos que:
+
+- $\|\vec{u}\times\vec{v}\| =$ área do paralelogramo de lados  $\vec{u}$  e  $\vec{v}$;
+
+
+
+<img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px" /> **Atividade**
+
+Altere os vetores $\vec{u}$ e $\vec{v}$ e note como a área do paralelogramo  sempre coincide com o comprimento $\vec{u} \times \vec{v}$.
+
+[https://www.geogebra.org/m/mwhzu3nj](https://www.geogebra.org/m/mwhzu3nj)
+

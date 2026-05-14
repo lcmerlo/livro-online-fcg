@@ -1,0 +1,149 @@
+# Equação Cartesiana da Reta
+
+### Definição
+
+
+ Dizemos que um vetor $\vec{u}$ não nulo é normal ou perpendicular a uma reta $r$, e denotamos $\vec{u} \perp r$, se $\vec{u}$ é perpendicular ao vetor $\overrightarrow{AB}$, quaisquer que sejam os pontos $A, B \in r$.
+
+
+
+![](https://www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png)
+
+### Proposição
+
+Dados um ponto $P_0$ e um vetor $\vec{u} \neq \vec{0}$, existem infinitas retas perpendiculares a $\vec{u}$, mas existe apenas uma reta $r$ que é perpendicular ao vetor $\vec{u}$ e que passa pelo ponto $P_0$.
+
+![](https://www.geogebra.org/resource/spajs5my/y6Po98MYkIRFikKS/material-spajs5my.png)
+
+Fixados um ponto $P_0 = (x_0, y_0)$ e um vetor $\vec{u} = (a, b) \neq \vec{0}$, considere a única reta $r$ tal que $P_0 \in r$ e $\vec{u} \perp r$. 
+
+Um ponto $P = (x, y) \in r$ se, e somente se, o vetor $(x - x_0, y - y_0) = P - P_0 = \overrightarrow{P_0P}$ é perpendicular a $\vec{u}$, isto é,
+
+$$
+\begin{array}{lcl}\langle (x - x_0, y - y_0), (a, b) \rangle = 0 & \Leftrightarrow &  a(x - x_0) + b(y - y_0) = 0 \\           &\Leftrightarrow &  ax + by + \underbrace{(-ax_0 - by_0)}_{\text{constante}} = 0.\end{array}
+$$
+
+Deste modo, concluímos que um ponto $P = (x, y)$ pertence à reta $r$, se, somente se, ele satisfaz a equação
+
+$$
+r: \: \underbrace{ax + by}_{(a,b)\perp r} + c= 0 \quad (\ast) \quad \text{ ou então } \quad r: \: \underbrace{ax + by}_{(a,b)\perp r} = c' \quad (\ast \ast), 
+$$
+
+onde   $c =-( ax_0 + by_0)$ e  $c'=  ax_0 + by_0$  são constantes.    *.         
+
+Note que os coeficientes $a$  e $b$ das equações ($\ast$) e ($\ast \ast$) são as coordenadas do vetor perpendicular a reta $r$.
+
+### Definição
+
+
+ Qualquer equação da forma $(\ast)$ ou $(\ast\ast)$  acima é dita equação cartesiana da reta $r$.
+
+
+
+### Proposição
+
+
+ 
+
+Duas equações da forma $(\ast)$  representam a mesma reta se, e somente se, elas diferem pela multiplicação de uma constante não nula. Dito de outra forma:
+
+As equações  $ax+by+c=0$ e  $a’x+b’y+c’=0$ descrevem a mesma reta  se, e somente se, 
+
+$$
+   a’=\lambda a, \quad b’=\lambda b \quad\text{e}\quad  c’=\lambda c \quad \text{ para algum número real}\quad \lambda \neq 0.
+$$
+
+
+
+
+**Exemplo**
+
+Determine a equação cartesiana da reta $m$ que passa pelo ponto $B = (7, 11)$ e é normal ao vetor $\vec{u} = (-3, 4)$.
+
+- $\leftarrow$ Click para ver a solução
+    
+    Como $(a,b)=(-3,4) \perp m$,  a equação cartesiana de $m$ tem a forma
+    
+    $m: -3x+4y+c=0$. Para determinar a constante $c$ não é necessário usar a formula dada em $(\ast)$, basta substituir as coordenadas de um ponto da reta na expressão que já temos.  Usando o ponto $B \in m$ segue que 
+    
+    $$
+    -3(7) + 4(11) + c=0 \quad  \Rightarrow \quad  c=-23.
+    $$
+    
+    Logo,
+    
+    $$
+     m: -3x+4y-23=0.
+    $$
+    
+    **Obs.** Pela Proposição 1 também temos 
+    
+    $$
+     m: 3x - 4y+ 23=0 \quad \text{ ou } \quad  m: 6x - 8y+ 46=0.
+    $$
+    
+
+
+**Observação**:
+
+Lembremos que, dada uma reta r: 
+
+$$
+\vec{u} = (a, b) \perp r \quad \Leftrightarrow \quad \vec{v} = (b,-a) \parallel r.
+$$
+
+
+
+
+**Exemplo**
+
+Determine a equação cartesiana da reta  $r: \left\{
+\begin{array}{l}
+x = 5 - 4t \\
+y = -2 + t,
+\end{array}
+\right. t \in \mathbb{R}.$
+
+- $\leftarrow$ Click para ver a solução
+    
+    **Primeira resolução:** Para obter uma equação cartesiana de $r$ precisamos de um ponto de $r$ e de um vetor perpendicular a $r$.  
+    
+    Da equação original obtemos que $P_0 = (5,-2) \in r$ e $\vec{v}=(-4,1)\parallel r$. Pela observação acima segue que $\vec{u}=(1,4) \perp r$.
+    
+    Portanto $r:1x+4y+c=0$ e substituindo as coordenadas de $P_0$ na equação obtemos $1(5)+4(-2) + c=0 \ \Rightarrow \ c=3$.  Logo 
+    
+    $$
+    r: x+4y+3=0.
+    $$
+    
+    **Segunda resolução:** Da equação paramétrica de $r$ temos $t=y+2$ e substituindo na outra equação segue que $x= 5 - 4(y+2)$, donde obtemos a mesma equação de $r$ acima.
+    
+
+
+
+**Exemplo**
+
+Determine as equações paramétricas da reta $s: -7x + 2y = 8$.
+
+- $\leftarrow$ Click para ver a solução
+    
+     **Primeira resolução:** Para obter uma equação paramétrica de $s$ precisamos de um ponto de $s$ e de um vetor paralelo a $s$.  
+    
+    Para obtermos um ponto de $s$, basta escolher um valor específico para uma das variáveis da equação original e determinar o valor da outra variável. Por exemplo, tomando $x=0$ na equação acima temos $-7(0) + 2y=8 \Rightarrow y=4$. Logo o ponto $(0,4) \in s$. 
+    
+    Para obtermos um vetor paralelo a $s$ note que  $\vec{u}=(-7,2) \perp s$  e segue observação acima que  $\vec{v}=(2,7)\parallel s$.
+    
+    Portanto uma equação paramétrica de $s$ é 
+    
+    $$
+    s:   \left\lbrace\!\! \begin{array}{l} x= 0 + 2t \\ y=4+7t,  \end{array} \right. t\in \R,  \quad \text{ou seja,} \quad  s: \left\lbrace\!\!\begin{array}{l} x= 2t\\ y=4+7t,  \end{array} \right. t\in \R.
+    $$
+    
+    **Segunda resolução:** Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando $x=t$  e substituindo na equação de $s$ temos  $-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t$.  Portanto uma equação paramétrica de $s$ é 
+    
+    $$
+    s: \left\lbrace\!\!\begin{array}{l} x= t\\ y=4+\frac{7}{2}t,  \end{array} \right. t\in \R.
+    $$
+    
+    Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta $s$, mas lembre que para uma mesma reta existem infinitas equações paramétricas.
+    

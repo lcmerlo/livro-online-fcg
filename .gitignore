@@ -1,0 +1,20 @@
+# Arquivos de cache
+.quarto/
+
+# arquivos de saída
+_book/
+_site/
+
+# arquivos de congelamento
+_freeze/
+
+# arquivos de sistema do macOS
+.DS_Store
+
+# arquivos usualmente gerados por LaTeX
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

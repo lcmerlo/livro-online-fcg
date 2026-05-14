@@ -1,0 +1,45 @@
+# Proposta de redação {.unnumbered}
+
+## Ideia central
+
+Cada unidade deve conduzir o aluno por uma sequência simples:
+
+**intuição → visualização → definição → exemplo → interação → síntese**
+
+O objetivo é reduzir carga cognitiva e ajudar alunos com base frágil a construir compreensão progressiva.
+
+## Estrutura padrão de uma unidade
+
+1. Abertura curta
+2. Objetivos de aprendizagem
+3. Pré-requisitos mínimos
+4. Ideia central em linguagem simples
+5. Definição e notação
+6. Exemplo resolvido
+7. Visualização ou applet guiado
+8. Erro comum
+9. Checkpoint
+10. Exercícios graduados
+11. Síntese final
+
+## Princípios de redação
+
+* Começar pela dificuldade provável do aluno.
+* Apresentar a ideia antes da fórmula.
+* Introduzir pouca notação por vez.
+* Explicar o papel de cada fórmula.
+* Usar exemplos resolvidos antes dos exercícios.
+* Destacar decisões matemáticas, não só cálculos.
+
+
+## Exercícios
+
+Organizar por função:
+
+* reconhecimento;
+* cálculo direto;
+* interpretação;
+* representação;
+* correção de erro;
+* transferência;
+* desafio opcional.

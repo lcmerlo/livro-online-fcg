@@ -1,0 +1,113 @@
+# Produto Misto
+
+### Definição
+
+
+ O **produto misto** entre  $\vec{u} = (a_1, a_2, a_3)$,  $\vec{v} = (b_1, b_2, b_3)$  e  $\vec{w} = (c_1, c_2, c_3)$, nesta ordem, é o número dado por
+
+
+
+$$
+[{\color{#993300}\vec{u}},{\color{#bb6600}\vec{v}},{\color{#ee6600}\vec{w}}] :=\det
+\begin{pmatrix}
+\color{#993300}a_1 & \color{#993300}a_2 & \color{#993300}a_3 \\
+\color{#bb6600}b_1 & \color{#bb6600}b_2 & \color{#bb6600}b_3\\ \color{#ee6600}c_1 & \color{#ee6600}c_2 & \color{#ee6600}c_3\\
+\end{pmatrix}\begin{array}{cl}
+\color{grey}\leftrightsquigarrow  &\text{{\small coordenadas de }} {\color{#993300}\vec{u}} \\
+\color{grey}\leftrightsquigarrow  &\text{{\small coordenadas de }} {\color{#bb6600}\vec{v}} \\ \color{grey}\leftrightsquigarrow  &\text{{\small coordenadas de }} {\color{#ee6600}\vec{w}}.
+\end{array}
+$$
+
+
+**Exemplo**
+
+Dados os vetores  $\vec{u}=(3,2,1)$, $\vec{v}=(1,-1,0)$  e  $\vec{w}=(2,1,1)$  determine o produto misto $[\vec{u},\vec{v},\vec{w}]$
+
+- $\leftarrow$ Clique para ver a solução
+    
+    $$
+    [{\color{#AA6600}\vec{u}},{\color{#CC6600}\vec{v}},{\color{#ee6600}\vec{w}}] =\det
+    \begin{pmatrix}
+    \color{#AA6600}3 & \color{#AA6600}2 & \color{#AA6600}1 \\
+    \color{#CC6600}1 & \color{#CC6600}-1 & \color{#CC6600} 0 \\ \color{#ee6600}2 & \color{#ee6600}1 & \color{#ee6600}1\\
+    \end{pmatrix}=2.
+    $$
+    
+
+
+
+💡 O produto misto recebe este nome, pois ele pode ser calculado usando o produto escalar e o produto vetorial, como veremos na primeira propriedade da proposição que segue.
+
+
+
+### Proposição
+
+
+ Dados os vetores  $\vec{u}$,  $\vec{v}$,  $\vec{w}$ e um número  $a\in\R$, valem as seguintes propriedades:
+
+- $[\vec{u},\vec{v},\vec{w}] = \langle\vec{u}\times\vec{v},\vec{w}\rangle = \langle\vec{u},\vec{v}\times\vec{w}\rangle$;
+- $[\vec{u},\vec{v},\vec{w}]=[\vec{v},\vec{w},\vec{u}]=[\vec{w},\vec{u},\vec{v}]=:\lambda$;
+- $[\vec{v},\vec{u},\vec{w}]=[\vec{w},\vec{v},\vec{u}]=[\vec{u},\vec{w},\vec{v}]=-\lambda$;
+- $[\vec{u},\vec{v},\vec{w}_1+\vec{w}_2]=[\vec{u},\vec{v},\vec{w}_1]+[\vec{u},\vec{v},\vec{w}_2]$;
+- $[\vec{u},\vec{v}_1+\vec{v}_2,\vec{w}]=[\vec{u},\vec{v}_1,\vec{w}]+[\vec{u},\vec{v}_2,\vec{w}]$;
+- $[\vec{u}_1+\vec{u}_2,\vec{v},\vec{w}]=[\vec{u}_1,\vec{v},\vec{w}]+[\vec{u}_2,\vec{v},\vec{w}]$;
+- $[a\vec{u},\vec{v},\vec{w}]=[\vec{u},a\vec{v},\vec{w}]=[\vec{u},\vec{v},a\vec{w}]=a[\vec{u},\vec{v},\vec{w}]$.
+
+
+Observe que na segunda propriedade pode ocorrer  $\lambda<0$  e portanto o $-\lambda$ na terceira  pode ser positivo.
+
+## **Interpretação geométrica do produto misto**
+
+### Definição
+
+
+ Dizemos que um paralelepípedo $\mathcal{P}$ tem lados $\vec{u}$, $\vec{v}$ e $\vec{w}$ se eles são representados por arestas orientadas não coplanares de $\mathcal{P}$.
+
+![Paralelepipedo.png](Produto%20Misto/Paralelepipedo.png)
+
+
+
+### Proposição
+
+
+ Dados três vetores $\vec{u}$, $\vec{v}$ e $\vec{w}$ temos
+
+- $\bigr|[\vec{u},\vec{v},\vec{w}]\bigl| =$ volume do paralelepípedo determinado por $\vec{u}$, $\vec{v}$ e $\vec{w}$;
+- $[\vec{u},\vec{v},\vec{w}]=0 \Longleftrightarrow \vec{u}$, $\vec{v}$ e $\vec{w}$ são coplanares.
+
+- Clique para ver a dedução do primeiro item.
+    
+    Sejam $V$ o volume do paralelepípedo, $A$ a área da base de lados $\vec{u}$ e $\vec{v}$ e $h$ altura do paralelepípedo correspondente a esta base.  Lembre que 
+    
+    $$
+    V=Ah,\quad   A =\|\vec{u}\times \vec{v}\| \quad\text{e} \quad [\vec{u}, \vec{v}, \vec{w}]= \langle\vec{u}\times \vec{v}, \vec{w}\rangle.   
+    $$
+    
+    Note que a altura  $h$  do paralelepípedo é a norma da projeção ortogonal de $\vec{w}$ sobre $\vec{u}\times\vec{v}$, (veja a  figura ao lado), isto é, 
+    
+    $$
+     h=\|\mathrm{Proj}_{\vec{u}\times \vec{v}} \:\vec{w}\|  
+    $$
+    
+    Como 
+    
+    ![VolumaPar.png](Produto%20Misto/VolumaPar.png)
+    
+    $$
+    \mathrm{Proj}_{\vec{u}\times \vec{v}}\ \vec{w}= \frac{\langle\vec{u}\times \vec{v}, \vec{w}\rangle}{\|\vec{u}\times \vec{v}\|^2} \vec{u}\times \vec{v} = \frac{[\vec{u}, \vec{v}, \vec{w}]\ }{\|\vec{u}\times \vec{v}\|^2}\ \vec{u}\times \vec{v},
+    $$
+    
+    segue que
+    
+    $$
+    \begin{equation*}
+    \begin{split}
+    V=& \ Ah \\ = & \|\vec{u}\times \vec{v}\|\|\mathrm{Proj}_{\vec{u}\times \vec{v}} \:\vec{w}\| \\
+    = & \|\vec{u}\times \vec{v}\|\left\| \dfrac{[\vec{u}, \vec{v}, \vec{w}]\ }{\|\vec{u}\times \vec{v}\|^2 }\:  \vec{u}\times \vec{v} \:
+    \right\| \\
+    = & \|\vec{u}\times \vec{v}\| \left|\dfrac{[\vec{u}, \vec{v}, \vec{w}]\ }{\|\vec{u}\times \vec{v}\|^2} \right|\left\|\vec{u}\times \vec{v}\right\| \\
+    = & \bigl|[\vec{u}, \vec{v}, \vec{w}] \bigr|.
+    \end{split}  
+    \end{equation*} 
+    $$
+    

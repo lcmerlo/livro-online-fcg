@@ -1,36 +1,26 @@
 # Fundamentos de Cálculo e Geometria {.unnumbered}
 
-Este livro é um material de revisão matemática com foco em explicações curtas, exemplos resolvidos, interpretação geométrica e atividades interativas.
+Este material foi desenvolvido pelo corpo docente do GGM-IME para o curso **Fundamentos de Cálculo e Geometria** oferecido pela UFF. 
 
-## Para quem é este livro
+A proposta é oferecer um material claro, acessível e interativo para um público com nível de conhecimento heterogêneo de pré-cálculo e geometria analítica, visando atender as necessidades tanto daqueles que já tem domínio dos tópicos abordados, quanto daqueles que, pelos mais diversos motivos, desconhecem boa parte do conteúdo do ensino médio.
 
-Este material foi pensado para estudantes que precisam revisar conceitos fundamentais
-de matemática, especialmente aqueles que têm lacunas em álgebra, funções, geometria
-analítica e leitura de gráficos.
+O material foi pensado para priorizar o foco, a retenção de conhecimento e a redução da carga cognitiva desnecessária, permitindo um estudo mais eficiente e prazeroso. 
 
-## Como usar
+Os tópicos foram organizados em uma progressão lógica e coerente, favorecendo a construção de conhecimento de forma gradual, partindo de conceitos intuitivos e avançando para formalizações matemáticas, sempre com o suporte de exemplos, applets interativos e exercícios.
 
-Recomenda-se seguir os capítulos na ordem apresentada. Cada lição combina:
 
-- uma ideia central;
-- pré-requisitos mínimos;
-- exemplos resolvidos;
-- interpretação geométrica;
-- applets guiados;
-- exercícios de verificação.
+Cada lição busca trabalhar uma ideia principal por vez, seguindo, sempre que possível, a estrutura:
+* Objetivo
+* Pré-requisitos
+* Ideia central intuitiva
+* Formalização
+* Interpretação algébrica e geométrica
+* Exemplos gradativos resolvidos
+* Applet guiado
+* Erros comuns
+* Exercícios com ajuda
+Exercícios de fixação
 
-## Estrutura do percurso
-
-1. Blocos, proposições e linguagem matemática.
-2. Primeiras noções.
-3. Segmentos.
-4. Segmentos orientados.
-5. Eixos.
-6. Coordenadas no plano.
-
-## Sobre os applets
-
-Algumas páginas incluem construções interativas. Antes de manipular os controles,
-leia a pergunta orientadora e observe o que deve mudar ou permanecer constante.
+Recomenda-se abordar os conteúdos na ordem apresentada. Lendo atentamente as orientações e explorando os applets.  
 
 ## Comece por aqui

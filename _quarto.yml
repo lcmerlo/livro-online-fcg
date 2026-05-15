@@ -1,5 +1,3 @@
-# sintáxe de comentário no quarto 
-
 project:
   type: book
   output-dir: docs
@@ -32,7 +30,6 @@ book:
     - extras/relatorio-design-pedagogico.qmd
     - extras/biblioteca-estruturas-site-diretrizes.qmd
     - extras/proposta.qmd
-    
     - capitulos/01-primeiras-nocoes.qmd
     - capitulos/02-segmentos.qmd
     - capitulos/03-segmentos-orientados.qmd

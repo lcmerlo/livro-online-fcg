@@ -75,6 +75,12 @@ format:
   pdf:
     documentclass: scrreprt
 
+comments:
+  hypothesis:
+    theme: clean
+    openSidebar: true
+    showHighlights: never
+    
 execute:
   freeze: auto
   echo: false

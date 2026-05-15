@@ -1,5 +1,3 @@
-# Fundamentos de Cálculo e Geometria {.unnumbered}
-
 Este material foi desenvolvido pelo corpo docente do GGM-IME para o curso **Fundamentos de Cálculo e Geometria** oferecido pela UFF. 
 
 A proposta é oferecer um material claro, acessível e interativo para um público com nível de conhecimento heterogêneo de pré-cálculo e geometria analítica, visando atender as necessidades tanto daqueles que já tem domínio dos tópicos abordados, quanto daqueles que, pelos mais diversos motivos, desconhecem boa parte do conteúdo do ensino médio.

@@ -16,7 +16,7 @@ crossref:
       caption-location: top
 
 book:
-  title: "Livro Online"
+  title: "Fundamentos de Cálculo e Geometria"
   author: "Projeto FCG"
   date: today
   page-navigation: true

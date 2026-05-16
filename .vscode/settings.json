@@ -17,17 +17,19 @@
   "cSpell.minWordLength": 4,
 
   "cSpell.ignoreRegExpList": [
-  "/(#|\\.)[A-Za-z][A-Za-z0-9_-]*/g"
+    "/(#|\\.)[A-Za-z][A-Za-z0-9_-]*/g",
+    "/[\\w.-]+\\/[\\w./-]+/g",
+    "/[\\w.-]+\\.(qmd|md|tex|bib|yml|yaml|json|scss|css|js|ts|html|pdf|png|jpg|jpeg|svg)/g"
   ],
 
   "cSpell.ignorePaths": [
-    ".git",
-    ".quarto",
-    "_site",
-    "_book",
-    "_freeze",
-    "node_modules",
-    "renv",
+    ".git/**",
+    ".quarto/**",
+    "_site/**",
+    "_book/**",
+    "_freeze/**",
+    "node_modules/**",
+    "renv/**",
     "*.pdf",
     "*.png",
     "*.jpg",
@@ -49,9 +51,9 @@
     "bloco",
     "callout",
     "objetivo"
-  ]
-}
+  ],
 
-"[quarto]": {
-  "editor.defaultFormatter": "quarto.quarto"
+  "[quarto]": {
+    "editor.defaultFormatter": "quarto.quarto"
+  }
 }

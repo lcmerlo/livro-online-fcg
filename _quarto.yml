@@ -15,6 +15,38 @@ crossref:
       caption-prefix: "Exercício Resolvido"
       caption-location: top
 
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      # - sandstone
+      - cosmo
+      - assets/css/custom.scss
+    toc: true
+    toc-location: left
+    toc-title: "Neste capítulo"
+    toc-depth: 2
+    toc-expand: 1
+    number-sections: true
+    number-depth: 2
+    smooth-scroll: true
+    anchor-sections: true
+    css: assets/css/custom.scss
+    callout-appearance: simple
+    code-fold: false
+    axe: true
+  pdf:
+    documentclass: scrreprt
+
+    
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  error: false
+     
+
 book:
   title: "Fundamentos de Cálculo e Geometria"
   author: "Projeto FCG"
@@ -50,40 +82,4 @@ book:
     - capitulos/18-distancia-ponto_reta-reta_reta.qmd
     - capitulos/19-posicoes-relativas-reta-circulo.qmd
     - capitulos/20-posicao-relativa-circulos.qmd
-    
-bibliography: references.bib
-
-format:
-  html:
-    theme:
-      # - sandstone
-      - cosmo
-      - assets/css/custom.scss
-    toc: true
-    toc-location: left
-    toc-title: "Neste capítulo"
-    toc-depth: 2
-    toc-expand: 1
-    number-sections: true
-    number-depth: 2
-    smooth-scroll: true
-    anchor-sections: true
-    css: assets/css/custom.scss
-    callout-appearance: simple
-    code-fold: false
-    axe: true
-  pdf:
-    documentclass: scrreprt
-
-comments:
-  hypothesis:
-    theme: clean
-    openSidebar: true
-    showHighlights: never
-    
-execute:
-  freeze: auto
-  echo: false
-  warning: false
-  error: false
-
+ 

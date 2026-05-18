@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Distância: Entre Ponto e Reta e Entre Retas – Livro Online</title>
+<title>18&nbsp; Distância: Entre Ponto e Reta e Entre Retas – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -328,9 +315,9 @@ window.Quarto = {
 <p>Se <span class="math inline">\(P\notin r\)</span> então <span class="math inline">\(d(P,r)=d(P,Q),\)</span> onde <span class="math inline">\(Q\)</span> é o <strong>Pé da Perpendicular a</strong> <span class="math inline">\(r\)</span> <strong>por</strong> <span class="math inline">\(P,\)</span> ou seja, <span class="math inline">\(Q\)</span> é o ponto de interseção da reta <span class="math inline">\(r\)</span> com a reta perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P.\)</span></p>
 <p>Para ver isso, devemos mostrar que o ponto <span class="math inline">\(Q,\)</span> com as propriedades acima, é o ponto de <span class="math inline">\(r\)</span> mais próximo de <span class="math inline">\(P.\)</span></p>
 <p>De fato, se <span class="math inline">\(R\in r\)</span> e <span class="math inline">\(R\neq Q,\)</span> então o <span class="math inline">\(\bigtriangleup PQR\)</span> (figura abaixo) é retângulo em <span class="math inline">\(Q,\)</span> com hipotenusa <span class="math inline">\(PR\)</span> e um dos catetos <span class="math inline">\(PQ.\)</span> Como a hipotenusa é sempre maior que qualquer cateto, segue que <span class="math inline">\(d(P,R)&gt;d(P,Q).\)</span></p>
-<p><img src="https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png" class="img-fluid"></p>
-<p><strong>.</strong></p>
-<p>.</p>
+<!--
+![](https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png)
+-->
 </section>
 <section id="proposição-fórmula-da-distância-entre-ponto-e-reta" class="level3">
 <h3 class="anchored" data-anchor-id="proposição-fórmula-da-distância-entre-ponto-e-reta">Proposição (Fórmula da distância entre ponto e reta)</h3>
@@ -340,20 +327,10 @@ d(P,r)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 \]</span></p>
 <p>De fato, seja <span class="math inline">\(s\)</span> a única reta que passa por <span class="math inline">\(P=(x_0,y_0)\)</span> e é perpendicular a <span class="math inline">\(r:ax+by+c=0,\)</span> logo <span class="math inline">\(s\parallel (a,b)\)</span> pois <span class="math inline">\(r\perp (a,b)\)</span>.</p>
 <p><span class="math display">\[
-s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \R,
-\]</span></p>
-<p>são umas equações paramétricas de <span class="math inline">\(s\)</span>.</p>
-<p>Seja <span class="math inline">\(Q\)</span> o pé da perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P,\)</span> isto é, <span class="math inline">\(Q=r\cap s\)</span>.</p>
-<p>Então:</p>
-<p><span class="math display">\[
+s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \MATHBB{R},
+\]</span> são umas equações paramétricas de <span class="math inline">\(s\)</span>. Seja <span class="math inline">\(Q\)</span> o pé da perpendicular a <span class="math inline">\(r\)</span> que passa por <span class="math inline">\(P,\)</span> isto é, <span class="math inline">\(Q=r\cap s\)</span>. Então: <span class="math display">\[
 Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right.
-\]</span></p>
-<p>para algum <span class="math inline">\(t' \in \R\)</span>, isso é <span class="math inline">\(Q=(x_0+at', x_0+bt')\)</span> para algum <span class="math inline">\(t' \in \R\)</span>.</p>
-<p>Como <span class="math inline">\(Q \in r\)</span>, temos:</p>
-<p><span class="math inline">\(a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c\)</span></p>
-<p><span class="math inline">\(\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}\)</span>.</p>
-<p>Temos então que <span class="math inline">\(d(P,r)=d(P,Q)=||\overrightarrow{PQ}||\)</span> e <span class="math inline">\(\overrightarrow{PQ}=(a,b)t',\)</span> portanto:</p>
-<p><span class="math display">\[
+\]</span> para algum <span class="math inline">\(t' \in \MATHBB{R}\)</span>, isso é <span class="math inline">\(Q=(x_0+at', x_0+bt')\)</span> para algum <span class="math inline">\(t' \in \MATHBB{R}\)</span>. Como <span class="math inline">\(Q \in r\)</span>, temos: <span class="math inline">\(a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c\)</span> <span class="math inline">\(\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}\)</span>. Temos então que <span class="math inline">\(d(P,r)=d(P,Q)=||\overrightarrow{PQ}||\)</span> e <span class="math inline">\(\overrightarrow{PQ}=(a,b)t',\)</span> portanto: <span class="math display">\[
 d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 \]</span></p>
 <p><strong>Exemplo</strong></p>
@@ -383,12 +360,14 @@ d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+
   d(r,s)=d(r,P).
   \]</span></p></li>
 </ul>
-<p>💡 <strong>Observação:</strong></p>
+<p><strong>Observação:</strong></p>
 <p>Também podemos calcular a distância usando a perpendicular.</p>
 <ul>
 <li><p>Clique para ver a explicação</p>
 <p>Em particular podemos calcular a distância entre paralelas tomando qualquer reta <span class="math inline">\(p\)</span> perpendicular a <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>, temos <span class="math inline">\(d(r,s) = d(R,S)\)</span>, onde <span class="math inline">\(\{R\} = r\cap p\)</span> e <span class="math inline">\(\{S\} = s\cap p\)</span>. Em particular, segue que <span class="math inline">\(d(r,s) = d(R,s) = d(S,r)\)</span>, onde <span class="math inline">\(R\)</span> é um ponto qualquer de <span class="math inline">\(r\)</span> e <span class="math inline">\(S\)</span> é um ponto qualquer de <span class="math inline">\(s\)</span>.</p>
-<p><img src="https://www.geogebra.org/resource/v7qykdrq/1TWkyQov707XEdtW/material-v7qykdrq.png" class="img-fluid"></p></li>
+<p><!--
+  ![](https://www.geogebra.org/resource/v7qykdrq/1TWkyQov707XEdtW/material-v7qykdrq.png)
+  --></p></li>
 </ul>
 </section>
 <section id="proposição-fórmula-da-distância-entre-duas-retas-paralelas" class="level3">

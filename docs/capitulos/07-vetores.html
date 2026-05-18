@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Vetores – Livro Online</title>
+<title>7&nbsp; Vetores – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -321,24 +308,25 @@ window.Quarto = {
 <li>mesma direção;</li>
 <li>mesmo sentido.</li>
 </ul>
-<p><img src="https://www.geogebra.org/resource/ncqb8w2b/g48riCxSQeWTuZFF/material-ncqb8w2b.png" class="img-fluid"></p>
+<!--
+![](https://www.geogebra.org/resource/ncqb8w2b/g48riCxSQeWTuZFF/material-ncqb8w2b.png)
+-->
 <p>Na situação acima, o vetor <span class="math inline">\(\vec{v}\)</span> também pode ser denotado por <span class="math inline">\(\overrightarrow{AB}\)</span> ou por <span class="math inline">\(\overrightarrow{CD}\)</span>.</p>
 <p>Destacamos que um vetor é representado por um segmento orientado, contudo, o vetor não é o próprio segmento orientado. O vetor pode ser representado por qualquer segmento orientado que possua o mesmo comprimento, direção e sentido. É por isso que comumente falamos sobre o movimento do vetor, no entanto, é importante lembrar que estamos, na verdade, nos referindo a a “trocar o representante do vetor”.</p>
 <p><strong>Exemplo</strong></p>
 <p>Na seguinte figura interativa mova os vetores com o mouse para determinar quais os segmentos orientados formados pelos pontos abaixo os representam.</p>
-<p><a href="geogebra/fjcqnvew">geogebra/fjcqnvew</a></p>
-<p><a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+PC9zdmc+"></a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/fjcqnvew/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
+<!--
+[](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+PC9zdmc+)
+-->
 </section>
 <section id="definição-de-vetor-nulo" class="level3">
 <h3 class="anchored" data-anchor-id="definição-de-vetor-nulo">Definição de Vetor Nulo</h3>
 <p>O <strong>vetor nulo</strong> é um vetor especial que é representado por qualquer segmento degenerado <span class="math inline">\(AA\)</span> , onde <span class="math inline">\(A\)</span> é um ponto qualquer, e é denotado por <span class="math inline">\(\vec{0}\)</span>.</p>
 <p>Observe que só existe um vetor nulo e que, embora ele possa ser representado por qualquer ponto ele não deve ser confundido com algum ponto específico.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Vetores/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
-</div>
+<p><img src="../assets/img/07-vetores/Untitled.png" class="img-fluid"></p>
 </section>
 <section id="definição" class="level3">
 <h3 class="anchored" data-anchor-id="definição">Definição</h3>

@@ -2,9 +2,9 @@ project:
   type: book
   output-dir: docs
 
-brand: _brand.yml
-
 lang: pt-BR
+
+brand: _brand.yml
 
 resources:  
   - assets/js/applets-dist/**
@@ -68,10 +68,9 @@ book:
     #- extras/relatorio-design-pedagogico.qmd
     #- extras/biblioteca-estruturas-site-diretrizes.qmd
     #- extras/proposta.qmd
-
-    - Rascunhos/estrutura-pastas-descartardepois.qmd
-    - Rascunhos/paleta-cores.qmd
-    - Rascunhos/jsxgraph-1.qmd
+    #- Rascunhos/estrutura-pastas-descartardepois.qmd
+    #- Rascunhos/paleta-cores.qmd
+    #- Rascunhos/jsxgraph-1.qmd
     - capitulos/01-primeiras-nocoes.qmd
     - capitulos/02-segmentos.qmd
     - capitulos/03-segmentos-orientados.qmd

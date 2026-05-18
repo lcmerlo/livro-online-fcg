@@ -19,18 +19,19 @@
 - $\ell$ é tangente a $\mathcal{C} \Leftrightarrow  d(A, \ell) = r;$
 - $\ell$ é exterior a $\mathcal{C} \Leftrightarrow  d(A, \ell) > r.$
 
+<!--
 ![Untitled](Posi%C3%A7%C3%B5es%20Relativas%20entre%20Reta%20e%20C%C3%ADrculo/Untitled.png)
+-->
 
 
-
-
-💡 Dado um círculo $\mathcal{C}$ com centro $A,$ e dadas duas retas $\ell$ e $m$ tais que $A\in m$ e $\ell\perp m,$ temos:
+Dado um círculo $\mathcal{C}$ com centro $A,$ e dadas duas retas $\ell$ e $m$ tais que $A\in m$ e $\ell\perp m,$ temos:
 
 - Se $\ell$ é secante a $\mathcal{C}$ em $P$ e $Q,$ então $\ell\cap m = \{M\},$ onde $M$ é **ponto médio** de $PQ;$
 - Se $\ell$ é tangente a $\mathcal{C}$ em $T,$ então $\ell\cap m = \{T\}.$
-    
+ 
+   <!--
     ![](https://www.geogebra.org/resource/axdbn9e5/Iz2nur6p0lII8Qhi/material-axdbn9e5.png)
-    
+    -->
 
 
 

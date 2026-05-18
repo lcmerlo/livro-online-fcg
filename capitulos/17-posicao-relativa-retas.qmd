@@ -2,17 +2,15 @@
 
 ### Definição **posições relativas entre retas**
 
-
- 
-
 Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** entre elas. Elas podem ser:
 
 - **Coincidentes**: quando são iguais, isto é, $r=s;$
 - **Paralelas**: quando não se intersectam, isto é, $r\cap s=\varnothing.$ Neste caso, denotamos $r\parallel s;$
 - **Concorrentes**: quando se intersectam em um ponto, isto é, $r\cap s=\{P\}.$
 
-
+<!--
 ![](https://www.geogebra.org/resource/sgp8k4n7/dpUTQdM80b6ukp4J/material-sgp8k4n7.png)
+-->
 
 ### Proposição
 
@@ -37,17 +35,16 @@ Para que $r$ e $s$ sejam **concorrentes**, basta valer um dos casos:
 - $\vec{m} \nparallel \vec{n}$;
 - $\vec{u} \not\perp  \vec{n}$.
 
-
+<!--
 ![](https://www.geogebra.org/resource/eskf8qpv/UvXJ0VLajvdEDIb8/material-eskf8qpv.png)
+-->
 
 ### Proposição
-
 
  Dadas as retas $r:ax+by=c$ e $s:a'x+b'y=c'$ temos:
 
 - $r=s \Leftrightarrow (a',b')=\lambda(a,b)$ e $c'=\lambda c$ para algum $\lambda \neq 0;$
 - $r \parallel s \Leftrightarrow (a',b')=\lambda(a,b)$ e $c' \neq \lambda c$ para algum $\lambda \neq 0;$
-
 
 
 **Exemplo**

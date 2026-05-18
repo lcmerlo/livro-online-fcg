@@ -24,10 +24,10 @@ applets-src/.vite/
 assets/js/applets-dist/
 
 # Rascunhos locais - Ativar se não compartilhados
- Rascunhos/
- docs/Rascunhos/
+Rascunhos/
+docs/Rascunhos/
 
-# VS Code: 
+# VS Code:
 .vscode/*.code-workspace
 
 # usualmente gerados por LaTeX
@@ -36,4 +36,6 @@ assets/js/applets-dist/
 *.log
 *.out
 *.toc
-*.synctex.gz 
+*.synctex.gz
+/.quarto/
+**/*.quarto_ipynb

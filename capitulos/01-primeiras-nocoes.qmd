@@ -48,7 +48,6 @@ Nestes casos $P$ não é um ponto no sentido estrito, mas sim uma variável pont
 
 ***Acrescentar aqui?***
 
-- Ponto variável!  
 - semirretas! 
 - segmentos aqui ?
 
@@ -92,5 +91,16 @@ A propriedade 4 acima é conhecida como **desigualdade triangular** e a propried
 
 Mova os pontos no applet abaixo e perceba que temos três desigualdades triangulares em um mesmo triângulo.  Coloque um dos pontos sobre o lado oposto e observe que a propriedade 5 só vale em um dos três casos.
 
-[geogebra](https://www.geogebra.org/classic/nep5hngs)
+<!--
+![geogebra](https://www.geogebra.org/classic/nep5hngs)
+-->
 
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/nep5hngs/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>

@@ -41,7 +41,6 @@ applets/ 		- Componentes interativos
 ### Comandos principais
 quarto preview      - preview local
 quarto render       - gera o site completo
-quarto clean        - limpa arquivos auxiliares
 
 
 ## Applets

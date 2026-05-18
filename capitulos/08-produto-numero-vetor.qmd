@@ -2,65 +2,49 @@
 
 ### Definição
 
-
  Dados um número  $a \in \mathbb{R}$ e um vetor  $\vec{v}=(x,y)$, definimos o produto entre eles como o vetor  $a\vec{v}=(ax,ay)$, ou seja,  $a(x,y)=(ax,ay)$.
-
-
-
 
 **Exemplo**
 
 O produto entre o número $2$ e o vetor $(3,-5)$ é o vetor  $2(3,-5)=(6,-10)$.
 
-
-
 ### Proposição
 
-
- Valem as seguintes propriedades.
+Valem as seguintes propriedades.
 
 1.  $1\vec{v}=\vec{v}$; 
 2.  $(ab)\vec{v}=a(b\vec{v})=b(a\vec{v})$;
-3.  Se  ﻿$\vec{v}\ne\vec{0}$ então:  $a\vec{v}=b\vec{v}  \Leftrightarrow a=$b;
+3.  Se $\vec{v}\ne\vec{0}$ então:  $a\vec{v}=b\vec{v}  \Leftrightarrow a=$b;
 4.  Se $a\ne0$ então:  $a\vec{v}=a\vec{w} \Leftrightarrow \vec{v}=\vec{w}$;
 5. $\|a\vec{v}\|=|a|\cdot\|\vec{v}\|$.
 
 
 ### Definição
 
+Um vetor $\vec{u}$ é dito múltiplo de $\vec{v}$ se existe um número $a$ tal que $\vec{u}=a\vec{v}$.
 
- Um vetor $\vec{u}$ é dito múltiplo de $\vec{v}$ se existe um número $a$ tal que $\vec{u}=a\vec{v}$.
-
-
-
-
-💡 Note que se $\vec{u}$ e $\vec{v}$ dois vetores não nulos e $\vec{u}$ é múltiplo de $\vec{v}$ então $\vec{v}$ é múltiplo de  $\vec{u}$.  De fato,  como $\vec{u}$ e $\vec{v}$ são não nulos temos que
-
+Note que se $\vec{u}$ e $\vec{v}$ dois vetores não nulos e $\vec{u}$ é múltiplo de $\vec{v}$ então $\vec{v}$ é múltiplo de  $\vec{u}$.  De fato,  como $\vec{u}$ e $\vec{v}$ são não nulos temos que
 $$
 \vec{u} = a\vec{v}  
 $$
 
 Para algum  $a \in \mathbb{R}$. Porém, como $\vec{u}$ e $\vec{v}$ são não nulos, devemos ter $a\neq 0$ e, desta forma, podemos realizar a operação
-
 $$
 \vec{v}=\frac{1}{a}\vec{u}
 $$
-
 mostrando assim que $\vec{v}$ é múltiplo de  $\vec{u}$. 
 
 Nesta situação também dizemos que  $\vec{u}$  e  $\vec{v}$ são múltiplos. 
-
-
 
 A proposição a seguir fornece a interpretação geométrica do produto entre número e vetor.
 
 ### Proposição
 
- Dados um número $a\in\mathbb{R}$ e um vetor $\vec{v}$, o produto  $a\vec{v}$ é único vetor tal que:
+Dados um número $a\in\mathbb{R}$ e um vetor $\vec{v}$, o produto  $a\vec{v}$ é único vetor tal que:
 
 Caso 1: Se $a=0$ ou $\vec{v}=\vec{0}$ então $a\vec{v}=\vec{0}$.
 
-Caso 2: Se $a\ne0$ e $\vec{v}\ne\vec{0}$, então $a\vec{v}$ é o único vetor que satisfaz:
+Caso 2: Se $a\ne 0$ e $\vec{v}\ne\vec{0}$, então $a\vec{v}$ é o único vetor que satisfaz:
 
 comprimento:    $\|a\vec{v}\|=|a|\cdot \|\vec{v}\|$;
 
@@ -69,33 +53,29 @@ direção:   $a\vec{v}$ é paralelo a $\vec{v}$ (Notação:  $a\vec{v}\parallel
 sentido:   $a\vec{v} \,  \begin{cases}  \text{tem o mesmo sentido de } \vec{v}, & \text{ se } a>0 \\ \text{tem sentido oposto ao de } \vec{v}, &\text{ se } a<0 \end{cases}$ 
 
 
-
-
 **Exemplo**
 
-[geogebra/rfvkqkbh](geogebra/rfvkqkbh)
-
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/rfvkqkbh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
 
 
 ### Proposição
 
-
- 
-
 Se $\vec{u}$ e $\vec{v}$ são vetores não nulos temos:
 
 $$
-\vec{u} \ \text{ e }\ \vec{v} \text{ são múltiplos } \  \Leftrightarrow ﻿\vec{u}\parallel\vec{v}.
+\vec{u} \ \text{ e }\ \vec{v} \text{ são múltiplos } \  \Leftrightarrow \vec{u}\parallel\vec{v}.
 $$
 
-
-
 ### Definição
-
-
- 
 
 Por simplicidade denotaremos $\text{-}\,\vec{v}=(\text{-}1)\vec{v}$. O vetor $\text{-}\,\vec{v}$  chamado de vetor **simétrico** ou **oposto** de   $\vec{v}$.
 
 Note que $\vec{v}$  e  $\text{-}\,\vec{v}$  tem mesmo comprimento e mesma direção, mas sentidos opostos (verifique na figura iterativa acima).
-

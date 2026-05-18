@@ -1,0 +1,82 @@
+{
+  "version": "0.2",
+  "language": "pt,pt_BR,en",
+  "enabledLanguageIds": [
+    "markdown",
+    "quarto",
+    "latex",
+    "plaintext",
+    "yaml",
+    "bibtex",
+    "biblatex"
+  ],
+
+  "ignorePaths": [
+    ".git/**",
+    ".quarto/**",
+    "_site/**",
+    "_book/**",
+    "_freeze/**",
+    "node_modules/**",
+    "renv/**",
+    "*.pdf",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.svg"
+  ],
+
+  "patterns": [
+    {
+      "name": "quarto-ids-classes",
+      "pattern": "/(#|\\.)[A-Za-z][A-Za-z0-9_-]*/g"
+    },
+    {
+      "name": "file-paths",
+      "pattern": "/[\\w.-]+\\/[\\w./-]+/g"
+    },
+    {
+      "name": "file-names",
+      "pattern": "/[\\w.-]+\\.(qmd|md|tex|bib|yml|yaml|json|scss|css|js|ts|html|pdf|png|jpg|jpeg|svg)/g"
+    },
+    {
+      "name": "latex-commands",
+      "pattern": "/\\\\[A-Za-z@]+\\*?/g"
+    },
+    {
+      "name": "latex-symbol-commands",
+      "pattern": "/\\\\[^A-Za-z\\s]/g"
+    },
+    {
+      "name": "latex-references",
+      "pattern": "/\\\\(?:label|ref|eqref|cref|Cref|autoref)\\{[^}]+\\}/g"
+    },
+    {
+      "name": "latex-citations",
+      "pattern": "/\\\\(?:cite|parencite|textcite|autocite)\\{[^}]+\\}/g"
+    }
+  ],
+
+  "ignoreRegExpList": [
+    "quarto-ids-classes",
+    "file-paths",
+    "file-names",
+    "latex-commands",
+    "latex-symbol-commands",
+    "latex-references",
+    "latex-citations"
+  ],
+
+  "words": [
+    "Quarto",
+    "LuaLaTeX",
+    "MathJax",
+    "KaTeX",
+    "JSXGraph",
+    "GeoGebra",
+    "Desmos",
+    "frontmatter",
+    "crossref",
+    "callout"
+  ]
+}

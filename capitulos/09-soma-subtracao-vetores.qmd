@@ -2,14 +2,11 @@
 
 ### Definição
 
-
  Se $\vec{u}=(a_1,a_2)$ e  $\vec{v}=(b_1,b_2)$, a soma de $\vec{u}$ e $\vec{v}$ e a subtração de $\vec{u}$ por $\vec{v}$ são os vetores dados, respectivamente, por
 
 $$
- ﻿\vec{u}+\vec{v}=(a_1+b_1,a_2+b_2)    \quad \text{ e } \quad  \vec{u}-\vec{v}=(a_1-b_1,a_2-b_2).
+ \vec{u}+\vec{v}=(a_1+b_1,a_2+b_2)    \quad \text{ e } \quad  \vec{u}-\vec{v}=(a_1-b_1,a_2-b_2).
 $$
-
-
 
 
 **Exemplo**
@@ -20,14 +17,11 @@ $$
 \vec{u}+\vec{v}=(6,2), \ \vec{u}-\vec{v}=(-2,-4)  \quad \text{e} \quad   \vec{v}-\vec{u}=(2,4).
 $$
 
-
-
 ### Proposição
 
+Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\mathbb{R}$. Valem as seguintes propriedades:
 
- Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\mathbb{R}$. Valem as seguintes propriedades:
-
-1. ﻿$\vec{u}+\vec{0}=\vec{u}$; 
+1. $\vec{u}+\vec{0}=\vec{u}$; 
 2. $\vec{u}+(-\vec{u})=\vec{0}$; 
 3. $\vec{u}+(-\vec{v})=\vec{u}-\vec{v}$; 
 4. $\vec{u}+\vec{v}=\vec{v}+\vec{u}$; 
@@ -52,12 +46,20 @@ Para obter geometricamente subtração de $\vec{u}$ por $\vec{v}$, de acordo com
 
 **Exemplo**
 
-[geogebra/acdycnxx](geogebra/acdycnxx)
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/acdycnxx/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
 
 
+Note no exemplo interativo acima que:                                                                                       
 
-
-💡 Note  no exemplo interativo acima que:                                                                                                           • se $\vec{u}$ e $\vec{v}$ não forem paralelos, então $\vec{u},\vec{v}$ e $\vec{u}\pm\vec{v}$  podem ser dispostos sobre os lados de um triângulo.
+• se $\vec{u}$ e $\vec{v}$ não forem paralelos, então $\vec{u},\vec{v}$ e $\vec{u}\pm\vec{v}$  podem ser dispostos sobre os lados de um triângulo.
 
 • se  $\vec{u}$ e $\vec{v}$ forem paralelos, então $\vec{u},\vec{v}$ e $\vec{u}\pm\vec{v}$  podem ser dispostos sobre uma mesma reta.  
 

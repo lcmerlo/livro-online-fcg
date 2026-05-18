@@ -53,18 +53,3 @@ O comprimento de um segmento não degenerado pode ser zero?
 ::: {.callout-note title="Resolução" collapse="true"}   
  Não. Pois se $AB$ é um segmento não degenerado então  $A\neq B$, e portanto $d\left(A,B\right)>0$, o que significa que o comprimento de $AB$ não é zero! 
 :::
-
-
-::: {#prp-testando}
-## Testando
-Enunciado da proposição
-:::
-
-::: {.proof}
-fdslfaj;dskf 
-fdas;ldkjf asdkjf;
-
-f;daslkjf;asdjk 
-jf;askdf 
-
-:::

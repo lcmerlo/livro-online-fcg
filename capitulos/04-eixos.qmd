@@ -8,10 +8,10 @@
 ::: {#def-eixo} 
 MELHORAR!!
 
-Um **eixo** consiste de uma reta orientada $r$ com um ponto  $O$ fixado sobre ela, chamado de **origem**. Deste modo, $r$ é formada por duas semirretas com origem O, sendo que uma dessas semirretas será dita ***semieixo positiv*o** e será indicada com uma seta na extremidade do desenho, e a outra semirreta (sem a seta) será dita **semieixo negativ**o.
+Um **eixo** consiste de uma reta orientada $r$ com um ponto  $O$ fixado sobre ela, chamado de **origem**. Deste modo, $r$ é formada por duas semirretas com origem O, sendo que uma dessas semirretas será dita **semieixo positivo** e será indicada com uma seta na extremidade do desenho, e a outra semirreta (sem a seta) será dita **semieixo negativo**.
 :::
 
-![Untitled](Eixos/Untitled.png)
+![](../assets/img/04-eixos/Untitled.png)
 
 Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 
@@ -20,27 +20,46 @@ Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 - Se $P$ é um ponto sobre o semieixo negativo então $P$ corresponde ao número  $p=-d(P,O)$.
 - Se $P$ é um ponto do eixo, então o número $p$ obtido pelo processo acima é dito **coordenada** de $P$.
 
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/f2zqppmu/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!--
 [geogebra/f2zqppmu](geogebra/f2zqppmu)
+-->
 
 ### Proposição
 
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então a distância entre $P$ e $Q$ é dada pela fórmula $d\left(P,Q\right)= | p-q|$.
 
-[geogebra/zt4dnqjy](geogebra/zt4dnqjy)
 
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/zt4dnqjy/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!--
+[geogebra/zt4dnqjy](geogebra/zt4dnqjy)
+-->
 
 ### Definição de Ponto Médio
 
 O **ponto médio** de um segmento $PQ$ é o ponto $M$ que pertencente ao segmento e tal que $d\left(P,M\right)=d\left(Q,M\right)$.
 
-
-
 ### Proposição
 
-Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então:
-
-﻿$M$ é ponto médio de $PQ     \Longleftrightarrow$  a coordenada de $M$ é  $\dfrac{p+q}{2}$
-
+Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então o ponto médio $M$ de $PQ$ tem coordenada $m=\dfrac{p+q}{2}$.
 
  **Exemplo**
 
@@ -79,8 +98,5 @@ Dica: Faça um esboço.
     
     De acordo com as coordenadas de $\alpha$, o ponto $A$ está entre $B$ e $C$.  Como o ponto $B$ tem coordenada negativa no eixo $\alpha$ e coordenada positiva no eixo $\beta$ os dois eixos tem setas em sentidos opostos (veja a figura abaixo). No eixo $\alpha$ temos temos $d(A,C)=|1-3|=2$. Esta distância não muda no eixo $\beta$, porém neste eixo $C$ está no semieixo negativo e $A$ é a origem, portanto a coordenada de $C$ em $\beta$ tem sinal negativo, isto é $-d(A,C)=-2$.
     
-    ![Untitled](Eixos/Untitled%201.png)
-    
+    ![](../assets/img/04-eixos/Untitled-1.png)
 
-
-### **Coordenadas de Pontos no Plano**

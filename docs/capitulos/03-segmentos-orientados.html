@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Segmentos Orientados – Livro Online</title>
+<title>3&nbsp; Segmentos Orientados – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -317,7 +304,7 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Definição 3.1</strong></span> Um <strong>segmento orientado</strong> é um segmento não degenerado acrescido de um sentido de percurso. Mais precisamente, o segmento orientado <span class="math inline">\(AB\)</span> é dado pelo segmento <span class="math inline">\(AB\)</span>, onde <span class="math inline">\(A\)</span> é chamado de <strong>ponto inicial</strong> e <span class="math inline">\(B\)</span> é chamado de <strong>ponto final</strong>, dando a indicação de que o sentido de percurso é&nbsp;do ponto <span class="math inline">\(A\)</span> para o ponto <span class="math inline">\(B\)</span>.</p>
 </div>
 <p>Em segmentos orientados o ponto final é representado pela ponta da seta como mostra a figura abaixo.</p>
-<p><img src="https://cdn.geogebra.org/resource/arnersg5/lFmvy8LUxIlMWr2s/material-arnersg5.png" class="img-fluid"></p>
+<!-- ![](https://cdn.geogebra.org/resource/arnersg5/lFmvy8LUxIlMWr2s/material-arnersg5.png) --- IGNORE -->
 <p>Seguido o raciocínio acima, o segmento orientado <span class="math inline">\(BA\)</span> tem ponto inicial <span class="math inline">\(B\)</span> e ponto final <span class="math inline">\(A\)</span> , logo o sentido de percurso é de <span class="math inline">\(B\)</span> para <span class="math inline">\(A\)</span>. Portanto, para segmentos orientados, <span class="math inline">\(AB \neq BA\)</span> , ao contrário do que ocorre com segmentos <em>“não orientados”</em>,&nbsp; onde <span class="math inline">\(AB = BA\)</span>.&nbsp;</p>
 <p>Precisamos definir agora a noção de sentido entre segmentos orientados.</p>
 <div id="def-sentido-semento" class="theorem definition">
@@ -325,20 +312,19 @@ window.Quarto = {
 <p>Note que se os segmentos orientados não tiverem mesma direção, ou seja,&nbsp; não forem paralelos, então seus sentidos são automaticamente <strong>diferentes</strong>.</p>
 <p>Nos casos em que os segmentos orientados são paralelos mas de sentidos diferentes, também dizemos que eles tem <strong>sentidos opostos</strong>.</p>
 </div>
-<p><img src="https://cdn.geogebra.org/resource/q2yygtj6/vMOa7jgEKeBWic2I/material-q2yygtj6.png" class="img-fluid"></p>
+<!--
+![](https://cdn.geogebra.org/resource/q2yygtj6/vMOa7jgEKeBWic2I/material-q2yygtj6.png)
+-->
 <p>Vejamos uma outra forma de definir segmentos orientados com mesmo sentido que também aparecem em alguns livros:</p>
 <div id="def-sentido-semento-formal" class="theorem definition">
 <p><span class="theorem-title"><strong>Definição 3.3</strong></span> Dois segmentos orientados <span class="math inline">\(AB\)</span> e <span class="math inline">\(CD\)</span> tem o <strong>mesmo sentido</strong> se eles são paralelos e vale um dos casos:</p>
 <p><strong>Caso 1:</strong> Se <span class="math inline">\(AB\)</span> e <span class="math inline">\(CD\)</span> não tem mesma reta suporte: O segmento <span class="math inline">\(AC\)</span> (<em>obtido ligando o ponto inicial com ponto inicial</em>)&nbsp; e o segmento <span class="math inline">\(BD\)</span> (<em>obtido ligando ponto final com ponto final</em>) não se intersectam, isto é, <span class="math inline">\(AC \cap BD = \emptyset\)</span>.</p>
-<p><img src="https://cdn.geogebra.org/resource/yx4rncbe/YCDYRj1cGYaCxcxq/material-yx4rncbe.png" class="img-fluid"></p>
+<!--
+![](https://cdn.geogebra.org/resource/yx4rncbe/YCDYRj1cGYaCxcxq/material-yx4rncbe.png)
+-->
 <p><strong>Caso 2:</strong>&nbsp; Se <span class="math inline">\(AB\)</span> e <span class="math inline">\(CD\)</span> tem mesma reta suporte <span class="math inline">\(r\)</span>:</p>
 <p>Vamos usar um artificio para aplicar o caso 1. Tome uma reta <span class="math inline">\(s\)</span> paralela à reta <span class="math inline">\(r\)</span> e sobre <span class="math inline">\(s\)</span> considere um segmento <span class="math inline">\(A'B'\)</span> que tenha mesmo sentido que <span class="math inline">\(AB\)</span> de acordo com o caso 1.&nbsp; Neste caso, <span class="math inline">\(AB\)</span> e <span class="math inline">\(CD\)</span> terão o mesmo sentido se&nbsp;<span class="math inline">\(CD\)</span> também tem o mesmo sentido de <span class="math inline">\(A’B’\)</span> de acordo com o caso 1.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Segmentos Orientados/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
-</div>
+<p><img src="../assets/img/03-segmentos-orientados/Untitled.png" class="img-fluid"></p>
 </div>
 
 

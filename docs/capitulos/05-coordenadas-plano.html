@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Coordenadas no plano – Livro Online</title>
+<title>5&nbsp; Coordenadas no plano – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -323,7 +310,12 @@ window.Quarto = {
 <li>As coordenadas de <span class="math inline">\(P\)</span> são dadas pelo par <span class="math inline">\(\left(x,y\right )\)</span>, onde <span class="math inline">\(x\)</span> é a coordenada de <span class="math inline">\(X\)</span> no eixo <span class="math inline">\(OX\)</span> e <span class="math inline">\(y\)</span> é a coordenada de <span class="math inline">\(Y\)</span> no eixo <span class="math inline">\(OY\)</span>. Neste caso escrevemos <span class="math inline">\(P=\left ( x,y\right )\)</span>.</li>
 </ul>
 <p>Veja a ilustração:</p>
-<p><a href="https://www.geogebra.org/classic/ykdu6wtk">geogebra/ykdu6wtk</a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/ykdu6wtk/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
+<!--
+![geogebra/ykdu6wtk](https://www.geogebra.org/classic/ykdu6wtk)
+-->
 <p>Usualmente chamamos o eixo <span class="math inline">\(OX\)</span> de eixo das <strong>abcissas</strong> e o eixo <span class="math inline">\(OY\)</span> de eixo das <strong>ordenadas</strong>. Além disso, a menos que seja dito o contrário, o eixo <span class="math inline">\(OX\)</span> é o eixo horizontal e o eixo <span class="math inline">\(OY\)</span> é o eixo vertical.</p>
 <p>Fixado um sistema de coordenadas ortogonais OXY, o plano é decomposto nos eixos OX e OY e em quatro quadrantes definidos como segue:</p>
 <ul>
@@ -333,17 +325,17 @@ window.Quarto = {
 <li><span class="math inline">\(4^o\)</span> quadrante = <span class="math inline">\(\left\{(x,y)\in\mathbb{R}^2|\,\,\, x&gt;0,y&lt;0\right\}\)</span></li>
 </ul>
 <p>Note que os eixos não fazem parte dos quadrantes.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Coordenadas no plano/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
-</div>
+<p><img src="../assets/img/05-coordenadas-plano/Untitled.png" class="img-fluid"></p>
 <div id="prp-formula-distancia" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposição 5.1</strong></span> A distância entre os pontos <span class="math inline">\(P\)</span> e <span class="math inline">\(Q\)</span> é dada por <span class="math display">\[ d\left(P,Q\right)=\sqrt{\left(x_P-x_Q\right)^2+\left(y_P-y_Q\right)^2}
 \]</span></p>
 </div>
-<p><a href="https://www.geogebra.org/classic/pbfm8wna">geogebra/pbfm8wna</a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/pbfm8wna/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
+<!--
+[](https://www.geogebra.org/classic/pbfm8wna)
+-->
 <div id="exm-distancia1" class="theorem example">
 <p><span class="theorem-title"><strong>Exemplo 5.1</strong></span> Determine a distância do ponto <span class="math inline">\(A=(1,-1)\)</span> até o ponto <span class="math inline">\(B=(-2,1)\)</span>.</p>
 <ul>
@@ -361,8 +353,7 @@ window.Quarto = {
 <p>Resolvendo a última equação obtemos <span class="math inline">\(x=0\)</span> ou <span class="math inline">\(x=2\)</span>. Assim temos duas soluções para o problema: <span class="math display">\[ P=(0,0) \text{ ou } P=(2,0). \]</span></p>
 </div>
 <div id="prp-formula-ponto-medio" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposição 5.2</strong></span> <span class="math display">\[
-M  \text{ é ponto médio de } PQ  \Longleftrightarrow  M=\left(\dfrac{x_P+x_Q}{2},\dfrac{y_P+y_Q}{2}\right)
+<p><span class="theorem-title"><strong>Proposição 5.2</strong></span> O ponto médio <span class="math inline">\(M\)</span> do segmento <span class="math inline">\(PQ\)</span> tem coordenadas dadas por <span class="math display">\[ M=\left(\frac{x_P+x_Q}{2},\frac{y_P+y_Q}{2}\right)
 \]</span></p>
 </div>
 <div id="exm-ponto-medio1" class="theorem example">

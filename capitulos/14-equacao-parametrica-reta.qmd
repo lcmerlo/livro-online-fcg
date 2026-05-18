@@ -1,34 +1,37 @@
-# Equação Paramétrica de Reta
+ Equação Paramétrica de Reta
 
 Destacamos as seguintes propriedades: 
 
 *Por dois pontos distintos passa uma única reta.*
-
+<!--
 ![Untitled](Equa%C3%A7%C3%A3o%20Param%C3%A9trica%20de%20Reta/Untitled.png)
+-->
 
 Dadas duas retas distintas $r$ e $s$ temos duas possibilidades quanto sua interseção: 
 
-1. *r e s não se intersectam, isto é, $r\cap s=\varnothing$.  Neste caso, r e $s$ são ditas paralelas ou com mesma direção e denotamos $r\parallel s$*﻿﻿
+1. *r e s não se intersectam, isto é, $r\cap s=\varnothing$.  Neste caso, r e $s$ são ditas paralelas ou com mesma direção e denotamos $r\parallel s$*
 2. *r e s  se intersectam em um único ponto.Neste caso, $r$ e $s$ são ditas concorrentes.*
 
 Duas retas concorrentes $r$ e $s$, formando ângulos de $90^{\circ}$ são ditas perpendiculares ou ortogonais e denotamos por $r\perp s.$
 
-![Untitled](Equa%C3%A7%C3%A3o%20Param%C3%A9trica%20de%20Reta/Untitled%201.png)
+![](../assets/img/14-eq-parametrica-reta/untitled-1.png)
 
-### Definição
-
+ Definição
 
  Dizemos que um vetor $\vec{u}$ é um vetor diretor ou um vetor paralelo a uma reta $r,$ e denotamos $\vec{u}\parallel r$ quando $\vec{u}$ pode ser representado sobre a reta $r,$ ou seja, quando existem dois pontos $A$ e $B$ da reta tais que $\vec{u} = \overrightarrow{AB}.$
 
 
-
+<!--
 ![](https://www.geogebra.org/resource/khpn5hhs/NzB9ZNDt3SamlbCW/material-khpn5hhs.png)
+-->
 
-### **Proposição**
+ **Proposição**
 
 Fixados um ponto $P_0$ e um vetor $\vec{v}\ne\vec{0},$ existem infinitas retas paralelas a $r,$ mas existe apenas uma reta paralela a $\vec{v}$ que passa por $P_0.$
 
+<!--
 ![](https://www.geogebra.org/resource/zwwjrfaf/IAEyi63DFDrG2Plm/material-zwwjrfaf.png)
+-->
 
 Fixados um ponto $P_0$ e um vetor $\vec{v}\ne\vec{0},$ considere a única reta $r$ tal que $P_0\in r$ e $\vec{v}\parallel r.$     
 
@@ -36,36 +39,34 @@ Um ponto $P$ do plano pertence a reta $r$ se, e somente se, o vetor $P-P_0=\vec{
 
 $$
 r: P = P_0 + t \vec{v}, \quad t \in \mathbb{R}. \quad(\ast)
-
 $$
 
 
-💡 **Observação:**  Na equação acima o ponto $P_0\in r$ e o vetor $\vec{v}\parallel r$ são constantes, pois eles foram fixados a priori, já o ponto $P$ e o número $t$ são variáveis, uma vez que $P$ percorre a reta $r$ a medida que $t$ percorre $\mathbb{R}$.  De fato, $P$  e  $t$  são variáveis dependentes uma da outra, pois para cada  $P\in r$  existe um único  $t\in \R$  que satisfaz a equação e vice versa.
+**Observação:**  Na equação acima o ponto $P_0\in r$ e o vetor $\vec{v}\parallel r$ são constantes, pois eles foram fixados a priori, já o ponto $P$ e o número $t$ são variáveis, uma vez que $P$ percorre a reta $r$ a medida que $t$ percorre $\mathbb{R}$.  De fato, $P$  e  $t$  são variáveis dependentes uma da outra, pois para cada  $P\in r$  existe um único  $t\in \mathbb{R}$  que satisfaz a equação e vice versa.
 
-
-
-### Definição
-
+ Definição
 
  Qualquer equação da forma $(\ast)$ é dita equação paramétrica de $r$. Neste caso, a variável $t$ é chamada de parâmetro da equação e o ponto $P_0$ e o vetor $\vec{v}$ são chamados de elementos fixos da equação.
 
 
 
 
-💡 **Observação:**  Existem infinitas equações paramétricas para uma mesma reta. De fato, existem infinitas possibilidades de escolha os elementos fixos e escolhas distintas   fornecem equações paramétricas distintas para a reta. Veja as Atividades e o Exemplo 2 abaixo.
-
-
-
-
-<img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px" /> **Atividade**
+**Observação:**  Existem infinitas equações paramétricas para uma mesma reta. De fato, existem infinitas possibilidades de escolha os elementos fixos e escolhas distintas   fornecem equações paramétricas distintas para a reta. Veja as Atividades e o Exemplo 2 abaixo.
 
 Nesta atividade você pode ver a relação entre cada ponto de uma reta e seu correspondente parâmetro de acordo com diferentes escolhas dos elementos fixados.
 
-[Mova o ponto $P$ para ver sua relação com o parâmetro $t$. ](geogebra/xrejqcsh)
+Mova o ponto $P$ para ver sua relação com o parâmetro $t$.
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/xrejqcsh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
 
 Mova o ponto $P$ para ver sua relação com o parâmetro $t$. 
-
-
 
 Vejamos como a equação paramétrica $r: P = P_0 + t \vec{v}, \ t \in \mathbb{R}$ fica usando coordenadas. 
 
@@ -79,23 +80,28 @@ Igualando as coordenadas podemos reescrever a equação da forma
 
 $$
 \begin{array}{llr}
-r:\left\{\!\!\begin{array}{l}x={\color{#993300}x_0}\; + \;{\color{#D2691E}a}t \\
-y={\color{#993300}y_0}\; + \;{\color{#D2691E}b}t  \\
+r:\left\lbrace \begin{array}{l}x={\color{993300}x_0}\; + \;{\color{D2691E}a}t \\
+y={\color{993300}y_0}\; + \;{\color{D2691E}b}t  \\
 \end{array} \right.,  \ \ t\in\mathbb{R}. &\ \ \ (\ast \ast)\\
 \begin{array}{l}
  \ \ \ \quad \uparrow \; \ \quad \uparrow  \qquad  \uparrow \\
-\ \  \quad P={\color{#993300}P_0}+  t{\color{#D2691E}\vec{u}}
+\ \  \quad P={\color{993300}P_0}+  t{\color{D2691E}\vec{u}}
 \end{array} & & 
 \end{array}
 $$
 
-
-<img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px" /> **Atividade**
-
 No applet abaixo você pode alterar os elementos fixos das retas e verificar as suas respectivas equações paramétricas.
 
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/g8j8szyk/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
 [geogebra/g8j8szyk](geogebra/g8j8szyk)
-
 
 
 
@@ -137,9 +143,6 @@ $$
     $$
     
     Como obtemos dois valores distintos para $t$ temos que $B \notin r$.
-    
-
-
 
 **Exemplo**
 

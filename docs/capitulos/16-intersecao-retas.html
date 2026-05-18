@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Interseção de Retas – Livro Online</title>
+<title>16&nbsp; Interseção de Retas – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -345,17 +332,16 @@ r:x-2y=1  \quad \text{ e } \quad   s:y=\frac{x}{2}+1.
 <ul>
 <li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
 <p>O sistema obtido com as equações das retas é</p>
-<p>$$</p>
-<p>{</p>
-<span class="math display">\[\begin{array}{lr}
+<p><span class="math display">\[
+  \left\{ \begin{array}{lr}
   x-2y=1 &amp; (1) \\
   x-2y=-2 &amp; (2)
-  \end{array}\]</span>
-<p>.</p>
-<p>$$</p>
+  \end{array} \right.
+  \]</span></p>
 <p>Subtraindo a equação (2) da equação (1) obtemos <span class="math inline">\(0=3\)</span>, que é impossível. Portanto, o sistema não possui solução, ou seja, não existe ponto de interseção entre as retas <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>, isto é, <span class="math inline">\(r\cap s=\varnothing\)</span>.</p></li>
 </ul>
-<p>💡 <strong>Importante</strong>: <strong>Em um sistema, sempre devemos usar letras diferentes para parâmetros de equações diferentes</strong>, pois o parâmetro de um ponto ao longo de uma reta pode não ser igual ao parâmetro do mesmo ponto ao longo da outra reta.</p>
+<p><strong>Importante</strong>:<br>
+<strong>Em um sistema, sempre devemos usar letras diferentes para parâmetros de equações diferentes</strong>, pois o parâmetro de um ponto ao longo de uma reta pode não ser igual ao parâmetro do mesmo ponto ao longo da outra reta.</p>
 <p><strong>Exemplo</strong></p>
 <p>Determine o ponto de interseção entre as retas</p>
 <p><span class="math display">\[
@@ -392,12 +378,9 @@ y = 1 -  t
   \right.
   \]</span></p>
 <p>Substituindo <span class="math inline">\(t=2\)</span> na equação de r obtemos <span class="math inline">\(x=1\)</span> e <span class="math inline">\(y=2\)</span>. Logo <span class="math inline">\(I=(1,2)\)</span> é o ponto de interseção de <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>. Obteremos o mesmo ponto se substituirmos <span class="math inline">\(t'=-1\)</span> no lugar de <span class="math inline">\(t\)</span> na equação de <span class="math inline">\(s\)</span> (Ver figura abaixo).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.geogebra.org/resource/tjmypfkw/nebkmQonwASglbIR/material-tjmypfkw.png" class="img-fluid figure-img"></p>
-<figcaption><span class="math inline">\(r\parallel\vec{u}=(1,1)\)</span> e <span class="math inline">\(s\parallel\vec{v}=(2,-1)\)</span>. .</figcaption>
-</figure>
-</div>
+<p><!--
+  ![ $r\parallel\vec{u}=(1,1)$  e   $s\parallel\vec{v}=(2,-1)$. .](https://www.geogebra.org/resource/tjmypfkw/nebkmQonwASglbIR/material-tjmypfkw.png)
+  --></p>
 <p><span class="math inline">\(r\parallel\vec{u}=(1,1)\)</span> e <span class="math inline">\(s\parallel\vec{v}=(2,-1)\)</span>. .</p>
 <p>De fato, neste exemplo, o ponto de interseção é obtido com <span class="math inline">\(t=2\)</span> na equação de <span class="math inline">\(r\)</span> e com <span class="math inline">\(t'=1\)</span> na equação de <span class="math inline">\(s\)</span>. Se não mudássemos a letra de um dos parâmetros não chegaríamos a solução correta.</p></li>
 </ul>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Equação Paramétrica de Reta – Livro Online</title>
+<title>equacao-parametrica-reta – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -121,7 +126,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/14-equacao-parametrica-reta.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/14-equacao-parametrica-reta.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -291,69 +278,47 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<p>Equação Paramétrica de Reta</p>
 <p>Destacamos as seguintes propriedades:</p>
-<p><em>Por dois pontos distintos passa uma única reta.</em></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Equação Paramétrica de Reta/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
-</div>
+<p><em>Por dois pontos distintos passa uma única reta.</em> <!--
+![Untitled](Equa%C3%A7%C3%A3o%20Param%C3%A9trica%20de%20Reta/Untitled.png)
+--></p>
 <p>Dadas duas retas distintas <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span> temos duas possibilidades quanto sua interseção:</p>
 <ol type="1">
-<li><em>r e s não se intersectam, isto é, <span class="math inline">\(r\cap s=\varnothing\)</span>. Neste caso, r e <span class="math inline">\(s\)</span> são ditas paralelas ou com mesma direção e denotamos <span class="math inline">\(r\parallel s\)</span></em>﻿﻿</li>
+<li><em>r e s não se intersectam, isto é, <span class="math inline">\(r\cap s=\varnothing\)</span>. Neste caso, r e <span class="math inline">\(s\)</span> são ditas paralelas ou com mesma direção e denotamos <span class="math inline">\(r\parallel s\)</span></em></li>
 <li><em>r e s se intersectam em um único ponto.Neste caso, <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span> são ditas concorrentes.</em></li>
 </ol>
 <p>Duas retas concorrentes <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>, formando ângulos de <span class="math inline">\(90^{\circ}\)</span> são ditas perpendiculares ou ortogonais e denotamos por <span class="math inline">\(r\perp s.\)</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Equação Paramétrica de Reta/Untitled 1.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
-</div>
-<section id="definição" class="level3">
-<h3 class="anchored" data-anchor-id="definição">Definição</h3>
+<p><img src="../assets/img/14-eq-parametrica-reta/untitled-1.png" class="img-fluid"></p>
+<p>Definição</p>
 <p>Dizemos que um vetor <span class="math inline">\(\vec{u}\)</span> é um vetor diretor ou um vetor paralelo a uma reta <span class="math inline">\(r,\)</span> e denotamos <span class="math inline">\(\vec{u}\parallel r\)</span> quando <span class="math inline">\(\vec{u}\)</span> pode ser representado sobre a reta <span class="math inline">\(r,\)</span> ou seja, quando existem dois pontos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> da reta tais que <span class="math inline">\(\vec{u} = \overrightarrow{AB}.\)</span></p>
-<p><img src="https://www.geogebra.org/resource/khpn5hhs/NzB9ZNDt3SamlbCW/material-khpn5hhs.png" class="img-fluid"></p>
-</section>
-<section id="proposição" class="level3">
-<h3 class="anchored" data-anchor-id="proposição"><strong>Proposição</strong></h3>
+<!--
+![](https://www.geogebra.org/resource/khpn5hhs/NzB9ZNDt3SamlbCW/material-khpn5hhs.png)
+-->
+<p><strong>Proposição</strong></p>
 <p>Fixados um ponto <span class="math inline">\(P_0\)</span> e um vetor <span class="math inline">\(\vec{v}\ne\vec{0},\)</span> existem infinitas retas paralelas a <span class="math inline">\(r,\)</span> mas existe apenas uma reta paralela a <span class="math inline">\(\vec{v}\)</span> que passa por <span class="math inline">\(P_0.\)</span></p>
-<p><img src="https://www.geogebra.org/resource/zwwjrfaf/IAEyi63DFDrG2Plm/material-zwwjrfaf.png" class="img-fluid"></p>
+<!--
+![](https://www.geogebra.org/resource/zwwjrfaf/IAEyi63DFDrG2Plm/material-zwwjrfaf.png)
+-->
 <p>Fixados um ponto <span class="math inline">\(P_0\)</span> e um vetor <span class="math inline">\(\vec{v}\ne\vec{0},\)</span> considere a única reta <span class="math inline">\(r\)</span> tal que <span class="math inline">\(P_0\in r\)</span> e <span class="math inline">\(\vec{v}\parallel r.\)</span></p>
 <p>Um ponto <span class="math inline">\(P\)</span> do plano pertence a reta <span class="math inline">\(r\)</span> se, e somente se, o vetor <span class="math inline">\(P-P_0=\vec{P_0P}\)</span> é múltiplo de <span class="math inline">\(\vec{v}\)</span>, isto é, <span class="math inline">\(P-P_0=t\vec{v}\)</span>, com <span class="math inline">\(t\in\mathbb{R}\)</span>. Portanto, a reta <span class="math inline">\(r\)</span> é dada pela equação:</p>
-<p>$$ r: P = P_0 + t , t . ()</p>
-<p>$$</p>
-<p>💡 <strong>Observação:</strong> Na equação acima o ponto <span class="math inline">\(P_0\in r\)</span> e o vetor <span class="math inline">\(\vec{v}\parallel r\)</span> são constantes, pois eles foram fixados a priori, já o ponto <span class="math inline">\(P\)</span> e o número <span class="math inline">\(t\)</span> são variáveis, uma vez que <span class="math inline">\(P\)</span> percorre a reta <span class="math inline">\(r\)</span> a medida que <span class="math inline">\(t\)</span> percorre <span class="math inline">\(\mathbb{R}\)</span>. De fato, <span class="math inline">\(P\)</span> e <span class="math inline">\(t\)</span> são variáveis dependentes uma da outra, pois para cada <span class="math inline">\(P\in r\)</span> existe um único <span class="math inline">\(t\in \R\)</span> que satisfaz a equação e vice versa.</p>
-</section>
-<section id="definição-1" class="level3">
-<h3 class="anchored" data-anchor-id="definição-1">Definição</h3>
+<p><span class="math display">\[
+r: P = P_0 + t \vec{v}, \quad t \in \mathbb{R}. \quad(\ast)
+\]</span></p>
+<p><strong>Observação:</strong> Na equação acima o ponto <span class="math inline">\(P_0\in r\)</span> e o vetor <span class="math inline">\(\vec{v}\parallel r\)</span> são constantes, pois eles foram fixados a priori, já o ponto <span class="math inline">\(P\)</span> e o número <span class="math inline">\(t\)</span> são variáveis, uma vez que <span class="math inline">\(P\)</span> percorre a reta <span class="math inline">\(r\)</span> a medida que <span class="math inline">\(t\)</span> percorre <span class="math inline">\(\mathbb{R}\)</span>. De fato, <span class="math inline">\(P\)</span> e <span class="math inline">\(t\)</span> são variáveis dependentes uma da outra, pois para cada <span class="math inline">\(P\in r\)</span> existe um único <span class="math inline">\(t\in \mathbb{R}\)</span> que satisfaz a equação e vice versa.</p>
+<p>Definição</p>
 <p>Qualquer equação da forma <span class="math inline">\((\ast)\)</span> é dita equação paramétrica de <span class="math inline">\(r\)</span>. Neste caso, a variável <span class="math inline">\(t\)</span> é chamada de parâmetro da equação e o ponto <span class="math inline">\(P_0\)</span> e o vetor <span class="math inline">\(\vec{v}\)</span> são chamados de elementos fixos da equação.</p>
-<p>💡 <strong>Observação:</strong> Existem infinitas equações paramétricas para uma mesma reta. De fato, existem infinitas possibilidades de escolha os elementos fixos e escolhas distintas fornecem equações paramétricas distintas para a reta. Veja as Atividades e o Exemplo 2 abaixo.</p>
-<p><img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px"> <strong>Atividade</strong></p>
+<p><strong>Observação:</strong> Existem infinitas equações paramétricas para uma mesma reta. De fato, existem infinitas possibilidades de escolha os elementos fixos e escolhas distintas fornecem equações paramétricas distintas para a reta. Veja as Atividades e o Exemplo 2 abaixo.</p>
 <p>Nesta atividade você pode ver a relação entre cada ponto de uma reta e seu correspondente parâmetro de acordo com diferentes escolhas dos elementos fixados.</p>
-<p><a href="geogebra/xrejqcsh">Mova o ponto <span class="math inline">\(P\)</span> para ver sua relação com o parâmetro <span class="math inline">\(t\)</span>.</a></p>
+Mova o ponto <span class="math inline">\(P\)</span> para ver sua relação com o parâmetro <span class="math inline">\(t\)</span>.
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/xrejqcsh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
 <p>Mova o ponto <span class="math inline">\(P\)</span> para ver sua relação com o parâmetro <span class="math inline">\(t\)</span>.</p>
 <p>Vejamos como a equação paramétrica <span class="math inline">\(r: P = P_0 + t \vec{v}, \ t \in \mathbb{R}\)</span> fica usando coordenadas.</p>
 <p>Ponha <span class="math inline">\(P=(x,y)\)</span> e suponha que os elementos fixos da equação de <span class="math inline">\(r\)</span> são dados em coordenadas por <span class="math inline">\(P_0=(x_0,y_0)\in r\)</span> e <span class="math inline">\(\vec{v}=(a,b)\parallel r\)</span> . Substituindo na equação acima, temos:</p>
@@ -363,17 +328,19 @@ r: \: (x, y) = (x_0,y_0) + t(a, b) = (x_0 + at , y_0+ bt), \ t\in \mathbb{R}.
 <p>Igualando as coordenadas podemos reescrever a equação da forma</p>
 <p><span class="math display">\[
 \begin{array}{llr}
-r:\left\{\!\!\begin{array}{l}x={\color{#993300}x_0}\; + \;{\color{#D2691E}a}t \\
-y={\color{#993300}y_0}\; + \;{\color{#D2691E}b}t  \\
+r:\left\lbrace \begin{array}{l}x={\color{993300}x_0}\; + \;{\color{D2691E}a}t \\
+y={\color{993300}y_0}\; + \;{\color{D2691E}b}t  \\
 \end{array} \right.,  \ \ t\in\mathbb{R}. &amp;\ \ \ (\ast \ast)\\
 \begin{array}{l}
 \ \ \ \quad \uparrow \; \ \quad \uparrow  \qquad  \uparrow \\
-\ \  \quad P={\color{#993300}P_0}+  t{\color{#D2691E}\vec{u}}
+\ \  \quad P={\color{993300}P_0}+  t{\color{D2691E}\vec{u}}
 \end{array} &amp; &amp;
 \end{array}
 \]</span></p>
-<p><img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px"> <strong>Atividade</strong></p>
 <p>No applet abaixo você pode alterar os elementos fixos das retas e verificar as suas respectivas equações paramétricas.</p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/g8j8szyk/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
 <p><a href="geogebra/g8j8szyk">geogebra/g8j8szyk</a></p>
 <p><strong>Exemplo</strong></p>
 <p>Verifique se os pontos que <span class="math inline">\(A=(-2,7)\)</span> e <span class="math inline">\(B=(7,-2)\)</span> pertencem a reta</p>
@@ -457,7 +424,6 @@ y = 2 -\tfrac{3}{2}\nu
 </ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

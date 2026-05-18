@@ -9,7 +9,8 @@ Um **segmento orientado** é um segmento não degenerado acrescido de um sentido
 
 Em segmentos orientados o ponto final é representado pela ponta da seta como mostra a figura abaixo.
 
-![](https://cdn.geogebra.org/resource/arnersg5/lFmvy8LUxIlMWr2s/material-arnersg5.png)
+<!-- ![](https://cdn.geogebra.org/resource/arnersg5/lFmvy8LUxIlMWr2s/material-arnersg5.png) --- IGNORE -->
+
 
 Seguido o raciocínio acima, o segmento orientado  $BA$  tem ponto inicial $B$ e ponto final $A$ , logo o sentido de percurso é de $B$ para $A$. Portanto, para segmentos orientados,  $AB \neq BA$  , ao contrário do que ocorre com segmentos *“não orientados”*,  onde  $AB = BA$.  
 
@@ -23,8 +24,9 @@ Note que se os segmentos orientados não tiverem mesma direção, ou seja,  nã
 Nos casos em que os segmentos orientados são paralelos mas de sentidos diferentes, também dizemos que eles tem **sentidos opostos**.
 :::
 
+<!--
 ![](https://cdn.geogebra.org/resource/q2yygtj6/vMOa7jgEKeBWic2I/material-q2yygtj6.png)
-
+-->
 
 Vejamos uma outra forma de definir segmentos orientados com mesmo sentido que também aparecem em alguns livros: 
 
@@ -34,11 +36,14 @@ Dois segmentos orientados  $AB$  e $CD$  tem o **mesmo sentido**  se  eles são 
 **Caso 1:** Se $AB$ e $CD$ não tem mesma reta suporte:
 O segmento  $AC$ (*obtido ligando o ponto inicial com ponto inicial*)  e o segmento $BD$ (*obtido ligando ponto final com ponto final*) não se intersectam, isto é,  $AC \cap BD = \emptyset$. 
 
+<!--
 ![](https://cdn.geogebra.org/resource/yx4rncbe/YCDYRj1cGYaCxcxq/material-yx4rncbe.png)
+-->
 
 **Caso 2:**  Se $AB$ e $CD$ tem mesma reta suporte $r$:
 
 Vamos usar um artificio para aplicar o caso 1.  Tome uma reta   $s$   paralela à reta  $r$ e sobre   $s$    considere um segmento  $A'B'$  que tenha mesmo sentido que $AB$ de acordo com o caso 1.  Neste caso, $AB$ e $CD$ terão o mesmo sentido se $CD$ também tem o mesmo sentido de  $A’B’$ de acordo com o caso 1.
 
-![Untitled](Segmentos%20Orientados/Untitled.png)
+![](../assets/img/03-segmentos-orientados/Untitled.png)
+
 :::

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Combinação Linear – Livro Online</title>
+<title>10&nbsp; Combinação Linear – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -314,32 +301,35 @@ window.Quarto = {
 
 <section id="definição" class="level3">
 <h3 class="anchored" data-anchor-id="definição">Definição</h3>
-<p>Uma <strong>combinação linear</strong> de vetores <span class="math inline">\(\vec{v}_1, \dots,\vec{v}_n\)</span> é qualquer vetor <span class="math inline">\(\vec{\ell}\)</span> da forma</p>
+<p>Uma <strong>combinação linear</strong> de vetores <span class="math inline">\(\vec{v}_1, \dots,\vec{v}_n\)</span> é qualquer vetor <span class="math inline">\(\vec{m}\)</span> da forma</p>
 <p><span class="math display">\[
 a_1\vec{v}_1 +  \cdots + a_n\vec{v}_n,
-\]</span></p>
-<p>onde <span class="math inline">\(a_1, \dots, a_n\)</span> são números reais.</p>
+\]</span> onde <span class="math inline">\(a_1, \dots, a_n\)</span> são números reais.</p>
 <p><strong>Exemplo</strong></p>
 <p>No exemplo interativo abaixo, abordaremos o caso <span class="math inline">\(n=3\)</span>, ou seja, veremos algumas combinações lineares de três vetores <span class="math inline">\(\vec{v}_1, \ \vec{v}_2\)</span> e <span class="math inline">\(\vec{v}_3\)</span>.</p>
-<p><a href="geogebra/kbvp4xpt">geogebra/kbvp4xpt</a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/kbvp4xpt/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
 <p><strong>Exemplo</strong></p>
 <p>Quais vetores são obtidos como combinação linear de um único vetor <span class="math inline">\(\vec{v}\)</span> ?</p>
 <ul>
-<li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
-<p>Qualquer vetor <span class="math inline">\(\vec{\ell}\)</span> que for múltiplo de <span class="math inline">\(\vec{v}\)</span>, ou seja, <span class="math inline">\(\vec{\ell} = a \vec{v}\)</span>, com <span class="math inline">\(a\in \R\)</span>.</p></li>
+<li><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</li>
 </ul>
+<p>Qualquer vetor <span class="math inline">\(\vec{m}\)</span> que for múltiplo de <span class="math inline">\(\vec{v}\)</span>, ou seja, <span class="math inline">\(\vec{m} = a \vec{v}\)</span>, com <span class="math inline">\(a \in \mathbb{R}\)</span>.</p>
 </section>
 <section id="proposição" class="level3">
 <h3 class="anchored" data-anchor-id="proposição">Proposição</h3>
 <p>Fixados dois vetores não paralelos <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span>, qualquer outro vetor do plano <span class="math inline">\(\vec{w}\)</span> se escreve de maneira única como combinação linear de <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span>, ou seja, para cada <span class="math inline">\(\vec{w}\)</span> existe um único <span class="math inline">\(a\in \mathbb{R}\)</span> e existe um único <span class="math inline">\(b\in \mathbb{R}\)</span> tais que <span class="math inline">\(\vec{w}=a\vec{u}+b\vec{v}.\)</span></p>
-<p><a href="geogebra/zmcpatqc">geogebra/zmcpatqc</a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/zmcpatqc/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
 <p><strong>Exemplo</strong></p>
 <p>Determine o vetor <span class="math inline">\(\vec{w}=(3,-5)\)</span> como combinação linear de <span class="math inline">\(\vec{u}=(1,-1)\)</span> e <span class="math inline">\(\vec{v}=(2,3)\)</span>.</p>
 <ul>
 <li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
 <p>Devemos encontrar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> tais que <span class="math inline">\(\vec{w}=a\vec{u}+b\vec{v}.\)</span> Substituindo as coordenadas dos vetores na expressão anterior temos <span class="math inline">\((3,-5)=a(1,-1)+b(2,3)=(a+2b,-a+3b)\)</span>, e portanto</p>
 <p><span class="math display">\[
-  ﻿\left\{ \begin{array}{l} a +2b = 3 \\ -a + 3b = -5. \end{array} \right.
+  \left\{ \begin{array}{l} a +2b = 3 \\ -a + 3b = -5. \end{array} \right.
   \]</span></p>
 <p>Resolvendo o sistema obtemos <span class="math inline">\(a=\frac{19}{5}\)</span> e <span class="math inline">\(b=-\frac{2}{5}\)</span>. Logo temos a combinação linear</p>
 <p><span class="math display">\[
@@ -349,32 +339,31 @@ a_1\vec{v}_1 +  \cdots + a_n\vec{v}_n,
 <p><strong>Exemplo</strong></p>
 <p>Escreva o vetor <span class="math inline">\(\vec{p}=(1,3)\)</span> como combinação linear dos vetores <span class="math inline">\(\vec{u}=(1,0),\vec{v}=(0,-1)\)</span> e <span class="math inline">\(\vec{w}=(-1,1)\)</span> de três maneiras distintas.</p>
 <ul>
-<li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
+<li><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</li>
+</ul>
 <p>Existem infinitas possibilidades, de acordo com a proposição acima. Por exemplo:</p>
 <p><span class="math inline">\(\vec{p}=\vec{u}-3\vec{v}\)</span> ou <span class="math inline">\(\vec{p}=2\vec{u}-2\vec{v}+\vec{w}\)</span> ou <span class="math inline">\(\vec{p}=4\vec{u}+3\vec{w}\)</span>.</p>
-<p><strong>Resolução:</strong> Devemos encontrar <span class="math inline">\(a,b\)</span> e <span class="math inline">\(c\)</span> tais que <span class="math inline">\(\vec{p}=a\vec{u}+b\vec{v}+c\vec{w}.\)</span> Substituindo as coordenadas dos vetores dados, na expressão anterior, temos</p>
-<p><span class="math display">\[
-  (1,3)=a(1,0)+b(0,-1)+c(-1,1)=(a-c,-b+c)
-  \]</span></p>
-<p>e portanto</p>
-<p><span class="math display">\[
-  \left\{ \begin{array}{l}  a-c=1\\ -b+c=3. \end{array} \right.
-  \]</span></p>
+<p><strong>Resolução:</strong> Devemos encontrar <span class="math inline">\(a,b\)</span> e <span class="math inline">\(c\)</span> tais que <span class="math inline">\(\vec{p}=a\vec{u}+b\vec{v}+c\vec{w}.\)</span> Substituindo as coordenadas dos vetores dados, na expressão anterior, temos <span class="math display">\[
+    (1,3)=a(1,0)+b(0,-1)+c(-1,1)=(a-c,-b+c)
+\]</span> e portanto <span class="math display">\[
+    \left\{ \begin{array}{l}  a-c=1\\ -b+c=3. \end{array} \right.
+\]</span></p>
 <p>Como o sistema acima possui duas equações e três variáveis, ele tem infinitas soluções. Por exemplo, resolvendo <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> em função de <span class="math inline">\(c\)</span>, segue que</p>
 <p><span class="math display">\[
-  \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \mathbb{R}.
-  \]</span></p>
+    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \mathbb{R}.
+\]</span></p>
 <p>Assim, vejamos três possibilidades de combinações, fazendo <span class="math inline">\(c=0,\ c=1\)</span> e <span class="math inline">\(c=3\)</span>, respectivamente:</p>
-<p><span class="math display">\[
-  \vec{p}=\vec{u}-3\vec{v}
-  \]</span></p>
-<p><span class="math display">\[
-  \vec{p}=2\vec{u}-2\vec{v}+\vec{w}
-  \]</span></p>
-<p><span class="math display">\[
-  \vec{p}=4\vec{u}+3\vec{w}
-  \]</span></p></li>
-</ul>
+<pre><code>$$
+\vec{p}=\vec{u}-3\vec{v}
+$$
+
+$$
+\vec{p}=2\vec{u}-2\vec{v}+\vec{w}
+$$
+
+$$
+\vec{p}=4\vec{u}+3\vec{w}
+$$</code></pre>
 
 
 </section>

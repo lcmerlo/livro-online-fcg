@@ -2,33 +2,23 @@
 
 ### Definição
 
-
  A **distância de um ponto** $P$ a uma reta $r,$ denotada por $d(P,r),$ é a distância de $P$ até o ponto $Q\in r$ que está mais próximo de $P.$
-
-
 
 Se $P\in r$ então o ponto de $r$ mais próximo de $P$ é o próprio $P$ e  $d(P,r)=d(P,P)=0.$
 
 ### Proposição
 
-
-  Se $P\notin r$ então $d(P,r)=d(P,Q),$ onde $Q$ é o **Pé da Perpendicular a** $r$ **por** $P,$
- ou seja, $Q$ é o ponto de interseção da reta $r$ com a reta perpendicular a $r$ que passa por $P.$
-
-
+Se $P\notin r$ então $d(P,r)=d(P,Q),$ onde $Q$ é o **Pé da Perpendicular a** $r$ **por** $P,$ ou seja, $Q$ é o ponto de interseção da reta $r$ com a reta perpendicular a $r$ que passa por $P.$
 
 Para ver isso, devemos mostrar que o ponto $Q,$ com as propriedades acima, é o ponto de $r$ mais próximo de $P.$ 
 
 De fato, se $R\in r$ e $R\neq Q,$ então o $\bigtriangleup PQR$ (figura abaixo) é retângulo em $Q,$ com hipotenusa $PR$ e um dos catetos $PQ.$ Como a hipotenusa é sempre maior que qualquer cateto, segue que $d(P,R)>d(P,Q).$
 
+<!--
 ![](https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png)
-
-**.**
-
-. 
+-->
 
 ### Proposição (Fórmula da distância entre ponto e reta)
-
 
  Se $P=(x_0,y_0)$ e $r:ax+by+c=0,$ então
 
@@ -36,38 +26,25 @@ $$
 d(P,r)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 $$
 
-
-
 De fato, seja $s$ a única reta que passa por $P=(x_0,y_0)$ e é perpendicular a $r:ax+by+c=0,$ logo $s\parallel (a,b)$ pois $r\perp (a,b)$.
 
 $$
-s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \R,
+s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \MATHBB{R},
 $$
-
 são umas equações paramétricas de $s$.
-
 Seja $Q$ o pé da perpendicular a $r$ que passa por $P,$ isto é, $Q=r\cap s$.
-
 Então: 
-
 $$
 Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right. 
 $$
-
-para algum $t' \in \R$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \R$.
-
+para algum $t' \in \MATHBB{R}$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \MATHBB{R}$.
 Como $Q \in r$, temos:
-
 $a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
-
 $\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}$.
-
 Temos então que $d(P,r)=d(P,Q)=||\overrightarrow{PQ}||$ e $\overrightarrow{PQ}=(a,b)t',$  portanto:
-
 $$
 d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 $$
-
 
 **Exemplo**
 
@@ -119,7 +96,7 @@ donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
     
 
 
-💡 **Observação:**
+**Observação:**
 
 Também podemos calcular a distância usando a perpendicular.
 
@@ -127,9 +104,9 @@ Também podemos calcular a distância usando a perpendicular.
     
     Em particular podemos calcular a distância entre paralelas tomando qualquer reta $p$ perpendicular a $r$ e $s$, temos $d(r,s) = d(R,S)$, onde $\{R\} = r\cap p$ e $\{S\} = s\cap p$. Em particular, segue que $d(r,s) = d(R,s) = d(S,r)$, onde $R$ é um ponto qualquer de $r$ e $S$ é um ponto qualquer de $s$.
     
+    <!--
     ![](https://www.geogebra.org/resource/v7qykdrq/1TWkyQov707XEdtW/material-v7qykdrq.png)
-    
-
+    -->
 
 ### Proposição  (**Fórmula da distância entre duas retas paralelas**)
 

@@ -2,18 +2,18 @@
 
 ### Definição
 
-
  Dizemos que um vetor $\vec{u}$ não nulo é normal ou perpendicular a uma reta $r$, e denotamos $\vec{u} \perp r$, se $\vec{u}$ é perpendicular ao vetor $\overrightarrow{AB}$, quaisquer que sejam os pontos $A, B \in r$.
 
-
-
-![](https://www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png)
+<!--
+![](https \colon//www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png)
+-->
 
 ### Proposição
 
 Dados um ponto $P_0$ e um vetor $\vec{u} \neq \vec{0}$, existem infinitas retas perpendiculares a $\vec{u}$, mas existe apenas uma reta $r$ que é perpendicular ao vetor $\vec{u}$ e que passa pelo ponto $P_0$.
-
-![](https://www.geogebra.org/resource/spajs5my/y6Po98MYkIRFikKS/material-spajs5my.png)
+<!--
+![](https \colon//www.geogebra.org/resource/spajs5my/y6Po98MYkIRFikKS/material-spajs5my.png)
+-->
 
 Fixados um ponto $P_0 = (x_0, y_0)$ e um vetor $\vec{u} = (a, b) \neq \vec{0}$, considere a única reta $r$ tal que $P_0 \in r$ e $\vec{u} \perp r$. 
 
@@ -29,21 +29,16 @@ $$
 r: \: \underbrace{ax + by}_{(a,b)\perp r} + c= 0 \quad (\ast) \quad \text{ ou então } \quad r: \: \underbrace{ax + by}_{(a,b)\perp r} = c' \quad (\ast \ast), 
 $$
 
-onde   $c =-( ax_0 + by_0)$ e  $c'=  ax_0 + by_0$  são constantes.    *.         
+onde   $c =-( ax_0 + by_0)$ e  $c'=  ax_0 + by_0$  são constantes.        
 
 Note que os coeficientes $a$  e $b$ das equações ($\ast$) e ($\ast \ast$) são as coordenadas do vetor perpendicular a reta $r$.
 
 ### Definição
 
-
  Qualquer equação da forma $(\ast)$ ou $(\ast\ast)$  acima é dita equação cartesiana da reta $r$.
 
 
-
 ### Proposição
-
-
- 
 
 Duas equações da forma $(\ast)$  representam a mesma reta se, e somente se, elas diferem pela multiplicação de uma constante não nula. Dito de outra forma:
 
@@ -97,12 +92,13 @@ $$
 
 **Exemplo**
 
-Determine a equação cartesiana da reta  $r: \left\{
+Determine a equação cartesiana da reta  
+$r: \left\lbrace
 \begin{array}{l}
 x = 5 - 4t \\
-y = -2 + t,
+y = -2 + t
 \end{array}
-\right. t \in \mathbb{R}.$
+\right.,\ t \in \mathbb{R}.$
 
 - $\leftarrow$ Click para ver a solução
     
@@ -123,7 +119,7 @@ y = -2 + t,
 
 **Exemplo**
 
-Determine as equações paramétricas da reta $s: -7x + 2y = 8$.
+Determine as equações paramétricas da reta $s \colon -7x + 2y = 8$.
 
 - $\leftarrow$ Click para ver a solução
     
@@ -136,13 +132,13 @@ Determine as equações paramétricas da reta $s: -7x + 2y = 8$.
     Portanto uma equação paramétrica de $s$ é 
     
     $$
-    s:   \left\lbrace\!\! \begin{array}{l} x= 0 + 2t \\ y=4+7t,  \end{array} \right. t\in \R,  \quad \text{ou seja,} \quad  s: \left\lbrace\!\!\begin{array}{l} x= 2t\\ y=4+7t,  \end{array} \right. t\in \R.
+    s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \mathbb{R},  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \mathbb{R}.
     $$
     
     **Segunda resolução:** Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando $x=t$  e substituindo na equação de $s$ temos  $-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t$.  Portanto uma equação paramétrica de $s$ é 
     
     $$
-    s: \left\lbrace\!\!\begin{array}{l} x= t\\ y=4+\frac{7}{2}t,  \end{array} \right. t\in \R.
+    s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \mathbb{R}.
     $$
     
     Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta $s$, mas lembre que para uma mesma reta existem infinitas equações paramétricas.

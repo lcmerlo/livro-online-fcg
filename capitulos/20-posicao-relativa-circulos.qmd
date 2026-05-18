@@ -2,7 +2,6 @@
 
 ### Definição 1
 
-
  Dizemos que dois círculos  $\mathcal{C}_1$  e  $\mathcal{C}_2$  são:
 
 - **disjuntos** se  $\mathcal{C}_1\cap\mathcal{C}_2=\emptyset$;
@@ -12,7 +11,6 @@
 
 ### Proposição
 
-
  Sejam  $\mathcal{C}_1$  e  $\mathcal{C}_2$  círculos tangentes em  $T$.
 
 1. Se  $r$  é a reta que liga os centros dos círculos então  $T\in r$;
@@ -21,9 +19,7 @@
     ![material-uenb96uj.png](Posi%C3%A7%C3%A3o%20Relativa%20entre%20C%C3%ADrculos/material-uenb96uj.png)
     
 
-
 ### **Proposição**
-
 
  Dados dois círculos  $\mathcal{C}_1$  e  $\mathcal{C}_2$ de centro $O_1$ e $O_2$ e raio $r_1$ e $r_2$, respectivamente, temos que $\mathcal{C}_1$ e $\mathcal{C}_2$ são:
 
@@ -47,10 +43,14 @@ $$
 
 
 
-
-<img src="https://www.notion.so/icons/checkmark-square_brown.svg" alt="https://www.notion.so/icons/checkmark-square_brown.svg" width="40px" /> **Atividade**
-
 No exemplo iterativo abaixo, mova um círculo para visualizar os casos da proposição.
 
-[geogebra/y9vt9eca](geogebra/y9vt9eca)
-
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/y9vt9eca/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Equação Cartesiana da Reta – Livro Online</title>
+<title>15&nbsp; Equação Cartesiana da Reta – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -315,12 +302,15 @@ window.Quarto = {
 <section id="definição" class="level3">
 <h3 class="anchored" data-anchor-id="definição">Definição</h3>
 <p>Dizemos que um vetor <span class="math inline">\(\vec{u}\)</span> não nulo é normal ou perpendicular a uma reta <span class="math inline">\(r\)</span>, e denotamos <span class="math inline">\(\vec{u} \perp r\)</span>, se <span class="math inline">\(\vec{u}\)</span> é perpendicular ao vetor <span class="math inline">\(\overrightarrow{AB}\)</span>, quaisquer que sejam os pontos <span class="math inline">\(A, B \in r\)</span>.</p>
-<p><img src="https://www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png" class="img-fluid"></p>
+<!--
+![](https \colon//www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png)
+-->
 </section>
 <section id="proposição" class="level3">
 <h3 class="anchored" data-anchor-id="proposição">Proposição</h3>
-<p>Dados um ponto <span class="math inline">\(P_0\)</span> e um vetor <span class="math inline">\(\vec{u} \neq \vec{0}\)</span>, existem infinitas retas perpendiculares a <span class="math inline">\(\vec{u}\)</span>, mas existe apenas uma reta <span class="math inline">\(r\)</span> que é perpendicular ao vetor <span class="math inline">\(\vec{u}\)</span> e que passa pelo ponto <span class="math inline">\(P_0\)</span>.</p>
-<p><img src="https://www.geogebra.org/resource/spajs5my/y6Po98MYkIRFikKS/material-spajs5my.png" class="img-fluid"></p>
+<p>Dados um ponto <span class="math inline">\(P_0\)</span> e um vetor <span class="math inline">\(\vec{u} \neq \vec{0}\)</span>, existem infinitas retas perpendiculares a <span class="math inline">\(\vec{u}\)</span>, mas existe apenas uma reta <span class="math inline">\(r\)</span> que é perpendicular ao vetor <span class="math inline">\(\vec{u}\)</span> e que passa pelo ponto <span class="math inline">\(P_0\)</span>. <!--
+![](https \colon//www.geogebra.org/resource/spajs5my/y6Po98MYkIRFikKS/material-spajs5my.png)
+--></p>
 <p>Fixados um ponto <span class="math inline">\(P_0 = (x_0, y_0)\)</span> e um vetor <span class="math inline">\(\vec{u} = (a, b) \neq \vec{0}\)</span>, considere a única reta <span class="math inline">\(r\)</span> tal que <span class="math inline">\(P_0 \in r\)</span> e <span class="math inline">\(\vec{u} \perp r\)</span>.</p>
 <p>Um ponto <span class="math inline">\(P = (x, y) \in r\)</span> se, e somente se, o vetor <span class="math inline">\((x - x_0, y - y_0) = P - P_0 = \overrightarrow{P_0P}\)</span> é perpendicular a <span class="math inline">\(\vec{u}\)</span>, isto é,</p>
 <p><span class="math display">\[
@@ -330,7 +320,7 @@ window.Quarto = {
 <p><span class="math display">\[
 r: \: \underbrace{ax + by}_{(a,b)\perp r} + c= 0 \quad (\ast) \quad \text{ ou então } \quad r: \: \underbrace{ax + by}_{(a,b)\perp r} = c' \quad (\ast \ast),
 \]</span></p>
-<p>onde <span class="math inline">\(c =-( ax_0 + by_0)\)</span> e <span class="math inline">\(c'=  ax_0 + by_0\)</span> são constantes. *.</p>
+<p>onde <span class="math inline">\(c =-( ax_0 + by_0)\)</span> e <span class="math inline">\(c'=  ax_0 + by_0\)</span> são constantes.</p>
 <p>Note que os coeficientes <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> das equações (<span class="math inline">\(\ast\)</span>) e (<span class="math inline">\(\ast \ast\)</span>) são as coordenadas do vetor perpendicular a reta <span class="math inline">\(r\)</span>.</p>
 </section>
 <section id="definição-1" class="level3">
@@ -368,12 +358,13 @@ r: \: \underbrace{ax + by}_{(a,b)\perp r} + c= 0 \quad (\ast) \quad \text{ ou en
 \vec{u} = (a, b) \perp r \quad \Leftrightarrow \quad \vec{v} = (b,-a) \parallel r.
 \]</span></p>
 <p><strong>Exemplo</strong></p>
-<p>Determine a equação cartesiana da reta <span class="math inline">\(r: \left\{
+<p>Determine a equação cartesiana da reta<br>
+<span class="math inline">\(r: \left\lbrace
 \begin{array}{l}
 x = 5 - 4t \\
-y = -2 + t,
+y = -2 + t
 \end{array}
-\right. t \in \mathbb{R}.\)</span></p>
+\right.,\ t \in \mathbb{R}.\)</span></p>
 <ul>
 <li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
 <p><strong>Primeira resolução:</strong> Para obter uma equação cartesiana de <span class="math inline">\(r\)</span> precisamos de um ponto de <span class="math inline">\(r\)</span> e de um vetor perpendicular a <span class="math inline">\(r\)</span>.</p>
@@ -385,7 +376,7 @@ y = -2 + t,
 <p><strong>Segunda resolução:</strong> Da equação paramétrica de <span class="math inline">\(r\)</span> temos <span class="math inline">\(t=y+2\)</span> e substituindo na outra equação segue que <span class="math inline">\(x= 5 - 4(y+2)\)</span>, donde obtemos a mesma equação de <span class="math inline">\(r\)</span> acima.</p></li>
 </ul>
 <p><strong>Exemplo</strong></p>
-<p>Determine as equações paramétricas da reta <span class="math inline">\(s: -7x + 2y = 8\)</span>.</p>
+<p>Determine as equações paramétricas da reta <span class="math inline">\(s \colon -7x + 2y = 8\)</span>.</p>
 <ul>
 <li><p><span class="math inline">\(\leftarrow\)</span> Click para ver a solução</p>
 <p><strong>Primeira resolução:</strong> Para obter uma equação paramétrica de <span class="math inline">\(s\)</span> precisamos de um ponto de <span class="math inline">\(s\)</span> e de um vetor paralelo a <span class="math inline">\(s\)</span>.</p>
@@ -393,11 +384,11 @@ y = -2 + t,
 <p>Para obtermos um vetor paralelo a <span class="math inline">\(s\)</span> note que <span class="math inline">\(\vec{u}=(-7,2) \perp s\)</span> e segue observação acima que <span class="math inline">\(\vec{v}=(2,7)\parallel s\)</span>.</p>
 <p>Portanto uma equação paramétrica de <span class="math inline">\(s\)</span> é</p>
 <p><span class="math display">\[
-  s:   \left\lbrace\!\! \begin{array}{l} x= 0 + 2t \\ y=4+7t,  \end{array} \right. t\in \R,  \quad \text{ou seja,} \quad  s: \left\lbrace\!\!\begin{array}{l} x= 2t\\ y=4+7t,  \end{array} \right. t\in \R.
+  s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \mathbb{R},  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \mathbb{R}.
   \]</span></p>
 <p><strong>Segunda resolução:</strong> Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando <span class="math inline">\(x=t\)</span> e substituindo na equação de <span class="math inline">\(s\)</span> temos <span class="math inline">\(-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t\)</span>. Portanto uma equação paramétrica de <span class="math inline">\(s\)</span> é</p>
 <p><span class="math display">\[
-  s: \left\lbrace\!\!\begin{array}{l} x= t\\ y=4+\frac{7}{2}t,  \end{array} \right. t\in \R.
+  s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \mathbb{R}.
   \]</span></p>
 <p>Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta <span class="math inline">\(s\)</span>, mas lembre que para uma mesma reta existem infinitas equações paramétricas.</p></li>
 </ul>
@@ -808,8 +799,8 @@ y = -2 + t,
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../capitulos/14-equacao-parametrica-reta.html" class="pagination-link" aria-label="Equação Paramétrica de Reta">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span>
+      <a href="../capitulos/14-equacao-parametrica-reta.html" class="pagination-link" aria-label="14-equacao-parametrica-reta.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

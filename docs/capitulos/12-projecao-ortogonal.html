@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Projeção Ortogonal – Livro Online</title>
+<title>12&nbsp; Projeção Ortogonal – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -316,37 +303,33 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="definição">Definição</h3>
 <p>Dados vetores <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span>, com <span class="math inline">\(\vec{u}\ne\vec{0}\)</span>, definimos a projeção ortogonal de <span class="math inline">\(\vec{v}\)</span> em <span class="math inline">\(\vec{u}\)</span> como sendo o vetor dado por</p>
 <p><span class="math display">\[
-{\rm Proj}_{\:\vec{u}}\: \vec{v} = \frac{\langle \vec{v},\vec{u}\rangle}{\lVert \vec{u} \rVert^2}\vec{u}.
+{Proj}_{\:\vec{u}}\: \vec{v} = \frac{\langle \vec{v},\vec{u}\rangle}{\lVert \vec{u} \rVert^2}\vec{u}.
 \]</span></p>
 <p><strong>Exemplo</strong></p>
-<p>Por exemplo, se <span class="math inline">\(\vec{u}=(1,1)\)</span> e <span class="math inline">\(\vec{v}=(2,3)\)</span> temos</p>
-<p><span class="math display">\[
-{\rm Proj}_{\:\vec{u}}\:\vec{v} ﻿ =\frac{\langle (2,3), (1,1) \rangle}{\rVert(1,1)
+<p>Por exemplo, se <span class="math inline">\(\vec{u}=(1,1)\)</span> e <span class="math inline">\(\vec{v}=(2,3)\)</span> temos <span class="math display">\[
+{Proj}_{\:\vec{u}}\:\vec{v}  =\frac{\langle (2,3), (1,1) \rangle}{\rVert(1,1)
 \lVert^2}(1,1)=\frac{5}{2}(1,1)=\left(\frac{5}{2},\frac{5}{2}\right).
 \]</span></p>
 </section>
 <section id="interpretação-geométrica-da-projeção-ortogonal." class="level3">
 <h3 class="anchored" data-anchor-id="interpretação-geométrica-da-projeção-ortogonal."><strong>Interpretação Geométrica da Projeção Ortogonal.</strong></h3>
-<p>Intuitivamente, se imaginarmos que o vetor <span class="math inline">\(\vec{u}\)</span> é paralelo ao “solo” então o vetor <span class="math inline">\({\rm Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> corresponde a “sombra” que o vetor <span class="math inline">\(\vec{v}\)</span> projeta no solo ao meio dia.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Projeção Ortogonal/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>Untitled</figcaption>
-</figure>
+<p>Intuitivamente, se imaginarmos que o vetor <span class="math inline">\(\vec{u}\)</span> é paralelo ao “solo” então o vetor <span class="math inline">\({ Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> corresponde a “sombra” que o vetor <span class="math inline">\(\vec{v}\)</span> projeta no solo ao meio dia.</p>
+<p><img src="../assets/img/12-projecao-ortogonal/untitled.png" class="img-fluid"></p>
+<p>Além disso, se os vetores <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> não forem paralelos nem perpendiculares, então os vetores <span class="math inline">\({ Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> e <span class="math inline">\(\vec{v}- { Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> podem ser representados sobre os catetos de um triângulo retângulo tendo <span class="math inline">\(\vec{v}\)</span> sobre a hipotenusa.</p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/kezenkqr/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
 </div>
-<p>Além disso, se os vetores <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> não forem paralelos nem perpendiculares, então os vetores <span class="math inline">\({\rm Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> e <span class="math inline">\(\vec{v}-﻿ {\rm Proj}_{\:\vec{u}}{\:\vec{v}}\)</span> podem ser representados sobre os catetos de um triângulo retângulo tendo <span class="math inline">\(\vec{v}\)</span> sobre a hipotenusa.</p>
-<p><a href="geogebra/kezenkqr">geogebra/kezenkqr</a></p>
-<p>Em particular, se <span class="math inline">\(\vec{v}\neq\vec{p}= {\rm Proj}_{\:\vec{u}}\:\vec{v}\)</span> , isto é, se <span class="math inline">\(\vec{v}- {\rm Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span>, observamos, na representação acima, que <span class="math inline">\(\vec{v}- {\rm Proj}_{\:\vec{u}}\:\vec{v} \perp \vec{u}\)</span>. Esta propriedade está descrita no item 2 da próxima proposição.</p>
+<p>Em particular, se <span class="math inline">\(\vec{v}\neq\vec{p}= { Proj}_{\:\vec{u}}\:\vec{v}\)</span> , isto é, se <span class="math inline">\(\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span>, observamos, na representação acima, que <span class="math inline">\(\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \perp \vec{u}\)</span>. Esta propriedade está descrita no item 2 da próxima proposição.</p>
 </section>
 <section id="proposição" class="level3">
 <h3 class="anchored" data-anchor-id="proposição">Proposição</h3>
 <p>Nas condições da definição acima valem as seguintes propriedades.</p>
 <ol type="1">
-<li>Se <span class="math inline">\({\rm Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span>﻿ então <span class="math inline">\({\rm Proj}_{\:\vec{u}}\:\vec{v} \parallel \vec{u}\)</span>﻿;</li>
-<li>Se <span class="math inline">\(\vec{v}- {\rm Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span> ﻿ então <span class="math inline">\(\vec{v}- {\rm Proj}_{\:\vec{u}}\:\vec{v} \perp \vec{u}\)</span>﻿;</li>
-<li>Se <span class="math inline">\(a \neq 0\)</span> então <span class="math inline">\({\rm Proj}_{\:a\vec{u}}\:\vec{v} = {\rm Proj}_{\:\vec{u}}\:\vec{v}\)</span>﻿;</li>
-<li><span class="math inline">\({\rm Proj}_{\:\vec{u}}\:a\vec{v} = a \;{\rm Proj}_{\:\vec{u}}\:\vec{v}\)</span>﻿;</li>
-<li><span class="math inline">\({\rm Proj}_{\:\vec{u}}\:(\vec{v} + \vec{w}) ={\rm Proj}_{\:\vec{u}}\:\vec{v} + {\rm Proj}_{\:\vec{u}}\:\vec{w}\)</span>﻿.</li>
+<li>Se <span class="math inline">\({ Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span> então <span class="math inline">\({ Proj}_{\:\vec{u}}\:\vec{v} \parallel \vec{u}\)</span>;</li>
+<li>Se <span class="math inline">\(\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}\)</span> então <span class="math inline">\(\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \perp \vec{u}\)</span>;</li>
+<li>Se <span class="math inline">\(a \neq 0\)</span> então <span class="math inline">\({ Proj}_{\:a\vec{u}}\:\vec{v} = { Proj}_{\:\vec{u}}\:\vec{v}\)</span>;</li>
+<li><span class="math inline">\({ Proj}_{\:\vec{u}}\:a\vec{v} = a \;{ Proj}_{\:\vec{u}}\:\vec{v}\)</span>;</li>
+<li><span class="math inline">\({ Proj}_{\:\vec{u}}\:(\vec{v} + \vec{w}) ={ Proj}_{\:\vec{u}}\:\vec{v} + { Proj}_{\:\vec{u}}\:\vec{w}\)</span>.</li>
 </ol>
 
 

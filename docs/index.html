@@ -8,7 +8,7 @@
 
 <meta name="author" content="Projeto FCG">
 
-<title>Livro Online</title>
+<title>Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,7 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./extras/relatorio-design-pedagogico.html" rel="next">
+<link href="./capitulos/01-primeiras-nocoes.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="./assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="./assets/js/applets-dist/applets-livro.iife.js"></script>
 
 
 <link rel="stylesheet" href="assets/css/custom.scss">
@@ -92,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Fundamentos de Cálculo e Geometria</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">index.html</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -104,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Livro Online</a> 
+      <a href="./">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -112,25 +117,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -214,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,14 +246,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Neste capítulo</h2>
    
   <ul class="collapse">
-  <li><a href="#fundamentos-de-cálculo-e-geometria" id="toc-fundamentos-de-cálculo-e-geometria" class="nav-link active" data-scroll-target="#fundamentos-de-cálculo-e-geometria">Fundamentos de Cálculo e Geometria</a>
-  <ul class="collapse">
-  <li><a href="#para-quem-é-este-livro" id="toc-para-quem-é-este-livro" class="nav-link" data-scroll-target="#para-quem-é-este-livro">Para quem é este livro</a></li>
-  <li><a href="#como-usar" id="toc-como-usar" class="nav-link" data-scroll-target="#como-usar">Como usar</a></li>
-  <li><a href="#estrutura-do-percurso" id="toc-estrutura-do-percurso" class="nav-link" data-scroll-target="#estrutura-do-percurso">Estrutura do percurso</a></li>
-  <li><a href="#sobre-os-applets" id="toc-sobre-os-applets" class="nav-link" data-scroll-target="#sobre-os-applets">Sobre os applets</a></li>
-  <li><a href="#comece-por-aqui" id="toc-comece-por-aqui" class="nav-link" data-scroll-target="#comece-por-aqui">Comece por aqui</a></li>
-  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
 </nav>
@@ -279,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Livro Online</h1>
+<h1 class="title">Fundamentos de Cálculo e Geometria</h1>
 </div>
 
 
@@ -296,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14 de maio de 2026</p>
+      <p class="date">18 de maio de 2026</p>
     </div>
   </div>
   
@@ -308,45 +288,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="fundamentos-de-cálculo-e-geometria" class="level1 unnumbered">
-<h1 class="unnumbered">Fundamentos de Cálculo e Geometria</h1>
-<p>Este livro é um material de revisão matemática com foco em explicações curtas, exemplos resolvidos, interpretação geométrica e atividades interativas.</p>
-<section id="para-quem-é-este-livro" class="level2">
-<h2 class="anchored" data-anchor-id="para-quem-é-este-livro">Para quem é este livro</h2>
-<p>Este material foi pensado para estudantes que precisam revisar conceitos fundamentais de matemática, especialmente aqueles que têm lacunas em álgebra, funções, geometria analítica e leitura de gráficos.</p>
-</section>
-<section id="como-usar" class="level2">
-<h2 class="anchored" data-anchor-id="como-usar">Como usar</h2>
-<p>Recomenda-se seguir os capítulos na ordem apresentada. Cada lição combina:</p>
-<ul>
-<li>uma ideia central;</li>
-<li>pré-requisitos mínimos;</li>
-<li>exemplos resolvidos;</li>
-<li>interpretação geométrica;</li>
-<li>applets guiados;</li>
-<li>exercícios de verificação.</li>
-</ul>
-</section>
-<section id="estrutura-do-percurso" class="level2">
-<h2 class="anchored" data-anchor-id="estrutura-do-percurso">Estrutura do percurso</h2>
-<ol type="1">
-<li>Blocos, proposições e linguagem matemática.</li>
-<li>Primeiras noções.</li>
-<li>Segmentos.</li>
-<li>Segmentos orientados.</li>
-<li>Eixos.</li>
-<li>Coordenadas no plano.</li>
-</ol>
-</section>
-<section id="sobre-os-applets" class="level2">
-<h2 class="anchored" data-anchor-id="sobre-os-applets">Sobre os applets</h2>
-<p>Algumas páginas incluem construções interativas. Antes de manipular os controles, leia a pergunta orientadora e observe o que deve mudar ou permanecer constante.</p>
-</section>
-<section id="comece-por-aqui" class="level2">
-<h2 class="anchored" data-anchor-id="comece-por-aqui">Comece por aqui</h2>
+<section id="section" class="level1 unnumbered">
+<h1 class="unnumbered"></h1>
+<p>Este material foi desenvolvido pelo corpo docente do GGM-IME para o curso <strong>Fundamentos de Cálculo e Geometria</strong> oferecido pela UFF.</p>
+<p>A proposta é oferecer um material claro, acessível e interativo para um público com nível de conhecimento heterogêneo de pré-cálculo e geometria analítica, visando atender as necessidades tanto daqueles que já tem domínio dos tópicos abordados, quanto daqueles que, pelos mais diversos motivos, desconhecem boa parte do conteúdo do ensino médio.</p>
+<p>O material foi pensado para priorizar o foco, a retenção de conhecimento e a redução da carga cognitiva desnecessária, permitindo um estudo mais eficiente e prazeroso.</p>
+<p>Os tópicos foram organizados em uma progressão lógica e coerente, favorecendo a construção de conhecimento de forma gradual, partindo de conceitos intuitivos e avançando para formalizações matemáticas, sempre com o suporte de exemplos, applets interativos e exercícios.</p>
+<p>Cada lição busca trabalhar uma ideia principal por vez, seguindo, sempre que possível, a estrutura: * Objetivo * Pré-requisitos * Ideia central intuitiva * Formalização * Interpretação algébrica e geométrica * Exemplos gradativos resolvidos * Applet guiado * Erros comuns * Exercícios com ajuda Exercícios de fixação</p>
+<p>Recomenda-se abordar os conteúdos na ordem apresentada. Lendo atentamente as orientações e explorando os applets.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -754,8 +705,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./extras/relatorio-design-pedagogico.html" class="pagination-link" aria-label="Especificações Pedagógico-Visuais">
-        <span class="nav-page-text">Especificações Pedagógico-Visuais</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./capitulos/01-primeiras-nocoes.html" class="pagination-link" aria-label="Primeiras Noções">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Primeiras Noções</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

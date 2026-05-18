@@ -14,7 +14,19 @@ Fixado um sistema de coordenadas $OXY$, podemos associar cada ponto $P$ do plano
 
 Veja a ilustração:
 
-[geogebra/ykdu6wtk](https://www.geogebra.org/classic/ykdu6wtk)
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/ykdu6wtk/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!--
+![geogebra/ykdu6wtk](https://www.geogebra.org/classic/ykdu6wtk)
+-->
 
 Usualmente chamamos o eixo $OX$ de eixo das **abcissas** e o eixo $OY$ de eixo das **ordenadas**. Além disso, a menos que seja dito o contrário, o eixo $OX$ é o eixo horizontal e o eixo $OY$ é o eixo vertical.
 
@@ -27,7 +39,7 @@ Fixado um sistema de coordenadas ortogonais OXY, o plano é decomposto nos eixos
 
 Note que os eixos não fazem parte dos quadrantes.
 
-![Untitled](Coordenadas%20no%20plano/Untitled.png)
+![](../assets/img/05-coordenadas-plano/Untitled.png)
 
 ::: {#prp-formula-distancia}
 A distância entre os pontos $P$ e $Q$ é dada por
@@ -35,7 +47,19 @@ $$ d\left(P,Q\right)=\sqrt{\left(x_P-x_Q\right)^2+\left(y_P-y_Q\right)^2}
 $$
 :::
 
-[geogebra/pbfm8wna](https://www.geogebra.org/classic/pbfm8wna)
+
+<div class="geogebra-container">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/pbfm8wna/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
+    width="800"
+    height="500"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+</div>
+<!--
+[](https://www.geogebra.org/classic/pbfm8wna)
+-->
 
 ::: {#exm-distancia1}
 Determine a distância do ponto $A=(1,-1)$ até o ponto $B=(-2,1)$.
@@ -59,8 +83,8 @@ $$ P=(0,0) \text{ ou } P=(2,0). $$
 :::
 
 ::: {#prp-formula-ponto-medio}
-$$
- M  \text{ é ponto médio de } PQ  \Longleftrightarrow  M=\left(\dfrac{x_P+x_Q}{2},\dfrac{y_P+y_Q}{2}\right)
+O ponto médio $M$ do segmento $PQ$ tem coordenadas dadas por 
+$$ M=\left(\frac{x_P+x_Q}{2},\frac{y_P+y_Q}{2}\right)
 $$
 :::
 

@@ -2,13 +2,7 @@
 
 ### Proposição
 
-
  O ponto de interseção entre retas dadas por equações é o ponto $(x,y)$, onde $x$ e $y$ são soluções do sistema obtido pelas equações das retas envolvidas.
-
-
-
-  
-
 
 **Exemplo**
 
@@ -41,8 +35,6 @@ $$
     Portanto o ponto de interseção entre as retas $\ell$ e $m$ é o ponto $(2,1)$.
     
 
-
-
 **Exemplo**
 
 Determine o ponto de interseção entre as retas
@@ -56,22 +48,17 @@ $$
     O sistema obtido com as equações das retas é
     
     $$
-    
     \left\{ \begin{array}{lr}
     x-2y=1 & (1) \\
     x-2y=-2 & (2)
     \end{array} \right.
-    
     $$
     
     Subtraindo a equação (2) da equação (1) obtemos $0=3$, que é impossível. Portanto, o sistema não possui solução, ou seja, não existe ponto de interseção entre as retas $r$  e $s$, isto é,  $r\cap s=\varnothing$.
     
 
-
-
-💡 **Importante**:                                                                                                                          **Em um sistema, sempre devemos usar letras diferentes para parâmetros de equações diferentes**, pois o parâmetro de um ponto ao longo de uma reta pode não ser igual ao parâmetro do mesmo ponto ao longo da outra reta.
-
-
+**Importante**:                                                                           
+**Em um sistema, sempre devemos usar letras diferentes para parâmetros de equações diferentes**, pois o parâmetro de um ponto ao longo de uma reta pode não ser igual ao parâmetro do mesmo ponto ao longo da outra reta.
 
 
 **Exemplo**
@@ -115,9 +102,11 @@ $$
     $$
     
     Substituindo $t=2$ na equação de r obtemos $x=1$ e $y=2$. Logo  $I=(1,2)$ é o ponto de interseção de $r$ e $s$. Obteremos o mesmo ponto se substituirmos  $t'=-1$ no lugar de $t$ na equação de $s$ (Ver figura abaixo).  
-    
+
+    <!--
     ![ $r\parallel\vec{u}=(1,1)$  e   $s\parallel\vec{v}=(2,-1)$. .](https://www.geogebra.org/resource/tjmypfkw/nebkmQonwASglbIR/material-tjmypfkw.png)
-    
+    -->
+
      $r\parallel\vec{u}=(1,1)$  e   $s\parallel\vec{v}=(2,-1)$. .
     
     De fato, neste exemplo, o ponto de interseção é obtido com $t=2$ na equação de $r$ e com $t'=1$ na equação de $s$. Se não mudássemos a letra de um dos parâmetros não chegaríamos a solução correta.

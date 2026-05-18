@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Produto entre Número e Vetor – Livro Online</title>
+<title>8&nbsp; Produto entre Número e Vetor – Fundamentos de Cálculo e Geometria</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-feee59ffefd433d0dba5c0cf03e82f6f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0ec3ed667fc56f8197736486ea5f343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<link rel="stylesheet" href="../assets/js/applets-dist/applets-livro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<script src="../assets/js/applets-dist/applets-livro.iife.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +138,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Livro Online</a> 
+      <a href="../">Fundamentos de Cálculo e Geometria</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -141,25 +146,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentos de Cálculo e Geometria</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/relatorio-design-pedagogico.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Especificações Pedagógico-Visuais</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/biblioteca-estruturas-site-diretrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Biblioteca de ambientes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../extras/proposta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposta de redação</span></a>
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +230,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../capitulos/14-equacao-parametrica-reta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Equação Paramétrica de Reta</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">14-equacao-parametrica-reta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -324,7 +311,7 @@ window.Quarto = {
 <ol type="1">
 <li><span class="math inline">\(1\vec{v}=\vec{v}\)</span>;</li>
 <li><span class="math inline">\((ab)\vec{v}=a(b\vec{v})=b(a\vec{v})\)</span>;</li>
-<li>Se ﻿<span class="math inline">\(\vec{v}\ne\vec{0}\)</span> então: <span class="math inline">\(a\vec{v}=b\vec{v} &nbsp;\Leftrightarrow a=\)</span>b;</li>
+<li>Se <span class="math inline">\(\vec{v}\ne\vec{0}\)</span> então: <span class="math inline">\(a\vec{v}=b\vec{v} &nbsp;\Leftrightarrow a=\)</span>b;</li>
 <li>Se <span class="math inline">\(a\ne0\)</span> então: <span class="math inline">\(a\vec{v}=a\vec{w} \Leftrightarrow \vec{v}=\vec{w}\)</span>;</li>
 <li><span class="math inline">\(\|a\vec{v}\|=|a|\cdot\|\vec{v}\|\)</span>.</li>
 </ol>
@@ -332,15 +319,12 @@ window.Quarto = {
 <section id="definição-1" class="level3">
 <h3 class="anchored" data-anchor-id="definição-1">Definição</h3>
 <p>Um vetor <span class="math inline">\(\vec{u}\)</span>&nbsp;é dito múltiplo de <span class="math inline">\(\vec{v}\)</span>&nbsp;se existe um número <span class="math inline">\(a\)</span> tal que <span class="math inline">\(\vec{u}=a\vec{v}\)</span>.</p>
-<p>💡 Note que se <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> dois vetores não nulos e <span class="math inline">\(\vec{u}\)</span> é múltiplo de <span class="math inline">\(\vec{v}\)</span> então <span class="math inline">\(\vec{v}\)</span> é múltiplo de <span class="math inline">\(\vec{u}\)</span>. De fato, como <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são não nulos temos que</p>
-<p><span class="math display">\[
+<p>Note que se <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> dois vetores não nulos e <span class="math inline">\(\vec{u}\)</span> é múltiplo de <span class="math inline">\(\vec{v}\)</span> então <span class="math inline">\(\vec{v}\)</span> é múltiplo de <span class="math inline">\(\vec{u}\)</span>. De fato, como <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são não nulos temos que <span class="math display">\[
 \vec{u} = a\vec{v}  
 \]</span></p>
-<p>Para algum <span class="math inline">\(a \in \mathbb{R}\)</span>. Porém, como <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são não nulos, devemos ter <span class="math inline">\(a\neq 0\)</span> e, desta forma, podemos realizar a operação</p>
-<p><span class="math display">\[
+<p>Para algum <span class="math inline">\(a \in \mathbb{R}\)</span>. Porém, como <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são não nulos, devemos ter <span class="math inline">\(a\neq 0\)</span> e, desta forma, podemos realizar a operação <span class="math display">\[
 \vec{v}=\frac{1}{a}\vec{u}
-\]</span></p>
-<p>mostrando assim que <span class="math inline">\(\vec{v}\)</span> é múltiplo de <span class="math inline">\(\vec{u}\)</span>.</p>
+\]</span> mostrando assim que <span class="math inline">\(\vec{v}\)</span> é múltiplo de <span class="math inline">\(\vec{u}\)</span>.</p>
 <p>Nesta situação também dizemos que <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são múltiplos.</p>
 <p>A proposição a seguir fornece a interpretação geométrica do produto entre número e vetor.</p>
 </section>
@@ -348,18 +332,20 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="proposição-1">Proposição</h3>
 <p>Dados um número <span class="math inline">\(a\in\mathbb{R}\)</span> e um vetor <span class="math inline">\(\vec{v}\)</span>, o produto <span class="math inline">\(a\vec{v}\)</span>&nbsp;é único&nbsp;vetor tal que:</p>
 <p>Caso 1: Se <span class="math inline">\(a=0\)</span> ou <span class="math inline">\(\vec{v}=\vec{0}\)</span>&nbsp;então&nbsp;<span class="math inline">\(a\vec{v}=\vec{0}\)</span>.</p>
-<p>Caso 2: Se <span class="math inline">\(a\ne0\)</span> e <span class="math inline">\(\vec{v}\ne\vec{0}\)</span>,&nbsp;então <span class="math inline">\(a\vec{v}\)</span>&nbsp;é o único vetor que satisfaz:</p>
+<p>Caso 2: Se <span class="math inline">\(a\ne 0\)</span> e <span class="math inline">\(\vec{v}\ne\vec{0}\)</span>,&nbsp;então <span class="math inline">\(a\vec{v}\)</span>&nbsp;é o único vetor que satisfaz:</p>
 <p>comprimento: <span class="math inline">\(\|a\vec{v}\|=|a|\cdot \|\vec{v}\|\)</span>;</p>
 <p>direção: <span class="math inline">\(a\vec{v}\)</span> é paralelo a <span class="math inline">\(\vec{v}\)</span> (Notação: &nbsp;<span class="math inline">\(a\vec{v}\parallel\vec{v}\)</span>);</p>
 <p>sentido: <span class="math inline">\(a\vec{v} \,  \begin{cases}  \text{tem o mesmo sentido de } \vec{v}, &amp; \text{ se } a&gt;0 \\ \text{tem sentido oposto ao de } \vec{v}, &amp;\text{ se } a&lt;0 \end{cases}\)</span></p>
 <p><strong>Exemplo</strong></p>
-<p><a href="geogebra/rfvkqkbh">geogebra/rfvkqkbh</a></p>
+<div class="geogebra-container">
+<p><iframe src="https://www.geogebra.org/material/iframe/id/rfvkqkbh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" width="800" height="500" style="border:0;" allowfullscreen=""> </iframe></p>
+</div>
 </section>
 <section id="proposição-2" class="level3">
 <h3 class="anchored" data-anchor-id="proposição-2">Proposição</h3>
 <p>Se <span class="math inline">\(\vec{u}\)</span> e <span class="math inline">\(\vec{v}\)</span> são vetores não nulos temos:</p>
 <p><span class="math display">\[
-\vec{u} \ \text{ e }\ \vec{v} \text{ são múltiplos } \  \Leftrightarrow ﻿\vec{u}\parallel\vec{v}.
+\vec{u} \ \text{ e }\ \vec{v} \text{ são múltiplos } \  \Leftrightarrow \vec{u}\parallel\vec{v}.
 \]</span></p>
 </section>
 <section id="definição-2" class="level3">

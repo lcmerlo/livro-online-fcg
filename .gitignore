@@ -1,22 +1,39 @@
-# Arquivos de cache
+# Quarto: temporários/cache
 .quarto/
+_freeze/
+*_files/
 
-# arquivos de saída
+# Quarto: saídas geradas por renderização
 _book/
 _site/
 
-# arquivos de congelamento
-_freeze/
-
-# arquivos de sistema do macOS
+# macOS
 .DS_Store
+**/.DS_Store
 
-# arquivos usualmente gerados por LaTeX
+# Node/Vite
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build gerado dos applets
+applets-src/dist/
+applets-src/.vite/
+assets/js/applets-dist/
+
+# Rascunhos locais - Ativar se não compartilhados
+ Rascunhos/
+ docs/Rascunhos/
+
+# VS Code: 
+.vscode/*.code-workspace
+
+# usualmente gerados por LaTeX
 *.pdf
 *.aux
 *.log
 *.out
 *.toc
-*.synctex.gz
-/.quarto/
-**/*.quarto_ipynb
+*.synctex.gz 

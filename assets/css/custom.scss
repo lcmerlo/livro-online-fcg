@@ -27,6 +27,20 @@ p, li {
   line-height: 1.65;
 }
 
+/*-- scss:geogebra --*/
+
+.geogebra-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.geogebra-container iframe {
+  max-width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+
 
 .fig-leg {
   --fig-width: 70%;

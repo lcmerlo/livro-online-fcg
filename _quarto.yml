@@ -6,16 +6,8 @@ brand: _brand.yml
 
 lang: pt-BR
 
-crossref:
-  custom:
-    - key: exrr
-      kind: float
-      latex-env: exrr
-      reference-prefix: Exercício Resolvido
-      caption-prefix: "Exercício Resolvido"
-      caption-location: top
-
-bibliography: references.bib
+resources:  
+  - assets/js/applets-dist/**
 
 format:
   html:
@@ -32,20 +24,34 @@ format:
     number-depth: 2
     smooth-scroll: true
     anchor-sections: true
-    css: assets/css/custom.scss
+    css: 
+      - assets/css/custom.scss
     callout-appearance: simple
     code-fold: false
     axe: true
+    include-in-header:
+      - assets/includes/applets.html
   pdf:
     documentclass: scrreprt
 
-    
+
 execute:
   freeze: auto
   echo: false
   warning: false
   error: false
      
+
+crossref:
+  custom:
+    - key: exrr
+      kind: float
+      latex-env: exrr
+      reference-prefix: Exercício Resolvido
+      caption-prefix: "Exercício Resolvido"
+      caption-location: top
+
+bibliography: references.bib
 
 book:
   title: "Fundamentos de Cálculo e Geometria"
@@ -59,9 +65,13 @@ book:
     - index.qmd
     #- summary.qmd
     #- intro.qmd
-    - extras/relatorio-design-pedagogico.qmd
-    - extras/biblioteca-estruturas-site-diretrizes.qmd
-    - extras/proposta.qmd
+    #- extras/relatorio-design-pedagogico.qmd
+    #- extras/biblioteca-estruturas-site-diretrizes.qmd
+    #- extras/proposta.qmd
+
+    - Rascunhos/estrutura-pastas-descartardepois.qmd
+    - Rascunhos/paleta-cores.qmd
+    - Rascunhos/jsxgraph-1.qmd
     - capitulos/01-primeiras-nocoes.qmd
     - capitulos/02-segmentos.qmd
     - capitulos/03-segmentos-orientados.qmd

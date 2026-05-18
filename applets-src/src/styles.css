@@ -1,0 +1,19 @@
+.applet-jxg {
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 1 / 1;
+  margin: 1rem 0;
+}
+
+.applet-status {
+  font-size: 0.95rem;
+  color: #5B677A;
+}
+
+.applet-botao {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(31, 41, 51, 0.25);
+  background: #FFFFFF;
+  cursor: pointer;
+}

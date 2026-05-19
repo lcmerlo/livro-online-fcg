@@ -1,18 +1,52 @@
 /*-- scss:defaults --*/
-$body-bg: #F7F4ED;
-$body-color: #1F2933;
-$link-color: #1E5B8A;
+$body-bg: $brand-areia-2;
+$body-color: $brand-grafite-2;
+$link-color: $brand-azul-2;
+
 $font-size-base: 1.05rem;
 $line-height-base: 1.65;
 
 /*-- scss:rules --*/
 :root {
-  --cor-objeto-principal: #1D4ED8;
-  --cor-manipulavel: #0F766E;
-  --cor-construido: #7C3AED;
-  --cor-auxiliar: #64748B;
-  --cor-invariante: #B45309;
-  --cor-erro: #B91C1C;
+  --cor-fundo-a: #{$brand-areia-1};
+  --cor-fundo-b: #{$brand-areia-2};
+  --cor-fundo-c: #{$brand-areia-3};
+
+  --cor-superficie-a: #{$brand-branco-1};
+  --cor-superficie-b: #{$brand-branco-2};
+  --cor-superficie-c: #{$brand-branco-3};
+
+  --cor-texto: #{$brand-grafite-2};
+  --cor-texto-forte: #{$brand-grafite-3};
+  --cor-texto-suave: #{$brand-cinza-2};
+
+  --cor-azul-principal-a: #{$brand-azul-1};
+  --cor-azul-principal-b: #{$brand-azul-2};
+  --cor-azul-principal-c: #{$brand-azul-3};
+
+  --cor-obj-principal-a: #{$brand-azul-7};
+  --cor-obj-principal-b: #{$brand-azul-8};
+  --cor-obj-principal-c: #{$brand-azul-9};
+
+  --cor-manipulavel-a: #{$brand-verde-4};
+  --cor-manipulavel-b: #{$brand-verde-5};
+  --cor-manipulavel-c: #{$brand-verde-6};
+
+  --cor-construido-a: #{$brand-roxo-1};
+  --cor-construido-b: #{$brand-roxo-2};
+  --cor-construido-c: #{$brand-roxo-3};
+
+  --cor-auxiliar-a: #{$brand-cinza-4};
+  --cor-auxiliar-b: #{$brand-cinza-5};
+  --cor-auxiliar-c: #{$brand-cinza-6};
+
+  --cor-invariante-a: #{$brand-laranja-1};
+  --cor-invariante-b: #{$brand-laranja-2};
+  --cor-invariante-c: #{$brand-laranja-3};
+
+  --cor-erro-a: #{$brand-vermelho-4};
+  --cor-erro-b: #{$brand-vermelho-5};
+  --cor-erro-c: #{$brand-vermelho-6};
 }
 
 body {

@@ -1,23 +1,68 @@
 meta:
   name: "Livro Online FCG"
 
+# _brand.yml
 color:
   palette:
-    fundo: "#F7F4ED"
-    superficie: "#FFFFFF"
-    texto: "#1F2933"
-    texto-suave: "#5B677A"
-    azul-principal: "#1E5B8A"
-    azul-objeto: "#1D4ED8"
-    verde-manipulavel: "#0F766E"
-    roxo-construido: "#7C3AED"
-    cinza-auxiliar: "#64748B"
-    amarelo-invariante: "#B45309"
-    vermelho-erro: "#B91C1C"
-  foreground: texto
-  background: fundo
-  primary: azul-principal
-  secondary: texto-suave
+    areia-1: "#FBFAF6"
+    areia-2: "#F7F4ED"
+    areia-3: "#EFE7D8"
+
+    branco-1: "#FFFFFF"
+    branco-2: "#FAFAFA"
+    branco-3: "#F3F4F6"
+
+    grafite-1: "#334155"
+    grafite-2: "#1F2933"
+    grafite-3: "#111827"
+
+    cinza-1: "#7C8798"
+    cinza-2: "#5B677A"
+    cinza-3: "#3F4A5A"
+    cinza-4: "#94A3B8"
+    cinza-5: "#64748B"
+    cinza-6: "#475569"
+
+    azul-1: "#3B79A8"
+    azul-2: "#1E5B8A"
+    azul-3: "#153F60"
+    azul-4: "#7996AE"
+    azul-5: "#5B7C99"
+    azul-6: "#425B71"
+    azul-7: "#3B82F6"
+    azul-8: "#1D4ED8"
+    azul-9: "#1E40AF"
+
+    verde-1: "#3F8C67"
+    verde-2: "#276749"
+    verde-3: "#1B4C36"
+    verde-4: "#14A399"
+    verde-5: "#0F766E"
+    verde-6: "#0B5E58"
+
+    roxo-1: "#A78BFA"
+    roxo-2: "#7C3AED"
+    roxo-3: "#5B21B6"
+
+    ambar-1: "#B77A12"
+    ambar-2: "#946200"
+    ambar-3: "#6B4700"
+
+    laranja-1: "#D97706"
+    laranja-2: "#B45309"
+    laranja-3: "#92400E"
+
+    vermelho-1: "#C34848"
+    vermelho-2: "#9F2D2D"
+    vermelho-3: "#7A2222"
+    vermelho-4: "#DC2626"
+    vermelho-5: "#B91C1C"
+    vermelho-6: "#991B1B"
+
+  foreground: grafite-2
+  background: areia-2
+  primary: azul-2
+  secondary: azul-5
 
 typography:
   fonts:

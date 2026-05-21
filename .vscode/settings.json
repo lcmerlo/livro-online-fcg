@@ -1,5 +1,34 @@
-{ 
+{
   "[quarto]": {
     "editor.defaultFormatter": "quarto.quarto"
-  }
+  },
+
+  "github.copilot.enable": {
+    "*": false,
+
+    "javascript": true,
+    "typescript": true,
+    "json": true,
+    "jsonc": true,
+    "css": true,
+    "scss": true,
+    "html": true,
+
+    "markdown": false,
+    "quarto": false,
+    "latex": false,
+    "plaintext": false,
+    "scminput": false
+  },
+
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.nextEditSuggestions.enabled": false,
+
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
+  "github.copilot.editor.enableCodeActions": false,
+
+  "github.copilot.chat.backgroundAgent.enabled": false,
+  "github.copilot.chat.cloudAgent.enabled": false,
+
+  "chat.disableAIFeatures": false
 }

@@ -10,6 +10,7 @@ Os tópicos foram organizados em uma progressão lógica e coerente, favorecendo
 
 
 Cada lição busca trabalhar uma ideia principal por vez, seguindo, sempre que possível, a estrutura:
+
 * Objetivo
 * Pré-requisitos
 * Ideia central intuitiva
@@ -19,6 +20,6 @@ Cada lição busca trabalhar uma ideia principal por vez, seguindo, sempre que p
 * Applet guiado
 * Erros comuns
 * Exercícios com ajuda
-Exercícios de fixação
+* Exercícios de fixação
 
 Recomenda-se abordar os conteúdos na ordem apresentada. Lendo atentamente as orientações e explorando os applets.  

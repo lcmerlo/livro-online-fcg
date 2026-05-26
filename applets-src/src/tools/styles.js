@@ -1,56 +1,55 @@
-import { cores } from "../cores.js";
+import { CORES } from "../cores.js";
 
 export const estiloPontoManipulavel = {
   size: 5,
   strokeWidth: 2,
-  strokeColor: cores.manipulavel,
-  fillColor: cores.manipulavel,
-  highlightStrokeColor: cores.manipulavel,
-  highlightFillColor: cores.manipulavel,
+  strokeColor: CORES.manipulavel,
+  fillColor: CORES.manipulavel,
+  highlightStrokeColor: CORES.manipulavel,
+  highlightFillColor: CORES.manipulavel,
   fixed: false,
 };
 
 export const estiloPontoFixo = {
   size: 4,
   strokeWidth: 2,
-  strokeColor: cores.texto,
-  fillColor: cores.superficie,
-  highlightStrokeColor: cores.texto,
-  highlightFillColor: cores.superficie,
+  strokeColor: CORES.texto,
+  fillColor: CORES.superficie,
+  highlightStrokeColor: CORES.texto,
+  highlightFillColor: CORES.superficie,
   fixed: true,
 };
 
 export const estiloRetaPrincipal = {
-  strokeColor: cores.objetoPrincipal,
+  strokeColor: CORES.objetoPrincipal,
   strokeWidth: 3,
-  highlightStrokeColor: cores.objetoPrincipal,
+  highlightStrokeColor: CORES.objetoPrincipal,
 };
 
 export const estiloObjetoAuxiliar = {
-  strokeColor: cores.auxiliar,
+  strokeColor: CORES.auxiliar,
   strokeWidth: 1.5,
   dash: 2,
-  highlightStrokeColor: cores.auxiliar,
+  highlightStrokeColor: CORES.auxiliar,
 };
 
 export const estiloObjetoConstruido = {
-  strokeColor: cores.construido,
+  strokeColor: CORES.construido,
   strokeWidth: 2.5,
-  highlightStrokeColor: cores.construido,
+  highlightStrokeColor: CORES.construido,
 };
 
 export const estiloInvariante = {
-  strokeColor: cores.invariante,
-  fillColor: cores.invariante,
+  strokeColor: CORES.invariante,
+  fillColor: CORES.invariante,
   strokeWidth: 2.5,
-  highlightStrokeColor: cores.invariante,
+  highlightStrokeColor: CORES.invariante,
 };
 
 export const estiloErro = {
-  strokeColor: cores.erro,
-  fillColor: cores.erro,
+  strokeColor: CORES.erro,
+  fillColor: CORES.erro,
   strokeWidth: 3,
   dash: 1,
-  highlightStrokeColor: cores.erro,
+  highlightStrokeColor: CORES.erro,
 };
-

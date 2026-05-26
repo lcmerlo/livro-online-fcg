@@ -1,9 +1,10 @@
 // applets-src/src/cores.js
-
-function cor(nome) {
-  return getComputedStyle(document.documentElement)
+export function cor(nome, fallback = "#000000") {
+  const valor = getComputedStyle(document.documentElement)
     .getPropertyValue(nome)
     .trim();
+
+  return valor || fallback;
 }
 
 export const CORES = {

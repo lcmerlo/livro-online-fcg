@@ -22,6 +22,21 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: applets-src/package-lock.json
+
+      - name: Instalar dependências dos applets
+        working-directory: applets-src
+        run: npm ci
+
+      - name: Gerar applets
+        working-directory: applets-src
+        run: npm run build
+
       - name: Instalar Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 

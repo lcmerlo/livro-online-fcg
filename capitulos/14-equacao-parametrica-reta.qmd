@@ -1,4 +1,4 @@
- Equação Paramétrica de Reta
+ # Equação Paramétrica de Reta
 
 Destacamos as seguintes propriedades: 
 

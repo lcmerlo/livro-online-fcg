@@ -3,9 +3,12 @@
 _freeze/
 *_files/
 
+
 # Quarto: saídas geradas por renderização
 _book/
 _site/
+docs/
+
 
 # macOS
 .DS_Store
@@ -25,7 +28,7 @@ assets/js/applets-dist/
 
 # Rascunhos locais - Ativar se não compartilhados
 Rascunhos/
-docs/Rascunhos/
+
 
 # VS Code:
 .vscode/*.code-workspace

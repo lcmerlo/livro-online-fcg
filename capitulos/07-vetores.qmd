@@ -42,7 +42,7 @@ Na seguinte figura interativa mova os vetores com o mouse para determinar quais 
 
 Observe que só existe um vetor nulo e que, embora ele possa ser representado por qualquer ponto ele não deve ser confundido com algum ponto específico.
 
-![](../assets/img/07-vetores/Untitled.png)
+![](../assets/img/07-vetores/untitled.png)
 
 ### Definição
 

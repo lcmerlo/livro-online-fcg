@@ -1,12 +1,19 @@
 /*-- scss:defaults --*/
-$body-bg: $brand-areia-2;
-$body-color: $brand-grafite-2;
-$link-color: $brand-azul-2;
+/* 
+Não usar variáveis de _brand.yml em scss:defaults. 
+Usar diretamente o código da cor.
+*/
+
+$body-bg: #F7F4ED;
+$body-color: #1F2933;
+$link-color: #1E5B8A;
 
 $font-size-base: 1.05rem;
 $line-height-base: 1.65;
 
+
 /*-- scss:rules --*/
+
 :root {
   --cor-fundo-a: #{$brand-areia-1};
   --cor-fundo-b: #{$brand-areia-2};
@@ -61,7 +68,7 @@ p, li {
   line-height: 1.65;
 }
 
-/*-- scss:geogebra --*/
+/* GeoGebra */
 
 .geogebra-container {
   width: 100%;
@@ -73,8 +80,6 @@ p, li {
   max-width: 100%;
   aspect-ratio: 16 / 10;
 }
-
-
 
 .fig-leg {
   --fig-width: 70%;

@@ -1,5 +1,4 @@
 import JXG from "jsxgraph";
-import "jsxgraph/distrib/jsxgraph.css";
 
 import { CORES } from "./cores.js";
 import { criarSegmento } from "./applets/segmento.js";
@@ -80,5 +79,3 @@ export {
   iniciarTodos,
   resetarApplet,
 };
-
-export default AppletsLivro;

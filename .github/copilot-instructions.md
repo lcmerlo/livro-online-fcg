@@ -1,5 +1,7 @@
 # Instruções para o GitHub Copilot
 
+Responda sempre em português do Brasil.
+
 Neste repositório, atue apenas sobre a parte de software do projeto: JavaScript, JSXGraph, Vite, CSS, SCSS, HTML, JSON e arquivos relacionados a build/configuração.
 
 Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito.

@@ -46,6 +46,23 @@ O segmento degenerado $AA$ está contido em infinitas retas.
 
 Note que ao contrário do que ocorre com os segmentos “não degenerados” definidos acima, que estão contidos em uma única reta, os segmentos degenerados estão contidos em infinitas retas.
 
+
+::: {.bloco-applet}
+Neste applet, mova os pontos A e B e observe como o segmento muda.
+
+<div
+  id="jxg-segmento-1"
+  class="applet-jxg"
+  data-applet="segmento"
+  aria-label="Applet interativo sobre segmento com dois pontos móveis.">
+</div>
+
+<button type="button" onclick="window.AppletsLivro.resetarApplet('jxg-segmento-1')">
+  Reiniciar applet
+</button>
+:::
+
+
 ::: {#exrr-coprimento-segmento-deg}
 O comprimento de um segmento não degenerado pode ser zero? 
 :::

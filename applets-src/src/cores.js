@@ -1,4 +1,5 @@
 // applets-src/src/cores.js
+
 export function cor(nome, fallback = "#000000") {
   const valor = getComputedStyle(document.documentElement)
     .getPropertyValue(nome)
@@ -8,27 +9,30 @@ export function cor(nome, fallback = "#000000") {
 }
 
 export const CORES = {
-  objPrincipalA: cor("--cor-obj-principal-a"),
-  objPrincipalB: cor("--cor-obj-principal-b"),
-  objPrincipalC: cor("--cor-obj-principal-c"),
+  texto: cor("--cor-texto"),
+  superf: cor("--cor-superf"),
 
-  manipulavelA: cor("--cor-manipulavel-a"),
-  manipulavelB: cor("--cor-manipulavel-b"),
-  manipulavelC: cor("--cor-manipulavel-c"),
+  objPrincSuave: cor("--cor-obj-princ-suave"),
+  objPrinc: cor("--cor-obj-princ"),
+  objPrincForte: cor("--cor-obj-princ-forte"),
 
-  construidoA: cor("--cor-construido-a"),
-  construidoB: cor("--cor-construido-b"),
-  construidoC: cor("--cor-construido-c"),
+  objManipSuave: cor("--cor-manip-suave"),
+  objManip: cor("--cor-manip"),
+  objManipForte: cor("--cor-manip-forte"),
 
-  auxiliarA: cor("--cor-auxiliar-a"),
-  auxiliarB: cor("--cor-auxiliar-b"),
-  auxiliarC: cor("--cor-auxiliar-c"),
+  objConstrSuave: cor("--cor-constr-suave"),
+  objConstr: cor("--cor-constr"),
+  objConstrForte: cor("--cor-constr-forte"),
 
-  invarianteA: cor("--cor-invariante-a"),
-  invarianteB: cor("--cor-invariante-b"),
-  invarianteC: cor("--cor-invariante-c"),
+  objAuxSuave: cor("--cor-aux-suave"),
+  objAux: cor("--cor-aux"),
+  objAuxForte: cor("--cor-aux-forte"),
 
-  erroA: cor("--cor-erro-a"),
-  erroB: cor("--cor-erro-b"),
-  erroC: cor("--cor-erro-c"),
+  objInvarSuave: cor("--cor-invar-suave"),
+  objInvar: cor("--cor-invar"),
+  objInvarForte: cor("--cor-invar-forte"),
+
+  erroSuave: cor("--cor-erro-suave"),
+  erro: cor("--cor-erro"),
+  erroForte: cor("--cor-erro-forte"),
 };

@@ -1,55 +1,58 @@
 import { CORES } from "../cores.js";
 
-export const estiloPontoManipulavel = {
-  size: 5,
-  strokeWidth: 2,
-  strokeColor: CORES.manipulavel,
-  fillColor: CORES.manipulavel,
-  highlightStrokeColor: CORES.manipulavel,
-  highlightFillColor: CORES.manipulavel,
-  fixed: false,
+export const ESTILOS = {
+  pontoManip: {
+    size: 5,
+    strokeWidth: 2,
+    strokeColor: CORES.objManip,
+    fillColor: CORES.objManip,
+    highlightStrokeColor: CORES.objManip,
+    highlightFillColor: CORES.objManip,
+    fixed: false,
+  },
+
+  pontoFixo: {
+    size: 4,
+    strokeWidth: 2,
+    strokeColor: CORES.texto,
+    fillColor: CORES.superf,
+    highlightStrokeColor: CORES.texto,
+    highlightFillColor: CORES.superf,
+    fixed: true,
+  },
+
+  retaPrinc: {
+    strokeColor: CORES.objPrinc,
+    strokeWidth: 3,
+    highlightStrokeColor: CORES.objPrinc,
+  },
+
+  objAux: {
+    strokeColor: CORES.objAux,
+    strokeWidth: 1.5,
+    dash: 2,
+    highlightStrokeColor: CORES.objAux,
+  },
+
+  objConstr: {
+    strokeColor: CORES.objConstr,
+    strokeWidth: 2.5,
+    highlightStrokeColor: CORES.objConstr,
+  },
+
+  invar: {
+    strokeColor: CORES.objInvar,
+    fillColor: CORES.objInvar,
+    strokeWidth: 2.5,
+    highlightStrokeColor: CORES.objInvar,
+  },
+
+  erro: {
+    strokeColor: CORES.erro,
+    fillColor: CORES.erro,
+    strokeWidth: 3,
+    dash: 1,
+    highlightStrokeColor: CORES.erro,
+  },
 };
 
-export const estiloPontoFixo = {
-  size: 4,
-  strokeWidth: 2,
-  strokeColor: CORES.texto,
-  fillColor: CORES.superficie,
-  highlightStrokeColor: CORES.texto,
-  highlightFillColor: CORES.superficie,
-  fixed: true,
-};
-
-export const estiloRetaPrincipal = {
-  strokeColor: CORES.objetoPrincipal,
-  strokeWidth: 3,
-  highlightStrokeColor: CORES.objetoPrincipal,
-};
-
-export const estiloObjetoAuxiliar = {
-  strokeColor: CORES.auxiliar,
-  strokeWidth: 1.5,
-  dash: 2,
-  highlightStrokeColor: CORES.auxiliar,
-};
-
-export const estiloObjetoConstruido = {
-  strokeColor: CORES.construido,
-  strokeWidth: 2.5,
-  highlightStrokeColor: CORES.construido,
-};
-
-export const estiloInvariante = {
-  strokeColor: CORES.invariante,
-  fillColor: CORES.invariante,
-  strokeWidth: 2.5,
-  highlightStrokeColor: CORES.invariante,
-};
-
-export const estiloErro = {
-  strokeColor: CORES.erro,
-  fillColor: CORES.erro,
-  strokeWidth: 3,
-  dash: 1,
-  highlightStrokeColor: CORES.erro,
-};

@@ -3,6 +3,8 @@
     "editor.defaultFormatter": "quarto.quarto"
   },
 
+  "github.copilot.chat.localeOverride": "pt-BR",
+
   "github.copilot.enable": {
     "*": false,
 
@@ -27,6 +29,7 @@
   "github.copilot.renameSuggestions.triggerAutomatically": false,
   "github.copilot.editor.enableCodeActions": false,
 
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
   "github.copilot.chat.backgroundAgent.enabled": false,
   "github.copilot.chat.cloudAgent.enabled": false,
 

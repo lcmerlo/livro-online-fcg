@@ -26,8 +26,6 @@ format:
     code-fold: false
     axe: true
     include-in-header: assets/includes/applets.html
-  pdf:
-    documentclass: scrreprt
 
 
 execute:

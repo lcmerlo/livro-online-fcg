@@ -40,7 +40,7 @@ applets/ 		- Componentes interativos
 
 ### Comandos principais
 quarto preview      - preview local
-quarto render       - gera o site completo
+quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 
 
 ## Applets

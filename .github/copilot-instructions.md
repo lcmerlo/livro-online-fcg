@@ -18,6 +18,6 @@ Preserve a estrutura atual do projeto. Não renomeie arquivos, pastas, ids, labe
 
 Quando sugerir mudanças relevantes, indique como testar:
 
-- `npm run dev`
+- `npm run watch`
 - `npm run build`
 - `quarto preview`, apenas quando a mudança afetar a integração com o livro

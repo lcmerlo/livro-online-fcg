@@ -1,10 +1,58 @@
 {
+  // ============================================================
+  // 1. QUARTO
+  // ============================================================
+
+  // Usa a extensão oficial do Quarto como formatador padrão
+  // para arquivos .qmd.
   "[quarto]": {
     "editor.defaultFormatter": "quarto.quarto"
   },
 
+
+  // ============================================================
+  // 2. EXPLORER — ORGANIZAÇÃO DO PROJETO
+  // ============================================================
+
+  // Mostra cada diretório separadamente no Explorer.
+  // Evita que cadeias de pastas sejam fundidas visualmente,
+  // facilitando a leitura da estrutura editorial do livro.
+  "explorer.compactFolders": false,
+
+  // Oculta arquivos e diretórios gerados automaticamente
+  // ou que normalmente não precisam ser editados.
+  //
+  // Isso afeta apenas a visualização no Explorer:
+  // os arquivos continuam existindo normalmente.
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.quarto": true,
+    "**/_site": true,
+    "**/node_modules": true
+  },
+
+
+  // ============================================================
+  // 3. GITHUB COPILOT — IDIOMA
+  // ============================================================
+
+  // Solicita que o Copilot Chat utilize pt-BR na interface
+  // e nas respostas quando possível.
   "github.copilot.chat.localeOverride": "pt-BR",
 
+
+  // ============================================================
+  // 4. GITHUB COPILOT — LINGUAGENS HABILITADAS
+  // ============================================================
+
+  // Copilot fica desativado por padrão neste projeto.
+  //
+  // É habilitado apenas nas linguagens em que sugestões de código
+  // são especialmente úteis: JavaScript, TypeScript, JSON,
+  // CSS, SCSS e HTML.
+  //
+  // Fica desativado na escrita editorial em Quarto/Markdown
+  // para evitar sugestões intrusivas durante a redação do livro.
   "github.copilot.enable": {
     "*": false,
 
@@ -23,15 +71,56 @@
     "scminput": false
   },
 
+
+  // ============================================================
+  // 5. SUGESTÕES AUTOMÁTICAS DE IA
+  // ============================================================
+
+  // Desativa sugestões inline ("ghost text") do editor.
+  // Evita que texto gerado automaticamente apareça durante
+  // a escrita dos capítulos.
   "editor.inlineSuggest.enabled": false,
+
+  // Desativa sugestões automáticas de próxima edição do Copilot.
   "github.copilot.nextEditSuggestions.enabled": false,
 
+  // Não sugere automaticamente novos nomes ao renomear símbolos.
   "github.copilot.renameSuggestions.triggerAutomatically": false,
+
+  // Impede que o Copilot ofereça Code Actions automaticamente.
   "github.copilot.editor.enableCodeActions": false,
 
+
+  // ============================================================
+  // 6. COPILOT CHAT E AGENTES
+  // ============================================================
+
+  // Permite que o Copilot Chat utilize arquivos de instruções
+  // definidos no projeto.
+  //
+  // Útil para estabelecer regras específicas para o livro,
+  // Quarto, JavaScript, JSXGraph, nomenclatura etc.
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+
+  // Desativa execução autônoma de agentes em segundo plano.
   "github.copilot.chat.backgroundAgent.enabled": false,
+
+  // Desativa agentes executados remotamente na nuvem.
   "github.copilot.chat.cloudAgent.enabled": false,
 
-  "chat.disableAIFeatures": false
+  // Mantém disponíveis os recursos de IA/chat do VS Code.
+  // Isso não reativa as sugestões inline desabilitadas acima.
+  "chat.disableAIFeatures": false,
+
+
+  // ============================================================
+  // 7. TIPOGRAFIA DO WORKSPACE
+  // ============================================================
+
+  // Fonte usada no editor dentro deste projeto.
+  //
+  // Esta configuração atualmente também existe nas User Settings.
+  // Mantê-la aqui garante que o livro use JetBrains Mono mesmo
+  // se a configuração global for alterada futuramente.
+  "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"
 }

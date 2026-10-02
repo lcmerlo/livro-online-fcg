@@ -23,24 +23,33 @@ Exercícios de fixação
 	- Exemplo de citação: ... @autor2024, ...
 
 
-## Liguagens de desenvolvimento
+## Linguagens de desenvolvimento
 	- Markdown / QMD
 	- LaTeX / BibTeX / MathJax
 	- HTML, CSS/SCSS, JavaScript
 
 
-## Plataforma de desenvolvido - Quarto
+## Plataforma de desenvolvimento - Quarto
 
 ### Arquivos principais
 index.qmd 		-  Página inicial
 _quarto.yml 	- Configuração principal do livro
 _brand.yml 		- Identidade visual
+_language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
-applets/ 		- Componentes interativos
+assets/includes/applets.html - Carrega o bundle dos applets em todas as páginas
+capitulos/ 		- Capítulos listados em '_quarto.yml'
+applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
+assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
+docs/ 			- Site gerado por 'quarto render' (não versionado)
+Rascunhos/ 		- Material ainda não utilizado (capítulos, referências)
+.github/workflows/publish.yml - Renderiza e publica no GitHub Pages
+AGENTS.md 		- Regras para agentes de código
 
 ### Comandos principais
 quarto preview      - preview local
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
+cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 
 
 ## Applets
@@ -60,19 +69,26 @@ quarto render       - gera o site HTML completo em docs/ (o projeto não tem sa�
 	- Desmos
 	- GeoGebra
 
-### Exemplo de incorporação:
+### Exemplo de incorporação (applet JSXGraph próprio):
 ::: {.bloco-applet}
-**Applet.** Mova o ponto e observe a mudança na coordenada.
-<iframe
-src="../applets/jsxgraph/01-primeiras-nocoes/ponto-na-reta.html"
-width="100%"
-height="420"
-loading="lazy"
-title="Applet: ponto na reta">
-</iframe>
+Neste applet, mova os pontos A e B e observe como o segmento muda.
+
+<div
+  id="jxg-segmento-1"
+  class="applet-jxg"
+  data-applet="segmento"
+  aria-label="Applet interativo sobre segmento com dois pontos móveis.">
+</div>
+
+<button type="button" onclick="window.AppletsLivro.resetarApplet('jxg-segmento-1')">
+  Reiniciar applet
+</button>
 :::
 
-## Versionamento e Repositorio Remoto - Git e GitHub
+O valor de `data-applet` deve estar registrado em `applets-src/src/main.js`.
+Applets GeoGebra são incorporados com `<iframe>` dentro de `<div class="geogebra-container">`.
+
+## Versionamento e Repositório Remoto - Git e GitHub
 
 ### Fluxo recomendado
 git status          - verifica alterações
@@ -96,17 +112,8 @@ git push            - envia ao repositório remoto
 
 ### Arquivos principais Git
 
-.gitignore (pastas e arquivos que devem ser ignorados no commit)
-Conteúdo:
-_site/
-_book/
-.quarto/
-.DS_Store
-Thumbs.db
-*.log
-*.aux
-*.out
-*.toc
+.gitignore (pastas e arquivos que não devem ir para o commit): ver o arquivo na raiz.
+Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` e `Rascunhos/` (arquivos novos), temporários do LaTeX.
 
 ## Licença
 	Definir antes da publicação pública.

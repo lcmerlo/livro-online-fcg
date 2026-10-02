@@ -1,6 +1,6 @@
 # Soma e Subtração de Vetores
 
-### Definição
+## Definição
 
  Se $\vec{u}=(a_1,a_2)$ e  $\vec{v}=(b_1,b_2)$, a soma de $\vec{u}$ e $\vec{v}$ e a subtração de $\vec{u}$ por $\vec{v}$ são os vetores dados, respectivamente, por
 
@@ -17,7 +17,7 @@ $$
 \vec{u}+\vec{v}=(6,2), \ \vec{u}-\vec{v}=(-2,-4)  \quad \text{e} \quad   \vec{v}-\vec{u}=(2,4).
 $$
 
-### Proposição
+## Proposição
 
 Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\mathbb{R}$. Valem as seguintes propriedades:
 
@@ -31,7 +31,7 @@ Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\mathbb{R}$. Valem as seguintes pro
 8. $\lVert \vec{u} + \vec{v} \rVert \leq \lVert \vec{u} \rVert + \lVert \vec{v} \rVert.$  *Desigualdade Triangular para Vetores.*
 
 
-### Interpretação Geométrica da Soma e Subtração de Vetores
+## Interpretação Geométrica da Soma e Subtração de Vetores
 
 Dados vetores $\vec{u}$ e $\vec{v}$, podemos representar $\vec{u}+\vec{v}$ e $\vec{u}-\vec{v}$ geometricamente  como segue.
 

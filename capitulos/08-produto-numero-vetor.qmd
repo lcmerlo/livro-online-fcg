@@ -1,6 +1,6 @@
 # Produto entre Número e Vetor
 
-### Definição
+## Definição
 
  Dados um número  $a \in \mathbb{R}$ e um vetor  $\vec{v}=(x,y)$, definimos o produto entre eles como o vetor  $a\vec{v}=(ax,ay)$, ou seja,  $a(x,y)=(ax,ay)$.
 
@@ -8,7 +8,7 @@
 
 O produto entre o número $2$ e o vetor $(3,-5)$ é o vetor  $2(3,-5)=(6,-10)$.
 
-### Proposição
+## Proposição
 
 Valem as seguintes propriedades.
 
@@ -19,7 +19,7 @@ Valem as seguintes propriedades.
 5. $\|a\vec{v}\|=|a|\cdot\|\vec{v}\|$.
 
 
-### Definição
+## Definição
 
 Um vetor $\vec{u}$ é dito múltiplo de $\vec{v}$ se existe um número $a$ tal que $\vec{u}=a\vec{v}$.
 
@@ -38,7 +38,7 @@ Nesta situação também dizemos que  $\vec{u}$  e  $\vec{v}$ são múltiplos.
 
 A proposição a seguir fornece a interpretação geométrica do produto entre número e vetor.
 
-### Proposição
+## Proposição
 
 Dados um número $a\in\mathbb{R}$ e um vetor $\vec{v}$, o produto  $a\vec{v}$ é único vetor tal que:
 
@@ -66,7 +66,7 @@ sentido:   $a\vec{v} \,  \begin{cases}  \text{tem o mesmo sentido de } \vec{v}, 
 </div>
 
 
-### Proposição
+## Proposição
 
 Se $\vec{u}$ e $\vec{v}$ são vetores não nulos temos:
 
@@ -74,7 +74,7 @@ $$
 \vec{u} \ \text{ e }\ \vec{v} \text{ são múltiplos } \  \Leftrightarrow \vec{u}\parallel\vec{v}.
 $$
 
-### Definição
+## Definição
 
 Por simplicidade denotaremos $\text{-}\,\vec{v}=(\text{-}1)\vec{v}$. O vetor $\text{-}\,\vec{v}$  chamado de vetor **simétrico** ou **oposto** de   $\vec{v}$.
 

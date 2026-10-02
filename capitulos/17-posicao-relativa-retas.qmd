@@ -1,6 +1,6 @@
 # Posição Relativa Entre Retas
 
-### Definição **posições relativas entre retas**
+## Definição **posições relativas entre retas**
 
 Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** entre elas. Elas podem ser:
 
@@ -12,7 +12,7 @@ Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** 
 ![](https://www.geogebra.org/resource/sgp8k4n7/dpUTQdM80b6ukp4J/material-sgp8k4n7.png)
 -->
 
-### Proposição
+## Proposição
 
 
  Sejam $r$ e $s$ duas retas tais que $\vec{u}\parallel r$, $\vec{v}\parallel s$, $\vec{m}\perp r$ e $\vec{n}\perp s$.
@@ -39,7 +39,7 @@ Para que $r$ e $s$ sejam **concorrentes**, basta valer um dos casos:
 ![](https://www.geogebra.org/resource/eskf8qpv/UvXJ0VLajvdEDIb8/material-eskf8qpv.png)
 -->
 
-### Proposição
+## Proposição
 
  Dadas as retas $r:ax+by=c$ e $s:a'x+b'y=c'$ temos:
 

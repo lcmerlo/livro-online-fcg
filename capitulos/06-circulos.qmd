@@ -10,7 +10,7 @@ $$
 
 Isso pode ser visualizado no applet a seguir.
 
-[Você pode mover o centro $A$ e alterar o raio $r$.](geogebra/h6vdnv3c)
+[Você pode mover o centro $A$ e alterar o raio $r$.](https://www.geogebra.org/m/h6vdnv3c)
 
 Você pode mover o centro $A$ e alterar o raio $r$.
 

@@ -1,6 +1,6 @@
 # Posições Relativas entre Reta e Círculo
 
-### Definição
+## Definição
 
 
  Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
@@ -10,7 +10,7 @@
 - $\mathcal{C} \cap \ell = \emptyset.$ Neste caso, dizemos que $\ell$ **é exterior a** $\mathcal{C}.$
 
 
-### Proposição
+## Proposição
 
 
  Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:

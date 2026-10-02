@@ -1,6 +1,6 @@
 # Combinação Linear
 
-### Definição
+## Definição
 
  Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{m}$ da forma
 
@@ -35,7 +35,7 @@ Quais vetores são obtidos como combinação linear de um único vetor $\vec{v}$
 Qualquer vetor $\vec{m}$  que for múltiplo de $\vec{v}$, ou seja, 
 $\vec{m} = a \vec{v}$,  com $a \in \mathbb{R}$.
     
-### Proposição
+## Proposição
 
  Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \mathbb{R}$ e existe um único $b\in \mathbb{R}$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
 

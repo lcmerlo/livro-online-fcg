@@ -1,19 +1,76 @@
 /*-- scss:defaults --*/
-$body-bg: #F7F4ED;
-$body-color: #1F2933;
-$link-color: #1E5B8A;
+/*
+Cores de fundo, texto e link vêm de _brand.yml (background, foreground, link).
+*/
+
 $font-size-base: 1.05rem;
 $line-height-base: 1.65;
 
+
 /*-- scss:rules --*/
+
+
+/* =========================================================
+   1. TOKENS
+   Cores semânticas reutilizadas pelo site e pelos applets
+   ========================================================= */
+
 :root {
-  --cor-objeto-principal: #1D4ED8;
-  --cor-manipulavel: #0F766E;
-  --cor-construido: #7C3AED;
-  --cor-auxiliar: #64748B;
-  --cor-invariante: #B45309;
-  --cor-erro: #B91C1C;
+  /* Fundos */
+  --cor-fundo-suave: #{$brand-areia-1};
+  --cor-fundo: #{$brand-areia-2};
+  --cor-fundo-forte: #{$brand-areia-3};
+
+  /* Superfícies */
+  --cor-superf-suave: #{$brand-branco-1};
+  --cor-superf: #{$brand-branco-2};
+  --cor-superf-forte: #{$brand-branco-3};
+
+  /* Texto */
+  --cor-texto: #{$brand-grafite-2};
+  --cor-texto-forte: #{$brand-grafite-3};
+  --cor-texto-suave: #{$brand-cinza-2};
+
+  /* Interface */
+  --cor-azul-princ-suave: #{$brand-azul-1};
+  --cor-azul-princ: #{$brand-azul-2};
+  --cor-azul-princ-forte: #{$brand-azul-3};
+  --cor-azul-apoio: #{$brand-azul-5};
+
+  /* Objetos matemáticos */
+  --cor-obj-princ-suave: #{$brand-azul-7};
+  --cor-obj-princ: #{$brand-azul-8};
+  --cor-obj-princ-forte: #{$brand-azul-9};
+
+  --cor-manip-suave: #{$brand-verde-4};
+  --cor-manip: #{$brand-verde-5};
+  --cor-manip-forte: #{$brand-verde-6};
+
+  --cor-constr-suave: #{$brand-roxo-1};
+  --cor-constr: #{$brand-roxo-2};
+  --cor-constr-forte: #{$brand-roxo-3};
+
+  --cor-aux-suave: #{$brand-cinza-4};
+  --cor-aux: #{$brand-cinza-5};
+  --cor-aux-forte: #{$brand-cinza-6};
+
+  --cor-invar-suave: #{$brand-laranja-1};
+  --cor-invar: #{$brand-laranja-2};
+  --cor-invar-forte: #{$brand-laranja-3};
+
+  --cor-erro-suave: #{$brand-vermelho-4};
+  --cor-erro: #{$brand-vermelho-5};
+  --cor-erro-forte: #{$brand-vermelho-6};
+
+  /* Elementos estruturais */
+  --cor-borda-suave: #{rgba($brand-grafite-2, 0.12)};
 }
+
+
+/* =========================================================
+   2. LAYOUT
+   Estrutura geral da página
+   ========================================================= */
 
 body {
   max-width: none;
@@ -23,55 +80,66 @@ main.content {
   max-width: 76ch;
 }
 
-p, li {
-  line-height: 1.65;
+p,
+li {
+  line-height: $line-height-base;
 }
 
-/*-- scss:geogebra --*/
+
+/* =========================================================
+   3. COMPONENTES
+   Elementos visuais, blocos didáticos e acessibilidade
+   ========================================================= */
+
+/* GeoGebra */
 
 .geogebra-container {
   width: 100%;
   overflow-x: auto;
   margin: 1rem 0;
+
+  iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 0;
+  }
 }
 
-.geogebra-container iframe {
-  max-width: 100%;
-  aspect-ratio: 16 / 10;
-}
 
-
+/* Figuras com legenda */
 
 .fig-leg {
   --fig-width: 70%;
   --legenda-min-width: 50%;
+
+  @each $largura in 30, 40, 50, 60, 70, 80 {
+    &.w#{$largura} {
+      --fig-width: #{$largura}#{'%'};
+    }
+  }
+
+  img {
+    display: block;
+    width: var(--fig-width);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  figcaption,
+  .figure-caption,
+  .quarto-float-caption {
+    width: max(var(--fig-width), var(--legenda-min-width));
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
 }
 
-.fig-leg.w30 { --fig-width: 30%; }
-.fig-leg.w40 { --fig-width: 40%; }
-.fig-leg.w50 { --fig-width: 50%; }
-.fig-leg.w60 { --fig-width: 60%; }
-.fig-leg.w70 { --fig-width: 70%; }
-.fig-leg.w80 { --fig-width: 80%; }
 
-.fig-leg img {
-  display: block;
-  width: var(--fig-width);
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.fig-leg figcaption,
-.fig-leg .figure-caption,
-.fig-leg .quarto-float-caption {
-  width: max(var(--fig-width), var(--legenda-min-width));
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
+/* Blocos didáticos */
 
 .bloco-objetivo,
 .bloco-pre-requisitos,
@@ -79,28 +147,53 @@ p, li {
 .bloco-applet,
 .bloco-erro,
 .bloco-checkpoint {
+  border: 1px solid var(--cor-borda-suave);
   border-radius: 0.75rem;
   padding: 1rem 1.1rem;
   margin: 1.25rem 0;
-  /* background: #FFFFFF; */
-  border: 1px solid rgba(31, 41, 51, 0.12);
 }
 
-.bloco-objetivo { border-left: 6px solid #1E5B8A; }
-.bloco-pre-requisitos { border-left: 6px solid #5B7C99; }
-.bloco-exemplo { border-left: 6px solid #7C3AED; }
-.bloco-applet { border-left: 6px solid #0F766E; }
-.bloco-erro { border-left: 6px solid #B91C1C; }
-.bloco-checkpoint { border-left: 6px solid #B45309; }
+@each $nome, $cor in (
+  objetivo: var(--cor-azul-princ),
+  pre-requisitos: var(--cor-azul-apoio),
+  exemplo: var(--cor-constr),
+  applet: var(--cor-manip),
+  erro: var(--cor-erro),
+  checkpoint: var(--cor-invar)
+) {
+  .bloco-#{$nome} {
+    border-left: 6px solid $cor;
+  }
+}
 
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid #1E5B8A;
+/* Applets JSXGraph */
+
+.applet-jxg {
+  width: 100%;
+  max-width: 820px;
+  height: clamp(280px, 70vw, 520px);
+  margin: 1rem 0;
+}
+
+.applet-status {
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+.applet-botao {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--cor-borda-suave);
+  background: var(--cor-superf-forte);
+  cursor: pointer;
+}
+
+
+/* Acessibilidade */
+
+:focus-visible {
+  outline: 3px solid var(--cor-azul-princ);
   outline-offset: 3px;
 }
 

@@ -64,7 +64,7 @@ Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** 
 - **Concorrentes**: quando se intersectam em um ponto, isto é, $r\cap s=\{P\}.$
 
 
-# Distância
+## Distância
 
 **Começar com ideia intuitiva "usando fita métrica"**
 
@@ -104,3 +104,4 @@ Mova os pontos no applet abaixo e perceba que temos três desigualdades triangul
     allowfullscreen>
   </iframe>
 </div>
+

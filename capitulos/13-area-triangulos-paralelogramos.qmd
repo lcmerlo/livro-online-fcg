@@ -1,12 +1,12 @@
 # Área de triângulos e paralelogramos
 
-### Definição
+## Definição
 
  Dizemos que um paralelogramo  $\mathcal{P}$  tem lados $\vec{u}$ e $\vec{v}$  se um dos lados orientados de $\mathcal{P}$ for representante de $\vec{u}$  e o outro lado orientado de $\mathcal{P}$ for representante de $\vec{v}$.
 
 ![](../assets/img/13-area-triangulos-paralelogramos/untitled.png)
 
-### Proposição
+## Proposição
 
  Se  $\vec{u}=\left(a_1,a_2\right)$  e   $\vec{v}=\left(b_1,b_2\right)$  são os lados de  um paralelogramo $\mathcal{P}$, como na figura acima, então a área de $\mathcal{P}$ é dada por
 

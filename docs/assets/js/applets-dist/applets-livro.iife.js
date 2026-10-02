@@ -1,1 +1,0 @@
-(function(){window.AppletsLivro=window.AppletsLivro||{},console.log(`AppletsLivro carregado.`)})();

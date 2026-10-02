@@ -1,6 +1,6 @@
 # Produto Interno ou Escalar
 
-### Definição 1
+## Definição 1
 
  Dados vetores $\vec{u}=(a_1,a_2)$ e $\vec{v}=(b_1,b_2)$, o produto interno ou escalar entre eles é definido por
 $$
@@ -17,7 +17,7 @@ $$
 \langle \vec{u} ,\vec{v}\rangle=1\cdot3+(-4)\cdot2=-5.
 $$
 
-### Proposição 1
+## Proposição 1
 
  Valem as seguintes propriedades:
 
@@ -29,11 +29,11 @@ a\vec{u},\vec{v}\right\rangle=\left\langle\vec{u},a\vec{v}\right\rangle=a\left\l
 5. $\left\langle\vec{u,}\vec{v}+\vec{w}\right\rangle=\left\langle\vec{u},\vec{v}\right\rangle+\left\langle\vec{u},\vec{w}\right\rangle$.
 
 
-### **Interpretação geométrica do produto interno.**
+## **Interpretação geométrica do produto interno.**
 
 O produto interno entre dois vetores está intimamente relacionado com o comprimento dos vetores e o ângulo formado por eles, como veremos.
 
-### Definição 2
+## Definição 2
 
  Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vec{OA}$ e $\vec{v}=\vec{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
 
@@ -49,7 +49,7 @@ O produto interno entre dois vetores está intimamente relacionado com o comprim
 </div>
 
 
-### Proposição 2
+## Proposição 2
 
  O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
 
@@ -60,7 +60,7 @@ $$
 
 A próxima proposição é consequência do resultado acima e e será muito utilizada ao longo do curso.
 
-### Proposição 3
+## Proposição 3
 
  Se $\vec{u}$ e $\vec{v}$  são vetores não nulos, dizemos que eles são perpendiculares ( $\vec{u}\perp\vec{v}$ ) se, e somente se
 

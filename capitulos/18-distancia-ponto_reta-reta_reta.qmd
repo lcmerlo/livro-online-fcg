@@ -1,12 +1,12 @@
 # Distância: Entre Ponto e Reta e Entre Retas
 
-### Definição
+## Definição
 
  A **distância de um ponto** $P$ a uma reta $r,$ denotada por $d(P,r),$ é a distância de $P$ até o ponto $Q\in r$ que está mais próximo de $P.$
 
 Se $P\in r$ então o ponto de $r$ mais próximo de $P$ é o próprio $P$ e  $d(P,r)=d(P,P)=0.$
 
-### Proposição
+## Proposição
 
 Se $P\notin r$ então $d(P,r)=d(P,Q),$ onde $Q$ é o **Pé da Perpendicular a** $r$ **por** $P,$ ou seja, $Q$ é o ponto de interseção da reta $r$ com a reta perpendicular a $r$ que passa por $P.$
 
@@ -18,7 +18,7 @@ De fato, se $R\in r$ e $R\neq Q,$ então o $\bigtriangleup PQR$ (figura abaixo) 
 ![](https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png)
 -->
 
-### Proposição (Fórmula da distância entre ponto e reta)
+## Proposição (Fórmula da distância entre ponto e reta)
 
  Se $P=(x_0,y_0)$ e $r:ax+by+c=0,$ então
 
@@ -75,7 +75,7 @@ $d(P,\ell)=\frac{|3(t)+4(-t)-2|}{\sqrt{3^2+4^2}}=1 \Leftrightarrow |-t-2|=5 \Lef
 donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
 
 
-# Distância entre retas
+## Distância entre retas
 
 ### Definição
 

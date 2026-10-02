@@ -8,9 +8,12 @@ export function criarSegmento({ id, JXG }) {
     return null;
   }
 
+  const titulo = elemento.getAttribute("aria-label") ?? "";
+
   elemento.innerHTML = "";
 
   const board = JXG.JSXGraph.initBoard(id, {
+    title: titulo,
     boundingbox: [-1, 5, 7, -1],
     axis: true,
     grid: true,

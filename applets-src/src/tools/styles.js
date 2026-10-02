@@ -9,6 +9,7 @@ export const ESTILOS = {
     highlightStrokeColor: CORES.objManip,
     highlightFillColor: CORES.objManip,
     fixed: false,
+    tabindex: 0,
   },
 
   pontoFixo: {

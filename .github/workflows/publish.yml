@@ -31,10 +31,7 @@ jobs:
 
       - name: Instalar dependências dos applets
         working-directory: applets-src
-        run: |
-        rm -f package-lock.json
-        rm -rf node_modules
-        npm install
+        run: npm ci
 
       - name: Gerar applets
         working-directory: applets-src

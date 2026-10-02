@@ -167,6 +167,29 @@ li {
 }
 
 
+/* Applets JSXGraph */
+
+.applet-jxg {
+  width: 100%;
+  max-width: 820px;
+  height: clamp(280px, 70vw, 520px);
+  margin: 1rem 0;
+}
+
+.applet-status {
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+.applet-botao {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--cor-borda-suave);
+  background: var(--cor-superf-forte);
+  cursor: pointer;
+}
+
+
 /* Acessibilidade */
 
 :focus-visible {

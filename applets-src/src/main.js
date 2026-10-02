@@ -1,4 +1,5 @@
 import JXG from "jsxgraph";
+import "../node_modules/jsxgraph/distrib/jsxgraph.css";
 
 import { CORES } from "./cores.js";
 import { criarSegmento } from "./applets/segmento.js";

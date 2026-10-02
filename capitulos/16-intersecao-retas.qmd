@@ -1,6 +1,6 @@
 # Interseção de Retas
 
-### Proposição
+## Proposição
 
  O ponto de interseção entre retas dadas por equações é o ponto $(x,y)$, onde $x$ e $y$ são soluções do sistema obtido pelas equações das retas envolvidas.
 

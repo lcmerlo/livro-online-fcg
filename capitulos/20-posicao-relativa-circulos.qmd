@@ -1,6 +1,6 @@
 # Posição Relativa entre Círculos
 
-### Definição 1
+## Definição 1
 
  Dizemos que dois círculos  $\mathcal{C}_1$  e  $\mathcal{C}_2$  são:
 
@@ -9,7 +9,7 @@
 - **secantes** em  $A$  e  $B$  se  $\mathcal{C}_1\cap\mathcal{C}_2=\{A,B\}$.
 
 
-### Proposição
+## Proposição
 
  Sejam  $\mathcal{C}_1$  e  $\mathcal{C}_2$  círculos tangentes em  $T$.
 
@@ -19,7 +19,7 @@
     ![material-uenb96uj.png](../assets/img/posicao-relativa-circulos/material-uenb96uj.png)
     
 
-### **Proposição**
+## **Proposição**
 
  Dados dois círculos  $\mathcal{C}_1$  e  $\mathcal{C}_2$ de centro $O_1$ e $O_2$ e raio $r_1$ e $r_2$, respectivamente, temos que $\mathcal{C}_1$ e $\mathcal{C}_2$ são:
 

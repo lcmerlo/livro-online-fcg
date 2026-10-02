@@ -1,6 +1,6 @@
 # Projeção Ortogonal
 
-### Definição
+## Definição
 
  Dados vetores $\vec{u}$ e $\vec{v}$, com $\vec{u}\ne\vec{0}$, definimos a projeção ortogonal de $\vec{v}$ em $\vec{u}$ como sendo o vetor dado por
 
@@ -16,7 +16,7 @@ $$
 \lVert^2}(1,1)=\frac{5}{2}(1,1)=\left(\frac{5}{2},\frac{5}{2}\right).
 $$
 
-### **Interpretação Geométrica da Projeção Ortogonal.**
+## **Interpretação Geométrica da Projeção Ortogonal.**
 
 Intuitivamente, se imaginarmos que o vetor $\vec{u}$ é paralelo ao "solo" então o vetor ${ Proj}_{\:\vec{u}}{\:\vec{v}}$  corresponde a "sombra" que o vetor $\vec{v}$ projeta no solo ao meio dia.
 
@@ -36,7 +36,7 @@ Além disso, se os vetores  $\vec{u}$  e  $\vec{v}$  não forem paralelos nem pe
 
 Em particular, se $\vec{v}\neq\vec{p}= { Proj}_{\:\vec{u}}\:\vec{v}$  , isto é,  se $\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \neq \vec{0}$, observamos, na representação acima, que $\vec{v}- { Proj}_{\:\vec{u}}\:\vec{v} \perp \vec{u}$. Esta propriedade está descrita no item 2 da próxima proposição.
 
-### Proposição
+## Proposição
 
  Nas condições da definição acima valem as seguintes propriedades.
 

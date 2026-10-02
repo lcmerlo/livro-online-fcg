@@ -1,6 +1,6 @@
 # Eixos
 
-### Definição de Eixo
+## Definição de Eixo
 
  Algumas características intuitivas de tais objetos são:
 
@@ -34,7 +34,7 @@ Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 [geogebra/f2zqppmu](geogebra/f2zqppmu)
 -->
 
-### Proposição
+## Proposição
 
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então a distância entre $P$ e $Q$ é dada pela fórmula $d\left(P,Q\right)= | p-q|$.
 
@@ -53,11 +53,11 @@ Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivament
 [geogebra/zt4dnqjy](geogebra/zt4dnqjy)
 -->
 
-### Definição de Ponto Médio
+## Definição de Ponto Médio
 
 O **ponto médio** de um segmento $PQ$ é o ponto $M$ que pertencente ao segmento e tal que $d\left(P,M\right)=d\left(Q,M\right)$.
 
-### Proposição
+## Proposição
 
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então o ponto médio $M$ de $PQ$ tem coordenada $m=\dfrac{p+q}{2}$.
 

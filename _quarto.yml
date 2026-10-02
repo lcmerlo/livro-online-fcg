@@ -44,7 +44,6 @@ crossref:
       caption-prefix: "Exercício Resolvido"
       caption-location: top
 
-bibliography: references.bib
 
 book:
   title: "Fundamentos de Cálculo e Geometria"

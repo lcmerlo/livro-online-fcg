@@ -18,7 +18,8 @@ Exercícios com ajuda
 Exercícios de fixação
 
 ## Bibliografia
-	- Referências em  'references.bib'
+	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em 'Rascunhos/'
+	- Para ativar: mover os dois para a raiz, listar 'references.qmd' ao fim de 'chapters' e restaurar 'bibliography: references.bib' em '_quarto.yml'
 	- Exemplo de citação: ... @autor2024, ...
 
 
@@ -32,7 +33,6 @@ Exercícios de fixação
 
 ### Arquivos principais
 index.qmd 		-  Página inicial
-references.bib 	-  Referências bibliográficas
 _quarto.yml 	- Configuração principal do livro
 _brand.yml 		- Identidade visual
 assets/css/custom.scss - Estilos próprios

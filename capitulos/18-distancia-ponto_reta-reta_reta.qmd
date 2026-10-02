@@ -75,7 +75,7 @@ $d(P,\ell)=\frac{|3(t)+4(-t)-2|}{\sqrt{3^2+4^2}}=1 \Leftrightarrow |-t-2|=5 \Lef
 donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
 
 
-# Distância entre retas
+## Distância entre retas
 
 ### Definição
 

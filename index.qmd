@@ -1,4 +1,4 @@
-# {.unnumbered}
+# Apresentação {.unnumbered}
 
 Este material foi desenvolvido pelo corpo docente do GGM-IME para o curso **Fundamentos de Cálculo e Geometria** oferecido pela UFF. 
 

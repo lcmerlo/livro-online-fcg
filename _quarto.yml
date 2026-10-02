@@ -9,7 +9,6 @@ resources: assets/js/applets-dist/**
 format:
   html:
     theme:
-      # - sandstone
       - cosmo
       - brand
       - assets/css/custom.scss
@@ -21,25 +20,20 @@ format:
     number-sections: true
     number-depth: 2
     smooth-scroll: true
-    anchor-sections: true
     callout-appearance: simple
-    code-fold: false
     axe: true
     include-in-header: assets/includes/applets.html
 
 
 execute:
-  freeze: auto
   echo: false
   warning: false
   error: false
-     
 
 crossref:
   custom:
     - key: exrr
       kind: float
-      latex-env: exrr
       reference-prefix: Exercício Resolvido
       caption-prefix: "Exercício Resolvido"
       caption-location: top
@@ -55,8 +49,6 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- summary.qmd
-    #- intro.qmd
     #- extras/relatorio-design-pedagogico.qmd
     #- extras/biblioteca-estruturas-site-diretrizes.qmd
     #- extras/proposta.qmd

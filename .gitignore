@@ -8,6 +8,8 @@ _freeze/
 _book/
 _site/
 docs/
+/index.tex
+extras/*.html
 
 
 # macOS
@@ -31,7 +33,10 @@ Rascunhos/
 
 
 # VS Code:
-.vscode/*.code-workspace
+*.code-workspace
+
+# Relatórios e rascunhos locais de auditoria
+_scratch/
 
 # usualmente gerados por LaTeX
 *.pdf
@@ -40,5 +45,4 @@ Rascunhos/
 *.out
 *.toc
 *.synctex.gz
-/.quarto/
 **/*.quarto_ipynb

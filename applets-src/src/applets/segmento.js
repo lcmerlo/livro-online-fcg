@@ -1,7 +1,4 @@
-import {
-  estiloPontoManipulavel,
-  estiloRetaPrincipal,
-} from "../tools/styles.js";
+import { ESTILOS } from "../tools/styles.js";
 
 export function criarSegmento({ id, JXG }) {
   const elemento = document.getElementById(id);
@@ -27,17 +24,17 @@ export function criarSegmento({ id, JXG }) {
 
   const A = board.create("point", A0, {
     name: "A",
-    ...estiloPontoManipulavel,
+    ...ESTILOS.pontoManip,
   });
 
   const B = board.create("point", B0, {
     name: "B",
-    ...estiloPontoManipulavel,
+    ...ESTILOS.pontoManip,
   });
 
   const segmento = board.create("segment", [A, B], {
     name: "AB",
-    ...estiloRetaPrincipal,
+    ...ESTILOS.retaPrinc,
   });
 
   function reset() {

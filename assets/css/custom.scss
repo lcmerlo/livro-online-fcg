@@ -1,12 +1,7 @@
 /*-- scss:defaults --*/
 /*
-Não usar variáveis de _brand.yml em scss:defaults.
-Usar diretamente o código da cor.
+Cores de fundo, texto e link vêm de _brand.yml (background, foreground, link).
 */
-
-$body-bg: #F7F4ED;
-$body-color: #1F2933;
-$link-color: #1E5B8A;
 
 $font-size-base: 1.05rem;
 $line-height-base: 1.65;

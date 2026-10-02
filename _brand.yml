@@ -63,6 +63,7 @@ color:
   background: areia-2
   primary: azul-2
   secondary: azul-5
+  link: azul-2
 
 typography:
   fonts:

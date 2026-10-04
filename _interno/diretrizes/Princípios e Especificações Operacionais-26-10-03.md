@@ -12,9 +12,9 @@ Neste estágio, a prioridade é estabelecer uma arquitetura global simples, cons
 
 ### Nota sobre fontes e documentos relacionados
 
-Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §32, §33, §40 e §41). O único relatório versionado é `relatorio-design-pedagogico.qmd`, e ele sustenta apenas parte dessas passagens:
+Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §32, §33, §40 e §41). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, e ele sustenta apenas parte dessas passagens:
 
-| § | Passagem | Em `relatorio-design-pedagogico.qmd` |
+| § | Passagem | Em `relatorio-design-pedagogico-26-05-14.qmd` |
 |---|---|---|
 | 20 | Limitar a stack e atribuir funções distintas às ferramentas | Sim (comparação JSXGraph, GeoGebra, CindyJS e Desmos) |
 | 33 | Contraste, teclado e conteúdo dinâmico como requisitos | Sim |
@@ -28,7 +28,7 @@ As passagens sem correspondência remetem, provavelmente, a uma versão revista 
 Documentos relacionados, todos nesta pasta:
 
 - `guia-editorial.md`: regras curtas para quem escreve capítulos (§37);
-- `relatorio-design-pedagogico.qmd`, `biblioteca-estruturas-site-diretrizes.qmd`, `blocos-proposicoes.qmd` e `proposta.qmd`: material de apoio anterior a este documento.
+- `relatorio-design-pedagogico-26-05-14.qmd`, `biblioteca-estruturas-site-diretrizes.qmd`, `blocos-proposicoes.qmd` e `proposta.qmd`: material de apoio anterior a este documento.
 
 # Parte 1 — Princípios
 

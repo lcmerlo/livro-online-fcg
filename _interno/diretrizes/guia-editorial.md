@@ -1,6 +1,6 @@
 # Guia editorial
 
-Guia curto para quem escreve ou revisa capítulos. A justificativa de cada regra está em `Princípios e Especificações Operacionais 26-10-03.md` (§ entre parênteses). Em caso de conflito, o documento de Princípios prevalece.
+Guia curto para quem escreve ou revisa capítulos. A justificativa de cada regra está em `Princípios e Especificações Operacionais-26-10-03.md` (§ entre parênteses). Em caso de conflito, o documento de Princípios prevalece.
 
 ## 1. Estrutura de um tópico (§5, §22)
 

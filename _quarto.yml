@@ -52,7 +52,7 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- _interno/diretrizes/relatorio-design-pedagogico.qmd
+    #- _interno/diretrizes/relatorio-design-pedagogico-26-05-14.qmd
     #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
     #- _interno/diretrizes/proposta.qmd
     - capitulos/01-primeiras-nocoes.qmd

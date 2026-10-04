@@ -10,6 +10,15 @@ Essa distinção é importante porque princípios de aprendizagem não determina
 
 Neste estágio, a prioridade é estabelecer uma arquitetura global simples, consistente e extensível. Recursos mais sofisticados — como adaptação automática, telemetria detalhada, sistemas de recomendação, feedback dinâmico complexo ou personalização baseada em dados — devem ser incorporados posteriormente, quando houver uma base estável e evidências de que sua inclusão responde a necessidades pedagógicas reais.
 
+### Nota sobre fontes e documentos relacionados
+
+Este documento cita um "relatório revisto" e uma "revisão anterior" (§20, §22, §32, §33, §40 e §41). Esse texto **não está versionado neste repositório**. A versão disponível, `relatorio-design-pedagogico.qmd`, não contém as menções à telemetria, aos eventos de interação e à pilotagem comentadas aqui, e por isso não deve ser tomada como a fonte dessas passagens. Até que o relatório revisto seja localizado e versionado, as passagens que o citam valem como registro de contexto, não como referência verificável.
+
+Documentos relacionados, todos nesta pasta:
+
+- `guia-editorial.md`: regras curtas para quem escreve capítulos (§37);
+- `relatorio-design-pedagogico.qmd`, `biblioteca-estruturas-site-diretrizes.qmd`, `blocos-proposicoes.qmd` e `proposta.qmd`: material de apoio anterior a este documento.
+
 # Parte 1 — Princípios
 
 ## 1. A aprendizagem deve orientar o design
@@ -300,9 +309,11 @@ A primeira fase deve minimizar dependências externas e evitar múltiplas soluç
 
 Para interatividade matemática customizada, recomenda-se manter **JSXGraph como solução principal**, especialmente quando houver necessidade de integração direta ao HTML, controle visual, versionamento e desenvolvimento de componentes próprios.
 
-Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriormente ou em situações claramente justificadas pela natureza da representação matemática. A própria revisão anterior já apontava a vantagem de limitar a stack e atribuir funções distintas às ferramentas.
+Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriormente ou em situações claramente justificadas pela natureza da representação matemática. A revisão anterior (ver Nota sobre fontes) já apontava a vantagem de limitar a stack e atribuir funções distintas às ferramentas.
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
+
+**Estado em outubro de 2026.** Os capítulos publicados incorporam 15 applets do GeoGebra por `<iframe>` e apenas um applet JSXGraph próprio (capítulo 2). Os applets, as figuras, o texto e a nomenclatura são provisórios. O uso do GeoGebra é, portanto, transitório e **não** constitui o padrão de publicação: cada applet será mantido, substituído por JSXGraph ou trocado por figura estática conforme sua função pedagógica (§9), caso a caso. Enquanto isso, todo iframe deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
 
 ## 21. Estrutura global do livro
 
@@ -376,7 +387,7 @@ Podem permanecer fora do fluxo principal ou em estruturas expansíveis:
 - desafio;
 - material complementar.
 
-A organização modular preserva a vantagem da proposta de três blocos do relatório revisto sem transformar esses blocos em estrutura obrigatória para todos os conteúdos.
+A organização modular preserva a vantagem da proposta de três blocos do relatório revisto (ver Nota sobre fontes) sem transformar esses blocos em estrutura obrigatória para todos os conteúdos.
 
 ## 23. Tipos de página
 
@@ -575,7 +586,7 @@ Para applets, devem ser avaliados desde o início:
 - orientação do dispositivo;
 - legibilidade de rótulos.
 
-Soluções específicas, como bloqueio temporário de rolagem ou controles de incremento, podem ser introduzidas quando testes mostrarem sua necessidade. O relatório revisto identifica corretamente esses problemas como relevantes para a experiência móvel, mas as soluções concretas devem permanecer sujeitas a validação.
+Soluções específicas, como bloqueio temporário de rolagem ou controles de incremento, podem ser introduzidas quando testes mostrarem sua necessidade. O relatório revisto (ver Nota sobre fontes) identifica corretamente esses problemas como relevantes para a experiência móvel, mas as soluções concretas devem permanecer sujeitas a validação.
 
 ## 33. Acessibilidade estrutural mínima
 
@@ -594,11 +605,25 @@ São requisitos desde o início:
 - alternativas para ações que dependam exclusivamente de arraste;
 - descrição textual de conteúdo visual relevante.
 
-O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA.
+O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os requisitos acima sejam verificáveis, adotam-se os seguintes valores (critérios de sucesso da WCAG 2.2):
+
+| Requisito | Valor mínimo | Critério |
+|---|---|---|
+| Contraste de texto | 4,5:1 (3:1 para texto grande) | 1.4.3 |
+| Contraste de elementos gráficos e de interface (bordas de blocos, pontos e objetos dos applets, foco) | 3:1 | 1.4.11 |
+| Reflow | sem rolagem horizontal em 320 px de largura (exceto equações largas, tabelas e applets, que devem ter rolagem própria) | 1.4.10 |
+| Ampliação do texto | utilizável a 200%, sem perda de conteúdo | 1.4.4 |
+| Alvo de toque ou clique | 24 × 24 px CSS | 2.5.8 |
+| Arraste | toda ação por arraste deve ter alternativa de um único ponteiro ou de teclado | 2.5.7 |
+| Foco | visível e não ocultado por outros elementos | 2.4.7, 2.4.11 |
+| Imagem informativa | texto alternativo (`alt`) que preserve a função pedagógica | 1.1.1 |
+| Iframe | `title` descritivo | 4.1.2 |
+
+Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. O tema escuro gerado a partir de `_brand.yml` ainda não foi medido.
 
 Recursos mais sofisticados de acessibilidade dinâmica, como anúncios contextuais complexos por regiões ARIA, devem ser adicionados e testados conforme o comportamento dos componentes interativos exigir.
 
-A versão revista já estabelece contraste, controle por teclado e tratamento explícito de conteúdo dinâmico como requisitos importantes.
+A versão revista (ver Nota sobre fontes) já estabelece contraste, controle por teclado e tratamento explícito de conteúdo dinâmico como requisitos importantes.
 
 ## 34. Desempenho e robustez
 
@@ -638,7 +663,21 @@ livro/
   tests/
 ```
 
-Dentro de `applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
+Essa organização é uma referência de funções, **não** uma instrução para renomear pastas: renomear alteraria URLs (§27) e referências. Correspondência com a estrutura atual do repositório:
+
+| Função (§35) | Local atual |
+|---|---|
+| `_quarto.yml`, `_brand.yml` | idem, na raiz |
+| `styles/` | `assets/css/custom.scss` |
+| `scripts/` e `applets/` (código-fonte) | `applets-src/` (Vite), com bundle gerado em `assets/js/applets-dist/` |
+| `components/` | `components/` (filtros e shortcodes Lua) |
+| `assets/images/` | `assets/img/` |
+| `chapters/` | `capitulos/` e `index.qmd` |
+| `references/` | `_interno/rascunhos/references.*` (bibliografia ainda não ativada) |
+| `tests/` | `tests/` |
+| documentação interna | `_interno/diretrizes/` e `_interno/rascunhos/` |
+
+Dentro de `applets-src/src/applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
 
 Arquivos CSS e JavaScript globais devem permanecer centralizados.
 
@@ -730,7 +769,7 @@ Testes de acessibilidade automatizados podem auxiliar, mas não substituem inspe
 
 Sempre que possível, um pequeno número de estudantes do público-alvo deve utilizar páginas representativas. Nesta fase, o objetivo principal é detectar obstáculos recorrentes, e não produzir conclusões estatísticas sobre eficácia pedagógica.
 
-A proposta anterior de combinar testes tecnológicos, pilotagem com estudantes e avaliação posterior de dados oferece uma boa lógica de progressão, desde que essas fases não sejam confundidas entre si.
+A proposta anterior (ver Nota sobre fontes) de combinar testes tecnológicos, pilotagem com estudantes e avaliação posterior de dados oferece uma boa lógica de progressão, desde que essas fases não sejam confundidas entre si.
 
 ## 41. Recursos deliberadamente adiados
 
@@ -751,7 +790,7 @@ Para preservar foco na arquitetura fundamental, não devem constituir requisitos
 
 Isso não implica rejeição desses recursos. Significa apenas que sua implementação deve ocorrer quando houver infraestrutura, necessidade pedagógica e capacidade de avaliação suficientes.
 
-A telemetria proposta no relatório revisto, por exemplo, pode ser útil em fases posteriores, mas eventos como tempo de interação, quantidade de movimentos ou acionamento de reset não devem ser tratados isoladamente como indicadores de aprendizagem.
+A telemetria proposta no relatório revisto (ver Nota sobre fontes), por exemplo, pode ser útil em fases posteriores, mas eventos como tempo de interação, quantidade de movimentos ou acionamento de reset não devem ser tratados isoladamente como indicadores de aprendizagem.
 
 ## 42. Preparação para fases posteriores
 
@@ -800,6 +839,21 @@ Observar uso real e revisar decisões.
 
 **9. Funcionalidades avançadas**
 Somente então avaliar telemetria, personalização, feedback adaptativo e outras extensões.
+
+## 44. Licenças e atribuições
+
+O repositório ainda não define a licença do conteúdo nem do código (o README registra "definir antes da publicação pública"). Essa decisão precisa ser tomada antes da publicação aberta e deve distinguir texto, figuras e código.
+
+Materiais de terceiros presentes hoje, a verificar antes da publicação:
+
+- **GeoGebra:** 15 applets incorporados por iframe. Os termos de uso do GeoGebra e a licença escolhida por cada autor de material continuam valendo. Registrar, para cada applet, o autor e o endereço de origem.
+- **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). Manter o aviso de licença no bundle.
+- **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
+- **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
+
+## 45. Registro de decisões
+
+Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão e motivo, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
 
 ## Conclusão
 

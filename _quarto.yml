@@ -4,7 +4,8 @@ project:
 
 lang: pt-BR
 brand: _brand.yml
-resources: assets/js/applets-dist/**
+shortcodes:
+  - components/applet.lua
 
 format:
   html:
@@ -22,7 +23,9 @@ format:
     smooth-scroll: true
     callout-appearance: simple
     axe: true
-    include-in-header: assets/includes/applets.html
+    filters:
+      - components/blocos.lua
+    include-before-body: components/macros.html
 
 
 execute:
@@ -49,12 +52,9 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- extras/relatorio-design-pedagogico.qmd
-    #- extras/biblioteca-estruturas-site-diretrizes.qmd
-    #- extras/proposta.qmd
-    #- Rascunhos/estrutura-pastas-descartardepois.qmd
-    #- Rascunhos/paleta-cores.qmd
-    #- Rascunhos/jsxgraph-1.qmd
+    #- _interno/diretrizes/relatorio-design-pedagogico-26-05-14.qmd
+    #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
+    #- _interno/diretrizes/proposta.qmd
     - capitulos/01-primeiras-nocoes.qmd
     - capitulos/02-segmentos.qmd
     - capitulos/03-segmentos-orientados.qmd

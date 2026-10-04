@@ -1,13 +1,13 @@
 # Combinação Linear
 
-## Definição
-
- Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{m}$ da forma
+::: {#def-combinacao-linear}
+Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{m}$ da forma
 
 $$
 a_1\vec{v}_1 +  \cdots + a_n\vec{v}_n, 
 $$
 onde   $a_1, \dots, a_n$  são números reais. 
+:::
 
 
 **Exemplo**
@@ -15,15 +15,7 @@ onde   $a_1, \dots, a_n$  são números reais.
 No exemplo interativo abaixo, abordaremos o caso $n=3$, ou seja, veremos algumas combinações lineares de três vetores  $\vec{v}_1, \ \vec{v}_2$ e  $\vec{v}_3$.
 
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/kbvp4xpt/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra kbvp4xpt titulo="Applet GeoGebra: Combinação Linear (1 de 2)" >}}
 
 
 **Exemplo**
@@ -33,40 +25,32 @@ Quais vetores são obtidos como combinação linear de um único vetor $\vec{v}$
 - $\leftarrow$ Click para ver a solução
     
 Qualquer vetor $\vec{m}$  que for múltiplo de $\vec{v}$, ou seja, 
-$\vec{m} = a \vec{v}$,  com $a \in \mathbb{R}$.
+$\vec{m} = a \vec{v}$,  com $a \in \R$.
     
-## Proposição
+::: {#prp-combinacao-linear-unica}
+Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \R$ e existe um único $b\in \R$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
+:::
 
- Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \mathbb{R}$ e existe um único $b\in \mathbb{R}$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
-
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/zmcpatqc/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra zmcpatqc titulo="Applet GeoGebra: Combinação Linear (2 de 2)" >}}
 
 **Exemplo**
 
 Determine o vetor $\vec{w}=(3,-5)$ como combinação linear de $\vec{u}=(1,-1)$ e $\vec{v}=(2,3)$.
 
 - $\leftarrow$ Click para ver a solução
-    
+
     Devemos encontrar $a$ e $b$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$   Substituindo as coordenadas dos vetores na expressão anterior temos
-    $(3,-5)=a(1,-1)+b(2,3)=(a+2b,-a+3b)$, e portanto  
+    $$ \begin{aligned}
+        (3,-5)  &=a(1,-1)+b(2,3) \\
+                & = (a+2b,-a+3b)
+    \end{aligned} $$
+
+    $$
+    \begin{cases} a +2b = 3 \\ -a + 3b = -5. \end{cases}
+    $$
     
-    $$
-    \left\{ \begin{array}{l} a +2b = 3 \\ -a + 3b = -5. \end{array} \right.
-    $$
-    
-    Resolvendo o sistema obtemos  $a=\frac{19}{5}$ e $b=-\frac{2}{5}$. Logo temos a combinação linear
-    
-    $$
-    \vec{w}=\frac{19}{5}\vec{u}-\frac{2}{5}\vec{v}
-    $$
+Resolvendo o sistema obtemos  $a=\frac{19}{5}$ e $b=-\frac{2}{5}$. Logo temos a combinação linear
+    $$\vec{w}=\tfrac{19}{5}\vec{u}-\tfrac{2}{5}\vec{v}$$
     
 
 **Exemplo**
@@ -74,10 +58,6 @@ Determine o vetor $\vec{w}=(3,-5)$ como combinação linear de $\vec{u}=(1,-1)$ 
 Escreva o vetor $\vec{p}=(1,3)$ como combinação linear dos vetores $\vec{u}=(1,0),\vec{v}=(0,-1)$ e $\vec{w}=(-1,1)$ de três maneiras distintas.
 
 - $\leftarrow$ Click para ver a solução
-    
-Existem infinitas possibilidades, de acordo com a proposição acima. Por exemplo:
-    
-$\vec{p}=\vec{u}-3\vec{v}$  ou  $\vec{p}=2\vec{u}-2\vec{v}+\vec{w}$  ou $\vec{p}=4\vec{u}+3\vec{w}$.
     
 **Resolução:** Devemos encontrar $a,b$ e $c$ tais que $\vec{p}=a\vec{u}+b\vec{v}+c\vec{w}.$  Substituindo as coordenadas dos vetores dados, na expressão anterior, temos
 $$
@@ -89,23 +69,16 @@ $$
 $$
     
 Como o sistema acima possui duas equações e três variáveis, ele tem infinitas soluções. Por exemplo, resolvendo $a$ e $b$ em função de $c$,  segue que  
-    
 $$
-    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \mathbb{R}.
+    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \R.
 $$
     
-Assim, vejamos três possibilidades de combinações, fazendo  $c=0,\ c=1$ e  $c=3$, respectivamente:
-    
-    $$
-    \vec{p}=\vec{u}-3\vec{v}
-    $$
-    
-    $$
-    \vec{p}=2\vec{u}-2\vec{v}+\vec{w}
-    $$
-    
-    $$
-    \vec{p}=4\vec{u}+3\vec{w}
-    $$
-    
+Assim,existem infinitas combinações lineares possíveis, uma para cada valor de $c\in \R$. Por exemplo, 
+$$ \begin{aligned}
+        \vec{p} &=\vec{u}-3\vec{v} & \text{ para } c=0 \\
+        \vec{p} &= 2\vec{u}-2\vec{v}+\vec{w} & \text{ para } c=1 \\
+        \vec{p} &=4\vec{u}+3\vec{w} & \text{ para } c=3.
+        \end{aligned} $$
 
+Note que, como o exercício aborda combinações lineares de três vetores do plano,  seu resultado  não contradiz a unicidade de solução apresentada na 
+@prp-combinacao-linear-unica, pois esta é válida apenas no contexto de combinação linear de dois vetores. 

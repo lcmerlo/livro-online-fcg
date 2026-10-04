@@ -1,15 +1,15 @@
 # Interseção de Retas
 
-## Proposição
-
- O ponto de interseção entre retas dadas por equações é o ponto $(x,y)$, onde $x$ e $y$ são soluções do sistema obtido pelas equações das retas envolvidas.
+::: {#prp-intersecao-retas}
+O ponto de interseção entre retas dadas por equações é o ponto $(x,y)$, onde $x$ e $y$ são soluções do sistema obtido pelas equações das retas envolvidas.
+:::
 
 **Exemplo**
 
 Determine o ponto de interseção entre as retas
 
 $$
- \ell: x-2y=0 \quad \text{ e } \quad m: \left\{ \begin{array}{l} x= 1+t \\ y =2 -t\end{array} \right. , t \in \mathbb{R}.
+ \ell: x-2y=0 \quad \text{ e } \quad m: \left\{ \begin{array}{l} x= 1+t \\ y =2 -t\end{array} \right. , t \in \R.
 $$
 
 - $\leftarrow$ Click para ver a solução
@@ -71,12 +71,12 @@ $$
 x = -1 +  t \\
 y =         t
 \end{array}
-\right., \ t\in\mathbb{R} \quad \text{ e } \quad s:\left\{
+\right., \ t\in\R \quad \text{ e } \quad s:\left\{
 \begin{array}{l}
 x = 3 +2  t \\
 y = 1 -  t
 \end{array}
-\right., \ t\in\mathbb{R}.
+\right., \ t\in\R.
 $$
 
 - $\leftarrow$ Click para ver a solução
@@ -119,7 +119,7 @@ $$
 Determine o ponto de interseção entre as retas
 
 $$
- \ell:\left\{ \begin{array}{l} x=2t \\ y = 1-t  \end{array} \right., \ t \in \mathbb{R} \quad \text{ e } \quad m:\left\{ \begin{array}{l} x=-3+t \\ y = 2+2t  \end{array} \right. , \ t \in \mathbb{R}.
+ \ell:\left\{ \begin{array}{l} x=2t \\ y = 1-t  \end{array} \right., \ t \in \R \quad \text{ e } \quad m:\left\{ \begin{array}{l} x=-3+t \\ y = 2+2t  \end{array} \right. , \ t \in \R.
 $$
 
 - $\leftarrow$ Click para ver a solução

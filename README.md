@@ -18,7 +18,7 @@ Exercícios com ajuda
 Exercícios de fixação
 
 ## Bibliografia
-	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em 'Rascunhos/'
+	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em '_interno/rascunhos/'
 	- Para ativar: mover os dois para a raiz, listar 'references.qmd' ao fim de 'chapters' e restaurar 'bibliography: references.bib' em '_quarto.yml'
 	- Exemplo de citação: ... @autor2024, ...
 
@@ -37,12 +37,14 @@ _quarto.yml 	- Configuração principal do livro
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
-assets/includes/applets.html - Carrega o bundle dos applets em todas as páginas
+tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
+components/macros.html - Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`)
+components/ - Filtros Lua (`blocos.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que usam `applet`
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-Rascunhos/ 		- Material ainda não utilizado (capítulos, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, propostas) e rascunhos/ (capítulos ainda não publicados, referências)
 .github/workflows/publish.yml - Renderiza e publica no GitHub Pages
 AGENTS.md 		- Regras para agentes de código
 
@@ -50,6 +52,7 @@ AGENTS.md 		- Regras para agentes de código
 quarto preview      - preview local
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
+node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
 
 
 ## Applets
@@ -69,24 +72,20 @@ cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessár
 	- Desmos
 	- GeoGebra
 
-### Exemplo de incorporação (applet JSXGraph próprio):
+### Incorporação (shortcodes de `components/applet.lua`)
+Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
+
 ::: {.bloco-applet}
 Neste applet, mova os pontos A e B e observe como o segmento muda.
 
-<div
-  id="jxg-segmento-1"
-  class="applet-jxg"
-  data-applet="segmento"
-  aria-label="Applet interativo sobre segmento com dois pontos móveis.">
-</div>
-
-<button type="button" onclick="window.AppletsLivro.resetarApplet('jxg-segmento-1')">
-  Reiniciar applet
-</button>
+{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
 :::
 
-O valor de `data-applet` deve estar registrado em `applets-src/src/main.js`.
-Applets GeoGebra são incorporados com `<iframe>` dentro de `<div class="geogebra-container">`.
+O primeiro argumento deve estar registrado em `applets-src/src/main.js`; `id` deve ser único na página.
+
+Applet GeoGebra (iframe com `title`, carregamento tardio e link alternativo):
+
+{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição curta" >}}
 
 ## Versionamento e Repositório Remoto - Git e GitHub
 
@@ -113,7 +112,7 @@ git push            - envia ao repositório remoto
 ### Arquivos principais Git
 
 .gitignore (pastas e arquivos que não devem ir para o commit): ver o arquivo na raiz.
-Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` e `Rascunhos/` (arquivos novos), temporários do LaTeX.
+Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
 
 ## Licença
 	Definir antes da publicação pública.

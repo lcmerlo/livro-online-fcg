@@ -1,14 +1,14 @@
 # Distância: Entre Ponto e Reta e Entre Retas
 
-## Definição
-
- A **distância de um ponto** $P$ a uma reta $r,$ denotada por $d(P,r),$ é a distância de $P$ até o ponto $Q\in r$ que está mais próximo de $P.$
+::: {#def-distancia-ponto-reta}
+A **distância de um ponto** $P$ a uma reta $r,$ denotada por $d(P,r),$ é a distância de $P$ até o ponto $Q\in r$ que está mais próximo de $P.$
+:::
 
 Se $P\in r$ então o ponto de $r$ mais próximo de $P$ é o próprio $P$ e  $d(P,r)=d(P,P)=0.$
 
-## Proposição
-
+::: {#prp-pe-da-perpendicular}
 Se $P\notin r$ então $d(P,r)=d(P,Q),$ onde $Q$ é o **Pé da Perpendicular a** $r$ **por** $P,$ ou seja, $Q$ é o ponto de interseção da reta $r$ com a reta perpendicular a $r$ que passa por $P.$
+:::
 
 Para ver isso, devemos mostrar que o ponto $Q,$ com as propriedades acima, é o ponto de $r$ mais próximo de $P.$ 
 
@@ -18,32 +18,34 @@ De fato, se $R\in r$ e $R\neq Q,$ então o $\bigtriangleup PQR$ (figura abaixo) 
 ![](https://www.geogebra.org/resource/mwhd35bm/zD5eR78qPW6eRYQF/material-mwhd35bm.png)
 -->
 
-## Proposição (Fórmula da distância entre ponto e reta)
+::: {#prp-formula-distancia-ponto-reta}
+## Fórmula da distância entre ponto e reta
 
- Se $P=(x_0,y_0)$ e $r:ax+by+c=0,$ então
+Se $P=(x_0,y_0)$ e $r:ax+by+c=0,$ então
 
 $$
 d(P,r)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 $$
+:::
 
 De fato, seja $s$ a única reta que passa por $P=(x_0,y_0)$ e é perpendicular a $r:ax+by+c=0,$ logo $s\parallel (a,b)$ pois $r\perp (a,b)$.
 
 $$
-s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \MATHBB{R},
+s:\left\{ \begin{array}{l} x=x_0+at \\ y=y_0+bt  \end{array} \right. , t\in \R,
 $$
 são umas equações paramétricas de $s$.
 Seja $Q$ o pé da perpendicular a $r$ que passa por $P,$ isto é, $Q=r\cap s$.
 Então: 
 $$
-Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right. 
+Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=y_0+bt'  \end{array} \right. 
 $$
-para algum $t' \in \MATHBB{R}$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \MATHBB{R}$.
+para algum $t' \in \R$, isso é  $Q=(x_0+at', y_0+bt')$   para algum  $t' \in \R$.
 Como $Q \in r$, temos:
-$a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
+$a(x_0+at')+b(y_0+bt') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
 $\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}$.
-Temos então que $d(P,r)=d(P,Q)=||\overrightarrow{PQ}||$ e $\overrightarrow{PQ}=(a,b)t',$  portanto:
+Temos então que $d(P,r)=d(P,Q)=\norm{\vet{PQ}}$ e $\vet{PQ}=(a,b)t',$  portanto:
 $$
-d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+d(P,r)=|t'|.\norm{(a,b)}=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 $$
 
 **Exemplo**
@@ -52,8 +54,8 @@ Determine a distância do ponto $P=(3,4)$ até a reta $r:2x-y=1$.
 
 - $\leftarrow$ Click para ver a solução
     
-    **Resolução 1**. **Usando a fórmula da Proposição 1**.
-    Colocando $r$ no formato da Proposição 1, temos $r:2x-y-1=0$. Assim,
+    **Resolução 1**. **Usando a fórmula da @prp-formula-distancia-ponto-reta**.
+    Colocando $r$ no formato da @prp-formula-distancia-ponto-reta, temos $r:2x-y-1=0$. Assim,
     
     $d(P,r)=\frac{|2(3)-(4)-1|}{\sqrt{2^2+(-1)^2}}=\frac{1}{\sqrt{5}}.$
     
@@ -66,23 +68,19 @@ Determine a distância do ponto $P=(3,4)$ até a reta $r:2x-y=1$.
 
 **Exemplo**
 
-Determine os pontos da reta $m:\{(t,-t) \mid t \in \mathbb{R} \}$ que distam uma unidade da reta $\ell:3x+4y=2$.
+Determine os pontos da reta $m:\{(t,-t) \mid t \in \R \}$ que distam uma unidade da reta $\ell:3x+4y=2$.
 
 - $\leftarrow$ Click para ver a solução
 **Resolução:**
-Colocando a reta $\ell$ na forma da Proposição 1, temos $\ell:3x+4y-2=0$. Como os pontos de $m$ são da forma $P=(t,-t)$, temos
+Colocando a reta $\ell$ na forma da @prp-formula-distancia-ponto-reta, temos $\ell:3x+4y-2=0$. Como os pontos de $m$ são da forma $P=(t,-t)$, temos
 $d(P,\ell)=\frac{|3(t)+4(-t)-2|}{\sqrt{3^2+4^2}}=1 \Leftrightarrow |-t-2|=5 \Leftrightarrow t=3 \text{ ou } t=-7,$
 donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
 
 
 ## Distância entre retas
 
-### Definição
-
-
- A **distância entre as retas** $r$ e $s$ denotada por $d(r,s)$ é o menor valor possível de $d(P,Q)$ com $P\in r$ e $Q\in s$.
-
-
+::: {#def-distancia-entre-retas}
+A **distância entre as retas** $r$ e $s$ denotada por $d(r,s)$ é o menor valor possível de $d(P,Q)$ com $P\in r$ e $Q\in s$.
 
 - Se $r$ e $s$ são **concorrentes:**
  temos $d(r,s) = 0$, pois neste caso, o menor valor possível de $d(P,Q)$ com $P\in r$ e $Q\in s$ é $d(P_0,P_0) = 0$, onde $P_0$ é o ponto de interseção entre $r$ e $s$.
@@ -93,6 +91,7 @@ donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
     $$
     d(r,s)=d(r,P).
     $$
+:::
     
 
 
@@ -108,17 +107,16 @@ Também podemos calcular a distância usando a perpendicular.
     ![](https://www.geogebra.org/resource/v7qykdrq/1TWkyQov707XEdtW/material-v7qykdrq.png)
     -->
 
-### Proposição  (**Fórmula da distância entre duas retas paralelas**)
+::: {#prp-formula-distancia-retas-paralelas}
+## Fórmula da distância entre duas retas paralelas
 
-
- Dadas duas retas paralelas na forma
+Dadas duas retas paralelas na forma
 $r: ax+by+c=0 \quad \text{e} \quad s: ax+by+c'=0,$
 
 $$
 d(r,s)=\frac{|c-c'|}{\sqrt{a^2+b^2}}.
 $$
-
-
+:::
 
 De fato, seja $P=(x_0,y_0)  \in s$, 
 
@@ -140,7 +138,7 @@ $r: x-y+1=0.$
 
 - $\leftarrow$ Click para ver a solução
     
-    Como a distância é positiva, a reta $\ell$ procurada deve ser paralela à reta $r$, portanto é da forma $\ell: x-y+c=0$. Pela Proposição acima, temos $d(\ell,r)=\frac{|c-1|}{\sqrt{1^2+(-1)^2}}=1,$
+    Como a distância é positiva, a reta $\ell$ procurada deve ser paralela à reta $r$, portanto é da forma $\ell: x-y+c=0$. Pela @prp-formula-distancia-retas-paralelas, temos $d(\ell,r)=\frac{|c-1|}{\sqrt{1^2+(-1)^2}}=1,$
     logo, $|c-1|=\sqrt{2}$, e portanto $c=1+\sqrt{2}$ ou $c=1-\sqrt{2}$, donde seguem as soluções.
     $\ell_1: x-y+1+\sqrt{2}=0 \quad \text{e} \quad \ell_2: x-y+1-\sqrt{2}=0.$
     

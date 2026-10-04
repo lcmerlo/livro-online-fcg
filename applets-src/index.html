@@ -1,1 +1,30 @@
-# página local de teste.
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Applets — página de desenvolvimento</title>
+  <style>
+    /* Cores lidas por src/cores.js; no livro vêm de assets/css/custom.scss. */
+    :root {
+      --cor-texto: #1f2933;
+      --cor-superf: #fafafa;
+      --cor-manip: #0f766e;
+      --cor-obj-princ: #1d4ed8;
+    }
+    body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; }
+    .applet-jxg { width: 100%; max-width: 820px; height: clamp(280px, 70vw, 520px); }
+  </style>
+</head>
+<body>
+  <h1>Applets — desenvolvimento</h1>
+  <p>Use <code>npm run dev</code>. Cada applet novo entra aqui como no livro: um <code>div</code> com <code>data-applet</code> e <code>id</code>.</p>
+
+  <div id="jxg-segmento-dev" class="applet-jxg" data-applet="segmento"
+       aria-label="Applet interativo sobre segmento com dois pontos móveis."></div>
+  <p id="jxg-segmento-dev-status" role="status" aria-live="polite"></p>
+  <button type="button" data-reset="jxg-segmento-dev">Reiniciar applet</button>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

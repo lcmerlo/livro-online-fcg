@@ -45,6 +45,15 @@ jobs:
       - name: Renderizar site HTML
         run: quarto render --to html
 
+      - name: Verificar fontes e HTML gerado
+        run: node tests/verificar-site.mjs
+
+      - name: Verificar links internos e âncoras
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --include-fragments --no-progress 'docs/**/*.html'
+          fail: true
+
       - name: Enviar artefato para GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:

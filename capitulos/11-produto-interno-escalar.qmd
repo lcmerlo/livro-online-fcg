@@ -1,11 +1,11 @@
 # Produto Interno ou Escalar
 
-## Definição 1
-
- Dados vetores $\vec{u}=(a_1,a_2)$ e $\vec{v}=(b_1,b_2)$, o produto interno ou escalar entre eles é definido por
+::: {#def-produto-interno}
+Dados vetores $\vec{u}=(a_1,a_2)$ e $\vec{v}=(b_1,b_2)$, o produto interno ou escalar entre eles é definido por
 $$
 \left\langle\vec{u},\vec{v}\right\rangle=a_1b_1+a_2b_2.
 $$
+:::
 
 Alguns livros usam a seguinte notação para produto interno: $\vec{u}.\vec{v}$
 
@@ -17,57 +17,49 @@ $$
 \langle \vec{u} ,\vec{v}\rangle=1\cdot3+(-4)\cdot2=-5.
 $$
 
-## Proposição 1
+::: {#prp-propriedades-produto-interno}
+Valem as seguintes propriedades:
 
- Valem as seguintes propriedades:
-
-1. $\langle \vec{u}, \vec{u} \rangle = \|\vec{u}\|^2$;
+1. $\langle \vec{u}, \vec{u} \rangle = \norm{\vec{u}}^2$;
 2. $\left\langle\vec{u},\vec{v}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle$;
 3. $\left\langle
 a\vec{u},\vec{v}\right\rangle=\left\langle\vec{u},a\vec{v}\right\rangle=a\left\langle\vec{u},\vec{v}\right\rangle$;
 4. $\left\langle\vec{v}+\vec{w},\vec{u}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle+\left\langle\vec{w},\vec{u}\right\rangle$;
 5. $\left\langle\vec{u,}\vec{v}+\vec{w}\right\rangle=\left\langle\vec{u},\vec{v}\right\rangle+\left\langle\vec{u},\vec{w}\right\rangle$.
+:::
 
 
 ## **Interpretação geométrica do produto interno.**
 
 O produto interno entre dois vetores está intimamente relacionado com o comprimento dos vetores e o ângulo formado por eles, como veremos.
 
-## Definição 2
-
- Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vec{OA}$ e $\vec{v}=\vec{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
-
-
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/nqbrkaya/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+::: {#def-angulo-entre-vetores}
+Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vet{OA}$ e $\vec{v}=\vet{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
+:::
 
 
-## Proposição 2
+{{< geogebra nqbrkaya titulo="Applet GeoGebra: Produto Interno ou Escalar" >}}
 
- O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
+
+::: {#prp-produto-interno-cosseno}
+O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
 
 $$
-\left\langle\vec{u},\vec{v}\right\rangle=\|\vec{u}\|\:\|\vec{v}\| \cos \sphericalangle
+\left\langle\vec{u},\vec{v}\right\rangle=\norm{\vec{u}}\:\norm{\vec{v}} \cos \sphericalangle
 (﻿\vec{u},\vec{v}).
 $$
+:::
 
 A próxima proposição é consequência do resultado acima e e será muito utilizada ao longo do curso.
 
-## Proposição 3
-
- Se $\vec{u}$ e $\vec{v}$  são vetores não nulos, dizemos que eles são perpendiculares ( $\vec{u}\perp\vec{v}$ ) se, e somente se
+::: {#prp-vetores-perpendiculares}
+Se $\vec{u}$ e $\vec{v}$  são vetores não nulos, dizemos que eles são perpendiculares ( $\vec{u}\perp\vec{v}$ ) se, e somente se
 
 $$
 \langle\vec{u},\vec{v}\rangle=0\Leftrightarrow
 \sphericalangle(\vec{u},\vec{v}) = 90^\circ.
 $$
+:::
 
 
 **Exemplo**
@@ -79,21 +71,21 @@ Dado um número $a\ne0$, determine o ângulo entre o vetores $\vec{u}=(1,-1)$ e 
     **Resposta:** $\sphericalangle(\vec{u},\vec{v})=135^\circ \text{ se } a>0 \quad \text{ e }  \quad \sphericalangle(\vec{u},\vec{v})=45^\circ  \text{ se } a<0$.
     
     **Resolução:**
-    Pela Proposição 1 temos
+    Pela @prp-produto-interno-cosseno temos
     
     $$
-     \langle\vec{u},\vec{v}\rangle=\lVert\vec{u}\rVert\lVert\vec{v}\rVert cos\sphericalangle(\vec{u},\vec{v}).
+     \langle\vec{u},\vec{v}\rangle=\norm{\vec{u}}\norm{\vec{v}} cos\sphericalangle(\vec{u},\vec{v}).
     $$
     
-    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\lVert\vec{u}\rVert\lVert\vec{v}\rVert\neq0$. Dividindo a equação acima por $\lVert\vec{u}\rVert\lVert\vec{v}\rVert$ obtemos 
+    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\norm{\vec{u}}\norm{\vec{v}}\neq0$. Dividindo a equação acima por $\norm{\vec{u}}\norm{\vec{v}}$ obtemos 
     
     $$
-    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\lVert\vec{u}\rVert\lVert\vec{v}\rVert} \quad (\ast).
+    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\norm{\vec{u}}\norm{\vec{v}}} \quad (\ast).
     $$
     
     Mas note que 
     $$
-    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \lVert\vec{u}\rVert=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\lVert\vec{v}\rVert=\sqrt{0^2+a^2}=|a| .
+    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \norm{\vec{u}}=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\norm{\vec{v}}=\sqrt{0^2+a^2}=|a| .
     $$
     
     Portanto, por $(\ast)$, temos

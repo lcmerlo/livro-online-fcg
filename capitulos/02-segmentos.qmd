@@ -1,5 +1,12 @@
 # Segmentos
 
+::: {.bloco-objetivo}
+Reconhecer um segmento de reta, seus extremos e sua reta suporte; calcular seu comprimento; identificar segmentos congruentes, paralelos e perpendiculares e o segmento degenerado.
+:::
+
+::: {.bloco-pre-requisitos}
+Ponto, reta e distância entre dois pontos ([Primeiras Noções](01-primeiras-nocoes.qmd)).
+:::
 
 Introduzir rapidamente e exemplificar com figura,  a noção primitiva de um ponto **estar entre** dois pontos.
 
@@ -9,10 +16,12 @@ Dados dois pontos distintos $A$ e $B$, sabemos que existe uma única reta $r$ q
 Neste contexto, a reta $r$ é chamada de **reta suporte** do segmento $AB$ e os pontos $A$ e $B$ são chamados de **extremos do segmento** $AB$.
 :::
 
-Note que se um ponto $P$ está entre $A$ e $B$, seque ele também está entre $B$ e $A$, portanto vale que  $AB=BA$.
+Note que se um ponto $P$ está entre $A$ e $B$, segue que ele também está entre $B$ e $A$, portanto vale que  $AB=BA$.
 
 ::: {.fig-leg #fig-segmentos}
-![](../assets/img/02-segmentos/Untitled.png){#fig-segmento}
+![](../assets/img/02-segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando pelos pontos A e B; o trecho da reta entre A e B, destacado, é o segmento AB."}
+
+Segmento $AB$ de extremos $A$ e $B$ e sua reta suporte.
 :::
 
 ::: {#def-comprimento-segmento}
@@ -30,7 +39,7 @@ Dois segmentos $AB$ e $CD$ são ditos:
 :::
  
 ::: {.fig-leg #fig-segmentos-posicao-relativa}
-![](../assets/img/02-segmentos/Untitled1.png)
+![](../assets/img/02-segmentos/relacoes-entre-segmentos.png){fig-alt="Três pares de segmentos. Congruentes: AB e CD com o mesmo comprimento, d(A,B) = d(C,D). Paralelos: PQ e RS em retas paralelas, e TU e VW na mesma reta. Perpendiculares: EF e GH em retas que formam ângulo reto."}
 
 A figura representa as três relações entre segmentos descritas acima.
 :::
@@ -39,7 +48,7 @@ A figura representa as três relações entre segmentos descritas acima.
 Chamamos de segmento **degenerado** $AA$ ao conjunto formado apenas pelo ponto $A$.
 
 ::: {.fig-leg .w30 #fig-segmento-degenerado}
-![](../assets/img/02-segmentos/Untitled2.png)
+![](../assets/img/02-segmentos/segmento-degenerado.png){fig-alt="Várias retas passando pelo mesmo ponto A, que representa o segmento degenerado AA."}
 
 O segmento degenerado $AA$ está contido em infinitas retas.
 :::
@@ -47,19 +56,24 @@ O segmento degenerado $AA$ está contido em infinitas retas.
 Note que ao contrário do que ocorre com os segmentos “não degenerados” definidos acima, que estão contidos em uma única reta, os segmentos degenerados estão contidos em infinitas retas.
 
 
+::: {.bloco-erro}
+Não confunda o **segmento** $AB$, que é um conjunto de pontos, com o seu **comprimento** $d(A,B)$, que é um número, nem com a **reta** que passa por $A$ e $B$, que não tem extremos.
+:::
+
 ::: {.bloco-applet}
-Neste applet, mova os pontos A e B e observe como o segmento muda.
+**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
 
-<div
-  id="jxg-segmento-1"
-  class="applet-jxg"
-  data-applet="segmento"
-  aria-label="Applet interativo sobre segmento com dois pontos móveis.">
-</div>
+Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
 
-<button type="button" onclick="window.AppletsLivro.resetarApplet('jxg-segmento-1')">
-  Reiniciar applet
-</button>
+{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+:::
+
+::: {.bloco-checkpoint}
+Leve o ponto $B$ até o ponto $A$. O que acontece com o segmento e com o seu comprimento? Em quantas retas esse segmento está contido?
+
+::: {.callout-note title="Resposta" collapse="true"}
+Quando $B=A$, o segmento se reduz ao ponto $A$: é o segmento degenerado $AA$, de comprimento $d(A,A)=0$. Ele está contido em infinitas retas, todas as que passam por $A$.
+:::
 :::
 
 

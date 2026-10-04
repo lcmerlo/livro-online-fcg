@@ -1,23 +1,21 @@
 # Posições Relativas entre Reta e Círculo
 
-## Definição
-
-
- Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
+::: {#def-posicoes-relativas-reta-circulo}
+Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
 
 - $\mathcal{C} \cap \ell = \{ P,Q\},$ com $P\ne Q.$ Neste caso, dizemos que $\ell$ é **secante a** $\mathcal{C}$ em $P$ e $Q;$
 - $\mathcal{C}\cap \ell = \{T\}.$ Neste caso, dizemos que $\ell$ **é tangente** a $\mathcal{C}$ em $T;$
 - $\mathcal{C} \cap \ell = \emptyset.$ Neste caso, dizemos que $\ell$ **é exterior a** $\mathcal{C}.$
+:::
 
 
-## Proposição
-
-
- Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:
+::: {#prp-posicao-reta-circulo-distancia}
+Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:
 
 - $\ell$ é secante a $\mathcal{C} \Leftrightarrow  d(A, \ell) < r;$
 - $\ell$ é tangente a $\mathcal{C} \Leftrightarrow  d(A, \ell) = r;$
 - $\ell$ é exterior a $\mathcal{C} \Leftrightarrow  d(A, \ell) > r.$
+:::
 
 <!--
 ![Untitled](Posi%C3%A7%C3%B5es%20Relativas%20entre%20Reta%20e%20C%C3%ADrculo/Untitled.png)
@@ -43,12 +41,12 @@ Seja $\mathcal{C}$ um círculo de raio $5$ e suponha que uma reta $\ell$ é seca
     
     Como conhecemos o raio de $\mathcal{C},$ para obter sua equação basta encontrar seu centro $A.$ De acordo com a observação anterior, a reta $m$ que é perpendicular à $\ell$ e passa pelo ponto médio $M$ de $PQ$ contém o ponto $A.$ Vamos determinar uma equação paramétrica de $m.$ Para isso, basta determinar $M$ e um vetor $\vec{u}\parallel m.$
     
-    Note que $M=\left(\frac{1+3}{2},\frac{2+(-2)}{2}\right)=(2,0).$ Além disso, como $\overrightarrow{PQ} =Q-P = (2,-4)\parallel \ell,$ podemos tomar $\vec{u}=(2,1),$ pois $\vec{u} \perp \overrightarrow{PQ}.$ Assim, 
+    Note que $M=\left(\frac{1+3}{2},\frac{2+(-2)}{2}\right)=(2,0).$ Além disso, como $\vet{PQ} =Q-P = (2,-4)\parallel \ell,$ podemos tomar $\vec{u}=(2,1),$ pois $\vec{u} \perp \vet{PQ}.$ Assim, 
     
     $m: \left\{ \begin{array}{c}
     x= 2 + 2t, \\
     y= t
-    \end{array} \right. ,  t\in \mathbb{R}.$
+    \end{array} \right. ,  t\in \R.$
     
     Como $A\in m,$ segue que $A=(2+2t,t)$ para algum número $t.$ Agora, como $\mathcal{C}$ tem raio $5$ e  $P\in \mathcal{C},$ segue que $\sqrt{(1+2t)^2+(t-2)^2}=5\Rightarrow(1+2t)^2+(t-2)^2=25\Rightarrow t^2=4\Rightarrow t=\pm2.$
     

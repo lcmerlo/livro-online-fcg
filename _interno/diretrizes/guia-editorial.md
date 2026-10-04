@@ -36,7 +36,7 @@ Use as classes e shortcodes, sem formatar à mão (§24, §36).
 
 - Fórmulas são texto (LaTeX), nunca imagem.
 - Vetor: `\vec{u}`. Conjunto dos reais: `\mathbb{R}`. Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
-- Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais exigem a forma `\color[HTML]{993300}`.
+- Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`. No MathJax do site, `\color{993300}` não aplica cor e `\color[HTML]{993300}` produz erro (testado em 04/10/2026).
 - **Pendências de padronização** (observadas no texto atual; decidir uma forma): vetor definido por segmento orientado como `\vec{AB}` ou `\overrightarrow{AB}`; norma como `\lVert\vec{u}\rVert` ou `\|\vec{u}\|`.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático passam por revisão de um docente antes de entrar.
@@ -52,7 +52,7 @@ Use as classes e shortcodes, sem formatar à mão (§24, §36).
 
 ## 6. Applets (§30, §31)
 
-Todo applet tem: título, objetivo breve, instrução de interação, área interativa, reinício, texto com o estado ou resultado relevante e uma pergunta associada (checkpoint).
+Todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (checkpoint). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
 Para criar um applet JSXGraph novo:
 
@@ -68,18 +68,22 @@ Valores mínimos em §33 do documento de Princípios: contraste 4,5:1 (texto) e 
 
 ## 8. Antes de enviar (§40)
 
+Na raiz do projeto:
+
 ```bash
-cd applets-src && npm ci && npm run build   # se mexeu em applets
-cd .. && quarto render --to html
-node tests/verificar-site.mjs               # erros bloqueiam a publicação
+(cd applets-src && npm ci && npm run build)  # bundle dos applets: não é versionado, gere ao clonar e após mexer em applets
+quarto render --to html
+node tests/verificar-site.mjs                # os erros também bloqueiam a publicação no GitHub Actions
 git diff
 ```
 
-- Trabalhar em branch e enviar por pull request.
+- Preferir trabalhar em branch e integrar por pull request. O README ainda descreve push direto em `main`; alinhar os dois.
 - Corrigir os erros do script. Avisos de `alt` ausente devem ser tratados ao tocar na imagem.
 - Mensagens de commit curtas, no imperativo, com um assunto por commit.
 
 ## 9. Exemplo mínimo de trecho correto
+
+A definição usa a forma dos capítulos 1 a 5 (`{#def-…}`), que ainda depende da decisão registrada na seção 3.
 
 ```markdown
 ## Comprimento de um segmento

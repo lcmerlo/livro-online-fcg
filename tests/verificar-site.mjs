@@ -59,9 +59,9 @@ for (const arquivo of fontes.filter(existsSync)) {
     erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `comando TeX suspeito: ${m[0]}`);
   }
 
-  // \color{993300} sem [HTML] não é uma cor válida no MathJax.
+  // No MathJax, \color{993300} não aplica cor; a forma correta é \color{#993300}.
   for (const m of texto.matchAll(/\\color\{[0-9A-Fa-f]{6}\}/g)) {
-    aviso(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `cor hexadecimal sem [HTML]: ${m[0]}`);
+    aviso(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `cor hexadecimal sem #: ${m[0]}`);
   }
 }
 

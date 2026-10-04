@@ -12,7 +12,18 @@ Neste estágio, a prioridade é estabelecer uma arquitetura global simples, cons
 
 ### Nota sobre fontes e documentos relacionados
 
-Este documento cita um "relatório revisto" e uma "revisão anterior" (§20, §22, §32, §33, §40 e §41). Esse texto **não está versionado neste repositório**. A versão disponível, `relatorio-design-pedagogico.qmd`, não contém as menções à telemetria, aos eventos de interação e à pilotagem comentadas aqui, e por isso não deve ser tomada como a fonte dessas passagens. Até que o relatório revisto seja localizado e versionado, as passagens que o citam valem como registro de contexto, não como referência verificável.
+Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §32, §33, §40 e §41). O único relatório versionado é `relatorio-design-pedagogico.qmd`, e ele sustenta apenas parte dessas passagens:
+
+| § | Passagem | Em `relatorio-design-pedagogico.qmd` |
+|---|---|---|
+| 20 | Limitar a stack e atribuir funções distintas às ferramentas | Sim (comparação JSXGraph, GeoGebra, CindyJS e Desmos) |
+| 33 | Contraste, teclado e conteúdo dinâmico como requisitos | Sim |
+| 22 | Proposta de três blocos | Não encontrada |
+| 32 | Problemas de rolagem e toque em applets | Não encontrada |
+| 40 | Testes tecnológicos, pilotagem e avaliação de dados | Não encontrada |
+| 41 | Telemetria | Não encontrada |
+
+As passagens sem correspondência remetem, provavelmente, a uma versão revista do relatório que não está no repositório. Até que essa versão seja localizada e versionada, elas valem como registro de contexto, não como referência verificável.
 
 Documentos relacionados, todos nesta pasta:
 
@@ -313,7 +324,7 @@ Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriorme
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
 
-**Estado em outubro de 2026.** Os capítulos publicados incorporam 15 applets do GeoGebra por `<iframe>` e apenas um applet JSXGraph próprio (capítulo 2). Os applets, as figuras, o texto e a nomenclatura são provisórios. O uso do GeoGebra é, portanto, transitório e **não** constitui o padrão de publicação: cada applet será mantido, substituído por JSXGraph ou trocado por figura estática conforme sua função pedagógica (§9), caso a caso. Enquanto isso, todo iframe deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
+**Estado em outubro de 2026.** Os capítulos publicados incorporam 15 applets do GeoGebra por `<iframe>` e apenas um applet JSXGraph próprio (capítulo 2). Os applets, as figuras, o texto e a nomenclatura são provisórios. O uso do GeoGebra é, portanto, transitório e **não** constitui o padrão de publicação: a decisão de manter cada applet, substituí-lo por JSXGraph ou trocá-lo por figura estática deve ser tomada caso a caso, conforme sua função pedagógica (§9). Enquanto isso, todo iframe deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
 
 ## 21. Estrutura global do livro
 
@@ -614,8 +625,9 @@ O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os req
 | Reflow | sem rolagem horizontal em 320 px de largura (exceto equações largas, tabelas e applets, que devem ter rolagem própria) | 1.4.10 |
 | Ampliação do texto | utilizável a 200%, sem perda de conteúdo | 1.4.4 |
 | Alvo de toque ou clique | 24 × 24 px CSS | 2.5.8 |
-| Arraste | toda ação por arraste deve ter alternativa de um único ponteiro ou de teclado | 2.5.7 |
-| Foco | visível e não ocultado por outros elementos | 2.4.7, 2.4.11 |
+| Arraste | toda ação por arraste deve ter alternativa com um único ponteiro, sem arrastar (por exemplo, botões de incremento) | 2.5.7 |
+| Teclado | toda funcionalidade, inclusive dos applets, operável por teclado | 2.1.1 |
+| Foco | visível e não totalmente encoberto por outros elementos | 2.4.7, 2.4.11 |
 | Imagem informativa | texto alternativo (`alt`) que preserve a função pedagógica | 1.1.1 |
 | Iframe | `title` descritivo | 4.1.2 |
 
@@ -847,7 +859,7 @@ O repositório ainda não define a licença do conteúdo nem do código (o READM
 Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 - **GeoGebra:** 15 applets incorporados por iframe. Os termos de uso do GeoGebra e a licença escolhida por cada autor de material continuam valendo. Registrar, para cada applet, o autor e o endereço de origem.
-- **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). Manter o aviso de licença no bundle.
+- **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). O bundle gerado (`applets-livro.iife.js`) hoje **não** contém o aviso de licença, que a minificação remove; incluí-lo antes da publicação aberta.
 - **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 

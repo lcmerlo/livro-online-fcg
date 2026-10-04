@@ -72,12 +72,12 @@ Igualando as coordenadas podemos reescrever a equação da forma
 
 $$
 \begin{array}{llr}
-r:\left\lbrace \begin{array}{l}x={\color{#993300}x_0}\; + \;{\color{D2691E}a}t \\
-y={\color{#993300}y_0}\; + \;{\color{D2691E}b}t  \\
+r:\left\lbrace \begin{array}{l}x={\color{#993300}x_0}\; + \;{\color{#D2691E}a}t \\
+y={\color{#993300}y_0}\; + \;{\color{#D2691E}b}t  \\
 \end{array} \right.,  \ \ t\in\R. &\ \ \ (\ast \ast)\\
 \begin{array}{l}
  \ \ \ \quad \uparrow \; \ \quad \uparrow  \qquad  \uparrow \\
-\ \  \quad P={\color{#993300}P_0}+  t{\color{D2691E}\vec{u}}
+\ \  \quad P={\color{#993300}P_0}+  t{\color{#D2691E}\vec{u}}
 \end{array} & & 
 \end{array}
 $$

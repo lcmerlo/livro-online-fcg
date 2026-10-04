@@ -25,11 +25,11 @@ Quais vetores são obtidos como combinação linear de um único vetor $\vec{v}$
 - $\leftarrow$ Click para ver a solução
     
 Qualquer vetor $\vec{m}$  que for múltiplo de $\vec{v}$, ou seja, 
-$\vec{m} = a \vec{v}$,  com $a \in \mathbb{R}$.
+$\vec{m} = a \vec{v}$,  com $a \in \R$.
     
 ## Proposição
 
- Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \mathbb{R}$ e existe um único $b\in \mathbb{R}$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
+ Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \R$ e existe um único $b\in \R$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
 
 {{< geogebra zmcpatqc titulo="Applet GeoGebra: Combinação Linear (2 de 2)" >}}
 
@@ -75,7 +75,7 @@ $$
 Como o sistema acima possui duas equações e três variáveis, ele tem infinitas soluções. Por exemplo, resolvendo $a$ e $b$ em função de $c$,  segue que  
     
 $$
-    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \mathbb{R}.
+    \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \R.
 $$
     
 Assim, vejamos três possibilidades de combinações, fazendo  $c=0,\ c=1$ e  $c=3$, respectivamente:

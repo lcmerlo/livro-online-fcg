@@ -2,7 +2,7 @@
 
 ## Definição
 
- Dizemos que um vetor $\vec{u}$ não nulo é normal ou perpendicular a uma reta $r$, e denotamos $\vec{u} \perp r$, se $\vec{u}$ é perpendicular ao vetor $\overrightarrow{AB}$, quaisquer que sejam os pontos $A, B \in r$.
+ Dizemos que um vetor $\vec{u}$ não nulo é normal ou perpendicular a uma reta $r$, e denotamos $\vec{u} \perp r$, se $\vec{u}$ é perpendicular ao vetor $\vet{AB}$, quaisquer que sejam os pontos $A, B \in r$.
 
 <!--
 ![](https \colon//www.geogebra.org/resource/jjtg7qxg/T86STNPBrCcWt2Rg/material-jjtg7qxg.png)
@@ -17,7 +17,7 @@ Dados um ponto $P_0$ e um vetor $\vec{u} \neq \vec{0}$, existem infinitas retas 
 
 Fixados um ponto $P_0 = (x_0, y_0)$ e um vetor $\vec{u} = (a, b) \neq \vec{0}$, considere a única reta $r$ tal que $P_0 \in r$ e $\vec{u} \perp r$. 
 
-Um ponto $P = (x, y) \in r$ se, e somente se, o vetor $(x - x_0, y - y_0) = P - P_0 = \overrightarrow{P_0P}$ é perpendicular a $\vec{u}$, isto é,
+Um ponto $P = (x, y) \in r$ se, e somente se, o vetor $(x - x_0, y - y_0) = P - P_0 = \vet{P_0P}$ é perpendicular a $\vec{u}$, isto é,
 
 $$
 \begin{array}{lcl}\langle (x - x_0, y - y_0), (a, b) \rangle = 0 & \Leftrightarrow &  a(x - x_0) + b(y - y_0) = 0 \\           &\Leftrightarrow &  ax + by + \underbrace{(-ax_0 - by_0)}_{\text{constante}} = 0.\end{array}
@@ -98,7 +98,7 @@ $r: \left\lbrace
 x = 5 - 4t \\
 y = -2 + t
 \end{array}
-\right.,\ t \in \mathbb{R}.$
+\right.,\ t \in \R.$
 
 - $\leftarrow$ Click para ver a solução
     
@@ -132,13 +132,13 @@ Determine as equações paramétricas da reta $s \colon -7x + 2y = 8$.
     Portanto uma equação paramétrica de $s$ é 
     
     $$
-    s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \mathbb{R},  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \mathbb{R}.
+    s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \R,  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \R.
     $$
     
     **Segunda resolução:** Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando $x=t$  e substituindo na equação de $s$ temos  $-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t$.  Portanto uma equação paramétrica de $s$ é 
     
     $$
-    s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \mathbb{R}.
+    s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \R.
     $$
     
     Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta $s$, mas lembre que para uma mesma reta existem infinitas equações paramétricas.

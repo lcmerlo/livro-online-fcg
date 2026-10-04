@@ -5,15 +5,14 @@
  Dados vetores $\vec{u}$ e $\vec{v}$, com $\vec{u}\ne\vec{0}$, definimos a projeção ortogonal de $\vec{v}$ em $\vec{u}$ como sendo o vetor dado por
 
 $$
- {Proj}_{\:\vec{u}}\: \vec{v} = \frac{\langle \vec{v},\vec{u}\rangle}{\lVert \vec{u} \rVert^2}\vec{u}.
+ {Proj}_{\:\vec{u}}\: \vec{v} = \frac{\langle \vec{v},\vec{u}\rangle}{\norm{\vec{u}}^2}\vec{u}.
 $$
 
 **Exemplo**
 
 Por exemplo, se $\vec{u}=(1,1)$ e $\vec{v}=(2,3)$ temos
 $$
-{Proj}_{\:\vec{u}}\:\vec{v}  =\frac{\langle (2,3), (1,1) \rangle}{\rVert(1,1)
-\lVert^2}(1,1)=\frac{5}{2}(1,1)=\left(\frac{5}{2},\frac{5}{2}\right).
+{Proj}_{\:\vec{u}}\:\vec{v}  =\frac{\langle (2,3), (1,1) \rangle}{\norm{(1,1)}^2}(1,1)=\frac{5}{2}(1,1)=\left(\frac{5}{2},\frac{5}{2}\right).
 $$
 
 ## **Interpretação Geométrica da Projeção Ortogonal.**

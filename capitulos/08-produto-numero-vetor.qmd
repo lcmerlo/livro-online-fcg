@@ -2,7 +2,7 @@
 
 ## Definição
 
- Dados um número  $a \in \mathbb{R}$ e um vetor  $\vec{v}=(x,y)$, definimos o produto entre eles como o vetor  $a\vec{v}=(ax,ay)$, ou seja,  $a(x,y)=(ax,ay)$.
+ Dados um número  $a \in \R$ e um vetor  $\vec{v}=(x,y)$, definimos o produto entre eles como o vetor  $a\vec{v}=(ax,ay)$, ou seja,  $a(x,y)=(ax,ay)$.
 
 **Exemplo**
 
@@ -16,7 +16,7 @@ Valem as seguintes propriedades.
 2.  $(ab)\vec{v}=a(b\vec{v})=b(a\vec{v})$;
 3.  Se $\vec{v}\ne\vec{0}$ então:  $a\vec{v}=b\vec{v}  \Leftrightarrow a=$b;
 4.  Se $a\ne0$ então:  $a\vec{v}=a\vec{w} \Leftrightarrow \vec{v}=\vec{w}$;
-5. $\|a\vec{v}\|=|a|\cdot\|\vec{v}\|$.
+5. $\norm{a\vec{v}}=|a|\cdot\norm{\vec{v}}$.
 
 
 ## Definição
@@ -28,7 +28,7 @@ $$
 \vec{u} = a\vec{v}  
 $$
 
-Para algum  $a \in \mathbb{R}$. Porém, como $\vec{u}$ e $\vec{v}$ são não nulos, devemos ter $a\neq 0$ e, desta forma, podemos realizar a operação
+Para algum  $a \in \R$. Porém, como $\vec{u}$ e $\vec{v}$ são não nulos, devemos ter $a\neq 0$ e, desta forma, podemos realizar a operação
 $$
 \vec{v}=\frac{1}{a}\vec{u}
 $$
@@ -40,13 +40,13 @@ A proposição a seguir fornece a interpretação geométrica do produto entre n
 
 ## Proposição
 
-Dados um número $a\in\mathbb{R}$ e um vetor $\vec{v}$, o produto  $a\vec{v}$ é único vetor tal que:
+Dados um número $a\in\R$ e um vetor $\vec{v}$, o produto  $a\vec{v}$ é único vetor tal que:
 
 Caso 1: Se $a=0$ ou $\vec{v}=\vec{0}$ então $a\vec{v}=\vec{0}$.
 
 Caso 2: Se $a\ne 0$ e $\vec{v}\ne\vec{0}$, então $a\vec{v}$ é o único vetor que satisfaz:
 
-comprimento:    $\|a\vec{v}\|=|a|\cdot \|\vec{v}\|$;
+comprimento:    $\norm{a\vec{v}}=|a|\cdot \norm{\vec{v}}$;
 
 direção:   $a\vec{v}$ é paralelo a $\vec{v}$ (Notação:  $a\vec{v}\parallel\vec{v}$);
 

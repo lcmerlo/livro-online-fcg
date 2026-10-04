@@ -6,7 +6,7 @@ Na seção anterior vimos, através da noção de eixo, que cada ponto de uma re
 Um **sistema de coordenadas cartesianas** ou um **sistema de eixos ortogonais** $OXY$ no plano consiste em um par de eixos com mesma origem, $OX$ e $OY$ que se interceptam perpendicularmente na origem $O$. Assumiremos sempre que os dois eixos possuem coordenadas dadas na mesma unidade de medida.
 :::
 
-Fixado um sistema de coordenadas $OXY$, podemos associar cada ponto $P$ do plano com um único par ordenado de números reais $\left(x,y\right)\in\mathbb{R}^2$, chamados de **coordenadas** de $P$, da seguinte forma:
+Fixado um sistema de coordenadas $OXY$, podemos associar cada ponto $P$ do plano com um único par ordenado de números reais $\left(x,y\right)\in\R^2$, chamados de **coordenadas** de $P$, da seguinte forma:
 
 - Tome a reta $p_X$ que é perpendicular ao eixo $OX$ e passa pelo ponto $P$  e tome $X=OX\cap p_X$.
 - Tome a reta $p_Y$ que é perpendicular ao eixo   $OY$  e passa pelo ponto P  e tome  $Y=OY\cap p_Y$.
@@ -24,10 +24,10 @@ Usualmente chamamos o eixo $OX$ de eixo das **abcissas** e o eixo $OY$ de eixo d
 
 Fixado um sistema de coordenadas ortogonais OXY, o plano é decomposto nos eixos OX e OY e em quatro quadrantes definidos como segue:
 
-- $1^o$ quadrante = $\left\{(x,y)\in\mathbb{R}^2|\,\,\, x>0,y>0\right\}$
-- $2^o$ quadrante = $\left\{(x,y)\in\mathbb{R}^2|\,\,\, x<0,y>0\right\}$
-- $3^o$ quadrante = $\left\{(x,y)\in\mathbb{R}^2|\,\,\, x<0,y<0\right\}$
-- $4^o$ quadrante = $\left\{(x,y)\in\mathbb{R}^2|\,\,\, x>0,y<0\right\}$
+- $1^o$ quadrante = $\left\{(x,y)\in\R^2|\,\,\, x>0,y>0\right\}$
+- $2^o$ quadrante = $\left\{(x,y)\in\R^2|\,\,\, x<0,y>0\right\}$
+- $3^o$ quadrante = $\left\{(x,y)\in\R^2|\,\,\, x<0,y<0\right\}$
+- $4^o$ quadrante = $\left\{(x,y)\in\R^2|\,\,\, x>0,y<0\right\}$
 
 Note que os eixos não fazem parte dos quadrantes.
 

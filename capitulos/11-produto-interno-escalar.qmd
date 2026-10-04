@@ -21,7 +21,7 @@ $$
 
  Valem as seguintes propriedades:
 
-1. $\langle \vec{u}, \vec{u} \rangle = \|\vec{u}\|^2$;
+1. $\langle \vec{u}, \vec{u} \rangle = \norm{\vec{u}}^2$;
 2. $\left\langle\vec{u},\vec{v}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle$;
 3. $\left\langle
 a\vec{u},\vec{v}\right\rangle=\left\langle\vec{u},a\vec{v}\right\rangle=a\left\langle\vec{u},\vec{v}\right\rangle$;
@@ -35,7 +35,7 @@ O produto interno entre dois vetores está intimamente relacionado com o comprim
 
 ## Definição 2
 
- Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vec{OA}$ e $\vec{v}=\vec{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
+ Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vet{OA}$ e $\vec{v}=\vet{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
 
 
 {{< geogebra nqbrkaya titulo="Applet GeoGebra: Produto Interno ou Escalar" >}}
@@ -46,7 +46,7 @@ O produto interno entre dois vetores está intimamente relacionado com o comprim
  O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
 
 $$
-\left\langle\vec{u},\vec{v}\right\rangle=\|\vec{u}\|\:\|\vec{v}\| \cos \sphericalangle
+\left\langle\vec{u},\vec{v}\right\rangle=\norm{\vec{u}}\:\norm{\vec{v}} \cos \sphericalangle
 (﻿\vec{u},\vec{v}).
 $$
 
@@ -74,18 +74,18 @@ Dado um número $a\ne0$, determine o ângulo entre o vetores $\vec{u}=(1,-1)$ e 
     Pela Proposição 1 temos
     
     $$
-     \langle\vec{u},\vec{v}\rangle=\lVert\vec{u}\rVert\lVert\vec{v}\rVert cos\sphericalangle(\vec{u},\vec{v}).
+     \langle\vec{u},\vec{v}\rangle=\norm{\vec{u}}\norm{\vec{v}} cos\sphericalangle(\vec{u},\vec{v}).
     $$
     
-    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\lVert\vec{u}\rVert\lVert\vec{v}\rVert\neq0$. Dividindo a equação acima por $\lVert\vec{u}\rVert\lVert\vec{v}\rVert$ obtemos 
+    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\norm{\vec{u}}\norm{\vec{v}}\neq0$. Dividindo a equação acima por $\norm{\vec{u}}\norm{\vec{v}}$ obtemos 
     
     $$
-    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\lVert\vec{u}\rVert\lVert\vec{v}\rVert} \quad (\ast).
+    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\norm{\vec{u}}\norm{\vec{v}}} \quad (\ast).
     $$
     
     Mas note que 
     $$
-    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \lVert\vec{u}\rVert=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\lVert\vec{v}\rVert=\sqrt{0^2+a^2}=|a| .
+    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \norm{\vec{u}}=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\norm{\vec{v}}=\sqrt{0^2+a^2}=|a| .
     $$
     
     Portanto, por $(\ast)$, temos

@@ -12,3 +12,4 @@ Uma linha por decisão: data, decisão, motivo. Mais recentes no fim.
 | 2026-10-04 | Definições escritas como blocos `{#def-…}` (não como títulos `## Definição`) | Referência cruzada e forma já usada nos capítulos 1 a 5 |
 | 2026-10-04 | Macros MathJax em `components/macros.html`: `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` | Notação definida em um só lugar; evita erros como `\MATHBB` |
 | 2026-10-04 | Proposições escritas como blocos `{#prp-…}`; referências por `@prp-…`; título com "Definição" ou "Proposição" passa a ser erro nos testes | Mesma razão das definições; numeração automática evita referências desatualizadas |
+| 2026-10-04 | Capítulo 2 é a página-modelo; imagens com `fig-alt` e nomes descritivos; applets com texto de estado (`<id>-status`) | §38 do documento de Princípios; acessibilidade (§33) |

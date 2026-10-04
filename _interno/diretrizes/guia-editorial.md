@@ -76,8 +76,17 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
 - Pasta e nome: `assets/img/<arquivo-do-capítulo>/<nome-descritivo>.svg` (ou `.png`). Evitar `Untitled.png` e nomes gerados por ferramentas.
 - Preferir SVG para diagramas.
-- Toda imagem informativa tem texto alternativo que diga **o que ela mostra para a aprendizagem**, não apenas "Figura":
-  `![Segmento AB com extremos A e B marcados.](../assets/img/02-segmentos/segmento-ab.svg)`
+- Toda imagem informativa tem texto alternativo (`fig-alt`) que diga **o que ela mostra para a aprendizagem**, não apenas "Figura". O texto entre colchetes **não** é o alt: no Quarto ele vira legenda.
+
+  ```markdown
+  ::: {.fig-leg #fig-segmentos}
+  ![](../assets/img/02-segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando por A e B; o trecho entre A e B, destacado, é o segmento AB."}
+
+  Segmento $AB$ de extremos $A$ e $B$ e sua reta suporte.
+  :::
+  ```
+
+  O `fig-alt` descreve a imagem para quem não a vê; a legenda (última linha do bloco) diz o que ela significa no texto.
 - Imagem puramente decorativa deve ser evitada (§29).
 - Registrar a origem de imagens de terceiros (§44).
 
@@ -91,6 +100,7 @@ Para criar um applet JSXGraph novo:
 2. Registrar o nome em `applets-src/src/main.js` (objeto `applets`).
 3. Testar com `cd applets-src && npm run dev`.
 4. Inserir no capítulo com `{{< applet <nome> id="…" rotulo="…" >}}`. O `id` deve ser único na página.
+   O shortcode cria também `<p id="<id>-status" role="status">`: o applet deve escrever nele, em texto, o estado relevante (ex.: coordenadas e comprimento em `applets/segmento.js`), com atraso de alguns décimos de segundo para não anunciar cada passo do arraste.
 5. Garantir acesso por teclado e alternativa a qualquer ação que dependa só de arraste.
 
 ## 7. Acessibilidade e responsividade (§15, §33)
@@ -112,7 +122,11 @@ git diff
 - Corrigir os erros do script. Avisos de `alt` ausente devem ser tratados ao tocar na imagem.
 - Mensagens de commit curtas, no imperativo, com um assunto por commit.
 
-## 9. Exemplo mínimo de trecho correto
+## 9. Página-modelo
+
+`capitulos/02-segmentos.qmd` é a página-modelo (§38): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, applet com instrução e texto de estado, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência.
+
+## 10. Exemplo mínimo de trecho correto
 
 
 ```markdown

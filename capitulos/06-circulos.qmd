@@ -50,10 +50,10 @@ Verifique se a equação representa um círculo e, em caso afirmativo, determine
         | --- |
         |  $\Rightarrow \quad x^2-4x+{\color{blue}4-4}+y^2+6y+{\color{blue}9-9}+13=0$ |
         | $\Rightarrow \quad{\color{green}(x^2-4x+4)}-4+{\color{blue}(y^2+6y+9)}-9+13=0$  |
-        | $\Rightarrow \quad{\color{green}(x-2)^2}-1+{\color{blue}(y+3)^2}-9+13=0$ |
+        | $\Rightarrow \quad{\color{green}(x-2)^2}-4+{\color{blue}(y+3)^2}-9+13=0$ |
         | $\Rightarrow \quad (x-2)^2+(y+3)^2=0$. |
         
-        Note que na equação final obtemos $r=0$, mas não existe um círculo de raio zero. Na verdade esta equação representa o ponto $(2,3)$, pois este é o único ponto que satisfaz a equação. 
+        Note que na equação final obtemos $r=0$, mas não existe um círculo de raio zero. Na verdade esta equação representa o ponto $(2,-3)$, pois este é o único ponto que satisfaz a equação. 
         
     3. 
         

@@ -25,6 +25,7 @@ format:
     axe: true
     filters:
       - components/blocos.lua
+    include-before-body: components/macros.html
 
 
 execute:

@@ -38,7 +38,8 @@ _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
 tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
-components/applet.lua - Shortcodes `applet` e `geogebra`; o bundle dos applets só é carregado nas páginas que usam `applet`
+components/macros.html - Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`)
+components/ - Filtros Lua (`blocos.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que usam `applet`
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)

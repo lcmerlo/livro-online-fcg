@@ -26,18 +26,28 @@ Use as classes e shortcodes, sem formatar à mão (§24, §36).
 | Objetivo, pré-requisitos, exemplo, applet, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-exemplo`, `-applet`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
 | Applet JSXGraph próprio | `{{< applet segmento id="jxg-segmento-1" rotulo="Descrição para leitor de tela" >}}` |
 | Applet GeoGebra | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}` |
-| Definição e proposição | Ver "Pendência" abaixo |
+| Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
+| Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
 | Exercício resolvido | `::: {#exrr-nome}` com a resolução em `::: {.callout-note title="Resolução" collapse="true"}` |
 | Figura com legenda | `::: {.fig-leg #fig-nome}` (largura opcional: `.w30` … `.w80`) |
 
-**Pendência (decisão editorial).** Definições e proposições aparecem de duas formas: blocos `::: {#def-…}` com referência cruzada (capítulos 1 a 5) e títulos `## Definição` (demais capítulos). Escolher uma forma e padronizar. Até lá, não misturar as duas no mesmo capítulo.
+**Decisão (04/10/2026).** Definições usam blocos `::: {#def-…}`, com referência cruzada. Os capítulos 1 a 5 já seguem essa forma; nos demais, os títulos `## Definição` ainda precisam ser migrados (títulos que começam com `## Definição` ou `## Proposição`, 46 no total, em 15 capítulos). Em capítulo novo ou revisado, usar sempre `{#def-…}`. Proposições seguem a mesma forma com `{#prp-…}`, já usada em dois capítulos; essa extensão ainda não foi confirmada como decisão.
 
 ## 4. Matemática (§28)
 
 - Fórmulas são texto (LaTeX), nunca imagem.
-- Vetor: `\vec{u}`. Conjunto dos reais: `\mathbb{R}`. Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
+- Vetor: `\vec{u}`. Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
+- **Macros** (definidas em `components/macros.html` e válidas em todas as páginas HTML):
+
+  | Escrever | Resulta em | Uso |
+  |---|---|---|
+  | `\vet{AB}` | `\overrightarrow{AB}` | vetor representado pelo segmento orientado `AB` |
+  | `\norm{\vec{u}}` | `\left\lVert \vec{u} \right\rVert` | norma |
+  | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
+
+  Para alterar a notação em todo o livro, edite só `components/macros.html`. As macros não valem em PDF/Typst. Se o livro passar a ter PDF, defini-las também para esse formato.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`. No MathJax do site, `\color{993300}` não aplica cor e `\color[HTML]{993300}` produz erro (testado em 04/10/2026).
-- **Pendências de padronização** (observadas no texto atual; decidir uma forma): vetor definido por segmento orientado como `\vec{AB}` ou `\overrightarrow{AB}`; norma como `\lVert\vec{u}\rVert` ou `\|\vec{u}\|`.
+- **Migração pendente:** o texto atual ainda escreve `\vec{AB}` e `\overrightarrow{AB}` (segmento orientado), `\lVert…\rVert` e `\|…\|` (norma) e `\mathbb{R}`. Em capítulo novo ou revisado, usar as macros. A substituição nos capítulos existentes é conteúdo matemático e depende de revisão.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático passam por revisão de um docente antes de entrar.
 
@@ -83,7 +93,6 @@ git diff
 
 ## 9. Exemplo mínimo de trecho correto
 
-A definição usa a forma dos capítulos 1 a 5 (`{#def-…}`), que ainda depende da decisão registrada na seção 3.
 
 ```markdown
 ## Comprimento de um segmento

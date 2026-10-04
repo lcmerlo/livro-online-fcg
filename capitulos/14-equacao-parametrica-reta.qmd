@@ -101,7 +101,6 @@ No applet abaixo você pode alterar os elementos fixos das retas e verificar as 
     allowfullscreen>
   </iframe>
 </div>
-[geogebra/g8j8szyk](geogebra/g8j8szyk)
 
 
 

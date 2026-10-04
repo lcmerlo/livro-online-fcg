@@ -1,6 +1,6 @@
 {
   "version": "0.2",
-  "language": "pt,pt_BR,en",
+  "language": "pt-BR,en",
   "enabledLanguageIds": [
     "markdown",
     "quarto",
@@ -10,22 +10,26 @@
     "bibtex",
     "biblatex"
   ],
-
+  "files": [
+    "**/*.{qmd,md,yml,yaml,bib}"
+  ],
   "ignorePaths": [
     ".git/**",
     ".quarto/**",
-    "_site/**",
-    "_book/**",
     "_freeze/**",
-    "node_modules/**",
-    "renv/**",
+    "docs/**",
+    "_scratch/**",
+    "**/node_modules/**",
+    "assets/js/applets-dist/**",
+    "**/*_files/**",
+    "_interno/**/*.html",
+    "**/package-lock.json",
     "*.pdf",
     "*.png",
     "*.jpg",
     "*.jpeg",
     "*.svg"
   ],
-
   "patterns": [
     {
       "name": "quarto-ids-classes",
@@ -33,7 +37,7 @@
     },
     {
       "name": "file-paths",
-      "pattern": "/[\\w.-]+\\/[\\w./-]+/g"
+      "pattern": "/(?:[\\w.-]+\\/)+[\\w.-]+\\.[A-Za-z0-9]{1,5}\\b/g"
     },
     {
       "name": "file-names",
@@ -54,9 +58,28 @@
     {
       "name": "latex-citations",
       "pattern": "/\\\\(?:cite|parencite|textcite|autocite)\\{[^}]+\\}/g"
+    },
+    {
+      "name": "quarto-shortcodes",
+      "pattern": "/\\{\\{<[^>]*>\\}\\}/g"
+    },
+    {
+      "name": "quarto-crossrefs",
+      "pattern": "/@[a-z]+-[\\w-]+/g"
+    },
+    {
+      "name": "latex-environments",
+      "pattern": "/\\\\(?:begin|end)\\{[^}]+\\}/g"
+    },
+    {
+      "name": "markdown-link-targets",
+      "pattern": "/\\]\\([^)]*\\)/g"
+    },
+    {
+      "name": "markdown-inline-code",
+      "pattern": "/`[^`\\n]*`/g"
     }
   ],
-
   "ignoreRegExpList": [
     "quarto-ids-classes",
     "file-paths",
@@ -64,19 +87,27 @@
     "latex-commands",
     "latex-symbol-commands",
     "latex-references",
-    "latex-citations"
+    "latex-citations",
+    "quarto-shortcodes",
+    "quarto-crossrefs",
+    "latex-environments",
+    "markdown-link-targets",
+    "markdown-inline-code"
   ],
-
   "words": [
-    "Quarto",
-    "LuaLaTeX",
-    "MathJax",
-    "KaTeX",
-    "JSXGraph",
-    "GeoGebra",
+    "applet",
+    "applets",
+    "callout",
+    "crossref",
     "Desmos",
     "frontmatter",
-    "crossref",
-    "callout"
+    "geogebra",
+    "GeoGebra",
+    "JSXGraph",
+    "KaTeX",
+    "MathJax",
+    "Quarto",
+    "Typst",
+    "Vite"
   ]
 }

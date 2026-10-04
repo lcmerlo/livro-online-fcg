@@ -29,7 +29,7 @@ $$
 De fato, seja $s$ a única reta que passa por $P=(x_0,y_0)$ e é perpendicular a $r:ax+by+c=0,$ logo $s\parallel (a,b)$ pois $r\perp (a,b)$.
 
 $$
-s:\left\{ \begin{array}{l} -x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \MATHBB{R},
+s:\left\{ \begin{array}{l} x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \R,
 $$
 são umas equações paramétricas de $s$.
 Seja $Q$ o pé da perpendicular a $r$ que passa por $P,$ isto é, $Q=r\cap s$.
@@ -37,13 +37,13 @@ Então:
 $$
 Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right. 
 $$
-para algum $t' \in \MATHBB{R}$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \MATHBB{R}$.
+para algum $t' \in \R$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \R$.
 Como $Q \in r$, temos:
 $a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
 $\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}$.
-Temos então que $d(P,r)=d(P,Q)=||\overrightarrow{PQ}||$ e $\overrightarrow{PQ}=(a,b)t',$  portanto:
+Temos então que $d(P,r)=d(P,Q)=\norm{\vet{PQ}}$ e $\vet{PQ}=(a,b)t',$  portanto:
 $$
-d(P,r)=|t'|.||(a,b)||=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+d(P,r)=|t'|.\norm{(a,b)}=\frac{|ax_0+by_0+c|}{a^2+b^2}\sqrt{a^2+b^2} = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
 $$
 
 **Exemplo**
@@ -66,7 +66,7 @@ Determine a distância do ponto $P=(3,4)$ até a reta $r:2x-y=1$.
 
 **Exemplo**
 
-Determine os pontos da reta $m:\{(t,-t) \mid t \in \mathbb{R} \}$ que distam uma unidade da reta $\ell:3x+4y=2$.
+Determine os pontos da reta $m:\{(t,-t) \mid t \in \R \}$ que distam uma unidade da reta $\ell:3x+4y=2$.
 
 - $\leftarrow$ Click para ver a solução
 **Resolução:**
@@ -81,8 +81,6 @@ donde segue o resultado: $P=(3,-3) \text{ ou } P=(-7,7).$
 
 
  A **distância entre as retas** $r$ e $s$ denotada por $d(r,s)$ é o menor valor possível de $d(P,Q)$ com $P\in r$ e $Q\in s$.
-
-
 
 - Se $r$ e $s$ são **concorrentes:**
  temos $d(r,s) = 0$, pois neste caso, o menor valor possível de $d(P,Q)$ com $P\in r$ e $Q\in s$ é $d(P_0,P_0) = 0$, onde $P_0$ é o ponto de interseção entre $r$ e $s$.
@@ -117,8 +115,6 @@ $r: ax+by+c=0 \quad \text{e} \quad s: ax+by+c'=0,$
 $$
 d(r,s)=\frac{|c-c'|}{\sqrt{a^2+b^2}}.
 $$
-
-
 
 De fato, seja $P=(x_0,y_0)  \in s$, 
 

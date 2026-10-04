@@ -59,17 +59,6 @@ function iniciarTodos() {
   });
 }
 
-const AppletsLivro = {
-  CORES,
-  applets,
-  instancias,
-  iniciarApplet,
-  iniciarTodos,
-  resetarApplet,
-};
-
-window.AppletsLivro = AppletsLivro;
-
 document.addEventListener("DOMContentLoaded", iniciarTodos);
 
 document.addEventListener("click", (evento) => {

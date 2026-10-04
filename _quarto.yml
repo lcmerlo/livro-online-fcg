@@ -23,6 +23,8 @@ format:
     smooth-scroll: true
     callout-appearance: simple
     axe: true
+    filters:
+      - components/blocos.lua
 
 
 execute:

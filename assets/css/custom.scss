@@ -72,17 +72,8 @@ $line-height-base: 1.65;
    Estrutura geral da página
    ========================================================= */
 
-body {
-  max-width: none;
-}
-
 main.content {
   max-width: 76ch;
-}
-
-p,
-li {
-  line-height: $line-height-base;
 }
 
 
@@ -167,6 +158,17 @@ li {
 }
 
 
+.bloco-rotulo {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+
 /* Applets JSXGraph */
 
 .applet-jxg {
@@ -176,9 +178,8 @@ li {
   margin: 1rem 0;
 }
 
-.applet-status {
+.applet-link {
   font-size: 0.95rem;
-  color: var(--cor-texto-suave);
 }
 
 .applet-botao {

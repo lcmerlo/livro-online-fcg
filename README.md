@@ -37,6 +37,7 @@ _quarto.yml 	- Configuração principal do livro
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
+tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
 components/applet.lua - Shortcodes `applet` e `geogebra`; o bundle dos applets só é carregado nas páginas que usam `applet`
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
@@ -50,6 +51,7 @@ AGENTS.md 		- Regras para agentes de código
 quarto preview      - preview local
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
+node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
 
 
 ## Applets

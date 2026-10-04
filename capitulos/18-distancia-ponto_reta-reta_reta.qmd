@@ -31,15 +31,15 @@ $$
 De fato, seja $s$ a única reta que passa por $P=(x_0,y_0)$ e é perpendicular a $r:ax+by+c=0,$ logo $s\parallel (a,b)$ pois $r\perp (a,b)$.
 
 $$
-s:\left\{ \begin{array}{l} x=x_0+at \\ y=x_0+bt  \end{array} \right. , t\in \R,
+s:\left\{ \begin{array}{l} x=x_0+at \\ y=y_0+bt  \end{array} \right. , t\in \R,
 $$
 são umas equações paramétricas de $s$.
 Seja $Q$ o pé da perpendicular a $r$ que passa por $P,$ isto é, $Q=r\cap s$.
 Então: 
 $$
-Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=x_0+bt'  \end{array} \right. 
+Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=y_0+bt'  \end{array} \right. 
 $$
-para algum $t' \in \R$, isso é  $Q=(x_0+at', x_0+bt')$   para algum  $t' \in \R$.
+para algum $t' \in \R$, isso é  $Q=(x_0+at', y_0+bt')$   para algum  $t' \in \R$.
 Como $Q \in r$, temos:
 $a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
 $\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}$.

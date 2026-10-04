@@ -59,13 +59,6 @@ Escreva o vetor $\vec{p}=(1,3)$ como combinação linear dos vetores $\vec{u}=(1
 
 - $\leftarrow$ Click para ver a solução
     
-
-$$ \begin{aligned}
-        \vec{p} &=\vec{u}-3\vec{v} \\
-        \vec{p} &= 2\vec{u}-2\vec{v}+\vec{w}\\
-        \vec{p} &=4\vec{u}+3\vec{w}.
-    \end{aligned} $$
-  
 **Resolução:** Devemos encontrar $a,b$ e $c$ tais que $\vec{p}=a\vec{u}+b\vec{v}+c\vec{w}.$  Substituindo as coordenadas dos vetores dados, na expressão anterior, temos
 $$
     (1,3)=a(1,0)+b(0,-1)+c(-1,1)=(a-c,-b+c) 
@@ -80,11 +73,12 @@ $$
     \vec{p} = (c+1) \vec{u} + (c-3) \vec{v} +c\vec{w} \quad \forall \ c \in \R.
 $$
     
-Assim, algumas  possibilidades de combinações lineares, são por exemplo, 
+Assim,existem infinitas combinações lineares possíveis, uma para cada valor de $c\in \R$. Por exemplo, 
 $$ \begin{aligned}
         \vec{p} &=\vec{u}-3\vec{v} & \text{ para } c=0 \\
         \vec{p} &= 2\vec{u}-2\vec{v}+\vec{w} & \text{ para } c=1 \\
         \vec{p} &=4\vec{u}+3\vec{w} & \text{ para } c=3.
         \end{aligned} $$
 
-De fato, como vimos na @prp-combinacao-linear-unica, neste exercício existe infinitas possibilidades, uma para cada valor de $c\in \R$.
+Note que, como o exercício aborda combinações lineares de três vetores do plano,  seu resultado  não contradiz a unicidade de solução apresentada na 
+@prp-combinacao-linear-unica, pois esta é válida apenas no contexto de combinação linear de dois vetores. 

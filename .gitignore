@@ -9,7 +9,7 @@ _book/
 _site/
 docs/
 /index.tex
-extras/*.html
+_interno/**/*.html
 
 
 # macOS
@@ -27,10 +27,6 @@ pnpm-debug.log*
 applets-src/dist/
 applets-src/.vite/
 assets/js/applets-dist/
-
-# Rascunhos locais - Ativar se não compartilhados
-Rascunhos/
-
 
 # VS Code:
 *.code-workspace

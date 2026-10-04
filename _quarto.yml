@@ -49,12 +49,9 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- extras/relatorio-design-pedagogico.qmd
-    #- extras/biblioteca-estruturas-site-diretrizes.qmd
-    #- extras/proposta.qmd
-    #- Rascunhos/estrutura-pastas-descartardepois.qmd
-    #- Rascunhos/paleta-cores.qmd
-    #- Rascunhos/jsxgraph-1.qmd
+    #- _interno/diretrizes/relatorio-design-pedagogico.qmd
+    #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
+    #- _interno/diretrizes/proposta.qmd
     - capitulos/01-primeiras-nocoes.qmd
     - capitulos/02-segmentos.qmd
     - capitulos/03-segmentos-orientados.qmd

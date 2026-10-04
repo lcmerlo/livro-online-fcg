@@ -18,7 +18,7 @@ Exercícios com ajuda
 Exercícios de fixação
 
 ## Bibliografia
-	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em 'Rascunhos/'
+	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em '_interno/rascunhos/'
 	- Para ativar: mover os dois para a raiz, listar 'references.qmd' ao fim de 'chapters' e restaurar 'bibliography: references.bib' em '_quarto.yml'
 	- Exemplo de citação: ... @autor2024, ...
 
@@ -42,7 +42,7 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-Rascunhos/ 		- Material ainda não utilizado (capítulos, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, propostas) e rascunhos/ (capítulos ainda não publicados, referências)
 .github/workflows/publish.yml - Renderiza e publica no GitHub Pages
 AGENTS.md 		- Regras para agentes de código
 
@@ -113,7 +113,7 @@ git push            - envia ao repositório remoto
 ### Arquivos principais Git
 
 .gitignore (pastas e arquivos que não devem ir para o commit): ver o arquivo na raiz.
-Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` e `Rascunhos/` (arquivos novos), temporários do LaTeX.
+Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
 
 ## Licença
 	Definir antes da publicação pública.

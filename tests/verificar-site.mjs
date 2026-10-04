@@ -4,7 +4,8 @@
 //   --raiz <pasta>   raiz do projeto (padrão: pasta acima de tests/)
 //   --estrito        trata avisos como erros
 //
-// Fontes (.qmd): caminhos de imagem inválidos e comandos TeX suspeitos.
+// Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
+// e comandos TeX suspeitos.
 // Site gerado (docs/): iframes sem title, imagens sem alt, applets não
 // registrados, ids duplicados e saltos na hierarquia de títulos.
 // Links internos e âncoras são verificados pelo lychee no workflow.
@@ -52,6 +53,11 @@ for (const arquivo of fontes.filter(existsSync)) {
     if (!existsSync(resolve(dirname(arquivo), decodeURIComponent(alvo)))) {
       erro(onde, `imagem não encontrada: ${alvo}`);
     }
+  }
+
+  // Definições e proposições são blocos {#def-…}/{#prp-…}, não títulos.
+  for (const m of texto.matchAll(/^#{2,6}\s+\**(Defini[cç][aã]o|Proposi[cç][aã]o)\b.*$/gm)) {
+    erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `título de ${m[1].toLowerCase()}: use um bloco {#def-…} ou {#prp-…}`);
   }
 
   // Comando TeX inteiramente em maiúsculas (ex.: \MATHBB) não existe.

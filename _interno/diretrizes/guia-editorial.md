@@ -31,7 +31,28 @@ Use as classes e shortcodes, sem formatar à mão (§24, §36).
 | Exercício resolvido | `::: {#exrr-nome}` com a resolução em `::: {.callout-note title="Resolução" collapse="true"}` |
 | Figura com legenda | `::: {.fig-leg #fig-nome}` (largura opcional: `.w30` … `.w80`) |
 
-**Decisão (04/10/2026).** Definições usam blocos `::: {#def-…}`, com referência cruzada. Os capítulos 1 a 5 já seguem essa forma; nos demais, os títulos `## Definição` ainda precisam ser migrados (títulos que começam com `## Definição` ou `## Proposição`, 46 no total, em 15 capítulos). Em capítulo novo ou revisado, usar sempre `{#def-…}`. Proposições seguem a mesma forma com `{#prp-…}`, já usada em dois capítulos; essa extensão ainda não foi confirmada como decisão.
+**Definições e proposições (04/10/2026).** Usam blocos com referência cruzada, nunca títulos:
+
+```markdown
+::: {#def-vetor-nulo}
+## Vetor nulo
+
+O **vetor nulo** é …
+:::
+
+::: {#prp-formula-distancia-ponto-reta}
+## Fórmula da distância entre ponto e reta
+
+Se $P=(x_0,y_0)$ e $r:ax+by+c=0$, então …
+:::
+
+Pela @prp-formula-distancia-ponto-reta, temos …
+```
+
+- O título (`## …`, primeira linha do bloco) é opcional; use-o só quando nomear o resultado ajuda.
+- O bloco contém o enunciado. Demonstração ("De fato…"), exemplos e observações ficam depois dele.
+- Referir-se a um resultado sempre com `@def-…` ou `@prp-…`, não com "Proposição 1" digitado, pois a numeração é automática (ex.: "Proposição 18.2").
+- `tests/verificar-site.mjs` acusa erro se um título começar com "Definição" ou "Proposição".
 
 ## 4. Matemática (§28)
 
@@ -47,7 +68,7 @@ Use as classes e shortcodes, sem formatar à mão (§24, §36).
 
   Para alterar a notação em todo o livro, edite só `components/macros.html`. As macros não valem em PDF/Typst. Se o livro passar a ter PDF, defini-las também para esse formato.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`. No MathJax do site, `\color{993300}` não aplica cor e `\color[HTML]{993300}` produz erro (testado em 04/10/2026).
-- **Migração pendente:** o texto atual ainda escreve `\vec{AB}` e `\overrightarrow{AB}` (segmento orientado), `\lVert…\rVert` e `\|…\|` (norma) e `\mathbb{R}`. Em capítulo novo ou revisado, usar as macros. A substituição nos capítulos existentes é conteúdo matemático e depende de revisão.
+- Os capítulos já usam as macros; não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático passam por revisão de um docente antes de entrar.
 

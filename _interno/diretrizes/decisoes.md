@@ -11,3 +11,4 @@ Uma linha por decisão: data, decisão, motivo. Mais recentes no fim.
 | 2026-10-04 | PDF não é meta atual; se vier a ser, usar Typst | Typst compilou o livro em ~5 s; LaTeX falha no tipo `exrr` sem `latex-env` |
 | 2026-10-04 | Definições escritas como blocos `{#def-…}` (não como títulos `## Definição`) | Referência cruzada e forma já usada nos capítulos 1 a 5 |
 | 2026-10-04 | Macros MathJax em `components/macros.html`: `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` | Notação definida em um só lugar; evita erros como `\MATHBB` |
+| 2026-10-04 | Proposições escritas como blocos `{#prp-…}`; referências por `@prp-…`; título com "Definição" ou "Proposição" passa a ser erro nos testes | Mesma razão das definições; numeração automática evita referências desatualizadas |

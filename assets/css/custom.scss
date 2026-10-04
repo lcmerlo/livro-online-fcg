@@ -178,6 +178,15 @@ main.content {
   margin: 1rem 0;
 }
 
+.applet-status {
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+.applet-status:empty {
+  display: none;
+}
+
 .applet-link {
   font-size: 0.95rem;
 }

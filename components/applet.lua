@@ -26,8 +26,9 @@ return {
 
     return pandoc.RawBlock("html", string.format(
       '<div id="%s" class="applet-jxg" data-applet="%s" aria-label="%s"></div>\n' ..
+      '<p id="%s-status" class="applet-status" role="status" aria-live="polite"></p>\n' ..
       '<button type="button" class="applet-botao" data-reset="%s">Reiniciar applet</button>',
-      id, nome, rotulo, id))
+      id, nome, rotulo, id, id))
   end,
 
   ["geogebra"] = function(args, kwargs)

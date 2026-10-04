@@ -1,11 +1,11 @@
 # Eixos
 
-## Definição de Eixo
-
- Algumas características intuitivas de tais objetos são:
+Algumas características intuitivas de tais objetos são:
 
 
-::: {#def-eixo} 
+::: {#def-eixo}
+## Eixo
+
 MELHORAR!!
 
 Um **eixo** consiste de uma reta orientada $r$ com um ponto  $O$ fixado sobre ela, chamado de **origem**. Deste modo, $r$ é formada por duas semirretas com origem O, sendo que uma dessas semirretas será dita **semieixo positivo** e será indicada com uma seta na extremidade do desenho, e a outra semirreta (sem a seta) será dita **semieixo negativo**.
@@ -26,9 +26,9 @@ Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 [geogebra/f2zqppmu](geogebra/f2zqppmu)
 -->
 
-## Proposição
-
+::: {#prp-distancia-eixo}
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então a distância entre $P$ e $Q$ é dada pela fórmula $d\left(P,Q\right)= | p-q|$.
+:::
 
 
 {{< geogebra zt4dnqjy titulo="Applet GeoGebra: Eixos (2 de 2)" >}}
@@ -37,13 +37,15 @@ Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivament
 [geogebra/zt4dnqjy](geogebra/zt4dnqjy)
 -->
 
-## Definição de Ponto Médio
+::: {#def-ponto-medio}
+## Ponto médio
 
 O **ponto médio** de um segmento $PQ$ é o ponto $M$ que pertencente ao segmento e tal que $d\left(P,M\right)=d\left(Q,M\right)$.
+:::
 
-## Proposição
-
+::: {#prp-ponto-medio-eixo}
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então o ponto médio $M$ de $PQ$ tem coordenada $m=\dfrac{p+q}{2}$.
+:::
 
  **Exemplo**
 
@@ -64,7 +66,7 @@ Sejam $A$ e $B$ pontos de um eixo, tais que $A$ tem coordenada $-1$ e o ponto m
     
     $B$ tem coordenada 2.
     
-    De fato, suponha que $B$ tem coordenada $b$. Pela Proposição acima temos  
+    De fato, suponha que $B$ tem coordenada $b$. Pela @prp-ponto-medio-eixo temos  
     
     $\dfrac{1}{2}=\dfrac{-1+b}{2}$.
     

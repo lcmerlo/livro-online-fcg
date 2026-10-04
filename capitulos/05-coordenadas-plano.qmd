@@ -78,7 +78,7 @@ Se $A=\left(3,-1\right)$ e $M=\left(-1,1\right)$ é o ponto médio de $AB$, dete
 
 - $\leftarrow$ Click para ver a solução
 
-Como $M=(-1,1)$ é ponto médio de $A=(3,-1)$ e $B=(x_B,y_B)$, de acordo com a Proposição 2, temos que
+Como $M=(-1,1)$ é ponto médio de $A=(3,-1)$ e $B=(x_B,y_B)$, de acordo com a @prp-formula-ponto-medio, temos que
 
 $(-1,1)=\left(\dfrac{3+x_B}{2},\dfrac{-1+y_B}{2}\right)$, donde  $-1=\dfrac{3+x_B}{2}$ e $1=\dfrac{-1+y_B}{2}$. Resolvendo as duas últimas equações obtemos $x_B=-5$ e $y_B=3$, logo $B=(-5,3)$.
 :::

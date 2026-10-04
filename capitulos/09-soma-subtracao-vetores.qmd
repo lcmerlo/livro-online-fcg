@@ -1,12 +1,12 @@
 # Soma e Subtração de Vetores
 
-## Definição
-
- Se $\vec{u}=(a_1,a_2)$ e  $\vec{v}=(b_1,b_2)$, a soma de $\vec{u}$ e $\vec{v}$ e a subtração de $\vec{u}$ por $\vec{v}$ são os vetores dados, respectivamente, por
+::: {#def-soma-subtracao-vetores}
+Se $\vec{u}=(a_1,a_2)$ e  $\vec{v}=(b_1,b_2)$, a soma de $\vec{u}$ e $\vec{v}$ e a subtração de $\vec{u}$ por $\vec{v}$ são os vetores dados, respectivamente, por
 
 $$
  \vec{u}+\vec{v}=(a_1+b_1,a_2+b_2)    \quad \text{ e } \quad  \vec{u}-\vec{v}=(a_1-b_1,a_2-b_2).
 $$
+:::
 
 
 **Exemplo**
@@ -17,8 +17,7 @@ $$
 \vec{u}+\vec{v}=(6,2), \ \vec{u}-\vec{v}=(-2,-4)  \quad \text{e} \quad   \vec{v}-\vec{u}=(2,4).
 $$
 
-## Proposição
-
+::: {#prp-propriedades-soma-vetores}
 Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\R$. Valem as seguintes propriedades:
 
 1. $\vec{u}+\vec{0}=\vec{u}$; 
@@ -29,6 +28,7 @@ Sejam $\vec{u}$ e $\vec{v}$ vetores e $a,b\in\R$. Valem as seguintes propriedade
 6. $(a\pm b)\vec{v}=a\vec{v}\pm b\vec{v}$; 
 7. $a(\vec{v}\pm\vec{u})=a\vec{v}\pm a\vec{u};$ 
 8. $\norm{\vec{u} + \vec{v}} \leq \norm{\vec{u}} + \norm{\vec{v}}.$  *Desigualdade Triangular para Vetores.*
+:::
 
 
 ## Interpretação Geométrica da Soma e Subtração de Vetores

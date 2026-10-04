@@ -1,23 +1,21 @@
 # Posições Relativas entre Reta e Círculo
 
-## Definição
-
-
- Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
+::: {#def-posicoes-relativas-reta-circulo}
+Dados uma reta $\ell$ e um círculo $\mathcal{C},$ temos três situações quanto às suas **posições relativas**:
 
 - $\mathcal{C} \cap \ell = \{ P,Q\},$ com $P\ne Q.$ Neste caso, dizemos que $\ell$ é **secante a** $\mathcal{C}$ em $P$ e $Q;$
 - $\mathcal{C}\cap \ell = \{T\}.$ Neste caso, dizemos que $\ell$ **é tangente** a $\mathcal{C}$ em $T;$
 - $\mathcal{C} \cap \ell = \emptyset.$ Neste caso, dizemos que $\ell$ **é exterior a** $\mathcal{C}.$
+:::
 
 
-## Proposição
-
-
- Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:
+::: {#prp-posicao-reta-circulo-distancia}
+Dados uma reta $\ell$ e um círculo $\mathcal{C}$ com centro $A$ e raio $r,$ temos:
 
 - $\ell$ é secante a $\mathcal{C} \Leftrightarrow  d(A, \ell) < r;$
 - $\ell$ é tangente a $\mathcal{C} \Leftrightarrow  d(A, \ell) = r;$
 - $\ell$ é exterior a $\mathcal{C} \Leftrightarrow  d(A, \ell) > r.$
+:::
 
 <!--
 ![Untitled](Posi%C3%A7%C3%B5es%20Relativas%20entre%20Reta%20e%20C%C3%ADrculo/Untitled.png)

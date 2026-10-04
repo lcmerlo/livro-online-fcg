@@ -1,13 +1,13 @@
 # Combinação Linear
 
-## Definição
-
- Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{m}$ da forma
+::: {#def-combinacao-linear}
+Uma **combinação linear** de vetores $\vec{v}_1, \dots,\vec{v}_n$ é qualquer vetor $\vec{m}$ da forma
 
 $$
 a_1\vec{v}_1 +  \cdots + a_n\vec{v}_n, 
 $$
 onde   $a_1, \dots, a_n$  são números reais. 
+:::
 
 
 **Exemplo**
@@ -27,9 +27,9 @@ Quais vetores são obtidos como combinação linear de um único vetor $\vec{v}$
 Qualquer vetor $\vec{m}$  que for múltiplo de $\vec{v}$, ou seja, 
 $\vec{m} = a \vec{v}$,  com $a \in \R$.
     
-## Proposição
-
- Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \R$ e existe um único $b\in \R$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
+::: {#prp-combinacao-linear-unica}
+Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \R$ e existe um único $b\in \R$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
+:::
 
 {{< geogebra zmcpatqc titulo="Applet GeoGebra: Combinação Linear (2 de 2)" >}}
 
@@ -59,7 +59,7 @@ Escreva o vetor $\vec{p}=(1,3)$ como combinação linear dos vetores $\vec{u}=(1
 
 - $\leftarrow$ Click para ver a solução
     
-Existem infinitas possibilidades, de acordo com a proposição acima. Por exemplo:
+Existem infinitas possibilidades, de acordo com a @prp-combinacao-linear-unica. Por exemplo:
     
 $\vec{p}=\vec{u}-3\vec{v}$  ou  $\vec{p}=2\vec{u}-2\vec{v}+\vec{w}$  ou $\vec{p}=4\vec{u}+3\vec{w}$.
     

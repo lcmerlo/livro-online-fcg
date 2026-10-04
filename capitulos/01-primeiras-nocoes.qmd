@@ -55,13 +55,13 @@ Nestes casos $P$ não é um ponto no sentido estrito, mas sim uma variável pont
 
 ## Posições Relativas Entre Retas
 
-### Definição
-
+::: {#def-posicoes-relativas-retas-intro}
 Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** entre elas. Elas podem ser:
 
 - **Coincidentes**: quando são iguais, isto é, $r=s;$
 - **Paralelas**: quando não se intersectam, isto é, $r\cap s=\varnothing.$ Neste caso, denotamos $r\parallel s;$
 - **Concorrentes**: quando se intersectam em um ponto, isto é, $r\cap s=\{P\}.$
+:::
 
 
 ## Distância
@@ -72,8 +72,7 @@ Duas retas $r$ e $s$ no plano podem ter três tipos de **posições relativas** 
 Fixada uma unidade de comprimento, a **distância entre os pontos** $A$ e $B$ será denotada por $d(A,B)$. Em geral a unidade de medida não será mencionada, mas fica subentendido que uma unidade foi escolhida.
 
 
-### Proposição
-
+::: {#prp-propriedades-distancia}
 Valem as seguintes propriedades:
 
 1. A distância nunca é negativa. 
@@ -84,6 +83,7 @@ $$ d(A,B)\ge0; $$
    $$d(A,B)=d(B,A);$$
 4. $d(A,B)+d(B,C)\ge d(A,C)$;
 5. $d(A,B)+d(B,C)=d(A,C)\Leftrightarrow$ $A$, $B$ e $C$ são colineares e $B$ está entre $A$ e $C$.
+:::
 
 A propriedade 4 acima é conhecida como **desigualdade triangular** e a propriedade 5 é um caso particular dela. Tais propriedades expressam geometricamente que o caminho mais curto de um ponto a outro é em linha reta.
 

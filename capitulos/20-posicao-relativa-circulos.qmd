@@ -45,12 +45,4 @@ $$
 
 No exemplo iterativo abaixo, mova um círculo para visualizar os casos da proposição.
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/y9vt9eca/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra y9vt9eca titulo="Applet GeoGebra: Posição Relativa entre Círculos" >}}

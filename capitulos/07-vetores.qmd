@@ -22,15 +22,7 @@ Na situação acima, o vetor $\vec{v}$ também pode ser denotado por $\overright
 
 Na seguinte figura interativa mova os vetores com o mouse para determinar quais os segmentos orientados formados pelos pontos abaixo os representam.
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/fjcqnvew/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra fjcqnvew titulo="Applet GeoGebra: Vetores" >}}
 
 <!--
 [](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+PC9zdmc+)

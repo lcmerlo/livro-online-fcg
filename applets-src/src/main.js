@@ -72,6 +72,14 @@ window.AppletsLivro = AppletsLivro;
 
 document.addEventListener("DOMContentLoaded", iniciarTodos);
 
+document.addEventListener("click", (evento) => {
+  const botao = evento.target.closest("[data-reset]");
+
+  if (botao) {
+    resetarApplet(botao.dataset.reset);
+  }
+});
+
 export {
   CORES,
   applets,

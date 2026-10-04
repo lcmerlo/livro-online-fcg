@@ -20,15 +20,7 @@ Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 - Se $P$ é um ponto sobre o semieixo negativo então $P$ corresponde ao número  $p=-d(P,O)$.
 - Se $P$ é um ponto do eixo, então o número $p$ obtido pelo processo acima é dito **coordenada** de $P$.
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/f2zqppmu/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra f2zqppmu titulo="Applet GeoGebra: Eixos (1 de 2)" >}}
 
 <!--
 [geogebra/f2zqppmu](geogebra/f2zqppmu)
@@ -39,15 +31,7 @@ Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 Se $P$ e $Q$ são pontos sobre um eixo com coordenadas $p$ e $q$, respectivamente, então a distância entre $P$ e $Q$ é dada pela fórmula $d\left(P,Q\right)= | p-q|$.
 
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/zt4dnqjy/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra zt4dnqjy titulo="Applet GeoGebra: Eixos (2 de 2)" >}}
 
 <!--
 [geogebra/zt4dnqjy](geogebra/zt4dnqjy)

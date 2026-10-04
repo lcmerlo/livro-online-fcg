@@ -38,15 +38,7 @@ O produto interno entre dois vetores está intimamente relacionado com o comprim
  Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vec{OA}$ e $\vec{v}=\vec{OB}$. Definimos o ângulo entre os vetores $\vec{u}$ e $\vec{v}$, denotado por $\sphericalangle(\vec{u},\vec{v})$, como sendo a menor medida positiva do ângulo (menor ângulo) $A\hat{O}B$.
 
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/nqbrkaya/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra nqbrkaya titulo="Applet GeoGebra: Produto Interno ou Escalar" >}}
 
 
 ## Proposição 2

@@ -15,15 +15,7 @@ onde   $a_1, \dots, a_n$  são números reais.
 No exemplo interativo abaixo, abordaremos o caso $n=3$, ou seja, veremos algumas combinações lineares de três vetores  $\vec{v}_1, \ \vec{v}_2$ e  $\vec{v}_3$.
 
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/kbvp4xpt/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra kbvp4xpt titulo="Applet GeoGebra: Combinação Linear (1 de 2)" >}}
 
 
 **Exemplo**
@@ -39,15 +31,7 @@ $\vec{m} = a \vec{v}$,  com $a \in \mathbb{R}$.
 
  Fixados dois vetores não paralelos $\vec{u}$ e $\vec{v}$, qualquer outro vetor do plano $\vec{w}$ se escreve de maneira única como combinação linear de $\vec{u}$ e $\vec{v}$, ou seja, para cada $\vec{w}$ existe um único $a\in \mathbb{R}$ e existe um único $b\in \mathbb{R}$ tais que $\vec{w}=a\vec{u}+b\vec{v}.$
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/zmcpatqc/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra zmcpatqc titulo="Applet GeoGebra: Combinação Linear (2 de 2)" >}}
 
 **Exemplo**
 

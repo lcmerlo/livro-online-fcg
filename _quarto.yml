@@ -4,7 +4,8 @@ project:
 
 lang: pt-BR
 brand: _brand.yml
-resources: assets/js/applets-dist/**
+shortcodes:
+  - components/applet.lua
 
 format:
   html:
@@ -22,7 +23,6 @@ format:
     smooth-scroll: true
     callout-appearance: simple
     axe: true
-    include-in-header: assets/includes/applets.html
 
 
 execute:

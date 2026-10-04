@@ -56,15 +56,7 @@ $$
 Nesta atividade você pode ver a relação entre cada ponto de uma reta e seu correspondente parâmetro de acordo com diferentes escolhas dos elementos fixados.
 
 Mova o ponto $P$ para ver sua relação com o parâmetro $t$.
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/xrejqcsh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra xrejqcsh titulo="Applet GeoGebra: Equação Paramétrica de Reta (1 de 2)" >}}
 
 Mova o ponto $P$ para ver sua relação com o parâmetro $t$. 
 
@@ -92,15 +84,7 @@ $$
 
 No applet abaixo você pode alterar os elementos fixos das retas e verificar as suas respectivas equações paramétricas.
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/g8j8szyk/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra g8j8szyk titulo="Applet GeoGebra: Equação Paramétrica de Reta (2 de 2)" >}}
 
 
 

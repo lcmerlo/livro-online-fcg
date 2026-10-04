@@ -55,15 +55,7 @@ sentido:   $a\vec{v} \,  \begin{cases}  \text{tem o mesmo sentido de } \vec{v}, 
 
 **Exemplo**
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/rfvkqkbh/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra rfvkqkbh titulo="Applet GeoGebra: Produto entre Número e Vetor" >}}
 
 
 ## Proposição

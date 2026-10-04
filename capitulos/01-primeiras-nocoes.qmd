@@ -95,13 +95,5 @@ Mova os pontos no applet abaixo e perceba que temos três desigualdades triangul
 ![geogebra](https://www.geogebra.org/classic/nep5hngs)
 -->
 
-<div class="geogebra-container">
-  <iframe
-    src="https://www.geogebra.org/material/iframe/id/nep5hngs/width/800/height/500/border/888888/rc/false/ai/false/sdz/true"
-    width="800"
-    height="500"
-    style="border:0;"
-    allowfullscreen>
-  </iframe>
-</div>
+{{< geogebra nep5hngs titulo="Applet GeoGebra: Primeiras Noções" >}}
 

@@ -41,7 +41,7 @@ Q:\left\{ \begin{array}{l} x=x_0+at' \\ y=y_0+bt'  \end{array} \right.
 $$
 para algum $t' \in \R$, isso é  $Q=(x_0+at', y_0+bt')$   para algum  $t' \in \R$.
 Como $Q \in r$, temos:
-$a(x_0+t')+b(y_0+t') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
+$a(x_0+at')+b(y_0+bt') + c=0\Rightarrow  (a^2+b^2)t'+ax_0+by_0=-c$ 
 $\Rightarrow t'=\frac{-(ax_0+by_0)-c}{(a^2+b^2)}$.
 Temos então que $d(P,r)=d(P,Q)=\norm{\vet{PQ}}$ e $\vet{PQ}=(a,b)t',$  portanto:
 $$

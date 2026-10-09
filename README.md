@@ -18,7 +18,7 @@ Exercícios com ajuda
 Exercícios de fixação
 
 ## Bibliografia
-	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em '_interno/rascunhos/'
+	- Ainda não utilizada: 'references.bib' e 'references.qmd' estão em '_interno/oficina/'
 	- Para ativar: mover os dois para a raiz, listar 'references.qmd' ao fim de 'chapters' e restaurar 'bibliography: references.bib' em '_quarto.yml'
 	- Exemplo de citação: ... @autor2024, ...
 
@@ -32,7 +32,7 @@ Exercícios de fixação
 ## Plataforma de desenvolvimento - Quarto
 
 ### Arquivos principais
-index.qmd 		-  Página inicial
+index.qmd 		- Página inicial
 _quarto.yml 	- Configuração principal do livro
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
@@ -44,7 +44,7 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, propostas) e rascunhos/ (capítulos ainda não publicados, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, propostas) e oficina/ (protótipos/ com capítulos ainda não publicados, testes/ para arquivos de teste com a configuração do livro, referências)
 .github/workflows/publish.yml - Renderiza e publica no GitHub Pages
 AGENTS.md 		- Regras para agentes de código
 
@@ -53,6 +53,7 @@ quarto preview      - preview local
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
+`quarto render _interno/oficina/testes/ARQUIVO.qmd` - renderiza um arquivo de teste com tema, filtros e macros do livro
 
 
 ## Applets

@@ -1,0 +1,23 @@
+---
+title: "Teste"
+---
+
+Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro.
+
+::: {.bloco-objetivo}
+Objetivo do teste.
+:::
+
+::: {#def-teste}
+Um vetor $\vet{AB}$ tem norma $\norm{\vet{AB}}$, com coordenadas em $\R^2$.
+:::
+
+::: {#exm-teste}
+Exemplo de teste.
+:::
+
+::: {.proof}
+Demonstração de teste.
+:::
+
+{{< applet segmento id="jxg-segmento-teste" rotulo="Applet de teste com dois pontos móveis." >}}

@@ -41,3 +41,5 @@ _scratch/
 *.toc
 *.synctex.gz
 **/*.quarto_ipynb
+
+/.quarto/

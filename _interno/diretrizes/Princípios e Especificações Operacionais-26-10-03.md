@@ -12,7 +12,7 @@ Neste estágio, a prioridade é estabelecer uma arquitetura global simples, cons
 
 ### Nota sobre fontes e documentos relacionados
 
-Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §32, §33, §40 e §41). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, e ele sustenta apenas parte dessas passagens:
+Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §31, §32, §39 e §40). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, e ele sustenta apenas parte dessas passagens:
 
 | § | Passagem | Em `relatorio-design-pedagogico-26-05-14.qmd` |
 |---|---|---|
@@ -27,8 +27,8 @@ As passagens sem correspondência remetem, provavelmente, a uma versão revista 
 
 Documentos relacionados, todos nesta pasta:
 
-- `guia-editorial.md`: regras curtas para quem escreve capítulos (§37);
-- `relatorio-design-pedagogico-26-05-14.qmd`, `biblioteca-estruturas-site-diretrizes.qmd`, `blocos-proposicoes.qmd` e `proposta.qmd`: material de apoio anterior a este documento.
+- `guia-editorial.md`: regras curtas para quem escreve capítulos (§36);
+- `relatorio-design-pedagogico-26-05-14.qmd`, `biblioteca-estruturas-site-diretrizes.qmd` e `blocos-proposicoes.qmd`: material de apoio anterior a este documento.
 
 # Parte 1 — Princípios
 
@@ -400,31 +400,18 @@ Podem permanecer fora do fluxo principal ou em estruturas expansíveis:
 
 A organização modular preserva a vantagem da proposta de três blocos do relatório revisto (ver Nota sobre fontes) sem transformar esses blocos em estrutura obrigatória para todos os conteúdos.
 
-## 23. Tipos de página
+### Ênfases de uso
 
-Na fase inicial, deve-se limitar o número de modelos.
+Os mesmos componentes se combinam com ênfases diferentes conforme a função do trecho:
 
-Recomenda-se estabelecer inicialmente quatro tipos:
+- **conteúdo**: introdução ou revisão conceitual;
+- **exemplo e prática**: modelagem de procedimento seguida de atividade do estudante;
+- **exploração**: representação dinâmica com função central;
+- **síntese**: revisão, recuperação e integração de conteúdos.
 
-### Página de conteúdo
+Essas ênfases são combinações de componentes, não modelos de página separados, e podem coexistir em um mesmo capítulo. Novos componentes só devem ser criados quando houver necessidade recorrente.
 
-Para introdução ou revisão conceitual.
-
-### Página de exemplo e prática
-
-Para modelagem de procedimento seguida de atividade do estudante.
-
-### Página de exploração
-
-Para tópicos nos quais uma representação dinâmica possui função central.
-
-### Página de síntese
-
-Para revisão, recuperação e integração de conteúdos.
-
-Esses modelos devem reutilizar os mesmos componentes básicos. Novos tipos só devem ser criados quando houver necessidade recorrente.
-
-## 24. Sistema de componentes
+## 23. Sistema de componentes
 
 Todos os elementos recorrentes devem ser implementados como componentes ou classes reutilizáveis, evitando formatação manual página a página.
 
@@ -454,7 +441,16 @@ Cada componente deve possuir:
 
 O sistema deve permitir alteração global de aparência sem modificação individual de centenas de páginas.
 
-## 25. Design tokens e identidade visual
+Os componentes formam um sistema visual único, organizado em quatro famílias:
+
+- **abertura**: objetivo e pré-requisitos, lidos como um só bloco;
+- **matemática**: definição, proposição, teorema, exemplo, exercício e exercício resolvido; exemplos e exercícios compartilham a mesma aparência e se distinguem pelo prefixo;
+- **atividade e interação**: checkpoint e applet;
+- **apoio**: erro comum, dica, resposta e resolução.
+
+A função de cada bloco deve ser reconhecível pelo rótulo e pela posição, sem que o estudante precise aprender um código de cores, bordas e ícones. Não se cria cor, ícone ou fundo exclusivo para cada tipo; o agrupamento por proximidade e espaço em branco tem preferência sobre caixas aninhadas.
+
+## 24. Design tokens e identidade visual
 
 Cores, tipografia, espaçamento, larguras, raios, bordas e estilos de foco não devem ser definidos arbitrariamente em cada página.
 
@@ -476,7 +472,7 @@ O sistema inicial deve definir pelo menos:
 
 A paleta deve permanecer relativamente pequena. Expansões posteriores devem reutilizar os papéis semânticos definidos inicialmente.
 
-## 26. Layout principal
+## 25. Layout principal
 
 A página de conteúdo deve utilizar predominantemente uma coluna de leitura.
 
@@ -488,7 +484,7 @@ Em telas estreitas, o conteúdo deve reorganizar-se naturalmente em uma única c
 
 A largura de leitura deve ser controlada como um parâmetro global e ajustada por testes de legibilidade, e não por formatação local.
 
-## 27. Navegação
+## 26. Navegação
 
 A primeira versão deve garantir navegação simples e previsível antes da implementação de mecanismos personalizados.
 
@@ -506,7 +502,7 @@ O sistema de títulos e âncoras deve permitir referências internas precisas.
 
 Mudanças posteriores na organização do conteúdo devem procurar preservar URLs sempre que possível.
 
-## 28. Convenções matemáticas
+## 27. Convenções matemáticas
 
 O livro deve adotar convenções estáveis para:
 
@@ -528,7 +524,7 @@ Representações matemáticas devem permanecer legíveis em zoom e em telas estr
 
 As convenções devem ser documentadas em um guia editorial curto para evitar divergências entre capítulos.
 
-## 29. Imagens, gráficos e diagramas
+## 28. Imagens, gráficos e diagramas
 
 Todo recurso visual deve possuir função identificável.
 
@@ -545,7 +541,7 @@ Figuras que contenham informação essencial devem possuir descrição textual a
 
 Diagramas complexos devem ser testados em tamanho de tela reduzido antes de sua consolidação como padrão.
 
-## 30. Padrão inicial para applets
+## 29. Padrão inicial para applets
 
 Applets devem ser tratados como componentes especiais, e não como código independente inserido informalmente em páginas.
 
@@ -563,7 +559,7 @@ O applet deve iniciar em um estado compreensível e com poucos controles.
 
 Na primeira fase, deve-se priorizar applets pequenos, independentes e pedagogicamente claros. Applets multifuncionais devem ser evitados.
 
-## 31. Arquitetura técnica dos applets
+## 30. Arquitetura técnica dos applets
 
 Os applets devem compartilhar uma convenção de implementação.
 
@@ -582,7 +578,7 @@ Deve ser possível atualizar estilos, mensagens e comportamentos comuns sem alte
 
 A arquitetura deve reservar pontos de extensão para futuras funcionalidades — como registro de eventos ou feedback adaptativo — sem implementar essas funcionalidades prematuramente.
 
-## 32. Interação móvel
+## 31. Interação móvel
 
 Responsividade deve ser requisito da primeira fase, porque corrigir posteriormente estruturas incompatíveis com toque tende a exigir alterações profundas.
 
@@ -599,7 +595,7 @@ Para applets, devem ser avaliados desde o início:
 
 Soluções específicas, como bloqueio temporário de rolagem ou controles de incremento, podem ser introduzidas quando testes mostrarem sua necessidade. O relatório revisto (ver Nota sobre fontes) identifica corretamente esses problemas como relevantes para a experiência móvel, mas as soluções concretas devem permanecer sujeitas a validação.
 
-## 33. Acessibilidade estrutural mínima
+## 32. Acessibilidade estrutural mínima
 
 A primeira versão deve estabelecer requisitos que seriam caros de adicionar retroativamente.
 
@@ -637,7 +633,7 @@ Recursos mais sofisticados de acessibilidade dinâmica, como anúncios contextua
 
 A versão revista (ver Nota sobre fontes) já estabelece contraste, controle por teclado e tratamento explícito de conteúdo dinâmico como requisitos importantes.
 
-## 34. Desempenho e robustez
+## 33. Desempenho e robustez
 
 O livro deve permanecer funcional em conexões e dispositivos modestos.
 
@@ -653,7 +649,7 @@ Na fase inicial, isso implica:
 
 A simplicidade da stack é, portanto, tanto uma decisão de manutenção quanto uma decisão de experiência do usuário.
 
-## 35. Organização do código e dos arquivos
+## 34. Organização do código e dos arquivos
 
 A estrutura do projeto deve refletir funções, e não apenas capítulos.
 
@@ -675,9 +671,9 @@ livro/
   tests/
 ```
 
-Essa organização é uma referência de funções, **não** uma instrução para renomear pastas: renomear alteraria URLs (§27) e referências. Correspondência com a estrutura atual do repositório:
+Essa organização é uma referência de funções, **não** uma instrução para renomear pastas: renomear alteraria URLs (§26) e referências. Correspondência com a estrutura atual do repositório:
 
-| Função (§35) | Local atual |
+| Função (§34) | Local atual |
 |---|---|
 | `_quarto.yml`, `_brand.yml` | idem, na raiz |
 | `styles/` | `assets/css/custom.scss` |
@@ -685,9 +681,9 @@ Essa organização é uma referência de funções, **não** uma instrução par
 | `components/` | `components/` (filtros e shortcodes Lua) |
 | `assets/images/` | `assets/img/` |
 | `chapters/` | `capitulos/` e `index.qmd` |
-| `references/` | `_interno/rascunhos/references.*` (bibliografia ainda não ativada) |
+| `references/` | `_interno/oficina/references.*` (bibliografia ainda não ativada) |
 | `tests/` | `tests/` |
-| documentação interna | `_interno/diretrizes/` e `_interno/rascunhos/` |
+| documentação interna | `_interno/diretrizes/` e `_interno/oficina/` |
 
 Dentro de `applets-src/src/applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
 
@@ -695,7 +691,7 @@ Arquivos CSS e JavaScript globais devem permanecer centralizados.
 
 Código exclusivo de uma página deve ser mantido próximo ao conteúdo correspondente ou claramente identificado.
 
-## 36. Separação entre conteúdo e apresentação
+## 35. Separação entre conteúdo e apresentação
 
 O texto matemático deve permanecer o mais independente possível de detalhes de estilo.
 
@@ -711,7 +707,7 @@ Isso permite:
 
 A infraestrutura deve tornar o comportamento desejado o caminho mais simples para quem produz conteúdo.
 
-## 37. Convenções editoriais
+## 36. Convenções editoriais
 
 Deve ser criado um guia curto, versionado junto ao projeto, contendo:
 
@@ -726,7 +722,7 @@ Deve ser criado um guia curto, versionado junto ao projeto, contendo:
 
 Esse documento deve ser breve o suficiente para ser efetivamente utilizado pela equipe.
 
-## 38. Página-modelo de referência
+## 37. Página-modelo de referência
 
 Antes de produzir grande quantidade de conteúdo, deve ser construída uma página-modelo que represente o sistema pretendido.
 
@@ -748,7 +744,7 @@ Essa página funcionará como teste integrado de layout, tipografia, responsivid
 
 Somente depois de sua estabilização deve-se ampliar a produção em escala.
 
-## 39. Critérios de aceitação da primeira fase
+## 38. Critérios de aceitação da primeira fase
 
 A estrutura global pode ser considerada suficientemente madura quando:
 
@@ -762,7 +758,7 @@ A estrutura global pode ser considerada suficientemente madura quando:
 - erros de estilo podem ser corrigidos globalmente;
 - a equipe consegue identificar claramente onde adicionar novas funcionalidades.
 
-## 40. Validação inicial
+## 39. Validação inicial
 
 A primeira rodada de testes deve privilegiar falhas estruturais.
 
@@ -783,7 +779,7 @@ Sempre que possível, um pequeno número de estudantes do público-alvo deve uti
 
 A proposta anterior (ver Nota sobre fontes) de combinar testes tecnológicos, pilotagem com estudantes e avaliação posterior de dados oferece uma boa lógica de progressão, desde que essas fases não sejam confundidas entre si.
 
-## 41. Recursos deliberadamente adiados
+## 40. Recursos deliberadamente adiados
 
 Para preservar foco na arquitetura fundamental, não devem constituir requisitos da primeira fase:
 
@@ -804,7 +800,7 @@ Isso não implica rejeição desses recursos. Significa apenas que sua implement
 
 A telemetria proposta no relatório revisto (ver Nota sobre fontes), por exemplo, pode ser útil em fases posteriores, mas eventos como tempo de interação, quantidade de movimentos ou acionamento de reset não devem ser tratados isoladamente como indicadores de aprendizagem.
 
-## 42. Preparação para fases posteriores
+## 41. Preparação para fases posteriores
 
 Embora recursos avançados não sejam implementados inicialmente, a arquitetura deve evitar bloqueá-los.
 
@@ -821,7 +817,7 @@ Isso implica:
 
 A diferença é fundamental: **preparar a arquitetura para uma funcionalidade futura não significa implementá-la agora**.
 
-## 43. Ordem recomendada de desenvolvimento
+## 42. Ordem recomendada de desenvolvimento
 
 A sequência inicial recomendada é:
 
@@ -852,7 +848,7 @@ Observar uso real e revisar decisões.
 **9. Funcionalidades avançadas**
 Somente então avaliar telemetria, personalização, feedback adaptativo e outras extensões.
 
-## 44. Licenças e atribuições
+## 43. Licenças e atribuições
 
 O repositório ainda não define a licença do conteúdo nem do código (o README registra "definir antes da publicação pública"). Essa decisão precisa ser tomada antes da publicação aberta e deve distinguir texto, figuras e código.
 
@@ -863,7 +859,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 - **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 
-## 45. Registro de decisões
+## 44. Registro de decisões
 
 Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão e motivo, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
 

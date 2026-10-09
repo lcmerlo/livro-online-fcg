@@ -19,7 +19,7 @@ $$
 
 Intuitivamente, se imaginarmos que o vetor $\vec{u}$ é paralelo ao "solo" então o vetor ${ Proj}_{\:\vec{u}}{\:\vec{v}}$  corresponde a "sombra" que o vetor $\vec{v}$ projeta no solo ao meio dia.
 
-![](../assets/img/12-projecao-ortogonal/untitled.png)
+![](../assets/img/projecao-ortogonal/untitled.png)
 
 Além disso, se os vetores  $\vec{u}$  e  $\vec{v}$  não forem paralelos nem perpendiculares, então os vetores ${ Proj}_{\:\vec{u}}{\:\vec{v}}$ e $\vec{v}- { Proj}_{\:\vec{u}}{\:\vec{v}}$  podem ser representados sobre os catetos de um triângulo retângulo tendo  $\vec{v}$  sobre a hipotenusa.
 

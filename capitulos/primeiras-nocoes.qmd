@@ -16,7 +16,7 @@ Algumas características intuitivas de tais objetos são:
 - **Plano não é limitado:** De forma similar a retas, o plano é uma superfície sem ondulações que se prolonga indefinidamente. Como antes, por falta de espaço, visualizamos apenas uma parte do plano, como por exemplo, uma a folha de papel ou o quadro da sala de aula, mas entendemos que o plano representado por eles se prolonga indefinidamente em todas as direções.
   
 ::: {#fig-ponto-reta-plano}
-![](../assets/img/01-primeiras-nocoes/Untitled.png)
+![](../assets/img/primeiras-nocoes/Untitled.png)
 
 As setas indicando que a reta e o plano se prolongam não serão mais desenhadas daqui por diante.
 :::

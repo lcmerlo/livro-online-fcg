@@ -14,7 +14,7 @@ Dadas duas retas distintas $r$ e $s$ temos duas possibilidades quanto sua inters
 
 Duas retas concorrentes $r$ e $s$, formando ângulos de $90^{\circ}$ são ditas perpendiculares ou ortogonais e denotamos por $r\perp s.$
 
-![](../assets/img/14-eq-parametrica-reta/untitled-1.png)
+![](../assets/img/eq-parametrica-reta/untitled-1.png)
 
  Definição
 

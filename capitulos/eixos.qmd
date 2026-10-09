@@ -11,7 +11,7 @@ MELHORAR!!
 Um **eixo** consiste de uma reta orientada $r$ com um ponto  $O$ fixado sobre ela, chamado de **origem**. Deste modo, $r$ é formada por duas semirretas com origem O, sendo que uma dessas semirretas será dita **semieixo positivo** e será indicada com uma seta na extremidade do desenho, e a outra semirreta (sem a seta) será dita **semieixo negativo**.
 :::
 
-![](../assets/img/04-eixos/Untitled.png)
+![](../assets/img/eixos/Untitled.png)
 
 Podemos associar cada ponto de um eixo com um número real da seguinte forma:
 
@@ -84,5 +84,5 @@ Dica: Faça um esboço.
     
     De acordo com as coordenadas de $\alpha$, o ponto $A$ está entre $B$ e $C$.  Como o ponto $B$ tem coordenada negativa no eixo $\alpha$ e coordenada positiva no eixo $\beta$ os dois eixos tem setas em sentidos opostos (veja a figura abaixo). No eixo $\alpha$ temos temos $d(A,C)=|1-3|=2$. Esta distância não muda no eixo $\beta$, porém neste eixo $C$ está no semieixo negativo e $A$ é a origem, portanto a coordenada de $C$ em $\beta$ tem sinal negativo, isto é $-d(A,C)=-2$.
     
-    ![](../assets/img/04-eixos/Untitled-1.png)
+    ![](../assets/img/eixos/Untitled-1.png)
 

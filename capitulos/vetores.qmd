@@ -38,7 +38,7 @@ O **vetor nulo** é um vetor especial que é representado por qualquer segmento 
 
 Observe que só existe um vetor nulo e que, embora ele possa ser representado por qualquer ponto ele não deve ser confundido com algum ponto específico.
 
-![](../assets/img/07-vetores/untitled.png)
+![](../assets/img/vetores/untitled.png)
 
 ::: {#def-relacoes-entre-vetores}
 Dois vetores são ditos respectivamente **paralelos**, **perpendiculares**, **de mesmo sentido** ou **de sentidos opostos** se quaisquer de seus representantes forem respectivamente paralelos, perpendiculares, de mesmo sentido ou de sentidos opostos.

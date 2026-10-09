@@ -3,8 +3,7 @@
 
 local rotulos = {
   ["bloco-objetivo"] = "Objetivo",
-  ["bloco-pre-requisitos"] = "Pré-requisitos",
-  ["bloco-exemplo"] = "Exemplo",
+  ["bloco-pre-requisitos"] = "Antes de começar",
   ["bloco-applet"] = "Applet",
   ["bloco-erro"] = "Erro comum",
   ["bloco-checkpoint"] = "Checkpoint",

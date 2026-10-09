@@ -31,7 +31,7 @@ Fixado um sistema de coordenadas ortogonais OXY, o plano é decomposto nos eixos
 
 Note que os eixos não fazem parte dos quadrantes.
 
-![](../assets/img/05-coordenadas-plano/Untitled.png)
+![](../assets/img/coordenadas-plano/Untitled.png)
 
 ::: {#prp-formula-distancia}
 A distância entre os pontos $P$ e $Q$ é dada por

@@ -15,21 +15,46 @@ A lista de dez itens do `README.md` e do `index.qmd` é um repertório, não um 
 ## 2. Títulos
 
 - Um `#` por arquivo, o título do capítulo. Seções de capítulo com `##`, subseções com `###`. Sem saltos de nível.
-- Não renomear títulos, arquivos, labels (`{#def-…}`, `{#fig-…}`) nem IDs sem necessidade: eles são âncoras e URLs (§27).
+- Não renomear títulos, arquivos, labels (`{#def-…}`, `{#fig-…}`) nem IDs sem necessidade: eles são âncoras e URLs (§26).
 
 ## 3. Componentes
 
-Use as classes e shortcodes, sem formatar à mão (§24, §36).
+Use as classes e shortcodes, sem formatar à mão (§23, §35).
 
 | Para | Use |
 |---|---|
-| Objetivo, pré-requisitos, exemplo, applet, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-exemplo`, `-applet`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
+| Objetivo, pré-requisitos, applet, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-applet`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
 | Applet JSXGraph próprio | `{{< applet segmento id="jxg-segmento-1" rotulo="Descrição para leitor de tela" >}}` |
 | Applet GeoGebra | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}` |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
-| Exercício resolvido | `::: {#exrr-nome}` com a resolução em `::: {.callout-note title="Resolução" collapse="true"}` |
+| Exemplo | `::: {#exm-nome}` … `:::` |
+| Exercício resolvido | `::: {#exrr-nome}` seguido de dicas (opcionais) e da resolução, todas colapsadas |
+| Dica | `::: {.callout-tip title="Dica 1" collapse="true"}`, logo após o enunciado; várias dicas numeradas em ordem progressiva, antes da resolução |
+| Resposta / resolução | `::: {.callout-note title="Resposta" collapse="true"}` para resultado curto; `title="Resolução"` para desenvolvimento justificado |
 | Figura com legenda | `::: {.fig-leg #fig-nome}` (largura opcional: `.w30` … `.w80`) |
+
+**Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
+
+- Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
+- Applet: instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
+- Erro comum: sempre aberto; apresentar o equívoco e a correção.
+- Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
+- Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.
+
+```markdown
+::: {#exrr-nome}
+Enunciado.
+:::
+
+::: {.callout-tip title="Dica 1" collapse="true"}
+…
+:::
+
+::: {.callout-note title="Resolução" collapse="true"}
+…
+:::
+```
 
 **Definições e proposições (04/10/2026).** Usam blocos com referência cruzada, nunca títulos:
 
@@ -54,7 +79,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - Referir-se a um resultado sempre com `@def-…` ou `@prp-…`, não com "Proposição 1" digitado, pois a numeração é automática (ex.: "Proposição 18.2").
 - `tests/verificar-site.mjs` acusa erro se um título começar com "Definição" ou "Proposição".
 
-## 4. Matemática (§28)
+## 4. Matemática (§27)
 
 - Fórmulas são texto (LaTeX), nunca imagem.
 - Vetor: `\vec{u}`. Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
@@ -72,7 +97,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático passam por revisão de um docente antes de entrar.
 
-## 5. Imagens (§29)
+## 5. Imagens (§28)
 
 - Pasta e nome: `assets/img/<arquivo-do-capítulo>/<nome-descritivo>.svg` (ou `.png`). Evitar `Untitled.png` e nomes gerados por ferramentas.
 - Preferir SVG para diagramas.
@@ -80,17 +105,17 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
   ```markdown
   ::: {.fig-leg #fig-segmentos}
-  ![](../assets/img/02-segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando por A e B; o trecho entre A e B, destacado, é o segmento AB."}
+  ![](../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando por A e B; o trecho entre A e B, destacado, é o segmento AB."}
 
   Segmento $AB$ de extremos $A$ e $B$ e sua reta suporte.
   :::
   ```
 
   O `fig-alt` descreve a imagem para quem não a vê; a legenda (última linha do bloco) diz o que ela significa no texto.
-- Imagem puramente decorativa deve ser evitada (§29).
-- Registrar a origem de imagens de terceiros (§44).
+- Imagem puramente decorativa deve ser evitada (§28).
+- Registrar a origem de imagens de terceiros (§43).
 
-## 6. Applets (§30, §31)
+## 6. Applets (§29, §30)
 
 Todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (checkpoint). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
@@ -103,11 +128,11 @@ Para criar um applet JSXGraph novo:
    O shortcode cria também `<p id="<id>-status" role="status">`: o applet deve escrever nele, em texto, o estado relevante (ex.: coordenadas e comprimento em `applets/segmento.js`), com atraso de alguns décimos de segundo para não anunciar cada passo do arraste.
 5. Garantir acesso por teclado e alternativa a qualquer ação que dependa só de arraste.
 
-## 7. Acessibilidade e responsividade (§15, §33)
+## 7. Acessibilidade e responsividade (§15, §32)
 
-Valores mínimos em §33 do documento de Princípios: contraste 4,5:1 (texto) e 3:1 (elementos gráficos), alvos de 24 × 24 px, reflow em 320 px. Conferir cada página em tela estreita antes de fechar o capítulo.
+Valores mínimos em §32 do documento de Princípios: contraste 4,5:1 (texto) e 3:1 (elementos gráficos), alvos de 24 × 24 px, reflow em 320 px. Conferir cada página em tela estreita antes de fechar o capítulo.
 
-## 8. Antes de enviar (§40)
+## 8. Antes de enviar (§39)
 
 Na raiz do projeto:
 
@@ -124,7 +149,7 @@ git diff
 
 ## 9. Página-modelo
 
-`capitulos/02-segmentos.qmd` é a página-modelo (§38): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, applet com instrução e texto de estado, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência.
+`capitulos/segmentos.qmd` é a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, applet com instrução e texto de estado, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência.
 
 ## 10. Exemplo mínimo de trecho correto
 

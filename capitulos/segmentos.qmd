@@ -1,12 +1,24 @@
 # Segmentos
 
+
+
+
 ::: {.bloco-objetivo}
 Reconhecer um segmento de reta, seus extremos e sua reta suporte; calcular seu comprimento; identificar segmentos congruentes, paralelos e perpendiculares e o segmento degenerado.
 :::
 
 ::: {.bloco-pre-requisitos}
-Ponto, reta e distância entre dois pontos ([Primeiras Noções](01-primeiras-nocoes.qmd)).
+Ponto, reta e distância entre dois pontos ([Primeiras Noções](primeiras-nocoes.qmd)).
 :::
+
+::: {.bloco-exemplo-teste-aaa}
+Isto é apenas um teste!!!
+:::
+
+::: {#exm-teste-bbbb}
+Isto é apenas um outro teste!!!
+:::
+
 
 Introduzir rapidamente e exemplificar com figura,  a noção primitiva de um ponto **estar entre** dois pontos.
 
@@ -19,7 +31,7 @@ Neste contexto, a reta $r$ é chamada de **reta suporte** do segmento $AB$ e os 
 Note que se um ponto $P$ está entre $A$ e $B$, segue que ele também está entre $B$ e $A$, portanto vale que  $AB=BA$.
 
 ::: {.fig-leg #fig-segmentos}
-![](../assets/img/02-segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando pelos pontos A e B; o trecho da reta entre A e B, destacado, é o segmento AB."}
+![](../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando pelos pontos A e B; o trecho da reta entre A e B, destacado, é o segmento AB."}
 
 Segmento $AB$ de extremos $A$ e $B$ e sua reta suporte.
 :::
@@ -32,14 +44,13 @@ Na definição abaixo apresentamos algumas relações importantes entre dois seg
 
 ::: {#def-relacoes-segmentos}
 Dois segmentos $AB$ e $CD$ são ditos:
-
 - **Congruentes:** Se eles tem mesmo comprimento, isto é $d\left(A,B\right)=d\left(C,D\right)$.
 - **Paralelos** ou com **mesma direção**: Se suas retas suporte são paralelas ou a mesma. Neste caso denotamos $AB\parallel CD$.
 - **Perpendiculares** ou **ortogonais**:  Se suas respectivas retas suporte forem perpendiculares. Neste caso denotamos  $AB\perp CD$.
 :::
  
 ::: {.fig-leg #fig-segmentos-posicao-relativa}
-![](../assets/img/02-segmentos/relacoes-entre-segmentos.png){fig-alt="Três pares de segmentos. Congruentes: AB e CD com o mesmo comprimento, d(A,B) = d(C,D). Paralelos: PQ e RS em retas paralelas, e TU e VW na mesma reta. Perpendiculares: EF e GH em retas que formam ângulo reto."}
+![](../assets/img/segmentos/relacoes-entre-segmentos.png){fig-alt="Três pares de segmentos. Congruentes: AB e CD com o mesmo comprimento, d(A,B) = d(C,D). Paralelos: PQ e RS em retas paralelas, e TU e VW na mesma reta. Perpendiculares: EF e GH em retas que formam ângulo reto."}
 
 A figura representa as três relações entre segmentos descritas acima.
 :::
@@ -48,7 +59,7 @@ A figura representa as três relações entre segmentos descritas acima.
 Chamamos de segmento **degenerado** $AA$ ao conjunto formado apenas pelo ponto $A$.
 
 ::: {.fig-leg .w30 #fig-segmento-degenerado}
-![](../assets/img/02-segmentos/segmento-degenerado.png){fig-alt="Várias retas passando pelo mesmo ponto A, que representa o segmento degenerado AA."}
+![](../assets/img/segmentos/segmento-degenerado.png){fig-alt="Várias retas passando pelo mesmo ponto A, que representa o segmento degenerado AA."}
 
 O segmento degenerado $AA$ está contido em infinitas retas.
 :::

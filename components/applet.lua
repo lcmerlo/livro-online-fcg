@@ -1,4 +1,5 @@
--- Shortcodes para applets do livro.
+-- Shortcodes para applets do livro. A saída vem num <div class="bloco-applet">;
+-- orientações e perguntas ficam em volta, no bloco .bloco-interacao.
 --   {{< applet segmento id="jxg-segmento-1" rotulo="Descrição acessível" >}}
 --   {{< geogebra f2zqppmu titulo="Applet: descrição" >}}
 
@@ -25,9 +26,11 @@ return {
     })
 
     return pandoc.RawBlock("html", string.format(
+      '<div class="bloco-applet">\n' ..
       '<div id="%s" class="applet-jxg" data-applet="%s" aria-label="%s"></div>\n' ..
       '<p id="%s-status" class="applet-status" role="status" aria-live="polite"></p>\n' ..
-      '<button type="button" class="applet-botao" data-reset="%s">Reiniciar applet</button>',
+      '<button type="button" class="applet-botao" data-reset="%s">Reiniciar applet</button>\n' ..
+      '</div>',
       id, nome, rotulo, id, id))
   end,
 
@@ -36,10 +39,12 @@ return {
     local titulo = escapar(texto(kwargs["titulo"]))
 
     return pandoc.RawBlock("html", string.format(
+      '<div class="bloco-applet">\n' ..
       '<div class="geogebra-container"><iframe ' ..
       'src="https://www.geogebra.org/material/iframe/id/%s/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" ' ..
       'title="%s" width="800" height="500" style="border:0;" loading="lazy" allowfullscreen></iframe></div>\n' ..
-      '<p class="applet-link"><a href="https://www.geogebra.org/m/%s">Abrir o applet no GeoGebra</a></p>',
+      '<p class="applet-link"><a href="https://www.geogebra.org/m/%s">Abrir o applet no GeoGebra</a></p>\n' ..
+      '</div>',
       material, titulo, material))
   end
 }

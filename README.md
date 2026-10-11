@@ -76,7 +76,7 @@ node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrit
 ### Incorporação (shortcodes de `components/applet.lua`)
 Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
 
-::: {.bloco-applet}
+::: {.bloco-interacao}
 Neste applet, mova os pontos A e B e observe como o segmento muda.
 
 {{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}

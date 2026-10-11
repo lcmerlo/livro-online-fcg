@@ -23,36 +23,49 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 
 | Para | Use |
 |---|---|
-| Objetivo, pré-requisitos, applet, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-applet`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
+| Objetivo, pré-requisitos, interação, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-interacao`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
 | Applet JSXGraph próprio | `{{< applet segmento id="jxg-segmento-1" rotulo="Descrição para leitor de tela" >}}` |
 | Applet GeoGebra | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}` |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
 | Exemplo | `::: {#exm-nome}` … `:::` |
-| Exercício resolvido | `::: {#exrr-nome}` seguido de dicas (opcionais) e da resolução, todas colapsadas |
-| Dica | `::: {.callout-tip title="Dica 1" collapse="true"}`, logo após o enunciado; várias dicas numeradas em ordem progressiva, antes da resolução |
-| Resposta / resolução | `::: {.callout-note title="Resposta" collapse="true"}` para resultado curto; `title="Resolução"` para desenvolvimento justificado |
+| Exercício / exercício resolvido | `::: {#exr-nome}` / `::: {#exrr-nome}`, com `.dica` e `.solucao` opcionais dentro, após o enunciado |
+| Dica, resolução, resposta | `::: {.dica}`, `::: {.solucao}`, `::: {.resposta}` dentro de `#exm`, `#exr`, `#exrr` ou `.bloco-checkpoint`: viram abas recolhíveis "Dica", "Resolução", "Resposta", numeradas quando há mais de uma do mesmo tipo (gerado por `components/blocos.lua`) |
 | Figura com legenda | `::: {.fig-leg #fig-nome}` (largura opcional: `.w30` … `.w80`) |
 
 **Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
 - Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
-- Applet: instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
+- Interação (`.bloco-interacao`): orientações e o shortcode do applet; o shortcode gera sozinho o quadro `.bloco-applet`, que não se escreve à mão. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
 - Erro comum: sempre aberto; apresentar o equívoco e a correção.
 - Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
 - Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.
 
+Dicas e resoluções ficam dentro do exercício (ou exemplo), depois do enunciado, separadas por linhas em branco. Divs `.dica`, `.solucao` e `.resposta` consecutivas formam um só conjunto de abas, na ordem Dica, Resolução, Resposta; abas do mesmo tipo são numeradas ("Dica 1", "Dica 2").
+
 ```markdown
 ::: {#exrr-nome}
 Enunciado.
-:::
 
-::: {.callout-tip title="Dica 1" collapse="true"}
+::: {.dica}
 …
 :::
 
-::: {.callout-note title="Resolução" collapse="true"}
+::: {.solucao}
 …
+:::
+:::
+```
+
+No checkpoint:
+
+```markdown
+::: {.bloco-checkpoint}
+Pergunta.
+
+::: {.resposta}
+**Resposta correta: (B).** …
+:::
 :::
 ```
 
@@ -165,7 +178,7 @@ Calcular o comprimento de um segmento a partir de seus extremos.
 O **comprimento** de $AB$ é $d(A,B)$.
 :::
 
-::: {.bloco-applet}
+::: {.bloco-interacao}
 Mova os pontos $A$ e $B$ e observe como o comprimento muda.
 
 {{< applet segmento id="jxg-segmento-1" rotulo="Segmento com dois pontos móveis" >}}

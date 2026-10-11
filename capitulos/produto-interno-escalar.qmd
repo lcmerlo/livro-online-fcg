@@ -38,7 +38,9 @@ Dados dois vetores não nulos $\vec{u}$ e $\vec{v}$, podemos supor $\vec{u}=\vet
 :::
 
 
+::: {.bloco-interacao}
 {{< geogebra nqbrkaya titulo="Applet GeoGebra: Produto Interno ou Escalar" >}}
+:::
 
 
 ::: {#prp-produto-interno-cosseno}
@@ -62,37 +64,36 @@ $$
 :::
 
 
-**Exemplo**
-
+::: {#exm-angulo-sinal}
 Dado um número $a\ne0$, determine o ângulo entre o vetores $\vec{u}=(1,-1)$ e $\vec{v}=(0,a)$, de acordo com o sinal de $a$.
 
-- $\leftarrow$ Click para ver a solução
-    
-    **Resposta:** $\sphericalangle(\vec{u},\vec{v})=135^\circ \text{ se } a>0 \quad \text{ e }  \quad \sphericalangle(\vec{u},\vec{v})=45^\circ  \text{ se } a<0$.
-    
-    **Resolução:**
-    Pela @prp-produto-interno-cosseno temos
-    
-    $$
-     \langle\vec{u},\vec{v}\rangle=\norm{\vec{u}}\norm{\vec{v}} cos\sphericalangle(\vec{u},\vec{v}).
-    $$
-    
-    Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\norm{\vec{u}}\norm{\vec{v}}\neq0$. Dividindo a equação acima por $\norm{\vec{u}}\norm{\vec{v}}$ obtemos 
-    
-    $$
-    \cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\norm{\vec{u}}\norm{\vec{v}}} \quad (\ast).
-    $$
-    
-    Mas note que 
-    $$
-    \langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \norm{\vec{u}}=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\norm{\vec{v}}=\sqrt{0^2+a^2}=|a| .
-    $$
-    
-    Portanto, por $(\ast)$, temos
-    
-    $\cos\sphericalangle\left(\vec{u},\vec{v}\right)=\frac{-a}{\sqrt{2}\mid a\mid}=\frac{-a\sqrt{2}}{\mid a\mid2}=\begin{cases}
-    \frac{-\sqrt{2}}{2}\quad  se\quad a>0 \\
-    \frac{\sqrt{2}}{2}\quad  se\quad a<0
-    \end{cases}$
-    Donde segue o resultado!
-    
+::: {.solucao}
+**Resposta:** $\sphericalangle(\vec{u},\vec{v})=135^\circ \text{ se } a>0 \quad \text{ e }  \quad \sphericalangle(\vec{u},\vec{v})=45^\circ  \text{ se } a<0$.
+
+Pela @prp-produto-interno-cosseno temos
+
+$$
+ \langle\vec{u},\vec{v}\rangle=\norm{\vec{u}}\norm{\vec{v}} cos\sphericalangle(\vec{u},\vec{v}).
+$$
+
+Como $\vec{u}$ e $\vec{v}$ não são nulos temos $\norm{\vec{u}}\norm{\vec{v}}\neq0$. Dividindo a equação acima por $\norm{\vec{u}}\norm{\vec{v}}$ obtemos 
+
+$$
+\cos\sphericalangle(\vec{u},\vec{v})=\frac{\langle\vec{u},\vec{v}\rangle}{\norm{\vec{u}}\norm{\vec{v}}} \quad (\ast).
+$$
+
+Mas note que 
+$$
+\langle\vec{u},\vec{v}\rangle=\langle (1,-1),(0,a) \rangle=-a , \\ \norm{\vec{u}}=\sqrt{1^2+(-1)^2}=\sqrt{2}\\\norm{\vec{v}}=\sqrt{0^2+a^2}=|a| .
+$$
+
+Portanto, por $(\ast)$, temos
+
+$\cos\sphericalangle\left(\vec{u},\vec{v}\right)=\frac{-a}{\sqrt{2}\mid a\mid}=\frac{-a\sqrt{2}}{\mid a\mid2}=\begin{cases}
+\frac{-\sqrt{2}}{2}\quad  se\quad a>0 \\
+\frac{\sqrt{2}}{2}\quad  se\quad a<0
+\end{cases}$
+Donde segue o resultado!
+:::
+:::
+

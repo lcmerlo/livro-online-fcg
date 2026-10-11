@@ -4,6 +4,7 @@ meta:
 # _brand.yml
 color:
   palette:
+    areia-0: "#FCFBF9"
     areia-1: "#FBFAF6"
     areia-2: "#F7F4ED"
     areia-3: "#EFE7D8"

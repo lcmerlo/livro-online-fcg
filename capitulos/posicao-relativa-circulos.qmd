@@ -43,6 +43,8 @@ $$
 
 
 
+::: {.bloco-interacao}
 No exemplo iterativo abaixo, mova um círculo para visualizar os casos da proposição.
 
 {{< geogebra y9vt9eca titulo="Applet GeoGebra: Posição Relativa entre Círculos" >}}
+:::

@@ -53,9 +53,9 @@ sentido:   $a\vec{v} \,  \begin{cases}  \text{tem o mesmo sentido de } \vec{v}, 
 :::
 
 
-**Exemplo**
-
+::: {.bloco-interacao}
 {{< geogebra rfvkqkbh titulo="Applet GeoGebra: Produto entre Número e Vetor" >}}
+:::
 
 
 ::: {#prp-multiplos-e-paralelos}

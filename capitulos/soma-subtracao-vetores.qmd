@@ -44,9 +44,9 @@ $$
 Para obter geometricamente subtração de $\vec{u}$ por $\vec{v}$, de acordo com a propriedade  $\vec{u}-\vec{v}=\vec{u}+(-\vec{v})$, basta aplicar a regra geométrica da soma aos vetores $\vec{u}$   e $-\vec{v}$.
 
 
-**Exemplo**
-
+::: {.bloco-interacao}
 {{< geogebra acdycnxx titulo="Applet GeoGebra: Soma e Subtração de Vetores" >}}
+:::
 
 
 Note no exemplo interativo acima que:                                                                                       

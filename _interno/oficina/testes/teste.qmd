@@ -2,22 +2,137 @@
 title: "Teste"
 ---
 
-Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro.
-
 ::: {.bloco-objetivo}
-Objetivo do teste.
+Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro.
 :::
+
+::: {.bloco-pre-requisitos}
+Antes de começar, certifique-se de dominar:
+
+- [Pré-requisito 1](NN-capitulo-anterior.qmd)
+- [Pré-requisito 2](NN-outro-capitulo.qmd)
+:::
+
 
 ::: {#def-teste}
 Um vetor $\vet{AB}$ tem norma $\norm{\vet{AB}}$, com coordenadas em $\R^2$.
 :::
 
+## Comparação de setas em `\vet`
+
+<!-- Macros só desta página, para comparar com \vet de components/macros.html.
+     Em HTML bruto para o Pandoc não expandir nem remover as definições. -->
+
+
+
+```{=html}
+<div style="display:none">\(
+\require{extpfeil}
+\Newextarrow{\crightarrow}{0,0}{0x2192}
+\newcommand{\veto}[1]{\overset{\rightarrow}{\phantom{#1}{#1}}}
+\newcommand{\vetx}[1]{\overset{\crightarrow{\mkern-3mu\hphantom{#1}\mkern-2mu}}{#1}}
+\)</div>
+```
+
+| Nome | Atual: `\vet` | `\overrightarrow` | extpfeil: `\vetx` |
+|------|:-------------:|:-----------------:|:-----------------:|
+|.      | $\crightarrow{AB}$| | | 
+| `v` | $\vet{v}$ | $\overrightarrow{v}$ | $\vetx{v}$ |
+| `AB` | $\vet{AB}$ | $\overrightarrow{AB}$ | $\vetx{AB}$ |
+| `ABCD` | $\vet{ABCD}$ | $\overrightarrow{ABCD}$ | $\vetx{ABCD}$ |
+| norma | $\norm{\vet{AB}}$ | $\norm{\overrightarrow{AB}}$ | $\norm{\vetx{AB}}$ |
+
+## Modelos com `\hphantom` e `\mkern`
+
+<!-- A: seta extensível sobre um fantasma do nome, em tamanho script (mais curta).
+     B: igual a A, mas o fantasma em \textstyle (seta com a largura do nome).
+     C: \overrightarrow com as pontas aparadas por \mkern; os kerns externos
+        devolvem a posição das letras.
+     D: B com as pontas aparadas.
+     E: C com altura mínima de maiúscula (\vphantom{A}), para a seta não
+        encostar em minúsculas. -->
+```{=html}
+<div style="display:none">\(
+\newcommand{\vetA}[1]{\overset{\overrightarrow{\hphantom{#1}}}{#1}}
+\newcommand{\vetB}[1]{\overset{\overrightarrow{\hphantom{\textstyle #1}}}{#1}}
+\newcommand{\vetC}[1]{\mkern2mu\overrightarrow{\mkern-2mu #1\mkern-2mu}\mkern2mu}
+\newcommand{\vetD}[1]{\overset{\overrightarrow{\mkern-3mu\hphantom{\textstyle #1}\mkern-3mu}}{#1}}
+\newcommand{\vetE}[1]{\mkern2mu\overrightarrow{\mkern-2mu\vphantom{A}#1\mkern-2mu}\mkern2mu}
+\newcommand{\vetF}[1]{\overrightarrow{\hphantom{#1}}{#1}}
+
+
+
+\)</div>
+```
+
+| Nome | `\vet` | `\overrightarrow` | A | B | C | D | E |
+|------|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| `v` | $\vet{v}$ | $\overrightarrow{v}$ | $\vetA{v}$ | $\vetB{v}$ | $\vetC{v}$ | $\vetD{v}$ | $\vetE{v}$ |
+| `u` | $\vet{u}$ | $\overrightarrow{u}$ | $\vetA{u}$ | $\vetB{u}$ | $\vetC{u}$ | $\vetD{u}$ | $\vetE{u}$ |
+| `AB` | $\vet{AB}$ | $\overrightarrow{AB}$ | $\vetA{AB}$ | $\vetB{AB}$ | $\vetC{AB}$ | $\vetD{AB}$ | $\vetE{AB}$ |
+| `PQ` | $\vet{PQ}$ | $\overrightarrow{PQ}$ | $\vetA{PQ}$ | $\vetB{PQ}$ | $\vetC{PQ}$ | $\vetD{PQ}$ | $\vetE{PQ}$ |
+| `ABCD` | $\vet{ABCD}$ | $\overrightarrow{ABCD}$ | $\vetA{ABCD}$ | $\vetB{ABCD}$ | $\vetC{ABCD}$ | $\vetD{ABCD}$ | $\vetE{ABCD}$ |
+| norma | $\norm{\vet{AB}}$ | $\norm{\overrightarrow{AB}}$ | $\norm{\vetA{AB}}$ | $\norm{\vetB{AB}}$ | $\norm{\vetC{AB}}$ | $\norm{\vetD{AB}}$ | $\norm{\vetE{AB}}$ |
+
+No texto corrido (A): o vetor $\vetA{AB}$ é igual a $\vetA{u}$, e $\norm{\vetA{AB}} = 1$.
+
+No texto corrido (B): o vetor $\vetB{AB}$ é igual a $\vetB{u}$, e $\norm{\vetB{AB}} = 1$.
+
+No texto corrido (C): o vetor $\vetC{AB}$ é igual a $\vetC{u}$, e $\norm{\vetC{AB}} = 1$.
+
+No texto corrido (D): o vetor $\vetD{AB}$ é igual a $\vetD{u}$, e $\norm{\vetD{AB}} = 1$.
+
+No texto corrido (E): o vetor $\vetE{AB}$ é igual a $\vetE{u}$, e $\norm{\vetE{AB}} = 1$.
+
+No texto corrido (F): o vetor $\vetF{AB}$ é igual a $\vetF{u}$, e $\norm{\vetF{AB}} = 1$.
+
+
+
+
+No texto corrido: o vetor $\vetx{AB}$ e o vetor $\vet{AB}$ têm a mesma norma $\norm{\vetx{AB}}$.
+$\veto{AB}$
+
 ::: {#exm-teste}
 Exemplo de teste.
+:::
+
+
+::: {.bloco-erro}
+É frequente confundir $A$ com $B$. Lembre-se de que [explicação da distinção].
+:::
+
+
+
+
+
+::: {#exrr-teste}
+Exercício resolvido de teste.
+
+::: {.solucao}
+Resolução simples: $\norm{\vet{AB}} = 1$.
+:::
+:::
+
+::: {#exrr-teste-dica}
+Exercício resolvido com dica.
+
+::: {.dica}
+Dica: compare $A$ com $B$.
+:::
+
+::: {.solucao}
+Resolução: $\norm{\vet{AB}} = 1$.
+:::
 :::
 
 ::: {.proof}
 Demonstração de teste.
 :::
 
-{{< applet segmento id="jxg-segmento-teste" rotulo="Applet de teste com dois pontos móveis." >}}
+::: {.bloco-interacao}
+**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
+
+Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
+
+{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+:::

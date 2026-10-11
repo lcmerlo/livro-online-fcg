@@ -12,13 +12,11 @@ Fixado um sistema de coordenadas $OXY$, podemos associar cada ponto $P$ do plano
 - Tome a reta $p_Y$ que é perpendicular ao eixo   $OY$  e passa pelo ponto P  e tome  $Y=OY\cap p_Y$.
 - As coordenadas de $P$ são dadas pelo par $\left(x,y\right )$, onde $x$ é a coordenada de $X$ no eixo $OX$ e $y$ é a coordenada de $Y$ no eixo  $OY$. Neste caso escrevemos  $P=\left ( x,y\right )$.
 
+::: {.bloco-interacao}
 Veja a ilustração:
 
 {{< geogebra ykdu6wtk titulo="Applet GeoGebra: Coordenadas no plano (1 de 2)" >}}
-
-<!--
-![geogebra/ykdu6wtk](https://www.geogebra.org/classic/ykdu6wtk)
--->
+:::
 
 Usualmente chamamos o eixo $OX$ de eixo das **abcissas** e o eixo $OY$ de eixo das **ordenadas**. Além disso, a menos que seja dito o contrário, o eixo $OX$ é o eixo horizontal e o eixo $OY$ é o eixo vertical.
 
@@ -40,30 +38,29 @@ $$
 :::
 
 
+::: {.bloco-interacao}
 {{< geogebra pbfm8wna titulo="Applet GeoGebra: Coordenadas no plano (2 de 2)" >}}
-<!--
-[](https://www.geogebra.org/classic/pbfm8wna)
--->
+:::
 
 ::: {#exm-distancia1}
 Determine a distância do ponto $A=(1,-1)$ até o ponto $B=(-2,1)$.
 
-- $\leftarrow$ Click para ver a solução
-- 
+::: {.solucao}
 $d(A,B)=\sqrt{(1-(-2))^2+(-1-1)^2}=\sqrt{3^2+2^2}=\sqrt{13}$
+:::
 :::
 
 ::: {#exm-distancia2}
 Determine os pontos sobre o eixo $OX$ que distam $\sqrt{2}$ do ponto $A=(1,1)$.
 
-- $\leftarrow$ Click para ver a solução
-
+::: {.solucao}
 Se $P\in OX$ temos $P=(x,0)$. Portanto
 
 $\sqrt{2}=d(P,A)=\sqrt{(x-1)^2+(0-1)^2}\Rightarrow2=(x-1)^2+1$.
 
 Resolvendo a última equação obtemos $x=0$ ou $x=2$. Assim temos duas soluções para o problema:
 $$ P=(0,0) \text{ ou } P=(2,0). $$
+:::
 :::
 
 ::: {#prp-formula-ponto-medio}
@@ -73,12 +70,11 @@ $$
 :::
 
 ::: {#exm-ponto-medio1}
-
 Se $A=\left(3,-1\right)$ e $M=\left(-1,1\right)$ é o ponto médio de $AB$, determine o ponto $B$.
 
-- $\leftarrow$ Click para ver a solução
-
+::: {.solucao}
 Como $M=(-1,1)$ é ponto médio de $A=(3,-1)$ e $B=(x_B,y_B)$, de acordo com a @prp-formula-ponto-medio, temos que
 
 $(-1,1)=\left(\dfrac{3+x_B}{2},\dfrac{-1+y_B}{2}\right)$, donde  $-1=\dfrac{3+x_B}{2}$ e $1=\dfrac{-1+y_B}{2}$. Resolvendo as duas últimas equações obtemos $x_B=-5$ e $y_B=3$, logo $B=(-5,3)$.
+:::
 :::

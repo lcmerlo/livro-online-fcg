@@ -1,0 +1,308 @@
+
+# Título do Capítulo
+
+<!--
+Modelo de capítulo. Condensa em seções as quatro ênfases de uso do §22 dos Princípios
+(conteúdo, exemplo e prática, exploração e síntese), usando os componentes atuais do
+livro (guia-editorial.md §3). Origem: _scratch/rascunhos-antigos/gemini-code-*.qmd.
+
+Como usar: copiar para capitulos/NN-nome.qmd, listar em _quarto.yml, substituir os
+[colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o
+conteúdo (§5, §22). Os rótulos {#def-…} e {#exrr-…} são globais no livro e devem ser únicos.
+Navegação anterior/próxima é gerada pelo livro; não escrever links de navegação.
+-->
+
+::: {.bloco-objetivo}
+Ao final deste capítulo, você será capaz de [verbo] [conceito central].
+:::
+
+::: {.bloco-pre-requisitos}
+Antes de começar, certifique-se de dominar:
+
+- [Pré-requisito 1](NN-capitulo-anterior.qmd)
+- [Pré-requisito 2](NN-outro-capitulo.qmd)
+:::
+
+## Ideia central e desenvolvimento
+
+### Ideia central
+
+[Apresentação direta e sucinta da ideia matemática central, em uma frase ou parágrafo curto.]
+
+### Desenvolvimento conceitual
+
+[Apresentação do conteúdo aproximando a notação verbal da notação matemática.]
+
+$$
+[\text{expressão central}]
+$$
+
+::: {#def-nome-do-conceito}
+O **[nome do conceito]** é [definição precisa e rigorosa, mantendo clareza didática].
+:::
+
+### Explicação em etapas
+
+1. **Primeira etapa:** [apresentação da relação básica].
+2. **Segunda etapa:** [conexão entre a notação simbólica e a representação].
+
+Pela @def-nome-do-conceito, [consequência].
+
+::: {.bloco-erro}
+É frequente confundir $A$ com $B$. Lembre-se de que [explicação da distinção].
+:::
+
+
+::: {.bloco-interacao}
+**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
+
+Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
+
+{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+:::
+
+::: {.bloco-checkpoint}
+[Pergunta de verificação rápida sobre a ideia central.]
+
+(A) [alternativa]
+(B) [alternativa]
+(C) [alternativa]
+
+::: {.callout-note title="Resposta" collapse="true"}
+**Resposta correta: (B).** [Explicação que mostre por que as demais não servem.]
+:::
+:::
+
+## Exemplo e prática
+
+### Exemplo resolvido
+
+::: {#exm-resolvido}
+**Problema.** [Enunciado.]
+
+**Estratégia.** [Ideia que guia a resolução, em uma ou duas frases.]
+
+**Resolução.**
+
+1. **Identificação dos dados:**
+   $$[\text{dados}]$$
+
+2. **[Segundo passo]:**
+   $$[\text{cálculo}]$$
+
+3. **[Terceiro passo]:**
+   $$[\text{conclusão}]$$
+
+::: {.callout-tip title="Autoexplicação"}
+Por que [justificativa de um passo-chave da resolução]?
+:::
+:::
+
+### Prática guiada
+
+::: {#exrr-nome-do-exercicio}
+[Enunciado de um exercício análogo ao exemplo, com outros dados.]
+:::
+
+::: {.callout-tip title="Dica" collapse="true"}
+[Pista que não entrega a resposta.]
+:::
+
+::: {.callout-note title="Resolução" collapse="true"}
+1. [Primeiro passo.]
+2. [Segundo passo.]
+3. [Conclusão.]
+:::
+
+## Exploração interativa
+
+### Predição
+
+::: {.callout-tip title="Pense antes de mexer"}
+O que você espera que aconteça com [objeto] quando [parâmetro] aumenta?
+:::
+
+### Manipulação guiada
+
+::: {.bloco-interacao}
+**[Título do applet].** [Objetivo em uma frase.]
+
+Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
+
+{{< applet segmento id="jxg-modelo-1" rotulo="Descrição para leitor de tela: o que o applet mostra e quais são os controles." >}}
+:::
+
+### Observação e análise
+
+::: {.callout-note title="Perguntas de orientação"}
+1. [O que acontece com … quando …?]
+2. [Para quais valores … ?]
+:::
+
+::: {.bloco-checkpoint}
+[Pergunta que consolida o que foi observado.]
+
+(A) [alternativa]
+(B) [alternativa]
+(C) [alternativa]
+
+::: {.callout-note title="Resposta" collapse="true"}
+**Resposta correta: (B).** [Explicação ligada à observação feita no applet.]
+:::
+:::
+
+## Síntese e consolidação
+
+### Mapa de conceitos-chave
+
+| Conceito | Representação simbólica | Ideia principal |
+|:---|:---|:---|
+| **[Conceito 1]** | $[\ldots]$ | [Ideia em uma frase.] |
+| **[Conceito 2]** | $[\ldots]$ | [Ideia em uma frase.] |
+| **[Conceito 3]** | $[\ldots]$ | [Ideia em uma frase.] |
+
+### Prática de recuperação
+
+::: {#exrr-nome-da-questao-integradora}
+[Questão que integra conteúdos deste e de capítulos anteriores, em itens quando útil.]
+
+a) [Primeiro item.]
+b) [Segundo item.]
+:::
+
+::: {.callout-note title="Resolução" collapse="true"}
+a) [Resolução do primeiro item.]
+b) [Resolução do segundo item.]
+:::
+
+### Desafio
+
+:::: {.callout-warning title="Desafio" collapse="true"}
+[Enunciado de aprofundamento, além do que o capítulo exige.]
+
+::: {.callout-note title="Solução" collapse="true"}
+[Solução do desafio.]
+:::
+::::
+
+
+# Estruturas: blocos-props-defs {.unnumbered}
+
+`<!-- comentário em arquivos .qmd -->`
+
+
+## Blocos 
+
+:::: {.bloco-erro}
+Não confunda o **segmento** $AB$, que é um conjunto de pontos, com o seu **comprimento** $d(A,B)$, que é um número, nem com a **reta** que passa por $A$ e $B$, que não tem extremos.
+:::
+
+
+::: {.bloco-interacao}
+**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
+
+Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
+
+{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+:::
+
+
+
+:::{.callout-note title="Nota" appearance="minimal"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-note title="Nota" appearance="simple"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+
+:::{.callout-note title="Nota" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-tip title="Dica" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-warning title="Aviso" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="cuidado" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="cuidado" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-caution title="Cuidadod" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="minimal" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="simple" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+:::{.callout-important title="importante" appearance="default" collapse="true"}
+Todas as correspondências satisfazem os três primeiros itens, isto é, todas  tem conjunto de partida  $\cal{A}$, um conjunto de chegada $\cal{B}$ e uma lei de associação, dada pelas setas!
+:::
+
+
+## Definições, Proposições, etc
+
+::: {#def-rotulo}
+Aqui vai a definição
+:::
+
+::: {#prp-rotulo}
+Aqui vai a proposição 
+:::
+
+::: {#thm-rotulo}
+Aqui vai o teorema
+:::
+
+::: {#lem-rotulo}
+Aqui vai o lema
+:::
+
+::: {#cor-rotulo}
+Aqui vai o corolário
+:::
+
+::: {#exm-função-1}
+Aqui vai o exemplo
+::: 
+
+::: {#exrr-coprimento-segmento-deg}
+O comprimento de um segmento não degenerado pode ser zero? 
+:::
+
+::: {.proof}
+Aqui vai a demonstração!!!!
+
+Veja @cor-rotulo, @def-rotulo, lllslslsls
+:::
+

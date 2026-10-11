@@ -52,32 +52,32 @@ $$
 
 
 
-**Exemplo**
-
+::: {#exm-equacao-cartesiana-normal}
 Determine a equação cartesiana da reta $m$ que passa pelo ponto $B = (7, 11)$ e é normal ao vetor $\vec{u} = (-3, 4)$.
 
-- $\leftarrow$ Click para ver a solução
-    
-    Como $(a,b)=(-3,4) \perp m$,  a equação cartesiana de $m$ tem a forma
-    
-    $m: -3x+4y+c=0$. Para determinar a constante $c$ não é necessário usar a formula dada em $(\ast)$, basta substituir as coordenadas de um ponto da reta na expressão que já temos.  Usando o ponto $B \in m$ segue que 
-    
-    $$
-    -3(7) + 4(11) + c=0 \quad  \Rightarrow \quad  c=-23.
-    $$
-    
-    Logo,
-    
-    $$
-     m: -3x+4y-23=0.
-    $$
-    
-    **Obs.** Pela @prp-equacoes-cartesianas-mesma-reta também temos 
-    
-    $$
-     m: 3x - 4y+ 23=0 \quad \text{ ou } \quad  m: 6x - 8y+ 46=0.
-    $$
-    
+::: {.solucao}
+Como $(a,b)=(-3,4) \perp m$,  a equação cartesiana de $m$ tem a forma
+
+$m: -3x+4y+c=0$. Para determinar a constante $c$ não é necessário usar a formula dada em $(\ast)$, basta substituir as coordenadas de um ponto da reta na expressão que já temos.  Usando o ponto $B \in m$ segue que 
+
+$$
+-3(7) + 4(11) + c=0 \quad  \Rightarrow \quad  c=-23.
+$$
+
+Logo,
+
+$$
+ m: -3x+4y-23=0.
+$$
+
+**Obs.** Pela @prp-equacoes-cartesianas-mesma-reta também temos 
+
+$$
+ m: 3x - 4y+ 23=0 \quad \text{ ou } \quad  m: 6x - 8y+ 46=0.
+$$
+:::
+:::
+
 
 
 **Observação**:
@@ -91,8 +91,7 @@ $$
 
 
 
-**Exemplo**
-
+::: {#exm-parametrica-para-cartesiana}
 Determine a equação cartesiana da reta  
 $r: \left\lbrace
 \begin{array}{l}
@@ -101,46 +100,47 @@ y = -2 + t
 \end{array}
 \right.,\ t \in \R.$
 
-- $\leftarrow$ Click para ver a solução
-    
-    **Primeira resolução:** Para obter uma equação cartesiana de $r$ precisamos de um ponto de $r$ e de um vetor perpendicular a $r$.  
-    
-    Da equação original obtemos que $P_0 = (5,-2) \in r$ e $\vec{v}=(-4,1)\parallel r$. Pela observação acima segue que $\vec{u}=(1,4) \perp r$.
-    
-    Portanto $r:1x+4y+c=0$ e substituindo as coordenadas de $P_0$ na equação obtemos $1(5)+4(-2) + c=0 \ \Rightarrow \ c=3$.  Logo 
-    
-    $$
-    r: x+4y+3=0.
-    $$
-    
-    **Segunda resolução:** Da equação paramétrica de $r$ temos $t=y+2$ e substituindo na outra equação segue que $x= 5 - 4(y+2)$, donde obtemos a mesma equação de $r$ acima.
-    
+::: {.solucao}
+**Primeira resolução:** Para obter uma equação cartesiana de $r$ precisamos de um ponto de $r$ e de um vetor perpendicular a $r$.  
+
+Da equação original obtemos que $P_0 = (5,-2) \in r$ e $\vec{v}=(-4,1)\parallel r$. Pela observação acima segue que $\vec{u}=(1,4) \perp r$.
+
+Portanto $r:1x+4y+c=0$ e substituindo as coordenadas de $P_0$ na equação obtemos $1(5)+4(-2) + c=0 \ \Rightarrow \ c=3$.  Logo 
+
+$$
+r: x+4y+3=0.
+$$
+
+**Segunda resolução:** Da equação paramétrica de $r$ temos $t=y+2$ e substituindo na outra equação segue que $x= 5 - 4(y+2)$, donde obtemos a mesma equação de $r$ acima.
+:::
+:::
 
 
 
-**Exemplo**
 
+::: {#exm-cartesiana-para-parametrica}
 Determine as equações paramétricas da reta $s \colon -7x + 2y = 8$.
 
-- $\leftarrow$ Click para ver a solução
-    
-     **Primeira resolução:** Para obter uma equação paramétrica de $s$ precisamos de um ponto de $s$ e de um vetor paralelo a $s$.  
-    
-    Para obtermos um ponto de $s$, basta escolher um valor específico para uma das variáveis da equação original e determinar o valor da outra variável. Por exemplo, tomando $x=0$ na equação acima temos $-7(0) + 2y=8 \Rightarrow y=4$. Logo o ponto $(0,4) \in s$. 
-    
-    Para obtermos um vetor paralelo a $s$ note que  $\vec{u}=(-7,2) \perp s$  e segue observação acima que  $\vec{v}=(2,7)\parallel s$.
-    
-    Portanto uma equação paramétrica de $s$ é 
-    
-    $$
-    s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \R,  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \R.
-    $$
-    
-    **Segunda resolução:** Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando $x=t$  e substituindo na equação de $s$ temos  $-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t$.  Portanto uma equação paramétrica de $s$ é 
-    
-    $$
-    s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \R.
-    $$
-    
-    Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta $s$, mas lembre que para uma mesma reta existem infinitas equações paramétricas.
-    
+::: {.solucao}
+ **Primeira resolução:** Para obter uma equação paramétrica de $s$ precisamos de um ponto de $s$ e de um vetor paralelo a $s$.  
+
+Para obtermos um ponto de $s$, basta escolher um valor específico para uma das variáveis da equação original e determinar o valor da outra variável. Por exemplo, tomando $x=0$ na equação acima temos $-7(0) + 2y=8 \Rightarrow y=4$. Logo o ponto $(0,4) \in s$. 
+
+Para obtermos um vetor paralelo a $s$ note que  $\vec{u}=(-7,2) \perp s$  e segue observação acima que  $\vec{v}=(2,7)\parallel s$.
+
+Portanto uma equação paramétrica de $s$ é 
+
+$$
+s \colon \left\lbrace \begin{array}{l} x= 0 + 2t \\ y=4+7t  \end{array} \right. , \ t \in \R,  \quad \text{ou seja,} \quad  s \colon \left\lbrace \begin{array}{l} x= 2t\\ y=4+7t  \end{array} \right., \ t \in \R.
+$$
+
+**Segunda resolução:** Consideramos uma das variáveis como parâmetro e obtemos a outra variável em função do parâmetro. Por exemplo, tomando $x=t$  e substituindo na equação de $s$ temos  $-7t + 2y=8\ \Rightarrow \ y=4 -\frac{7}{2}t$.  Portanto uma equação paramétrica de $s$ é 
+
+$$
+s \colon \left\lbrace \begin{array}{l} x= t\\ y=4+\frac{7}{2}t  \end{array} \right., \ t \in \R.
+$$
+
+Em cada resolução obtivemos equações paramétricas diferentes para a mesma reta $s$, mas lembre que para uma mesma reta existem infinitas equações paramétricas.
+:::
+:::
+

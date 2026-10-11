@@ -87,13 +87,9 @@ $$ d(A,B)\ge0; $$
 
 A propriedade 4 acima é conhecida como **desigualdade triangular** e a propriedade 5 é um caso particular dela. Tais propriedades expressam geometricamente que o caminho mais curto de um ponto a outro é em linha reta.
 
-**Exemplo**
-
+::: {.bloco-interacao}
 Mova os pontos no applet abaixo e perceba que temos três desigualdades triangulares em um mesmo triângulo.  Coloque um dos pontos sobre o lado oposto e observe que a propriedade 5 só vale em um dos três casos.
 
-<!--
-![geogebra](https://www.geogebra.org/classic/nep5hngs)
--->
-
 {{< geogebra nep5hngs titulo="Applet GeoGebra: Primeiras Noções" >}}
+:::
 

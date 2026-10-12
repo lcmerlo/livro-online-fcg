@@ -52,6 +52,7 @@ AGENTS.md 		- Regras para agentes de código
 quarto preview      - preview local
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
+cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
 `quarto render _interno/oficina/testes/ARQUIVO.qmd` - renderiza um arquivo de teste com tema, filtros e macros do livro
 

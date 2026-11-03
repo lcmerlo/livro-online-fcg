@@ -8,8 +8,13 @@ percorre até virar uma página publicada**.
 Os diagramas usam [Mermaid](https://mermaid.js.org/): aparecem desenhados no
 GitHub e no VS Code com a extensão *Markdown Preview Mermaid Support*.
 
+Este mapa descreve o projeto **como ele é hoje**. Quando o código muda, o mapa
+é atualizado na mesma mudança; se os dois divergirem, vale o código.
+
 Documentos relacionados: `README.md` (comandos), `guia-editorial.md` (como
-escrever capítulos), `decisoes.md` (por que as coisas são como são).
+escrever capítulos), `diretrizes-tecnicas.md` (como desenvolver e decidir),
+`decisoes.md` (por que as coisas são como são) e `pendencias.md` (o que está
+em aberto).
 
 ---
 
@@ -18,7 +23,8 @@ escrever capítulos), `decisoes.md` (por que as coisas são como são).
 Os capítulos são escritos em **Markdown com extensões do Quarto (`.qmd`)**; o
 **Quarto** converte esses arquivos em **páginas HTML** (com estilos, fórmulas e
 applets) dentro da pasta `docs/`; um **robô do GitHub (GitHub Actions)** faz
-isso automaticamente a cada `git push` e publica o resultado no **GitHub Pages**.
+isso automaticamente a cada `git push` na `main` e publica o resultado no
+**GitHub Pages**.
 
 Há três "linhas de montagem" que se encontram no final:
 
@@ -76,7 +82,7 @@ livro-quarto/
 ├── _language.yml               ⚙️  Traduções de rótulos ("Demonstração", "Solução"…)
 ├── index.qmd                   ✏️  Página inicial (Apresentação)
 ├── README.md                   ✏️  Resumo do projeto e comandos
-├── AGENTS.md                   ✏️  Regras para assistentes de código (IA)
+├── AGENTS.md                   ✏️  Resumo das diretrizes para assistentes de IA
 ├── cspell.json                 ⚙️  Corretor ortográfico (pt-BR + termos técnicos)
 │
 ├── capitulos/                  ✏️  Um .qmd por capítulo publicado (ordem definida em _quarto.yml)
@@ -107,7 +113,7 @@ livro-quarto/
 │   └── verificar-site.mjs      ✏️  Verificação automática das fontes e do HTML gerado
 │
 ├── _interno/                   ✏️  Material interno, versionado mas ignorado pelo Quarto (começa com "_")
-│   ├── diretrizes/             ✏️  Princípios, guia editorial, decisões, este mapa
+│   ├── diretrizes/             ✏️  Princípios, guia editorial, diretrizes técnicas, decisões, pendências, este mapa
 │   └── oficina/
 │       ├── protótipos/         ✏️  Capítulos ainda não publicados
 │       ├── testes/             ⚙️  Mini-projeto Quarto com a mesma configuração do livro
@@ -198,7 +204,7 @@ Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 | Arquivo | Finalidade |
 |---|---|
 | `.github/workflows/publish.yml` | Receita do robô de publicação (ver §5.5). |
-| `.github/copilot-instructions.md`, `AGENTS.md` | Regras para assistentes de IA: mudanças mínimas, não alterar matemática sem revisão. |
+| `.github/copilot-instructions.md`, `AGENTS.md` | Resumo das diretrizes para assistentes de IA: que tipo de mudança cada um pode fazer e como verificar (`diretrizes-tecnicas.md`, §9). |
 | `.vscode/settings.json` | Formatação de `.qmd` pela extensão Quarto, oculta pastas geradas no Explorer, Copilot só em arquivos de código. |
 | `.gitignore` | Impede versionar `docs/`, `.quarto/`, `node_modules/`, o bundle, `_scratch/`, HTML gerado em `_interno/` etc. |
 | `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. |
@@ -431,6 +437,9 @@ flowchart TD
 4. Rodar `quarto preview` e `node tests/verificar-site.mjs`.
 
 ### Adicionar um applet JSXGraph
+O que o applet deve garantir, a ficha de aceitação e como reescrever um applet
+GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
+
 1. Criar `applets-src/src/applets/<nome>.js` exportando `criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `segmento.js` como modelo e `ESTILOS` para as cores).
 2. Em `applets-src/src/main.js`: importar a função e registrá-la em `const applets = { …, <nome>: criar<Nome> }`.
 3. Opcional: acrescentar um `div` de teste em `applets-src/index.html` e usar `npm run dev`.
@@ -445,14 +454,16 @@ flowchart TD
 ### Criar um novo tipo de bloco didático
 1. Rótulo em `rotulos` de `components/blocos.lua`.
 2. Estilo em `custom.scss`, junto aos demais `.bloco-*`.
-3. Documentar em `_interno/diretrizes/guia-editorial.md`.
+3. Documentar em `_interno/diretrizes/guia-editorial.md` e acrescentar aos
+   modelos de `_interno/oficina/testes/`.
+4. Registrar a decisão em `decisoes.md` (`diretrizes-tecnicas.md`, §2).
 
 ---
 
 ## 8. Pontos de atenção
 
 - **Duas cópias de configuração.** `_interno/oficina/testes/_quarto.yml` repete parte de `_quarto.yml`. Ao alterar um, altere o outro.
-- **Formato do registro em `main.js`.** O teste lê o objeto `const applets = { … };` por expressão regular. Mantenha uma entrada por linha, no formato `nome: funcao,`.
+- **Formato do registro em `main.js`.** O teste lê o objeto `const applets = { … };` por expressão regular. Mantenha uma entrada por linha, no formato `nome: funcao,`. É uma limitação do teste, com troca prevista em `pendencias.md`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Cores lidas uma vez.** `cores.js` lê as variáveis CSS quando o bundle carrega. Mudanças de cor exigem recarregar a página.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("jxg-segmento-1")` reinicia um deles.

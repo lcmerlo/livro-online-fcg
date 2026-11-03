@@ -148,11 +148,11 @@ Arraste os pontos [ … ] com o mouse ou o dedo. Pelo teclado, use Tab para sele
 
 [Pergunta de observação logo depois do applet.]
 
-::: {.bloco-interacao}
-**[Título do applet GeoGebra].** [Objetivo em uma frase.]
-
-{{< geogebra h6vdnv3c titulo="Applet GeoGebra: [descrição específica]" >}}
-:::
+<!--
+Applets GeoGebra (shortcode geogebra) ficam só nos capítulos que ainda não têm a
+versão JSXGraph e não entram em capítulos novos sem decisão do autor
+(diretrizes-tecnicas.md, §4).
+-->
 
 ::: {.bloco-checkpoint}
 [Pergunta conceitual breve.]

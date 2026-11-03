@@ -5,7 +5,9 @@ Livro interativo online de **Fundamentos de Cálculo e Geometria - FCG**,  desen
 ## Status
 Em desenvolvimento.
 
-## Estrutura recomendada para capítulos
+## Componentes de um capítulo
+Repertório, não roteiro obrigatório: cada capítulo usa os componentes de que precisa, na ordem que o conteúdo pedir (ver `_interno/diretrizes/guia-editorial.md`).
+
 Objetivo
 Pré-requisitos
 Ideia central intuitiva
@@ -44,9 +46,9 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, propostas) e oficina/ (protótipos/ com capítulos ainda não publicados, testes/ para arquivos de teste com a configuração do livro, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural) e oficina/ (protótipos/ com capítulos ainda não publicados, testes/ para arquivos de teste com a configuração do livro, referências)
 .github/workflows/publish.yml - Renderiza e publica no GitHub Pages
-AGENTS.md 		- Regras para agentes de código
+AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
 ### Comandos principais
 quarto preview      - preview local
@@ -66,13 +68,15 @@ node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrit
 - descrição textual;
 - botão ou instrução de reinício;
 - checkpoint após a exploração;
-- alternativa ao uso exclusivo do mouse, quando possível.
+- uso pelo teclado e alternativa ao arraste.
+
+O que cada applet garante e como é aceito: `_interno/diretrizes/diretrizes-tecnicas.md`, §4.
 
 
 ### Ferramentas para produção de applets
-	- JSXGraph
-	- Desmos
-	- GeoGebra
+	- JSXGraph: ferramenta dos applets do livro.
+	- GeoGebra: applets de projetos anteriores, ainda em alguns capítulos. Servem de inspiração e serão reescritos em JSXGraph (lista em `_interno/diretrizes/pendencias.md`).
+	- Outras ferramentas, como Desmos, só por decisão registrada.
 
 ### Incorporação (shortcodes de `components/applet.lua`)
 Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
@@ -85,17 +89,22 @@ Neste applet, mova os pontos A e B e observe como o segmento muda.
 
 O primeiro argumento deve estar registrado em `applets-src/src/main.js`; `id` deve ser único na página.
 
-Applet GeoGebra (iframe com `title`, carregamento tardio e link alternativo):
+Applet GeoGebra, provisório até a reescrita em JSXGraph (iframe com `title`, carregamento tardio e link alternativo):
 
 {{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição curta" >}}
 
 ## Versionamento e Repositório Remoto - Git e GitHub
 
 ### Fluxo recomendado
-git status          - verifica alterações
-git add .           - adiciona arquivos ao commit
+Cada mudança é feita num branch e só depois integrada à `main`; o site é publicado a cada push na `main`.
+
+git switch -c nome-da-mudanca     - cria o branch da mudança
+git status                        - verifica alterações
+git add .                         - adiciona arquivos ao commit
 git commit -m "Descrição da alteração realizada"
-git push            - envia ao repositório remoto
+git push -u origin nome-da-mudanca  - envia o branch ao repositório remoto
+
+Depois, no GitHub, abrir um pull request do branch para a `main` e integrá-lo. Antes de integrar, rodar as verificações do checklist abaixo.
 
 ### Mensagens de commit devem ser curtas e descritivas, por exemplo:
 - Adiciona capítulo sobre segmentos
@@ -105,11 +114,13 @@ git push            - envia ao repositório remoto
 
 ### Checklist antes de commit
 - [ ] O projeto renderiza sem erro.
+- [ ] `node tests/verificar-site.mjs` não acusa erros.
 - [ ] O capítulo novo está listado em `_quarto.yml`.
 - [ ] Fórmulas, imagens e links funcionam.
 - [ ] Applets carregam localmente.
 - [ ] O conteúdo funciona em tela estreita.
 - [ ] Não há arquivos temporários no commit.
+- [ ] Se houve decisão nova, ela está em `_interno/diretrizes/decisoes.md` e todo o material foi ajustado a ela.
 
 ### Arquivos principais Git
 

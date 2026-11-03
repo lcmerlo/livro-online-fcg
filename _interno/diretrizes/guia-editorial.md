@@ -100,8 +100,8 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
   | Escrever | Resulta em | Uso |
   |---|---|---|
-  | `\vet{AB}` | `\overrightarrow{AB}` | vetor representado pelo segmento orientado `AB` |
-  | `\norm{\vec{u}}` | `\left\lVert \vec{u} \right\rVert` | norma |
+  | `\vet{AB}` | `\overset{\rightarrow}{AB}` | vetor representado pelo segmento orientado `AB` |
+  | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 
   Para alterar a notação em todo o livro, edite só `components/macros.html`. As macros não valem em PDF/Typst. Se o livro passar a ter PDF, defini-las também para esse formato.

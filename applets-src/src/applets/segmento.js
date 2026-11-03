@@ -23,10 +23,15 @@ export default function criarSegmento({ id, JXG }) {
   // Contêiner vazio antes de o JSXGraph desenhar o quadro.
   elemento.innerHTML = "";
 
+  // Região do plano mostrada no quadro: [x mín., y máx., x máx., y mín.].
+  const regiao = [-1, 5, 7, -1];
+  // A altura do quadro segue a região (largura/altura = Δx/Δy), para que ele
+  // mostre a mesma região em qualquer largura de tela.
+  elemento.style.aspectRatio = `${regiao[2] - regiao[0]} / ${regiao[1] - regiao[3]}`;
+
   const board = JXG.JSXGraph.initBoard(id, {
     title: titulo,
-    // Janela visível: [x mín., y máx., x máx., y mín.]
-    boundingbox: [-1, 5, 7, -1],
+    boundingbox: regiao,
     axis: true,
     grid: true,
     showCopyright: false,

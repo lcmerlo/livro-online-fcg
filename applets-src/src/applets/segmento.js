@@ -8,7 +8,8 @@ import { ESTILOS } from "../tools/styles.js";
 
 // Chamada por main.js com o id do contêiner e a biblioteca JSXGraph.
 // Devolve { board, objetos, reset } ou null, se o contêiner não existir.
-export function criarSegmento({ id, JXG }) {
+// Exportação padrão: é por ela que main.js registra o applet "segmento".
+export default function criarSegmento({ id, JXG }) {
   const elemento = document.getElementById(id);
 
   if (!elemento) {

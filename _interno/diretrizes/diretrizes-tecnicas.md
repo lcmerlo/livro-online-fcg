@@ -138,7 +138,7 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 
 ### 4.5 Como se escreve um applet hoje
 
-- **Arquivo e registro.** Um arquivo por applet em `applets-src/src/applets/<nome>.js`, com uma função `criar<Nome>({ id, JXG, dataset })` que devolve um objeto com `reset()`; o nome é registrado no objeto `applets` de `applets-src/src/main.js`. O passo a passo está em `arquitetura.md`, §7, e `segmento.js` é o exemplo.
+- **Arquivo e registro.** Um arquivo por applet em `applets-src/src/applets/<nome>.js`, cuja exportação padrão é uma função `criar<Nome>({ id, JXG, dataset })` que devolve um objeto com `reset()`. O registro é automático: o nome do arquivo é o nome usado no shortcode. O passo a passo está em `arquitetura.md`, §7, e `segmento.js` é o exemplo.
 - **Janela pela matemática.** O quadro é definido pela região do plano que mostra (`boundingbox`), com números simples; nada é posicionado em pixels de tela. Afastamentos pequenos a partir de um objeto, como o rótulo ao lado do ponto, são aceitos.
 - **Cores e estilos.** Sempre pelos estilos de `src/tools/styles.js` e pelas cores de `src/cores.js`, que vêm das variáveis `--cor-…` do livro; nunca cores escritas no applet. O modelo atual atribui cor pelo papel didático (manipulável, objeto principal, construção…); cor por identidade do objeto, como no JSX-quarto, é hipótese a testar (`pendencias.md`, §2).
 - **Nomes.** Objetos com o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código em português descritivo, como o código atual.

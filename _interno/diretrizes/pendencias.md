@@ -31,7 +31,6 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Por quê |
 |---|---|
-| Verificador lê a lista de applets registrados de um arquivo gerado pelo build | hoje lê `main.js` por expressão regular, o que obriga a escrever o registro num formato fixo (`arquitetura.md`, §8) |
 | Shortcode para applets com várias partes | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
 | Altura do quadro pela região matemática | hoje `.applet-jxg` tem altura fixa em `custom.scss` |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |

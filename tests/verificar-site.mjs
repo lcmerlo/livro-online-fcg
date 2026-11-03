@@ -6,8 +6,9 @@
 //
 // Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
 // e comandos TeX suspeitos.
-// Site gerado (docs/): iframes sem title, imagens sem alt, applets não
-// registrados, ids duplicados e saltos na hierarquia de títulos.
+// Site gerado (docs/): iframes sem title, imagens sem alt, applets sem
+// arquivo em applets-src/src/applets/, ids duplicados e saltos na hierarquia
+// de títulos.
 // Links internos e âncoras são verificados pelo lychee no workflow.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
@@ -79,9 +80,14 @@ if (paginas.length === 0) {
   aviso("docs/", "nenhuma página HTML encontrada; rode `quarto render --to html` antes");
 }
 
-const main = join(raiz, "applets-src/src/main.js");
-const bloco = existsSync(main) ? readFileSync(main, "utf8").match(/const applets = \{([\s\S]*?)\};/) : null;
-const registrados = new Set(bloco ? [...bloco[1].matchAll(/^\s*(\w+)\s*:/gm)].map((m) => m[1]) : []);
+// Applets registrados: um por arquivo de applets-src/src/applets/, com o nome
+// do arquivo (a mesma regra de main.js).
+const pastaApplets = join(raiz, "applets-src/src/applets");
+const registrados = new Set(
+  existsSync(pastaApplets)
+    ? readdirSync(pastaApplets).filter((f) => f.endsWith(".js")).map((f) => f.slice(0, -".js".length))
+    : [],
+);
 
 for (const arquivo of paginas) {
   const html = readFileSync(arquivo, "utf8");
@@ -96,7 +102,7 @@ for (const arquivo of paginas) {
   }
 
   for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
-    if (!registrados.has(m[1])) erro(nome, `applet não registrado em main.js: ${m[1]}`);
+    if (!registrados.has(m[1])) erro(nome, `applet sem arquivo applets-src/src/applets/${m[1]}.js`);
   }
 
   // Só o <body>: o <head> do Quarto repete ids de estilos em todas as páginas.

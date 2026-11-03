@@ -104,7 +104,7 @@ livro-quarto/
 │   ├── vite.config.js          ⚙️  Como gerar o bundle e onde salvá-lo
 │   ├── index.html              ✏️  Página de testes para `npm run dev` (não faz parte do livro)
 │   ├── src/
-│   │   ├── main.js             ✏️  Ponto de entrada: registro de applets, inicialização, reinício
+│   │   ├── main.js             ✏️  Ponto de entrada: registro automático dos applets, inicialização, reinício
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
 │   │   ├── tools/styles.js     ✏️  Estilos JSXGraph reutilizáveis (ponto manipulável, reta…)
 │   │   └── applets/segmento.js ✏️  Um applet (um arquivo por applet)
@@ -186,7 +186,7 @@ no `_quarto.yml`. Um capítulo combina:
 | `package.json` | Declara as dependências (`jsxgraph`, `vite`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
 | `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores em `:root` porque, fora do livro, não existe `custom.scss`. |
-| `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, mantém o **registro** `applets = { segmento: criarSegmento, … }`, procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
+| `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
 | `src/tools/styles.js` | Objeto `ESTILOS` com aparências prontas para objetos JSXGraph (`pontoManip`, `pontoFixo`, `retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`), alinhadas ao código de cores do livro. |
 | `src/applets/segmento.js` | Applet do capítulo *Segmentos*: dois pontos móveis A e B e o segmento AB; atualiza o texto de estado (para leitores de tela) e oferece `reset()`. |
@@ -196,7 +196,7 @@ no `_quarto.yml`. Um capítulo combina:
 Script Node sem dependências. Verifica:
 
 - **nas fontes** (`index.qmd` e `capitulos/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
-- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado mas não registrado em `main.js`, `id` duplicado, saltos na hierarquia de títulos (aviso).
+- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, `id` duplicado, saltos na hierarquia de títulos (aviso).
 
 Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 
@@ -297,17 +297,18 @@ flowchart TD
     cores["cores.js"]
 
     main -->|"import"| jxg
-    main -->|"import"| seg
-    main -.->|"registrar"| novo
+    main -->|"import automático<br/>(applets/*.js)"| seg
+    main -.->|"import automático"| novo
     seg -->|"import"| styles
     novo -.->|"import"| styles
     styles -->|"import"| cores
     main -->|"import"| cores
 ```
 
-As setas tracejadas mostram onde um applet novo se encaixa. O Vite parte de
-`main.js`, segue todos esses `import` e junta tudo em dois arquivos:
-`applets-livro.iife.js` e `applets-livro.css`.
+As setas tracejadas mostram onde um applet novo se encaixa: basta criar o
+arquivo em `applets/`, porque `main.js` importa todos os arquivos dessa pasta
+(`import.meta.glob`). O Vite parte de `main.js`, segue todos esses `import` e
+junta tudo em dois arquivos: `applets-livro.iife.js` e `applets-livro.css`.
 
 Observação: o JSXGraph **não** é importado por cada applet. O `main.js` o
 importa uma vez e o entrega a cada applet como parâmetro (`criarSegmento({ id, JXG })`).
@@ -364,9 +365,9 @@ flowchart TD
     R --> N
 ```
 
-O nome passado no shortcode (`segmento`) precisa ser **igual** à chave no
-objeto `applets` de `main.js`. Se não for, o applet não aparece e o teste
-`verificar-site.mjs` acusa erro.
+O nome passado no shortcode (`segmento`) precisa ser **igual** ao nome do
+arquivo do applet (`applets-src/src/applets/segmento.js`, sem `.js`). Se não
+for, o applet não aparece e o teste `verificar-site.mjs` acusa erro.
 
 ### 5.6 Publicação automática (GitHub Actions)
 
@@ -448,11 +449,10 @@ flowchart TD
 O que o applet deve garantir, a ficha de aceitação e como reescrever um applet
 GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 
-1. Criar `applets-src/src/applets/<nome>.js` exportando `criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `segmento.js` como modelo e `ESTILOS` para as cores).
-2. Em `applets-src/src/main.js`: importar a função e registrá-la em `const applets = { …, <nome>: criar<Nome> }`.
-3. Opcional: acrescentar um `div` de teste em `applets-src/index.html` e usar `npm run dev`.
-4. `npm run build`.
-5. No capítulo, dentro de um `.bloco-interacao`: `{{< applet <nome> id="jxg-<nome>-1" rotulo="Descrição acessível" >}}`.
+1. Criar `applets-src/src/applets/<nome>.js` com a exportação padrão `export default function criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `segmento.js` como modelo e `ESTILOS` para as cores). O registro é automático: o nome do arquivo é o nome do applet. Nessa pasta só ficam applets; código compartilhado vai para `src/tools/`.
+2. Opcional: acrescentar um `div` de teste em `applets-src/index.html` e usar `npm run dev`.
+3. `npm run build`.
+4. No capítulo, dentro de um `.bloco-interacao`: `{{< applet <nome> id="jxg-<nome>-1" rotulo="Descrição acessível" >}}`.
 
 ### Mudar uma cor
 - Cor do tema (fundo, links, títulos): papel ou paleta em `_brand.yml`.
@@ -471,7 +471,7 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 ## 8. Pontos de atenção
 
 - **Duas cópias de configuração.** `_interno/oficina/testes/_quarto.yml` repete parte de `_quarto.yml`. Ao alterar um, altere o outro.
-- **Formato do registro em `main.js`.** O teste lê o objeto `const applets = { … };` por expressão regular. Mantenha uma entrada por linha, no formato `nome: funcao,`. É uma limitação do teste, com troca prevista em `pendencias.md`.
+- **Nome do applet = nome do arquivo.** `main.js` registra cada arquivo de `src/applets/`, e o teste usa a mesma regra. Um arquivo auxiliar posto nessa pasta seria tomado por applet: código compartilhado fica em `src/tools/`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Cores lidas uma vez.** `cores.js` lê as variáveis CSS quando o bundle carrega. Mudanças de cor exigem recarregar a página.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("jxg-segmento-1")` reinicia um deles.

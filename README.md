@@ -87,7 +87,7 @@ Neste applet, mova os pontos A e B e observe como o segmento muda.
 {{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
 :::
 
-O primeiro argumento deve estar registrado em `applets-src/src/main.js`; `id` deve ser único na página.
+O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página.
 
 Applet GeoGebra, provisório até a reescrita em JSXGraph (iframe com `title`, carregamento tardio e link alternativo):
 

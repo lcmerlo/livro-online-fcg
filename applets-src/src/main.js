@@ -13,13 +13,18 @@ import JXG from "jsxgraph";
 import "../node_modules/jsxgraph/distrib/jsxgraph.css";
 
 import { CORES } from "./cores.js";
-import { criarSegmento } from "./applets/segmento.js";
 
 // Registro dos applets: o valor de data-applet no HTML → função que o cria.
-// Para um applet novo, importe sua função acima e acrescente-a aqui.
-const applets = {
-  segmento: criarSegmento,
-};
+// Cada arquivo de applets/ é um applet: o nome é o do arquivo, sem .js, e a
+// função de criação é a exportação padrão (export default). Um applet novo
+// entra no registro só por existir; tests/verificar-site.mjs usa a mesma regra.
+const modulos = import.meta.glob("./applets/*.js", { eager: true, import: "default" });
+const applets = Object.fromEntries(
+  Object.entries(modulos).map(([caminho, criar]) => [
+    caminho.slice("./applets/".length, -".js".length),
+    criar,
+  ]),
+);
 
 // Applets já criados, indexados pelo id do elemento. Evita criar o mesmo
 // applet duas vezes e permite localizá-lo depois (por exemplo, no reset).

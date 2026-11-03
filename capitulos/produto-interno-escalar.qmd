@@ -25,7 +25,7 @@ Valem as seguintes propriedades:
 3. $\left\langle
 a\vec{u},\vec{v}\right\rangle=\left\langle\vec{u},a\vec{v}\right\rangle=a\left\langle\vec{u},\vec{v}\right\rangle$;
 4. $\left\langle\vec{v}+\vec{w},\vec{u}\right\rangle=\left\langle\vec{v},\vec{u}\right\rangle+\left\langle\vec{w},\vec{u}\right\rangle$;
-5. $\left\langle\vec{u,}\vec{v}+\vec{w}\right\rangle=\left\langle\vec{u},\vec{v}\right\rangle+\left\langle\vec{u},\vec{w}\right\rangle$.
+5. $\left\langle\vec{u},\vec{v}+\vec{w}\right\rangle=\left\langle\vec{u},\vec{v}\right\rangle+\left\langle\vec{u},\vec{w}\right\rangle$.
 :::
 
 

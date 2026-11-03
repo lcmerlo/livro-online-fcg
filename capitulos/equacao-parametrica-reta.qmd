@@ -35,7 +35,7 @@ Fixados um ponto $P_0$ e um vetor $\vec{v}\ne\vec{0},$ existem infinitas retas p
 
 Fixados um ponto $P_0$ e um vetor $\vec{v}\ne\vec{0},$ considere a única reta $r$ tal que $P_0\in r$ e $\vec{v}\parallel r.$     
 
-Um ponto $P$ do plano pertence a reta $r$ se, e somente se, o vetor $P-P_0=\vec{P_0P}$  é múltiplo de $\vec{v}$, isto é, $P-P_0=t\vec{v}$, com $t\in\R$. Portanto, a reta $r$ é dada pela equação:
+Um ponto $P$ do plano pertence a reta $r$ se, e somente se, o vetor $P-P_0=\vet{P_0P}$  é múltiplo de $\vec{v}$, isto é, $P-P_0=t\vec{v}$, com $t\in\R$. Portanto, a reta $r$ é dada pela equação:
 
 $$
 r: P = P_0 + t \vec{v}, \quad t \in \R. \quad(\ast)

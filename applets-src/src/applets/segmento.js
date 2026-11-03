@@ -62,8 +62,9 @@ export function criarSegmento({ id, JXG }) {
   // Descrição textual do estado, lida por leitores de tela (role="status").
   // Atualizada com atraso para não anunciar cada passo do arraste.
   const status = document.getElementById(`${id}-status`);
-  // Números no formato brasileiro (vírgula decimal), com até 2 casas.
-  const numero = (x) => x.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
+  // Números com ponto decimal e até 2 casas (convenção provisória do livro,
+  // diretrizes-tecnicas.md, §5). Number() tira os zeros à direita e o "-0".
+  const numero = (x) => String(Number(x.toFixed(2)));
   // Temporizador do atraso (debounce) entre o arraste e o anúncio.
   let espera;
 

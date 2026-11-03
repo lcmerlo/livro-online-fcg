@@ -24,7 +24,8 @@ Os capítulos são escritos em **Markdown com extensões do Quarto (`.qmd`)**; o
 **Quarto** converte esses arquivos em **páginas HTML** (com estilos, fórmulas e
 applets) dentro da pasta `docs/`; um **robô do GitHub (GitHub Actions)** faz
 isso automaticamente a cada `git push` na `main` e publica o resultado no
-**GitHub Pages**.
+**GitHub Pages**. Num pull request, o robô faz as mesmas verificações, mas não
+publica.
 
 Há três "linhas de montagem" que se encontram no final:
 
@@ -65,7 +66,7 @@ flowchart TD
 | **IIFE** | Formato do bundle: um único `.js` que roda direto no navegador, sem `import`. Expõe o objeto global `AppletsLivro`. |
 | **npm / `package.json`** | Gerenciador de pacotes do Node.js; baixa o JSXGraph e o Vite para `node_modules/`. |
 | **MathJax** | Biblioteca que desenha as fórmulas LaTeX no navegador. |
-| **GitHub Actions** | Robô que executa `.github/workflows/publish.yml` a cada push na `main`. |
+| **GitHub Actions** | Robô que executa `.github/workflows/publish.yml` a cada push na `main` (verifica e publica) e a cada pull request para a `main` (só verifica). |
 | **GitHub Pages** | Hospedagem gratuita do GitHub que serve o conteúdo de `docs/` como site. |
 
 ---
@@ -372,7 +373,7 @@ objeto `applets` de `main.js`. Se não for, o applet não aparece e o teste
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
 flowchart TD
-    push(["<b>git push</b> na main"])
+    push(["<b>git push</b> na main<br/>ou pull request"])
     co["Baixa o repositório"]
     node["Instala Node 22"]
     ci["npm ci<br/>(dependências dos applets)"]
@@ -381,16 +382,23 @@ flowchart TD
     render["quarto render --to html<br/>(gera docs/)"]
     t1{"verificar-site.mjs<br/>sem erros?"}
     t2{"lychee: links e<br/>âncoras corretos?"}
+    pr{"é pull<br/>request?"}
+    ok(["Verificação aprovada<br/>(nada é publicado)"])
     up["Envia docs/<br/>ao GitHub Pages"]
     dep(["<b>Site atualizado</b>"])
-    fail(["Publicação<br/>interrompida"])
+    fail(["Verificação reprovada<br/>(nada é publicado)"])
 
     push --> co --> node --> ci --> build --> qi --> render --> t1
     t1 -->|"sim"| t2
-    t2 -->|"sim"| up --> dep
+    t2 -->|"sim"| pr
+    pr -->|"sim"| ok
+    pr -->|"não"| up --> dep
     t1 -->|"não"| fail
     t2 -->|"não"| fail
 ```
+
+O resultado aparece na página do pull request, no GitHub. Integre o pull
+request à `main` só quando a verificação estiver aprovada.
 
 Como `docs/` e o bundle não são versionados, **o site publicado é sempre
 gerado do zero pelo robô**. O que está na sua máquina em `docs/` serve apenas

@@ -47,7 +47,7 @@ applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
 _interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural) e oficina/ (protótipos/ com capítulos ainda não publicados, testes/ para arquivos de teste com a configuração do livro, referências)
-.github/workflows/publish.yml - Renderiza e publica no GitHub Pages
+.github/workflows/publish.yml - Verifica cada pull request; renderiza e publica no GitHub Pages a cada push na main
 AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
 ### Comandos principais
@@ -104,7 +104,7 @@ git add .                         - adiciona arquivos ao commit
 git commit -m "Descrição da alteração realizada"
 git push -u origin nome-da-mudanca  - envia o branch ao repositório remoto
 
-Depois, no GitHub, abrir um pull request do branch para a `main` e integrá-lo. Antes de integrar, rodar as verificações do checklist abaixo.
+Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actions verifica o pull request (sem publicar) e mostra o resultado na página dele; integrá-lo só com a verificação aprovada.
 
 ### Mensagens de commit devem ser curtas e descritivas, por exemplo:
 - Adiciona capítulo sobre segmentos

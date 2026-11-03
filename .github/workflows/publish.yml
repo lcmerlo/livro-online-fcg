@@ -1,17 +1,21 @@
 name: Renderiza e publica site Quarto
 
+# Push na main: verifica e publica. Pull request para a main: só verifica,
+# para que um erro apareça antes da integração.
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
+# Publicações: uma por vez, a mais recente vence. Pull requests: grupo próprio
+# de cada branch, para não interromper uma publicação.
 concurrency:
-  group: github-pages
+  group: ${{ github.event_name == 'pull_request' && format('verificacao-{0}', github.head_ref) || 'github-pages' }}
   cancel-in-progress: true
 
 jobs:
@@ -55,13 +59,19 @@ jobs:
           fail: true
 
       - name: Enviar artefato para GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages

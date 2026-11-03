@@ -212,7 +212,7 @@ Diferenças atuais:
 - **Antes de integrar uma mudança:** os comandos do `guia-editorial.md`, §8 (bundle, render, verificador, `git diff`).
 - **O verificador** (`tests/verificar-site.mjs`) separa erros, que bloqueiam a publicação, de avisos, que não bloqueiam. O que ele confere está em `arquitetura.md`, §4.6. Suas regras são padrões como os outros (§2.4).
 - **Publicação:** o GitHub Actions publica a cada push na `main`, depois do build, do render, do verificador e da conferência de links. Um erro interrompe a publicação, e o site anterior continua no ar.
-- **Branch:** cada mudança num branch, integrada à `main` depois de verificada, de preferência por pull request. Hoje a verificação automática só roda na `main` (`pendencias.md`, §3); até isso mudar, rode o verificador localmente antes de integrar.
+- **Branch:** cada mudança num branch, integrada à `main` depois de verificada, de preferência por pull request. Num pull request para a `main`, o GitHub Actions faz as mesmas verificações, sem publicar, e mostra o resultado na página do pull request; integre só com o resultado verde.
 - **Commits:** mensagem curta, no imperativo, um assunto por commit.
 
 ## 9. Assistentes de IA

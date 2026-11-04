@@ -60,6 +60,7 @@
 
   <div id="amostra-pontos" class="applet-jxg"
        aria-label="Amostra das formas de ponto e das setas."></div>
+  <p id="amostra-pontos-status" role="status" aria-live="polite"></p>
 
   <ul>
     <li>Primeira linha: pontos arrastáveis (disco, quadrado, losango, triângulo).</li>
@@ -78,6 +79,8 @@
     import { CORES } from "/src/cores.js";
     import { criarQuadro } from "/src/tools/quadro.js";
     import { ESTILOS, pontoAberto, pontoArrastavel, pontoFixo, seta } from "/src/tools/styles.js";
+    import { angulo, componentes, norma } from "/src/tools/vetores.js";
+    import { numero, texto } from "/src/tools/formatar.js";
 
     const board = criarQuadro({ JXG, id: "amostra-pontos", regiao: [-1, 5, 9, -2.5], eixos: true });
     const formas = ["o", "[]", "<>", "^"];
@@ -105,6 +108,22 @@
     const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.objConstr), withLabel: false });
     const S = board.create("point", [8, -0.3], pontoFixo(CORES.objConstr, "seta"));
     board.create("arrow", [R, S], seta(CORES.objConstr, { nome: "v", lado: "right" }));
+
+    // Texto de estado com as contas de tools/vetores.js e a escrita de
+    // tools/formatar.js (a conta é a mesma da figura).
+    const status = document.getElementById("amostra-pontos-status");
+    let espera;
+    function descrever() {
+      const u = componentes(P, Q);
+      const v = componentes(R, S);
+      const theta = angulo(u, v);
+      status.textContent = `u = ${texto.ponto(u)}, com norma ${numero(norma(u))}; `
+        + (Number.isNaN(theta)
+          ? "u é nulo, e o ângulo entre u e v não existe."
+          : `ângulo entre u e v: ${texto.angulo(theta)} (${texto.angulo(theta, "radianos")} rad).`);
+    }
+    descrever();
+    board.on("update", () => { clearTimeout(espera); espera = setTimeout(descrever, 400); });
   </script>
 </body>
 </html>

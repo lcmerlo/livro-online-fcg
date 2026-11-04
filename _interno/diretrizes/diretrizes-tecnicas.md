@@ -144,6 +144,9 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 - **Criar o quadro.** Sempre por `criarQuadro` (`src/tools/quadro.js`), que aplica a proporção e os padrões de interação: o plano não se desloca nem muda de escala (mouse, dedos, Shift + setas); no toque, o dedo fora dos pontos rola a página e, sobre um ponto, arrasta o ponto; quando dois pontos estão ao alcance do mesmo toque ou clique, vence o mais próximo; o ponto arrastado (mouse, dedo ou setas) não sai da região mostrada.
 - **Pontos: a forma diz se o ponto se move.** Arrastável: disco com anel translúcido, que se reforça sob o cursor e com o foco do teclado (`pontoArrastavel`). Fixo ou dependente de outros: disco cheio (`pontoFixo`). Extremo aberto, como num intervalo: disco vazado (`pontoAberto`). Outras formas, com área parecida com a do disco: quadrado `"[]"`, losango `"<>"` e triângulos `"^"`, `"v"`, `"<"`, `">"`; só no ponto fixo, traços `"|"` e `"-"`, que marcam uma coordenada num eixo, e `"x"`, `"+"`. Na ponta de um vetor, a ponta da seta faz o papel do ponto (forma `"seta"`, com o estilo `seta`): arrastável, mostra só o anel; fixa, nada além da seta. A forma não substitui o texto: a instrução e o estado também dizem o que se move.
 - **Toque e mouse.** O ponto arrastável é pego a até 10 px do centro com o mouse e a até 25 px com o dedo (o padrão do JSXGraph é 4 px), e o anel fica mais largo no toque. As medidas ficam em variáveis `--applet-…` de `custom.scss`.
+- **Contas.** Pelas funções de `src/tools/vetores.js` (componentes, soma, produto escalar, norma, ângulo, determinante, coeficientes numa base, projeção…), que a figura e o texto de estado usam juntos. Quando a conta não está definida (vetor nulo, vetores paralelos), o resultado é `NaN`, e o applet decide o que mostrar (§4.4).
+- **Números e fórmulas.** Pelas funções de `src/tools/formatar.js`, o único lugar do formato dos números: `texto.*` no parágrafo de estado (texto simples, lido pelo leitor de tela) e `tex.*`, `expressao` e `equacao` nas fórmulas, em que termos nulos somem. `finito` e `casos` escrevem os casos especiais. Um valor indefinido nunca vira 0 nem some: aparece como "NaN", para que a ficha de aceitação o encontre.
+- **Unidades.** As contas são feitas em radianos e em unidades do plano; graus só na saída (`texto.angulo`, `tex.angulo`). Um controle mostra a unidade que o estudante lê (graus, voltas) e é convertido para radianos na conta. A velocidade de uma animação é dada em unidades do estado por segundo e escolhida pelo efeito visível. Em radianos, só ângulos notáveis aparecem como fração de π (π/6, 3π/4); os demais, em decimal.
 - **Cores e estilos.** Sempre pelos estilos de `src/tools/styles.js` e pelas cores de `src/cores.js`, que vêm das variáveis `--cor-…` do livro; nunca cores escritas no applet. Os estilos de ponto e de seta recebem a cor como parâmetro. O modelo atual atribui cor pelo papel didático (manipulável, objeto principal, construção…); cor por identidade do objeto, como no JSX-quarto, é hipótese a testar (`pendencias.md`, §2).
 - **Nomes.** Objetos com o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código em português descritivo, como o código atual, também no que vem da `lib/` do JSX-quarto.
 - **Comentários** explicam o porquê, em português.
@@ -180,16 +183,18 @@ Diferenças atuais:
 | Carregamento | bundle do Vite, só nas páginas com applet | módulos ES, JSXGraph do CDN | padrão do livro: não depende de CDN e a versão fica fixada |
 | Fórmulas | MathJax | KaTeX | hipótese a testar no piloto |
 | Cores | por papel didático | por identidade do objeto | hipótese a testar no piloto |
-| Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, formas dos pontos, seta, toque | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
+| Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, formas dos pontos, seta, toque, contas vetoriais e formatação | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
 | Nomes no código | português | inglês, como o JSXGraph | padrão do livro (§4.5) |
 | Toque | o dedo fora dos pontos rola a página (CSS `touch-action` e cancelamento da rolagem quando o dedo pega um ponto); o ponto mais próximo vence | o quadro bloqueia a rolagem da página; vence o último ponto arrastado | padrão do livro: §4.4 e ficha de aceitação |
+| Valor indefinido | `NaN` nas contas; "NaN" visível na escrita, até o applet decidir o caso | 0 no unitário e na projeção; 0 na escrita; o termo some da expressão | padrão do livro (§4.4: nenhum número enganoso) |
+| Ângulo em radianos | fração de π só se notável; senão decimal | centésimos de π (π/6 saía como 17π/100) | correção no livro |
 | Foco do teclado no ponto | contorno de foco do site e reforço do anel | só o reforço do anel | padrão do livro (WCAG 2.4.7, §32) |
 | Largura mínima | 320 px (WCAG 1.4.10, §32) | 360 px | padrão do livro |
 
 ## 5. Notação matemática
 
 - A notação é definida num só lugar: hoje, as macros de `components/macros.html`, para o MathJax. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única e vale também para os textos dos applets.
-- Números, no texto e nos applets, levam ponto decimal e vírgula entre coordenadas, como `(2.5, 3)`. A convenção é provisória e será reavaliada (`pendencias.md`, §2).
+- Números, no texto e nos applets, levam ponto decimal e vírgula entre coordenadas, como `(2.5, 3)`. Nos applets, quem os escreve é `applets-src/src/tools/formatar.js`, e a convenção muda ali. A convenção é provisória e será reavaliada (`pendencias.md`, §2).
 - Vetores usam, por enquanto, dois comandos: `\vec{u}` para nome de uma só letra e a macro `\vet{AB}` para nome formado por dois pontos. O objetivo é um só comando com bom resultado nos dois casos (`pendencias.md`, §2).
 - Os símbolos e as macros estão no `guia-editorial.md`, §4.
 

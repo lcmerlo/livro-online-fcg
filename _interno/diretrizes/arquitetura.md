@@ -108,6 +108,8 @@ livro-quarto/
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
 │   │   ├── tools/quadro.js     ✏️  Cria o quadro: região, proporção, toque e teclado
 │   │   ├── tools/styles.js     ✏️  Estilos JSXGraph: pontos (a forma diz se o ponto se move), seta, traços
+│   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
+│   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
 │   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
@@ -190,6 +192,8 @@ no `_quarto.yml`. Um capítulo combina:
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
 | `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence; o ponto arrastado não sai da região). |
+| `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
+| `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel didático (`retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`). |
 | `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 
@@ -302,6 +306,7 @@ flowchart TD
     main -.->|"import automático<br/>(applets/*.js)"| novo
     novo -.->|"import"| styles
     novo -.->|"import"| quadro
+    novo -.->|"import"| contas["tools/vetores.js<br/>tools/formatar.js"]
     styles -->|"import"| cores
     main -->|"import"| cores
 ```
@@ -455,6 +460,7 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
    ```js
    import { criarQuadro } from "../tools/quadro.js";
    import { pontoArrastavel } from "../tools/styles.js";
+   import { texto } from "../tools/formatar.js";
 
    export default function criarNome({ id, JXG }) {
      const board = criarQuadro({ JXG, id, regiao: [-1, 5, 7, -1], eixos: true, grade: true });
@@ -467,7 +473,7 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
      // Texto de estado (§4.4 das diretrizes), refeito 400 ms depois do último movimento
      const status = document.getElementById(`${id}-status`);
      let espera;
-     const descrever = () => { status.textContent = `A = (${A.X()}, ${A.Y()}).`; };
+     const descrever = () => { status.textContent = `A = ${texto.ponto(A)}.`; };
      if (status) {
        descrever();
        board.on("update", () => { clearTimeout(espera); espera = setTimeout(descrever, 400); });

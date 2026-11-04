@@ -42,7 +42,6 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 | `\overrightarrow{AB}` onde o guia pede `\vet{AB}` (`guia-editorial.md`, §4) | `_interno/oficina/protótipos/` (3 arquivos) | trocar ao publicar cada protótipo |
 | Protótipos citam materiais GeoGebra (links e imagens) | `_interno/oficina/protótipos/` | reescrever os applets em JSXGraph ao publicar cada protótipo |
 | O JSX-quarto usa 360 px como largura mínima; o livro, 320 px | JSX-quarto, `migracao/manual.qmd` | alinhar lá, se o autor quiser (fora deste repositório) |
-| O checkpoint depois do erro comum pede "Leve o ponto $B$ até o ponto $A$", ação que era feita no applet removido em 2026-11-03 | `capitulos/segmentos.qmd` | o autor reescreve a pergunta (sugestão: "Imagine o ponto $B$ se aproximando de $A$ até coincidir com ele.") ou põe um applet novo no lugar |
 
 ## 5. Applets GeoGebra a reescrever em JSXGraph
 

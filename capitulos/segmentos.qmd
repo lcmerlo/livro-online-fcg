@@ -62,7 +62,7 @@ Não confunda o **segmento** $AB$, que é um conjunto de pontos, com o seu **com
 :::
 
 ::: {.bloco-checkpoint}
-Leve o ponto $B$ até o ponto $A$. O que acontece com o segmento e com o seu comprimento? Em quantas retas esse segmento está contido?
+Imagine o ponto $B$ se aproximando de $A$ até coincidir com ele. O que acontece com o segmento e com o seu comprimento? Em quantas retas esse segmento está contido?
 
 ::: {.resposta}
 Quando $B=A$, o segmento se reduz ao ponto $A$: é o segmento degenerado $AA$, de comprimento $d(A,A)=0$. Ele está contido em infinitas retas, todas as que passam por $A$.

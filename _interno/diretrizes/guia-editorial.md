@@ -26,7 +26,7 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 | Para | Use |
 |---|---|
 | Objetivo, pré-requisitos, interação, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-interacao`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
-| Applet JSXGraph próprio | `{{< applet segmento id="jxg-segmento-1" rotulo="Descrição para leitor de tela" >}}` |
+| Applet JSXGraph próprio | `{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição para leitor de tela" >}}` (o nome é o de um arquivo de `applets-src/src/applets/`) |
 | Applet GeoGebra (provisório) | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}`, só nos capítulos que ainda não têm a versão JSXGraph; em conteúdo novo, só por decisão do autor (`diretrizes-tecnicas.md`, §4) |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
@@ -161,7 +161,7 @@ git diff
 
 ## 9. Página-modelo
 
-`capitulos/segmentos.qmd` é a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, applet com instrução e texto de estado, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência. Ela ainda tem pendências, como a alternativa ao arraste no applet (`pendencias.md`); onde a página e as diretrizes divergem, valem as diretrizes.
+`capitulos/segmentos.qmd` é a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência. Ela está sem applet desde 2026-11-03; para o bloco de interação, siga o §6 e o modelo `_interno/oficina/testes/modelo-capitulo-completo.qmd`. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 
@@ -180,7 +180,7 @@ O **comprimento** de $AB$ é $d(A,B)$.
 ::: {.bloco-interacao}
 Mova os pontos $A$ e $B$ e observe como o comprimento muda.
 
-{{< applet segmento id="jxg-segmento-1" rotulo="Segmento com dois pontos móveis" >}}
+{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Segmento com dois pontos móveis" >}}
 :::
 
 ::: {.bloco-checkpoint}

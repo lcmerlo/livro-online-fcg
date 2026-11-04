@@ -1,6 +1,6 @@
 -- Shortcodes para applets do livro. A saída vem num <div class="bloco-applet">;
 -- orientações e perguntas ficam em volta, no bloco .bloco-interacao.
---   {{< applet segmento id="jxg-segmento-1" rotulo="Descrição acessível" >}}
+--   {{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição acessível" >}}
 --   {{< geogebra f2zqppmu titulo="Applet: descrição" >}}
 
 local function texto(valor)

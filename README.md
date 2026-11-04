@@ -82,12 +82,12 @@ O que cada applet garante e como é aceito: `_interno/diretrizes/diretrizes-tecn
 Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
 
 ::: {.bloco-interacao}
-Neste applet, mova os pontos A e B e observe como o segmento muda.
+[Instrução de interação.]
 
-{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela]" >}}
 :::
 
-O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página.
+O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página. Hoje o livro não tem nenhum applet JSXGraph em capítulo.
 
 Applet GeoGebra, provisório até a reescrita em JSXGraph (iframe com `title`, carregamento tardio e link alternativo):
 

@@ -54,11 +54,11 @@ Pela @def-nome-do-conceito, [consequência].
 
 
 ::: {.bloco-interacao}
-**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
+**[Título do applet].** [Objetivo em uma frase.]
 
-Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
+Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
 
-{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
 :::
 
 ::: {.bloco-checkpoint}
@@ -129,7 +129,7 @@ O que você espera que aconteça com [objeto] quando [parâmetro] aumenta?
 
 Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
 
-{{< applet segmento id="jxg-modelo-1" rotulo="Descrição para leitor de tela: o que o applet mostra e quais são os controles." >}}
+{{< applet nome-do-applet id="jxg-modelo-1" rotulo="Descrição para leitor de tela: o que o applet mostra e quais são os controles." >}}
 :::
 
 ### Observação e análise
@@ -199,11 +199,11 @@ Não confunda o **segmento** $AB$, que é um conjunto de pontos, com o seu **com
 
 
 ::: {.bloco-interacao}
-**Segmento com extremos móveis.** Observe como o segmento e o seu comprimento mudam quando os extremos se movem.
+**[Título do applet].** [Objetivo em uma frase.]
 
-Arraste os pontos $A$ e $B$ com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. Os pontos se movem sobre a malha, e a posição e o comprimento aparecem em texto abaixo do quadro.
+Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
 
-{{< applet segmento id="jxg-segmento-1" rotulo="Applet interativo sobre segmento com dois pontos móveis." >}}
+{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
 :::
 
 

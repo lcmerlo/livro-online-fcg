@@ -107,7 +107,7 @@ livro-quarto/
 │   │   ├── main.js             ✏️  Ponto de entrada: registro automático dos applets, inicialização, reinício
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
 │   │   ├── tools/styles.js     ✏️  Estilos JSXGraph reutilizáveis (ponto manipulável, reta…)
-│   │   └── applets/segmento.js ✏️  Um applet (um arquivo por applet)
+│   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
 ├── tests/
@@ -189,7 +189,7 @@ no `_quarto.yml`. Um capítulo combina:
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
 | `src/tools/styles.js` | Objeto `ESTILOS` com aparências prontas para objetos JSXGraph (`pontoManip`, `pontoFixo`, `retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`), alinhadas ao código de cores do livro. |
-| `src/applets/segmento.js` | Applet do capítulo *Segmentos*: dois pontos móveis A e B e o segmento AB; atualiza o texto de estado (para leitores de tela) e oferece `reset()`. |
+| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 
 ### 4.6 `tests/verificar-site.mjs`
 
@@ -261,7 +261,7 @@ flowchart TD
     site["Páginas do livro<br/>(blocos, textos)"]
     c["<b>cores.js</b><br/>CORES.objManip"]
     st["<b>tools/styles.js</b><br/>ESTILOS.pontoManip"]
-    a["<b>segmento.js</b><br/>pontos A e B"]
+    a["<b>applets/*.js</b><br/>pontos arrastáveis"]
 
     b -->|"Quarto cria<br/>$brand-verde-5"| s
     s -->|"Sass compila"| css
@@ -291,15 +291,12 @@ Cada família tem três tons: `-suave`, normal e `-forte`.
 flowchart TD
     main["<b>main.js</b><br/>ponto de entrada"]
     jxg["jsxgraph<br/>+ jsxgraph.css"]
-    seg["applets/<br/>segmento.js"]
-    novo["applets/<br/>novo applet"]
+    novo["applets/<br/>um arquivo por applet"]
     styles["tools/styles.js"]
     cores["cores.js"]
 
     main -->|"import"| jxg
-    main -->|"import automático<br/>(applets/*.js)"| seg
-    main -.->|"import automático"| novo
-    seg -->|"import"| styles
+    main -.->|"import automático<br/>(applets/*.js)"| novo
     novo -.->|"import"| styles
     styles -->|"import"| cores
     main -->|"import"| cores
@@ -311,7 +308,7 @@ arquivo em `applets/`, porque `main.js` importa todos os arquivos dessa pasta
 junta tudo em dois arquivos: `applets-livro.iife.js` e `applets-livro.css`.
 
 Observação: o JSXGraph **não** é importado por cada applet. O `main.js` o
-importa uma vez e o entrega a cada applet como parâmetro (`criarSegmento({ id, JXG })`).
+importa uma vez e o entrega a cada applet como parâmetro (`criar<Nome>({ id, JXG })`).
 
 ### 5.4 O que acontece em `quarto render` (simplificado)
 
@@ -336,16 +333,16 @@ flowchart TD
 
 ### 5.5 Como um applet aparece na tela
 
-Exemplo real: capítulo `segmentos.qmd`, linha com
-`{{< applet segmento id="jxg-segmento-1" rotulo="…" >}}`.
+Exemplo: um capítulo com a linha
+`{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="…" >}}`.
 
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
 flowchart TD
     subgraph R["Durante o quarto render"]
         direction TB
-        r1["<b>①</b> segmentos.qmd contém o shortcode<br/>applet segmento, id jxg-segmento-1"]
-        r2["<b>②</b> applet.lua escreve o HTML:<br/>div com data-applet = segmento,<br/>parágrafo de estado e botão Reiniciar"]
+        r1["<b>①</b> o capítulo contém o shortcode<br/>applet nome-do-applet, id jxg-nome-do-applet-1"]
+        r2["<b>②</b> applet.lua escreve o HTML:<br/>div com data-applet = nome-do-applet,<br/>parágrafo de estado e botão Reiniciar"]
         r3["<b>③</b> applet.lua anexa o bundle<br/>JS + CSS só nesta página"]
         r1 --> r2 --> r3
     end
@@ -355,8 +352,8 @@ flowchart TD
         n1["<b>④</b> A página carrega<br/>applets-livro.iife.js"]
         n2["<b>⑤</b> cores.js lê as cores --cor-*<br/>styles.js monta ESTILOS"]
         n3["<b>⑥</b> main.js, em iniciarTodos(),<br/>procura elementos data-applet"]
-        n4["<b>⑦</b> applets.segmento é chamado:<br/>criarSegmento({ id, JXG })"]
-        n5["<b>⑧</b> JSXGraph desenha<br/>A, B e o segmento AB"]
+        n4["<b>⑦</b> a função do applet é chamada:<br/>criar<Nome>({ id, JXG })"]
+        n5["<b>⑧</b> JSXGraph desenha<br/>o quadro e os objetos"]
         n6["<b>⑨</b> O applet fica guardado<br/>em instancias[id]"]
         n7["<b>⑩</b> Clique em Reiniciar:<br/>instancias[id].reset()"]
         n1 --> n2 --> n3 --> n4 --> n5 --> n6 --> n7
@@ -365,8 +362,8 @@ flowchart TD
     R --> N
 ```
 
-O nome passado no shortcode (`segmento`) precisa ser **igual** ao nome do
-arquivo do applet (`applets-src/src/applets/segmento.js`, sem `.js`). Se não
+O nome passado no shortcode (`nome-do-applet`) precisa ser **igual** ao nome do
+arquivo do applet (`applets-src/src/applets/nome-do-applet.js`, sem `.js`). Se não
 for, o applet não aparece e o teste `verificar-site.mjs` acusa erro.
 
 ### 5.6 Publicação automática (GitHub Actions)
@@ -449,7 +446,7 @@ flowchart TD
 O que o applet deve garantir, a ficha de aceitação e como reescrever um applet
 GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 
-1. Criar `applets-src/src/applets/<nome>.js` com a exportação padrão `export default function criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `segmento.js` como modelo e `ESTILOS` para as cores). O registro é automático: o nome do arquivo é o nome do applet. Nessa pasta só ficam applets; código compartilhado vai para `src/tools/`.
+1. Criar `applets-src/src/applets/<nome>.js` com a exportação padrão `export default function criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `ESTILOS` para as cores; o `segmento.js`, modelo até 2026-11-03, continua no histórico do Git: `git show d5b3f8d:applets-src/src/applets/segmento.js`). O registro é automático: o nome do arquivo é o nome do applet. Nessa pasta só ficam applets; código compartilhado vai para `src/tools/`.
 2. Opcional: acrescentar um `div` de teste em `applets-src/index.html` e usar `npm run dev`.
 3. `npm run build`.
 4. No capítulo, dentro de um `.bloco-interacao`: `{{< applet <nome> id="jxg-<nome>-1" rotulo="Descrição acessível" >}}`.
@@ -474,7 +471,7 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 - **Nome do applet = nome do arquivo.** `main.js` registra cada arquivo de `src/applets/`, e o teste usa a mesma regra. Um arquivo auxiliar posto nessa pasta seria tomado por applet: código compartilhado fica em `src/tools/`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Cores lidas uma vez.** `cores.js` lê as variáveis CSS quando o bundle carrega. Mudanças de cor exigem recarregar a página.
-- **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("jxg-segmento-1")` reinicia um deles.
+- **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.
 - **`docs/` acumula arquivos antigos** (vários `bootstrap-*.min.css`) entre renderizações locais. É normal; o robô publica a partir de uma pasta limpa. Para limpar localmente, apague `docs/` e renderize de novo.
 - **Pastas com `_` no início** (`_interno/`, `_scratch/`) são ignoradas pelo Quarto; por isso o material interno não aparece no site.
 - **Erros de SCSS.** Quando a compilação do tema falha, o Quarto pode deixar na raiz um arquivo `_quarto_internal_scss_error.scss` para diagnóstico. Ele é temporário, está no `.gitignore` e pode ser apagado depois de corrigido o erro.

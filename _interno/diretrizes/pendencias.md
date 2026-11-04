@@ -8,6 +8,7 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Onde | Próximo passo |
 |---|---|---|
+| Toque conferido só no Chrome, com toque simulado (formas dos pontos, rolagem da página, área de captura, pontos dentro do quadro; 2026-11-03 e 2026-11-04) | amostra em `applets-src/index.html` | conferir num celular, de preferência um iPhone e um Android: rodar `(cd applets-src && npm run dev -- --host)` e abrir no celular, na mesma rede Wi-Fi, o endereço "Network" que o Vite mostra. Conferir: o dedo fora dos pontos rola a página; tocar um pouco ao lado de um ponto o arrasta; a pinça amplia a página, e não o plano; o anel aparece mais largo; nenhum ponto sai do quadro |
 | Imagens sem texto alternativo (11 avisos do verificador em 2026-11-02) | vários capítulos | escrever o `fig-alt` ao revisar cada imagem (`guia-editorial.md`, §5) |
 | Contraste medido antes das últimas mudanças de cor | medição de 04/10/2026 (§32); `_brand.yml` e `custom.scss` mudaram depois | medir de novo os pares de cor de texto, bordas e objetos |
 | Licença do conteúdo e do código | `README.md`, §43 | definir antes da divulgação pública |
@@ -31,7 +32,7 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 | O quê | Por quê |
 |---|---|
 | Etapa 2 da adoção do JSX-quarto: contas vetoriais, formatação de números e expressões (da `lib/`) e a regra das unidades (radianos nas contas, graus só na tela) | plano aprovado pelo autor em 2026-11-03; o formato dos números passa a ficar num só lugar |
-| Etapa 3: vários quadros e partes num applet (quadros ligados, leituras com fórmula, arranjos do cap. 10 do estudo do JSX-quarto); falta o autor escolher como as partes se escrevem no `.qmd` (recomendação: um bloco `::: {.applet …}` que envolve as partes) | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
+| Etapa 3: vários quadros e partes num applet (quadros ligados, leituras com fórmula, arranjos do cap. 10 do estudo do JSX-quarto); as partes se escrevem num bloco `::: {.applet …}` que as envolve (decidido em 2026-11-04, `decisoes.md`) | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 
 ## 4. Inconsistências registradas

@@ -16,8 +16,9 @@
 //     expressão; aparece como "NaN", sinal de que o applet não decidiu o caso
 //     especial (use finito ou casos);
 //   - um ângulo em radianos só vira fração de π quando é exatamente (p/q)·π
-//     com q de 1 a 9 (π/6, 2π/7, 11π/6…); os outros saem em decimal. A lib
-//     arredondava para centésimos de π e escrevia π/6 como 17π/100.
+//     com q de 1 a 9 ou 12 (π/6, 2π/7, 11π/6, 5π/12…); os outros saem em
+//     decimal. A lib arredondava para centésimos de π e escrevia π/6 como
+//     17π/100.
 // Unidades: os ângulos chegam em radianos; graus só na saída.
 
 const mdc = (a, b) => (b ? mdc(b, a % b) : a);
@@ -54,8 +55,9 @@ function escreverPi({ n, d }, emTex) {
 }
 
 // Denominadores dos ângulos escritos como fração de π: os ângulos
-// 2kπ + (m/n)·π com k inteiro, n de 1 a 9 e 0 ≤ m < 2n (decisoes.md, 2026-11-04).
-const DENOMINADORES_PI = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// 2kπ + (m/n)·π com k inteiro, n de 1 a 9 ou 12 e 0 ≤ m < 2n (decisoes.md,
+// 2026-11-04). O 12 dá os múltiplos de 15° (π/12, 5π/12…).
+const DENOMINADORES_PI = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12];
 
 // rad = (n/d)·π exatamente, com d em DENOMINADORES_PI; senão null. A lista é
 // crescente e contém os divisores de cada denominador, então o primeiro d que
@@ -90,7 +92,8 @@ export const tex = {
   },
 
   // Ângulo dado em radianos, escrito em graus (30^\circ) ou em radianos: fração
-  // de π se o denominador for de 1 a 9 (\frac{\pi}{6}), senão decimal (0.52).
+  // de π se o denominador for de 1 a 9 ou 12 (\frac{\pi}{6}), senão decimal
+  // (0.52).
   angulo(rad, unidade = "graus", casas = unidade === "graus" ? 0 : 2) {
     if (unidade === "graus") return `${numero((rad * 180) / Math.PI, casas)}^\\circ`;
     const q = Number.isFinite(rad) && piExato(rad);
@@ -125,8 +128,8 @@ export const texto = {
     return Number.isFinite(v) ? escreverPi(fracaoDe(v / Math.PI, den), false) : numero(v);
   },
 
-  // Ângulo dado em radianos: "30°", ou em radianos "π/6" (denominador de 1 a 9)
-  // ou "0.52".
+  // Ângulo dado em radianos: "30°", ou em radianos "π/6" (denominador de 1 a 9
+  // ou 12) ou "0.52".
   angulo(rad, unidade = "graus", casas = unidade === "graus" ? 0 : 2) {
     if (unidade === "graus") return `${numero((rad * 180) / Math.PI, casas)}°`;
     const q = Number.isFinite(rad) && piExato(rad);

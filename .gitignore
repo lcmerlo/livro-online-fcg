@@ -2,6 +2,8 @@
 .quarto/
 _freeze/
 *_files/
+# diagnóstico deixado pelo Quarto quando o SCSS do tema não compila
+_quarto_internal_scss_error.scss
 
 
 # Quarto: saídas geradas por renderização

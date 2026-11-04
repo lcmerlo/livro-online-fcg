@@ -6,8 +6,13 @@
 //
 // Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
 // e comandos TeX suspeitos.
-// Site gerado (docs/): iframes sem title, imagens sem alt, applets não
-// registrados, ids duplicados e saltos na hierarquia de títulos.
+// Site gerado (docs/): iframes sem title, imagens sem alt, applets sem
+// arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
+// ids duplicados e saltos na hierarquia de títulos.
+// Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
+// com valores diferentes dos do livro, cores dos applets com contraste abaixo
+// de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
+// no livro.
 // Links internos e âncoras são verificados pelo lychee no workflow.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
@@ -79,9 +84,16 @@ if (paginas.length === 0) {
   aviso("docs/", "nenhuma página HTML encontrada; rode `quarto render --to html` antes");
 }
 
-const main = join(raiz, "applets-src/src/main.js");
-const bloco = existsSync(main) ? readFileSync(main, "utf8").match(/const applets = \{([\s\S]*?)\};/) : null;
-const registrados = new Set(bloco ? [...bloco[1].matchAll(/^\s*(\w+)\s*:/gm)].map((m) => m[1]) : []);
+// Applets registrados: um por arquivo de applets-src/src/applets/, com o nome
+// do arquivo (a mesma regra de main.js).
+const pastaApplets = join(raiz, "applets-src/src/applets");
+const registrados = new Set(
+  existsSync(pastaApplets)
+    ? readdirSync(pastaApplets).filter((f) => f.endsWith(".js")).map((f) => f.slice(0, -".js".length))
+    : [],
+);
+// Applets que alguma página do livro usa.
+const usados = new Set();
 
 for (const arquivo of paginas) {
   const html = readFileSync(arquivo, "utf8");
@@ -96,7 +108,18 @@ for (const arquivo of paginas) {
   }
 
   for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
-    if (!registrados.has(m[1])) erro(nome, `applet não registrado em main.js: ${m[1]}`);
+    usados.add(m[1]);
+    if (!registrados.has(m[1])) erro(nome, `applet sem arquivo applets-src/src/applets/${m[1]}.js`);
+  }
+
+  // Quadro (.applet-jxg) e bloco de applet com várias partes precisam de
+  // nome para o leitor de tela: o rotulo do shortcode ou do bloco.
+  for (const m of html.matchAll(/<div\b[^>]*>/g)) {
+    const quadro = /\sclass="(?:[^"]*\s)?applet-jxg[\s"]/.test(m[0]);
+    const bloco = /\sclass="(?:[^"]*\s)?bloco-applet[\s"]/.test(m[0]) && /\sdata-applet=/.test(m[0]);
+    if ((quadro || bloco) && !/\saria-label="[^"]+"/.test(m[0])) {
+      erro(nome, `${quadro ? "quadro" : "applet"} sem rotulo: ${(m[0].match(/\sid="([^"]*)"/) ?? [])[1]}`);
+    }
   }
 
   // Só o <body>: o <head> do Quarto repete ids de estilos em todas as páginas.
@@ -113,6 +136,89 @@ for (const arquivo of paginas) {
     const nivel = Number(m[1]);
     if (anterior && nivel > anterior + 1) aviso(nome, `salto de título: h${anterior} para h${nivel}`);
     anterior = nivel;
+  }
+}
+
+// ---------- Cores ----------
+
+// O CSS do tema que as páginas carregam: o link de docs/index.html, porque
+// docs/ guarda versões antigas de bootstrap-*.min.css entre renderizações.
+const indiceSite = join(raiz, "docs/index.html");
+const linkTema = existsSync(indiceSite)
+  ? readFileSync(indiceSite, "utf8").match(/href="(site_libs\/bootstrap\/bootstrap-(?!dark-|icons)[^"]+\.css)"/)?.[1]
+  : undefined;
+const cssTema = linkTema && existsSync(join(raiz, "docs", linkTema)) ? readFileSync(join(raiz, "docs", linkTema), "utf8") : "";
+
+// Variáveis CSS de um texto, com o primeiro valor de cada uma (o do :root,
+// que vem antes das regras @media), em minúsculas.
+function variaveis(texto) {
+  const mapa = new Map();
+  for (const m of texto.matchAll(/(--[\w-]+)\s*:\s*([^;}]+)/g)) {
+    if (!mapa.has(m[1])) mapa.set(m[1], m[2].trim().toLowerCase());
+  }
+  return mapa;
+}
+
+// Contraste WCAG 2 entre duas cores hexadecimais (#abc ou #aabbcc); null se
+// uma delas não for hexadecimal.
+function luminancia(cor) {
+  let hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(cor)?.[1];
+  if (!hex) return null;
+  if (hex.length === 3) hex = [...hex].map((c) => c + c).join("");
+  const [r, g, b] = [0, 2, 4]
+    .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function contraste(a, b) {
+  const [la, lb] = [luminancia(a), luminancia(b)];
+  if (la === null || lb === null) return null;
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+if (!cssTema) {
+  if (paginas.length) aviso("docs/", "CSS do tema não encontrado; as cores não foram verificadas");
+} else {
+  const doLivro = variaveis(cssTema);
+
+  // A página de desenvolvimento repete à mão as variáveis do livro, que fora
+  // dele não existem; uma diferença faz a página mostrar outra coisa.
+  const paginaDev = join(raiz, "applets-src/index.html");
+  const raizDev = existsSync(paginaDev) ? readFileSync(paginaDev, "utf8").match(/:root\s*\{([^}]*)\}/)?.[1] ?? "" : "";
+  for (const [nome, valor] of variaveis(raizDev)) {
+    const noLivro = doLivro.get(nome);
+    if (noLivro === undefined) aviso("applets-src/index.html", `${nome} não existe no CSS do livro`);
+    else if (noLivro !== valor) aviso("applets-src/index.html", `${nome} vale ${valor}, mas no livro vale ${noLivro}`);
+  }
+
+  // Cores que os applets leem (cor("--cor-…") em cores.js), menos as de
+  // fundo, sobre o fundo do quadro: linhas e pontos precisam de 3:1 (§32).
+  const fonteCores = join(raiz, "applets-src/src/cores.js");
+  const lidas = existsSync(fonteCores)
+    ? [...readFileSync(fonteCores, "utf8").matchAll(/cor\("(--cor-[\w-]+)"\)/g)].map((m) => m[1])
+    : [];
+  const fundo = doLivro.get("--cor-superf-suave");
+  for (const nome of lidas.filter((n) => !n.startsWith("--cor-superf"))) {
+    const valor = doLivro.get(nome);
+    if (valor === undefined) {
+      aviso("applets-src/src/cores.js", `${nome} não existe no CSS do livro`);
+      continue;
+    }
+    const razao = contraste(valor, fundo);
+    if (razao !== null && razao < 3) {
+      aviso("applets-src/src/cores.js", `${nome} (${valor}) tem contraste ${razao.toFixed(2)}:1 sobre o fundo do quadro; o mínimo para linhas e pontos é 3:1`);
+    }
+  }
+}
+
+// As cores de teste (paleta(), de cores.js) ficam nos testes; no livro, a
+// cor vem do papel didático (diretrizes-tecnicas.md, §4.5).
+for (const nomeApplet of usados) {
+  const arquivo = join(pastaApplets, `${nomeApplet}.js`);
+  if (!existsSync(arquivo)) continue;
+  const codigo = readFileSync(arquivo, "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
+  if (/\bpaleta\s*\(/.test(codigo)) {
+    aviso(rel(arquivo), "cor de teste (paleta) num applet usado no livro: use as cores dos papéis (CORES)");
   }
 }
 

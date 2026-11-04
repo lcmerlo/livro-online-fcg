@@ -143,16 +143,16 @@ De fato, [demonstração em texto corrido, fora do bloco].
 
 Arraste os pontos [ … ] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado relevante] aparece em texto abaixo do quadro.
 
-{{< applet segmento id="jxg-modelo-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
+{{< applet nome-do-applet id="jxg-modelo-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
 :::
 
 [Pergunta de observação logo depois do applet.]
 
-::: {.bloco-interacao}
-**[Título do applet GeoGebra].** [Objetivo em uma frase.]
-
-{{< geogebra h6vdnv3c titulo="Applet GeoGebra: [descrição específica]" >}}
-:::
+<!--
+Applets GeoGebra (shortcode geogebra) ficam só nos capítulos que ainda não têm a
+versão JSXGraph e não entram em capítulos novos sem decisão do autor
+(diretrizes-tecnicas.md, §4).
+-->
 
 ::: {.bloco-checkpoint}
 [Pergunta conceitual breve.]

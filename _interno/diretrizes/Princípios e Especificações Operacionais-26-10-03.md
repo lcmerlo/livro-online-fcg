@@ -27,8 +27,10 @@ As passagens sem correspondência remetem, provavelmente, a uma versão revista 
 
 Documentos relacionados, todos nesta pasta:
 
-- `guia-editorial.md`: regras curtas para quem escreve capítulos (§36);
-- `relatorio-design-pedagogico-26-05-14.qmd`, `biblioteca-estruturas-site-diretrizes.qmd` e `blocos-proposicoes.qmd`: material de apoio anterior a este documento.
+- `guia-editorial.md`: orientações curtas para quem escreve capítulos (§36);
+- `diretrizes-tecnicas.md`: como desenvolver o livro e como tomar e aplicar decisões; traz o mapa de todos os documentos e o que fazer quando eles divergem;
+- `arquitetura.md`, `decisoes.md` e `pendencias.md`: o projeto como é hoje, o que foi decidido e o que está em aberto;
+- `relatorio-design-pedagogico-26-05-14.qmd` e `biblioteca-estruturas-site-diretrizes.qmd`: material de apoio anterior a este documento, mantido como referência.
 
 # Parte 1 — Princípios
 
@@ -289,6 +291,8 @@ O projeto deve favorecer ciclos progressivos de construção, uso, observação 
 
 # Parte 2 — Especificações Operacionais
 
+As especificações desta parte dizem o que a fase inicial deve alcançar. O modo de alcançá-lo (ferramentas, código, verificação) e o processo para mudar uma especificação estão em `diretrizes-tecnicas.md`, que é atualizado por decisões registradas (§44).
+
 ## 19. Objetivo da fase inicial
 
 A primeira fase de desenvolvimento deve produzir uma infraestrutura editorial e tecnológica capaz de sustentar o crescimento do livro sem exigir reconstruções frequentes.
@@ -324,7 +328,7 @@ Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriorme
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
 
-**Estado em outubro de 2026.** Os capítulos publicados incorporam 15 applets do GeoGebra por `<iframe>` e apenas um applet JSXGraph próprio (capítulo 2). Os applets, as figuras, o texto e a nomenclatura são provisórios. O uso do GeoGebra é, portanto, transitório e **não** constitui o padrão de publicação: a decisão de manter cada applet, substituí-lo por JSXGraph ou trocá-lo por figura estática deve ser tomada caso a caso, conforme sua função pedagógica (§9). Enquanto isso, todo iframe deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
+**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam por `<iframe>` applets GeoGebra vindos de projetos anteriores; a lista e a situação de cada um estão em `pendencias.md`. Os applets, as figuras, o texto e a nomenclatura são provisórios. O GeoGebra **não** constitui o padrão de publicação: cada applet será reescrito como applet JSXGraph próprio, tomando o original como inspiração e não como modelo (`diretrizes-tecnicas.md`, §4). Quando a função pedagógica (§9) indicar que uma figura estática basta, isso é proposto ao autor. Enquanto o iframe estiver no capítulo, ele deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
 
 ## 21. Estrutura global do livro
 
@@ -470,7 +474,7 @@ O sistema inicial deve definir pelo menos:
 - estilo de foco;
 - estilo dos componentes didáticos.
 
-A paleta deve permanecer relativamente pequena. Expansões posteriores devem reutilizar os papéis semânticos definidos inicialmente.
+A paleta deve permanecer relativamente pequena. Novas cores, novos papéis ou outro modelo de atribuição de cor (por exemplo, cor pela identidade do objeto) entram por decisão registrada, depois de medidos o contraste e a legibilidade com simulação de daltonismo. A paleta do livro é a usada nas páginas e nos applets publicados; as cores guardadas para testes ficam numa seção à parte e não chegam aos capítulos (`diretrizes-tecnicas.md`, §6).
 
 ## 25. Layout principal
 
@@ -627,7 +631,7 @@ O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os req
 | Imagem informativa | texto alternativo (`alt`) que preserve a função pedagógica | 1.1.1 |
 | Iframe | `title` descritivo | 4.1.2 |
 
-Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. O tema escuro gerado a partir de `_brand.yml` ainda não foi medido.
+Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. O tema escuro gerado a partir de `_brand.yml` ainda não foi medido. As cores de `_brand.yml` e `custom.scss` mudaram depois dessa medição; a nova medição está em `pendencias.md`.
 
 Recursos mais sofisticados de acessibilidade dinâmica, como anúncios contextuais complexos por regiões ARIA, devem ser adicionados e testados conforme o comportamento dos componentes interativos exigir.
 
@@ -848,20 +852,24 @@ Observar uso real e revisar decisões.
 **9. Funcionalidades avançadas**
 Somente então avaliar telemetria, personalização, feedback adaptativo e outras extensões.
 
+A ordem é indicativa e as etapas podem se sobrepor. Em especial, o uso de páginas representativas por estudantes (§39) pode começar assim que a página-modelo estiver estável, antes da produção em escala.
+
 ## 43. Licenças e atribuições
 
 O repositório ainda não define a licença do conteúdo nem do código (o README registra "definir antes da publicação pública"). Essa decisão precisa ser tomada antes da publicação aberta e deve distinguir texto, figuras e código.
 
 Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
-- **GeoGebra:** 15 applets incorporados por iframe. Os termos de uso do GeoGebra e a licença escolhida por cada autor de material continuam valendo. Registrar, para cada applet, o autor e o endereço de origem.
+- **GeoGebra:** applets incorporados por iframe, vindos de projetos anteriores (lista em `pendencias.md`). Enquanto estiverem no livro, valem os termos de uso do GeoGebra e a licença de cada material; registrar, para cada applet, o autor e o endereço de origem. Os applets JSXGraph que os substituem são código novo do projeto.
 - **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). O bundle gerado (`applets-livro.iife.js`) hoje **não** contém o aviso de licença, que a minificação remove; incluí-lo antes da publicação aberta.
 - **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 
 ## 44. Registro de decisões
 
-Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão e motivo, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
+Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão, motivo e material ajustado, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
+
+Uma decisão só se completa quando todo o material do projeto (diretrizes, código, capítulos, modelos e verificações) estiver de acordo com ela. O que não puder ser ajustado de imediato fica listado em `pendencias.md` (`diretrizes-tecnicas.md`, §2).
 
 ## Conclusão
 

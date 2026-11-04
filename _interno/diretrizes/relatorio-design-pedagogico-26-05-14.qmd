@@ -1,6 +1,10 @@
 
 # Especificações Pedagógico-Visuais {.unnumbered}
 
+::: {.callout-note title="Documento de referência"}
+Relatório de 14/05/2026, mantido como fonte do documento de Princípios. O que dele foi adotado está nos Princípios e nas diretrizes; onde divergirem, valem estes. Por exemplo, GeoGebra, CindyJS e Desmos não são ferramentas de publicação do livro: os applets são JSXGraph próprios (`decisoes.md`, 2026-11-03).
+:::
+
 ## Introdução {.unnumbered}
 
 Este relatório consolida diretrizes para a produção de um livro online interativo de revisão matemática, voltado a um público heterogêneo, com prevalência de estudantes com conhecimento matemático frágil. O material previsto combina revisão teórica resumida, exemplos e exercícios resolvidos, applets de matemática dinâmica e exploração geométrica guiada.

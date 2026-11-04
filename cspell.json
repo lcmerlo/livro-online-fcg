@@ -97,6 +97,7 @@
   "words": [
     "applet",
     "applets",
+    "bluishgreen",
     "callout",
     "crossref",
     "Desmos",
@@ -106,8 +107,12 @@
     "JSXGraph",
     "KaTeX",
     "MathJax",
+    "Okabe",
     "Quarto",
+    "reddishpurple",
+    "skyblue",
     "Typst",
+    "vermillion",
     "Vite"
   ]
 }

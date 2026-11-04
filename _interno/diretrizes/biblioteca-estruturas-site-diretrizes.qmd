@@ -1,5 +1,9 @@
 # Biblioteca de ambientes {.unnumbered}
 
+::: {.callout-warning title="Documento histórico"}
+Esta biblioteca é anterior às decisões de outubro e novembro de 2026 e mostra padrões que não valem mais: soluções em `callout-tip`, `.bloco-applet` escrito à mão, a classe `.bloco-exemplo` (que o livro não tem) e applets inseridos sem shortcode. Para escrever capítulos, use `guia-editorial.md` e os modelos de `_interno/oficina/testes/`; para applets, `diretrizes-tecnicas.md`.
+:::
+
 Este arquivo é uma **página-laboratório** para testar e copiar estruturas úteis nos capítulos do livro. Cada seção mostra o **código** e o **resultado renderizado** correspondente.
 
 ::: {.callout-note title="Uso recomendado" appearance="simple"}

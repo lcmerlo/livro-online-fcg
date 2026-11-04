@@ -33,6 +33,7 @@ format:
     axe: true
     filters:
       - ../../../components/blocos.lua
+      - ../../../components/applet-bloco.lua
     include-before-body: ../../../components/macros.html
 
 execute:

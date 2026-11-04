@@ -32,7 +32,7 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Por quê |
 |---|---|
-| Etapa 3: vários quadros e partes num applet (quadros ligados, leituras com fórmula, arranjos do cap. 10 do estudo do JSX-quarto); as partes se escrevem num bloco `::: {.applet …}` que as envolve (decidido em 2026-11-04, `decisoes.md`) | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
+| Controles dos applets (faixas, botões, caixas de seleção, campos), adaptados da `lib/ui.js` do JSX-quarto, como uma parte `.controles` do bloco `::: {.applet}`, com a posição deles na página | a alternativa ao arraste (§4.4 das diretrizes) depende deles; a etapa 3 (2026-11-04) deixou os controles e a posição deles para quando o primeiro applet precisar, provavelmente o piloto |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 
 ## 4. Inconsistências registradas

@@ -138,7 +138,7 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 
 ### 4.5 Como se escreve um applet hoje
 
-- **Arquivo e registro.** Um arquivo por applet em `applets-src/src/applets/<nome>.js`, cuja exportação padrão é uma função `criar<Nome>({ id, JXG, dataset })` que devolve um objeto com `reset()`. O registro é automático: o nome do arquivo é o nome usado no shortcode. O passo a passo está em `arquitetura.md`, §7.
+- **Arquivo e registro.** Um arquivo por applet em `applets-src/src/applets/<nome>.js`, cuja exportação padrão é uma função `criar<Nome>({ id, JXG, dataset, partes })` que devolve um objeto com `reset()` (`partes` só no applet com várias partes). O registro é automático: o nome do arquivo é o nome usado no shortcode. O passo a passo está em `arquitetura.md`, §7.
 - **Janela pela matemática.** O quadro é definido pela região do plano que mostra (`boundingbox`), com números simples; nada é posicionado em pixels de tela. Afastamentos pequenos a partir de um objeto, como o rótulo ao lado do ponto, são aceitos.
 - **Tamanho do quadro.** O quadro ocupa a largura da coluna, até 640 px (`.applet-jxg`, em `custom.scss`), e a proporção dele (`aspect-ratio`) segue a região, para mostrar a mesma região em qualquer largura. O JSXGraph redimensiona o quadro quando a largura muda ou quando ele aparece depois de escondido.
 - **Criar o quadro.** Sempre por `criarQuadro` (`src/tools/quadro.js`), que aplica a proporção e os padrões de interação: o plano não se desloca nem muda de escala (mouse, dedos, Shift + setas); no toque, o dedo fora dos pontos rola a página e, sobre um ponto, arrasta o ponto; quando dois pontos estão ao alcance do mesmo toque ou clique, vence o mais próximo; o ponto arrastado (mouse, dedo ou setas) não sai da região mostrada.
@@ -151,7 +151,7 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 - **Nomes.** Objetos com o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código em português descritivo, como o código atual, também no que vem da `lib/` do JSX-quarto.
 - **Comentários** explicam o porquê, em português.
 - **Código compartilhado.** Uma construção usada por dois applets vai para um módulo comum (hoje, `src/tools/`); a de um applet só fica no próprio arquivo.
-- **Applets com várias partes** (dois quadros, controles separados): o shortcode ainda não os prevê; a extensão é a etapa 3 de `pendencias.md`, §3.
+- **Applets com várias partes.** Quadros e leituras que o capítulo põe em lugares diferentes ficam num bloco `::: {.applet nome="…" id="…" rotulo="…"}` que os envolve, com uma parte `.quadro` (com `rotulo`) ou `.leitura` por div e ids `<id>-<parte>` (`components/applet-bloco.lua`). O applet recebe as partes em `partes` e trata como opcional a que o capítulo pode omitir; os quadros que dependem uns dos outros são ligados por `ligarQuadros` (`src/tools/quadro.js`), e a leitura é uma fórmula escrita por `criarLeitura` (`src/tools/leitura.js`), desenhada pelo MathJax do livro. Um só texto de estado e um só botão "Reiniciar" servem ao applet inteiro. Os arranjos na página (grade, quadro estreito ou centralizado, grupo) são classes de `custom.scss`, sem CSS nos capítulos (`guia-editorial.md`, §6). Modelo: `src/exemplos/exemplo-partes.js`; passos: `arquitetura.md`, §7. Os controles (faixas, botões, caixas) e a posição deles entram quando o livro tiver controles (`pendencias.md`, §3).
 
 ### 4.6 Ficha de aceitação
 
@@ -168,6 +168,7 @@ Antes de um applet entrar num capítulo:
   - [ ] **menos movimento:** Ajustes do Sistema > Acessibilidade > Tela > Reduzir movimento;
   - [ ] **daltonismo:** ferramentas do programador > Rendering > Emulate vision deficiencies;
   - [ ] **toque:** num celular, rolar a página passando o dedo sobre o quadro, fora dos pontos, e arrastar cada ponto tocando um pouco ao lado dele.
+  - [ ] **várias partes:** a 320 px, cada quadro e cada leitura cabem na coluna; mexer num quadro atualiza os outros, a leitura e o texto de estado; cada quadro tem rótulo próprio, diferente dos outros da página.
 - [ ] Sem rastros do GeoGebra: `git grep -n -i -E "geogebra|ggb|material-" applets-src/src` não acusa nada no applet novo.
 - [ ] `npm run build` e `node tests/verificar-site.mjs` sem erros.
 - [ ] Desvios de padrão explicados em comentário; `pendencias.md` e `decisoes.md` atualizados, se for o caso.
@@ -183,13 +184,14 @@ Diferenças atuais:
 | Carregamento | bundle do Vite, só nas páginas com applet | módulos ES, JSXGraph do CDN | padrão do livro: não depende de CDN e a versão fica fixada |
 | Fórmulas | MathJax | KaTeX | hipótese a testar no piloto |
 | Cores | por papel didático | por identidade do objeto | hipótese a testar no piloto |
-| Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, formas dos pontos, seta, toque, contas vetoriais e formatação | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
+| Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, quadros ligados, formas dos pontos, seta, toque, contas vetoriais, formatação e leitura com fórmula | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
 | Nomes no código | português | inglês, como o JSXGraph | padrão do livro (§4.5) |
 | Toque | o dedo fora dos pontos rola a página (CSS `touch-action` e cancelamento da rolagem quando o dedo pega um ponto); o ponto mais próximo vence | o quadro bloqueia a rolagem da página; vence o último ponto arrastado | padrão do livro: §4.4 e ficha de aceitação |
 | Valor indefinido | `NaN` nas contas; "NaN" visível na escrita, até o applet decidir o caso | 0 no unitário e na projeção; 0 na escrita; o termo some da expressão | padrão do livro (§4.4: nenhum número enganoso) |
 | Ângulo em radianos | fração de π se o denominador vai de 1 a 9 ou é 12; senão decimal | centésimos de π (π/6 saía como 17π/100) | correção no livro |
 | Foco do teclado no ponto | contorno de foco do site e reforço do anel | só o reforço do anel | padrão do livro (WCAG 2.4.7, §32) |
 | Largura mínima | 320 px (WCAG 1.4.10, §32) | 360 px | padrão do livro |
+| Arranjos na página | bloco `::: {.applet}` com as partes; grade do Quarto e classes de `custom.scss` (`estreito`, `centro`, `grupo`) | contêineres soltos no `.qmd` e CSS na própria página (`{.css .run}`) | padrão do livro: sem CSS nos capítulos; a margem da página não é usada para applets (cerca de 130 px no livro) |
 
 ## 5. Notação matemática
 

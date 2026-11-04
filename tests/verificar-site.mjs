@@ -7,8 +7,8 @@
 // Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
 // e comandos TeX suspeitos.
 // Site gerado (docs/): iframes sem title, imagens sem alt, applets sem
-// arquivo em applets-src/src/applets/, ids duplicados e saltos na hierarquia
-// de títulos.
+// arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
+// ids duplicados e saltos na hierarquia de títulos.
 // Links internos e âncoras são verificados pelo lychee no workflow.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
@@ -103,6 +103,16 @@ for (const arquivo of paginas) {
 
   for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
     if (!registrados.has(m[1])) erro(nome, `applet sem arquivo applets-src/src/applets/${m[1]}.js`);
+  }
+
+  // Quadro (.applet-jxg) e bloco de applet com várias partes precisam de
+  // nome para o leitor de tela: o rotulo do shortcode ou do bloco.
+  for (const m of html.matchAll(/<div\b[^>]*>/g)) {
+    const quadro = /\sclass="(?:[^"]*\s)?applet-jxg[\s"]/.test(m[0]);
+    const bloco = /\sclass="(?:[^"]*\s)?bloco-applet[\s"]/.test(m[0]) && /\sdata-applet=/.test(m[0]);
+    if ((quadro || bloco) && !/\saria-label="[^"]+"/.test(m[0])) {
+      erro(nome, `${quadro ? "quadro" : "applet"} sem rotulo: ${(m[0].match(/\sid="([^"]*)"/) ?? [])[1]}`);
+    }
   }
 
   // Só o <body>: o <head> do Quarto repete ids de estilos em todas as páginas.

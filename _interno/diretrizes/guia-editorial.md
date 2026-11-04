@@ -26,7 +26,8 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 | Para | Use |
 |---|---|
 | Objetivo, pré-requisitos, interação, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-interacao`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
-| Applet JSXGraph próprio | `{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição para leitor de tela" >}}` (o nome é o de um arquivo de `applets-src/src/applets/`) |
+| Applet JSXGraph próprio | `{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição para leitor de tela" >}}` (o nome é o de um arquivo de `applets-src/src/applets/`); quadro estreito ou no centro: `arranjo="estreito centro"` (§6) |
+| Applet com várias partes (quadros, leituras) | bloco `::: {.applet nome="…" id="…" rotulo="…"}` em volta das partes `.quadro` e `.leitura` (§6) |
 | Applet GeoGebra (provisório) | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}`, só nos capítulos que ainda não têm a versão JSXGraph; em conteúdo novo, só por decisão do autor (`diretrizes-tecnicas.md`, §4) |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
@@ -38,7 +39,7 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 **Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
 - Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
-- Interação (`.bloco-interacao`): orientações e o shortcode do applet; o shortcode gera sozinho o quadro `.bloco-applet`, que não se escreve à mão. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
+- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos o quadro `.bloco-applet`, que não se escreve à mão. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
 - Erro comum: sempre aberto; apresentar o equívoco e a correção.
 - Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
 - Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.
@@ -137,6 +138,31 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (um checkpoint, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
 - Inserir com `{{< applet <nome> id="…" rotulo="…" >}}` dentro de um `.bloco-interacao`, com a instrução antes e a pergunta depois. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
+- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, ou `.leitura`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
+
+  ```markdown
+  ::::: {.applet nome="nome-do-applet" id="nda" rotulo="Descrição do applet"}
+  :::: {.grid}
+  ::: {#nda-figura .quadro .g-col-12 .g-col-md-6 rotulo="Descrição do quadro"}
+  :::
+  ::: {#nda-leitura .leitura .g-col-12 .g-col-md-6}
+  :::
+  ::::
+  :::::
+  ```
+
+  O div de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina. O texto de estado e o botão "Reiniciar" entram sozinhos no fim do bloco.
+- **Arranjos**, sem CSS no capítulo:
+
+  | Para | Escreva |
+  |---|---|
+  | Quadro mais estreito que a coluna, ou no centro | no shortcode, `arranjo="estreito"`, `arranjo="centro"` ou `arranjo="estreito centro"`; no bloco, `.estreito` e `.centro` na parte `.quadro` |
+  | Partes lado a lado, uma embaixo da outra no celular | `:::: {.grid}` em volta das partes e `.g-col-12 .g-col-md-6` em cada uma; outras divisões somam 12 (`.g-col-md-4` com `.g-col-md-8`) |
+  | Quadros de tamanho fixo juntos, no centro | `:::: {.grupo}` em volta dos quadros; os que não cabem descem, também no centro |
+  | Texto ao lado do applet | `::::: {.grid}` em volta de duas células: `:::: {.g-col-12 .g-col-md-7}` com o applet (shortcode ou bloco) e `:::: {.g-col-12 .g-col-md-5}` com o texto. A primeira célula fica à esquerda e, no celular, em cima |
+
+- Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
+- Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
 - Os applets são JSXGraph próprios. Os GeoGebra que ainda estão nos capítulos serão reescritos em JSXGraph, tomando o original como inspiração, não como modelo.
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 

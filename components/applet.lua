@@ -1,42 +1,39 @@
 -- Shortcodes para applets do livro. A saída vem num <div class="bloco-applet">;
 -- orientações e perguntas ficam em volta, no bloco .bloco-interacao.
 --   {{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição acessível" >}}
+--   {{< applet nome-do-applet id="…" rotulo="…" arranjo="estreito centro" >}}
 --   {{< geogebra f2zqppmu titulo="Applet: descrição" >}}
+-- Um applet com várias partes (quadros, leituras) usa o bloco ::: {.applet},
+-- de applet-bloco.lua.
 
-local function texto(valor)
-  return pandoc.utils.stringify(valor)
-end
-
-local function escapar(s)
-  return (s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;"))
-end
+local comum = require("applet-comum")
 
 return {
   ["applet"] = function(args, kwargs)
-    local nome = escapar(texto(args[1]))
-    local id = escapar(texto(kwargs["id"]))
-    local rotulo = escapar(texto(kwargs["rotulo"]))
+    local nome = comum.escapar(comum.texto(args[1]))
+    local id = comum.escapar(comum.texto(kwargs["id"]))
+    local rotulo = comum.escapar(comum.texto(kwargs["rotulo"]))
+    -- Classes de arranjo do quadro (custom.scss): estreito, centro.
+    local arranjo = comum.escapar(comum.texto(kwargs["arranjo"]))
+    local classes = arranjo == "" and "applet-jxg" or ("applet-jxg " .. arranjo)
 
-    -- O bundle só é carregado nas páginas que usam o shortcode.
-    quarto.doc.add_html_dependency({
-      name = "applets-livro",
-      version = "1.0.0",
-      scripts = {{ path = "../assets/js/applets-dist/applets-livro.iife.js", attribs = { defer = "" } }},
-      stylesheets = { "../assets/js/applets-dist/applets-livro.css" }
-    })
+    if rotulo == "" then
+      comum.avisar(string.format('applet "%s" sem rotulo', id))
+    end
+
+    comum.carregar_bundle()
 
     return pandoc.RawBlock("html", string.format(
       '<div class="bloco-applet">\n' ..
-      '<div id="%s" class="applet-jxg" data-applet="%s" aria-label="%s"></div>\n' ..
-      '<p id="%s-status" class="applet-status" role="status" aria-live="polite"></p>\n' ..
-      '<button type="button" class="applet-botao" data-reset="%s">Reiniciar applet</button>\n' ..
+      '<div id="%s" class="%s" data-applet="%s" aria-label="%s"></div>\n' ..
+      '%s\n' ..
       '</div>',
-      id, nome, rotulo, id, id))
+      id, classes, nome, rotulo, comum.estado_e_reinicio(id)))
   end,
 
   ["geogebra"] = function(args, kwargs)
-    local material = escapar(texto(args[1]))
-    local titulo = escapar(texto(kwargs["titulo"]))
+    local material = comum.escapar(comum.texto(args[1]))
+    local titulo = comum.escapar(comum.texto(kwargs["titulo"]))
 
     return pandoc.RawBlock("html", string.format(
       '<div class="bloco-applet">\n' ..

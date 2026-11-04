@@ -368,6 +368,77 @@ p:has(> .bloco-rotulo) {
   touch-action: manipulation !important;
 }
 
+/* Arranjos dos quadros (guia-editorial.md, §6): classes com nome, para que os
+   capítulos não tenham CSS próprio. Num quadro do bloco ::: {.applet}, vão
+   como classes da parte (.estreito .centro); no shortcode, em
+   arranjo="estreito centro". Quadros lado a lado e texto ao lado de um
+   quadro usam a grade do Quarto (.grid, .g-col-…), sem CSS daqui. */
+
+/* Quadro mais estreito que a coluna */
+.applet-jxg.estreito {
+  max-width: 20rem;
+}
+
+/* Quadro no centro da coluna (só se for mais estreito que ela) */
+.applet-jxg.centro {
+  margin-inline: auto;
+}
+
+/* Grupo: quadros de tamanho fixo lado a lado, no centro da coluna; os que
+   não cabem na linha descem e também ficam no centro. Com 13 rem, dois
+   quadros cabem lado a lado na coluna do livro. */
+.grupo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+
+  > .applet-jxg {
+    flex: 0 1 13rem;
+    margin: 0;
+  }
+}
+
+/* Grade do Quarto (.grid): 12 colunas com 11 espaços entre elas. Com o
+   espaço padrão, 1,5 rem, os espaços somam 280 px e a grade transbordava a
+   coluna a 320 px de largura de tela; com 1 rem, cabe. */
+.grid {
+  --bs-gap: 1rem;
+}
+
+/* Na grade, o espaço entre as partes vem do gap */
+.grid > .applet-jxg,
+.grid > .applet-leitura {
+  margin: 0;
+}
+
+.bloco-applet > .grid {
+  margin-bottom: 0.75rem;
+}
+
+/* Numa célula da grade, o applet começa no alto, junto com o texto ao lado */
+.grid > .bloco-applet,
+.grid > * > .bloco-applet:first-child {
+  margin-top: 0;
+}
+
+/* Na grade e no grupo, uma célula com quadro pode ficar mais estreita que o
+   desenho já feito; o JSXGraph então redesenha o quadro na largura nova (ao
+   estreitar a janela ou girar o celular) */
+.grid > *,
+.grupo > .applet-jxg {
+  min-width: 0;
+}
+
+/* Leitura: fórmula escrita pelo applet (applets-src/src/tools/leitura.js).
+   Uma fórmula mais larga que a coluna rola, em vez de ser cortada. */
+.applet-leitura {
+  margin: 0 0 0.75rem;
+  overflow-x: auto;
+}
+
 /* Medidas dos pontos dos applets, em px, lidas por
    applets-src/src/tools/styles.js (renomear uma variável aqui exige
    renomeá-la também lá e em applets-src/index.html) */

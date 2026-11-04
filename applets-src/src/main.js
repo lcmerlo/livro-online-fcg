@@ -5,6 +5,10 @@
 //   <div id="…" data-applet="nome">   → quadro onde o JSXGraph desenha
 //   <p id="…-status" role="status">   → descrição textual para leitores de tela
 //   <button data-reset="…">           → botão "Reiniciar applet"
+// O bloco ::: {.applet} (components/applet-bloco.lua), de um applet com
+// várias partes, gera o mesmo, com data-applet no bloco que envolve as partes:
+//   <div id="…" data-applet="nome">   → o bloco
+//     <div id="…-<parte>" data-parte="<parte>">  → quadro ou leitura, onde o texto pôs
 // Este arquivo encontra esses elementos e liga cada um ao seu applet.
 
 import JXG from "jsxgraph";
@@ -32,7 +36,7 @@ const instancias = {};
 
 // Cria o applet `nome` no elemento de id `id` e devolve a instância
 // (ou null, se o applet não existir no registro ou não puder ser criado).
-// Cada função de criação recebe { id, JXG, ...opcoes }.
+// Cada função de criação recebe { id, JXG, ...opcoes }: dataset e partes.
 function iniciarApplet(nome, id, opcoes = {}) {
   const criar = applets[nome];
 
@@ -74,6 +78,9 @@ function resetarApplet(id) {
 
 // Inicia todos os applets da página: todo elemento com data-applet.
 // Os demais atributos data-* seguem como `dataset`, para configurar o applet.
+// As partes que o capítulo pôs no bloco seguem como `partes`, do nome da
+// parte para o id do elemento: { figura: "cl-figura", leitura: "cl-leitura" }.
+// Uma parte ausente fica de fora: o capítulo decide o que mostrar.
 function iniciarTodos() {
   document.querySelectorAll("[data-applet]").forEach((elemento) => {
     // Sem id, o JSXGraph não tem onde desenhar.
@@ -82,8 +89,13 @@ function iniciarTodos() {
       return;
     }
 
+    const partes = Object.fromEntries(
+      [...elemento.querySelectorAll("[data-parte]")].map((parte) => [parte.dataset.parte, parte.id]),
+    );
+
     iniciarApplet(elemento.dataset.applet, elemento.id, {
       dataset: elemento.dataset,
+      partes,
     });
   });
 }

@@ -14,6 +14,8 @@
 //   const board = criarQuadro({ JXG, id, regiao: [-1, 5, 7, -1], eixos: true });
 //   if (!board) return null;
 // Os demais atributos vão direto para o JSXGraph (JXG.JSXGraph.initBoard).
+// Num applet com várias partes, o id é o da parte: criarQuadro({ JXG,
+// id: partes.figura, … }); ligarQuadros, no fim do arquivo, liga os quadros.
 
 // regiao: [x mín., y máx., x máx., y mín.], com números simples.
 // eixos e grade: true para mostrar (só quando o estudante precisa ler valores).
@@ -23,6 +25,14 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
 
   if (!elemento) {
     console.warn(`[AppletsLivro] Elemento não encontrado: ${id}`);
+    return null;
+  }
+
+  // Só um contêiner de quadro (.applet-jxg, do shortcode ou de uma parte
+  // .quadro do bloco): desenhar no bloco inteiro apagaria o texto de estado
+  // e o botão "Reiniciar".
+  if (!elemento.classList.contains("applet-jxg")) {
+    console.warn(`[AppletsLivro] ${id} não é um quadro (.applet-jxg)`);
     return null;
   }
 
@@ -128,4 +138,20 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
   );
 
   return board;
+}
+
+// Quadros ligados: mexer num redesenha os outros. Serve ao applet com dois
+// ou mais quadros em que um mostra o que depende do outro, onde quer que o
+// capítulo os tenha posto.
+//   const [vetores, soma] = ligarQuadros(quadroVetores, quadroSoma);
+export function ligarQuadros(...quadros) {
+  for (const a of quadros) {
+    for (const b of quadros) {
+      if (a !== b) {
+        a.addChild(b);
+      }
+    }
+  }
+
+  return quadros;
 }

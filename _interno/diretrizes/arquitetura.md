@@ -90,6 +90,8 @@ livro-quarto/
 │
 ├── components/                 ✏️  Extensões do Quarto feitas para o livro
 │   ├── applet.lua              ✏️  Shortcodes {{< applet >}} e {{< geogebra >}}
+│   ├── applet-bloco.lua        ✏️  Filtro: bloco ::: {.applet} de um applet com várias partes
+│   ├── applet-comum.lua        ✏️  O que os dois acima têm em comum (bundle, estado, botão Reiniciar)
 │   ├── blocos.lua              ✏️  Filtro: rótulos dos blocos didáticos e abas Dica/Resolução/Resposta
 │   └── macros.html             ✏️  Macros LaTeX (\vet, \norm, \R…) incluídas em todas as páginas
 │
@@ -106,10 +108,12 @@ livro-quarto/
 │   ├── src/
 │   │   ├── main.js             ✏️  Ponto de entrada: registro automático dos applets, inicialização, reinício
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
-│   │   ├── tools/quadro.js     ✏️  Cria o quadro: região, proporção, toque e teclado
+│   │   ├── tools/quadro.js     ✏️  Cria o quadro (região, proporção, toque e teclado) e liga quadros
+│   │   ├── tools/leitura.js    ✏️  Leitura: fórmula do applet desenhada pelo MathJax
 │   │   ├── tools/styles.js     ✏️  Estilos JSXGraph: pontos (a forma diz se o ponto se move), seta, traços
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
+│   │   ├── exemplos/           ✏️  Applets de exemplo para `npm run dev` (fora do bundle)
 │   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
@@ -170,7 +174,9 @@ no `_quarto.yml`. Um capítulo combina:
 
 | Arquivo | Quando roda | O que faz |
 |---|---|---|
-| `applet.lua` | Na renderização, ao encontrar um shortcode | `applet`: gera o `<div data-applet="…">`, o parágrafo de estado `<id>-status` e o botão "Reiniciar applet"; registra o bundle JS/CSS **apenas nessa página**. `geogebra`: gera um `<iframe>` acessível (com `title`, carregamento tardio e link alternativo). |
+| `applet.lua` | Na renderização, ao encontrar um shortcode | `applet`: gera o `<div data-applet="…">` (com as classes de `arranjo`, se houver), o parágrafo de estado `<id>-status` e o botão "Reiniciar applet"; registra o bundle JS/CSS **apenas nessa página**. `geogebra`: gera um `<iframe>` acessível (com `title`, carregamento tardio e link alternativo). |
+| `applet-bloco.lua` | Na renderização, em todo capítulo | Transforma o bloco `::: {.applet nome="…" id="…" rotulo="…"}` na parte interativa de um applet com várias partes: o bloco recebe `data-applet`, `role="group"` e o rótulo; cada parte `.quadro` vira um `div.applet-jxg` com `aria-label`, e cada `.leitura`, um `div.applet-leitura`; cada parte recebe `data-parte` (o id, sem o prefixo `<id>-`); no fim entram o parágrafo de estado e o botão. Avisa no render quando falta rótulo, quando o id de uma parte não começa por `<id>-` e quando uma parte está fora de um bloco. |
+| `applet-comum.lua` | Carregado pelos dois acima (`require`) | Carrega o bundle e escreve o parágrafo de estado e o botão "Reiniciar", iguais no shortcode e no bloco. |
 | `blocos.lua` | Na renderização, em todo capítulo | Insere o rótulo visível ("Objetivo", "Erro comum"…) no topo de cada `.bloco-*`; agrupa `.dica`/`.solucao`/`.resposta` consecutivas em abas que começam fechadas, e injeta o pequeno script que permite fechá-las. |
 | `macros.html` | Incluído no `<body>` de todas as páginas | Define `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` para o MathJax. |
 
@@ -188,21 +194,23 @@ no `_quarto.yml`. Um capítulo combina:
 |---|---|
 | `package.json` | Declara as dependências (`jsxgraph`, `vite`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
-| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss`, que fora do livro não existe, e traz uma amostra das formas de ponto e das setas para conferir no navegador (não vai para o bundle). |
-| `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
+| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss` (e imita a grade do Quarto), que fora do livro não existem, e traz uma amostra das formas de ponto e das setas e o exemplo de applet com várias partes, no HTML que o bloco gera (nada disso vai para o bundle). |
+| `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente, com as partes do bloco em `partes`; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
-| `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence; o ponto arrastado não sai da região). |
+| `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence; o ponto arrastado não sai da região); só desenha num `.applet-jxg`. `ligarQuadros(...quadros)`: mexer num quadro redesenha os outros. |
+| `src/tools/leitura.js` | `criarLeitura({ id, tex, quadros })`: escreve na parte `.leitura` a fórmula `tex()`, desenhada pelo MathJax da página (com as macros do livro), refeita quando um dos quadros muda; sem MathJax, mostra o TeX. |
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel didático (`retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`). |
 | `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
+| `src/exemplos/` | Applets de exemplo, fora do bundle (`main.js` só registra `src/applets/`): `exemplo-partes.js`, com dois quadros ligados e uma leitura, é o modelo de applet com várias partes e roda na página de `npm run dev`. |
 
 ### 4.6 `tests/verificar-site.mjs`
 
 Script Node sem dependências. Verifica:
 
 - **nas fontes** (`index.qmd` e `capitulos/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
-- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, `id` duplicado, saltos na hierarquia de títulos (aviso).
+- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado, saltos na hierarquia de títulos (aviso).
 
 Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 
@@ -231,7 +239,7 @@ flowchart LR
     quarto -->|"chapters"| caps["index.qmd<br/>capitulos/*.qmd"]
     quarto -->|"brand"| brand["_brand.yml"]
     quarto -->|"theme"| tema["cosmo<br/>+ brand<br/>+ custom.scss"]
-    quarto -->|"filters"| blocos["blocos.lua"]
+    quarto -->|"filters"| blocos["blocos.lua<br/>applet-bloco.lua"]
     quarto -->|"shortcodes"| appletlua["applet.lua"]
     quarto -->|"include-before-body"| macros["macros.html"]
 ```
@@ -249,6 +257,7 @@ flowchart LR
     cap -->|"\vet, \R, \norm"| macros["macros.html"]
     cap -->|"blocos .bloco-*<br/>.dica, .solucao"| blocos["blocos.lua"]
     cap -->|"applet, geogebra"| appletlua["applet.lua<br/>(+ bundle JS)"]
+    cap -->|"bloco .applet"| appletbloco["applet-bloco.lua<br/>(+ bundle JS)"]
     cap -->|"classes CSS"| scss["custom.scss"]
 ```
 
@@ -306,7 +315,7 @@ flowchart TD
     main -.->|"import automático<br/>(applets/*.js)"| novo
     novo -.->|"import"| styles
     novo -.->|"import"| quadro
-    novo -.->|"import"| contas["tools/vetores.js<br/>tools/formatar.js"]
+    novo -.->|"import"| contas["tools/vetores.js<br/>tools/formatar.js<br/>tools/leitura.js"]
     styles -->|"import"| cores
     main -->|"import"| cores
 ```
@@ -317,7 +326,7 @@ arquivo em `applets/`, porque `main.js` importa todos os arquivos dessa pasta
 junta tudo em dois arquivos: `applets-livro.iife.js` e `applets-livro.css`.
 
 Observação: o JSXGraph **não** é importado por cada applet. O `main.js` o
-importa uma vez e o entrega a cada applet como parâmetro (`criar<Nome>({ id, JXG })`).
+importa uma vez e o entrega a cada applet como parâmetro (`criar<Nome>({ id, JXG, partes })`).
 
 ### 5.4 O que acontece em `quarto render` (simplificado)
 
@@ -329,7 +338,7 @@ flowchart TD
     theme["<b>Compila o tema</b><br/>cosmo → brand → custom.scss<br/>resultado: docs/site_libs/bootstrap/"]
     parse["<b>Para cada capítulo</b><br/>o Pandoc lê o .qmd"]
     sc["<b>Shortcodes viram HTML</b> (applet.lua)<br/>se há applet, o bundle é copiado<br/>para docs/site_libs/quarto-contrib/"]
-    flt["<b>Filtros</b><br/>blocos.lua + numeração,<br/>@referências, callouts, abas"]
+    flt["<b>Filtros</b><br/>blocos.lua, applet-bloco.lua + numeração,<br/>@referências, callouts, abas"]
     html["<b>Monta a página</b><br/>menu, sumário, busca,<br/>macros.html, MathJax"]
     out(["<b>docs/capitulos/nome.html</b><br/>+ imagens em docs/assets/img/"])
 
@@ -374,6 +383,12 @@ flowchart TD
 O nome passado no shortcode (`nome-do-applet`) precisa ser **igual** ao nome do
 arquivo do applet (`applets-src/src/applets/nome-do-applet.js`, sem `.js`). Se não
 for, o applet não aparece e o teste `verificar-site.mjs` acusa erro.
+
+Com o bloco `::: {.applet}`, o caminho é o mesmo, com três diferenças: em ②, quem
+escreve o HTML é `applet-bloco.lua`, e o `data-applet` fica no bloco que envolve as
+partes; em ⑦, a função recebe também `partes`, do nome da parte para o id
+(`{ figura: "cl-figura", leitura: "cl-leitura" }`); em ⑧, o applet cria um quadro
+por parte `.quadro` e a leitura com `criarLeitura`.
 
 ### 5.6 Publicação automática (GitHub Actions)
 
@@ -493,6 +508,38 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 3. `npm run build`.
 4. No capítulo, dentro de um `.bloco-interacao`: `{{< applet <nome> id="jxg-<nome>-1" rotulo="Descrição acessível" >}}`.
 
+### Adicionar um applet com várias partes
+Quadros ligados e leituras em lugares diferentes da página. O modelo é
+`applets-src/src/exemplos/exemplo-partes.js`, que roda em `npm run dev`.
+
+1. No capítulo, um bloco envolve as partes, nos arranjos do `guia-editorial.md`, §6:
+
+   ```markdown
+   ::::: {.applet nome="<nome>" id="<id>" rotulo="Descrição do applet"}
+   :::: {.grid}
+   ::: {#<id>-figura .quadro .g-col-12 .g-col-md-6 rotulo="Descrição do quadro"}
+   :::
+   ::: {#<id>-leitura .leitura .g-col-12 .g-col-md-6}
+   :::
+   ::::
+   :::::
+   ```
+
+2. No applet, as partes chegam em `partes`, pelo nome (o id sem o prefixo `<id>-`). Uma parte que o capítulo não pôs fica de fora, e o applet a trata como opcional:
+
+   ```js
+   export default function criarNome({ id, JXG, partes }) {
+     const board = criarQuadro({ JXG, id: partes.figura, regiao: [-1, 5, 7, -1] });
+     if (!board) return null;
+     const outro = partes.outro ? criarQuadro({ JXG, id: partes.outro, regiao: [-1, 5, 7, -1] }) : null;
+     if (outro) ligarQuadros(board, outro);
+     criarLeitura({ id: partes.leitura, tex: () => `…`, quadros: [board] });
+     // texto de estado em `${id}-status` e reset(), como no applet de um quadro
+   }
+   ```
+
+3. `npm run build`, `quarto render` e `node tests/verificar-site.mjs`; o render avisa quando falta um rótulo ou quando o id de uma parte não começa por `<id>-`.
+
 ### Mudar uma cor
 - Cor do tema (fundo, links, títulos): papel ou paleta em `_brand.yml`.
 - Cor de um objeto matemático (site e applets): token `--cor-…` em `custom.scss` (seção 1).
@@ -512,6 +559,9 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 - **Duas cópias de configuração.** `_interno/oficina/testes/_quarto.yml` repete parte de `_quarto.yml`. Ao alterar um, altere o outro.
 - **Nome do applet = nome do arquivo.** `main.js` registra cada arquivo de `src/applets/`, e o teste usa a mesma regra. Um arquivo auxiliar posto nessa pasta seria tomado por applet: código compartilhado fica em `src/tools/`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
+- **Rótulos diferentes.** O JSXGraph faz de cada quadro uma região com nome; dois quadros com o mesmo rótulo na mesma página confundem quem navega pelo leitor de tela (o axe acusa).
+- **A grade do Quarto e a largura de 320 px.** A `.grid` tem 12 colunas e 11 espaços entre elas; com o espaço padrão (1,5 rem), só os espaços já passavam da coluna a 320 px. `custom.scss` o reduz para 1 rem. Uma parte na grade ou no grupo também pode ficar mais estreita que o desenho já feito (`min-width: 0`), para o JSXGraph redesenhar o quadro quando a janela estreita.
+- **Leituras e MathJax.** O Pandoc só carrega o MathJax em páginas com fórmulas; `applet-bloco.lua` põe uma fórmula vazia em cada leitura para garantir o carregamento. Fórmulas longas rolam dentro da leitura a 320 px: prefira leituras curtas.
 - **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
 - **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.

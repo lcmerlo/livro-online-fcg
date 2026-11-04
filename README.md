@@ -41,7 +41,7 @@ _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
 tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
 components/macros.html - Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`)
-components/ - Filtros Lua (`blocos.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que usam `applet`
+components/ - Filtros Lua (`blocos.lua`, `applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
@@ -78,7 +78,7 @@ O que cada applet garante e como é aceito: `_interno/diretrizes/diretrizes-tecn
 	- GeoGebra: applets de projetos anteriores, ainda em alguns capítulos. Servem de inspiração e serão reescritos em JSXGraph (lista em `_interno/diretrizes/pendencias.md`).
 	- Outras ferramentas, como Desmos, só por decisão registrada.
 
-### Incorporação (shortcodes de `components/applet.lua`)
+### Incorporação (`components/applet.lua` e `components/applet-bloco.lua`)
 Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
 
 ::: {.bloco-interacao}
@@ -88,6 +88,17 @@ Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o b
 :::
 
 O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página. Hoje o livro não tem nenhum applet JSXGraph em capítulo.
+
+Applet com várias partes (quadros ligados, leitura com fórmula), em lugares que o capítulo escolhe: um bloco envolve as partes, cada uma com id `<id>-<parte>` (arranjos em `_interno/diretrizes/guia-editorial.md`, §6):
+
+::::: {.applet nome="nome-do-applet" id="nda" rotulo="[Descrição do applet]"}
+:::: {.grid}
+::: {#nda-figura .quadro .g-col-12 .g-col-md-6 rotulo="[Descrição do quadro]"}
+:::
+::: {#nda-leitura .leitura .g-col-12 .g-col-md-6}
+:::
+::::
+:::::
 
 Applet GeoGebra, provisório até a reescrita em JSXGraph (iframe com `title`, carregamento tardio e link alternativo):
 

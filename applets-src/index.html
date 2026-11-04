@@ -49,11 +49,16 @@
     :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
     body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; }
     .applet-jxg { width: 100%; max-width: 640px; aspect-ratio: 4 / 3; touch-action: manipulation !important; }
+    .applet-leitura { overflow-x: auto; }
+    /* Imita a grade do Quarto (.grid, .g-col-…), que o livro já tem. */
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+    .g-col-12 { grid-column: auto / span 12; }
+    @media (min-width: 768px) { .g-col-md-6 { grid-column: auto / span 6; } }
   </style>
 </head>
 <body>
   <h1>Applets — desenvolvimento</h1>
-  <p>Use <code>npm run dev</code>. Cada applet novo entra aqui como no livro: um <code>div</code> com <code>data-applet</code> e <code>id</code>, o parágrafo <code>&lt;id&gt;-status</code> e o botão <code>data-reset</code>.</p>
+  <p>Use <code>npm run dev</code>. Cada applet novo entra aqui como no livro: um <code>div</code> com <code>data-applet</code> e <code>id</code>, o parágrafo <code>&lt;id&gt;-status</code> e o botão <code>data-reset</code>; num applet com várias partes, cada parte com <code>data-parte</code> e id <code>&lt;id&gt;-&lt;parte&gt;</code>.</p>
 
   <h2>Amostra das formas de ponto</h2>
   <p>Só nesta página (não vai para o bundle). Confira com o mouse, com o teclado (Tab e setas) e, nas ferramentas do programador, com o toque simulado a 320 px: o dedo fora dos pontos deve rolar a página, e o plano não deve se mover.</p>
@@ -70,10 +75,30 @@
     <li>Embaixo: o vetor u, com a origem e a ponta arrastáveis (a ponta da seta é o ponto), e o vetor v, fixo.</li>
   </ul>
 
+  <h2>Applet com várias partes</h2>
+  <p>O exemplo de <code>src/exemplos/exemplo-partes.js</code>, no HTML que o bloco <code>::: {.applet}</code> gera (<code>components/applet-bloco.lua</code>): dois quadros ligados, lado a lado a partir de 768 px, e uma leitura. Arraste as pontas de u e v no primeiro quadro: o segundo, a leitura e o texto de estado acompanham. Sem o MathJax, a leitura mostra o TeX.</p>
+
+  <div id="ep" class="bloco-applet" data-applet="exemplo-partes" role="group" aria-label="Soma de dois vetores">
+    <div class="grid">
+      <div id="ep-vetores" class="applet-jxg g-col-12 g-col-md-6" data-parte="vetores" aria-label="Os vetores u e v, com as pontas arrastáveis"></div>
+      <div id="ep-soma" class="applet-jxg g-col-12 g-col-md-6" data-parte="soma" aria-label="O vetor u + v"></div>
+    </div>
+    <div id="ep-leitura" class="applet-leitura" data-parte="leitura"></div>
+    <p id="ep-status" class="applet-status" role="status" aria-live="polite"></p>
+    <button type="button" class="applet-botao" data-reset="ep">Reiniciar applet</button>
+  </div>
+
   <!-- espaço para conferir a rolagem da página com o dedo sobre o quadro -->
   <div style="height: 120vh"></div>
 
   <script type="module" src="/src/main.js"></script>
+  <script type="module">
+    // O exemplo fica fora do bundle; aqui ele entra no registro antes de
+    // main.js iniciar os applets (no DOMContentLoaded).
+    import { applets } from "/src/main.js";
+    import criarExemploPartes from "/src/exemplos/exemplo-partes.js";
+    applets["exemplo-partes"] = criarExemploPartes;
+  </script>
   <script type="module">
     import JXG from "jsxgraph";
     import { CORES } from "/src/cores.js";

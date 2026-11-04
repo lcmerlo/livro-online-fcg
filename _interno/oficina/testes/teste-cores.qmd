@@ -1,0 +1,50 @@
+---
+title: "Teste de cores"
+---
+
+<!-- Página de teste do modelo de cor dos applets (pendencias.md, §2).
+     Renderizar: (cd applets-src && npm run build) e
+     quarto render _interno/oficina/testes/teste-cores.qmd
+     O applet está em applets-src/src/applets/teste-cores.js; as cores de cada
+     modelo estão na função modelos() de lá, chamadas pelo nome da paleta
+     de _brand.yml com paleta("…"). -->
+
+A mesma soma de vetores em quatro modelos de cor. Arraste as pontas de $\vec{u}$ e $\vec{v}$ em qualquer quadro: os quatro acompanham.
+
+O que observar:
+
+1. Sem ler os nomes, dá para saber qual seta é o resultado?
+2. É preciso distinguir $\vec{u}$ de $\vec{v}$ pela cor, ou o nome junto à seta basta?
+3. Qual quadro fica mais fácil de ler, e qual cansa?
+4. Com daltonismo simulado, algum par de cores se confunde? No Chrome: Ver > Programador > Ferramentas do programador, menu ⋮ > More tools > Rendering > *Emulate vision deficiencies*; confira *Protanopia*, *Deuteranopia*, *Tritanopia* e *Achromatopsia* (tons de cinza).
+
+::::: {.applet nome="teste-cores" id="tc" rotulo="A soma de dois vetores em quatro modelos de cor"}
+:::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+**1. Papéis atuais.** $\vec{u}$ e $\vec{v}$: manipulável (`verde-5`); $\vec{u} + \vec{v}$: objeto principal (`azul-8`); cópias de apoio: auxiliar (`cinza-5`).
+
+::: {#tc-papeis .quadro rotulo="Modelo 1, papéis atuais"}
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+**2. Papéis enxutos.** $\vec{u}$ e $\vec{v}$: dado (`azul-8`); $\vec{u} + \vec{v}$: resultado (`laranja-2`); apoio (`cinza-5`).
+
+::: {#tc-enxutos .quadro rotulo="Modelo 2, papéis enxutos"}
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+**3. Neutro com um destaque.** $\vec{u}$ e $\vec{v}$: cor do texto (`grafite-2`); $\vec{u} + \vec{v}$: destaque (`laranja-2`); apoio (`cinza-5`).
+
+::: {#tc-destaque .quadro rotulo="Modelo 3, neutro com um destaque"}
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+**4. Uma cor por objeto (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`cinza-5`).
+
+::: {#tc-okabe .quadro rotulo="Modelo 4, uma cor por objeto"}
+:::
+:::
+::::
+:::::
+
+Para testar outras cores, troque os nomes na função `modelos()` do applet: valem as cores do livro e as de teste da paleta de `_brand.yml`.

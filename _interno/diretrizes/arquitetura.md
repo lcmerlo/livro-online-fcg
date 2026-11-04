@@ -114,7 +114,7 @@ livro-quarto/
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
 │   │   ├── exemplos/           ✏️  Applets de exemplo para `npm run dev` (fora do bundle)
-│   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
+│   │   └── applets/            ✏️  Um arquivo por applet (hoje só teste-cores.js, do projeto de testes)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
 ├── tests/
@@ -202,7 +202,7 @@ no `_quarto.yml`. Um capítulo combina:
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel didático (`retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`). |
-| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
+| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem só `teste-cores.js`, usado na página `_interno/oficina/testes/teste-cores.qmd` (a soma de vetores em quatro modelos de cor, lado a lado); o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 | `src/exemplos/` | Applets de exemplo, fora do bundle (`main.js` só registra `src/applets/`): `exemplo-partes.js`, com dois quadros ligados e uma leitura, é o modelo de applet com várias partes e roda na página de `npm run dev`. |
 
 ### 4.6 `tests/verificar-site.mjs`
@@ -559,6 +559,7 @@ Quadros ligados e leituras em lugares diferentes da página. O modelo é
 3. Um nome errado aparece no console do navegador ("Cor não encontrada") e deixa o objeto preto. No console, `AppletsLivro.paleta("blue-oi")` mostra o valor de uma cor.
 4. A página de `npm run dev` não tem as variáveis `--brand-…`: ali, `paleta()` dá preto. Teste as cores no projeto de testes.
 5. Antes de o applet ir para um capítulo, troque `paleta()` pelas cores dos papéis (`CORES`); se a cor testada deve ficar, isso é uma decisão (`diretrizes-tecnicas.md`, §6).
+6. Para comparar modelos de cor, use a página `teste-cores.qmd`: as cores de cada modelo estão na função `modelos()` de `src/applets/teste-cores.js`.
 
 ### Criar um novo tipo de bloco didático
 1. Rótulo em `rotulos` de `components/blocos.lua`.

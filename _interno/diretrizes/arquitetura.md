@@ -106,7 +106,8 @@ livro-quarto/
 │   ├── src/
 │   │   ├── main.js             ✏️  Ponto de entrada: registro automático dos applets, inicialização, reinício
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
-│   │   ├── tools/styles.js     ✏️  Estilos JSXGraph reutilizáveis (ponto manipulável, reta…)
+│   │   ├── tools/quadro.js     ✏️  Cria o quadro: região, proporção, toque e teclado
+│   │   ├── tools/styles.js     ✏️  Estilos JSXGraph: pontos (a forma diz se o ponto se move), seta, traços
 │   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
@@ -175,7 +176,7 @@ no `_quarto.yml`. Um capítulo combina:
 
 | Caminho | Finalidade |
 |---|---|
-| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout**, componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets) e **acessibilidade** (`prefers-reduced-motion`). |
+| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout**, componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets, com as medidas `--applet-…` dos pontos e o `touch-action` do quadro) e **acessibilidade** (`prefers-reduced-motion`). |
 | `img/<capítulo>/` | Imagens dos capítulos. O Quarto copia para `docs/assets/img/` as que são usadas. |
 | `js/applets-dist/` | 🏭 `applets-livro.iife.js` + `applets-livro.css`, saída do Vite. |
 
@@ -185,10 +186,11 @@ no `_quarto.yml`. Um capítulo combina:
 |---|---|
 | `package.json` | Declara as dependências (`jsxgraph`, `vite`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
-| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores em `:root` porque, fora do livro, não existe `custom.scss`. |
+| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss`, que fora do livro não existe, e traz uma amostra das formas de ponto e das setas para conferir no navegador (não vai para o bundle). |
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
-| `src/tools/styles.js` | Objeto `ESTILOS` com aparências prontas para objetos JSXGraph (`pontoManip`, `pontoFixo`, `retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`), alinhadas ao código de cores do livro. |
+| `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence). |
+| `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel didático (`retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`). |
 | `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 
 ### 4.6 `tests/verificar-site.mjs`
@@ -260,7 +262,7 @@ flowchart TD
     css["<b>CSS compilado</b><br/>--cor-manip: #0f766e"]
     site["Páginas do livro<br/>(blocos, textos)"]
     c["<b>cores.js</b><br/>CORES.objManip"]
-    st["<b>tools/styles.js</b><br/>ESTILOS.pontoManip"]
+    st["<b>tools/styles.js</b><br/>pontoArrastavel()"]
     a["<b>applets/*.js</b><br/>pontos arrastáveis"]
 
     b -->|"Quarto cria<br/>$brand-verde-5"| s
@@ -293,11 +295,13 @@ flowchart TD
     jxg["jsxgraph<br/>+ jsxgraph.css"]
     novo["applets/<br/>um arquivo por applet"]
     styles["tools/styles.js"]
+    quadro["tools/quadro.js"]
     cores["cores.js"]
 
     main -->|"import"| jxg
     main -.->|"import automático<br/>(applets/*.js)"| novo
     novo -.->|"import"| styles
+    novo -.->|"import"| quadro
     styles -->|"import"| cores
     main -->|"import"| cores
 ```
@@ -350,10 +354,10 @@ flowchart TD
     subgraph N["No navegador do estudante"]
         direction TB
         n1["<b>④</b> A página carrega<br/>applets-livro.iife.js"]
-        n2["<b>⑤</b> cores.js lê as cores --cor-*<br/>styles.js monta ESTILOS"]
+        n2["<b>⑤</b> cores.js lê as cores --cor-*<br/>styles.js lê as medidas --applet-*"]
         n3["<b>⑥</b> main.js, em iniciarTodos(),<br/>procura elementos data-applet"]
         n4["<b>⑦</b> a função do applet é chamada:<br/>criar<Nome>({ id, JXG })"]
-        n5["<b>⑧</b> JSXGraph desenha<br/>o quadro e os objetos"]
+        n5["<b>⑧</b> criarQuadro cria o quadro;<br/>o JSXGraph desenha os objetos"]
         n6["<b>⑨</b> O applet fica guardado<br/>em instancias[id]"]
         n7["<b>⑩</b> Clique em Reiniciar:<br/>instancias[id].reset()"]
         n1 --> n2 --> n3 --> n4 --> n5 --> n6 --> n7
@@ -446,7 +450,39 @@ flowchart TD
 O que o applet deve garantir, a ficha de aceitação e como reescrever um applet
 GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 
-1. Criar `applets-src/src/applets/<nome>.js` com a exportação padrão `export default function criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }` (use `ESTILOS` para as cores; o `segmento.js`, modelo até 2026-11-03, continua no histórico do Git: `git show d5b3f8d:applets-src/src/applets/segmento.js`). O registro é automático: o nome do arquivo é o nome do applet. Nessa pasta só ficam applets; código compartilhado vai para `src/tools/`.
+1. Criar `applets-src/src/applets/<nome>.js` com a exportação padrão `export default function criar<Nome>({ id, JXG })`, que devolve `{ board, objetos, reset }`. O registro é automático: o nome do arquivo é o nome do applet. Nessa pasta só ficam applets; código compartilhado vai para `src/tools/`. Esqueleto:
+
+   ```js
+   import { criarQuadro } from "../tools/quadro.js";
+   import { pontoArrastavel } from "../tools/styles.js";
+
+   export default function criarNome({ id, JXG }) {
+     const board = criarQuadro({ JXG, id, regiao: [-1, 5, 7, -1], eixos: true, grade: true });
+     if (!board) return null;
+
+     const A0 = [1, 1];   // posição inicial, reaproveitada pelo reset()
+     const A = board.create("point", A0, { name: "A", ...pontoArrastavel(), snapToGrid: true });
+     // … demais objetos, com os estilos de tools/styles.js
+
+     // Texto de estado (§4.4 das diretrizes), refeito 400 ms depois do último movimento
+     const status = document.getElementById(`${id}-status`);
+     let espera;
+     const descrever = () => { status.textContent = `A = (${A.X()}, ${A.Y()}).`; };
+     if (status) {
+       descrever();
+       board.on("update", () => { clearTimeout(espera); espera = setTimeout(descrever, 400); });
+     }
+
+     function reset() {
+       A.moveTo(A0);
+       board.update();
+     }
+
+     return { board, objetos: { A }, reset };
+   }
+   ```
+
+   O `segmento.js`, modelo até 2026-11-03, continua no histórico do Git: `git show d5b3f8d:applets-src/src/applets/segmento.js`.
 2. Opcional: acrescentar um `div` de teste em `applets-src/index.html` e usar `npm run dev`.
 3. `npm run build`.
 4. No capítulo, dentro de um `.bloco-interacao`: `{{< applet <nome> id="jxg-<nome>-1" rotulo="Descrição acessível" >}}`.
@@ -470,7 +506,8 @@ GeoGebra estão em `diretrizes-tecnicas.md`, §4. Os passos técnicos:
 - **Duas cópias de configuração.** `_interno/oficina/testes/_quarto.yml` repete parte de `_quarto.yml`. Ao alterar um, altere o outro.
 - **Nome do applet = nome do arquivo.** `main.js` registra cada arquivo de `src/applets/`, e o teste usa a mesma regra. Um arquivo auxiliar posto nessa pasta seria tomado por applet: código compartilhado fica em `src/tools/`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
-- **Cores lidas uma vez.** `cores.js` lê as variáveis CSS quando o bundle carrega. Mudanças de cor exigem recarregar a página.
+- **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
+- **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.
 - **`docs/` acumula arquivos antigos** (vários `bootstrap-*.min.css`) entre renderizações locais. É normal; o robô publica a partir de uma pasta limpa. Para limpar localmente, apague `docs/` e renderize de novo.
 - **Pastas com `_` no início** (`_interno/`, `_scratch/`) são ignoradas pelo Quarto; por isso o material interno não aparece no site.

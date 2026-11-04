@@ -24,14 +24,15 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 | Tamanho da fonte e entrelinha | `_brand.yml` define 1,0625rem e 1,6; `custom.scss` define 1,05rem e 1,65, e hoje prevalece | escolher os valores e mantê-los num só arquivo (`diretrizes-tecnicas.md`, §6) |
 | Modelo de cor dos applets | por papel didático (atual) ou por identidade do objeto (JSX-quarto) | piloto: as duas variantes no mesmo applet, conferidas pela ficha de aceitação |
 | Motor de fórmulas | MathJax (atual) ou KaTeX | piloto: macros, prévias de referências cruzadas e rótulos do JSXGraph |
-| Código comum dos applets | `src/tools/` (atual) ou parte da `lib/` do JSX-quarto | piloto |
 | Caso paralelo na combinação linear | tornar o caso alcançável (encaixe na grade ou no ângulo) ou não | decisão didática do autor, depois do piloto |
 
 ## 3. Ajustes técnicos previstos
 
 | O quê | Por quê |
 |---|---|
-| Shortcode para applets com várias partes | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
+| Etapa 2 da adoção do JSX-quarto: contas vetoriais, formatação de números e expressões (da `lib/`) e a regra das unidades (radianos nas contas, graus só na tela) | plano aprovado pelo autor em 2026-11-03; o formato dos números passa a ficar num só lugar |
+| Etapa 3: vários quadros e partes num applet (quadros ligados, leituras com fórmula, arranjos do cap. 10 do estudo do JSX-quarto); falta o autor escolher como as partes se escrevem no `.qmd` (recomendação: um bloco `::: {.applet …}` que envolve as partes) | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
+| Pontos arrastáveis podem sair da região do quadro (conferido no Chrome em 2026-11-03) | o estudante perde o ponto de vista e só o recupera com "Reiniciar"; o JSX-quarto tem a restrição `pontonaregiao` na `lib/` |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 
 ## 4. Inconsistências registradas

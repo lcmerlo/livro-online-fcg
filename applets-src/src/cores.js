@@ -19,9 +19,11 @@ export function cor(nome, fallback = "#000000") {
 // matemáticos" de custom.scss). Cada papel tem três tons: Suave, base e Forte.
 // Os valores são lidos uma única vez, quando o bundle é carregado.
 export const CORES = {
-  // Texto e superfície (fundo de pontos fixos, por exemplo)
+  // Texto e superfícies. superfSuave é o fundo do quadro (o do .bloco-applet,
+  // que fica atrás dele) e preenche o miolo dos pontos abertos.
   texto: cor("--cor-texto"),
   superf: cor("--cor-superf"),
+  superfSuave: cor("--cor-superf-suave"),
 
   // Objeto principal: aquilo que o applet estuda
   objPrincSuave: cor("--cor-obj-princ-suave"),

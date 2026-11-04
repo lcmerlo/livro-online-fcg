@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Applets — página de desenvolvimento</title>
   <style>
-    /* Cores lidas por src/cores.js; no livro vêm de assets/css/custom.scss. */
+    /* Cores e medidas lidas por src/cores.js e src/tools/styles.js; no livro
+       vêm de assets/css/custom.scss. */
     :root {
       --cor-texto: #1f2933;
       --cor-superf: #fafafa;
+      --cor-superf-suave: #ffffff;
 
       --cor-obj-princ-suave: #3b82f6;
       --cor-obj-princ: #1d4ed8;
@@ -33,15 +35,76 @@
       --cor-erro-suave: #dc2626;
       --cor-erro: #b91c1c;
       --cor-erro-forte: #991b1b;
+
+      --applet-ponto-raio: 4;
+      --applet-anel-largura: 9;
+      --applet-anel-opacidade: 0.3;
+      --applet-anel-opacidade-destaque: 0.65;
+      --applet-captura: 10;
     }
+    @media (pointer: coarse) { :root { --applet-anel-largura: 14; } }
+    .applet-arrastavel { cursor: grab; }
+    .applet-arrastavel:active { cursor: grabbing; }
+    .applet-arrastavel:focus-visible { stroke-opacity: var(--applet-anel-opacidade-destaque); }
+    :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
     body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; }
-    .applet-jxg { width: 100%; max-width: 640px; aspect-ratio: 4 / 3; }
+    .applet-jxg { width: 100%; max-width: 640px; aspect-ratio: 4 / 3; touch-action: manipulation !important; }
   </style>
 </head>
 <body>
   <h1>Applets — desenvolvimento</h1>
   <p>Use <code>npm run dev</code>. Cada applet novo entra aqui como no livro: um <code>div</code> com <code>data-applet</code> e <code>id</code>, o parágrafo <code>&lt;id&gt;-status</code> e o botão <code>data-reset</code>.</p>
 
+  <h2>Amostra das formas de ponto</h2>
+  <p>Só nesta página (não vai para o bundle). Confira com o mouse, com o teclado (Tab e setas) e, nas ferramentas do programador, com o toque simulado a 320 px: o dedo fora dos pontos deve rolar a página, e o plano não deve se mover.</p>
+
+  <div id="amostra-pontos" class="applet-jxg"
+       aria-label="Amostra das formas de ponto e das setas."></div>
+
+  <ul>
+    <li>Primeira linha: pontos arrastáveis (disco, quadrado, losango, triângulo).</li>
+    <li>Segunda linha: pontos fixos com as mesmas formas.</li>
+    <li>Terceira linha: intervalo com extremo aberto (à esquerda) e fechado.</li>
+    <li>Nos eixos: traços que marcam x = 3 e y = 2.</li>
+    <li>Embaixo: o vetor u, com a origem e a ponta arrastáveis (a ponta da seta é o ponto), e o vetor v, fixo.</li>
+  </ul>
+
+  <!-- espaço para conferir a rolagem da página com o dedo sobre o quadro -->
+  <div style="height: 120vh"></div>
+
   <script type="module" src="/src/main.js"></script>
+  <script type="module">
+    import JXG from "jsxgraph";
+    import { CORES } from "/src/cores.js";
+    import { criarQuadro } from "/src/tools/quadro.js";
+    import { ESTILOS, pontoAberto, pontoArrastavel, pontoFixo, seta } from "/src/tools/styles.js";
+
+    const board = criarQuadro({ JXG, id: "amostra-pontos", regiao: [-1, 5, 9, -2.5], eixos: true });
+    const formas = ["o", "[]", "<>", "^"];
+
+    formas.forEach((f, i) => {
+      board.create("point", [1 + 1.5 * i, 4], { ...pontoArrastavel(undefined, f), withLabel: false });
+      board.create("point", [1 + 1.5 * i, 3], { ...pontoFixo(undefined, f), withLabel: false });
+    });
+
+    // Intervalo: a linha passa por baixo do extremo aberto sem aparecer nele.
+    const E = board.create("point", [5, 1.5], { ...pontoAberto(), withLabel: false });
+    const F = board.create("point", [8, 1.5], { ...pontoFixo(), withLabel: false });
+    board.create("segment", [E, F], { ...ESTILOS.retaPrinc });
+
+    // Traços nos eixos.
+    board.create("point", [3, 0], { ...pontoFixo(undefined, "|"), withLabel: false });
+    board.create("point", [0, 2], { ...pontoFixo(undefined, "-"), withLabel: false });
+
+    // Vetor u com a ponta arrastável e vetor v fixo (a cor definitiva vem
+    // com a decisão sobre o modelo de cor).
+    const P = board.create("point", [1, -1.5], { ...pontoArrastavel(CORES.objPrinc), withLabel: false });
+    const Q = board.create("point", [4, -0.5], pontoArrastavel(CORES.objPrinc, "seta"));
+    board.create("arrow", [P, Q], seta(CORES.objPrinc, { nome: "u" }));
+
+    const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.objConstr), withLabel: false });
+    const S = board.create("point", [8, -0.3], pontoFixo(CORES.objConstr, "seta"));
+    board.create("arrow", [R, S], seta(CORES.objConstr, { nome: "v", lado: "right" }));
+  </script>
 </body>
 </html>

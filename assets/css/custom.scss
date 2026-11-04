@@ -361,6 +361,49 @@ p:has(> .bloco-rotulo) {
   max-width: 640px;
   aspect-ratio: 4 / 3;
   margin: 0 0 0.75rem;
+  /* Toque: o dedo sobre o quadro rola a página e a pinça amplia a página,
+     como fora dele; quem arrasta um ponto é tools/quadro.js, que cancela a
+     rolagem nesse caso. O !important vence o estilo que o JSXGraph escreve
+     no quadro a cada toque e que bloquearia a rolagem. */
+  touch-action: manipulation !important;
+}
+
+/* Medidas dos pontos dos applets, em px, lidas por
+   applets-src/src/tools/styles.js (renomear uma variável aqui exige
+   renomeá-la também lá e em applets-src/index.html) */
+:root {
+  /* raio do disco, igual no ponto fixo e no arrastável */
+  --applet-ponto-raio: 4;
+  /* anel do ponto arrastável (metade fica fora do disco) */
+  --applet-anel-largura: 9;
+  /* opacidade do anel em repouso… */
+  --applet-anel-opacidade: 0.3;
+  /* …e sob o cursor ou com o foco do teclado */
+  --applet-anel-opacidade-destaque: 0.65;
+  /* raio mínimo de captura do ponto arrastável (o dedo usa 2,5 vezes) */
+  --applet-captura: 10;
+}
+
+/* Toque: anel mais largo, mais fácil de ver sob o dedo */
+@media (pointer: coarse) {
+  :root {
+    --applet-anel-largura: 14;
+  }
+}
+
+/* Ponto arrastável (classe posta por tools/styles.js): cursor de mão e, com
+   o foco do teclado, o mesmo reforço do anel que aparece sob o cursor; o
+   contorno de foco do site (seção Acessibilidade) continua valendo */
+.applet-arrastavel {
+  cursor: grab;
+}
+
+.applet-arrastavel:active {
+  cursor: grabbing;
+}
+
+.applet-arrastavel:focus-visible {
+  stroke-opacity: var(--applet-anel-opacidade-destaque);
 }
 
 /* Descrição do estado do applet, preenchida pelo JavaScript */

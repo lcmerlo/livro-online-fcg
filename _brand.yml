@@ -4,6 +4,10 @@ meta:
 # _brand.yml
 color:
   palette:
+    # ---- Cores do livro ----
+    # Os papéis de cor do site e dos applets (assets/css/custom.scss, seção 1)
+    # usam só estas cores. Cor nova aqui entra por decisão, depois de medidos
+    # o contraste e a legibilidade com daltonismo (diretrizes-tecnicas.md, §6).
     areia-0: "#FCFBF9"
     areia-1: "#FBFAF6"
     areia-2: "#F7F4ED"
@@ -49,6 +53,94 @@ color:
     vermelho-4: "#DC2626"
     vermelho-5: "#B91C1C"
     vermelho-6: "#991B1B"
+
+    # ---- Cores de teste (do JSX-quarto) ----
+    # As paletas comparadas no JSX-quarto, com os nomes de lá: <matiz>-<fonte>,
+    # com o nome oficial no comentário quando é outro. Fontes:
+    #   ds Desmos · oi Okabe–Ito · tb Tol Bright · tm Tol Muted · td Tol Dark
+    #   cb IBM Carbon · d2 ColorBrewer Dark2
+    # Os neutros do JSX-quarto (branco-1, areia-0, areia-1, areia-2, grafite-1,
+    # cinza-5) são as cores do livro acima, com os mesmos valores.
+    # Servem aos testes: um applet as usa por paleta("<nome>"), de
+    # applets-src/src/cores.js, e o verificador avisa se um applet publicado
+    # fizer isso. Abaixo de 3:1 sobre o branco, servem só a preenchimentos:
+    # yellow-oi, grey-tm, yellow-tm, cyan-tm, cyan-tb, grey-tb, yellow-tb,
+    # yellow-d2, orange-oi, cyan-oi, orange-ds, teal-tm e green-d2.
+    # Nenhuma cor pode ter só o nome de uma cor do Bootstrap (blue, red, green…):
+    # o Quarto a usaria no tema do site inteiro.
+
+    # Desmos (Desmos.Colors)
+    red-ds:    "#C74440"
+    blue-ds:   "#2D70B3"
+    green-ds:  "#388C46"
+    purple-ds: "#6042A6"
+    orange-ds: "#FA7E19"
+    black-ds:  "#000000"
+
+    # Okabe–Ito (JXG.paletteWong)
+    orange-oi:  "#E69F00"
+    cyan-oi:    "#56B4E9"   # skyblue
+    teal-oi:    "#009E73"   # bluishgreen
+    yellow-oi:  "#F0E442"
+    blue-oi:    "#0072B2"
+    red-oi:     "#D55E00"   # vermillion
+    magenta-oi: "#CC79A7"   # reddishpurple
+    black-oi:   "#000000"
+
+    # Paul Tol Bright
+    blue-tb:   "#4477AA"
+    cyan-tb:   "#66CCEE"
+    green-tb:  "#228833"
+    yellow-tb: "#CCBB44"
+    red-tb:    "#EE6677"
+    purple-tb: "#AA3377"
+    grey-tb:   "#BBBBBB"
+
+    # Paul Tol Muted
+    blue-tm:        "#332288"   # indigo
+    cyan-tm:        "#88CCEE"
+    teal-tm:        "#44AA99"
+    green-tm:       "#117733"
+    yellow-dark-tm: "#999933"   # olive
+    yellow-tm:      "#DDCC77"   # sand
+    pink-tm:        "#CC6677"   # rose
+    red-tm:         "#882255"   # wine
+    magenta-tm:     "#AA4499"   # purple
+    grey-tm:        "#DDDDDD"   # pale-grey
+
+    # Paul Tol Dark
+    blue-td:   "#222255"
+    cyan-td:   "#225555"
+    green-td:  "#225522"
+    yellow-td: "#666633"
+    red-td:    "#663333"
+    grey-td:   "#555555"
+
+    # IBM Carbon
+    purple-cb:       "#6929C4"   # purple-70
+    purple-light-cb: "#A56EFF"   # purple-50
+    cyan-cb:         "#1192E8"   # cyan-50
+    teal-cb:         "#005D5D"   # teal-70
+    teal-light-cb:   "#009D9A"   # teal-50
+    magenta-cb:      "#9F1853"   # magenta-70
+    pink-cb:         "#EE538B"   # magenta-50
+    red-cb:          "#FA4D56"   # red-50
+    red-dark-cb:     "#570408"   # red-90
+    green-cb:        "#198038"   # green-60
+    blue-cb:         "#002D9C"   # blue-80
+    blue-dark-cb:    "#012749"   # cyan-90
+    yellow-cb:       "#B28600"   # yellow-50
+    orange-cb:       "#8A3800"   # orange-70
+
+    # ColorBrewer Dark2 (sem nomes oficiais: o número entre parênteses)
+    teal-d2:    "#1B9E77"   # 1
+    orange-d2:  "#D95F02"   # 2
+    purple-d2:  "#7570B3"   # 3
+    magenta-d2: "#E7298A"   # 4
+    green-d2:   "#66A61E"   # 5
+    yellow-d2:  "#E6AB02"   # 6
+    brown-d2:   "#A6761D"   # 7
+    grey-d2:    "#666666"   # 8
 
   # Cores semânticas do tema
   foreground: grafite-2

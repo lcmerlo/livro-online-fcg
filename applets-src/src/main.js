@@ -16,7 +16,7 @@ import JXG from "jsxgraph";
 // applets-livro.css, carregado pelo shortcode junto com o bundle.
 import "../node_modules/jsxgraph/distrib/jsxgraph.css";
 
-import { CORES } from "./cores.js";
+import { CORES, paleta } from "./cores.js";
 
 // Registro dos applets: o valor de data-applet no HTML → função que o cria.
 // Cada arquivo de applets/ é um applet: o nome é o do arquivo, sem .js, e a
@@ -114,9 +114,11 @@ document.addEventListener("click", (evento) => {
 });
 
 // Exportações: no formato IIFE, ficam disponíveis no objeto global
-// window.AppletsLivro (útil para testes no console do navegador).
+// window.AppletsLivro (útil para testes no console do navegador, como
+// AppletsLivro.paleta("blue-oi")).
 export {
   CORES,
+  paleta,
   applets,
   instancias,
   iniciarApplet,

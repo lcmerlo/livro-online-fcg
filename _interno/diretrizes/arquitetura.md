@@ -152,7 +152,7 @@ recriada pelo comando correspondente. Nunca edite arquivos dentro de `docs/` ou
 | Arquivo | Finalidade | Quem lê |
 |---|---|---|
 | `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, camadas de tema, filtros, shortcodes, macros, numeração de seções e o tipo personalizado `exrr` (Exercício Resolvido). | Quarto |
-| `_brand.yml` | Paleta nomeada (`azul-2`, `areia-1`…), papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos). O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>`. | Quarto (camada `brand` do tema) |
+| `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`azul-2`, `areia-1`…) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos). O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
 | `_language.yml` | Substitui rótulos padrão do Quarto ("Proof" → "Demonstração"). Lido automaticamente por estar na raiz do projeto. | Quarto |
 | `index.qmd` | Primeira página do livro (sem número de capítulo). | Quarto |
 | `cspell.json` | Dicionário e padrões ignorados pelo verificador ortográfico do editor. | Extensão Code Spell Checker |
@@ -194,9 +194,9 @@ no `_quarto.yml`. Um capítulo combina:
 |---|---|
 | `package.json` | Declara as dependências (`jsxgraph`, `vite`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
-| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss` (e imita a grade do Quarto), que fora do livro não existem, e traz uma amostra das formas de ponto e das setas e o exemplo de applet com várias partes, no HTML que o bloco gera (nada disso vai para o bundle). |
+| `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss` (e imita a grade do Quarto), que fora do livro não existem (o verificador avisa se uma variável repetida difere da do livro), e traz uma amostra das formas de ponto e das setas e o exemplo de applet com várias partes, no HTML que o bloco gera (nada disso vai para o bundle). |
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente, com as partes do bloco em `partes`; trata os cliques em botões `data-reset`. |
-| `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. |
+| `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. `cor(nome)` lê uma variável uma vez e avisa no console quando ela não existe (o objeto ficaria preto); `paleta(nome)` devolve uma cor de `_brand.yml` pelo nome (`paleta("blue-oi")`), para os applets de teste. |
 | `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence; o ponto arrastado não sai da região); só desenha num `.applet-jxg`. `ligarQuadros(...quadros)`: mexer num quadro redesenha os outros. |
 | `src/tools/leitura.js` | `criarLeitura({ id, tex, quadros })`: escreve na parte `.leitura` a fórmula `tex()`, desenhada pelo MathJax da página (com as macros do livro), refeita quando um dos quadros muda; sem MathJax, mostra o TeX. |
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
@@ -210,7 +210,8 @@ no `_quarto.yml`. Um capítulo combina:
 Script Node sem dependências. Verifica:
 
 - **nas fontes** (`index.qmd` e `capitulos/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
-- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado, saltos na hierarquia de títulos (aviso).
+- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado, saltos na hierarquia de títulos (aviso);
+- **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): variável de `applets-src/index.html` com valor diferente do livro; cor lida por `cores.js` (menos as de fundo) com contraste abaixo de 3:1 sobre o fundo do quadro (`--cor-superf-suave`); applet usado no livro que chama `paleta()`.
 
 Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 
@@ -298,6 +299,13 @@ Famílias semânticas de cor (definidas em `custom.scss`, seção 1):
 | `--cor-erro*` | Situações de erro ou contraexemplo |
 
 Cada família tem três tons: `-suave`, normal e `-forte`.
+
+A paleta de `_brand.yml` tem duas seções: as **cores do livro**, as únicas que
+os tokens acima usam, e as **cores de teste**, que são as paletas comparadas no
+JSX-quarto (Desmos, Okabe–Ito, Tol, IBM Carbon, Dark2), com os nomes de lá:
+`<matiz>-<fonte>`, como `blue-oi`. O Quarto cria `--brand-<nome>` para todas.
+Um applet de teste chama uma cor pelo nome, com `paleta("blue-oi")`; um applet
+usado no livro usa `CORES` (`diretrizes-tecnicas.md`, §4.5 e §6).
 
 ### 5.3 Dependências entre os arquivos JavaScript
 
@@ -543,7 +551,14 @@ Quadros ligados e leituras em lugares diferentes da página. O modelo é
 ### Mudar uma cor
 - Cor do tema (fundo, links, títulos): papel ou paleta em `_brand.yml`.
 - Cor de um objeto matemático (site e applets): token `--cor-…` em `custom.scss` (seção 1).
-- Se mudar um token usado pelos applets, atualize também o `:root` de `applets-src/index.html` (só afeta a página de testes).
+- Se mudar um token usado pelos applets, atualize também o `:root` de `applets-src/index.html` (só afeta a página de testes); o verificador avisa se os valores ficarem diferentes.
+
+### Testar cores num applet
+1. Escreva o applet em `src/applets/` e chame as cores pelo nome da paleta de `_brand.yml`: `import { paleta } from "../cores.js";` e `seta(paleta("blue-oi"), { nome: "u" })`. Valem as cores do livro (`laranja-2`) e as de teste (`red-tb`, `purple-cb`…).
+2. Use o applet numa página de `_interno/oficina/testes/` e renderize só ela (`quarto render _interno/oficina/testes/<arquivo>.qmd`), depois de `npm run build`.
+3. Um nome errado aparece no console do navegador ("Cor não encontrada") e deixa o objeto preto. No console, `AppletsLivro.paleta("blue-oi")` mostra o valor de uma cor.
+4. A página de `npm run dev` não tem as variáveis `--brand-…`: ali, `paleta()` dá preto. Teste as cores no projeto de testes.
+5. Antes de o applet ir para um capítulo, troque `paleta()` pelas cores dos papéis (`CORES`); se a cor testada deve ficar, isso é uma decisão (`diretrizes-tecnicas.md`, §6).
 
 ### Criar um novo tipo de bloco didático
 1. Rótulo em `rotulos` de `components/blocos.lua`.

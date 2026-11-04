@@ -147,7 +147,7 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 - **Contas.** Pelas funções de `src/tools/vetores.js` (componentes, soma, produto escalar, norma, ângulo, determinante, coeficientes numa base, projeção…), que a figura e o texto de estado usam juntos. Quando a conta não está definida (vetor nulo, vetores paralelos), o resultado é `NaN`, e o applet decide o que mostrar (§4.4).
 - **Números e fórmulas.** Pelas funções de `src/tools/formatar.js`, o único lugar do formato dos números: `texto.*` no parágrafo de estado (texto simples, lido pelo leitor de tela) e `tex.*`, `expressao` e `equacao` nas fórmulas, em que termos nulos somem. `finito` e `casos` escrevem os casos especiais. Um valor indefinido nunca vira 0 nem some: aparece como "NaN", para que a ficha de aceitação o encontre (escrita provisória: `pendencias.md`, §2).
 - **Unidades.** As contas são feitas em radianos e em unidades do plano; graus só na saída (`texto.angulo`, `tex.angulo`). Um controle mostra a unidade que o estudante lê (graus, voltas) e é convertido para radianos na conta. A velocidade de uma animação é dada em unidades do estado por segundo e escolhida pelo efeito visível. Em radianos, um ângulo aparece como fração de π quando é exatamente (p/q)·π com q de 1 a 9 ou 12, isto é, 2kπ + (m/n)·π com k inteiro, n de 1 a 9 ou 12 e 0 ≤ m < 2n (π/6, 2π/7, 11π/6, 5π/12); os demais, em decimal (π/10 aparece como 0.31).
-- **Cores e estilos.** Sempre pelos estilos de `src/tools/styles.js` e pelas cores de `src/cores.js`, que vêm das variáveis `--cor-…` do livro; nunca cores escritas no applet. Os estilos de ponto e de seta recebem a cor como parâmetro. O modelo atual atribui cor pelo papel didático (manipulável, objeto principal, construção…); cor por identidade do objeto, como no JSX-quarto, é hipótese a testar (`pendencias.md`, §2).
+- **Cores e estilos.** Sempre pelos estilos de `src/tools/styles.js` e pelas cores de `src/cores.js`, que vêm das variáveis `--cor-…` do livro; nunca cores escritas no applet. Os estilos de ponto e de seta recebem a cor como parâmetro. O modelo atual atribui cor pelo papel didático (manipulável, objeto principal, construção…), e o modelo de cor está em aberto (`pendencias.md`, §2). Nos testes, um applet pode chamar qualquer cor de `_brand.yml` pelo nome, com `paleta("blue-oi")` ou `paleta("laranja-2")`, inclusive as cores de teste (§6); num applet usado no livro, a cor vem do papel, e o verificador avisa se ele chamar `paleta()`.
 - **Nomes.** Objetos com o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código em português descritivo, como o código atual, também no que vem da `lib/` do JSX-quarto.
 - **Comentários** explicam o porquê, em português.
 - **Código compartilhado.** Uma construção usada por dois applets vai para um módulo comum (hoje, `src/tools/`); a de um applet só fica no próprio arquivo.
@@ -183,7 +183,7 @@ Diferenças atuais:
 |---|---|---|---|
 | Carregamento | bundle do Vite, só nas páginas com applet | módulos ES, JSXGraph do CDN | padrão do livro: não depende de CDN e a versão fica fixada |
 | Fórmulas | MathJax | KaTeX | hipótese a testar no piloto |
-| Cores | por papel didático | por identidade do objeto | hipótese a testar no piloto |
+| Cores | por papel didático; nos testes, qualquer cor de `_brand.yml` pelo nome (`paleta()`), inclusive as paletas do JSX-quarto | por identidade do objeto (`a`…`e`), com o conjunto de cores escolhido pela quantidade de identidades | modelo em aberto (`pendencias.md`, §2); nos testes, as cores são chamadas pelo nome, sem identidades |
 | Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, quadros ligados, formas dos pontos, seta, toque, contas vetoriais, formatação e leitura com fórmula | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
 | Nomes no código | português | inglês, como o JSXGraph | padrão do livro (§4.5) |
 | Toque | o dedo fora dos pontos rola a página (CSS `touch-action` e cancelamento da rolagem quando o dedo pega um ponto); o ponto mais próximo vence | o quadro bloqueia a rolagem da página; vence o último ponto arrastado | padrão do livro: §4.4 e ficha de aceitação |
@@ -204,7 +204,9 @@ Diferenças atuais:
 
 - **Valores definidos uma vez:** cores na paleta de `_brand.yml`; papéis de cor como variáveis `--cor-…` em `assets/css/custom.scss`. Applets e capítulos usam esses nomes, nunca cores literais (§24, §35).
 - **Cada valor num lugar só.** Quando um valor aparece em dois arquivos, um prevalece e o outro engana: escolha um e apague o outro (caso pendente: o tamanho da fonte, `pendencias.md`, §2).
-- **Novas cores ou outro modelo de cor** entram por decisão, depois de medir o contraste e conferir com simulação de daltonismo (§24, §32).
+- **Duas seções na paleta de `_brand.yml`.** As cores do livro, as únicas que os papéis `--cor-…` usam, e as cores de teste, que são as paletas comparadas no JSX-quarto, com os nomes de lá (`blue-oi`, `red-tb`…). As cores de teste servem aos applets de teste, por `paleta()` (§4.5), e não chegam aos capítulos.
+- **Novas cores no livro ou outro modelo de cor** entram por decisão, depois de medir o contraste e conferir com simulação de daltonismo (§24, §32). Isso vale para a seção do livro e para os papéis; uma cor de teste passa a ser do livro só por essa decisão. Nenhuma cor da paleta pode ter só o nome de uma cor do Bootstrap (`blue`, `red`, `green`…): o Quarto a usaria no tema do site inteiro.
+- **A cópia das variáveis na página de desenvolvimento** (`applets-src/index.html`), que fora do livro não teria cores, é conferida pelo verificador: um valor diferente do livro gera aviso.
 
 ## 7. Nomes e endereços
 

@@ -474,7 +474,7 @@ O sistema inicial deve definir pelo menos:
 - estilo de foco;
 - estilo dos componentes didáticos.
 
-A paleta deve permanecer relativamente pequena. Novas cores, novos papéis ou outro modelo de atribuição de cor (por exemplo, cor pela identidade do objeto) entram por decisão registrada, depois de medidos o contraste e a legibilidade com simulação de daltonismo.
+A paleta deve permanecer relativamente pequena. Novas cores, novos papéis ou outro modelo de atribuição de cor (por exemplo, cor pela identidade do objeto) entram por decisão registrada, depois de medidos o contraste e a legibilidade com simulação de daltonismo. A paleta do livro é a usada nas páginas e nos applets publicados; as cores guardadas para testes ficam numa seção à parte e não chegam aos capítulos (`diretrizes-tecnicas.md`, §6).
 
 ## 25. Layout principal
 

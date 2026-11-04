@@ -32,7 +32,6 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 |---|---|
 | Etapa 2 da adoção do JSX-quarto: contas vetoriais, formatação de números e expressões (da `lib/`) e a regra das unidades (radianos nas contas, graus só na tela) | plano aprovado pelo autor em 2026-11-03; o formato dos números passa a ficar num só lugar |
 | Etapa 3: vários quadros e partes num applet (quadros ligados, leituras com fórmula, arranjos do cap. 10 do estudo do JSX-quarto); falta o autor escolher como as partes se escrevem no `.qmd` (recomendação: um bloco `::: {.applet …}` que envolve as partes) | quadros, controles e leituras em lugares diferentes da página (`diretrizes-tecnicas.md`, §4.5) |
-| Pontos arrastáveis podem sair da região do quadro (conferido no Chrome em 2026-11-03) | o estudante perde o ponto de vista e só o recupera com "Reiniciar"; o JSX-quarto tem a restrição `pontonaregiao` na `lib/` |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 
 ## 4. Inconsistências registradas

@@ -7,7 +7,8 @@
 //   - o plano não se desloca nem muda de escala: nem com o mouse, nem com os
 //     dedos, nem com Shift + setas. A região mostrada faz parte da matemática;
 //   - no toque, um dedo fora dos pontos rola a página, como no resto do
-//     livro; sobre um ponto que se arrasta, arrasta o ponto.
+//     livro; sobre um ponto que se arrasta, arrasta o ponto;
+//   - o ponto arrastado não sai da região mostrada.
 //
 // Uso, dentro da função de criação de um applet:
 //   const board = criarQuadro({ JXG, id, regiao: [-1, 5, 7, -1], eixos: true });
@@ -52,6 +53,30 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
     // Shift continuam movendo o ponto.
     keyboard: { panShift: false },
     ...atributos,
+  });
+
+  // Um ponto arrastado não sai da região mostrada (com o mouse, o dedo ou as
+  // setas): a cada atualização, o ponto livre e visível que saiu volta para a
+  // borda. Pontos ocultos ficam de fora, porque podem estar longe de propósito.
+  board.on("update", () => {
+    const [xMin, yMax, xMax, yMin] = board.getBoundingBox();
+
+    for (const objeto of board.objectsList) {
+      if (
+        objeto.type === JXG.OBJECT_TYPE_POINT &&
+        objeto.isDraggable &&
+        !objeto.evalVisProp("fixed") &&
+        objeto.visPropCalc.visible
+      ) {
+        const x = Math.min(Math.max(objeto.X(), xMin), xMax);
+        const y = Math.min(Math.max(objeto.Y(), yMin), yMax);
+
+        // moveTo atualiza o quadro de novo; nessa segunda vez, nada sai.
+        if (x !== objeto.X() || y !== objeto.Y()) {
+          objeto.moveTo([x, y]);
+        }
+      }
+    }
   });
 
   // Com a área de captura maior (tools/styles.js), dois pontos próximos podem

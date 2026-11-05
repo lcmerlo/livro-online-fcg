@@ -2,13 +2,14 @@
 
 O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a tomar, ajustes previstos e applets a reescrever. Cada item diz o que é, onde está e qual é o próximo passo. Quando um item se resolve, ele sai desta lista; se a solução for uma decisão, ela vai para `decisoes.md` (`diretrizes-tecnicas.md`, §2).
 
-Última revisão: 2026-11-04.
+Última revisão: 2026-11-05.
 
 ## 1. Requisitos ainda não cumpridos
 
 | O quê | Onde | Próximo passo |
 |---|---|---|
 | Toque conferido só no Chrome, com toque simulado (formas dos pontos, rolagem da página, área de captura, pontos dentro do quadro; 2026-11-03 e 2026-11-04) | amostra em `applets-src/index.html` | conferir num celular, de preferência um iPhone e um Android: rodar `(cd applets-src && npm run dev -- --host)` e abrir no celular, na mesma rede Wi-Fi, o endereço "Network" que o Vite mostra. Conferir: o dedo fora dos pontos rola a página; tocar um pouco ao lado de um ponto o arrasta; a pinça amplia a página, e não o plano; o anel aparece mais largo; nenhum ponto sai do quadro |
+| Alternativa ao arraste (§4.4 das diretrizes; WCAG 2.5.7) em todos os applets com pontos arrastáveis: nenhum a tem. Por decisão do autor (2026-11-04, reafirmada em 2026-11-05), ela será decidida no futuro, para todos os applets de uma vez; até lá, um applet novo segue sem ela. Hoje: `teste-cores` (pontas de u e v), a amostra e o exemplo de várias partes da página de desenvolvimento; nenhum está num capítulo | `applets-src/src/applets/`, `applets-src/index.html`, `applets-src/src/exemplos/` | decidir o mecanismo (§2, opções de acessibilidade ativadas pelo leitor) e fazer os controles (§3). Até lá, cada applet novo com arraste entra nesta linha, e a ficha de aceitação dele registra o item como pendente |
 | Imagens sem texto alternativo (11 avisos do verificador em 2026-11-02) | vários capítulos | escrever o `fig-alt` ao revisar cada imagem (`guia-editorial.md`, §5) |
 | Contraste de texto e bordas medido antes das últimas mudanças de cor | medição de 04/10/2026 (§32); `_brand.yml` e `custom.scss` mudaram depois. As cores lidas pelos applets são conferidas pelo verificador desde 2026-11-04 | medir de novo os pares de cor de texto e de bordas |
 | Licença do conteúdo e do código | `README.md`, §43 | definir antes da divulgação pública |
@@ -31,7 +32,7 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Por quê |
 |---|---|
-| Controles dos applets (faixas, botões, caixas de seleção, campos), adaptados da `lib/ui.js` do JSX-quarto, como uma parte `.controles` do bloco `::: {.applet}`, com a posição deles na página | a alternativa ao arraste (§4.4 das diretrizes) depende deles; a etapa 3 (2026-11-04) deixou os controles e a posição deles para quando o primeiro applet precisar, provavelmente o piloto |
+| Controles dos applets (faixas, botões, caixas de seleção, campos), adaptados da `lib/ui.js` do JSX-quarto, como uma parte `.controles` do bloco `::: {.applet}`, com a posição deles na página | a alternativa ao arraste (§4.4 das diretrizes) depende deles (§1); a etapa 3 (2026-11-04) deixou os controles e a posição deles para quando o primeiro applet precisar, provavelmente o piloto |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 | Ferramentas de teste de cor como atributos do bloco `::: {.applet}`: `daltonismo="…"` (`board.emulateColorblindness`, do JSXGraph), `cinza` (`JXG.rgb2bw`) e `trocar="cor:cor …"` (troca as cores no quadro inteiro, para comparar paletas lado a lado sem mudar o applet) | propostas em 2026-11-04 junto com `paleta()` e deixadas para depois. Enquanto isso, o Chrome simula daltonismo na página inteira: Ferramentas do programador > Rendering > Emulate vision deficiencies |
 

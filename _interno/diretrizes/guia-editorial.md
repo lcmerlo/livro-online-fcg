@@ -139,7 +139,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (um checkpoint, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
 - Inserir com `{{< applet <nome> id="…" rotulo="…" >}}` dentro de um `.bloco-interacao`, com a instrução antes e a pergunta depois. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
-- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, ou `.leitura`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
+- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula, os controles em outro lugar) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, `.leitura` ou `.controles`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
 
   ```markdown
   ::::: {.applet nome="nome-do-applet" id="nda" rotulo="Descrição do applet"}
@@ -153,6 +153,7 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
   ```
 
   O div de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina. O texto de estado e o botão "Reiniciar" entram sozinhos no fim do bloco.
+- Os controles (faixas, caixas de seleção, campos, botões) vêm do applet e ficam logo abaixo do quadro, no shortcode e no bloco; o capítulo só escreve a parte `.controles` para pô-los em outro lugar.
 - **Arranjos**, sem CSS no capítulo:
 
   | Para | Escreva |
@@ -161,6 +162,8 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
   | Partes lado a lado, uma embaixo da outra no celular | `:::: {.grid}` em volta das partes e `.g-col-12 .g-col-md-6` em cada uma; outras divisões somam 12 (`.g-col-md-4` com `.g-col-md-8`) |
   | Quadros de tamanho fixo juntos, no centro | `:::: {.grupo}` em volta dos quadros; os que não cabem descem, também no centro |
   | Texto ao lado do applet | `::::: {.grid}` em volta de duas células: `:::: {.g-col-12 .g-col-md-7}` com o applet (shortcode ou bloco) e `:::: {.g-col-12 .g-col-md-5}` com o texto. A primeira célula fica à esquerda e, no celular, em cima |
+  | Controles em outro lugar | no bloco, a parte `::: {#<id>-controles .controles}` onde eles devem ficar; antes do quadro, eles ficam em cima. `.centro` na parte os centraliza; no shortcode, `arranjo="centro"` centraliza o quadro e os controles |
+  | Controles ao lado do quadro, embaixo dele no celular | `:::: {.grid}` em volta do quadro, com `.g-col-12 .g-col-md-7`, e da parte `.controles`, com `.g-col-12 .g-col-md-5`. Na célula estreita, os controles ficam um embaixo do outro |
 
 - Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
 - Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.

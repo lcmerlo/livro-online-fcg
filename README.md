@@ -89,7 +89,9 @@ Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o b
 
 O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página. Hoje o livro não tem nenhum applet JSXGraph em capítulo.
 
-Applet com várias partes (quadros ligados, leitura com fórmula), em lugares que o capítulo escolhe: um bloco envolve as partes, cada uma com id `<id>-<parte>` (arranjos em `_interno/diretrizes/guia-editorial.md`, §6):
+Os controles do applet (faixas, caixas de seleção, campos, botões) ficam logo abaixo do quadro.
+
+Applet com várias partes (quadros ligados, leitura com fórmula, controles em outro lugar), em lugares que o capítulo escolhe: um bloco envolve as partes, cada uma com id `<id>-<parte>` (arranjos em `_interno/diretrizes/guia-editorial.md`, §6):
 
 ::::: {.applet nome="nome-do-applet" id="nda" rotulo="[Descrição do applet]"}
 :::: {.grid}

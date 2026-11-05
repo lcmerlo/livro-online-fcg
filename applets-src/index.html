@@ -12,29 +12,9 @@
       --cor-superf: #fafafa;
       --cor-superf-suave: #ffffff;
 
-      --cor-obj-princ-suave: #3b82f6;
-      --cor-obj-princ: #1d4ed8;
-      --cor-obj-princ-forte: #1e40af;
-
-      --cor-manip-suave: #14a399;
-      --cor-manip: #0f766e;
-      --cor-manip-forte: #0b5e58;
-
-      --cor-constr-suave: #a78bfa;
-      --cor-constr: #7c3aed;
-      --cor-constr-forte: #5b21b6;
-
-      --cor-aux-suave: #94a3b8;
-      --cor-aux: #64748b;
-      --cor-aux-forte: #475569;
-
-      --cor-invar-suave: #d97706;
-      --cor-invar: #b45309;
-      --cor-invar-forte: #92400e;
-
-      --cor-erro-suave: #dc2626;
-      --cor-erro: #b91c1c;
-      --cor-erro-forte: #991b1b;
+      --cor-dado: #1d4ed8;
+      --cor-resultado: #b45309;
+      --cor-apoio: #64748b;
 
       --applet-ponto-raio: 4;
       --applet-anel-largura: 9;
@@ -118,21 +98,21 @@
     // Intervalo: a linha passa por baixo do extremo aberto sem aparecer nele.
     const E = board.create("point", [5, 1.5], { ...pontoAberto(), withLabel: false });
     const F = board.create("point", [8, 1.5], { ...pontoFixo(), withLabel: false });
-    board.create("segment", [E, F], { ...ESTILOS.retaPrinc });
+    board.create("segment", [E, F], { ...ESTILOS.resultado });
 
     // Traços nos eixos.
     board.create("point", [3, 0], { ...pontoFixo(undefined, "|"), withLabel: false });
     board.create("point", [0, 2], { ...pontoFixo(undefined, "-"), withLabel: false });
 
-    // Vetor u com a ponta arrastável e vetor v fixo (a cor definitiva vem
-    // com a decisão sobre o modelo de cor).
-    const P = board.create("point", [1, -1.5], { ...pontoArrastavel(CORES.objPrinc), withLabel: false });
-    const Q = board.create("point", [4, -0.5], pontoArrastavel(CORES.objPrinc, "seta"));
-    board.create("arrow", [P, Q], seta(CORES.objPrinc, { nome: "u" }));
+    // Vetor u, um dado, com a origem e a ponta arrastáveis; vetor v fixo, na
+    // cor do resultado.
+    const P = board.create("point", [1, -1.5], { ...pontoArrastavel(CORES.dado), withLabel: false });
+    const Q = board.create("point", [4, -0.5], pontoArrastavel(CORES.dado, "seta"));
+    board.create("arrow", [P, Q], seta(CORES.dado, { nome: "u" }));
 
-    const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.objConstr), withLabel: false });
-    const S = board.create("point", [8, -0.3], pontoFixo(CORES.objConstr, "seta"));
-    board.create("arrow", [R, S], seta(CORES.objConstr, { nome: "v", lado: "right" }));
+    const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.resultado), withLabel: false });
+    const S = board.create("point", [8, -0.3], pontoFixo(CORES.resultado, "seta"));
+    board.create("arrow", [R, S], seta(CORES.resultado, { nome: "v", lado: "right" }));
 
     // Texto de estado com as contas de tools/vetores.js e a escrita de
     // tools/formatar.js (a conta é a mesma da figura).

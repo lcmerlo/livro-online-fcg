@@ -1,13 +1,14 @@
 // applets-src/src/applets/teste-cores.js
 //
-// Applet de teste, para nenhum capítulo: a mesma soma de vetores em quatro
+// Applet de teste, para nenhum capítulo: a mesma soma de vetores em vários
 // modelos de cor, lado a lado, para comparar a olho e com simulação de
-// daltonismo (pendencias.md, §2, "Modelo de cor dos applets"). Mover a ponta
+// daltonismo. O primeiro é o modelo do livro (papéis enxutos, decisoes.md,
+// 2026-11-04); os outros, alternativas para comparação. Mover a ponta
 // de u ou de v num quadro move a mesma ponta nos outros, para que os quatro
 // mostrem sempre a mesma situação.
 // Página: _interno/oficina/testes/teste-cores.qmd, com um bloco
-// ::: {.applet nome="teste-cores" id="tc"} e as partes (quadros) papeis,
-// enxutos, destaque e okabe; um modelo sem parte na página fica de fora.
+// ::: {.applet nome="teste-cores" id="tc"} e as partes (quadros) livro,
+// destaque e okabe; um modelo sem parte na página fica de fora.
 
 import { CORES, paleta } from "../cores.js";
 import { criarQuadro } from "../tools/quadro.js";
@@ -26,11 +27,9 @@ const V0 = [3, 1];
 // bundle carrega: na página de npm run dev não há as variáveis --brand-….
 function modelos() {
   return {
-    // Papéis atuais: u e v se arrastam (manipulável); a soma é o que o
-    // applet estuda (objeto principal); as cópias são auxiliares.
-    papeis: { u: CORES.objManip, v: CORES.objManip, soma: CORES.objPrinc, apoio: CORES.objAux },
-    // Papéis enxutos: dado, resultado e apoio.
-    enxutos: { u: paleta("azul-8"), v: paleta("azul-8"), soma: paleta("laranja-2"), apoio: paleta("cinza-5") },
+    // O modelo do livro: u e v são dados, a soma é o resultado, e as cópias
+    // que fecham o paralelogramo são apoio.
+    livro: { u: CORES.dado, v: CORES.dado, soma: CORES.resultado, apoio: CORES.apoio },
     // Neutro com um destaque: só o resultado tem cor.
     destaque: { u: paleta("grafite-2"), v: paleta("grafite-2"), soma: paleta("laranja-2"), apoio: paleta("cinza-5") },
     // Uma cor por objeto, com a Okabe–Ito, na ordem usada no JSX-quarto.
@@ -50,7 +49,7 @@ export default function criarTesteCores({ id, JXG, partes = {} }) {
     const U = board.create("point", U0, { ...pontoArrastavel(cor.u, "seta"), snapToGrid: true });
     const V = board.create("point", V0, { ...pontoArrastavel(cor.v, "seta"), snapToGrid: true });
     const S = [() => U.X() + V.X(), () => U.Y() + V.Y()];
-    const apoio = { ...ESTILOS.objAux, strokeColor: cor.apoio, highlightStrokeColor: cor.apoio, fixed: true };
+    const apoio = { ...ESTILOS.apoio, strokeColor: cor.apoio, highlightStrokeColor: cor.apoio, fixed: true };
 
     // Origem sem nome (o JSXGraph daria a ela um nome automático, como "C").
     board.create("point", [0, 0], { ...pontoFixo(CORES.texto), withLabel: false });
@@ -74,7 +73,7 @@ export default function criarTesteCores({ id, JXG, partes = {} }) {
   let espera;
   const descrever = () => {
     if (status) {
-      status.textContent = `Nos quatro quadros, u = ${texto.ponto(u())}, v = ${texto.ponto(v())} e u + v = ${texto.ponto(soma(u(), v()))}.`;
+      status.textContent = `Em todos os quadros, u = ${texto.ponto(u())}, v = ${texto.ponto(v())} e u + v = ${texto.ponto(soma(u(), v()))}.`;
     }
   };
   descrever();

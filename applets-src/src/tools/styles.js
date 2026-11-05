@@ -4,15 +4,16 @@
 // atributos do JSXGraph, espalhado na criação do objeto, podendo ser
 // complementado:
 //   board.create("point", [1, 1], { name: "A", ...pontoArrastavel() });
-//   board.create("segment", [A, B], { ...ESTILOS.retaPrinc });
+//   board.create("segment", [A, B], { ...ESTILOS.resultado });
 //
 // Pontos: a forma diz se o ponto se move (diretrizes-tecnicas.md, §4.5).
 //   pontoArrastavel  disco com anel translúcido, que se reforça sob o cursor
 //                    e com o foco do teclado;
 //   pontoFixo        disco cheio (também o ponto que depende de outros);
 //   pontoAberto      disco vazado: extremo aberto, como num intervalo.
-// Cada um recebe a cor e a forma. O padrão da cor segue o modelo atual, por
-// papel didático (cores.js); a forma padrão é o disco.
+// Cada um recebe a cor e a forma. A cor padrão vem dos papéis de cores.js:
+// dado no ponto arrastável, a cor do texto no fixo e no aberto; a forma
+// padrão é o disco.
 //
 // As medidas vêm das variáveis --applet-… de custom.scss.
 
@@ -73,7 +74,7 @@ function forma(nome, permitidas) {
 const CHEIAS = Object.keys(FORMAS_CHEIAS);
 
 // Ponto que o estudante arrasta (mouse, toque ou teclado).
-export function pontoArrastavel(cor = CORES.objManip, nomeForma = "o") {
+export function pontoArrastavel(cor = CORES.dado, nomeForma = "o") {
   return {
     fixed: false,
     highlight: true,
@@ -161,8 +162,8 @@ function afastarNome(seta) {
 // Seta (vetor): traço com ponta e, se houver, o nome no meio, do lado
 // `lado` ("left" ou "right" do sentido da seta). A ponta tem o tamanho que
 // casa com o ponto de forma "seta" posto nela.
-//   board.create("arrow", [P, Q], seta(CORES.objPrinc, { nome: "u" }));
-export function seta(cor = CORES.objPrinc, { nome = "", lado = "left", espessura = 2.5 } = {}) {
+//   board.create("arrow", [P, Q], seta(CORES.dado, { nome: "u" }));
+export function seta(cor = CORES.dado, { nome = "", lado = "left", espessura = 2.5 } = {}) {
   return {
     fixed: true,
     highlight: false,
@@ -181,46 +182,38 @@ export function seta(cor = CORES.objPrinc, { nome = "", lado = "left", espessura
   };
 }
 
-// Traços, por papel didático. Os atributos highlight* repetem as cores
-// normais para que o objeto não mude de cor quando o mouse passa sobre ele
-// (comportamento padrão do JSXGraph).
+// Traços prontos, por papel (cores.js). A espessura acompanha a
+// importância: resultado, dado, apoio. Os atributos highlight* repetem as
+// cores normais para que o objeto não mude de cor quando o mouse passa sobre
+// ele (comportamento padrão do JSXGraph).
 export const ESTILOS = {
-  // Reta, segmento ou curva que é o objeto principal da ideia
-  retaPrinc: {
-    strokeColor: CORES.objPrinc,
+  // Reta, segmento ou curva que é o resultado da ideia
+  resultado: {
+    strokeColor: CORES.resultado,
     strokeWidth: 3,
-    highlightStrokeColor: CORES.objPrinc,
+    highlightStrokeColor: CORES.resultado,
   },
 
-  // Elemento auxiliar: fino e tracejado (dash 2 = tracejado médio)
-  objAux: {
-    strokeColor: CORES.objAux,
+  // Reta, segmento ou curva dada ou controlada pelo estudante
+  dado: {
+    strokeColor: CORES.dado,
+    strokeWidth: 2.5,
+    highlightStrokeColor: CORES.dado,
+  },
+
+  // Apoio: fino e tracejado (dash 2 = tracejado médio)
+  apoio: {
+    strokeColor: CORES.apoio,
     strokeWidth: 1.5,
     dash: 2,
-    highlightStrokeColor: CORES.objAux,
+    highlightStrokeColor: CORES.apoio,
   },
 
-  // Construção derivada de outros objetos
-  objConstr: {
-    strokeColor: CORES.objConstr,
-    strokeWidth: 2.5,
-    highlightStrokeColor: CORES.objConstr,
-  },
-
-  // Invariante: o que permanece constante quando os objetos se movem
-  invar: {
-    strokeColor: CORES.objInvar,
-    fillColor: CORES.objInvar,
-    strokeWidth: 2.5,
-    highlightStrokeColor: CORES.objInvar,
-  },
-
-  // Erro ou contraexemplo: traço grosso e tracejado curto (dash 1)
-  erro: {
-    strokeColor: CORES.erro,
-    fillColor: CORES.erro,
+  // Erro ou contraexemplo: sem cor própria. Combina-se com o estilo do papel
+  // do objeto, que mantém a cor: { ...ESTILOS.resultado, ...ESTILOS.alerta }.
+  // Traço grosso e tracejado curto (dash 1); o texto de estado diz o que há.
+  alerta: {
     strokeWidth: 3,
     dash: 1,
-    highlightStrokeColor: CORES.erro,
   },
 };

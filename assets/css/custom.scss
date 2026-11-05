@@ -24,7 +24,8 @@ $line-height-base: 1.65;
 
 /* Cada $brand-<nome> é uma cor da paleta de _brand.yml. A interpolação
    #{…} é necessária porque o Sass não avalia expressões dentro de
-   variáveis CSS (--…). Cada família tem três tons: -suave, normal e -forte. */
+   variáveis CSS (--…). Fundos, superfícies, texto e interface têm três
+   tons: -suave, normal e -forte; os papéis dos objetos matemáticos, um só. */
 :root {
   /* Fundos */
   --cor-fundo-suave: #{$brand-areia-1};
@@ -47,38 +48,20 @@ $line-height-base: 1.65;
   --cor-azul-princ-forte: #{$brand-azul-3};
   --cor-azul-apoio: #{$brand-azul-5};
 
-  /* Objetos matemáticos: lidas pelos applets em applets-src/src/cores.js
-     (renomear uma variável aqui exige renomeá-la também lá) */
+  /* Objetos matemáticos dos applets: três papéis, um tom cada, lidos em
+     applets-src/src/cores.js (renomear uma variável aqui exige renomeá-la
+     também lá). Nomes, origem e pontos de referência usam a cor do texto.
+     A forma do ponto diz o que se move; erro ou contraexemplo não tem cor
+     própria (tracejado curto e texto de estado). */
 
-  /* Objeto principal da ideia (ex.: o segmento) */
-  --cor-obj-princ-suave: #{$brand-azul-7};
-  --cor-obj-princ: #{$brand-azul-8};
-  --cor-obj-princ-forte: #{$brand-azul-9};
+  /* Dado: o que o estudante controla ou o que o enunciado fornece (ex.: u e v na soma) */
+  --cor-dado: #{$brand-azul-8};
 
-  /* O que o estudante pode arrastar */
-  --cor-manip-suave: #{$brand-verde-4};
-  --cor-manip: #{$brand-verde-5};
-  --cor-manip-forte: #{$brand-verde-6};
+  /* Resultado: o que o applet calcula a partir dos dados, foco da ideia (ex.: u + v) */
+  --cor-resultado: #{$brand-laranja-2};
 
-  /* Construções derivadas */
-  --cor-constr-suave: #{$brand-roxo-1};
-  --cor-constr: #{$brand-roxo-2};
-  --cor-constr-forte: #{$brand-roxo-3};
-
-  /* Elementos auxiliares (tracejados) */
-  --cor-aux-suave: #{$brand-cinza-4};
-  --cor-aux: #{$brand-cinza-5};
-  --cor-aux-forte: #{$brand-cinza-6};
-
-  /* O que permanece constante */
-  --cor-invar-suave: #{$brand-laranja-1};
-  --cor-invar: #{$brand-laranja-2};
-  --cor-invar-forte: #{$brand-laranja-3};
-
-  /* Situações de erro ou contraexemplo */
-  --cor-erro-suave: #{$brand-vermelho-4};
-  --cor-erro: #{$brand-vermelho-5};
-  --cor-erro-forte: #{$brand-vermelho-6};
+  /* Apoio: construções que ajudam a ler (cópias, projeções, linhas de chamada) */
+  --cor-apoio: #{$brand-cinza-5};
 
   /* Elementos estruturais: borda discreta (cor do texto, 12% de opacidade) */
   --cor-borda-suave: #{rgba($brand-grafite-2, 0.12)};

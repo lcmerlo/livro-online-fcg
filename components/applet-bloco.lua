@@ -62,9 +62,11 @@ local function preparar_parte(div, tipo, id_applet)
     div.attributes["rotulo"] = nil
     div.attributes["aria-label"] = rotulo
   else
-    -- O Pandoc só carrega o MathJax em páginas com fórmulas; esta fórmula
-    -- vazia garante que a leitura tenha o MathJax para desenhar a sua.
-    div.content = pandoc.Blocks({ pandoc.Plain({ pandoc.Math("InlineMath", "") }) })
+    -- O Pandoc só carrega o KaTeX em páginas com fórmulas; esta fórmula
+    -- sem conteúdo visível garante que a leitura tenha o KaTeX para desenhar
+    -- a sua. Uma fórmula vazia não serve: o script do Pandoc que desenha as
+    -- fórmulas da página para ao encontrá-la, e as seguintes ficariam em TeX.
+    div.content = pandoc.Blocks({ pandoc.Plain({ pandoc.Math("InlineMath", "{}") }) })
   end
 
   return div

@@ -1,12 +1,50 @@
-<!-- Macros de matemática (MathJax), incluídas em todas as páginas HTML por
-     _quarto.yml (include-before-body). Documentadas em
-     _interno/diretrizes/guia-editorial.md. -->
-<div style="display:none">\(
-\newcommand{\vet}[1]{\overset{\rightarrow}{#1}}
-\newcommand{\norm}[1]{\lVert #1 \rVert}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\)</div>
+<!-- Macros de matemática, incluídas em todas as páginas HTML por _quarto.yml
+     (include-before-body). Documentadas em
+     _interno/diretrizes/guia-editorial.md, §4.
+
+     A lista é JSON: cada barra invertida do TeX aparece dobrada ("\\R" é \R),
+     e #1 é o argumento. O verificador (tests/verificar-site.mjs) lê esta
+     mesma lista para conferir as fórmulas do livro. -->
+<script type="application/json" id="macros-tex">
+{
+  "\\vet": "\\overset{\\rightarrow}{#1}",
+  "\\norm": "\\lVert #1 \\rVert",
+  "\\N": "\\mathbb{N}",
+  "\\Z": "\\mathbb{Z}",
+  "\\Q": "\\mathbb{Q}",
+  "\\R": "\\mathbb{R}",
+  "\\C": "\\mathbb{C}"
+}
+</script>
+<script>
+// As macros entram no próprio KaTeX, e não nas opções de cada fórmula: assim
+// valem para o texto, para as prévias das referências cruzadas (que o Quarto
+// desenha sem as opções da página) e para as leituras dos applets.
+// __defineMacro é a função que as extensões do KaTeX usam para isso (a do
+// mhchem, por exemplo); como não é uma função pública, um aviso no console
+// denuncia uma versão nova sem ela.
+(function () {
+  function definir() {
+    var macros = JSON.parse(document.getElementById("macros-tex").textContent);
+    if (typeof window.katex.__defineMacro !== "function") {
+      console.warn("[macros] esta versão do KaTeX não tem __defineMacro; as macros do livro não foram definidas");
+      return;
+    }
+    for (var nome in macros) {
+      window.katex.__defineMacro(nome, macros[nome]);
+    }
+  }
+
+  // O Pandoc só põe o KaTeX nas páginas com fórmulas, num script com defer:
+  // ele roda depois desta página ser lida, e o evento load dele vem antes de
+  // as fórmulas serem desenhadas (no DOMContentLoaded).
+  if (window.katex) {
+    definir();
+    return;
+  }
+  var script = document.querySelector('script[src$="katex.min.js"]');
+  if (script) {
+    script.addEventListener("load", definir);
+  }
+})();
+</script>

@@ -2,7 +2,7 @@
 //
 // Como os applets escrevem números, pontos, ângulos e expressões: num só
 // lugar (diretrizes-tecnicas.md, §5). Duas saídas:
-//   tex.*    TeX, para fórmulas desenhadas pelo MathJax (leituras, rótulos);
+//   tex.*    TeX, para fórmulas desenhadas pelo KaTeX (leituras, rótulos);
 //   texto.*  texto simples, para o parágrafo de estado, lido pelo leitor de tela.
 //   import { numero, tex, texto, casos, expressao } from "../tools/formatar.js";
 //   texto.ponto(A)              → "(2.5, 3)"

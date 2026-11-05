@@ -114,7 +114,7 @@ livro-quarto/
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
 │   │   ├── exemplos/           ✏️  Applets de exemplo para `npm run dev` (fora do bundle)
-│   │   └── applets/            ✏️  Um arquivo por applet (hoje vazia; o .gitkeep mantém a pasta no Git)
+│   │   └── applets/            ✏️  Um arquivo por applet (hoje só teste-cores.js, do projeto de testes)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
 ├── tests/
@@ -201,8 +201,8 @@ no `_quarto.yml`. Um capítulo combina:
 | `src/tools/leitura.js` | `criarLeitura({ id, tex, quadros })`: escreve na parte `.leitura` a fórmula `tex()`, desenhada pelo MathJax da página (com as macros do livro), refeita quando um dos quadros muda; sem MathJax, mostra o TeX. |
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
-| `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel didático (`retaPrinc`, `objAux`, `objConstr`, `invar`, `erro`). |
-| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje está vazia: o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
+| `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel (`resultado`, `dado`, `apoio`) e o `alerta` (erro ou contraexemplo, sem cor própria, combinado com o estilo do papel). |
+| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem só `teste-cores.js`, usado na página `_interno/oficina/testes/teste-cores.qmd` (a soma de vetores no modelo de cor do livro e em duas alternativas, lado a lado); o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 | `src/exemplos/` | Applets de exemplo, fora do bundle (`main.js` só registra `src/applets/`): `exemplo-partes.js`, com dois quadros ligados e uma leitura, é o modelo de applet com várias partes e roda na página de `npm run dev`. |
 
 ### 4.6 `tests/verificar-site.mjs`
@@ -265,21 +265,21 @@ flowchart LR
 ### 5.2 Cadeia das cores: de `_brand.yml` até o applet
 
 Uma cor é definida **uma única vez** e chega ao site e aos applets por este
-caminho. Para mudar a cor dos pontos manipuláveis, por exemplo, altere a paleta
-ou o token — não o JavaScript.
+caminho. Para mudar a cor dos dados, por exemplo, altere a paleta ou o token
+— não o JavaScript.
 
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
 flowchart TD
-    b["<b>_brand.yml</b><br/>verde-5: #0F766E"]
-    s["<b>custom.scss</b><br/>--cor-manip:<br/>#{$brand-verde-5}"]
-    css["<b>CSS compilado</b><br/>--cor-manip: #0f766e"]
+    b["<b>_brand.yml</b><br/>azul-8: #1D4ED8"]
+    s["<b>custom.scss</b><br/>--cor-dado:<br/>#{$brand-azul-8}"]
+    css["<b>CSS compilado</b><br/>--cor-dado: #1d4ed8"]
     site["Páginas do livro<br/>(blocos, textos)"]
-    c["<b>cores.js</b><br/>CORES.objManip"]
+    c["<b>cores.js</b><br/>CORES.dado"]
     st["<b>tools/styles.js</b><br/>pontoArrastavel()"]
     a["<b>applets/*.js</b><br/>pontos arrastáveis"]
 
-    b -->|"Quarto cria<br/>$brand-verde-5"| s
+    b -->|"Quarto cria<br/>$brand-azul-8"| s
     s -->|"Sass compila"| css
     css --> site
     css -->|"getComputedStyle<br/>no navegador"| c
@@ -287,18 +287,19 @@ flowchart TD
     st --> a
 ```
 
-Famílias semânticas de cor (definidas em `custom.scss`, seção 1):
+Papéis de cor dos objetos matemáticos (definidos em `custom.scss`, seção 1),
+um tom cada:
 
-| Token | Uso pedagógico |
-|---|---|
-| `--cor-obj-princ*` | Objeto principal da ideia (ex.: o segmento) |
-| `--cor-manip*` | O que o estudante pode arrastar |
-| `--cor-constr*` | Construções derivadas |
-| `--cor-aux*` | Elementos auxiliares (tracejados) |
-| `--cor-invar*` | O que permanece constante |
-| `--cor-erro*` | Situações de erro ou contraexemplo |
+| Token | Cor | Uso pedagógico |
+|---|---|---|
+| `--cor-dado` | `azul-8` | O que o estudante controla ou o que o enunciado fornece (ex.: $\vec u$ e $\vec v$ na soma) |
+| `--cor-resultado` | `laranja-2` | O que o applet calcula a partir dos dados, foco da ideia (ex.: $\vec u + \vec v$) |
+| `--cor-apoio` | `cinza-5` | Construções que ajudam a ler: cópias, projeções, linhas de chamada (tracejadas) |
 
-Cada família tem três tons: `-suave`, normal e `-forte`.
+Nomes, origem e pontos de referência usam a cor do texto (`--cor-texto`). Erro
+ou contraexemplo não tem cor própria: o objeto mantém a cor do papel e recebe
+`ESTILOS.alerta` (traço grosso, tracejado curto), e o texto de estado explica.
+Dois objetos do mesmo papel se distinguem pelo nome junto a eles.
 
 A paleta de `_brand.yml` tem duas seções: as **cores do livro**, as únicas que
 os tokens acima usam, e as **cores de teste**, que são as paletas comparadas no
@@ -559,6 +560,7 @@ Quadros ligados e leituras em lugares diferentes da página. O modelo é
 3. Um nome errado aparece no console do navegador ("Cor não encontrada") e deixa o objeto preto. No console, `AppletsLivro.paleta("blue-oi")` mostra o valor de uma cor.
 4. A página de `npm run dev` não tem as variáveis `--brand-…`: ali, `paleta()` dá preto. Teste as cores no projeto de testes.
 5. Antes de o applet ir para um capítulo, troque `paleta()` pelas cores dos papéis (`CORES`); se a cor testada deve ficar, isso é uma decisão (`diretrizes-tecnicas.md`, §6).
+6. Para comparar modelos de cor, use a página `teste-cores.qmd`: as cores de cada modelo estão na função `modelos()` de `src/applets/teste-cores.js`.
 
 ### Criar um novo tipo de bloco didático
 1. Rótulo em `rotulos` de `components/blocos.lua`.

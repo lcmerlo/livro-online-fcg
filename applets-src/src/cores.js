@@ -36,42 +36,25 @@ export function paleta(nome) {
 }
 
 // Cores dos applets, por papel didático (mesmos nomes da seção "Objetos
-// matemáticos" de custom.scss). Cada papel tem três tons: Suave, base e Forte.
-// Os valores são lidos uma única vez, quando o bundle é carregado.
+// matemáticos" de custom.scss): três papéis, um tom cada. Dois objetos do
+// mesmo papel (u e v) se distinguem pelo nome junto a eles; a forma do ponto
+// diz o que se move (tools/styles.js); erro ou contraexemplo não tem cor
+// própria (ESTILOS.alerta). Os valores são lidos uma única vez, quando o
+// bundle é carregado.
 export const CORES = {
   // Texto e superfícies. superfSuave é o fundo do quadro (o do .bloco-applet,
-  // que fica atrás dele) e preenche o miolo dos pontos abertos.
+  // que fica atrás dele) e preenche o miolo dos pontos abertos. A cor do
+  // texto serve também a nomes, à origem e a pontos de referência.
   texto: cor("--cor-texto"),
   superf: cor("--cor-superf"),
   superfSuave: cor("--cor-superf-suave"),
 
-  // Objeto principal: aquilo que o applet estuda
-  objPrincSuave: cor("--cor-obj-princ-suave"),
-  objPrinc: cor("--cor-obj-princ"),
-  objPrincForte: cor("--cor-obj-princ-forte"),
+  // Dado: o que o estudante controla ou o que o enunciado fornece
+  dado: cor("--cor-dado"),
 
-  // Objetos manipuláveis: o que o leitor pode arrastar
-  objManipSuave: cor("--cor-manip-suave"),
-  objManip: cor("--cor-manip"),
-  objManipForte: cor("--cor-manip-forte"),
+  // Resultado: o que o applet calcula a partir dos dados; o foco da ideia
+  resultado: cor("--cor-resultado"),
 
-  // Construções: objetos obtidos a partir de outros
-  objConstrSuave: cor("--cor-constr-suave"),
-  objConstr: cor("--cor-constr"),
-  objConstrForte: cor("--cor-constr-forte"),
-
-  // Auxiliares: guias, projeções, linhas de apoio
-  objAuxSuave: cor("--cor-aux-suave"),
-  objAux: cor("--cor-aux"),
-  objAuxForte: cor("--cor-aux-forte"),
-
-  // Invariantes: o que se mantém quando os objetos se movem
-  objInvarSuave: cor("--cor-invar-suave"),
-  objInvar: cor("--cor-invar"),
-  objInvarForte: cor("--cor-invar-forte"),
-
-  // Erro: contraexemplos e situações inválidas
-  erroSuave: cor("--cor-erro-suave"),
-  erro: cor("--cor-erro"),
-  erroForte: cor("--cor-erro-forte"),
+  // Apoio: construções que ajudam a ler (cópias, projeções, linhas de chamada)
+  apoio: cor("--cor-apoio"),
 };

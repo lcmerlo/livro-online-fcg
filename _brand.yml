@@ -22,7 +22,6 @@ color:
     grafite-3: "#111827"
 
     cinza-2: "#5B677A"
-    cinza-4: "#94A3B8"
     cinza-5: "#64748B"
     cinza-6: "#475569"
 
@@ -30,28 +29,15 @@ color:
     azul-2: "#1E5B8A"
     azul-3: "#153F60"
     azul-5: "#5B7C99"
-    azul-7: "#3B82F6"
     azul-8: "#1D4ED8"
-    azul-9: "#1E40AF"
 
     verde-2: "#276749"
-    verde-4: "#14A399"
-    verde-5: "#0F766E"
-    verde-6: "#0B5E58"
-
-    roxo-1: "#A78BFA"
-    roxo-2: "#7C3AED"
-    roxo-3: "#5B21B6"
 
     ambar-2: "#946200"
     ambar-3: "#6B4700"
 
-    laranja-1: "#D97706"
     laranja-2: "#B45309"
-    laranja-3: "#92400E"
 
-    vermelho-4: "#DC2626"
-    vermelho-5: "#B91C1C"
     vermelho-6: "#991B1B"
 
     # ---- Cores de teste (do JSX-quarto) ----
@@ -158,7 +144,6 @@ color:
 
   light: branco-1
   dark: grafite-2
-
 
 typography:
   #fonts:

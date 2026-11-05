@@ -1,0 +1,57 @@
+---
+title: "Teste dos controles"
+---
+
+<!-- Página de teste dos controles dos applets (pendencias.md, plano de
+     2026-11-05): o mesmo applet em quatro arranjos.
+     Renderizar: (cd applets-src && npm run build) e
+     quarto render _interno/oficina/testes/teste-controles.qmd
+     O applet está em applets-src/src/applets/teste-controles.js; os
+     controles, em applets-src/src/tools/controles.js e tools/estado.js. -->
+
+O vetor $\vec{u}$, de ponta arrastável, e o vetor $a\vec{u}$, com uma faixa e um campo para o número $a$, uma caixa que mostra a reta de $\vec{u}$ e o botão Animar. Os quatro applets são independentes.
+
+O que conferir em cada arranjo:
+
+1. A faixa e o campo acompanham um ao outro, e o texto de estado acompanha os dois. O campo aceita `1.5` e `1,5`; um valor fora de $[-2, 2]$ vira a ponta mais próxima, e um texto que não é número é desfeito.
+2. Só com o teclado: Tab passa pelo ponto, pela faixa, pelo campo, pela caixa, pelo botão Animar e pelo Reiniciar, nessa ordem (no terceiro arranjo, os controles vêm antes do ponto); as setas movem a faixa; Enter confirma o campo; a barra de espaço marca a caixa e aciona os botões.
+3. O botão Animar começa a animação, e Pausar a para. Mexer na faixa ou no campo também a para; arrastar a ponta de $\vec{u}$, não.
+4. Reiniciar volta a ponta de $\vec{u}$, o número $a$, a caixa e o botão ao início, e para a animação.
+5. Com o VoiceOver (Cmd+F5 no Mac): a faixa se chama "a" e diz o valor; o campo se chama "digite a"; a caixa, "mostrar a reta de u"; o botão diz "Animar" ou "Pausar".
+6. Larguras: 320, cerca de 800 e 1200 px, e as intermediárias em que o menu lateral aparece. Nenhum controle passa da borda; no segundo arranjo, os controles ficam ao lado do quadro a partir de 768 px e embaixo dele antes disso.
+
+## Controles embaixo do quadro
+
+O shortcode `{{{< applet >}}}`, sem parte de controles: eles ficam logo abaixo do quadro.
+
+{{< applet teste-controles id="tcl-embaixo" rotulo="Os vetores u e a·u, com os controles embaixo" >}}
+
+## Controles ao lado do quadro
+
+O bloco `::: {.applet}`, com o quadro e os controles numa grade de 7 e 5 colunas.
+
+::::: {.applet nome="teste-controles" id="tcl-lado" rotulo="Os vetores u e a·u, com os controles ao lado"}
+:::: {.grid}
+::: {#tcl-lado-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, controles ao lado"}
+:::
+::: {#tcl-lado-controles .controles .g-col-12 .g-col-md-5}
+:::
+::::
+:::::
+
+## Controles em cima do quadro
+
+O bloco, com a parte de controles antes do quadro.
+
+:::: {.applet nome="teste-controles" id="tcl-cima" rotulo="Os vetores u e a·u, com os controles em cima"}
+::: {#tcl-cima-controles .controles}
+:::
+::: {#tcl-cima-figura .quadro rotulo="Quadro com os vetores u e a·u, controles em cima"}
+:::
+::::
+
+## Quadro estreito no centro
+
+O shortcode com `arranjo="estreito centro"`: o quadro e os controles ficam no centro.
+
+{{< applet teste-controles id="tcl-centro" rotulo="Os vetores u e a·u, num quadro estreito no centro" arranjo="estreito centro" >}}

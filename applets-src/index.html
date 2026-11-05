@@ -33,7 +33,39 @@
     /* Imita a grade do Quarto (.grid, .g-col-…), que o livro já tem. */
     .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
     .g-col-12 { grid-column: auto / span 12; }
-    @media (min-width: 768px) { .g-col-md-6 { grid-column: auto / span 6; } }
+    @media (min-width: 768px) {
+      .g-col-md-5 { grid-column: auto / span 5; }
+      .g-col-md-6 { grid-column: auto / span 6; }
+      .g-col-md-7 { grid-column: auto / span 7; }
+    }
+    /* Controles (src/tools/controles.js): o essencial da seção de custom.scss. */
+    .applet-controles { display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: .5rem 1.25rem; margin: .75rem 0; accent-color: var(--cor-dado); }
+    .applet-controle { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; max-width: 100%; min-height: 24px; }
+    .applet-campo input { width: 5rem; font: inherit; }
+    .applet-faixa input[type="range"] {
+      --cursor: calc(1px * var(--applet-ponto-raio) + 1px + .5px * var(--applet-anel-largura));
+      --anel: var(--applet-anel-opacidade);
+      -webkit-appearance: none; appearance: none; flex: 0 1 10rem; width: 10rem; min-width: 4rem;
+      height: max(24px, 2 * var(--cursor)); margin: 0; cursor: pointer;
+      background:
+        linear-gradient(var(--cor-dado), var(--cor-dado)) var(--cursor) center / calc(var(--fracao, 0) * (100% - 2 * var(--cursor))) 3px no-repeat,
+        linear-gradient(var(--cor-apoio), var(--cor-apoio)) center / calc(100% - 2 * var(--cursor)) 1px no-repeat;
+    }
+    .applet-faixa input[type="range"]:is(:hover, :active, :focus-visible) { --anel: var(--applet-anel-opacidade-destaque); }
+    .applet-faixa input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; box-sizing: border-box; width: calc(2 * var(--cursor)); height: calc(2 * var(--cursor)); border-radius: 50%;
+      border: calc(.5px * var(--applet-anel-largura)) solid color-mix(in srgb, var(--cor-dado) calc(100% * var(--anel)), transparent);
+      background: padding-box var(--cor-dado);
+    }
+    .applet-faixa input[type="range"]::-moz-range-thumb {
+      box-sizing: border-box; width: calc(2 * var(--cursor)); height: calc(2 * var(--cursor)); border-radius: 50%;
+      border: calc(.5px * var(--applet-anel-largura)) solid color-mix(in srgb, var(--cor-dado) calc(100% * var(--anel)), transparent);
+      background: padding-box var(--cor-dado);
+    }
+    .applet-faixa input[type="range"]::-moz-range-track { background: none; }
+    .applet-valor { flex: none; min-width: 4.5rem; font-variant-numeric: tabular-nums; }
+    .applet-controles button { display: inline-flex; align-items: center; gap: .4em; }
+    .applet-controles button svg { width: .75em; height: .75em; fill: currentColor; }
   </style>
 </head>
 <body>
@@ -66,6 +98,24 @@
     <div id="ep-leitura" class="applet-leitura" data-parte="leitura"></div>
     <p id="ep-status" class="applet-status" role="status" aria-live="polite"></p>
     <button type="button" class="applet-botao" data-reset="ep">Reiniciar applet</button>
+  </div>
+
+  <h2>Controles</h2>
+  <p>O applet de teste dos controles (<code>src/applets/teste-controles.js</code>) em dois arranjos. No primeiro, o HTML do shortcode: os controles entram sozinhos logo abaixo do quadro. No segundo, o HTML do bloco, com a parte de controles ao lado do quadro a partir de 768 px. A faixa e o campo acompanham um ao outro; o botão Animar faz <i>a</i> ir de −2 a 2 e voltar; mexer na faixa ou no campo para a animação, e Reiniciar volta tudo. Sem o KaTeX, o valor da faixa e as fórmulas dos rótulos aparecem em TeX.</p>
+
+  <div class="bloco-applet">
+    <div id="tc-embaixo" class="applet-jxg" data-applet="teste-controles" aria-label="Os vetores u e a·u, com os controles embaixo"></div>
+    <p id="tc-embaixo-status" class="applet-status" role="status" aria-live="polite"></p>
+    <button type="button" class="applet-botao" data-reset="tc-embaixo">Reiniciar applet</button>
+  </div>
+
+  <div id="tc-lado" class="bloco-applet" data-applet="teste-controles" role="group" aria-label="Os vetores u e a·u, com os controles ao lado">
+    <div class="grid">
+      <div id="tc-lado-figura" class="applet-jxg g-col-12 g-col-md-7" data-parte="figura" aria-label="Quadro com os vetores u e a·u, controles ao lado"></div>
+      <div id="tc-lado-controles" class="applet-controles g-col-12 g-col-md-5" data-parte="controles"></div>
+    </div>
+    <p id="tc-lado-status" class="applet-status" role="status" aria-live="polite"></p>
+    <button type="button" class="applet-botao" data-reset="tc-lado">Reiniciar applet</button>
   </div>
 
   <!-- espaço para conferir a rolagem da página com o dedo sobre o quadro -->

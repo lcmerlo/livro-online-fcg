@@ -14,6 +14,7 @@
   "description": "",
   "type": "module",
   "devDependencies": {
+    "katex": "0.16.47",
     "vite": "^8.0.13"
   },
   "dependencies": {

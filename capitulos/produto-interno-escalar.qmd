@@ -48,7 +48,7 @@ O produto interno entre $\vec{u}$ e $\vec{v}$ satisfaz
 
 $$
 \left\langle\vec{u},\vec{v}\right\rangle=\norm{\vec{u}}\:\norm{\vec{v}} \cos \sphericalangle
-(﻿\vec{u},\vec{v}).
+(\vec{u},\vec{v}).
 $$
 :::
 

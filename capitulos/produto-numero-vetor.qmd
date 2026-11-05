@@ -13,7 +13,7 @@ Valem as seguintes propriedades.
 
 1.  $1\vec{v}=\vec{v}$; 
 2.  $(ab)\vec{v}=a(b\vec{v})=b(a\vec{v})$;
-3.  Se $\vec{v}\ne\vec{0}$ então:  $a\vec{v}=b\vec{v}  \Leftrightarrow a=$b;
+3.  Se $\vec{v}\ne\vec{0}$ então:  $a\vec{v}=b\vec{v} \Leftrightarrow a=b$;
 4.  Se $a\ne0$ então:  $a\vec{v}=a\vec{w} \Leftrightarrow \vec{v}=\vec{w}$;
 5. $\norm{a\vec{v}}=|a|\cdot\norm{\vec{v}}$.
 :::

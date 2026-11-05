@@ -42,7 +42,7 @@ O segmento  $AC$ (*obtido ligando o ponto inicial com ponto inicial*)  e o segm
 
 **Caso 2:**  Se $AB$ e $CD$ tem mesma reta suporte $r$:
 
-Vamos usar um artificio para aplicar o caso 1.  Tome uma reta   $s$   paralela à reta  $r$ e sobre   $s$    considere um segmento  $A'B'$  que tenha mesmo sentido que $AB$ de acordo com o caso 1.  Neste caso, $AB$ e $CD$ terão o mesmo sentido se $CD$ também tem o mesmo sentido de  $A’B’$ de acordo com o caso 1.
+Vamos usar um artificio para aplicar o caso 1.  Tome uma reta   $s$   paralela à reta  $r$ e sobre   $s$    considere um segmento  $A'B'$  que tenha mesmo sentido que $AB$ de acordo com o caso 1.  Neste caso, $AB$ e $CD$ terão o mesmo sentido se $CD$ também tem o mesmo sentido de  $A'B'$ de acordo com o caso 1.
 
 ![](../assets/img/segmentos-orientados/Untitled.png)
 

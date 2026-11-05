@@ -4,7 +4,7 @@
 // modelos de cor, lado a lado, para comparar a olho e com simulação de
 // daltonismo. O primeiro é o modelo do livro (papéis enxutos, decisoes.md,
 // 2026-11-04); os outros, alternativas para comparação. Mover a ponta
-// de u ou de v num quadro move a mesma ponta nos outros, para que os quatro
+// de u ou de v num quadro move a mesma ponta nos outros, para que todos
 // mostrem sempre a mesma situação.
 // Página: _interno/oficina/testes/teste-cores.qmd, com um bloco
 // ::: {.applet nome="teste-cores" id="tc"} e as partes (quadros) livro,

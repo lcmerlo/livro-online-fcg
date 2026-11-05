@@ -32,10 +32,39 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Por quê |
 |---|---|
-| Controles dos applets (faixas, botões, caixas de seleção, campos), adaptados da `lib/ui.js` do JSX-quarto, como uma parte `.controles` do bloco `::: {.applet}`, com a posição deles na página | a alternativa ao arraste (§4.4 das diretrizes) depende deles (§1); a etapa 3 (2026-11-04) deixou os controles e a posição deles para quando o primeiro applet precisar, provavelmente o piloto |
+| Controles dos applets (faixas, botões, caixas de seleção, campos), adaptados da `lib/ui.js` do JSX-quarto, com a posição deles na página. Plano aprovado em 2026-11-05: §3.1 | a alternativa ao arraste (§4.4 das diretrizes) depende deles (§1); a etapa 3 (2026-11-04) deixou os controles e a posição deles para quando o primeiro applet precisar; o autor pediu que fossem feitos antes |
 | Piloto: combinação linear (2 de 2) reescrita em JSXGraph, no projeto de testes (`_interno/oficina/testes/`) | responde às hipóteses da seção 2 |
 | Ferramentas de teste de cor como atributos do bloco `::: {.applet}`: `daltonismo="…"` (`board.emulateColorblindness`, do JSXGraph), `cinza` (`JXG.rgb2bw`) e `trocar="cor:cor …"` (troca as cores no quadro inteiro, para comparar paletas lado a lado sem mudar o applet) | propostas em 2026-11-04 junto com `paleta()` e deixadas para depois. Enquanto isso, o Chrome simula daltonismo na página inteira: Ferramentas do programador > Rendering > Emulate vision deficiencies |
 | Retirar o aviso "Material em construção. Uso não recomendado no momento!" (`website.announcement`, em `_quarto.yml`) | o aviso vale só enquanto o livro está em testes; sai na divulgação ao público-alvo |
+
+### 3.1 Plano dos controles (aprovado em 2026-11-05)
+
+Branch `controles`. Começar por ler `diretrizes-tecnicas.md` §4, `arquitetura.md` §4.5 e §7, `guia-editorial.md` §6, e no JSX-quarto `lib/ui.js`, `lib/core.js` (`state`, `animate`), `styles/jsxgraph.scss` (bloco "Controles e leituras") e `estudo/10-layout.qmd` (§5.3 e §7).
+
+**Diagnóstico.** A `lib/ui.js` tem faixa, caixa de seleção, botões de opção, botão ▶/⏸, campo numérico e painel. Todos dependem de duas peças de `lib/core.js` que o livro não tem: o estado (os valores que o estudante controla; mudar um valor redesenha os quadros e atualiza os controles) e a animação. Na adaptação, cinco diferenças:
+
+1. Campo numérico: a lib usa `type="number"`, cujo separador decimal varia com o navegador e o idioma da página (`pt-BR`; o Firefox pode mostrar e exigir `1,5`). No livro: campo de texto com `inputmode="decimal"`, que aceita `1.5` e `1,5` e mostra o valor com `numero()` de `formatar.js`.
+2. Leitor de tela: na lib, o nome da faixa muda a cada valor, e o botão ▶ troca de texto e ainda usa `aria-pressed` ("Pausar, pressionado"). No livro: nome fixo (`aria-label`, texto simples), valor em `aria-valuetext` (texto simples, de `texto.*`), TeX visível com `aria-hidden`; botão sem `aria-pressed`, só o texto muda; símbolos ▶/⏸ com `aria-hidden`.
+3. Animação: a lib permite começar sozinha (o applet seno-cosseno começa animado). No livro (§4.4), só pelo botão; ela para quando outro código muda o mesmo valor (o estudante mexe na faixa) e no reinício. Com "Reduzir movimento", o botão continua funcionando, porque a animação só começa a pedido do estudante (leitura do §4.4 aprovada pelo autor).
+4. Cor: a lib usa a identidade do objeto; no livro, a faixa usa o papel dado (`--cor-dado`), "o que o estudante controla".
+5. Nomes em português.
+
+**Plano.**
+
+1. `src/tools/estado.js` (novo): `criarEstado(valoresIniciais, ...quadros)`, com leitura e escrita por chave, `on(ouvinte)` e `reiniciar()` (volta tudo ao início e avisa todos os ouvintes, mesmo sem mudança de valor); `criarAnimacao(estado, chave, { min, max, velocidade, modo })`, com `tocar`, `pausar`, `alternar`, `tocando`, `on`.
+2. `src/tools/controles.js` (novo): `criarFaixa`, `criarCaixa` (caixa de seleção), `criarCampo` (campo numérico), `criarBotao` (ação qualquer) e `criarBotaoAnimacao` (Animar/Pausar). Cada controle recebe a parte onde fica, o estado e a chave; sem função de painel.
+3. Posição:
+   - por padrão, os controles ficam logo abaixo do quadro: quando o capítulo não escreveu uma parte de controles, o próprio `controles.js` cria o contêiner (`div.applet-controles`) logo antes do texto de estado (`<id>-status`). Assim, o applet de um quadro com controles continua no shortcode `{{< applet >}}`, e esquecer a parte não faz os controles sumirem. O filtro e `main.js` não mudam para isso;
+   - a parte `.controles` do bloco `::: {.applet}` (`applet-bloco.lua`, como `.quadro` e `.leitura`: vira `div.applet-controles` com `data-parte`) põe os controles em outro lugar: em cima, ou ao lado do quadro, numa célula da grade. Se as fórmulas dos controles precisarem do KaTeX, a parte recebe a fórmula invisível `{}`, como a leitura;
+   - uma parte por lugar, sem painel por linha: os controles seguem a ordem do código (que é também a da tecla Tab) e passam para a linha de baixo quando não cabem;
+   - `.centro` centraliza os controles; no shortcode, `arranjo="centro"` vale para o quadro e para os controles.
+4. Aparência (`custom.scss`, seção dos applets): cursor da faixa igual ao ponto arrastável (disco com anel, medidas `--applet-…`, cor do dado; anel reforçado sob o cursor e com o foco, mais o contorno de foco do site), trilho fino e trecho grosso até o valor, como no JSX-quarto; área de toque de pelo menos 24 px (WCAG 2.5.8); faixa que encolhe numa célula estreita; botões com a aparência do "Reiniciar"; a parte nova entra nas regras de margem existentes (`.grid > …`), sem refazer o CSS atual. Repetir em `applets-src/index.html` o que a página de desenvolvimento precisar.
+5. Teste: applet `src/applets/teste-controles.js` (para nenhum capítulo, como `teste-cores`), numa página de `_interno/oficina/testes/` e na página de desenvolvimento: vetor u arrastável e o vetor a·u, com faixa e campo para a (um acompanha o outro), uma caixa de seleção e o botão Animar. Quatro arranjos: shortcode com controles embaixo; bloco com controles ao lado do quadro; controles em cima; quadro estreito centralizado. Conferir no Chrome a 320, ~800 e 1200 px e nas larguras intermediárias em que o menu lateral aparece, só com o teclado, com toque simulado, com o reinício (pontos, valores e animação) e com "Reduzir movimento"; ficha de aceitação (`diretrizes-tecnicas.md` §4.6) no que couber.
+6. Documentos: `diretrizes-tecnicas.md` §4.5 (substituir a frase "Os controles … entram quando o livro tiver controles") e §4.7 (linha "Controles"); `guia-editorial.md` §6 (duas linhas na tabela de arranjos: controles em outro lugar; controles ao lado do quadro); `arquitetura.md` §3, §4.3, §4.5, §5.3 e §7; `README.md` e `AGENTS.md` se citarem o assunto; `cspell.json`; este item sai da §3, e a linha da alternativa ao arraste (§1) passa a dizer que os controles existem; uma linha em `decisoes.md`.
+
+**Fora do plano**, por decisão de 2026-11-05: coluna automática numa célula da grade (a quebra de linha basta), espaçamento único no bloco (mexeria no CSS da etapa 3 sem ganho atual), botões de opção e faixa vertical (entram quando um applet precisar), texto contornando o quadro, texto em colunas e applet na margem, e a alternativa ao arraste (adiada, §1).
+
+**Custo e como desfazer:** dois arquivos novos (cerca de 100 e 200 linhas), algumas dezenas de linhas de CSS e o tipo de parte novo no filtro. Para desfazer, apagar os dois arquivos, a parte `.controles` e o CSS dos controles; nada fora dos applets depende deles.
 
 ## 4. Inconsistências registradas
 

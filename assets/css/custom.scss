@@ -401,7 +401,8 @@ p:has(> .bloco-rotulo) {
 
 /* Na grade, o espaço entre as partes vem do gap */
 .grid > .applet-jxg,
-.grid > .applet-leitura {
+.grid > .applet-leitura,
+.grid > .applet-controles {
   margin: 0;
 }
 
@@ -466,6 +467,138 @@ p:has(> .bloco-rotulo) {
 
 .applet-arrastavel:focus-visible {
   stroke-opacity: var(--applet-anel-opacidade-destaque);
+}
+
+/* Controles (applets-src/src/tools/controles.js): faixas, caixas de
+   seleção, campos e botões, na ordem do código (que é a da tecla Tab), numa
+   linha que passa para a de baixo quando não cabe. Ficam logo abaixo do
+   quadro, ou na parte .controles do bloco ::: {.applet}, onde o capítulo a
+   puser (guia-editorial.md, §6). */
+.applet-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* numa célula da grade mais alta que eles, as linhas ficam no alto */
+  align-content: flex-start;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 0.75rem;
+  /* a marca da caixa de seleção na cor do dado: o que o estudante controla */
+  accent-color: var(--cor-dado);
+}
+
+/* A fórmula sem conteúdo que o filtro põe na parte para carregar o KaTeX
+   (components/applet-bloco.lua) não ocupa lugar na linha */
+.applet-controles > .math {
+  display: none;
+}
+
+/* .centro na parte; no shortcode, arranjo="centro" vale também aqui */
+.applet-controles.centro {
+  justify-content: center;
+}
+
+/* Um controle (a faixa com o seu valor, a caixa ou o campo com o rótulo):
+   alvo de pelo menos 24 px de altura (WCAG 2.5.8); numa célula estreita,
+   encolhe em vez de passar da borda */
+.applet-controle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 24px;
+}
+
+.applet-caixa input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+}
+
+/* Borda na cor do apoio: o campo precisa de 3:1 sobre o fundo (§32) */
+.applet-campo input {
+  width: 5rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--cor-apoio);
+  border-radius: 0.375rem;
+  background: var(--cor-superf-suave);
+  color: var(--cor-texto);
+  font: inherit;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Faixa com o traço da faixa do JSXGraph: trilho fino e, até o valor
+   (--fracao, de controles.js), um trecho grosso na cor do dado. O cursor é
+   o ponto arrastável: disco com anel translúcido, que se reforça sob o
+   mouse e com o foco do teclado (com o contorno de foco do site, da seção
+   Acessibilidade). --cursor é o raio do disco, 1 px a mais, somado à metade
+   do anel, como no JSX-quarto; no toque, o anel mais largo dá 24 px. */
+.applet-faixa input[type="range"] {
+  --cursor: calc(1px * var(--applet-ponto-raio) + 1px + 0.5px * var(--applet-anel-largura));
+  --anel: var(--applet-anel-opacidade);
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 0 1 10rem;
+  width: 10rem;
+  min-width: 4rem;
+  height: max(24px, 2 * var(--cursor));
+  margin: 0;
+  background:
+    linear-gradient(var(--cor-dado), var(--cor-dado)) var(--cursor) center / calc(var(--fracao, 0) * (100% - 2 * var(--cursor))) 3px no-repeat,
+    linear-gradient(var(--cor-apoio), var(--cor-apoio)) center / calc(100% - 2 * var(--cursor)) 1px no-repeat;
+  cursor: pointer;
+}
+
+.applet-faixa input[type="range"]:is(:hover, :active, :focus-visible) {
+  --anel: var(--applet-anel-opacidade-destaque);
+}
+
+/* Cada navegador tem o seu cursor, e um seletor desconhecido anula a regra
+   inteira: uma regra para cada um */
+@mixin applet-cursor-da-faixa {
+  box-sizing: border-box;
+  width: calc(2 * var(--cursor));
+  height: calc(2 * var(--cursor));
+  border: calc(0.5px * var(--applet-anel-largura)) solid color-mix(in srgb, var(--cor-dado) calc(100% * var(--anel)), transparent);
+  border-radius: 50%;
+  background: padding-box var(--cor-dado);
+}
+
+.applet-faixa input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  @include applet-cursor-da-faixa;
+}
+
+.applet-faixa input[type="range"]::-moz-range-thumb {
+  @include applet-cursor-da-faixa;
+}
+
+.applet-faixa input[type="range"]::-moz-range-track {
+  background: none;
+}
+
+/* O valor ao lado da faixa (a = 1.5): largura mínima, para a faixa não
+   pular quando o número muda de tamanho */
+.applet-valor {
+  flex: none;
+  min-width: 4.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Botão Animar/Pausar: o símbolo ao lado do texto */
+.applet-controles .applet-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.applet-botao svg {
+  width: 0.75em;
+  height: 0.75em;
+  fill: currentColor;
 }
 
 /* Descrição do estado do applet, preenchida pelo JavaScript */

@@ -1,5 +1,5 @@
--- Bloco de um applet com várias partes (quadros e leituras), escrito no
--- capítulo (guia-editorial.md, §3 e §6):
+-- Bloco de um applet com várias partes (quadros, leituras e controles),
+-- escrito no capítulo (guia-editorial.md, §3 e §6):
 --
 --   ::::: {.applet nome="nome-do-applet" id="nda" rotulo="Descrição do applet"}
 --   :::: {.grid}
@@ -16,13 +16,16 @@
 -- o texto de estado e o botão "Reiniciar" no fim. Cada parte tem id
 -- <id>-<parte>; o applet a recebe pelo nome da parte, em `partes`
 -- (applets-src/src/main.js).
---   .quadro   → <div class="applet-jxg" aria-label="rotulo">, onde o JSXGraph desenha
---   .leitura  → <div class="applet-leitura">, onde o applet escreve uma fórmula
+--   .quadro     → <div class="applet-jxg" aria-label="rotulo">, onde o JSXGraph desenha
+--   .leitura    → <div class="applet-leitura">, onde o applet escreve uma fórmula
+--   .controles  → <div class="applet-controles">, onde o applet põe os controles
+--                 (applets-src/src/tools/controles.js); sem ela, eles ficam
+--                 logo abaixo do quadro
 
 local comum = require("applet-comum")
 
 -- Classe da parte no capítulo → classe no HTML.
-local PARTES = { quadro = "applet-jxg", leitura = "applet-leitura" }
+local PARTES = { quadro = "applet-jxg", leitura = "applet-leitura", controles = "applet-controles" }
 
 local function tipo_da_parte(div)
   for tipo in pairs(PARTES) do
@@ -63,8 +66,9 @@ local function preparar_parte(div, tipo, id_applet)
     div.attributes["aria-label"] = rotulo
   else
     -- O Pandoc só carrega o KaTeX em páginas com fórmulas; esta fórmula
-    -- sem conteúdo visível garante que a leitura tenha o KaTeX para desenhar
-    -- a sua. Uma fórmula vazia não serve: o script do Pandoc que desenha as
+    -- sem conteúdo visível garante que a leitura e os controles tenham o
+    -- KaTeX para desenhar as suas (nos controles, custom.scss a esconde).
+    -- Uma fórmula vazia não serve: o script do Pandoc que desenha as
     -- fórmulas da página para ao encontrá-la, e as seguintes ficariam em TeX.
     div.content = pandoc.Blocks({ pandoc.Plain({ pandoc.Math("InlineMath", "{}") }) })
   end

@@ -98,21 +98,21 @@
     // Intervalo: a linha passa por baixo do extremo aberto sem aparecer nele.
     const E = board.create("point", [5, 1.5], { ...pontoAberto(), withLabel: false });
     const F = board.create("point", [8, 1.5], { ...pontoFixo(), withLabel: false });
-    board.create("segment", [E, F], { ...ESTILOS.resultado });
+    board.create("segment", [E, F], { ...ESTILOS.dado });
 
     // Traços nos eixos.
     board.create("point", [3, 0], { ...pontoFixo(undefined, "|"), withLabel: false });
     board.create("point", [0, 2], { ...pontoFixo(undefined, "-"), withLabel: false });
 
-    // Vetor u, um dado, com a origem e a ponta arrastáveis; vetor v fixo, na
-    // cor do resultado.
+    // Vetores u e v, dois dados: u com a origem e a ponta arrastáveis, v fixo.
+    // Os dois têm a mesma cor; a forma do ponto diz o que se move.
     const P = board.create("point", [1, -1.5], { ...pontoArrastavel(CORES.dado), withLabel: false });
     const Q = board.create("point", [4, -0.5], pontoArrastavel(CORES.dado, "seta"));
     board.create("arrow", [P, Q], seta(CORES.dado, { nome: "u" }));
 
-    const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.resultado), withLabel: false });
-    const S = board.create("point", [8, -0.3], pontoFixo(CORES.resultado, "seta"));
-    board.create("arrow", [R, S], seta(CORES.resultado, { nome: "v", lado: "right" }));
+    const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.dado), withLabel: false });
+    const S = board.create("point", [8, -0.3], pontoFixo(CORES.dado, "seta"));
+    board.create("arrow", [R, S], seta(CORES.dado, { nome: "v", lado: "right" }));
 
     // Texto de estado com as contas de tools/vetores.js e a escrita de
     // tools/formatar.js (a conta é a mesma da figura).

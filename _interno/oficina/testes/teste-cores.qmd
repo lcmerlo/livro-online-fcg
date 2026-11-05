@@ -19,27 +19,27 @@ O que observar:
 3. Qual quadro fica mais fácil de ler, e qual cansa?
 4. Com daltonismo simulado, algum par de cores se confunde? No Chrome: Ver > Programador > Ferramentas do programador, menu ⋮ > More tools > Rendering > *Emulate vision deficiencies*; confira *Protanopia*, *Deuteranopia*, *Tritanopia* e *Achromatopsia* (tons de cinza).
 
-::::: {.applet nome="teste-cores" id="tc" rotulo="A soma de dois vetores em três modelos de cor"}
-:::: {.grid}
-::: {.g-col-12 .g-col-md-6}
+:::::: {.applet nome="teste-cores" id="tc" rotulo="A soma de dois vetores em três modelos de cor"}
+::::: {.grid}
+:::: {.g-col-12 .g-col-md-6}
 **1. O livro: papéis enxutos.** $\vec{u}$ e $\vec{v}$: dado (`azul-8`); $\vec{u} + \vec{v}$: resultado (`laranja-2`); apoio (`cinza-5`).
 
 ::: {#tc-livro .quadro rotulo="Modelo 1, o do livro"}
 :::
-:::
-::: {.g-col-12 .g-col-md-6}
+::::
+:::: {.g-col-12 .g-col-md-6}
 **2. Neutro com um destaque.** $\vec{u}$ e $\vec{v}$: cor do texto (`grafite-2`); $\vec{u} + \vec{v}$: destaque (`laranja-2`); apoio (`cinza-5`).
 
 ::: {#tc-destaque .quadro rotulo="Modelo 2, neutro com um destaque"}
 :::
-:::
-::: {.g-col-12 .g-col-md-6}
+::::
+:::: {.g-col-12 .g-col-md-6}
 **3. Uma cor por objeto (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`cinza-5`).
 
 ::: {#tc-okabe .quadro rotulo="Modelo 3, uma cor por objeto"}
 :::
-:::
 ::::
 :::::
+::::::
 
 Para testar outras cores, troque os nomes na função `modelos()` do applet: valem as cores do livro e as de teste da paleta de `_brand.yml`.

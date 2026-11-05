@@ -1,4 +1,6 @@
-// Auditoria automática do livro. Sem dependências: node tests/verificar-site.mjs
+// Auditoria automática do livro: node tests/verificar-site.mjs
+// Única dependência: o KaTeX das fórmulas, instalado em applets-src
+// (`npm ci` lá); sem ele, as fórmulas ficam sem conferência, com um aviso.
 //
 // Opções:
 //   --raiz <pasta>   raiz do projeto (padrão: pasta acima de tests/)
@@ -9,6 +11,9 @@
 // Site gerado (docs/): iframes sem title, imagens sem alt, applets sem
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
 // ids duplicados e saltos na hierarquia de títulos.
+// Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
+// components/macros.html, e caracteres que ele não conhece; a versão do KaTeX
+// nos _quarto.yml diferente da do verificador.
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
 // com valores diferentes dos do livro, cores dos applets com contraste abaixo
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
@@ -18,6 +23,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
 
 const args = process.argv.slice(2);
 const estrito = args.includes("--estrito");
@@ -70,7 +76,8 @@ for (const arquivo of fontes.filter(existsSync)) {
     erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `comando TeX suspeito: ${m[0]}`);
   }
 
-  // No MathJax, \color{993300} não aplica cor; a forma correta é \color{#993300}.
+  // Forma do guia (guia-editorial.md, §4): \color{#993300}, com #, que vale
+  // em qualquer motor de fórmulas; sem #, só o KaTeX aplica a cor.
   for (const m of texto.matchAll(/\\color\{[0-9A-Fa-f]{6}\}/g)) {
     aviso(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `cor hexadecimal sem #: ${m[0]}`);
   }
@@ -136,6 +143,75 @@ for (const arquivo of paginas) {
     const nivel = Number(m[1]);
     if (anterior && nivel > anterior + 1) aviso(nome, `salto de título: h${anterior} para h${nivel}`);
     anterior = nivel;
+  }
+}
+
+// ---------- Fórmulas ----------
+
+// Cada fórmula do site gerado passa pelo KaTeX, na versão que o livro carrega
+// e com as macros do livro, definidas como em components/macros.html. Uma
+// fórmula que ele não desenha apareceria ao estudante como TeX, em vermelho.
+let katex = null;
+try {
+  katex = createRequire(join(raiz, "applets-src/package.json"))("katex");
+} catch {
+  if (paginas.length) aviso("applets-src/", "KaTeX não instalado (rode `npm ci` em applets-src); as fórmulas não foram verificadas");
+}
+
+if (katex && paginas.length) {
+  for (const arquivo of ["_quarto.yml", "_interno/oficina/testes/_quarto.yml"]) {
+    const caminho = join(raiz, arquivo);
+    if (!existsSync(caminho)) continue;
+    const versao = readFileSync(caminho, "utf8").match(/katex@([\w.-]+)/)?.[1];
+    if (!versao) aviso(arquivo, "versão do KaTeX não encontrada em html-math-method");
+    else if (versao !== katex.version) {
+      aviso(arquivo, `KaTeX ${versao}, mas o verificador usa o ${katex.version} (applets-src/package.json); mude os dois juntos`);
+    }
+  }
+
+  const fonteMacros = join(raiz, "components/macros.html");
+  const listaMacros = existsSync(fonteMacros)
+    ? readFileSync(fonteMacros, "utf8").match(/<script type="application\/json" id="macros-tex">([\s\S]*?)<\/script>/)?.[1]
+    : undefined;
+  let macros = {};
+  try {
+    macros = JSON.parse(listaMacros);
+  } catch {
+    erro("components/macros.html", "lista de macros ausente ou fora do formato JSON");
+  }
+  if (typeof katex.__defineMacro !== "function") {
+    erro("applets-src/package.json", `o KaTeX ${katex.version} não tem __defineMacro: components/macros.html não definiria as macros`);
+  } else {
+    for (const [nome, corpo] of Object.entries(macros)) katex.__defineMacro(nome, corpo);
+  }
+
+  const entidades = { lt: "<", gt: ">", amp: "&", quot: '"', apos: "'", nbsp: " " };
+  const decodificar = (texto) =>
+    texto.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (inteira, e) => {
+      if (e[0] !== "#") return entidades[e] ?? inteira;
+      return String.fromCodePoint(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1)));
+    });
+
+  for (const arquivo of paginas) {
+    const nome = rel(arquivo);
+    const html = readFileSync(arquivo, "utf8");
+    for (const m of html.matchAll(/<span class="math (inline|display)">([\s\S]*?)<\/span>/g)) {
+      // Sem os delimitadores \( \) e \[ \], que só o modo MathJax do Pandoc põe.
+      const tex = decodificar(m[2]).replace(/^\\\(([\s\S]*)\\\)$|^\\\[([\s\S]*)\\\]$/, "$1$2");
+      const trecho = tex.trim().replace(/\s+/g, " ").slice(0, 60);
+      try {
+        katex.renderToString(tex, {
+          displayMode: m[1] === "display",
+          throwOnError: true,
+          strict: (codigo, mensagem) => {
+            if (codigo === "unknownSymbol") aviso(nome, `caractere que o KaTeX não conhece em "${trecho}": ${mensagem}`);
+            return "ignore";
+          },
+        });
+      } catch (e) {
+        erro(nome, `fórmula que o KaTeX não desenha, "${trecho}": ${e.message}`);
+      }
+    }
   }
 }
 

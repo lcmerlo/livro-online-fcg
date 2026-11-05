@@ -27,7 +27,7 @@ Exercícios de fixação
 
 ## Linguagens de desenvolvimento
 	- Markdown / QMD
-	- LaTeX / BibTeX / MathJax
+	- LaTeX / BibTeX / KaTeX
 	- HTML, CSS/SCSS, JavaScript
 
 

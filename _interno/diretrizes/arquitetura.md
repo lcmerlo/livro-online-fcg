@@ -65,7 +65,7 @@ flowchart TD
 | **Vite** | Ferramenta que junta (*empacota*) vários arquivos JS em um só arquivo, o **bundle**. |
 | **IIFE** | Formato do bundle: um único `.js` que roda direto no navegador, sem `import`. Expõe o objeto global `AppletsLivro`. |
 | **npm / `package.json`** | Gerenciador de pacotes do Node.js; baixa o JSXGraph e o Vite para `node_modules/`. |
-| **MathJax** | Biblioteca que desenha as fórmulas LaTeX no navegador. |
+| **KaTeX** | Biblioteca que desenha as fórmulas LaTeX no navegador. O Pandoc a carrega, só nas páginas com fórmulas, na versão fixada em `_quarto.yml` (`html-math-method`). |
 | **GitHub Actions** | Robô que executa `.github/workflows/publish.yml` a cada push na `main` (verifica e publica) e a cada pull request para a `main` (só verifica). |
 | **GitHub Pages** | Hospedagem gratuita do GitHub que serve o conteúdo de `docs/` como site. |
 
@@ -109,7 +109,7 @@ livro-quarto/
 │   │   ├── main.js             ✏️  Ponto de entrada: registro automático dos applets, inicialização, reinício
 │   │   ├── cores.js            ✏️  Lê as variáveis CSS de cor da página
 │   │   ├── tools/quadro.js     ✏️  Cria o quadro (região, proporção, toque e teclado) e liga quadros
-│   │   ├── tools/leitura.js    ✏️  Leitura: fórmula do applet desenhada pelo MathJax
+│   │   ├── tools/leitura.js    ✏️  Leitura: fórmula do applet desenhada pelo KaTeX
 │   │   ├── tools/styles.js     ✏️  Estilos JSXGraph: pontos (a forma diz se o ponto se move), seta, traços
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
@@ -178,13 +178,13 @@ no `_quarto.yml`. Um capítulo combina:
 | `applet-bloco.lua` | Na renderização, em todo capítulo | Transforma o bloco `::: {.applet nome="…" id="…" rotulo="…"}` na parte interativa de um applet com várias partes: o bloco recebe `data-applet`, `role="group"` e o rótulo; cada parte `.quadro` vira um `div.applet-jxg` com `aria-label`, e cada `.leitura`, um `div.applet-leitura`; cada parte recebe `data-parte` (o id, sem o prefixo `<id>-`); no fim entram o parágrafo de estado e o botão. Avisa no render quando falta rótulo, quando o id de uma parte não começa por `<id>-` e quando uma parte está fora de um bloco. |
 | `applet-comum.lua` | Carregado pelos dois acima (`require`) | Carrega o bundle e escreve o parágrafo de estado e o botão "Reiniciar", iguais no shortcode e no bloco. |
 | `blocos.lua` | Na renderização, em todo capítulo | Insere o rótulo visível ("Objetivo", "Erro comum"…) no topo de cada `.bloco-*`; agrupa `.dica`/`.solucao`/`.resposta` consecutivas em abas que começam fechadas, e injeta o pequeno script que permite fechá-las. |
-| `macros.html` | Incluído no `<body>` de todas as páginas | Define `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` para o MathJax. |
+| `macros.html` | Incluído no `<body>` de todas as páginas | Lista `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` (em JSON) e as define no próprio KaTeX assim que ele carrega, antes de as fórmulas serem desenhadas: valem no texto, nas prévias das referências cruzadas e nas leituras dos applets. O verificador lê a mesma lista. |
 
 ### 4.4 `assets/`
 
 | Caminho | Finalidade |
 |---|---|
-| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout**, componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets, com as medidas `--applet-…` dos pontos e o `touch-action` do quadro) e **acessibilidade** (`prefers-reduced-motion`). |
+| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout** (largura da coluna de texto; fórmula em destaque mais larga que a coluna rola dentro dela), componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets, com as medidas `--applet-…` dos pontos e o `touch-action` do quadro) e **acessibilidade** (`prefers-reduced-motion`). |
 | `img/<capítulo>/` | Imagens dos capítulos. O Quarto copia para `docs/assets/img/` as que são usadas. |
 | `js/applets-dist/` | 🏭 `applets-livro.iife.js` + `applets-livro.css`, saída do Vite. |
 
@@ -192,13 +192,13 @@ no `_quarto.yml`. Um capítulo combina:
 
 | Arquivo | Finalidade |
 |---|---|
-| `package.json` | Declara as dependências (`jsxgraph`, `vite`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
+| `package.json` | Declara as dependências (`jsxgraph`, `vite` e `katex`, este só para o verificador, na versão exata que o livro carrega) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
 | `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss` (e imita a grade do Quarto), que fora do livro não existem (o verificador avisa se uma variável repetida difere da do livro), e traz uma amostra das formas de ponto e das setas e o exemplo de applet com várias partes, no HTML que o bloco gera (nada disso vai para o bundle). |
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente, com as partes do bloco em `partes`; trata os cliques em botões `data-reset`. |
 | `src/cores.js` | Lê as variáveis `--cor-…` da página (`getComputedStyle`) e as expõe no objeto `CORES`. É a ponte entre o CSS do livro e os applets. `cor(nome)` lê uma variável uma vez e avisa no console quando ela não existe (o objeto ficaria preto); `paleta(nome)` devolve uma cor de `_brand.yml` pelo nome (`paleta("blue-oi")`), para os applets de teste. |
 | `src/tools/quadro.js` | `criarQuadro({ JXG, id, regiao, eixos, grade })`: cria o quadro com a proporção da região e os padrões de interação (o plano não se desloca nem muda de escala; no toque, rolar fora dos pontos e arrastar sobre eles; o ponto mais próximo vence; o ponto arrastado não sai da região); só desenha num `.applet-jxg`. `ligarQuadros(...quadros)`: mexer num quadro redesenha os outros. |
-| `src/tools/leitura.js` | `criarLeitura({ id, tex, quadros })`: escreve na parte `.leitura` a fórmula `tex()`, desenhada pelo MathJax da página (com as macros do livro), refeita quando um dos quadros muda; sem MathJax, mostra o TeX. |
+| `src/tools/leitura.js` | `criarLeitura({ id, tex, quadros })`: escreve na parte `.leitura` a fórmula `tex()`, desenhada pelo KaTeX da página (com as macros do livro), refeita quando um dos quadros muda; sem KaTeX, mostra o TeX. |
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio) e o objeto `ESTILOS` com os traços por papel (`resultado`, `dado`, `apoio`) e o `alerta` (erro ou contraexemplo, sem cor própria, combinado com o estilo do papel). |
@@ -207,10 +207,11 @@ no `_quarto.yml`. Um capítulo combina:
 
 ### 4.6 `tests/verificar-site.mjs`
 
-Script Node sem dependências. Verifica:
+Script Node. Sua única dependência é o KaTeX, instalado em `applets-src/` (`npm ci`); sem ele, as fórmulas ficam sem conferência, com um aviso. Verifica:
 
 - **nas fontes** (`index.qmd` e `capitulos/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
 - **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado, saltos na hierarquia de títulos (aviso);
+- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); aviso se a versão do KaTeX em `_quarto.yml` ou no `_quarto.yml` de testes difere da instalada;
 - **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): variável de `applets-src/index.html` com valor diferente do livro; cor lida por `cores.js` (menos as de fundo) com contraste abaixo de 3:1 sobre o fundo do quadro (`--cor-superf-suave`); applet usado no livro que chama `paleta()`.
 
 Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
@@ -348,7 +349,7 @@ flowchart TD
     parse["<b>Para cada capítulo</b><br/>o Pandoc lê o .qmd"]
     sc["<b>Shortcodes viram HTML</b> (applet.lua)<br/>se há applet, o bundle é copiado<br/>para docs/site_libs/quarto-contrib/"]
     flt["<b>Filtros</b><br/>blocos.lua, applet-bloco.lua + numeração,<br/>@referências, callouts, abas"]
-    html["<b>Monta a página</b><br/>menu, sumário, busca,<br/>macros.html, MathJax"]
+    html["<b>Monta a página</b><br/>menu, sumário, busca,<br/>macros.html, KaTeX"]
     out(["<b>docs/capitulos/nome.html</b><br/>+ imagens em docs/assets/img/"])
 
     start --> cfg --> theme --> parse --> sc --> flt --> html --> out
@@ -407,7 +408,7 @@ flowchart TD
     push(["<b>git push</b> na main<br/>ou pull request"])
     co["Baixa o repositório"]
     node["Instala Node 22"]
-    ci["npm ci<br/>(dependências dos applets)"]
+    ci["npm ci<br/>(dependências dos applets<br/>e do verificador)"]
     build["npm run build<br/>(gera o bundle)"]
     qi["Instala Quarto 1.9.35"]
     render["quarto render --to html<br/>(gera docs/)"]
@@ -441,7 +442,7 @@ para pré-visualização.
 
 | Quero… | Comando | Onde |
 |---|---|---|
-| Instalar dependências dos applets (1ª vez) | `npm ci` | `applets-src/` |
+| Instalar dependências dos applets e do verificador (1ª vez) | `npm ci` | `applets-src/` |
 | Gerar o bundle dos applets | `npm run build` | `applets-src/` |
 | Ver o livro enquanto escrevo | `quarto preview` | raiz |
 | Editar applets e ver no livro | `npm run watch` (num terminal) + `quarto preview` (noutro) | `applets-src/` e raiz |
@@ -578,7 +579,8 @@ Quadros ligados e leituras em lugares diferentes da página. O modelo é
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Rótulos diferentes.** O JSXGraph faz de cada quadro uma região com nome; dois quadros com o mesmo rótulo na mesma página confundem quem navega pelo leitor de tela (o axe acusa).
 - **A grade do Quarto e a largura de 320 px.** A `.grid` tem 12 colunas e 11 espaços entre elas; com o espaço padrão (1,5 rem), só os espaços já passavam da coluna a 320 px. `custom.scss` o reduz para 1 rem. Uma parte na grade ou no grupo também pode ficar mais estreita que o desenho já feito (`min-width: 0`), para o JSXGraph redesenhar o quadro quando a janela estreita.
-- **Leituras e MathJax.** O Pandoc só carrega o MathJax em páginas com fórmulas; `applet-bloco.lua` põe uma fórmula vazia em cada leitura para garantir o carregamento. Fórmulas longas rolam dentro da leitura a 320 px: prefira leituras curtas.
+- **Leituras e KaTeX.** O Pandoc só carrega o KaTeX em páginas com fórmulas; `applet-bloco.lua` põe em cada leitura uma fórmula sem conteúdo visível (`{}`) para garantir o carregamento. Ela não pode ser vazia: o script do Pandoc que desenha as fórmulas para ao encontrar uma vazia. Fórmulas longas rolam dentro da leitura a 320 px, como as fórmulas em destaque do texto (`.katex-display`, em `custom.scss`): prefira leituras curtas.
+- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (nos dois `_quarto.yml` e em `applets-src/package.json`, juntos), o verificador acusa erro se ela sumir, e o console da página avisa.
 - **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
 - **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.

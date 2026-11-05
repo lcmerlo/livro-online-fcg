@@ -97,7 +97,8 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
 ## 4. Matemática (§27)
 
-- Fórmulas são texto (LaTeX), nunca imagem.
+- Fórmulas são texto (LaTeX), nunca imagem. O site as desenha com o KaTeX, que aceita quase todo o LaTeX matemático, mas não todo; `tests/verificar-site.mjs` acusa a fórmula que ele não desenha.
+- Plica com o apóstrofo do teclado: `$a'$`, `$A'B'$`. O apóstrofo curvo `’`, que alguns editores põem sozinhos, aparece como apóstrofo, e não como plica (o verificador avisa).
 - Números: ponto decimal e vírgula entre coordenadas, como `$x = 1.5$` e `$A = (2.5, 3)$`. Convenção provisória, a reavaliar (`pendencias.md`, §2).
 - Vetor, por enquanto com dois comandos: `\vec{u}` quando o nome tem uma só letra; `\vet{AB}` (tabela abaixo) quando o nome é formado por dois pontos, como `AB` ou `P_0P`. A busca por um comando único está em `pendencias.md`, §2.
 - Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
@@ -109,8 +110,8 @@ Pela @prp-formula-distancia-ponto-reta, temos …
   | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 
-  A notação é definida num só lugar: para alterá-la em todo o livro, edite `components/macros.html`. As macros não valem em PDF/Typst; se o livro passar a ter PDF ou trocar de motor de fórmulas, a definição deve continuar única (`diretrizes-tecnicas.md`, §5).
-- Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`. No MathJax do site, `\color{993300}` não aplica cor e `\color[HTML]{993300}` produz erro (testado em 04/10/2026).
+  A notação é definida num só lugar: para alterá-la em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). As macros não valem em PDF/Typst; se o livro passar a ter PDF ou trocar de motor de fórmulas, a definição deve continuar única (`diretrizes-tecnicas.md`, §5).
+- Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
 - Os capítulos já usam as macros (os protótipos ainda não: `pendencias.md`, §4); não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático e de texto didático só entram com a aprovação do autor responsável. O que conta como cada tipo de mudança está em `diretrizes-tecnicas.md`, §9.

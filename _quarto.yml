@@ -23,6 +23,11 @@ format:
     smooth-scroll: true
     callout-appearance: simple
     axe: true
+    # Fórmulas: KaTeX, com a versão fixada; a mesma do verificador
+    # (applets-src/package.json) e do JSX-quarto.
+    html-math-method:
+      method: katex
+      url: "https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/"
     filters:
       - components/blocos.lua
       - components/applet-bloco.lua

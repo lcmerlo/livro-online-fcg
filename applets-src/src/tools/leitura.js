@@ -1,7 +1,7 @@
 // applets-src/src/tools/leitura.js
 //
 // Leitura: uma fórmula que acompanha o applet, na parte .leitura do bloco
-// ::: {.applet} (components/applet-bloco.lua), desenhada pelo MathJax do
+// ::: {.applet} (components/applet-bloco.lua), desenhada pelo KaTeX do
 // livro, com as mesmas macros dos capítulos (\vet, \norm…).
 //   import { criarLeitura } from "../tools/leitura.js";
 //   criarLeitura({ id: partes.leitura, tex: () => `\\vec{u} = ${tex.ponto(u())}`, quadros: [board] });
@@ -35,29 +35,23 @@ export function criarLeitura({ id, tex, quadros = [] }) {
     }
 
     ultimo = codigo;
-    const mathjax = window.MathJax;
+    const katex = window.katex;
 
-    // Sem MathJax na página (a página de desenvolvimento, por exemplo), o
-    // TeX aparece como texto.
-    if (!mathjax?.startup?.promise) {
+    // Sem KaTeX na página (a página de desenvolvimento, por exemplo), o TeX
+    // aparece como texto.
+    if (!katex) {
       elemento.textContent = codigo;
       return;
     }
 
-    // Cada fórmula espera a anterior (e a primeira, a página inteira): o
-    // MathJax não desenha duas vezes ao mesmo tempo.
-    mathjax.startup.promise = mathjax.startup.promise
-      .then(() => {
-        // Outra fórmula já foi pedida: esta não precisa ser desenhada.
-        if (codigo !== ultimo) {
-          return null;
-        }
-
-        mathjax.typesetClear([elemento]);
-        elemento.textContent = `\\[${codigo}\\]`;
-        return mathjax.typesetPromise([elemento]);
-      })
-      .catch((erro) => console.warn("[AppletsLivro] MathJax:", erro?.message ?? erro));
+    // O KaTeX desenha na hora, sem esperar a página. Um TeX que ele não
+    // entende aparece como texto, com um aviso no console.
+    try {
+      katex.render(codigo, elemento, { displayMode: true });
+    } catch (erro) {
+      console.warn("[AppletsLivro] KaTeX:", erro?.message ?? erro);
+      elemento.textContent = codigo;
+    }
   }
 
   function agendar() {

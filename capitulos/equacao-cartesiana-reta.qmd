@@ -42,10 +42,10 @@ Qualquer equação da forma $(\ast)$ ou $(\ast\ast)$  acima é dita equação ca
 ::: {#prp-equacoes-cartesianas-mesma-reta}
 Duas equações da forma $(\ast)$  representam a mesma reta se, e somente se, elas diferem pela multiplicação de uma constante não nula. Dito de outra forma:
 
-As equações  $ax+by+c=0$ e  $a’x+b’y+c’=0$ descrevem a mesma reta  se, e somente se, 
+As equações  $ax+by+c=0$ e  $a'x+b'y+c'=0$ descrevem a mesma reta  se, e somente se, 
 
 $$
-   a’=\lambda a, \quad b’=\lambda b \quad\text{e}\quad  c’=\lambda c \quad \text{ para algum número real}\quad \lambda \neq 0.
+   a'=\lambda a, \quad b'=\lambda b \quad\text{e}\quad  c'=\lambda c \quad \text{ para algum número real}\quad \lambda \neq 0.
 $$
 :::
 

@@ -31,6 +31,9 @@ format:
     smooth-scroll: true
     callout-appearance: simple
     axe: true
+    html-math-method:
+      method: katex
+      url: "https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/"
     filters:
       - ../../../components/blocos.lua
       - ../../../components/applet-bloco.lua

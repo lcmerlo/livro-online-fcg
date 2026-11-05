@@ -89,8 +89,8 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 
 ## 3. Ferramentas e dependências
 
-- **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, empacotados pelo Vite; fórmulas com MathJax.
-- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos.
+- **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, empacotados pelo Vite; fórmulas com KaTeX.
+- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX tem versão exata, a mesma do JSX-quarto, em três lugares que mudam juntos: `_quarto.yml`, `_interno/oficina/testes/_quarto.yml` e `applets-src/package.json` (o do verificador, que avisa se diferirem).
 - **Dependências de execução**, que chegam ao navegador do estudante (bibliotecas, fontes, serviços externos), pesam no desempenho, na acessibilidade e na licença (§17, §33). Entram por decisão registrada, com o ganho mostrado.
 - **Dependências de desenvolvimento**, que só rodam no computador de quem desenvolve ou no CI (testes, verificadores, formatadores), não chegam ao estudante. Entram quando automatizam uma verificação útil, com versão fixada e uma linha em `decisoes.md`.
 - **Outras ferramentas de applets** (Desmos, CindyJS…): só por decisão, quando uma representação não puder ser feita bem com JSXGraph (§20).
@@ -151,7 +151,7 @@ Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método �
 - **Nomes.** Objetos com o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código em português descritivo, como o código atual, também no que vem da `lib/` do JSX-quarto.
 - **Comentários** explicam o porquê, em português.
 - **Código compartilhado.** Uma construção usada por dois applets vai para um módulo comum (hoje, `src/tools/`); a de um applet só fica no próprio arquivo.
-- **Applets com várias partes.** Quadros e leituras que o capítulo põe em lugares diferentes ficam num bloco `::: {.applet nome="…" id="…" rotulo="…"}` que os envolve, com uma parte `.quadro` (com `rotulo`) ou `.leitura` por div e ids `<id>-<parte>` (`components/applet-bloco.lua`). O applet recebe as partes em `partes` e trata como opcional a que o capítulo pode omitir; os quadros que dependem uns dos outros são ligados por `ligarQuadros` (`src/tools/quadro.js`), e a leitura é uma fórmula escrita por `criarLeitura` (`src/tools/leitura.js`), desenhada pelo MathJax do livro. Um só texto de estado e um só botão "Reiniciar" servem ao applet inteiro. Os arranjos na página (grade, quadro estreito ou centralizado, grupo) são classes de `custom.scss`, sem CSS nos capítulos (`guia-editorial.md`, §6). Modelo: `src/exemplos/exemplo-partes.js`; passos: `arquitetura.md`, §7. Os controles (faixas, botões, caixas) e a posição deles entram quando o livro tiver controles (`pendencias.md`, §3).
+- **Applets com várias partes.** Quadros e leituras que o capítulo põe em lugares diferentes ficam num bloco `::: {.applet nome="…" id="…" rotulo="…"}` que os envolve, com uma parte `.quadro` (com `rotulo`) ou `.leitura` por div e ids `<id>-<parte>` (`components/applet-bloco.lua`). O applet recebe as partes em `partes` e trata como opcional a que o capítulo pode omitir; os quadros que dependem uns dos outros são ligados por `ligarQuadros` (`src/tools/quadro.js`), e a leitura é uma fórmula escrita por `criarLeitura` (`src/tools/leitura.js`), desenhada pelo KaTeX do livro. Um só texto de estado e um só botão "Reiniciar" servem ao applet inteiro. Os arranjos na página (grade, quadro estreito ou centralizado, grupo) são classes de `custom.scss`, sem CSS nos capítulos (`guia-editorial.md`, §6). Modelo: `src/exemplos/exemplo-partes.js`; passos: `arquitetura.md`, §7. Os controles (faixas, botões, caixas) e a posição deles entram quando o livro tiver controles (`pendencias.md`, §3).
 
 ### 4.6 Ficha de aceitação
 
@@ -182,7 +182,6 @@ Diferenças atuais:
 | Assunto | Livro | JSX-quarto | Situação |
 |---|---|---|---|
 | Carregamento | bundle do Vite, só nas páginas com applet | módulos ES, JSXGraph do CDN | padrão do livro: não depende de CDN e a versão fica fixada |
-| Fórmulas | MathJax | KaTeX | hipótese a testar no piloto |
 | Cores | três papéis: dado, resultado e apoio (azul, laranja e cinza); nos testes, qualquer cor de `_brand.yml` pelo nome (`paleta()`), inclusive as paletas do JSX-quarto | por identidade do objeto (`a`…`e`), com o conjunto de cores escolhido pela quantidade de identidades | padrão do livro, escolhido pelo autor em 2026-11-04 depois de comparar quatro modelos lado a lado (`_interno/oficina/testes/teste-cores.qmd`); nos testes, as cores são chamadas pelo nome, sem identidades |
 | Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, quadros ligados, formas dos pontos, seta, toque, contas vetoriais, formatação e leitura com fórmula | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado; próximas partes em `pendencias.md`, §3 |
 | Nomes no código | português | inglês, como o JSXGraph | padrão do livro (§4.5) |
@@ -195,7 +194,7 @@ Diferenças atuais:
 
 ## 5. Notação matemática
 
-- A notação é definida num só lugar: hoje, as macros de `components/macros.html`, para o MathJax. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única e vale também para os textos dos applets.
+- A notação é definida num só lugar: as macros de `components/macros.html`, que o KaTeX usa no texto, nas prévias das referências cruzadas, nas leituras dos applets e nos rótulos do JSXGraph com `useKatex`; o verificador confere as fórmulas com essa mesma lista. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única e vale também para os textos dos applets.
 - Números, no texto e nos applets, levam ponto decimal e vírgula entre coordenadas, como `(2.5, 3)`. Nos applets, quem os escreve é `applets-src/src/tools/formatar.js`, e a convenção muda ali. A convenção é provisória e será reavaliada (`pendencias.md`, §2).
 - Vetores usam, por enquanto, dois comandos: `\vec{u}` para nome de uma só letra e a macro `\vet{AB}` para nome formado por dois pontos. O objetivo é um só comando com bom resultado nos dois casos (`pendencias.md`, §2).
 - Os símbolos e as macros estão no `guia-editorial.md`, §4.

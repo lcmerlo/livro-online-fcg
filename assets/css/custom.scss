@@ -79,6 +79,14 @@ main.content {
   max-width: 76ch;
 }
 
+/* Fórmula em destaque mais larga que a coluna (no celular, a 320 px): rola
+   dentro dela, como a leitura dos applets, em vez de ser cortada na borda.
+   O KaTeX não quebra uma fórmula em destaque em linhas. */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 
 /* =========================================================
    3. COMPONENTES

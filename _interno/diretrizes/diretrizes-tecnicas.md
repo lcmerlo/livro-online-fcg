@@ -244,23 +244,19 @@ Antes de um applet entrar num capítulo:
 
 ### 4.7 Relação com o JSX-quarto
 
-O JSX-quarto (<https://github.com/lcmerlo/JSX-quarto>) é o laboratório dos applets: lá se testam elementos, cores, arranjos e a migração do GeoGebra. O livro adota, por decisão, o que foi testado lá. Aproveitar código do JSX-quarto é desejável quando poupa trabalho, desde que adaptado aos padrões do livro.
+O JSX-quarto (<https://github.com/lcmerlo/JSX-quarto>) é o laboratório dos applets: lá se testam elementos, cores, arranjos e a migração do GeoGebra. O livro adota, por decisão, o que foi testado lá. Aproveitar código do JSX-quarto é desejável quando poupa trabalho, desde que adaptado às regras do livro; a origem fica num comentário no código, e cada diferença, na decisão que adotou a parte correspondente (`decisoes.md`).
 
-Diferenças atuais:
+Onde o livro faz diferente, e por quê:
 
-| Assunto | Livro | JSX-quarto | Situação |
-|---|---|---|---|
-| Carregamento | bundle do Vite, só nas páginas com applet | módulos ES, JSXGraph do CDN | padrão do livro: não depende de CDN e a versão fica fixada |
-| Cores | três papéis: dado, resultado e apoio (azul, laranja e cinza); nos testes, qualquer cor de `_brand.yml` pelo nome (`paleta()`), inclusive as paletas do JSX-quarto | por identidade do objeto (`a`…`e`), com o conjunto de cores escolhido pela quantidade de identidades | padrão do livro, escolhido pelo autor em 2026-11-04 depois de comparar quatro modelos lado a lado (`_interno/oficina/testes/teste-cores.qmd`); nos testes, as cores são chamadas pelo nome, sem identidades |
-| Código comum | `src/tools/`, com partes da `lib/` adaptadas: quadro, quadros ligados, formas dos pontos, seta, toque, contas vetoriais, formatação, leitura com fórmula, estado, animação e controles | biblioteca `lib/` | padrão: trazer da `lib/` o que o livro adotar, adaptado, quando um applet precisar |
-| Nomes no código | português | inglês, como o JSXGraph | padrão do livro (§4.5) |
-| Toque | o dedo fora dos pontos rola a página (CSS `touch-action` e cancelamento da rolagem quando o dedo pega um ponto); o ponto mais próximo vence | o quadro bloqueia a rolagem da página; vence o último ponto arrastado | padrão do livro: §4.4 e ficha de aceitação |
-| Valor indefinido | `NaN` nas contas; "NaN" visível na escrita, até o applet decidir o caso | 0 no unitário e na projeção; 0 na escrita; o termo some da expressão | padrão do livro (§4.4: nenhum número enganoso) |
-| Ângulo em radianos | fração de π se o denominador vai de 1 a 9 ou é 12; senão decimal | centésimos de π (π/6 saía como 17π/100) | correção no livro |
-| Foco do teclado no ponto | contorno de foco do site e reforço do anel | só o reforço do anel | padrão do livro (WCAG 2.4.7, §32) |
-| Largura mínima | 320 px (WCAG 1.4.10, §32) | 360 px | padrão do livro |
-| Arranjos na página | bloco `::: {.applet}` com as partes; grade do Quarto e classes de `custom.scss` (`estreito`, `centro`, `grupo`) | contêineres soltos no `.qmd` e CSS na própria página (`{.css .run}`) | padrão do livro: sem CSS nos capítulos; a margem da página não é usada para applets (cerca de 130 px no livro) |
-| Controles | `tools/controles.js` e `tools/estado.js`: campo de texto que aceita `1.5` e `1,5`; nome fixo, em texto simples, com o valor da faixa em `aria-valuetext` e as fórmulas escondidas do leitor de tela; botão Animar/Pausar sem `aria-pressed`; animação só pelo botão, parada quando o estudante mexe no mesmo valor e no reinício; faixa na cor do dado; os controles ficam logo abaixo do quadro ou na parte `.controles` do bloco, um lugar por parte | `lib/ui.js` e `lib/core.js`: campo `type="number"`, cujo separador decimal muda com o navegador e o idioma da página; nome da faixa que muda a cada valor; botão com `aria-pressed`; animação que pode começar sozinha; cor da identidade do objeto; um painel (`ui.panel`) por linha de controles | padrão do livro, plano aprovado pelo autor em 2026-11-05 |
+- **Carregamento:** os applets e o JSXGraph vão num só arquivo, carregado só nas páginas que têm applet; o livro não depende de CDN, e a versão fica fixada.
+- **Cores:** três papéis (§4.5), e não uma cor por objeto; escolha do autor em 2026-11-04, depois de comparar quatro modelos lado a lado. Nos testes, as cores do JSX-quarto são chamadas pelo nome.
+- **Nomes no código:** em português (§4.5).
+- **Toque:** o dedo fora dos pontos rola a página, e vence o ponto mais próximo; no JSX-quarto, o quadro bloqueia a rolagem da página.
+- **Valor indefinido:** nunca vira 0 nem some (regra fundamental 2).
+- **Ângulos em radianos:** fração de π só quando o ângulo é exatamente uma fração notável; o JSX-quarto arredondava para centésimos de π.
+- **Foco do teclado e largura mínima:** contorno de foco visível também nos pontos e 320 px, e não 360 (regra fundamental 4).
+- **Arranjos na página:** sem CSS nos capítulos (regra fundamental 6); a margem da página, estreita no livro, não recebe applets.
+- **Controles:** o número entra com ponto ou vírgula; o nome lido pelo leitor de tela não muda com o valor; a animação só começa a pedido (regra fundamental 5); os controles ficam logo abaixo do quadro ou onde o capítulo os puser.
 
 ## 5. Notação matemática
 

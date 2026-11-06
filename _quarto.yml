@@ -81,3 +81,12 @@ book:
     - capitulos/distancia-ponto_reta-reta_reta.qmd
     - capitulos/posicoes-relativas-reta-circulo.qmd
     - capitulos/posicao-relativa-circulos.qmd
+
+# Faixa no alto de todas as páginas enquanto o livro está em testes; sai na
+# divulgação ao público-alvo (pendencias.md, §3). Fica em `website`, e não em
+# `book`, porque o Quarto 1.9.35 aceita `book.announcement`, mas não o leva ao site.
+website:
+  announcement:
+    content: "**Material em construção.** Uso não recomendado no momento!"
+    type: warning
+    dismissable: false

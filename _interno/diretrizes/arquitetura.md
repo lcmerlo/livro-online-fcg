@@ -163,7 +163,9 @@ recriada pelo comando correspondente. Nunca edite arquivos dentro de `docs/` ou
 ### 4.2 `capitulos/`
 
 Cada `.qmd` é um capítulo. Só é publicado se estiver listado em `book.chapters`
-no `_quarto.yml`. Um capítulo combina:
+no `_quarto.yml`. O cabeçalho diz o estado do capítulo (`estado: prototipo` ou
+`estado: revisado`; `diretrizes-tecnicas.md`, §1.4), que o verificador lê; a
+linha não aparece na página. Um capítulo combina:
 
 - **Markdown** (títulos `##`, listas, ênfase);
 - **LaTeX** entre `$…$`, usando as macros de `components/macros.html`;

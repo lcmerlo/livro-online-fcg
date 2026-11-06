@@ -59,8 +59,8 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- _interno/diretrizes/relatorio-design-pedagogico-26-05-14.qmd
-    #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
+    #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd
+    #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
     - capitulos/primeiras-nocoes.qmd
     - capitulos/segmentos.qmd
     - capitulos/segmentos-orientados.qmd

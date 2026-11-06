@@ -124,6 +124,7 @@ livro-quarto/
 │
 ├── _interno/                   ✏️  Material interno, versionado mas ignorado pelo Quarto (começa com "_")
 │   ├── diretrizes/             ✏️  Princípios, guia editorial, diretrizes técnicas, decisões, pendências, este mapa
+│   ├── referencia/             ✏️  Material anterior aos Princípios, que não orienta o trabalho atual
 │   └── oficina/
 │       ├── nao-publicados/     ✏️  Capítulos ainda fora do índice do livro
 │       ├── testes/             ⚙️  Mini-projeto Quarto com a mesma configuração do livro

@@ -46,7 +46,7 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, testes/ para arquivos de teste com a configuração do livro, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, testes/ para arquivos de teste com a configuração do livro, referências)
 .github/workflows/publish.yml - Verifica cada pull request; renderiza e publica no GitHub Pages a cada push na main
 AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 

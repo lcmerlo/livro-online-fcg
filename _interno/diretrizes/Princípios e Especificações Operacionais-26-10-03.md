@@ -12,7 +12,7 @@ Neste estágio, a prioridade é estabelecer uma arquitetura global simples, cons
 
 ### Nota sobre fontes e documentos relacionados
 
-Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §31, §32, §39 e §40). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, e ele sustenta apenas parte dessas passagens:
+Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §31, §32, §39 e §40). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, em `_interno/referencia/`, e ele sustenta apenas parte dessas passagens:
 
 | § | Passagem | Em `relatorio-design-pedagogico-26-05-14.qmd` |
 |---|---|---|
@@ -25,12 +25,12 @@ Este documento cita um "relatório revisto", uma "versão revista", uma "revisã
 
 As passagens sem correspondência remetem, provavelmente, a uma versão revista do relatório que não está no repositório. Até que essa versão seja localizada e versionada, elas valem como registro de contexto, não como referência verificável.
 
-Documentos relacionados, todos nesta pasta:
+Documentos relacionados (nesta pasta, salvo indicação):
 
 - `guia-editorial.md`: orientações curtas para quem escreve capítulos (§36);
 - `diretrizes-tecnicas.md`: como desenvolver o livro e como tomar e aplicar decisões; traz o mapa de todos os documentos e o que fazer quando eles divergem;
 - `arquitetura.md`, `decisoes.md` e `pendencias.md`: o projeto como é hoje, o que foi decidido e o que está em aberto;
-- `relatorio-design-pedagogico-26-05-14.qmd` e `biblioteca-estruturas-site-diretrizes.qmd`: material de apoio anterior a este documento, mantido como referência.
+- `relatorio-design-pedagogico-26-05-14.qmd` e `biblioteca-estruturas-site-diretrizes.qmd`, em `_interno/referencia/`: material de apoio anterior a este documento, mantido como referência.
 
 # Parte 1 — Princípios
 
@@ -689,7 +689,7 @@ Essa organização é uma referência de funções, **não** uma instrução par
 | `chapters/` | `capitulos/` e `index.qmd` |
 | `references/` | `_interno/oficina/references.*` (bibliografia ainda não ativada) |
 | `tests/` | `tests/` |
-| documentação interna | `_interno/diretrizes/` e `_interno/oficina/` |
+| documentação interna | `_interno/diretrizes/`, `_interno/oficina/` e `_interno/referencia/` |
 
 Dentro de `applets-src/src/applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
 

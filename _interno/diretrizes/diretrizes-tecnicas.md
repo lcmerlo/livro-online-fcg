@@ -89,7 +89,7 @@ estado: prototipo
 | `AGENTS.md`, `.github/copilot-instructions.md` | Resumo para assistentes de IA | estas diretrizes mudam |
 | `README.md` | Apresentação do projeto e comandos | comandos ou estrutura mudam |
 
-Material de referência, que não orienta o trabalho atual: `relatorio-design-pedagogico-26-05-14.qmd` (fonte dos Princípios) e `biblioteca-estruturas-site-diretrizes.qmd` (padrões anteriores a outubro de 2026).
+Material de referência, que não orienta o trabalho atual, em `_interno/referencia/`: `relatorio-design-pedagogico-26-05-14.qmd` (fonte dos Princípios) e `biblioteca-estruturas-site-diretrizes.qmd` (padrões anteriores a outubro de 2026).
 
 **Quando dois documentos divergem**, a divergência é um defeito: corrija-a na mesma mudança em que ela for notada ou registre-a em `pendencias.md`. Até a correção:
 

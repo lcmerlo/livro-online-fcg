@@ -2,7 +2,7 @@
 
 Guia curto para quem escreve ou revisa capítulos. A justificativa de cada orientação está em `Princípios e Especificações Operacionais-26-10-03.md` (§ entre parênteses); o desenvolvimento técnico (applets, código, verificação) está em `diretrizes-tecnicas.md`.
 
-As orientações deste guia são padrões: valem até que outra forma se mostre melhor e mudam por decisão registrada (`diretrizes-tecnicas.md`, §1 e §2). Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.2 das diretrizes técnicas.
+As orientações deste guia são provisórias, pela regra "siga ou explique", menos as que repetem uma regra fundamental (`diretrizes-tecnicas.md`, §1.2 e §1.3). Valem para os capítulos revisados; nos protótipos (`estado: prototipo` no cabeçalho), vale o §1.4 das diretrizes técnicas. Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.5 das diretrizes técnicas.
 
 ## 1. Estrutura de um tópico (§5, §22)
 

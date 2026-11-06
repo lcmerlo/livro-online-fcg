@@ -616,6 +616,8 @@ São requisitos desde o início:
 - alternativas para ações que dependam exclusivamente de arraste;
 - descrição textual de conteúdo visual relevante.
 
+Na fase de testes, esses requisitos não esperam todos do mesmo jeito (decisão de 2026-11-06; regras fundamentais em `diretrizes-tecnicas.md`, §1.3). Navegação por teclado, foco visível, reflow em 320 px e cor que não é a única informação valem desde já, porque sairiam caros de acrescentar depois. A descrição textual das imagens pode esperar até a divulgação, e toda imagem nova já nasce com ela. As alternativas ao arraste esperam o piloto dos applets, por decisão do autor. Os demais, como contraste e hierarquia de títulos, valem como regras provisórias.
+
 O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os requisitos acima sejam verificáveis, adotam-se os seguintes valores (critérios de sucesso da WCAG 2.2):
 
 | Requisito | Valor mínimo | Critério |

@@ -55,9 +55,9 @@ export default function criarTesteCores({ id, JXG, partes = {} }) {
     board.create("point", [0, 0], { ...pontoFixo(CORES.texto), withLabel: false });
     board.create("segment", [U, S], apoio);
     board.create("segment", [V, S], apoio);
-    board.create("arrow", [[0, 0], U], seta(cor.u, { nome: "u" }));
-    board.create("arrow", [[0, 0], V], seta(cor.v, { nome: "v", lado: "right" }));
-    board.create("arrow", [[0, 0], S], seta(cor.soma, { nome: "u + v" }));
+    board.create("arrow", [[0, 0], U], seta(cor.u, { nome: "\\vec{u}" }));
+    board.create("arrow", [[0, 0], V], seta(cor.v, { nome: "\\vec{v}", lado: "right" }));
+    board.create("arrow", [[0, 0], S], seta(cor.soma, { nome: "\\vec{u} + \\vec{v}" }));
 
     quadros.push({ board, U, V });
   }

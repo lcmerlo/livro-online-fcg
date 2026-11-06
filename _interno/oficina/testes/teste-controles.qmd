@@ -19,6 +19,7 @@ O que conferir em cada arranjo:
 4. Reiniciar volta a ponta de $\vec{u}$, o número $a$, a caixa e o botão ao início, e para a animação.
 5. Com o VoiceOver (Cmd+F5 no Mac): a faixa se chama "a" e diz o valor; o campo se chama "digite a"; a caixa, "mostrar a reta de u"; o botão diz "Animar" ou "Pausar".
 6. Larguras: 320, cerca de 800 e 1200 px, e as intermediárias em que o menu lateral aparece. Nenhum controle passa da borda; no segundo arranjo, os controles ficam ao lado do quadro a partir de 768 px e embaixo dele antes disso.
+7. Só o quadro tem fundo branco e borda; os controles, o texto de estado e o botão ficam fora dele, no fundo da página. Os nomes $\vec{u}$ e $a\vec{u}$ aparecem como no texto e não encostam nas setas, também logo depois de a página carregar.
 
 ## Controles embaixo do quadro
 

@@ -13,9 +13,9 @@
 -- O bloco vira a parte interativa do applet, como a do shortcode
 -- {{< applet >}} (applet.lua): <div class="bloco-applet" data-applet="…">,
 -- com as partes onde o texto as pôs (numa .grid, num .grupo, numa célula…),
--- o texto de estado e o botão "Reiniciar" no fim. Cada parte tem id
--- <id>-<parte>; o applet a recebe pelo nome da parte, em `partes`
--- (applets-src/src/main.js).
+-- a fórmula que carrega o KaTeX, o texto de estado e o botão "Reiniciar"
+-- no fim. Cada parte tem id <id>-<parte>; o applet a recebe pelo nome da
+-- parte, em `partes` (applets-src/src/main.js).
 --   .quadro     → <div class="applet-jxg" aria-label="rotulo">, onde o JSXGraph desenha
 --   .leitura    → <div class="applet-leitura">, onde o applet escreve uma fórmula
 --   .controles  → <div class="applet-controles">, onde o applet põe os controles
@@ -65,12 +65,8 @@ local function preparar_parte(div, tipo, id_applet)
     div.attributes["rotulo"] = nil
     div.attributes["aria-label"] = rotulo
   else
-    -- O Pandoc só carrega o KaTeX em páginas com fórmulas; esta fórmula
-    -- sem conteúdo visível garante que a leitura e os controles tenham o
-    -- KaTeX para desenhar as suas (nos controles, custom.scss a esconde).
-    -- Uma fórmula vazia não serve: o script do Pandoc que desenha as
-    -- fórmulas da página para ao encontrá-la, e as seguintes ficariam em TeX.
-    div.content = pandoc.Blocks({ pandoc.Plain({ pandoc.Math("InlineMath", "{}") }) })
+    -- A leitura e os controles são escritos pelo applet.
+    div.content = pandoc.Blocks({})
   end
 
   return div
@@ -107,6 +103,7 @@ local function preparar_applet(div)
   -- As partes formam um grupo, com o nome do applet para o leitor de tela.
   div.attributes["role"] = "group"
   div.attributes["aria-label"] = rotulo
+  div.content:insert(comum.formula_para_katex())
   div.content:insert(pandoc.RawBlock("html", comum.estado_e_reinicio(comum.escapar(id))))
 
   return div

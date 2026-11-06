@@ -40,8 +40,8 @@ export default function criarExemploPartes({ id, JXG, partes = {} }) {
 
   const U = quadroVetores.create("point", U0, { ...pontoArrastavel(CORES.dado, "seta"), snapToGrid: true });
   const V = quadroVetores.create("point", V0, { ...pontoArrastavel(CORES.dado, "seta"), snapToGrid: true });
-  quadroVetores.create("arrow", [[0, 0], U], seta(CORES.dado, { nome: "u" }));
-  quadroVetores.create("arrow", [[0, 0], V], seta(CORES.dado, { nome: "v", lado: "right" }));
+  quadroVetores.create("arrow", [[0, 0], U], seta(CORES.dado, { nome: "\\vec{u}" }));
+  quadroVetores.create("arrow", [[0, 0], V], seta(CORES.dado, { nome: "\\vec{v}", lado: "right" }));
 
   // A conta, escrita uma vez: a figura, a leitura e o texto de estado a usam.
   // Com a origem em (0, 0), as componentes de u são as coordenadas de U.
@@ -58,7 +58,7 @@ export default function criarExemploPartes({ id, JXG, partes = {} }) {
     const pontaW = [() => w()[0], () => w()[1]];
     quadroSoma.create("arrow", [[0, 0], pontaU], { ...ESTILOS.apoio, fixed: true, lastArrow: { type: 2, size: 5 } });
     quadroSoma.create("arrow", [pontaU, pontaW], { ...ESTILOS.apoio, fixed: true, lastArrow: { type: 2, size: 5 } });
-    quadroSoma.create("arrow", [[0, 0], pontaW], seta(CORES.resultado, { nome: "u + v" }));
+    quadroSoma.create("arrow", [[0, 0], pontaW], seta(CORES.resultado, { nome: "\\vec{u} + \\vec{v}" }));
     quadros.push(quadroSoma);
     ligarQuadros(...quadros);
   }

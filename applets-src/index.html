@@ -27,8 +27,14 @@
     .applet-arrastavel:active { cursor: grabbing; }
     .applet-arrastavel:focus-visible { stroke-opacity: var(--applet-anel-opacidade-destaque); }
     :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
-    body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; }
-    .applet-jxg { width: 100%; max-width: 640px; aspect-ratio: 4 / 3; touch-action: manipulation !important; }
+    /* Fundo da página do livro (areia-1): só o quadro é branco, com borda. */
+    body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; background: #fbfaf6; }
+    .applet-jxg {
+      box-sizing: content-box; width: calc(100% - 2px); max-width: 640px; aspect-ratio: 4 / 3;
+      border: 1px solid rgba(31, 41, 51, .12); border-radius: 4px; background: var(--cor-superf-suave);
+      touch-action: manipulation !important;
+    }
+    .bloco-applet > .math { display: none; }
     .applet-leitura { overflow-x: auto; }
     /* Imita a grade do Quarto (.grid, .g-col-…), que o livro já tem. */
     .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
@@ -88,7 +94,7 @@
   </ul>
 
   <h2>Applet com várias partes</h2>
-  <p>O exemplo de <code>src/exemplos/exemplo-partes.js</code>, no HTML que o bloco <code>::: {.applet}</code> gera (<code>components/applet-bloco.lua</code>): dois quadros ligados, lado a lado a partir de 768 px, e uma leitura. Arraste as pontas de u e v no primeiro quadro: o segundo, a leitura e o texto de estado acompanham. Sem o KaTeX, que só o livro carrega, a leitura mostra o TeX.</p>
+  <p>O exemplo de <code>src/exemplos/exemplo-partes.js</code>, no HTML que o bloco <code>::: {.applet}</code> gera (<code>components/applet-bloco.lua</code>): dois quadros ligados, lado a lado a partir de 768 px, e uma leitura. Arraste as pontas de u e v no primeiro quadro: o segundo, a leitura e o texto de estado acompanham.</p>
 
   <div id="ep" class="bloco-applet" data-applet="exemplo-partes" role="group" aria-label="Soma de dois vetores">
     <div class="grid">
@@ -101,7 +107,7 @@
   </div>
 
   <h2>Controles</h2>
-  <p>O applet de teste dos controles (<code>src/applets/teste-controles.js</code>) em dois arranjos. No primeiro, o HTML do shortcode: os controles entram sozinhos logo abaixo do quadro. No segundo, o HTML do bloco, com a parte de controles ao lado do quadro a partir de 768 px. A faixa e o campo acompanham um ao outro; o botão Animar faz <i>a</i> ir de −2 a 2 e voltar; mexer na faixa ou no campo para a animação, e Reiniciar volta tudo. Sem o KaTeX, o valor da faixa e as fórmulas dos rótulos aparecem em TeX.</p>
+  <p>O applet de teste dos controles (<code>src/applets/teste-controles.js</code>) em dois arranjos. No primeiro, o HTML do shortcode: os controles entram sozinhos logo abaixo do quadro. No segundo, o HTML do bloco, com a parte de controles ao lado do quadro a partir de 768 px. A faixa e o campo acompanham um ao outro; o botão Animar faz <i>a</i> ir de −2 a 2 e voltar; mexer na faixa ou no campo para a animação, e Reiniciar volta tudo.</p>
 
   <div class="bloco-applet">
     <div id="tc-embaixo" class="applet-jxg" data-applet="teste-controles" aria-label="Os vetores u e a·u, com os controles embaixo"></div>
@@ -121,6 +127,14 @@
   <!-- espaço para conferir a rolagem da página com o dedo sobre o quadro -->
   <div style="height: 120vh"></div>
 
+  <!-- KaTeX, que no livro vem do Quarto: os nomes dos objetos, as leituras e
+       os rótulos dos controles são TeX. Aqui vem da dependência de
+       desenvolvimento (package.json), sem as macros do livro (\vet, \norm…). -->
+  <script type="module">
+    import katex from "katex";
+    import "katex/dist/katex.min.css";
+    window.katex = katex;
+  </script>
   <script type="module" src="/src/main.js"></script>
   <script type="module">
     // O exemplo fica fora do bundle; aqui ele entra no registro antes de
@@ -158,11 +172,11 @@
     // Os dois têm a mesma cor; a forma do ponto diz o que se move.
     const P = board.create("point", [1, -1.5], { ...pontoArrastavel(CORES.dado), withLabel: false });
     const Q = board.create("point", [4, -0.5], pontoArrastavel(CORES.dado, "seta"));
-    board.create("arrow", [P, Q], seta(CORES.dado, { nome: "u" }));
+    board.create("arrow", [P, Q], seta(CORES.dado, { nome: "\\vec{u}" }));
 
     const R = board.create("point", [5, -1.8], { ...pontoFixo(CORES.dado), withLabel: false });
     const S = board.create("point", [8, -0.3], pontoFixo(CORES.dado, "seta"));
-    board.create("arrow", [R, S], seta(CORES.dado, { nome: "v", lado: "right" }));
+    board.create("arrow", [R, S], seta(CORES.dado, { nome: "\\vec{v}", lado: "right" }));
 
     // Texto de estado com as contas de tools/vetores.js e a escrita de
     // tools/formatar.js (a conta é a mesma da figura).

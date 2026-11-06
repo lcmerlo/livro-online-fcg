@@ -330,28 +330,50 @@ p:has(> .bloco-rotulo) {
 
 /* Applets JSXGraph e GeoGebra */
 
-/* Parte interativa (gerada pelos shortcodes de components/applet.lua):
-   quadro, texto de estado e botão, destacados das orientações em volta. */
+/* Parte interativa (gerada pelo shortcode {{< applet >}} de
+   components/applet.lua e pelo bloco ::: {.applet}): quadros, leituras,
+   controles, texto de estado e botão. Só o quadro tem fundo e borda; o resto
+   fica no fundo da página, como no JSX-quarto. */
 .bloco-applet {
   margin: 1rem 0;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  background: var(--cor-superf-suave);
 
   > :last-child {
     margin-bottom: 0;
   }
 }
 
-/* Quadro JSXGraph: ocupa a largura da coluna, até 640 px, e a altura segue a
-   proporção da região do plano que o applet mostra. O applet define essa
-   proporção (aspect-ratio) a partir do boundingbox; 4 / 3 vale até lá.
+/* Applet GeoGebra (shortcode {{< geogebra >}}): continua numa caixa branca,
+   que esconde a sobra branca do iframe embaixo do applet. Os applets GeoGebra
+   serão substituídos por applets JSXGraph (pendencias.md, §5). */
+.bloco-geogebra {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--cor-superf-suave);
+}
+
+/* A fórmula sem conteúdo que os filtros põem no applet para a página
+   carregar o KaTeX (components/applet-comum.lua) não ocupa lugar */
+.bloco-applet > .math {
+  display: none;
+}
+
+/* Quadro JSXGraph: a área da figura, com fundo branco e borda fina. Ocupa a
+   largura da coluna, até 640 px, e a altura segue a proporção da região do
+   plano que o applet mostra. O applet define essa proporção (aspect-ratio) a
+   partir do boundingbox; 4 / 3 vale até lá. A borda fica fora da largura e
+   da proporção (content-box, como no JSX-quarto): com o border-box do
+   Bootstrap, a proporção valeria para a caixa com a borda, e a região
+   mostrada sairia um pouco diferente da pedida.
    (applets-src/index.html repete estas medidas para o modo de teste) */
 .applet-jxg {
-  width: 100%;
+  box-sizing: content-box;
+  width: calc(100% - 2px);
   max-width: 640px;
   aspect-ratio: 4 / 3;
   margin: 0 0 0.75rem;
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: 4px;
+  background: var(--cor-superf-suave);
   /* Toque: o dedo sobre o quadro rola a página e a pinça amplia a página,
      como fora dele; quem arrasta um ponto é tools/quadro.js, que cancela a
      rolagem nesse caso. O !important vence o estilo que o JSXGraph escreve
@@ -484,12 +506,6 @@ p:has(> .bloco-rotulo) {
   margin: 0 0 0.75rem;
   /* a marca da caixa de seleção na cor do dado: o que o estudante controla */
   accent-color: var(--cor-dado);
-}
-
-/* A fórmula sem conteúdo que o filtro põe na parte para carregar o KaTeX
-   (components/applet-bloco.lua) não ocupa lugar na linha */
-.applet-controles > .math {
-  display: none;
 }
 
 /* .centro na parte; no shortcode, arranjo="centro" vale também aqui */

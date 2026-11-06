@@ -46,8 +46,8 @@ export default function criarTesteControles({ id, JXG, partes = {} }) {
     visible: () => estado.reta && !nulo(),
   });
   // a·u antes de u: a seta de u, com a ponta arrastável, fica por cima.
-  board.create("arrow", [[0, 0], [() => au()[0], () => au()[1]]], seta(CORES.resultado, { nome: "a·u", lado: "right" }));
-  board.create("arrow", [[0, 0], U], seta(CORES.dado, { nome: "u" }));
+  board.create("arrow", [[0, 0], [() => au()[0], () => au()[1]]], seta(CORES.resultado, { nome: "a\\vec{u}", lado: "right" }));
+  board.create("arrow", [[0, 0], U], seta(CORES.dado, { nome: "\\vec{u}" }));
 
   const onde = partes.controles ?? id;
   criarFaixa(onde, estado, "a", { min: -2, max: 2, passo: 0.1, nome: "a", tex: (a) => `a = ${tex.numero(a)}` });

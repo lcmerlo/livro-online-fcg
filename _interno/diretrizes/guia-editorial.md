@@ -39,7 +39,7 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 **Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
 - Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
-- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos o quadro `.bloco-applet`, que não se escreve à mão. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
+- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos a parte interativa (`.bloco-applet`), que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as leituras, o texto de estado e o botão "Reiniciar" ficam fora dele, no fundo da página. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
 - Erro comum: sempre aberto; apresentar o equívoco e a correção.
 - Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
 - Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.

@@ -8,7 +8,9 @@
 //     dedos, nem com Shift + setas. A região mostrada faz parte da matemática;
 //   - no toque, um dedo fora dos pontos rola a página, como no resto do
 //     livro; sobre um ponto que se arrasta, arrasta o ponto;
-//   - o ponto arrastado não sai da região mostrada.
+//   - o ponto arrastado não sai da região mostrada;
+//   - os nomes dos objetos são TeX ("\\vec{u}", "A"), desenhados pelo KaTeX
+//     da página, com as macros do livro, como as fórmulas do texto.
 //
 // Uso, dentro da função de criação de um applet:
 //   const board = criarQuadro({ JXG, id, regiao: [-1, 5, 7, -1], eixos: true });
@@ -16,6 +18,8 @@
 // Os demais atributos vão direto para o JSXGraph (JXG.JSXGraph.initBoard).
 // Num applet com várias partes, o id é o da parte: criarQuadro({ JXG,
 // id: partes.figura, … }); ligarQuadros, no fim do arquivo, liga os quadros.
+
+import { CORES } from "../cores.js";
 
 // regiao: [x mín., y máx., x máx., y mín.], com números simples.
 // eixos e grade: true para mostrar (só quando o estudante precisa ler valores).
@@ -137,7 +141,79 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
     { passive: false },
   );
 
+  // Nomes dos objetos (o name de pontos, setas, retas…) em TeX, desenhados
+  // pelo KaTeX da página com as macros do livro, em 16 px e na cor do texto,
+  // como no JSX-quarto. Vale para os objetos criados depois daqui: os números
+  // dos eixos, criados com o quadro, continuam em texto simples.
+  Object.assign(board.options.label, {
+    useKatex: true,
+    fontSize: 16,
+    strokeColor: CORES.texto,
+    highlightStrokeColor: CORES.texto,
+  });
+  conferirTextos(board, JXG);
+
   return board;
+}
+
+// O nome de uma seta se afasta do traço pela largura do nome (seta, em
+// tools/styles.js). Quando um texto muda de tamanho (outro valor, ou as
+// fontes do KaTeX, que chegam depois da página), o JSXGraph o posiciona antes
+// de medi-lo de novo, e o nome fica perto demais até a próxima atualização.
+// Logo depois de cada atualização, os tamanhos são conferidos, e o quadro é
+// redesenhado uma vez se algum mudou. (Adaptado de lib/core.js do JSX-quarto.)
+function conferirTextos(board, JXG) {
+  const vistos = new Map();
+  let agendado = false;
+  let propria = false;
+
+  function conferir() {
+    agendado = false;
+
+    // A atualização pedida daqui não pede outra.
+    if (propria) {
+      propria = false;
+      return;
+    }
+
+    let mudou = false;
+
+    for (const objeto of board.objectsList) {
+      const no = objeto.type === JXG.OBJECT_TYPE_TEXT && objeto.visPropCalc.visible && objeto.rendNode;
+
+      if (!no?.offsetWidth) {
+        continue;
+      }
+
+      const tamanho = [no.offsetWidth, no.offsetHeight];
+      const antes = vistos.get(objeto);
+
+      if (antes && antes[0] === tamanho[0] && antes[1] === tamanho[1]) {
+        continue;
+      }
+
+      // Compara com o último tamanho visto aqui, e não com objeto.size: o
+      // próprio JSXGraph o acerta depois de posicionar o texto.
+      vistos.set(objeto, tamanho);
+      objeto.size = tamanho;
+      mudou = true;
+    }
+
+    if (mudou) {
+      propria = true;
+      board.update();
+    }
+  }
+
+  function agendar() {
+    if (!agendado) {
+      agendado = true;
+      setTimeout(conferir);
+    }
+  }
+
+  board.on("update", agendar);
+  document.fonts?.addEventListener("loadingdone", agendar);
 }
 
 // Quadros ligados: mexer num redesenha os outros. Serve ao applet com dois

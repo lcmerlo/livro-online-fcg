@@ -83,7 +83,7 @@ book:
     - capitulos/posicao-relativa-circulos.qmd
 
 # Faixa no alto de todas as páginas enquanto o livro está em testes; sai na
-# divulgação ao público-alvo (pendencias.md, §3). Fica em `website`, e não em
+# divulgação ao público-alvo (pendencias.md, §6). Fica em `website`, e não em
 # `book`, porque o Quarto 1.9.35 aceita `book.announcement`, mas não o leva ao site.
 website:
   announcement:

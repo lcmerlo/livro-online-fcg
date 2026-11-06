@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Equações de Reta no Espaço
 
 As noções de vetor paralelo a uma reta e de equação paramétrica de reta no espaço são análogas às vistas no plano.

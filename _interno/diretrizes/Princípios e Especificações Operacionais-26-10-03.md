@@ -328,7 +328,7 @@ Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriorme
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
 
-**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam por `<iframe>` applets GeoGebra vindos de projetos anteriores; a lista e a situação de cada um estão em `pendencias.md`. Os applets, as figuras, o texto e a nomenclatura são provisórios. O GeoGebra **não** constitui o padrão de publicação: cada applet será reescrito como applet JSXGraph próprio, tomando o original como inspiração e não como modelo (`diretrizes-tecnicas.md`, §4). Quando a função pedagógica (§9) indicar que uma figura estática basta, isso é proposto ao autor. Enquanto o iframe estiver no capítulo, ele deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
+**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam applets GeoGebra vindos de projetos anteriores, provisórios como o resto dos capítulos de hoje. O GeoGebra **não** constitui o padrão de publicação: cada applet será reescrito como applet JSXGraph próprio (`diretrizes-tecnicas.md`, §4; lista em `pendencias.md`, §5).
 
 ## 21. Estrutura global do livro
 
@@ -871,7 +871,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão, motivo e material ajustado, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
 
-Uma decisão só se completa quando todo o material do projeto (diretrizes, código, capítulos, modelos e verificações) estiver de acordo com ela. O que não puder ser ajustado de imediato fica listado em `pendencias.md` (`diretrizes-tecnicas.md`, §2).
+Como aplicar uma decisão a todo o material, e o que fica de fora (o conteúdo dos protótipos): `diretrizes-tecnicas.md`, §2.3.
 
 ## Conclusão
 

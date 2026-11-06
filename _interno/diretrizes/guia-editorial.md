@@ -110,7 +110,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
   | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 
-  A notação é definida num só lugar: para alterá-la em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). As macros não valem em PDF/Typst; se o livro passar a ter PDF ou trocar de motor de fórmulas, a definição deve continuar única (`diretrizes-tecnicas.md`, §5).
+  Para alterar a notação em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). Por que num só lugar: `diretrizes-tecnicas.md`, §5.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
 - Use as macros: não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.
@@ -167,12 +167,11 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
 
 - Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
 - Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
-- Os applets são JSXGraph próprios. Os GeoGebra que ainda estão nos capítulos serão reescritos em JSXGraph, tomando o original como inspiração, não como modelo.
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 
 ## 7. Acessibilidade e responsividade (§15, §32)
 
-Valores mínimos em §32 do documento de Princípios: contraste 4,5:1 (texto) e 3:1 (elementos gráficos), alvos de 24 × 24 px, reflow em 320 px. Conferir cada página em tela estreita antes de fechar o capítulo.
+Os valores mínimos estão no §32 dos Princípios; quais deles são regras fundamentais, no `diretrizes-tecnicas.md`, §1.3. Conferir cada página em tela estreita antes de fechar o capítulo.
 
 ## 8. Antes de enviar (§39)
 
@@ -186,7 +185,7 @@ git diff
 ```
 
 - Trabalhar em branch e integrar à `main` depois da verificação, de preferência por pull request (`diretrizes-tecnicas.md`, §8).
-- Corrigir os erros do script. Avisos de `alt` ausente devem ser tratados ao tocar na imagem.
+- Corrigir os erros do script e, nos capítulos revisados, os avisos; nos protótipos, os avisos aparecem só contados (`diretrizes-tecnicas.md`, §1.4).
 - Mensagens de commit curtas, no imperativo, com um assunto por commit.
 
 ## 9. Página-modelo

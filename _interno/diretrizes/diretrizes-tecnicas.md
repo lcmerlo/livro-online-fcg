@@ -260,10 +260,8 @@ Onde o livro faz diferente, e por quê:
 
 ## 5. Notação matemática
 
-- A notação é definida num só lugar: as macros de `components/macros.html`, que o KaTeX usa no texto, nas prévias das referências cruzadas, nas leituras dos applets e nos nomes dos objetos dos quadros; o verificador confere as fórmulas com essa mesma lista. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única e vale também para os textos dos applets.
-- Números, no texto e nos applets, levam ponto decimal e vírgula entre coordenadas, como `(2.5, 3)`. Nos applets, quem os escreve é `applets-src/src/tools/formatar.js`, e a convenção muda ali. A convenção é provisória e será reavaliada (`pendencias.md`, §2).
-- Vetores usam, por enquanto, dois comandos: `\vec{u}` para nome de uma só letra e a macro `\vet{AB}` para nome formado por dois pontos. O objetivo é um só comando com bom resultado nos dois casos (`pendencias.md`, §2).
-- Os símbolos e as macros estão no `guia-editorial.md`, §4.
+- A notação é definida num só lugar (regra fundamental 3) e vale no texto, nas prévias das referências cruzadas e nos applets (leituras, controles e nomes no quadro); o verificador confere as fórmulas com a mesma definição. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única.
+- As convenções de escrita (números, vetores, macros, símbolos) estão no `guia-editorial.md`, §4, e valem também nos applets. As dos números e dos vetores são provisórias e serão reavaliadas (`pendencias.md`, §2).
 
 ## 6. Aparência
 

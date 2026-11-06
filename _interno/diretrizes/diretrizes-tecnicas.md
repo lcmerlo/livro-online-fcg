@@ -265,11 +265,9 @@ Onde o livro faz diferente, e por quê:
 
 ## 6. Aparência
 
-- **Valores definidos uma vez:** cores na paleta de `_brand.yml`; papéis de cor como variáveis `--cor-…` em `assets/css/custom.scss`. Applets e capítulos usam esses nomes, nunca cores literais (§24, §35).
-- **Cada valor num lugar só.** Quando um valor aparece em dois arquivos, um prevalece e o outro engana: escolha um e apague o outro (caso pendente: o tamanho da fonte, `pendencias.md`, §2).
-- **Duas seções na paleta de `_brand.yml`.** As cores do livro, as únicas que os papéis `--cor-…` usam, e as cores de teste, que são as paletas comparadas no JSX-quarto, com os nomes de lá (`blue-oi`, `red-tb`…). As cores de teste servem aos applets de teste, por `paleta()` (§4.5), e não chegam aos capítulos.
-- **Novas cores no livro ou outro modelo de cor** entram por decisão, depois de medir o contraste e conferir com simulação de daltonismo (§24, §32). Isso vale para a seção do livro e para os papéis; uma cor de teste passa a ser do livro só por essa decisão. Nenhuma cor da paleta pode ter só o nome de uma cor do Bootstrap (`blue`, `red`, `green`…): o Quarto a usaria no tema do site inteiro.
-- **A cópia das variáveis na página de desenvolvimento** (`applets-src/index.html`), que fora do livro não teria cores, é conferida pelo verificador: um valor diferente do livro gera aviso.
+- **Cada valor definido uma vez** (regra fundamental 6): as cores numa paleta com nomes, e os papéis de cor como variáveis do livro. Applets e capítulos usam esses nomes, nunca cores escritas à mão (§24, §35). Quando um valor aparece em dois arquivos, um prevalece e o outro engana: escolhe-se um e apaga-se o outro (caso pendente: o tamanho da fonte, `pendencias.md`, §2).
+- **Cores do livro e cores de teste.** A paleta tem as cores do livro, as únicas que os papéis usam, e as cores de teste, que são as paletas comparadas no JSX-quarto. As de teste servem aos applets de teste e não chegam aos capítulos.
+- **Novas cores no livro ou outro modelo de cor** entram por decisão, depois de medir o contraste e conferir com simulação de daltonismo (§24, §32). Uma cor de teste passa a ser do livro só por essa decisão.
 
 ## 7. Nomes e endereços
 

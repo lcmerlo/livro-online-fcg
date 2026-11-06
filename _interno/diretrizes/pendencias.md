@@ -40,8 +40,8 @@ O que está em aberto no projeto: requisitos ainda não cumpridos, decisões a t
 
 | O quê | Onde | Próximo passo |
 |---|---|---|
-| `\overrightarrow{AB}` onde o guia pede `\vet{AB}` (`guia-editorial.md`, §4) | `_interno/oficina/protótipos/` (3 arquivos) | trocar ao publicar cada protótipo |
-| Protótipos citam materiais GeoGebra (links e imagens) | `_interno/oficina/protótipos/` | reescrever os applets em JSXGraph ao publicar cada protótipo |
+| `\overrightarrow{AB}` onde o guia pede `\vet{AB}` (`guia-editorial.md`, §4) | `_interno/oficina/nao-publicados/` (3 arquivos) | trocar ao publicar cada protótipo |
+| Capítulos não publicados citam materiais GeoGebra (links e imagens) | `_interno/oficina/nao-publicados/` | reescrever os applets em JSXGraph ao publicar cada protótipo |
 | O JSX-quarto usa 360 px como largura mínima; o livro, 320 px | JSX-quarto, `migracao/manual.qmd` | alinhar lá, se o autor quiser (fora deste repositório) |
 
 ## 5. Applets GeoGebra a reescrever em JSXGraph

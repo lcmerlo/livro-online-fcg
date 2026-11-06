@@ -116,7 +116,7 @@ livro-quarto/
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
 │   │   ├── exemplos/           ✏️  Applets de exemplo para `npm run dev` (fora do bundle)
-│   │   └── applets/            ✏️  Um arquivo por applet (hoje teste-cores.js e teste-controles.js, do projeto de testes)
+│   │   └── applets/            ✏️  Um arquivo por applet (hoje teste-cores.js, teste-controles.js e combinacao-linear.js, do projeto de testes)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
 ├── tests/
@@ -209,7 +209,7 @@ linha não aparece na página. Um capítulo combina:
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio, em TeX, com 18 px) e o objeto `ESTILOS` com os traços por papel (`resultado`, `dado`, `apoio`) e o `alerta` (erro ou contraexemplo, sem cor própria, combinado com o estilo do papel). |
-| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem dois applets de teste: `teste-cores.js`, usado na página `_interno/oficina/testes/teste-cores.qmd` (a soma de vetores no modelo de cor do livro e em duas alternativas, lado a lado), e `teste-controles.js`, usado em `teste-controles.qmd` (o vetor a·u, com faixa, campo, caixa e botão Animar, em quatro arranjos); o livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
+| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem dois applets de teste: `teste-cores.js`, usado na página `_interno/oficina/testes/teste-cores.qmd` (a soma de vetores no modelo de cor do livro e em duas alternativas, lado a lado), e `teste-controles.js`, usado em `teste-controles.qmd` (o vetor a·u, com faixa, campo, caixa e botão Animar, em quatro arranjos). O piloto da combinação linear, `combinacao-linear.js`, é usado em `piloto-combinacao-linear.qmd` (a combinação linear de dois vetores, sem coordenadas, em três quadros). O livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 | `src/exemplos/` | Applets de exemplo, fora do bundle (`main.js` só registra `src/applets/`): `exemplo-partes.js`, com dois quadros ligados e uma leitura, é o modelo de applet com várias partes e roda na página de `npm run dev`. |
 
 ### 4.6 `tests/verificar-site.mjs`

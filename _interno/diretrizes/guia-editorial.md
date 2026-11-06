@@ -112,7 +112,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
   A notação é definida num só lugar: para alterá-la em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). As macros não valem em PDF/Typst; se o livro passar a ter PDF ou trocar de motor de fórmulas, a definição deve continuar única (`diretrizes-tecnicas.md`, §5).
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
-- Os capítulos já usam as macros (os protótipos ainda não: `pendencias.md`, §4); não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
+- Use as macros: não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático e de texto didático só entram com a aprovação do autor responsável. O que conta como cada tipo de mudança está em `diretrizes-tecnicas.md`, §9.
 
@@ -191,7 +191,7 @@ git diff
 
 ## 9. Página-modelo
 
-`capitulos/segmentos.qmd` é a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência. Ela está sem applet desde 2026-11-03; para o bloco de interação, siga o §6 e o modelo `_interno/oficina/testes/modelo-capitulo-completo.qmd`. Onde a página e as diretrizes divergem, valem as diretrizes.
+Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `_interno/oficina/testes/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, checkpoint com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 

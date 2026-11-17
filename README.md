@@ -52,6 +52,7 @@ AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
 ### Comandos principais
 quarto preview      - preview local
+quarto preview --profile axe - preview local com a verificação de acessibilidade do Quarto (resultado no console do navegador)
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)

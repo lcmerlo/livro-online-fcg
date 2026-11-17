@@ -35,9 +35,9 @@
     }
   }
 
-  // O Pandoc só põe o KaTeX nas páginas com fórmulas, num script com defer:
-  // ele roda depois desta página ser lida, e o evento load dele vem antes de
-  // as fórmulas serem desenhadas (no DOMContentLoaded).
+  // O Pandoc só põe o KaTeX nas páginas com fórmulas. Desde o Quarto 1.11, o
+  // script não tem defer e já rodou quando este chega; no 1.9, tinha defer, e o
+  // evento load dele vem antes de as fórmulas serem desenhadas (no DOMContentLoaded).
   if (window.katex) {
     definir();
     return;

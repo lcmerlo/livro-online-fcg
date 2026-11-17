@@ -22,7 +22,8 @@ format:
     number-depth: 2
     smooth-scroll: true
     callout-appearance: simple
-    axe: true
+    # A verificação de acessibilidade (axe) fica no perfil `axe` (_quarto-axe.yml),
+    # fora do site publicado.
     # Fórmulas: KaTeX, com a versão fixada; a mesma do verificador
     # (applets-src/package.json) e do JSX-quarto.
     html-math-method:

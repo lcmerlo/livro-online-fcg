@@ -1,8 +1,8 @@
 # Título do Capítulo
 
 <!--
-Modelo de capítulo com a estrutura atual (guia-editorial.md §3 e §9; página-modelo:
-capitulos/segmentos.qmd) e TODOS os tipos de bloco disponíveis no livro.
+Modelo de capítulo com a estrutura atual (guia-editorial.md §3) e TODOS os tipos de bloco
+disponíveis no livro. É a referência de forma até o primeiro capítulo revisado (§9).
 
 Como usar: copiar para capitulos/nome.qmd, listar em _quarto.yml, substituir os
 [colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o

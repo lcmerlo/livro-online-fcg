@@ -56,7 +56,7 @@ book:
   reader-mode: true
   page-navigation: true
   # Faixa no alto de todas as páginas enquanto o livro está em testes; sai na
-  # divulgação ao público-alvo (pendencias.md, §3). Fica em `book`: desde o
+  # divulgação ao público-alvo (pendencias.md, §6). Fica em `book`: desde o
   # Quarto 1.11, um livro ignora a de `website` (no 1.9.35, era o contrário).
   announcement:
     content: "**Material em construção.** Uso não recomendado no momento!"
@@ -67,8 +67,8 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- _interno/diretrizes/relatorio-design-pedagogico-26-05-14.qmd
-    #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
+    #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd
+    #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
     - capitulos/primeiras-nocoes.qmd
     - capitulos/segmentos.qmd
     - capitulos/segmentos-orientados.qmd

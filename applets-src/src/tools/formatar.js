@@ -1,7 +1,8 @@
 // applets-src/src/tools/formatar.js
 //
 // Como os applets escrevem números, pontos, ângulos e expressões: num só
-// lugar (diretrizes-tecnicas.md, §5). Duas saídas:
+// lugar (diretrizes-tecnicas.md, §4.5; convenções: guia-editorial.md, §4).
+// Duas saídas:
 //   tex.*    TeX, para fórmulas desenhadas pelo KaTeX (leituras, rótulos);
 //   texto.*  texto simples, para o parágrafo de estado, lido pelo leitor de tela.
 //   import { numero, tex, texto, casos, expressao } from "../tools/formatar.js";

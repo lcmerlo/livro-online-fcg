@@ -42,9 +42,9 @@ export function paleta(nome) {
 // própria (ESTILOS.alerta). Os valores são lidos uma única vez, quando o
 // bundle é carregado.
 export const CORES = {
-  // Texto e superfícies. superfSuave é o fundo do quadro (o do .bloco-applet,
-  // que fica atrás dele) e preenche o miolo dos pontos abertos. A cor do
-  // texto serve também a nomes, à origem e a pontos de referência.
+  // Texto e superfícies. superfSuave é o fundo do quadro (.applet-jxg, em
+  // custom.scss) e preenche o miolo dos pontos abertos. A cor do texto serve
+  // também a nomes, à origem e a pontos de referência.
   texto: cor("--cor-texto"),
   superf: cor("--cor-superf"),
   superfSuave: cor("--cor-superf-suave"),

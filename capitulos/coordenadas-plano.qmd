@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Coordenadas no plano
 
 Na seção anterior vimos, através da noção de eixo, que cada ponto de uma reta pode ser representado por um número. Agora veremos um método para representar cada ponto do plano através de números, mas neste caso, cada ponto será representado por um par ordenado de números.

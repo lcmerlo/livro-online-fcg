@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Área de triângulos e paralelogramos
 
 ::: {#def-lados-paralelogramo}

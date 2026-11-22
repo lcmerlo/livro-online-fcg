@@ -2,7 +2,7 @@
 
 Guia curto para quem escreve ou revisa capítulos. A justificativa de cada orientação está em `Princípios e Especificações Operacionais-26-10-03.md` (§ entre parênteses); o desenvolvimento técnico (applets, código, verificação) está em `diretrizes-tecnicas.md`.
 
-As orientações deste guia são padrões: valem até que outra forma se mostre melhor e mudam por decisão registrada (`diretrizes-tecnicas.md`, §1 e §2). Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.2 das diretrizes técnicas.
+As orientações deste guia são provisórias, pela regra "siga ou explique", menos as que repetem uma regra fundamental (`diretrizes-tecnicas.md`, §1.2 e §1.3). Valem para os capítulos revisados; nos protótipos (`estado: prototipo` no cabeçalho), vale o §1.4 das diretrizes técnicas. Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.5 das diretrizes técnicas.
 
 ## 1. Estrutura de um tópico (§5, §22)
 
@@ -39,7 +39,7 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35).
 **Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
 - Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
-- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos o quadro `.bloco-applet`, que não se escreve à mão. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
+- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos a parte interativa (`.bloco-applet`), que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as leituras, o texto de estado e o botão "Reiniciar" ficam fora dele, no fundo da página. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
 - Erro comum: sempre aberto; apresentar o equívoco e a correção.
 - Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
 - Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.
@@ -110,9 +110,9 @@ Pela @prp-formula-distancia-ponto-reta, temos …
   | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 
-  A notação é definida num só lugar: para alterá-la em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). As macros não valem em PDF/Typst; se o livro passar a ter PDF ou trocar de motor de fórmulas, a definição deve continuar única (`diretrizes-tecnicas.md`, §5).
+  Para alterar a notação em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). Por que num só lugar: `diretrizes-tecnicas.md`, §5.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
-- Os capítulos já usam as macros (os protótipos ainda não: `pendencias.md`, §4); não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
+- Use as macros: não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático e de texto didático só entram com a aprovação do autor responsável. O que conta como cada tipo de mudança está em `diretrizes-tecnicas.md`, §9.
 
@@ -139,7 +139,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (um checkpoint, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
 - Inserir com `{{< applet <nome> id="…" rotulo="…" >}}` dentro de um `.bloco-interacao`, com a instrução antes e a pergunta depois. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
-- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, ou `.leitura`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
+- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula, os controles em outro lugar) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, `.leitura` ou `.controles`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
 
   ```markdown
   ::::: {.applet nome="nome-do-applet" id="nda" rotulo="Descrição do applet"}
@@ -153,6 +153,7 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
   ```
 
   O div de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina. O texto de estado e o botão "Reiniciar" entram sozinhos no fim do bloco.
+- Os controles (faixas, caixas de seleção, campos, botões) vêm do applet e ficam logo abaixo do quadro, no shortcode e no bloco; o capítulo só escreve a parte `.controles` para pô-los em outro lugar.
 - **Arranjos**, sem CSS no capítulo:
 
   | Para | Escreva |
@@ -161,15 +162,17 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
   | Partes lado a lado, uma embaixo da outra no celular | `:::: {.grid}` em volta das partes e `.g-col-12 .g-col-md-6` em cada uma; outras divisões somam 12 (`.g-col-md-4` com `.g-col-md-8`) |
   | Quadros de tamanho fixo juntos, no centro | `:::: {.grupo}` em volta dos quadros; os que não cabem descem, também no centro |
   | Texto ao lado do applet | `::::: {.grid}` em volta de duas células: `:::: {.g-col-12 .g-col-md-7}` com o applet (shortcode ou bloco) e `:::: {.g-col-12 .g-col-md-5}` com o texto. A primeira célula fica à esquerda e, no celular, em cima |
+  | Controles em outro lugar | no bloco, a parte `::: {#<id>-controles .controles}` onde eles devem ficar; antes do quadro, eles ficam em cima. `.centro` na parte os centraliza; no shortcode, `arranjo="centro"` centraliza o quadro e os controles |
+  | Controles ao lado do quadro, embaixo dele no celular | `:::: {.grid}` em volta do quadro, com `.g-col-12 .g-col-md-7`, e da parte `.controles`, com `.g-col-12 .g-col-md-5`. Na célula estreita, os controles ficam um embaixo do outro |
 
 - Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
 - Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
-- Os applets são JSXGraph próprios. Os GeoGebra que ainda estão nos capítulos serão reescritos em JSXGraph, tomando o original como inspiração, não como modelo.
+- Cada arranjo funcionando, com o que se escreve no `.qmd`: `_interno/oficina/testes/arranjos.qmd` (renderizar com `quarto render`).
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 
 ## 7. Acessibilidade e responsividade (§15, §32)
 
-Valores mínimos em §32 do documento de Princípios: contraste 4,5:1 (texto) e 3:1 (elementos gráficos), alvos de 24 × 24 px, reflow em 320 px. Conferir cada página em tela estreita antes de fechar o capítulo.
+Os valores mínimos estão no §32 dos Princípios; quais deles são regras fundamentais, no `diretrizes-tecnicas.md`, §1.3. Conferir cada página em tela estreita antes de fechar o capítulo.
 
 ## 8. Antes de enviar (§39)
 
@@ -183,12 +186,12 @@ git diff
 ```
 
 - Trabalhar em branch e integrar à `main` depois da verificação, de preferência por pull request (`diretrizes-tecnicas.md`, §8).
-- Corrigir os erros do script. Avisos de `alt` ausente devem ser tratados ao tocar na imagem.
+- Corrigir os erros do script e, nos capítulos revisados, os avisos; nos protótipos, os avisos aparecem só contados (`diretrizes-tecnicas.md`, §1.4).
 - Mensagens de commit curtas, no imperativo, com um assunto por commit.
 
 ## 9. Página-modelo
 
-`capitulos/segmentos.qmd` é a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, erro comum, checkpoint com resposta recolhível e exercício resolvido. Ao criar ou revisar um capítulo, use-a como referência. Ela está sem applet desde 2026-11-03; para o bloco de interação, siga o §6 e o modelo `_interno/oficina/testes/modelo-capitulo-completo.qmd`. Onde a página e as diretrizes divergem, valem as diretrizes.
+Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `_interno/oficina/testes/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, checkpoint com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 

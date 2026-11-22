@@ -35,23 +35,7 @@ export function criarLeitura({ id, tex, quadros = [] }) {
     }
 
     ultimo = codigo;
-    const katex = window.katex;
-
-    // Sem KaTeX na página (a página de desenvolvimento, por exemplo), o TeX
-    // aparece como texto.
-    if (!katex) {
-      elemento.textContent = codigo;
-      return;
-    }
-
-    // O KaTeX desenha na hora, sem esperar a página. Um TeX que ele não
-    // entende aparece como texto, com um aviso no console.
-    try {
-      katex.render(codigo, elemento, { displayMode: true });
-    } catch (erro) {
-      console.warn("[AppletsLivro] KaTeX:", erro?.message ?? erro);
-      elemento.textContent = codigo;
-    }
+    desenharTex(elemento, codigo, { displayMode: true });
   }
 
   function agendar() {
@@ -67,4 +51,27 @@ export function criarLeitura({ id, tex, quadros = [] }) {
 
   desenhar();
   return { atualizar: desenhar };
+}
+
+// Desenha o TeX `codigo` no elemento, com o KaTeX da página e as macros do
+// livro; serve à leitura e aos controles (tools/controles.js). opcoes vai
+// para o KaTeX ({ displayMode: true } numa fórmula em destaque).
+export function desenharTex(elemento, codigo, opcoes = {}) {
+  const katex = window.katex;
+
+  // Sem KaTeX na página (a página de desenvolvimento, por exemplo), o TeX
+  // aparece como texto.
+  if (!katex) {
+    elemento.textContent = codigo;
+    return;
+  }
+
+  // O KaTeX desenha na hora, sem esperar a página. Um TeX que ele não
+  // entende aparece como texto, com um aviso no console.
+  try {
+    katex.render(codigo, elemento, opcoes);
+  } catch (erro) {
+    console.warn("[AppletsLivro] KaTeX:", erro?.message ?? erro);
+    elemento.textContent = codigo;
+  }
 }

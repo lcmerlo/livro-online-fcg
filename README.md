@@ -3,7 +3,7 @@
 Livro interativo online de **Fundamentos de Cálculo e Geometria - FCG**,  desenvolvido em [Quarto](https://quarto.org/) pelo corpo docente do GGM-IME-UFF e publicado em GitHub Pages.
 
 ## Status
-Em desenvolvimento.
+Em desenvolvimento. O site publicado leva o aviso "Material em construção". Os capítulos são protótipos: dão uma ideia do material e serão reescritos (`estado: prototipo` no cabeçalho; `_interno/diretrizes/diretrizes-tecnicas.md`, §1.4).
 
 ## Componentes de um capítulo
 Repertório, não roteiro obrigatório: cada capítulo usa os componentes de que precisa, na ordem que o conteúdo pedir (ver `_interno/diretrizes/guia-editorial.md`).
@@ -46,7 +46,7 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural) e oficina/ (protótipos/ com capítulos ainda não publicados, testes/ para arquivos de teste com a configuração do livro, referências)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, testes/ para arquivos de teste com a configuração do livro, referências)
 .github/workflows/publish.yml - Verifica cada pull request; renderiza e publica no GitHub Pages a cada push na main
 AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
@@ -62,48 +62,11 @@ node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrit
 
 ## Applets
 
-### Características dos applets:
-- objetivo claro;
-- instrução curta;
-- controles mínimos;
-- descrição textual;
-- botão ou instrução de reinício;
-- checkpoint após a exploração;
-- uso pelo teclado e alternativa ao arraste.
+Os applets são JSXGraph próprios, com o código em `applets-src/`. Os applets GeoGebra que ainda estão nos capítulos serão reescritos (lista em `_interno/diretrizes/pendencias.md`, §5).
 
-O que cada applet garante e como é aceito: `_interno/diretrizes/diretrizes-tecnicas.md`, §4.
-
-
-### Ferramentas para produção de applets
-	- JSXGraph: ferramenta dos applets do livro.
-	- GeoGebra: applets de projetos anteriores, ainda em alguns capítulos. Servem de inspiração e serão reescritos em JSXGraph (lista em `_interno/diretrizes/pendencias.md`).
-	- Outras ferramentas, como Desmos, só por decisão registrada.
-
-### Incorporação (`components/applet.lua` e `components/applet-bloco.lua`)
-Applet JSXGraph próprio (gera o contêiner, o botão de reinício e carrega o bundle só nesta página):
-
-::: {.bloco-interacao}
-[Instrução de interação.]
-
-{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela]" >}}
-:::
-
-O primeiro argumento é o nome de um arquivo de `applets-src/src/applets/`, sem `.js`; `id` deve ser único na página. Hoje o livro não tem nenhum applet JSXGraph em capítulo.
-
-Applet com várias partes (quadros ligados, leitura com fórmula), em lugares que o capítulo escolhe: um bloco envolve as partes, cada uma com id `<id>-<parte>` (arranjos em `_interno/diretrizes/guia-editorial.md`, §6):
-
-::::: {.applet nome="nome-do-applet" id="nda" rotulo="[Descrição do applet]"}
-:::: {.grid}
-::: {#nda-figura .quadro .g-col-12 .g-col-md-6 rotulo="[Descrição do quadro]"}
-:::
-::: {#nda-leitura .leitura .g-col-12 .g-col-md-6}
-:::
-::::
-:::::
-
-Applet GeoGebra, provisório até a reescrita em JSXGraph (iframe com `title`, carregamento tardio e link alternativo):
-
-{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição curta" >}}
+- Como inserir um applet num capítulo (shortcode, bloco com várias partes, arranjos): `_interno/diretrizes/guia-editorial.md`, §3 e §6.
+- O que cada applet garante, como é aceito e por quê: `_interno/diretrizes/diretrizes-tecnicas.md`, §4.
+- Como criar um applet, passo a passo: `_interno/diretrizes/arquitetura.md`, §7.
 
 ## Versionamento e Repositório Remoto - Git e GitHub
 
@@ -132,7 +95,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 - [ ] Applets carregam localmente.
 - [ ] O conteúdo funciona em tela estreita.
 - [ ] Não há arquivos temporários no commit.
-- [ ] Se houve decisão nova, ela está em `_interno/diretrizes/decisoes.md` e todo o material foi ajustado a ela.
+- [ ] Se houve decisão nova, ela está em `_interno/diretrizes/decisoes.md` e todo o material foi ajustado a ela (nos protótipos, só o necessário para o site funcionar).
 
 ### Arquivos principais Git
 
@@ -140,4 +103,4 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
 
 ## Licença
-	Definir antes da publicação pública.
+	Definir antes da divulgação (`_interno/diretrizes/pendencias.md`, §6).

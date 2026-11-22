@@ -328,7 +328,7 @@ Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriorme
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
 
-**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam applets GeoGebra vindos de projetos anteriores, provisórios como o resto dos capítulos de hoje. O GeoGebra **não** constitui o padrão de publicação: cada applet será reescrito como applet JSXGraph próprio (`diretrizes-tecnicas.md`, §4; lista em `pendencias.md`, §5).
+**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam applets GeoGebra vindos de projetos anteriores, provisórios como o resto dos capítulos de hoje. O GeoGebra **não** constitui o padrão de publicação: a grande maioria deles será substituída por applets JSXGraph próprios (`diretrizes-tecnicas.md`, §4; lista em `pendencias.md`, §5), onde o material do geogebra servirá apenas como inspiração.
 
 ## 21. Estrutura global do livro
 

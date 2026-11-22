@@ -45,7 +45,7 @@ import { expressao, numero, tex, texto } from "../tools/formatar.js";
 
 // Regiões do plano. O segundo quadro é maior que o primeiro, para que
 // a·u + b·v caiba nele com a e b entre −2 e 2 e u e v do tamanho inicial.
-const REGIAO_VETORES = [-4, 3, 4, -3];
+const REGIAO_VETORES = [0, 3, 4, -3];
 const REGIAO_COMBINACAO = [-5, 4, 5, -4];
 const REGIAO_DECOMPOSICAO = [-6, 4, 6, -4];
 

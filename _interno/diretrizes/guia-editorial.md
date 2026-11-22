@@ -167,6 +167,7 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
 
 - Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
 - Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
+- Cada arranjo funcionando, com o que se escreve no `.qmd`: `_interno/oficina/testes/arranjos.qmd` (renderizar com `quarto render`).
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 
 ## 7. Acessibilidade e responsividade (§15, §32)

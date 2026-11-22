@@ -69,23 +69,5 @@ book:
     - index.qmd
     #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd
     #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
-    - capitulos/primeiras-nocoes.qmd
-    - capitulos/segmentos.qmd
-    - capitulos/segmentos-orientados.qmd
-    - capitulos/eixos.qmd
-    - capitulos/coordenadas-plano.qmd
-    - capitulos/circulos.qmd
-    - capitulos/vetores.qmd
-    - capitulos/produto-numero-vetor.qmd
-    - capitulos/soma-subtracao-vetores.qmd
-    - capitulos/combinacao-linear.qmd
-    - capitulos/produto-interno-escalar.qmd
-    - capitulos/projecao-ortogonal.qmd
-    - capitulos/area-triangulos-paralelogramos.qmd
-    - capitulos/equacao-parametrica-reta.qmd
-    - capitulos/equacao-cartesiana-reta.qmd
-    - capitulos/intersecao-retas.qmd
-    - capitulos/posicao-relativa-retas.qmd
-    - capitulos/distancia-ponto_reta-reta_reta.qmd
-    - capitulos/posicoes-relativas-reta-circulo.qmd
-    - capitulos/posicao-relativa-circulos.qmd
+    # Os 20 capítulos de antes, protótipos, estão em _interno/oficina/nao-publicados/,
+    # como modelo para os novos, que entram aqui (2026-11-22).

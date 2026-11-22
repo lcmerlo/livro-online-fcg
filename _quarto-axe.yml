@@ -1,0 +1,8 @@
+# Perfil "axe": a verificação de acessibilidade do Quarto (axe-core), só na máquina
+# de quem escreve. Usar com `quarto preview --profile axe`; o resultado sai no
+# console do navegador (Ferramentas do programador > Console). O site publicado é
+# gerado sem perfil e não leva o axe-core (553 KB) ao estudante (decisoes.md,
+# 2026-11-17).
+format:
+  html:
+    axe: true

@@ -44,7 +44,7 @@ jobs:
       - name: Instalar Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.9.35
+          version: 1.11.9
 
       - name: Renderizar site HTML
         run: quarto render --to html

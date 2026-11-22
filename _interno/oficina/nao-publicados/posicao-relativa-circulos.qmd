@@ -19,7 +19,7 @@ Sejam  $\mathcal{C}_1$  e  $\mathcal{C}_2$  círculos tangentes em  $T$.
 1. Se  $r$  é a reta que liga os centros dos círculos então  $T\in r$;
 2. Se  $s$  é a reta perpendicular a  $r$  que passa por  $T$  então  $s$  é a reta tangente aos dois círculos no ponto  $T$.
     
-    ![material-uenb96uj.png](../assets/img/posicao-relativa-circulos/material-uenb96uj.png)
+    ![material-uenb96uj.png](../../../assets/img/posicao-relativa-circulos/material-uenb96uj.png)
 :::
     
 

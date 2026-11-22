@@ -3,7 +3,7 @@
 Livro interativo online de **Fundamentos de Cálculo e Geometria - FCG**,  desenvolvido em [Quarto](https://quarto.org/) pelo corpo docente do GGM-IME-UFF e publicado em GitHub Pages.
 
 ## Status
-Em desenvolvimento. O site publicado leva o aviso "Material em construção". Os capítulos são protótipos: dão uma ideia do material e serão reescritos (`estado: prototipo` no cabeçalho; `_interno/diretrizes/diretrizes-tecnicas.md`, §1.4).
+Em desenvolvimento. O site publicado leva o aviso "Material em construção". Os capítulos estão sendo escritos do zero. Os de antes, protótipos (`estado: prototipo` no cabeçalho; `_interno/diretrizes/diretrizes-tecnicas.md`, §1.4), saíram do site em 2026-11-22 e ficam em `_interno/oficina/nao-publicados/`, como modelo.
 
 ## Componentes de um capítulo
 Repertório, não roteiro obrigatório: cada capítulo usa os componentes de que precisa, na ordem que o conteúdo pedir (ver `_interno/diretrizes/guia-editorial.md`).

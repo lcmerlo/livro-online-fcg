@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Primeiras Noções da Geometria Espacial
 
 A partir de agora estudaremos a geometria analítica espacial. Nestas parte, muitos conceitos são similares aos da geometria plana, mas alguns outros novos e próprios de um espaço com três dimensões serão apresentados.

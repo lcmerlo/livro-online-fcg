@@ -160,9 +160,10 @@ function afastarNome(seta) {
 }
 
 // Seta (vetor): traço com ponta e, se houver, o nome no meio, do lado
-// `lado` ("left" ou "right" do sentido da seta). A ponta tem o tamanho que
-// casa com o ponto de forma "seta" posto nela.
-//   board.create("arrow", [P, Q], seta(CORES.dado, { nome: "u" }));
+// `lado` ("left" ou "right" do sentido da seta). O nome é TeX, como todo
+// nome no quadro (tools/quadro.js). A ponta tem o tamanho que casa com o
+// ponto de forma "seta" posto nela.
+//   board.create("arrow", [P, Q], seta(CORES.dado, { nome: "\\vec{u}" }));
 export function seta(cor = CORES.dado, { nome = "", lado = "left", espessura = 2.5 } = {}) {
   return {
     fixed: true,
@@ -173,6 +174,9 @@ export function seta(cor = CORES.dado, { nome = "", lado = "left", espessura = 2
     name: nome,
     withLabel: nome !== "",
     label: {
+      // O nome do vetor um pouco maior que os outros nomes (16 px, em
+      // tools/quadro.js), como no JSX-quarto.
+      fontSize: 18,
       position: `0.5fr ${lado}`,
       anchorX: "middle",
       anchorY: "middle",

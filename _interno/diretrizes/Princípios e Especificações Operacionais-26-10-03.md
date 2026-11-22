@@ -12,7 +12,7 @@ Neste estágio, a prioridade é estabelecer uma arquitetura global simples, cons
 
 ### Nota sobre fontes e documentos relacionados
 
-Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §31, §32, §39 e §40). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, e ele sustenta apenas parte dessas passagens:
+Este documento cita um "relatório revisto", uma "versão revista", uma "revisão anterior" e uma "proposta anterior" (§20, §22, §31, §32, §39 e §40). O único relatório versionado é `relatorio-design-pedagogico-26-05-14.qmd`, em `_interno/referencia/`, e ele sustenta apenas parte dessas passagens:
 
 | § | Passagem | Em `relatorio-design-pedagogico-26-05-14.qmd` |
 |---|---|---|
@@ -25,12 +25,12 @@ Este documento cita um "relatório revisto", uma "versão revista", uma "revisã
 
 As passagens sem correspondência remetem, provavelmente, a uma versão revista do relatório que não está no repositório. Até que essa versão seja localizada e versionada, elas valem como registro de contexto, não como referência verificável.
 
-Documentos relacionados, todos nesta pasta:
+Documentos relacionados (nesta pasta, salvo indicação):
 
 - `guia-editorial.md`: orientações curtas para quem escreve capítulos (§36);
 - `diretrizes-tecnicas.md`: como desenvolver o livro e como tomar e aplicar decisões; traz o mapa de todos os documentos e o que fazer quando eles divergem;
 - `arquitetura.md`, `decisoes.md` e `pendencias.md`: o projeto como é hoje, o que foi decidido e o que está em aberto;
-- `relatorio-design-pedagogico-26-05-14.qmd` e `biblioteca-estruturas-site-diretrizes.qmd`: material de apoio anterior a este documento, mantido como referência.
+- `relatorio-design-pedagogico-26-05-14.qmd` e `biblioteca-estruturas-site-diretrizes.qmd`, em `_interno/referencia/`: material de apoio anterior a este documento, mantido como referência.
 
 # Parte 1 — Princípios
 
@@ -328,7 +328,7 @@ Ferramentas externas adicionais, como Desmos, podem ser incorporadas posteriorme
 
 Nesta fase, GeoGebra, CindyJS ou outras plataformas não devem integrar o padrão de publicação sem necessidade demonstrada.
 
-**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam por `<iframe>` applets GeoGebra vindos de projetos anteriores; a lista e a situação de cada um estão em `pendencias.md`. Os applets, as figuras, o texto e a nomenclatura são provisórios. O GeoGebra **não** constitui o padrão de publicação: cada applet será reescrito como applet JSXGraph próprio, tomando o original como inspiração e não como modelo (`diretrizes-tecnicas.md`, §4). Quando a função pedagógica (§9) indicar que uma figura estática basta, isso é proposto ao autor. Enquanto o iframe estiver no capítulo, ele deve ter `title`, `loading="lazy"` e um link alternativo (`{{< geogebra >}}`, ver `guia-editorial.md`).
+**Applets do GeoGebra (decisão de 2026-11-03).** Os capítulos ainda incorporam applets GeoGebra vindos de projetos anteriores, provisórios como o resto dos capítulos de hoje. O GeoGebra **não** constitui o padrão de publicação: a grande maioria deles será substituída por applets JSXGraph próprios (`diretrizes-tecnicas.md`, §4; lista em `pendencias.md`, §5), onde o material do geogebra servirá apenas como inspiração.
 
 ## 21. Estrutura global do livro
 
@@ -616,6 +616,8 @@ São requisitos desde o início:
 - alternativas para ações que dependam exclusivamente de arraste;
 - descrição textual de conteúdo visual relevante.
 
+Na fase de testes, esses requisitos não esperam todos do mesmo jeito (decisão de 2026-11-06; regras fundamentais em `diretrizes-tecnicas.md`, §1.3). Navegação por teclado, foco visível, reflow em 320 px e cor que não é a única informação valem desde já, porque sairiam caros de acrescentar depois. A descrição textual das imagens pode esperar até a divulgação, e toda imagem nova já nasce com ela. As alternativas ao arraste esperam o piloto dos applets, por decisão do autor. Os demais, como contraste e hierarquia de títulos, valem como regras provisórias.
+
 O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os requisitos acima sejam verificáveis, adotam-se os seguintes valores (critérios de sucesso da WCAG 2.2):
 
 | Requisito | Valor mínimo | Critério |
@@ -687,7 +689,7 @@ Essa organização é uma referência de funções, **não** uma instrução par
 | `chapters/` | `capitulos/` e `index.qmd` |
 | `references/` | `_interno/oficina/references.*` (bibliografia ainda não ativada) |
 | `tests/` | `tests/` |
-| documentação interna | `_interno/diretrizes/` e `_interno/oficina/` |
+| documentação interna | `_interno/diretrizes/`, `_interno/oficina/` e `_interno/referencia/` |
 
 Dentro de `applets-src/src/applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
 
@@ -869,7 +871,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão, motivo e material ajustado, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
 
-Uma decisão só se completa quando todo o material do projeto (diretrizes, código, capítulos, modelos e verificações) estiver de acordo com ela. O que não puder ser ajustado de imediato fica listado em `pendencias.md` (`diretrizes-tecnicas.md`, §2).
+Como aplicar uma decisão a todo o material, e o que fica de fora (o conteúdo dos protótipos): `diretrizes-tecnicas.md`, §2.3.
 
 ## Conclusão
 

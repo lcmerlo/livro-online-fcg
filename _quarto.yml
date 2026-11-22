@@ -59,8 +59,8 @@ book:
     type: overlay
   chapters:
     - index.qmd
-    #- _interno/diretrizes/relatorio-design-pedagogico-26-05-14.qmd
-    #- _interno/diretrizes/biblioteca-estruturas-site-diretrizes.qmd
+    #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd
+    #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
     - capitulos/primeiras-nocoes.qmd
     - capitulos/segmentos.qmd
     - capitulos/segmentos-orientados.qmd
@@ -83,7 +83,7 @@ book:
     - capitulos/posicao-relativa-circulos.qmd
 
 # Faixa no alto de todas as páginas enquanto o livro está em testes; sai na
-# divulgação ao público-alvo (pendencias.md, §3). Fica em `website`, e não em
+# divulgação ao público-alvo (pendencias.md, §6). Fica em `website`, e não em
 # `book`, porque o Quarto 1.9.35 aceita `book.announcement`, mas não o leva ao site.
 website:
   announcement:

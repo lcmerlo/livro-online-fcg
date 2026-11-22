@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Círculos
 
 Dados um ponto $A=\left(x_0,y_0\right)$ e um número real $r>0$, o **círculo de centro $A$ e raio $r$** é o conjunto formado por todos os pontos $P$ que distam $r$ do ponto $A$, ou seja, o conjunto formado pelos pontos $P$ que satisfazem a equação $d\left(P,A\right)=r$.

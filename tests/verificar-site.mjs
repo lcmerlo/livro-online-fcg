@@ -19,6 +19,13 @@
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
 // no livro.
 // Links internos e âncoras são verificados pelo lychee no workflow.
+//
+// Protótipos (`estado: prototipo` no cabeçalho do capítulo; diretrizes
+// técnicas, §1.4): continua erro o que quebra a página (imagem que não
+// existe, fórmula que o KaTeX não desenha, id repetido, applet sem arquivo);
+// os avisos e as conferências de forma (título de definição) viram uma
+// contagem, a ver na reescrita do capítulo. A contagem não reprova nem com
+// --estrito.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
@@ -47,6 +54,33 @@ function listar(pasta, extensao) {
 }
 
 const rel = (caminho) => caminho.slice(raiz.length + 1);
+
+// Estado de cada fonte, lido do cabeçalho; sem a linha, o capítulo é tratado
+// como revisado (index.qmd, capítulo novo).
+const estados = new Map();
+function prototipo(fonte) {
+  if (!estados.has(fonte)) {
+    const cabecalho = existsSync(fonte) ? readFileSync(fonte, "utf8").match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] : "";
+    const estado = cabecalho?.match(/^estado:\s*(\S+)/m)?.[1] ?? "revisado";
+    if (estado !== "prototipo" && estado !== "revisado") aviso(rel(fonte), `estado desconhecido: ${estado} (use prototipo ou revisado)`);
+    estados.set(fonte, estado === "prototipo");
+  }
+  return estados.get(fonte);
+}
+// A fonte de uma página de docs/: docs/capitulos/x.html vem de capitulos/x.qmd.
+const fonteDe = (pagina) => join(raiz, rel(pagina).replace(/^docs\//, "").replace(/\.html$/, ".qmd"));
+
+// Num protótipo, avisos e conferências de forma só entram na contagem.
+const emPrototipos = new Set();
+const capitulosPrototipo = new Set();
+function avisoOuConta(fonte, arquivo, msg, comoErro = false) {
+  if (prototipo(fonte)) {
+    emPrototipos.add(`${arquivo}: ${msg}`);
+    capitulosPrototipo.add(rel(fonte));
+  } else if (comoErro) erro(arquivo, msg);
+  else aviso(arquivo, msg);
+}
+
 const semComentarios = (texto) => texto.replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, " "));
 const linhaDe = (texto, indice) => texto.slice(0, indice).split("\n").length;
 
@@ -68,7 +102,7 @@ for (const arquivo of fontes.filter(existsSync)) {
 
   // Definições e proposições são blocos {#def-…}/{#prp-…}, não títulos.
   for (const m of texto.matchAll(/^#{2,6}\s+\**(Defini[cç][aã]o|Proposi[cç][aã]o)\b.*$/gm)) {
-    erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `título de ${m[1].toLowerCase()}: use um bloco {#def-…} ou {#prp-…}`);
+    avisoOuConta(arquivo, `${rel(arquivo)}:${linhaDe(texto, m.index)}`, `título de ${m[1].toLowerCase()}: use um bloco {#def-…} ou {#prp-…}`, true);
   }
 
   // Comando TeX inteiramente em maiúsculas (ex.: \MATHBB) não existe.
@@ -79,7 +113,7 @@ for (const arquivo of fontes.filter(existsSync)) {
   // Forma do guia (guia-editorial.md, §4): \color{#993300}, com #, que vale
   // em qualquer motor de fórmulas; sem #, só o KaTeX aplica a cor.
   for (const m of texto.matchAll(/\\color\{[0-9A-Fa-f]{6}\}/g)) {
-    aviso(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `cor hexadecimal sem #: ${m[0]}`);
+    avisoOuConta(arquivo, `${rel(arquivo)}:${linhaDe(texto, m.index)}`, `cor hexadecimal sem #: ${m[0]}`);
   }
 }
 
@@ -105,13 +139,14 @@ const usados = new Set();
 for (const arquivo of paginas) {
   const html = readFileSync(arquivo, "utf8");
   const nome = rel(arquivo);
+  const fonte = fonteDe(arquivo);
 
   for (const m of html.matchAll(/<iframe\b[^>]*>/g)) {
     if (!/\stitle="[^"]+"/.test(m[0])) erro(nome, "iframe sem title");
   }
 
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
-    if (!/\salt="[^"]+"/.test(m[0])) aviso(nome, `imagem sem alt: ${(m[0].match(/src="([^"]*)"/) ?? [])[1]}`);
+    if (!/\salt="[^"]+"/.test(m[0])) avisoOuConta(fonte, nome, `imagem sem alt: ${(m[0].match(/src="([^"]*)"/) ?? [])[1]}`);
   }
 
   for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
@@ -141,7 +176,7 @@ for (const arquivo of paginas) {
   let anterior = 0;
   for (const m of corpo.matchAll(/<h([1-6])\b/g)) {
     const nivel = Number(m[1]);
-    if (anterior && nivel > anterior + 1) aviso(nome, `salto de título: h${anterior} para h${nivel}`);
+    if (anterior && nivel > anterior + 1) avisoOuConta(fonte, nome, `salto de título: h${anterior} para h${nivel}`);
     anterior = nivel;
   }
 }
@@ -204,7 +239,7 @@ if (katex && paginas.length) {
           displayMode: m[1] === "display",
           throwOnError: true,
           strict: (codigo, mensagem) => {
-            if (codigo === "unknownSymbol") aviso(nome, `caractere que o KaTeX não conhece em "${trecho}": ${mensagem}`);
+            if (codigo === "unknownSymbol") avisoOuConta(fonteDe(arquivo), nome, `caractere que o KaTeX não conhece em "${trecho}": ${mensagem}`);
             return "ignore";
           },
         });
@@ -303,6 +338,9 @@ for (const nomeApplet of usados) {
 const resumo = (lista) => [...new Set(lista)].map((l) => `  - ${l}`).join("\n");
 if (avisos.length) console.log(`Avisos (${avisos.length}):\n${resumo(avisos)}\n`);
 if (erros.length) console.log(`Erros (${erros.length}):\n${resumo(erros)}\n`);
+if (emPrototipos.size) {
+  console.log(`Em protótipos: ${emPrototipos.size} avisos, a ver na reescrita de cada capítulo (${capitulosPrototipo.size} capítulos).\n`);
+}
 
 const falhou = erros.length > 0 || (estrito && avisos.length > 0);
 console.log(

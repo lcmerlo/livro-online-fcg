@@ -6,7 +6,7 @@ As orientações do projeto valem para todos os assistentes e estão resumidas e
 
 Neste repositório, atue sobre a parte de software do projeto: JavaScript, JSXGraph, Vite, CSS, SCSS, HTML, JSON e arquivos de build e configuração. O Copilot fica desligado nos arquivos de texto (`.vscode/settings.json`).
 
-Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito. Quando houver pedido, siga os tipos de mudança do `AGENTS.md`.
+Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito. Quando houver pedido, siga os tipos de mudança do `AGENTS.md`. Nos capítulos com `estado: prototipo`, que serão reescritos, não sugira correções de forma.
 
 Os applets são JSXGraph próprios. Um applet GeoGebra é só inspiração: escreva o código em JSXGraph nativo, sem rastros do GeoGebra, salvo pedido explícito para imitá-lo.
 
@@ -19,6 +19,8 @@ Ao escolher entre código puro e biblioteca externa:
 - Justifique brevemente a escolha com: “Optei por código puro porque...” ou “Optei por ferramenta porque...”.
 
 Nomes públicos (ids, labels, classes e shortcodes usados nos capítulos, funções exportadas) ficam estáveis; renomear exige plano e o ajuste de todas as referências.
+
+As regras das diretrizes são fundamentais (uma lista curta, que não se contorna) ou provisórias (siga ou explique); ver `AGENTS.md`.
 
 Quando sugerir mudanças relevantes, indique como testar:
 

@@ -1,3 +1,7 @@
+---
+# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
+estado: prototipo
+---
 # Segmentos Orientados
 
 Lembremos que dada uma reta r que passa pelos pontos A e B,  definimos o **segmento de reta AB** como o conjunto formado pelos pontos $A$ e $B$ e pelos pontos na reta r que estão entre $A$ e $B$. Agora vamos introduzir a noção de **segmento orientado**. **** 

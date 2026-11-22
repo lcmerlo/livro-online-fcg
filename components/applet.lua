@@ -23,12 +23,13 @@ return {
 
     comum.carregar_bundle()
 
-    return pandoc.RawBlock("html", string.format(
-      '<div class="bloco-applet">\n' ..
-      '<div id="%s" class="%s" data-applet="%s" aria-label="%s"></div>\n' ..
-      '%s\n' ..
-      '</div>',
-      id, classes, nome, rotulo, comum.estado_e_reinicio(id)))
+    return pandoc.Div({
+      pandoc.RawBlock("html", string.format(
+        '<div id="%s" class="%s" data-applet="%s" aria-label="%s"></div>',
+        id, classes, nome, rotulo)),
+      comum.formula_para_katex(),
+      pandoc.RawBlock("html", comum.estado_e_reinicio(id)),
+    }, pandoc.Attr("", { "bloco-applet" }))
   end,
 
   ["geogebra"] = function(args, kwargs)
@@ -36,7 +37,7 @@ return {
     local titulo = comum.escapar(comum.texto(kwargs["titulo"]))
 
     return pandoc.RawBlock("html", string.format(
-      '<div class="bloco-applet">\n' ..
+      '<div class="bloco-applet bloco-geogebra">\n' ..
       '<div class="geogebra-container"><iframe ' ..
       'src="https://www.geogebra.org/material/iframe/id/%s/width/800/height/500/border/888888/rc/false/ai/false/sdz/true" ' ..
       'title="%s" width="800" height="500" style="border:0;" loading="lazy" allowfullscreen></iframe></div>\n' ..

@@ -233,7 +233,7 @@ Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 | `.github/copilot-instructions.md`, `AGENTS.md` | Resumo das diretrizes para assistentes de IA: que tipo de mudança cada um pode fazer e como verificar (`diretrizes-tecnicas.md`, §9). |
 | `.vscode/settings.json` | Formatação de `.qmd` pela extensão Quarto, oculta pastas geradas no Explorer, Copilot só em arquivos de código. |
 | `.gitignore` | Impede versionar `docs/`, `.quarto/`, `node_modules/`, o bundle, `_scratch/`, HTML gerado em `_interno/` etc. |
-| `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. |
+| `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. Como na raiz, a verificação de acessibilidade fica num perfil, `_quarto-axe.yml` de lá: `--profile axe` no fim do comando. |
 
 ---
 
@@ -463,7 +463,7 @@ para pré-visualização.
 | Testar um applet fora do livro | `npm run dev` (abre `index.html`) | `applets-src/` |
 | Gerar o site completo | `quarto render` | raiz |
 | Rodar as verificações | `node tests/verificar-site.mjs` | raiz |
-| Testar um `.qmd` isolado com a configuração do livro | `quarto render _interno/oficina/testes/ARQUIVO.qmd` | raiz |
+| Testar um `.qmd` isolado com a configuração do livro | `quarto render _interno/oficina/testes/ARQUIVO.qmd` (com `--profile axe`, também a verificação de acessibilidade) | raiz |
 
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%

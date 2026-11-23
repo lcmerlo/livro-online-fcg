@@ -35,6 +35,7 @@ Adiadas por decisão do autor, com um marco para rever (`diretrizes-tecnicas.md`
 | O quê | Onde | Próximo passo |
 |---|---|---|
 | O JSX-quarto usa 360 px como largura mínima; o livro, 320 px | JSX-quarto, `migracao/manual.qmd` | alinhar lá, se o autor quiser (fora deste repositório) |
+| Os Princípios dizem que "o tema escuro gerado a partir de `_brand.yml` ainda não foi medido", mas desde 2026-11-22 o site gera só o tema claro (`decisoes.md`) | Princípios, §32 | tirar a frase, com a aprovação do autor |
 
 ## 5. Applets GeoGebra a reescrever em JSXGraph
 

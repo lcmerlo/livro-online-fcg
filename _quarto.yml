@@ -3,7 +3,11 @@ project:
   output-dir: docs
 
 lang: pt-BR
-brand: _brand.yml
+# Só o tema claro: com `brand: _brand.yml`, o Quarto gera também uma folha escura,
+# que toda página baixava (69 KB pela rede) e que nenhuma usava: o site não tem botão
+# de tema escuro, e a página fica clara mesmo com o sistema em modo escuro.
+brand:
+  light: _brand.yml
 shortcodes:
   - components/applet.lua
 

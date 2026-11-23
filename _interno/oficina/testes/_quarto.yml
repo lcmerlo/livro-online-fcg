@@ -13,7 +13,8 @@ project:
 
 lang: pt-BR
 language: ../../../_language.yml
-brand: ../../../_brand.yml
+brand:
+  light: ../../../_brand.yml
 shortcodes:
   - ../../../components/applet.lua
 

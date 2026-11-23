@@ -154,7 +154,7 @@ recriada pelo comando correspondente. Nunca edite arquivos dentro de `docs/` ou
 
 | Arquivo | Finalidade | Quem lê |
 |---|---|---|
-| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, camadas de tema, filtros, shortcodes, macros, numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
+| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa), filtros, shortcodes, macros, numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
 | `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`azul-2`, `areia-1`…) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos). O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
 | `_language.yml` | Substitui rótulos padrão do Quarto ("Proof" → "Demonstração"). Lido automaticamente por estar na raiz do projeto. | Quarto |
 | `_quarto-axe.yml` | Perfil `axe`: liga a verificação de acessibilidade do Quarto (axe-core) com `quarto preview --profile axe`. O site publicado é gerado sem perfil e não a leva ao estudante. | Quarto |
@@ -190,7 +190,7 @@ linha não aparece na página. Um capítulo combina:
 
 | Caminho | Finalidade |
 |---|---|
-| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout** (largura da coluna de texto; fórmula em destaque mais larga que a coluna rola dentro dela), componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets, com o quadro de fundo branco e borda fina, as medidas `--applet-…` dos pontos, o `touch-action` do quadro e os controles) e **acessibilidade** (`prefers-reduced-motion`). |
+| `css/custom.scss` | Última camada do tema. Dividido em `scss:defaults` (variáveis Sass, como tamanho de fonte) e `scss:rules` (regras CSS). Seções: **1. Tokens** (variáveis `--cor-…` derivadas de `_brand.yml`), **2. Layout** (largura da coluna de texto; fórmula em destaque mais larga que a coluna rola dentro dela; um recorte da fonte de ícones do Quarto, com os ícones que o livro mostra, para que a fonte inteira, de 176 KB, não seja baixada: a lista e o modo de refazer estão no comentário da regra), componentes (GeoGebra, figuras `.fig-leg`, blocos didáticos, exemplos/exercícios, callouts, abas recolhíveis, applets, com o quadro de fundo branco e borda fina, as medidas `--applet-…` dos pontos, o `touch-action` do quadro e os controles) e **acessibilidade** (`prefers-reduced-motion`). |
 | `img/<capítulo>/` | Imagens dos capítulos. O Quarto copia para `docs/assets/img/` as que são usadas. |
 | `js/applets-dist/` | 🏭 `applets-livro.iife.js` + `applets-livro.css`, saída do Vite. |
 
@@ -233,7 +233,7 @@ Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 | `.github/copilot-instructions.md`, `AGENTS.md` | Resumo das diretrizes para assistentes de IA: que tipo de mudança cada um pode fazer e como verificar (`diretrizes-tecnicas.md`, §9). |
 | `.vscode/settings.json` | Formatação de `.qmd` pela extensão Quarto, oculta pastas geradas no Explorer, Copilot só em arquivos de código. |
 | `.gitignore` | Impede versionar `docs/`, `.quarto/`, `node_modules/`, o bundle, `_scratch/`, HTML gerado em `_interno/` etc. |
-| `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. |
+| `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. Como na raiz, a verificação de acessibilidade fica num perfil, `_quarto-axe.yml` de lá: `--profile axe` no fim do comando. |
 
 ---
 
@@ -463,7 +463,7 @@ para pré-visualização.
 | Testar um applet fora do livro | `npm run dev` (abre `index.html`) | `applets-src/` |
 | Gerar o site completo | `quarto render` | raiz |
 | Rodar as verificações | `node tests/verificar-site.mjs` | raiz |
-| Testar um `.qmd` isolado com a configuração do livro | `quarto render _interno/oficina/testes/ARQUIVO.qmd` | raiz |
+| Testar um `.qmd` isolado com a configuração do livro | `quarto render _interno/oficina/testes/ARQUIVO.qmd` (com `--profile axe`, também a verificação de acessibilidade) | raiz |
 
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%

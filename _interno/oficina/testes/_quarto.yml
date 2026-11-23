@@ -1,5 +1,7 @@
 # Projeto local para testes com a mesma configuração do livro publicado.
 # Renderizar: quarto render _interno/oficina/testes/ARQUIVO.qmd
+# Com a verificação de acessibilidade do Quarto (axe, no console do navegador):
+# quarto render _interno/oficina/testes/ARQUIVO.qmd --profile axe (_quarto-axe.yml).
 # O HTML é gerado ao lado do .qmd e não é versionado (.gitignore).
 #
 # Os campos abaixo repetem lang, brand, shortcodes, format, execute e
@@ -11,7 +13,8 @@ project:
 
 lang: pt-BR
 language: ../../../_language.yml
-brand: ../../../_brand.yml
+brand:
+  light: ../../../_brand.yml
 shortcodes:
   - ../../../components/applet.lua
 
@@ -30,7 +33,6 @@ format:
     number-depth: 2
     smooth-scroll: true
     callout-appearance: simple
-    axe: true
     html-math-method:
       method: katex
       url: "https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/"

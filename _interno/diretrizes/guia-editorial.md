@@ -167,7 +167,7 @@ No capítulo, todo applet tem: título ou identificação, objetivo breve, instr
 
 - Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
 - Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
-- Cada arranjo funcionando, com o que se escreve no `.qmd`: `_interno/oficina/testes/arranjos.qmd` (renderizar com `quarto render`).
+- Cada arranjo funcionando, com o que se escreve no `.qmd`: `laboratorio/arranjos.qmd` (ver com `quarto preview --profile lab`).
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 
 ## 7. Acessibilidade e responsividade (§15, §32)
@@ -182,6 +182,7 @@ Na raiz do projeto:
 (cd applets-src && npm ci && npm run build)  # bundle dos applets: não é versionado, gere ao clonar e após mexer em applets
 quarto render --to html
 node tests/verificar-site.mjs                # os erros também bloqueiam a publicação no GitHub Actions
+quarto render --profile lab --to html        # o laboratório: se não renderizar, a publicação também para
 git diff
 ```
 
@@ -191,7 +192,7 @@ git diff
 
 ## 9. Página-modelo
 
-Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `_interno/oficina/testes/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, checkpoint com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
+Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `laboratorio/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, checkpoint com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 

@@ -60,6 +60,7 @@ Nomes públicos (arquivos de capítulo, labels, ids) ficam estáveis a partir da
   - `(cd applets-src && npm run build)`
   - `quarto render --to html`
   - `node tests/verificar-site.mjs`
+  - `quarto render --profile lab --to html` e `node tests/verificar-site.mjs --lab` (o laboratório, em `docs-lab/`)
   - `git diff`
 - Mostre o diff: o resumo (arquivos e linhas) e os trechos relevantes; o diff completo quando pedido.
 - Trabalhe em branch. Mensagens de commit curtas, no imperativo, com um assunto por commit.

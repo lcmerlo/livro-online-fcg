@@ -28,3 +28,4 @@ Quando sugerir mudanças relevantes, indique como testar:
 - `npm run build`
 - `quarto preview`, apenas quando a mudança afetar a integração com o livro
 - `node tests/verificar-site.mjs`, depois de `quarto render --to html`
+- `node tests/verificar-site.mjs --lab`, depois de `quarto render --profile lab --to html`, quando a mudança afetar as páginas de teste de `laboratorio/`

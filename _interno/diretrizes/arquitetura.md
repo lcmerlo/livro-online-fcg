@@ -79,6 +79,7 @@ editar, não versionado) · 🔒 local (não vai para o Git)
 ```text
 livro-quarto/
 ├── _quarto.yml                 ⚙️  Configuração central do livro (capítulos, tema, filtros)
+├── _quarto-lab.yml             ⚙️  Perfil lab: acrescenta a parte Laboratório e grava em docs-lab/
 ├── _brand.yml                  ⚙️  Identidade visual: paleta de cores e fontes
 ├── _language.yml               ⚙️  Traduções de rótulos ("Demonstração", "Solução"…)
 ├── index.qmd                   ✏️  Página inicial (Apresentação)
@@ -87,6 +88,7 @@ livro-quarto/
 ├── cspell.json                 ⚙️  Corretor ortográfico (pt-BR + termos técnicos)
 │
 ├── capitulos/                  ✏️  Um .qmd por capítulo publicado (ordem definida em _quarto.yml)
+├── laboratorio/                ✏️  Páginas de teste e modelos de capítulo, só no perfil lab
 │
 ├── components/                 ✏️  Extensões do Quarto feitas para o livro
 │   ├── applet.lua              ✏️  Shortcodes {{< applet >}} e {{< geogebra >}}
@@ -116,7 +118,7 @@ livro-quarto/
 │   │   ├── tools/vetores.js    ✏️  Contas com vetores (sem desenho)
 │   │   ├── tools/formatar.js   ✏️  Escrita de números, pontos, ângulos e expressões (TeX e texto)
 │   │   ├── exemplos/           ✏️  Applets de exemplo para `npm run dev` (fora do bundle)
-│   │   └── applets/            ✏️  Um arquivo por applet (hoje teste-cores.js e teste-controles.js, do projeto de testes)
+│   │   └── applets/            ✏️  Um arquivo por applet (hoje teste-cores.js e teste-controles.js, das páginas de laboratorio/)
 │   └── node_modules/           🏭  Pacotes baixados pelo `npm ci`
 │
 ├── tests/
@@ -127,7 +129,6 @@ livro-quarto/
 │   ├── referencia/             ✏️  Material anterior aos Princípios, que não orienta o trabalho atual
 │   └── oficina/
 │       ├── nao-publicados/     ✏️  Capítulos ainda fora do índice do livro
-│       ├── testes/             ⚙️  Mini-projeto Quarto com a mesma configuração do livro
 │       └── references.bib/.qmd ✏️  Bibliografia (ainda inativa)
 │
 ├── .github/
@@ -137,6 +138,7 @@ livro-quarto/
 ├── .gitignore                  ⚙️  O que o Git não deve versionar
 │
 ├── docs/                       🏭  Site gerado por `quarto render` (é ele que vai ao ar)
+├── docs-lab/                   🏭  Site do perfil lab, com o laboratório (não vai ao ar)
 ├── .quarto/                    🏭  Cache interno do Quarto
 ├── _scratch/                   🔒  Rascunhos e auditorias descartáveis
 └── .claude/                    🔒  Configurações locais do Claude Code
@@ -210,20 +212,22 @@ linha não aparece na página. Um capítulo combina:
 | `src/tools/vetores.js` | Contas com vetores em listas de números (`componentes`, `soma`, `produtoEscalar`, `norma`, `angulo`, `determinante`, `coeficientesNaBase`, `projecao`…); `NaN` quando a conta não está definida. |
 | `src/tools/formatar.js` | O único lugar do formato dos números: `numero`, `texto.*` (texto simples, para o parágrafo de estado), `tex.*`, `expressao` e `equacao` (TeX, para fórmulas), `casos`. |
 | `src/tools/styles.js` | Estilos prontos para objetos JSXGraph: `pontoArrastavel`, `pontoFixo` e `pontoAberto` (cor e forma como parâmetros; medidas lidas das variáveis `--applet-…`), `seta` (ponta e nome no meio, em TeX, com 18 px) e o objeto `ESTILOS` com os traços por papel (`resultado`, `dado`, `apoio`) e o `alerta` (erro ou contraexemplo, sem cor própria, combinado com o estilo do papel). |
-| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem dois applets de teste: `teste-cores.js`, usado na página `_interno/oficina/testes/teste-cores.qmd` (a soma de vetores no modelo de cor do livro e em duas alternativas, lado a lado), e `teste-controles.js`, usado em `teste-controles.qmd` (o vetor a·u, com faixa, campo, caixa e botão Animar, em quatro arranjos) e em `arranjos.qmd` (todos os arranjos do guia editorial, §6, com as partes opcionais do applet: um segundo quadro, com o número a na reta numérica, e a leitura da conta). O piloto da combinação linear (`combinacao-linear.js` e `piloto-combinacao-linear.qmd`) foi apagado em 2026-11-22 (`decisoes.md`). O livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
+| `src/applets/` | Um arquivo por applet; a exportação padrão é a função que o cria (§7). Hoje tem dois applets de teste: `teste-cores.js`, usado na página `laboratorio/teste-cores.qmd` (a soma de vetores no modelo de cor do livro e em duas alternativas, lado a lado), e `teste-controles.js`, usado em `teste-controles.qmd` (o vetor a·u, com faixa, campo, caixa e botão Animar, em quatro arranjos) e em `arranjos.qmd` (todos os arranjos do guia editorial, §6, com as partes opcionais do applet: um segundo quadro, com o número a na reta numérica, e a leitura da conta). O piloto da combinação linear (`combinacao-linear.js` e `piloto-combinacao-linear.qmd`) foi apagado em 2026-11-22 (`decisoes.md`). O livro não tem applet JSXGraph em capítulo desde que o `segmento` foi removido, em 2026-11-03. |
 | `src/exemplos/` | Applets de exemplo, fora do bundle (`main.js` só registra `src/applets/`): `exemplo-partes.js`, com dois quadros ligados e uma leitura, é o modelo de applet com várias partes e roda na página de `npm run dev`. |
 
 ### 4.6 `tests/verificar-site.mjs`
 
 Script Node. Sua única dependência é o KaTeX, instalado em `applets-src/` (`npm ci`); sem ele, as fórmulas ficam sem conferência, com um aviso. Verifica:
 
-- **nas fontes** (`index.qmd` e `capitulos/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
-- **no site gerado** (`docs/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado, saltos na hierarquia de títulos (aviso);
-- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); aviso se a versão do KaTeX em `_quarto.yml` ou no `_quarto.yml` de testes difere da instalada;
+- **nas fontes** (`index.qmd`, `capitulos/*.qmd` e `laboratorio/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
+- **no site gerado** (`docs/`; com `--lab`, `docs-lab/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado (fora dos blocos de código), saltos na hierarquia de títulos (aviso);
+- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); aviso se a versão do KaTeX em `_quarto.yml` difere da instalada;
 - **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): variável de `applets-src/index.html` com valor diferente do livro; cor lida por `cores.js` (menos as de fundo) com contraste abaixo de 3:1 sobre o fundo do quadro (`--cor-superf-suave`); applet usado no livro que chama `paleta()`;
 - **nos protótipos** (`estado: prototipo` no cabeçalho do `.qmd`; a página de `docs/` é ligada à fonte pelo caminho): continua erro o que quebra a página (imagem inexistente, comando TeX suspeito, fórmula que o KaTeX não desenha, `iframe` sem `title`, applet sem arquivo ou sem rótulo, `id` duplicado); os avisos e a conferência de título de definição ou proposição viram uma linha de contagem ("Em protótipos: N avisos…"), que não reprova nem com `--estrito`. Um valor de `estado` que não seja `prototipo` nem `revisado` gera aviso; sem a linha, a fonte é tratada como revisada.
 
-Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
+- **no laboratório** (`laboratorio/`, e as páginas dele em `docs-lab/`): o que o verificador acha é listado à parte ("No laboratório, sem reprovar") e não reprova, nem com `--estrito`: são testes e modelos, alguns com exemplos que não funcionam de propósito (o applet `nome-do-applet`, macros só da página). Sem `--lab`, uma página do laboratório em `docs/` é erro: ela só entra pelo perfil.
+
+Links internos e âncoras são verificados à parte pelo *lychee*, no workflow, só em `docs/`.
 
 ### 4.7 Ferramentas e bastidores
 
@@ -233,7 +237,7 @@ Links internos e âncoras são verificados à parte pelo *lychee*, no workflow.
 | `.github/copilot-instructions.md`, `AGENTS.md` | Resumo das diretrizes para assistentes de IA: que tipo de mudança cada um pode fazer e como verificar (`diretrizes-tecnicas.md`, §9). |
 | `.vscode/settings.json` | Formatação de `.qmd` pela extensão Quarto, oculta pastas geradas no Explorer, Copilot só em arquivos de código. |
 | `.gitignore` | Impede versionar `docs/`, `.quarto/`, `node_modules/`, o bundle, `_scratch/`, HTML gerado em `_interno/` etc. |
-| `_interno/oficina/testes/_quarto.yml` | Copia a configuração do livro para testar um arquivo isolado: `quarto render _interno/oficina/testes/ARQUIVO.qmd`. Como na raiz, a verificação de acessibilidade fica num perfil, `_quarto-axe.yml` de lá: `--profile axe` no fim do comando. |
+| `_quarto-lab.yml` | O perfil lab: o Quarto o junta ao `_quarto.yml` com `--profile lab`. Só acrescenta a parte Laboratório (as páginas de `laboratorio/`, uma por linha) e a pasta de saída `docs-lab/`; o resto da configuração é a do livro. Com `--profile lab,axe`, também a verificação de acessibilidade. |
 
 ---
 
@@ -427,6 +431,7 @@ flowchart TD
     render["quarto render --to html<br/>(gera docs/)"]
     t1{"verificar-site.mjs<br/>sem erros?"}
     t2{"lychee: links e<br/>âncoras corretos?"}
+    t3{"laboratório (perfil lab,<br/>docs-lab/) renderiza<br/>e passa no verificador?"}
     pr{"é pull<br/>request?"}
     ok(["Verificação aprovada<br/>(nada é publicado)"])
     up["Envia docs/<br/>ao GitHub Pages"]
@@ -435,11 +440,13 @@ flowchart TD
 
     push --> co --> node --> ci --> build --> qi --> render --> t1
     t1 -->|"sim"| t2
-    t2 -->|"sim"| pr
+    t2 -->|"sim"| t3
+    t3 -->|"sim"| pr
     pr -->|"sim"| ok
     pr -->|"não"| up --> dep
     t1 -->|"não"| fail
     t2 -->|"não"| fail
+    t3 -->|"não"| fail
 ```
 
 O resultado aparece na página do pull request, no GitHub. Integre o pull
@@ -463,7 +470,8 @@ para pré-visualização.
 | Testar um applet fora do livro | `npm run dev` (abre `index.html`) | `applets-src/` |
 | Gerar o site completo | `quarto render` | raiz |
 | Rodar as verificações | `node tests/verificar-site.mjs` | raiz |
-| Testar um `.qmd` isolado com a configuração do livro | `quarto render _interno/oficina/testes/ARQUIVO.qmd` (com `--profile axe`, também a verificação de acessibilidade) | raiz |
+| Ver as páginas de teste e os modelos de capítulo (laboratório) | `quarto preview --profile lab` (com `--profile lab,axe`, também a verificação de acessibilidade) | raiz |
+| Gerar e verificar o laboratório | `quarto render --profile lab --to html` e `node tests/verificar-site.mjs --lab` | raiz |
 
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
@@ -567,7 +575,7 @@ Quadros ligados e leituras em lugares diferentes da página. O modelo é
 ### Adicionar controles a um applet
 Faixas, caixas de seleção, campos e botões. O modelo é
 `applets-src/src/applets/teste-controles.js`, que roda em `npm run dev` e na página
-`_interno/oficina/testes/teste-controles.qmd`.
+`laboratorio/teste-controles.qmd`.
 
 1. No applet, os valores que o estudante controla ficam num estado, e a figura os lê por funções:
 
@@ -603,9 +611,9 @@ Faixas, caixas de seleção, campos e botões. O modelo é
 
 ### Testar cores num applet
 1. Escreva o applet em `src/applets/` e chame as cores pelo nome da paleta de `_brand.yml`: `import { paleta } from "../cores.js";` e `seta(paleta("blue-oi"), { nome: "\\vec{u}" })`. Valem as cores do livro (`laranja-2`) e as de teste (`red-tb`, `purple-cb`…).
-2. Use o applet numa página de `_interno/oficina/testes/` e renderize só ela (`quarto render _interno/oficina/testes/<arquivo>.qmd`), depois de `npm run build`.
+2. Use o applet numa página de `laboratorio/` (listada em `_quarto-lab.yml`) e veja-a com `quarto preview --profile lab`, depois de `npm run build`.
 3. Um nome errado aparece no console do navegador ("Cor não encontrada") e deixa o objeto preto. No console, `AppletsLivro.paleta("blue-oi")` mostra o valor de uma cor.
-4. A página de `npm run dev` não tem as variáveis `--brand-…`: ali, `paleta()` dá preto. Teste as cores no projeto de testes.
+4. A página de `npm run dev` não tem as variáveis `--brand-…`: ali, `paleta()` dá preto. Teste as cores no laboratório.
 5. Antes de o applet ir para um capítulo, troque `paleta()` pelas cores dos papéis (`CORES`); se a cor testada deve ficar, isso é uma decisão (`diretrizes-tecnicas.md`, §6).
 6. Para comparar modelos de cor, use a página `teste-cores.qmd`: as cores de cada modelo estão na função `modelos()` de `src/applets/teste-cores.js`.
 
@@ -613,20 +621,20 @@ Faixas, caixas de seleção, campos e botões. O modelo é
 1. Rótulo em `rotulos` de `components/blocos.lua`.
 2. Estilo em `custom.scss`, junto aos demais `.bloco-*`.
 3. Documentar em `_interno/diretrizes/guia-editorial.md` e acrescentar aos
-   modelos de `_interno/oficina/testes/`.
+   modelos de `laboratorio/`.
 4. Registrar a decisão em `decisoes.md` (`diretrizes-tecnicas.md`, §2).
 
 ---
 
 ## 8. Pontos de atenção
 
-- **Duas cópias de configuração.** `_interno/oficina/testes/_quarto.yml` repete parte de `_quarto.yml`. Ao alterar um, altere o outro.
+- **O laboratório é o mesmo livro.** `_quarto-lab.yml` só acrescenta a parte Laboratório e a pasta `docs-lab/`; tema, filtros e macros vêm de `_quarto.yml`, sem cópia. Por isso, um rótulo (`#def-…`, `#exrr-…`) de um capítulo igual a um de `laboratorio/` se repete no perfil lab: ao copiar um modelo para `capitulos/`, troque os rótulos.
 - **Nome do applet = nome do arquivo.** `main.js` registra cada arquivo de `src/applets/`, e o teste usa a mesma regra. Um arquivo auxiliar posto nessa pasta seria tomado por applet: código compartilhado fica em `src/tools/`.
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Rótulos diferentes.** O JSXGraph faz de cada quadro uma região com nome; dois quadros com o mesmo rótulo na mesma página confundem quem navega pelo leitor de tela (o axe acusa).
 - **A grade do Quarto e a largura de 320 px.** A `.grid` tem 12 colunas e 11 espaços entre elas; com o espaço padrão (1,5 rem), só os espaços já passavam da coluna a 320 px. `custom.scss` o reduz para 1 rem. Uma parte na grade ou no grupo também pode ficar mais estreita que o desenho já feito (`min-width: 0`), para o JSXGraph redesenhar o quadro quando a janela estreita.
 - **Applets e KaTeX.** Os nomes dos objetos, as leituras e os rótulos dos controles são desenhados pelo KaTeX da página, e o Pandoc só carrega o KaTeX em páginas com fórmulas. Por isso o shortcode e o bloco põem em cada applet uma fórmula sem conteúdo visível (`{}`, em `applet-comum.lua`), escondida pelo CSS (`.bloco-applet > .math`). Ela não pode ser vazia: o script do Pandoc que desenha as fórmulas para ao encontrar uma vazia. Fórmulas longas rolam dentro da leitura a 320 px, como as fórmulas em destaque do texto (`.katex-display`, em `custom.scss`): prefira leituras curtas.
-- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (nos dois `_quarto.yml` e em `applets-src/package.json`, juntos), o verificador acusa erro se ela sumir, e o console da página avisa.
+- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (no `_quarto.yml` e em `applets-src/package.json`, juntos), o verificador acusa erro se ela sumir, e o console da página avisa.
 - **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
 - **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.

@@ -131,7 +131,7 @@ Mudanças que não criam nem alteram uma regra (trocar um valor, corrigir um err
 1. Procure o que a decisão afeta, pelo termo antigo: `git grep -n -i "termo"`.
 2. Ajuste cada lugar. Onde procurar:
    - diretrizes (`_interno/diretrizes/`), `README.md`, `AGENTS.md`, `.github/copilot-instructions.md`;
-   - modelos de capítulo (`_interno/oficina/testes/`);
+   - modelos de capítulo e páginas de teste (`laboratorio/`);
    - capítulos revisados e `index.qmd`; nos protótipos, só o necessário para o site funcionar (na troca do MathJax pelo KaTeX, por exemplo, as fórmulas que deixaram de ser desenhadas);
    - componentes (`components/`), estilos (`_brand.yml`, `assets/css/custom.scss`) e applets (`applets-src/`);
    - verificações (`tests/verificar-site.mjs`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
@@ -149,7 +149,7 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 ## 3. Ferramentas e dependências
 
 - **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, empacotados pelo Vite; fórmulas com KaTeX.
-- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX tem versão exata, a mesma do JSX-quarto, em três lugares que mudam juntos: `_quarto.yml`, `_interno/oficina/testes/_quarto.yml` e `applets-src/package.json` (o do verificador, que avisa se diferirem).
+- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX tem versão exata, a mesma do JSX-quarto, em dois lugares que mudam juntos: `_quarto.yml` e `applets-src/package.json` (o do verificador, que avisa se diferirem).
 - **Dependências de execução**, que chegam ao navegador do estudante (bibliotecas, fontes, serviços externos), pesam no desempenho, na acessibilidade e na licença (§17, §33). Entram por decisão registrada, com o ganho mostrado.
 - **Dependências de desenvolvimento**, que só rodam no computador de quem desenvolve ou no CI (testes, verificadores, formatadores), não chegam ao estudante. Entram quando automatizam uma verificação útil, com versão fixada e uma linha em `decisoes.md`.
 - **Outras ferramentas de applets** (Desmos, CindyJS…): só por decisão, quando uma representação não puder ser feita bem com JSXGraph (§20).

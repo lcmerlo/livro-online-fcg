@@ -33,7 +33,7 @@ jobs:
           cache: npm
           cache-dependency-path: applets-src/package-lock.json
 
-      - name: Instalar dependências dos applets e do verificador
+      - name: Instalar dependências dos applets
         working-directory: applets-src
         run: npm ci
 

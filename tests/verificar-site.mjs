@@ -1,6 +1,6 @@
 // Auditoria automática do livro: node tests/verificar-site.mjs
-// Única dependência: o KaTeX das fórmulas, instalado em applets-src
-// (`npm ci` lá); sem ele, as fórmulas ficam sem conferência, com um aviso.
+// Roda sem instalar nada: o KaTeX das fórmulas é o de vendor/katex/, o mesmo
+// arquivo que as páginas carregam.
 //
 // Opções:
 //   --raiz <pasta>   raiz do projeto (padrão: pasta acima de tests/)
@@ -12,10 +12,10 @@
 // e comandos TeX suspeitos; as de laboratorio/ também sem --lab.
 // Site gerado (docs/ ou docs-lab/): iframes sem title, imagens sem alt, applets sem
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
-// ids duplicados e saltos na hierarquia de títulos.
+// ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
+// (no HTML e nas folhas de estilo que as páginas carregam).
 // Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
-// components/macros.html, e caracteres que ele não conhece; a versão do KaTeX
-// nos _quarto.yml diferente da do verificador.
+// components/macros.html, e caracteres que ele não conhece.
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
 // com valores diferentes dos do livro, cores dos applets com contraste abaixo
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
@@ -157,11 +157,27 @@ const registrados = new Set(
 );
 // Applets que alguma página do livro usa, fora do laboratório.
 const usados = new Set();
+// As folhas de estilo locais que as páginas carregam, conferidas depois.
+const folhas = new Set();
+// Um endereço de outro servidor: com protocolo (https://) ou sem (//).
+const deFora = /^(?:https?:)?\/\//i;
 
 for (const arquivo of paginas) {
   const html = readFileSync(arquivo, "utf8");
   const nome = rel(arquivo);
   const fonte = fonteDe(arquivo);
+
+  // Tudo o que a página carrega vem do site (plano de migração do livro-base,
+  // fase 2): o que vem de outro servidor some quando ele sai do ar, e o servidor
+  // fica sabendo de cada visita. Um link para outro site (<a>) pode. É erro também
+  // no laboratório: o que uma página carrega vem da configuração do livro, e só as
+  // páginas com fórmulas mostram de onde vem o KaTeX.
+  for (const m of html.matchAll(/<(?:script|link|img|iframe|source|video|audio)\b[^>]*?\s(?:src|href)="([^"]+)"[^>]*>/g)) {
+    if (deFora.test(m[1])) erros.push(`${nome}: depende de outro servidor: ${m[1]}`);
+    else if (/^<link\b/.test(m[0]) && /\srel="stylesheet"/.test(m[0])) {
+      folhas.add(resolve(dirname(arquivo), m[1].split(/[?#]/)[0]));
+    }
+  }
 
   for (const m of html.matchAll(/<iframe\b[^>]*>/g)) {
     if (!/\stitle="[^"]+"/.test(m[0])) erro(nome, "iframe sem title");
@@ -205,25 +221,30 @@ for (const arquivo of paginas) {
   }
 }
 
+// O que as folhas de estilo pedem: fontes e imagens (url()) e outras folhas
+// (@import). O Cosmo e o _brand.yml pediam fontes ao Google por aqui.
+for (const folha of folhas) {
+  if (!existsSync(folha)) continue;
+  const css = readFileSync(folha, "utf8");
+  for (const m of css.matchAll(/(?:@import\s*(?:url\(\s*)?|url\(\s*)["']?([^"')\s]+)/g)) {
+    if (deFora.test(m[1])) erro(rel(folha), `depende de outro servidor: ${m[1]}`);
+  }
+}
+
 // ---------- Fórmulas ----------
 
-// Cada fórmula do site gerado passa pelo KaTeX, na versão que o livro carrega
-// e com as macros do livro, definidas como em components/macros.html. Uma
-// fórmula que ele não desenha apareceria ao estudante como TeX, em vermelho.
+// Cada fórmula do site gerado passa pelo KaTeX que o livro carrega
+// (vendor/katex/katex.min.js, que também funciona como módulo do Node) e com
+// as macros do livro, definidas como em components/macros.html. Uma fórmula
+// que ele não desenha apareceria ao estudante como TeX, em vermelho.
 let katex = null;
 try {
-  katex = createRequire(join(raiz, "applets-src/package.json"))("katex");
-} catch {
-  if (paginas.length) aviso("applets-src/", "KaTeX não instalado (rode `npm ci` em applets-src); as fórmulas não foram verificadas");
+  katex = createRequire(import.meta.url)(join(raiz, "vendor/katex/katex.min.js"));
+} catch (e) {
+  if (paginas.length) erro("vendor/katex/", `KaTeX não encontrado: ${e.message}`);
 }
 
 if (katex && paginas.length) {
-  const versao = readFileSync(join(raiz, "_quarto.yml"), "utf8").match(/katex@([\w.-]+)/)?.[1];
-  if (!versao) aviso("_quarto.yml", "versão do KaTeX não encontrada em html-math-method");
-  else if (versao !== katex.version) {
-    aviso("_quarto.yml", `KaTeX ${versao}, mas o verificador usa o ${katex.version} (applets-src/package.json); mude os dois juntos`);
-  }
-
   const fonteMacros = join(raiz, "components/macros.html");
   const listaMacros = existsSync(fonteMacros)
     ? readFileSync(fonteMacros, "utf8").match(/<script type="application\/json" id="macros-tex">([\s\S]*?)<\/script>/)?.[1]
@@ -235,7 +256,7 @@ if (katex && paginas.length) {
     erro("components/macros.html", "lista de macros ausente ou fora do formato JSON");
   }
   if (typeof katex.__defineMacro !== "function") {
-    erro("applets-src/package.json", `o KaTeX ${katex.version} não tem __defineMacro: components/macros.html não definiria as macros`);
+    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: components/macros.html não definiria as macros`);
   } else {
     for (const [nome, corpo] of Object.entries(macros)) katex.__defineMacro(nome, corpo);
   }

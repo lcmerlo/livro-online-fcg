@@ -1,0 +1,7 @@
+# O KaTeX vem com o site (vendor/katex/). O caminho é relativo à página, e as
+# páginas desta pasta sobem um nível; o resto da configuração vem do _quarto.yml.
+format:
+  html:
+    html-math-method:
+      method: katex
+      url: "../vendor/katex/"

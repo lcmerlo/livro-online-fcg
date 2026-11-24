@@ -633,7 +633,7 @@ O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os req
 | Imagem informativa | texto alternativo (`alt`) que preserve a função pedagógica | 1.1.1 |
 | Iframe | `title` descritivo | 4.1.2 |
 
-Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. O tema escuro gerado a partir de `_brand.yml` ainda não foi medido. As cores de `_brand.yml` e `custom.scss` mudaram depois dessa medição; a nova medição está em `pendencias.md`.
+Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. Esta versão do livro não usa tema escuro (decisão do autor, 2026-11-24): as decisões sobre ele, a começar pela medição do contraste, só se tomam se e quando ele for escolhido. As cores de `_brand.yml` e `custom.scss` mudaram depois dessa medição; a nova medição está em `pendencias.md`.
 
 Recursos mais sofisticados de acessibilidade dinâmica, como anúncios contextuais complexos por regiões ARIA, devem ser adicionados e testados conforme o comportamento dos componentes interativos exigir.
 
@@ -864,7 +864,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 - **GeoGebra:** applets incorporados por iframe, vindos de projetos anteriores (lista em `pendencias.md`). Enquanto estiverem no livro, valem os termos de uso do GeoGebra e a licença de cada material; registrar, para cada applet, o autor e o endereço de origem. Os applets JSXGraph que os substituem são código novo do projeto.
 - **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). O bundle gerado (`applets-livro.iife.js`) hoje **não** contém o aviso de licença, que a minificação remove; incluí-lo antes da publicação aberta.
-- **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
+- **Fontes (Atkinson Hyperlegible e Source Serif 4):** vêm com o site, em `vendor/fonts/`, e não do Google Fonts (desde 2026-11-24): só o recorte latino das faces que as páginas usam. Licença SIL OFL 1.1, com o texto em `vendor/fonts/` e, dentro de cada arquivo, o aviso de copyright e o endereço da licença. As dúvidas a resolver antes da publicação aberta estão em `pendencias.md`, §6.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 
 ## 44. Registro de decisões

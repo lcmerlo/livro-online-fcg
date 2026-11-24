@@ -65,7 +65,7 @@ flowchart TD
 | **Vite** | Ferramenta que junta (*empacota*) vários arquivos JS em um só arquivo, o **bundle**. |
 | **IIFE** | Formato do bundle: um único `.js` que roda direto no navegador, sem `import`. Expõe o objeto global `AppletsLivro`. |
 | **npm / `package.json`** | Gerenciador de pacotes do Node.js; baixa o JSXGraph e o Vite para `node_modules/`. |
-| **KaTeX** | Biblioteca que desenha as fórmulas LaTeX no navegador. O Pandoc a carrega, só nas páginas com fórmulas, na versão fixada em `_quarto.yml` (`html-math-method`). |
+| **KaTeX** | Biblioteca que desenha as fórmulas LaTeX no navegador. O Pandoc a carrega, só nas páginas com fórmulas, de `vendor/katex/`, que vem com o site (`html-math-method` em `_quarto.yml`). |
 | **GitHub Actions** | Robô que executa `.github/workflows/publish.yml` a cada push na `main` (verifica e publica) e a cada pull request para a `main` (só verifica). |
 | **GitHub Pages** | Hospedagem gratuita do GitHub que serve o conteúdo de `docs/` como site. |
 
@@ -89,6 +89,7 @@ livro-quarto/
 │
 ├── capitulos/                  ✏️  Um .qmd por capítulo publicado (ordem definida em _quarto.yml)
 ├── laboratorio/                ✏️  Páginas de teste e modelos de capítulo, só no perfil lab
+│                                   (nas duas pastas, _metadata.yml: o caminho do KaTeX)
 │
 ├── components/                 ✏️  Extensões do Quarto feitas para o livro
 │   ├── applet.lua              ✏️  Shortcodes {{< applet >}} e {{< geogebra >}}
@@ -101,6 +102,11 @@ livro-quarto/
 │   ├── css/custom.scss         ✏️  Estilos próprios do livro (tokens de cor, blocos, applets)
 │   ├── img/<capítulo>/         ✏️  Figuras, uma subpasta por capítulo
 │   └── js/applets-dist/        🏭  Bundle dos applets gerado por `npm run build`
+│
+├── vendor/                     Programas de terceiros que chegam ao estudante, copiados (não editar)
+│   ├── VERSIONS.md             ✏️  Versões, licenças e de onde vêm
+│   ├── katex/                  KaTeX: script, folha de estilo e fontes das fórmulas
+│   └── fonts/                  Fontes do texto e dos títulos, lidas por _brand.yml
 │
 ├── applets-src/                ✏️  Código-fonte dos applets JSXGraph (projeto Node/Vite separado)
 │   ├── package.json            ⚙️  Dependências (jsxgraph, vite) e scripts (dev, build, watch)
@@ -156,9 +162,10 @@ recriada pelo comando correspondente. Nunca edite arquivos dentro de `docs/` ou
 
 | Arquivo | Finalidade | Quem lê |
 |---|---|---|
-| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa), filtros, shortcodes, macros, numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
-| `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`azul-2`, `areia-1`…) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos). O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
+| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, o KaTeX de `vendor/katex/` (`html-math-method`, e `resources`, que o copia para `docs/`), camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa), filtros, shortcodes, macros, numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
+| `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`azul-2`, `areia-1`…) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos), com os arquivos de `vendor/fonts/` (`source: file`), e não do Google. O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
 | `_language.yml` | Substitui rótulos padrão do Quarto ("Proof" → "Demonstração"). Lido automaticamente por estar na raiz do projeto. | Quarto |
+| `capitulos/_metadata.yml`, `laboratorio/_metadata.yml` | O caminho do KaTeX para as páginas dessas pastas (`../vendor/katex/`): o de `_quarto.yml` é relativo à página. Uma pasta nova de páginas precisa do mesmo arquivo. | Quarto |
 | `_quarto-axe.yml` | Perfil `axe`: liga a verificação de acessibilidade do Quarto (axe-core) com `quarto preview --profile axe`. O site publicado é gerado sem perfil e não a leva ao estudante. | Quarto |
 | `index.qmd` | Primeira página do livro (sem número de capítulo). | Quarto |
 | `cspell.json` | Dicionário e padrões ignorados pelo verificador ortográfico do editor. | Extensão Code Spell Checker |
@@ -200,7 +207,7 @@ linha não aparece na página. Um capítulo combina:
 
 | Arquivo | Finalidade |
 |---|---|
-| `package.json` | Declara as dependências (`jsxgraph`, `vite` e `katex`, este só para o verificador, na versão exata que o livro carrega) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
+| `package.json` | Declara as dependências (`jsxgraph`, `vite` e `katex`, este só para a página de desenvolvimento, `index.html`, na versão de `vendor/katex/`) e os scripts: `dev` (servidor de testes), `build` (gera o bundle uma vez), `watch` (regera a cada alteração). |
 | `vite.config.js` | Gera **um único arquivo** IIFE chamado `applets-livro.iife.js`, com nome global `AppletsLivro`, em `../assets/js/applets-dist/`. |
 | `index.html` | Página de desenvolvimento usada só por `npm run dev`. Repete as cores, as medidas e as regras dos pontos de `custom.scss` (e imita a grade do Quarto), que fora do livro não existem (o verificador avisa se uma variável repetida difere da do livro), e traz uma amostra das formas de ponto e das setas, o exemplo de applet com várias partes, no HTML que o bloco gera (nada disso vai para o bundle), e o applet de teste dos controles em dois arranjos, com o essencial do CSS deles. Carrega o KaTeX da dependência de desenvolvimento (`package.json`), sem as macros do livro, para os nomes dos objetos, as leituras e os rótulos dos controles. |
 | `src/main.js` | **Ponto de entrada.** Importa o JSXGraph e seu CSS, monta o **registro** `applets` com todos os arquivos de `src/applets/` (o nome do arquivo, sem `.js`, é o nome do applet; a exportação padrão é a função que o cria), procura na página todo elemento com `data-applet` e chama a função correspondente, com as partes do bloco em `partes`; trata os cliques em botões `data-reset`. |
@@ -217,11 +224,11 @@ linha não aparece na página. Um capítulo combina:
 
 ### 4.6 `tests/verificar-site.mjs`
 
-Script Node. Sua única dependência é o KaTeX, instalado em `applets-src/` (`npm ci`); sem ele, as fórmulas ficam sem conferência, com um aviso. Verifica:
+Script Node. Roda sem instalar nada: desenha as fórmulas com `vendor/katex/katex.min.js`, o mesmo arquivo que as páginas carregam. Verifica:
 
 - **nas fontes** (`index.qmd`, `capitulos/*.qmd` e `laboratorio/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
-- **no site gerado** (`docs/`; com `--lab`, `docs-lab/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado (fora dos blocos de código), saltos na hierarquia de títulos (aviso);
-- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); aviso se a versão do KaTeX em `_quarto.yml` difere da instalada;
+- **no site gerado** (`docs/`; com `--lab`, `docs-lab/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado (fora dos blocos de código), saltos na hierarquia de títulos (aviso), o que a página carrega de outro servidor, no HTML ou nas folhas de estilo locais que ela carrega (`url()` e `@import`; erro também no laboratório, porque vem da configuração do livro);
+- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`);
 - **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): variável de `applets-src/index.html` com valor diferente do livro; cor lida por `cores.js` (menos as de fundo) com contraste abaixo de 3:1 sobre o fundo do quadro (`--cor-superf-suave`); applet usado no livro que chama `paleta()`;
 - **nos protótipos** (`estado: prototipo` no cabeçalho do `.qmd`; a página de `docs/` é ligada à fonte pelo caminho): continua erro o que quebra a página (imagem inexistente, comando TeX suspeito, fórmula que o KaTeX não desenha, `iframe` sem `title`, applet sem arquivo ou sem rótulo, `id` duplicado); os avisos e a conferência de título de definição ou proposição viram uma linha de contagem ("Em protótipos: N avisos…"), que não reprova nem com `--estrito`. Um valor de `estado` que não seja `prototipo` nem `revisado` gera aviso; sem a linha, a fonte é tratada como revisada.
 
@@ -425,7 +432,7 @@ flowchart TD
     push(["<b>git push</b> na main<br/>ou pull request"])
     co["Baixa o repositório"]
     node["Instala Node 22"]
-    ci["npm ci<br/>(dependências dos applets<br/>e do verificador)"]
+    ci["npm ci<br/>(dependências dos applets)"]
     build["npm run build<br/>(gera o bundle)"]
     qi["Instala Quarto 1.11.9"]
     render["quarto render --to html<br/>(gera docs/)"]
@@ -462,7 +469,7 @@ para pré-visualização.
 
 | Quero… | Comando | Onde |
 |---|---|---|
-| Instalar dependências dos applets e do verificador (1ª vez) | `npm ci` | `applets-src/` |
+| Instalar dependências dos applets (1ª vez) | `npm ci` | `applets-src/` |
 | Gerar o bundle dos applets | `npm run build` | `applets-src/` |
 | Ver o livro enquanto escrevo | `quarto preview` | raiz |
 | Ver o livro com a verificação de acessibilidade do Quarto (axe, no console do navegador) | `quarto preview --profile axe` | raiz |
@@ -634,7 +641,7 @@ Faixas, caixas de seleção, campos e botões. O modelo é
 - **Rótulos diferentes.** O JSXGraph faz de cada quadro uma região com nome; dois quadros com o mesmo rótulo na mesma página confundem quem navega pelo leitor de tela (o axe acusa).
 - **A grade do Quarto e a largura de 320 px.** A `.grid` tem 12 colunas e 11 espaços entre elas; com o espaço padrão (1,5 rem), só os espaços já passavam da coluna a 320 px. `custom.scss` o reduz para 1 rem. Uma parte na grade ou no grupo também pode ficar mais estreita que o desenho já feito (`min-width: 0`), para o JSXGraph redesenhar o quadro quando a janela estreita.
 - **Applets e KaTeX.** Os nomes dos objetos, as leituras e os rótulos dos controles são desenhados pelo KaTeX da página, e o Pandoc só carrega o KaTeX em páginas com fórmulas. Por isso o shortcode e o bloco põem em cada applet uma fórmula sem conteúdo visível (`{}`, em `applet-comum.lua`), escondida pelo CSS (`.bloco-applet > .math`). Ela não pode ser vazia: o script do Pandoc que desenha as fórmulas para ao encontrar uma vazia. Fórmulas longas rolam dentro da leitura a 320 px, como as fórmulas em destaque do texto (`.katex-display`, em `custom.scss`): prefira leituras curtas.
-- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (no `_quarto.yml` e em `applets-src/package.json`, juntos), o verificador acusa erro se ela sumir, e o console da página avisa.
+- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (os arquivos de `vendor/katex/` e a linha de `vendor/VERSIONS.md`; e, para a página de desenvolvimento, `applets-src/package.json`), o verificador acusa erro se ela sumir, e o console da página avisa.
 - **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
 - **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.

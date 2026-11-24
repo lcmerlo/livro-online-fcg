@@ -13,6 +13,10 @@ Cores de fundo, texto e link vêm de _brand.yml (background, foreground, link).
 $font-size-base: 1.05rem;
 $line-height-base: 1.65;
 
+/* Sem fonte do Google: o Cosmo pediria a dele (Source Sans Pro) em toda página,
+   sem que nenhum texto a use. As fontes do livro vêm de _brand.yml. */
+$web-font-path: false;
+
 
 /*-- scss:rules --*/
 

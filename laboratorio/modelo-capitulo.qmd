@@ -8,7 +8,8 @@ livro (guia-editorial.md §3). Origem: _scratch/rascunhos-antigos/gemini-code-*.
 
 Como usar: copiar para capitulos/NN-nome.qmd, listar em _quarto.yml, substituir os
 [colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o
-conteúdo (§5, §22). Os rótulos {#def-…} e {#exrr-…} são globais no livro e devem ser únicos.
+conteúdo (§5, §22). Os rótulos {#def-…} e {#exrr-…} são globais no livro e devem ser únicos,
+também entre o capítulo e esta página, que o perfil lab põe no mesmo livro.
 Navegação anterior/próxima é gerada pelo livro; não escrever links de navegação.
 -->
 
@@ -19,8 +20,8 @@ Ao final deste capítulo, você será capaz de [verbo] [conceito central].
 ::: {.bloco-pre-requisitos}
 Antes de começar, certifique-se de dominar:
 
-- [Pré-requisito 1](NN-capitulo-anterior.qmd)
-- [Pré-requisito 2](NN-outro-capitulo.qmd)
+- [Pré-requisito 1](../index.qmd)
+- [Pré-requisito 2](../index.qmd)
 :::
 
 ## Ideia central e desenvolvimento

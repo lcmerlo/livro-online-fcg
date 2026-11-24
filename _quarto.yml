@@ -75,3 +75,4 @@ book:
     #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
     # Os 20 capítulos de antes, protótipos, estão em _interno/oficina/nao-publicados/,
     # como modelo para os novos, que entram aqui (2026-11-22).
+    # O perfil lab (_quarto-lab.yml) acrescenta a parte Laboratório no fim desta lista.

@@ -4,7 +4,7 @@
 // vetor u, de ponta arrastável, e o vetor a·u, com uma faixa e um campo para
 // o número a (um acompanha o outro), uma caixa de seleção que mostra a reta
 // de u e o botão Animar, que faz a ir de −2 a 2 e voltar.
-// Páginas: _interno/oficina/testes/teste-controles.qmd, com o applet em
+// Páginas: laboratorio/teste-controles.qmd, com o applet em
 // quatro arranjos, e arranjos.qmd, com todos os arranjos do guia editorial
 // (§6); também roda na página de npm run dev.
 // Partes (todas opcionais; no shortcode {{< applet >}}, não há partes):

@@ -9,8 +9,8 @@ Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro.
 ::: {.bloco-pre-requisitos}
 Antes de começar, certifique-se de dominar:
 
-- [Pré-requisito 1](NN-capitulo-anterior.qmd)
-- [Pré-requisito 2](NN-outro-capitulo.qmd)
+- [Pré-requisito 1](../index.qmd)
+- [Pré-requisito 2](../index.qmd)
 :::
 
 

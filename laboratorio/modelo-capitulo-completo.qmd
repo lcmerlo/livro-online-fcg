@@ -6,11 +6,11 @@ disponíveis no livro. É a referência de forma até o primeiro capítulo revis
 
 Como usar: copiar para capitulos/nome.qmd, listar em _quarto.yml, substituir os
 [colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o
-conteúdo. Os rótulos {#def-…}, {#prp-…}, {#exrr-…}, {#fig-…} são globais e devem ser únicos.
-Ao copiar para capitulos/, trocar os caminhos ../../../assets/ por ../assets/.
+conteúdo. Os rótulos {#def-…}, {#prp-…}, {#exrr-…}, {#fig-…} são globais e devem ser únicos,
+também entre o capítulo e esta página, que o perfil lab põe no mesmo livro.
 Navegação anterior/próxima é gerada pelo livro; não escrever links de navegação.
 
-Renderizar este teste: quarto render _interno/oficina/testes/modelo-capitulo-completo.qmd
+Ver este teste: quarto preview --profile lab (_quarto-lab.yml)
 -->
 
 ::: {.bloco-objetivo}
@@ -18,7 +18,7 @@ Renderizar este teste: quarto render _interno/oficina/testes/modelo-capitulo-com
 :::
 
 ::: {.bloco-pre-requisitos}
-[Pré-requisito] ([Capítulo anterior](primeiras-nocoes.qmd)).
+[Pré-requisito] ([Capítulo anterior](../index.qmd)).
 :::
 
 ## Primeira seção
@@ -38,13 +38,13 @@ O **[outro conceito]** é [definição].
 Pela @def-modelo-conceito, [consequência].
 
 ::: {.fig-leg #fig-modelo}
-![](../../../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="[Descrição da imagem para quem não a vê.]"}
+![](../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="[Descrição da imagem para quem não a vê.]"}
 
 [Legenda: o que a figura significa no texto.]
 :::
 
 ::: {.fig-leg .w30 #fig-modelo-estreita}
-![](../../../assets/img/segmentos/segmento-degenerado.png){fig-alt="[Descrição da imagem.]"}
+![](../assets/img/segmentos/segmento-degenerado.png){fig-alt="[Descrição da imagem.]"}
 
 [Legenda de figura com largura reduzida (.w30 … .w80).]
 :::

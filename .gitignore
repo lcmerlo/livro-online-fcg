@@ -10,6 +10,7 @@ _quarto_internal_scss_error.scss
 _book/
 _site/
 docs/
+docs-lab/
 /index.tex
 _interno/**/*.html
 

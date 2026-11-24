@@ -58,6 +58,15 @@ jobs:
           args: --offline --include-fragments --no-progress 'docs/**/*.html'
           fail: true
 
+      # O laboratório (_quarto-lab.yml) não é publicado, mas, se ele não renderizar, a
+      # publicação para: é onde tema, filtros e applets se conferem enquanto não há
+      # capítulos. O que o verificador acha nas páginas dele é listado, sem reprovar.
+      - name: Renderizar o laboratório
+        run: quarto render --profile lab --to html
+
+      - name: Verificar o laboratório
+        run: node tests/verificar-site.mjs --lab
+
       - name: Enviar artefato para GitHub Pages
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3

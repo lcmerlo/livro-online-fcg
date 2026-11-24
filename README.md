@@ -36,6 +36,7 @@ Exercícios de fixação
 ### Arquivos principais
 index.qmd 		- Página inicial
 _quarto.yml 	- Configuração principal do livro
+_quarto-lab.yml - Perfil lab: acrescenta ao livro a parte Laboratório (as páginas de laboratorio/), gerada em docs-lab/ e fora do site publicado
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
@@ -43,21 +44,24 @@ tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no w
 components/macros.html - Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`)
 components/ - Filtros Lua (`blocos.lua`, `applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
 capitulos/ 		- Capítulos listados em '_quarto.yml'
+laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
-_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, testes/ para arquivos de teste com a configuração do livro, referências)
+docs-lab/ 		- Site do perfil lab, com o laboratório (não versionado nem publicado)
+_interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, referências)
 .github/workflows/publish.yml - Verifica cada pull request; renderiza e publica no GitHub Pages a cada push na main
 AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
 ### Comandos principais
 quarto preview      - preview local
 quarto preview --profile axe - preview local com a verificação de acessibilidade do Quarto (resultado no console do navegador)
+quarto preview --profile lab - preview local com o laboratório (páginas de teste e modelos de capítulo); com `--profile lab,axe`, também com a verificação de acessibilidade
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
-`quarto render _interno/oficina/testes/ARQUIVO.qmd` - renderiza um arquivo de teste com tema, filtros e macros do livro (com `--profile axe`, também com a verificação de acessibilidade)
+quarto render --profile lab --to html e node tests/verificar-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (o que o verificador acha nas páginas de teste é listado, sem reprovar)
 
 
 ## Applets
@@ -90,6 +94,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 ### Checklist antes de commit
 - [ ] O projeto renderiza sem erro.
 - [ ] `node tests/verificar-site.mjs` não acusa erros.
+- [ ] O laboratório renderiza sem erro (`quarto render --profile lab --to html`).
 - [ ] O capítulo novo está listado em `_quarto.yml`.
 - [ ] Fórmulas, imagens e links funcionam.
 - [ ] Applets carregam localmente.
@@ -100,7 +105,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 ### Arquivos principais Git
 
 .gitignore (pastas e arquivos que não devem ir para o commit): ver o arquivo na raiz.
-Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
+Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `docs-lab/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
 
 ## Licença
 	Definir antes da divulgação (`_interno/diretrizes/pendencias.md`, §6).

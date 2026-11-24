@@ -96,7 +96,10 @@ main.content {
 
    O recorte vai dentro da regra (data:), e não num arquivo: o Quarto procura
    o arquivo de um url() do tema a partir da pasta do projeto, e este arquivo
-   serve a dois projetos (o livro e _interno/oficina/testes/).
+   servia também ao projeto de testes da oficina, noutra pasta, onde o render
+   falhava. Desde 2026-11-24, as páginas de teste estão no perfil lab, no mesmo
+   projeto, e um arquivo (como vendor/icons/ no livro-base) renderiza nos dois
+   perfis; a fase 4 da migração decide onde o recorte fica.
 
    Bootstrap Icons 1.13.1 (a do Quarto 1.11.9), licença MIT. Os ícones:
      f461 layout-text-sidebar-reverse  botão do menu, em tela estreita

@@ -4,8 +4,8 @@ title: "Teste de cores"
 
 <!-- Página de teste de cores dos applets: o modelo do livro (papéis
      enxutos, decisoes.md, 2026-11-04) ao lado de alternativas.
-     Renderizar: (cd applets-src && npm run build) e
-     quarto render _interno/oficina/testes/teste-cores.qmd
+     Ver: (cd applets-src && npm run build) e
+     quarto preview --profile lab (_quarto-lab.yml)
      O applet está em applets-src/src/applets/teste-cores.js; as cores de cada
      modelo estão na função modelos() de lá, chamadas pelo nome da paleta
      de _brand.yml com paleta("…"). -->

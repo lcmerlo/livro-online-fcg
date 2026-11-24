@@ -5,10 +5,12 @@
 // Opções:
 //   --raiz <pasta>   raiz do projeto (padrão: pasta acima de tests/)
 //   --estrito        trata avisos como erros
+//   --lab            confere o site do perfil lab (docs-lab/, de
+//                    `quarto render --profile lab`), com as páginas de laboratorio/
 //
 // Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
-// e comandos TeX suspeitos.
-// Site gerado (docs/): iframes sem title, imagens sem alt, applets sem
+// e comandos TeX suspeitos; as de laboratorio/ também sem --lab.
+// Site gerado (docs/ ou docs-lab/): iframes sem title, imagens sem alt, applets sem
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
 // ids duplicados e saltos na hierarquia de títulos.
 // Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
@@ -17,7 +19,7 @@
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
 // com valores diferentes dos do livro, cores dos applets com contraste abaixo
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
-// no livro.
+// no livro (fora de laboratorio/).
 // Links internos e âncoras são verificados pelo lychee no workflow.
 //
 // Protótipos (`estado: prototipo` no cabeçalho do capítulo; diretrizes
@@ -38,11 +40,19 @@ const indiceRaiz = args.indexOf("--raiz");
 const raiz = resolve(
   indiceRaiz >= 0 ? args[indiceRaiz + 1] : join(dirname(fileURLToPath(import.meta.url)), ".."),
 );
+// A pasta do site gerado: a do site público ou a do perfil lab (_quarto-lab.yml).
+const saida = args.includes("--lab") ? "docs-lab" : "docs";
 
 const erros = [];
 const avisos = [];
-const erro = (arquivo, msg) => erros.push(`${arquivo}: ${msg}`);
-const aviso = (arquivo, msg) => avisos.push(`${arquivo}: ${msg}`);
+// As páginas do laboratório são testes e modelos, alguns com exemplos que não
+// funcionam de propósito (o applet "nome-do-applet", macros só da página): o que
+// se acha nelas é listado à parte e não reprova, nem com --estrito. Elas passam à
+// sintaxe nova na fase 7 da migração (plano de migração do livro-base).
+const noLaboratorio = [];
+const doLaboratorio = (arquivo) => /^(docs-lab\/)?laboratorio\//.test(arquivo);
+const erro = (arquivo, msg) => (doLaboratorio(arquivo) ? noLaboratorio : erros).push(`${arquivo}: ${msg}`);
+const aviso = (arquivo, msg) => (doLaboratorio(arquivo) ? noLaboratorio : avisos).push(`${arquivo}: ${msg}`);
 
 function listar(pasta, extensao) {
   if (!existsSync(pasta)) return [];
@@ -67,8 +77,8 @@ function prototipo(fonte) {
   }
   return estados.get(fonte);
 }
-// A fonte de uma página de docs/: docs/capitulos/x.html vem de capitulos/x.qmd.
-const fonteDe = (pagina) => join(raiz, rel(pagina).replace(/^docs\//, "").replace(/\.html$/, ".qmd"));
+// A fonte de uma página do site: docs/capitulos/x.html vem de capitulos/x.qmd.
+const fonteDe = (pagina) => join(raiz, rel(pagina).slice(saida.length + 1).replace(/\.html$/, ".qmd"));
 
 // Num protótipo, avisos e conferências de forma só entram na contagem.
 const emPrototipos = new Set();
@@ -86,7 +96,11 @@ const linhaDe = (texto, indice) => texto.slice(0, indice).split("\n").length;
 
 // ---------- Fontes .qmd ----------
 
-const fontes = [join(raiz, "index.qmd"), ...listar(join(raiz, "capitulos"), ".qmd")];
+const fontes = [
+  join(raiz, "index.qmd"),
+  ...listar(join(raiz, "capitulos"), ".qmd"),
+  ...listar(join(raiz, "laboratorio"), ".qmd"),
+];
 
 for (const arquivo of fontes.filter(existsSync)) {
   const texto = semComentarios(readFileSync(arquivo, "utf8"));
@@ -119,10 +133,18 @@ for (const arquivo of fontes.filter(existsSync)) {
 
 // ---------- Site gerado ----------
 
-const paginas = listar(join(raiz, "docs"), ".html");
+const paginas = listar(join(raiz, saida), ".html");
 
 if (paginas.length === 0) {
-  aviso("docs/", "nenhuma página HTML encontrada; rode `quarto render --to html` antes");
+  const render = saida === "docs" ? "quarto render --to html" : "quarto render --profile lab --to html";
+  aviso(`${saida}/`, `nenhuma página HTML encontrada; rode \`${render}\` antes`);
+}
+
+// Sem --lab, nenhuma página do laboratório: elas não vão ao site público.
+if (saida === "docs") {
+  for (const arquivo of paginas.filter((p) => rel(p).startsWith("docs/laboratorio/"))) {
+    erro(rel(arquivo), "página do laboratório no site público: ela entra só pelo perfil lab (_quarto-lab.yml)");
+  }
 }
 
 // Applets registrados: um por arquivo de applets-src/src/applets/, com o nome
@@ -133,7 +155,7 @@ const registrados = new Set(
     ? readdirSync(pastaApplets).filter((f) => f.endsWith(".js")).map((f) => f.slice(0, -".js".length))
     : [],
 );
-// Applets que alguma página do livro usa.
+// Applets que alguma página do livro usa, fora do laboratório.
 const usados = new Set();
 
 for (const arquivo of paginas) {
@@ -150,7 +172,7 @@ for (const arquivo of paginas) {
   }
 
   for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
-    usados.add(m[1]);
+    if (!doLaboratorio(nome)) usados.add(m[1]);
     if (!registrados.has(m[1])) erro(nome, `applet sem arquivo applets-src/src/applets/${m[1]}.js`);
   }
 
@@ -165,8 +187,10 @@ for (const arquivo of paginas) {
   }
 
   // Só o <body>: o <head> do Quarto repete ids de estilos em todas as páginas.
+  // Sem os blocos de código: o Pandoc não troca as aspas no texto de um <pre>, e
+  // um exemplo como {{< applet … id="x" >}} pareceria um segundo id="x".
   const vistos = new Set();
-  const dentroDoBody = html.slice(html.indexOf("<body"));
+  const dentroDoBody = html.slice(html.indexOf("<body")).replace(/<pre\b[\s\S]*?<\/pre>/g, "");
   for (const m of dentroDoBody.matchAll(/\sid="([^"]+)"/g)) {
     if (vistos.has(m[1])) erro(nome, `id duplicado: ${m[1]}`);
     vistos.add(m[1]);
@@ -194,14 +218,10 @@ try {
 }
 
 if (katex && paginas.length) {
-  for (const arquivo of ["_quarto.yml", "_interno/oficina/testes/_quarto.yml"]) {
-    const caminho = join(raiz, arquivo);
-    if (!existsSync(caminho)) continue;
-    const versao = readFileSync(caminho, "utf8").match(/katex@([\w.-]+)/)?.[1];
-    if (!versao) aviso(arquivo, "versão do KaTeX não encontrada em html-math-method");
-    else if (versao !== katex.version) {
-      aviso(arquivo, `KaTeX ${versao}, mas o verificador usa o ${katex.version} (applets-src/package.json); mude os dois juntos`);
-    }
+  const versao = readFileSync(join(raiz, "_quarto.yml"), "utf8").match(/katex@([\w.-]+)/)?.[1];
+  if (!versao) aviso("_quarto.yml", "versão do KaTeX não encontrada em html-math-method");
+  else if (versao !== katex.version) {
+    aviso("_quarto.yml", `KaTeX ${versao}, mas o verificador usa o ${katex.version} (applets-src/package.json); mude os dois juntos`);
   }
 
   const fonteMacros = join(raiz, "components/macros.html");
@@ -254,11 +274,11 @@ if (katex && paginas.length) {
 
 // O CSS do tema que as páginas carregam: o link de docs/index.html, porque
 // docs/ guarda versões antigas de bootstrap-*.min.css entre renderizações.
-const indiceSite = join(raiz, "docs/index.html");
+const indiceSite = join(raiz, saida, "index.html");
 const linkTema = existsSync(indiceSite)
   ? readFileSync(indiceSite, "utf8").match(/href="(site_libs\/bootstrap\/bootstrap-(?!dark-|icons)[^"]+\.css)"/)?.[1]
   : undefined;
-const cssTema = linkTema && existsSync(join(raiz, "docs", linkTema)) ? readFileSync(join(raiz, "docs", linkTema), "utf8") : "";
+const cssTema = linkTema && existsSync(join(raiz, saida, linkTema)) ? readFileSync(join(raiz, saida, linkTema), "utf8") : "";
 
 // Variáveis CSS de um texto, com o primeiro valor de cada uma (o do :root,
 // que vem antes das regras @media), em minúsculas.
@@ -288,7 +308,7 @@ function contraste(a, b) {
 }
 
 if (!cssTema) {
-  if (paginas.length) aviso("docs/", "CSS do tema não encontrado; as cores não foram verificadas");
+  if (paginas.length) aviso(`${saida}/`, "CSS do tema não encontrado; as cores não foram verificadas");
 } else {
   const doLivro = variaveis(cssTema);
 
@@ -340,6 +360,9 @@ if (avisos.length) console.log(`Avisos (${avisos.length}):\n${resumo(avisos)}\n`
 if (erros.length) console.log(`Erros (${erros.length}):\n${resumo(erros)}\n`);
 if (emPrototipos.size) {
   console.log(`Em protótipos: ${emPrototipos.size} avisos, a ver na reescrita de cada capítulo (${capitulosPrototipo.size} capítulos).\n`);
+}
+if (noLaboratorio.length) {
+  console.log(`No laboratório, sem reprovar (${new Set(noLaboratorio).size}):\n${resumo(noLaboratorio)}\n`);
 }
 
 const falhou = erros.length > 0 || (estrito && avisos.length > 0);

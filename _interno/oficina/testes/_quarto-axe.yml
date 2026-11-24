@@ -1,7 +1,0 @@
-# Perfil "axe" do projeto de testes, como o da raiz (/_quarto-axe.yml): a verificação
-# de acessibilidade do Quarto (axe-core, 553 KB) só quando pedida, com
-# quarto render _interno/oficina/testes/ARQUIVO.qmd --profile axe
-# O resultado sai no console do navegador.
-format:
-  html:
-    axe: true

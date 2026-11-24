@@ -18,6 +18,7 @@
     ".quarto/**",
     "_freeze/**",
     "docs/**",
+    "docs-lab/**",
     "_scratch/**",
     "**/node_modules/**",
     "assets/js/applets-dist/**",

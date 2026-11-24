@@ -11,8 +11,8 @@ format:
 <!-- Página de consulta dos arranjos dos applets JSXGraph, no estilo do
      capítulo 10 do estudo do JSX-quarto (estudo/10-layout.qmd), com as regras
      do livro: nenhum CSS no capítulo, só os arranjos do guia editorial (§6).
-     Renderizar: (cd applets-src && npm run build) e
-     quarto render _interno/oficina/testes/arranjos.qmd
+     Ver: (cd applets-src && npm run build) e
+     quarto preview --profile lab (_quarto-lab.yml)
      O applet de todos os exemplos está em
      applets-src/src/applets/teste-controles.js; as classes dos arranjos, em
      assets/css/custom.scss, na parte "Applets JSXGraph e GeoGebra". -->
@@ -492,10 +492,10 @@ Cada item diz o sintoma, a causa provável e a correção.
 
 ## Experimente {#experimente}
 
-Abra o arquivo desta página, `arranjos.qmd`, na pasta `_interno/oficina/testes/`, e faça uma mudança de cada vez. Depois de cada uma, gere a página de novo e recarregue `arranjos.html` no navegador:
+Abra a prévia do laboratório e, no editor, o arquivo desta página, `arranjos.qmd`, na pasta `laboratorio/`. Faça uma mudança de cada vez: a cada arquivo salvo, a prévia refaz a página.
 
 ```{.default}
-quarto render _interno/oficina/testes/arranjos.qmd
+quarto preview --profile lab
 ```
 
 1. Em [Estreito e no centro](#tam-estreito-centro), apague `centro` e veja o quadro voltar para a esquerda.
@@ -508,5 +508,5 @@ quarto render _interno/oficina/testes/arranjos.qmd
 Para desfazer tudo no fim:
 
 ```{.default}
-git restore _interno/oficina/testes/arranjos.qmd
+git restore laboratorio/arranjos.qmd
 ```

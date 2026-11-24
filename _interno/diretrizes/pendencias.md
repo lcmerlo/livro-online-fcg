@@ -36,6 +36,7 @@ Adiadas por decisão do autor, com um marco para rever (`diretrizes-tecnicas.md`
 |---|---|---|
 | O JSX-quarto usa 360 px como largura mínima; o livro, 320 px | JSX-quarto, `migracao/manual.qmd` | alinhar lá, se o autor quiser (fora deste repositório) |
 | Os Princípios dizem que "o tema escuro gerado a partir de `_brand.yml` ainda não foi medido", mas desde 2026-11-22 o site gera só o tema claro (`decisoes.md`) | Princípios, §32 | tirar a frase, com a aprovação do autor |
+| Os Princípios dizem que as fontes são "declaradas em `_brand.yml` com origem Google Fonts", mas desde 2026-11-24 elas vêm de `vendor/fonts/`, com o KaTeX em `vendor/katex/` (`decisoes.md`) | Princípios, §43 | atualizar a frase, com a aprovação do autor |
 
 ## 5. Applets GeoGebra a reescrever em JSXGraph
 
@@ -69,7 +70,7 @@ O que precisa estar pronto antes de divulgar o livro ao público-alvo. Até lá,
 | Nomes públicos estáveis | arquivos de capítulo, rótulos, ids (`diretrizes-tecnicas.md`, §7) | fixar os nomes; depois da divulgação, renomear um capítulo só com `aliases` |
 | Licença do conteúdo e do código | `README.md`, Princípios §43 | definir |
 | Aviso de licença do JSXGraph no bundle | `applets-livro.iife.js` (a minificação remove o aviso) | manter o aviso no build |
-| Licença e carregamento das fontes | `_brand.yml` (Princípios §43) | confirmar |
+| Licença das fontes | `vendor/fonts/` (Princípios §43). O carregamento foi resolvido em 2026-11-24: as fontes vêm do site, só as faces usadas. A licença é a SIL OFL 1.1, com o texto em `vendor/fonts/` e, dentro de cada arquivo, o aviso de copyright e o endereço da licença | confirmar que isso basta na publicação aberta |
 | Nova medição do contraste | medição de 04/10/2026 (Princípios §32); `_brand.yml` e `custom.scss` mudaram depois. As cores lidas pelos applets são conferidas pelo verificador desde 2026-11-04 | medir de novo os pares de cor de texto e de bordas |
 | Teste num celular real | o toque só foi conferido no Chrome, com toque simulado (formas dos pontos, rolagem da página, área de captura, pontos dentro do quadro; 2026-11-03 e 2026-11-04; controles, 2026-11-05), na amostra e no applet de teste dos controles de `applets-src/index.html` | conferir num celular, de preferência um iPhone e um Android: rodar `(cd applets-src && npm run dev -- --host)` e abrir no celular, na mesma rede Wi-Fi, o endereço "Network" que o Vite mostra. Conferir: o dedo fora dos pontos rola a página; tocar um pouco ao lado de um ponto o arrasta; a pinça amplia a página, e não o plano; o anel aparece mais largo; nenhum ponto sai do quadro; a faixa anda com o dedo, e o cursor dela aparece com o anel mais largo; o teclado do campo tem o sinal de menos |
 | Por último: retirar o aviso "Material em construção. Uso não recomendado no momento!" | `book.announcement`, em `_quarto.yml` | apagar o `announcement` de `book` na divulgação ao público-alvo |

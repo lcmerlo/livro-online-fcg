@@ -47,6 +47,7 @@ capitulos/ 		- Capítulos listados em '_quarto.yml'
 laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
+vendor/ 		- KaTeX e fontes, copiados para que o site não dependa de outro servidor (versões e licenças em vendor/VERSIONS.md)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
 docs-lab/ 		- Site do perfil lab, com o laboratório (não versionado nem publicado)
 _interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, referências)

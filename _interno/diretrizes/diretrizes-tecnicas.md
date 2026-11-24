@@ -149,7 +149,7 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 ## 3. Ferramentas e dependências
 
 - **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, empacotados pelo Vite; fórmulas com KaTeX.
-- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX tem versão exata, a mesma do JSX-quarto, em dois lugares que mudam juntos: `_quarto.yml` e `applets-src/package.json` (o do verificador, que avisa se diferirem).
+- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX e as fontes vêm com o site, em `vendor/`, copiados do `livro-base`, com a versão e a licença em `vendor/VERSIONS.md`; o verificador desenha as fórmulas com o mesmo arquivo das páginas, e `applets-src/package.json` repete a versão do KaTeX só para a página de desenvolvimento.
 - **Dependências de execução**, que chegam ao navegador do estudante (bibliotecas, fontes, serviços externos), pesam no desempenho, na acessibilidade e na licença (§17, §33). Entram por decisão registrada, com o ganho mostrado.
 - **Dependências de desenvolvimento**, que só rodam no computador de quem desenvolve ou no CI (testes, verificadores, formatadores), não chegam ao estudante. Entram quando automatizam uma verificação útil, com versão fixada e uma linha em `decisoes.md`.
 - **Outras ferramentas de applets** (Desmos, CindyJS…): só por decisão, quando uma representação não puder ser feita bem com JSXGraph (§20).
@@ -248,7 +248,7 @@ O JSX-quarto (<https://github.com/lcmerlo/JSX-quarto>) é o laboratório dos app
 
 Onde o livro faz diferente, e por quê:
 
-- **Carregamento:** os applets e o JSXGraph vão num só arquivo, carregado só nas páginas que têm applet; o livro não depende de CDN, e a versão fica fixada.
+- **Carregamento:** os applets e o JSXGraph vão num só arquivo, carregado só nas páginas que têm applet. Nada vem de outro servidor (CDN, Google Fonts): o site continua funcionando se um deles sair do ar, nenhum deles fica sabendo de cada visita, e a versão fica fixada. O verificador acusa o que uma página carregar de fora.
 - **Cores:** três papéis (§4.5), e não uma cor por objeto; escolha do autor em 2026-11-04, depois de comparar quatro modelos lado a lado. Nos testes, as cores do JSX-quarto são chamadas pelo nome.
 - **Nomes no código:** em português (§4.5).
 - **Toque:** o dedo fora dos pontos rola a página, e vence o ponto mais próximo; no JSX-quarto, o quadro bloqueia a rolagem da página.

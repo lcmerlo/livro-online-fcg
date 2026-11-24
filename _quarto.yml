@@ -7,6 +7,10 @@ project:
   # para dentro de docs-lab/.
   resources:
     - /vendor/katex/**
+  # Depois de gerar as páginas, as fórmulas são desenhadas, uma vez, e não no
+  # navegador de cada leitor.
+  post-render:
+    - tools/prerender-math.ts
 
 lang: pt-BR
 # Só o tema claro: com `brand: _brand.yml`, o Quarto gera também uma folha escura,

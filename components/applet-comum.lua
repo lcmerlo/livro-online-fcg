@@ -27,10 +27,10 @@ local function macros_em_json()
 end
 
 -- Todo applet usa o KaTeX da página: nos nomes dos objetos, nas leituras e nos
--- rótulos dos controles, com as macros do livro. O Pandoc só carrega o KaTeX
--- em páginas com fórmulas, e as macros das fórmulas do texto já vêm expandidas
--- (filters/macros.lua): nas páginas com applet, o KaTeX vem daqui, de
--- vendor/katex/, com as macros definidas no próprio KaTeX. __defineMacro é a
+-- rótulos dos controles, com as macros do livro. As fórmulas do texto já saem
+-- desenhadas (tools/prerender-math.ts tira da página o KaTeX que o Pandoc põe),
+-- com as macros expandidas (filters/macros.lua): nas páginas com applet, o
+-- KaTeX vem daqui, de vendor/katex/, com as macros definidas no próprio KaTeX. __defineMacro é a
 -- função que as extensões do KaTeX usam para isso (a do mhchem, por exemplo);
 -- como não é uma função pública, um aviso no console denuncia uma versão nova
 -- sem ela (e o verificador também). Vale até a fase 5 da migração, que apaga

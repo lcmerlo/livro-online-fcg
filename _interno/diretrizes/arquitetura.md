@@ -65,7 +65,7 @@ flowchart TD
 | **Vite** | Ferramenta que junta (*empacota*) vários arquivos JS em um só arquivo, o **bundle**. |
 | **IIFE** | Formato do bundle: um único `.js` que roda direto no navegador, sem `import`. Expõe o objeto global `AppletsLivro`. |
 | **npm / `package.json`** | Gerenciador de pacotes do Node.js; baixa o JSXGraph e o Vite para `node_modules/`. |
-| **KaTeX** | Biblioteca que desenha as fórmulas LaTeX no navegador. O Pandoc a carrega, só nas páginas com fórmulas, de `vendor/katex/`, que vem com o site (`html-math-method` em `_quarto.yml`). |
+| **KaTeX** | Biblioteca que desenha as fórmulas LaTeX. As fórmulas do texto são desenhadas quando o site é gerado (`tools/prerender-math.ts`, depois do render), e não no navegador de cada leitor; o KaTeX só vai ao navegador nas páginas com applet, que o usam, de `vendor/katex/`, que vem com o site (`html-math-method` em `_quarto.yml`). |
 | **GitHub Actions** | Robô que executa `.github/workflows/publish.yml` a cada push na `main` (verifica e publica) e a cada pull request para a `main` (só verifica). |
 | **GitHub Pages** | Hospedagem gratuita do GitHub que serve o conteúdo de `docs/` como site. |
 
@@ -95,8 +95,11 @@ livro-quarto/
 │   ├── applet.lua              ✏️  Shortcodes {{< applet >}} e {{< geogebra >}}
 │   ├── applet-bloco.lua        ✏️  Filtro: bloco ::: {.applet} de um applet com várias partes
 │   ├── applet-comum.lua        ✏️  O que os dois acima têm em comum (bundle, estado, botão Reiniciar)
-│   ├── blocos.lua              ✏️  Filtro: rótulos dos blocos didáticos e abas Dica/Resolução/Resposta
-│   └── macros.html             ✏️  Macros LaTeX (\vet, \norm, \R…) incluídas em todas as páginas
+│   └── blocos.lua              ✏️  Filtro: rótulos dos blocos didáticos e abas Dica/Resolução/Resposta
+│
+├── filters/macros.lua          ✏️  Filtro: expande as macros em toda fórmula (vem do livro-base)
+├── math/macros.json            ✏️  As macros LaTeX (\vet, \norm, \R…): a lista, lida por todos
+├── tools/prerender-math.ts     ✏️  Depois do render: desenha as fórmulas (vem do livro-base)
 │
 ├── assets/                     Arquivos estáticos usados pelas páginas
 │   ├── css/custom.scss         ✏️  Estilos próprios do livro (tokens de cor, blocos, applets)
@@ -162,7 +165,7 @@ recriada pelo comando correspondente. Nunca edite arquivos dentro de `docs/` ou
 
 | Arquivo | Finalidade | Quem lê |
 |---|---|---|
-| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, o KaTeX de `vendor/katex/` (`html-math-method`, e `resources`, que o copia para `docs/`), camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa), filtros, shortcodes, macros, numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
+| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, o KaTeX de `vendor/katex/` (`html-math-method`, e `resources`, que o copia para `docs/`), camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa), filtros (o das macros num `filters:` de primeiro nível, que vale para qualquer formato; os outros em `format.html`), shortcodes, o passo depois do render (`post-render`: `tools/prerender-math.ts`), numeração de seções, o tipo personalizado `exrr` (Exercício Resolvido) e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
 | `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`azul-2`, `areia-1`…) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…) e fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos), com os arquivos de `vendor/fonts/` (`source: file`), e não do Google. O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
 | `_language.yml` | Substitui rótulos padrão do Quarto ("Proof" → "Demonstração"). Lido automaticamente por estar na raiz do projeto. | Quarto |
 | `capitulos/_metadata.yml`, `laboratorio/_metadata.yml` | O caminho do KaTeX para as páginas dessas pastas (`../vendor/katex/`): o de `_quarto.yml` é relativo à página. Uma pasta nova de páginas precisa do mesmo arquivo. | Quarto |
@@ -178,22 +181,24 @@ no `_quarto.yml`. O cabeçalho diz o estado do capítulo (`estado: prototipo` ou
 linha não aparece na página. Um capítulo combina:
 
 - **Markdown** (títulos `##`, listas, ênfase);
-- **LaTeX** entre `$…$`, usando as macros de `components/macros.html`;
+- **LaTeX** entre `$…$`, usando as macros de `math/macros.json`;
 - **Blocos numerados do Quarto**: `{#def-…}`, `{#prp-…}`, `{#exm-…}`, `{#exr-…}`, `{#exrr-…}`, referenciados com `@def-…`;
 - **Blocos didáticos do livro**: `.bloco-objetivo`, `.bloco-pre-requisitos`, `.bloco-interacao`, `.bloco-erro`, `.bloco-checkpoint`;
 - **Abas recolhíveis**: `.dica`, `.solucao`, `.resposta`;
 - **Shortcodes**: `{{< applet … >}}` e `{{< geogebra … >}}`;
 - **Figuras** de `assets/img/<capítulo>/`.
 
-### 4.3 `components/` — extensões do Quarto
+### 4.3 `components/`, `filters/`, `math/` e `tools/` — extensões do Quarto
 
 | Arquivo | Quando roda | O que faz |
 |---|---|---|
-| `applet.lua` | Na renderização, ao encontrar um shortcode | `applet`: gera o `<div data-applet="…">` (com as classes de `arranjo`, se houver), a fórmula invisível que faz a página carregar o KaTeX, o parágrafo de estado `<id>-status` e o botão "Reiniciar applet"; registra o bundle JS/CSS **apenas nessa página**. `geogebra`: gera um `<iframe>` acessível (com `title`, carregamento tardio e link alternativo), numa caixa branca (`.bloco-geogebra`) que esconde a sobra branca do iframe. |
-| `applet-bloco.lua` | Na renderização, em todo capítulo | Transforma o bloco `::: {.applet nome="…" id="…" rotulo="…"}` na parte interativa de um applet com várias partes: o bloco recebe `data-applet`, `role="group"` e o rótulo; cada parte `.quadro` vira um `div.applet-jxg` com `aria-label`, cada `.leitura`, um `div.applet-leitura`, e cada `.controles`, um `div.applet-controles`; cada parte recebe `data-parte` (o id, sem o prefixo `<id>-`); no fim entram a fórmula invisível que faz a página carregar o KaTeX, o parágrafo de estado e o botão. Avisa no render quando falta rótulo, quando o id de uma parte não começa por `<id>-` e quando uma parte está fora de um bloco. |
-| `applet-comum.lua` | Carregado pelos dois acima (`require`) | Carrega o bundle e escreve a fórmula invisível que faz a página carregar o KaTeX (uma por applet, escondida pelo CSS), o parágrafo de estado e o botão "Reiniciar", iguais no shortcode e no bloco. |
+| `applet.lua` | Na renderização, ao encontrar um shortcode | `applet`: gera o `<div data-applet="…">` (com as classes de `arranjo`, se houver), o parágrafo de estado `<id>-status` e o botão "Reiniciar applet"; registra o bundle JS/CSS e o KaTeX **apenas nessa página**. `geogebra`: gera um `<iframe>` acessível (com `title`, carregamento tardio e link alternativo), numa caixa branca (`.bloco-geogebra`) que esconde a sobra branca do iframe. |
+| `applet-bloco.lua` | Na renderização, em todo capítulo | Transforma o bloco `::: {.applet nome="…" id="…" rotulo="…"}` na parte interativa de um applet com várias partes: o bloco recebe `data-applet`, `role="group"` e o rótulo; cada parte `.quadro` vira um `div.applet-jxg` com `aria-label`, cada `.leitura`, um `div.applet-leitura`, e cada `.controles`, um `div.applet-controles`; cada parte recebe `data-parte` (o id, sem o prefixo `<id>-`); no fim entram o parágrafo de estado e o botão. Avisa no render quando falta rótulo, quando o id de uma parte não começa por `<id>-` e quando uma parte está fora de um bloco. |
+| `applet-comum.lua` | Carregado pelos dois acima (`require`) | Carrega o bundle e o KaTeX de `vendor/katex/` (script, folha e um script que define no próprio KaTeX as macros de `math/macros.json`, para os applets); escreve o parágrafo de estado e o botão "Reiniciar", iguais no shortcode e no bloco. |
 | `blocos.lua` | Na renderização, em todo capítulo | Insere o rótulo visível ("Objetivo", "Erro comum"…) no topo de cada `.bloco-*`; agrupa `.dica`/`.solucao`/`.resposta` consecutivas em abas que começam fechadas, e injeta o pequeno script que permite fechá-las. |
-| `macros.html` | Incluído no `<body>` de todas as páginas | Lista `\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C` (em JSON) e as define no próprio KaTeX assim que ele carrega, antes de as fórmulas serem desenhadas: valem no texto, nas prévias das referências cruzadas e nas leituras dos applets. O verificador lê a mesma lista. |
+| `filters/macros.lua` | Na renderização, em toda fórmula, para qualquer formato de saída | Expande as macros de `math/macros.json` (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`): a fórmula chega ao KaTeX, às prévias das referências cruzadas e ao PDF já em TeX comum. Vem do livro-base, igual. |
+| `math/macros.json` | Lido por `filters/macros.lua` e `applet-comum.lua` | A lista das macros, em JSON: cada barra invertida do TeX aparece dobrada (`"\\R": "\\mathbb{R}"`), e `#1` é o argumento. |
+| `tools/prerender-math.ts` | Depois do render (`post-render`), com o Deno que vem com o Quarto | Troca cada fórmula pelo desenho do KaTeX (`vendor/katex/katex.min.js`) e tira da página o KaTeX do Pandoc: uma página sem applet não carrega JavaScript para a matemática, e o leitor nunca vê TeX cru. Uma fórmula que o KaTeX não desenha para o render (no laboratório, só fica para o KaTeX do navegador). Vem do livro-base, com as diferenças escritas no alto do arquivo. |
 
 ### 4.4 `assets/`
 
@@ -224,11 +229,11 @@ linha não aparece na página. Um capítulo combina:
 
 ### 4.6 `tests/verificar-site.mjs`
 
-Script Node. Roda sem instalar nada: desenha as fórmulas com `vendor/katex/katex.min.js`, o mesmo arquivo que as páginas carregam. Verifica:
+Script Node. Roda sem instalar nada: confere as fórmulas com `vendor/katex/katex.min.js`, o mesmo arquivo que `tools/prerender-math.ts` usa e que as páginas com applet carregam. Verifica:
 
 - **nas fontes** (`index.qmd`, `capitulos/*.qmd` e `laboratorio/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`;
 - **no site gerado** (`docs/`; com `--lab`, `docs-lab/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets-src/src/applets/`, quadro ou bloco de applet sem rótulo, `id` duplicado (fora dos blocos de código), saltos na hierarquia de títulos (aviso), o que a página carrega de outro servidor, no HTML ou nas folhas de estilo locais que ela carrega (`url()` e `@import`; erro também no laboratório, porque vem da configuração do livro);
-- **nas fórmulas** do site gerado: cada uma passa pelo KaTeX, com as macros de `components/macros.html`; erro se ele não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`);
+- **nas fórmulas** do site gerado, que chegam desenhadas (`tools/prerender-math.ts`), com as macros já expandidas (`filters/macros.lua`): o TeX de cada uma, guardado numa anotação, passa de novo pelo KaTeX, e é aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); uma fórmula que ficou em TeX é erro: ou o KaTeX não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), ou o post-render não rodou; e é erro uma página sem applet que ainda carrega o KaTeX no navegador. O resumo conta as fórmulas;
 - **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): variável de `applets-src/index.html` com valor diferente do livro; cor lida por `cores.js` (menos as de fundo) com contraste abaixo de 3:1 sobre o fundo do quadro (`--cor-superf-suave`); applet usado no livro que chama `paleta()`;
 - **nos protótipos** (`estado: prototipo` no cabeçalho do `.qmd`; a página de `docs/` é ligada à fonte pelo caminho): continua erro o que quebra a página (imagem inexistente, comando TeX suspeito, fórmula que o KaTeX não desenha, `iframe` sem `title`, applet sem arquivo ou sem rótulo, `id` duplicado); os avisos e a conferência de título de definição ou proposição viram uma linha de contagem ("Em protótipos: N avisos…"), que não reprova nem com `--estrito`. Um valor de `estado` que não seja `prototipo` nem `revisado` gera aviso; sem a linha, a fonte é tratada como revisada.
 
@@ -263,7 +268,8 @@ flowchart LR
     quarto -->|"theme"| tema["cosmo<br/>+ brand<br/>+ custom.scss"]
     quarto -->|"filters"| blocos["blocos.lua<br/>applet-bloco.lua"]
     quarto -->|"shortcodes"| appletlua["applet.lua"]
-    quarto -->|"include-before-body"| macros["macros.html"]
+    quarto -->|"filters"| macros["filters/macros.lua<br/>(math/macros.json)"]
+    quarto -->|"post-render"| pre["tools/prerender-math.ts"]
 ```
 
 O `_language.yml` não aparece no `_quarto.yml`: o Quarto o lê
@@ -276,7 +282,7 @@ E o que cada capítulo usa, conforme o que está escrito nele:
 flowchart LR
     cap["<b>capítulo .qmd</b>"]
     cap -->|"figuras"| img["assets/img/"]
-    cap -->|"\vet, \R, \norm"| macros["macros.html"]
+    cap -->|"\vet, \R, \norm"| macros["math/macros.json"]
     cap -->|"blocos .bloco-*<br/>.dica, .solucao"| blocos["blocos.lua"]
     cap -->|"applet, geogebra"| appletlua["applet.lua<br/>(+ bundle JS)"]
     cap -->|"bloco .applet"| appletbloco["applet-bloco.lua<br/>(+ bundle JS)"]
@@ -370,11 +376,12 @@ flowchart TD
     theme["<b>Compila o tema</b><br/>cosmo → brand → custom.scss<br/>resultado: docs/site_libs/bootstrap/"]
     parse["<b>Para cada capítulo</b><br/>o Pandoc lê o .qmd"]
     sc["<b>Shortcodes viram HTML</b> (applet.lua)<br/>se há applet, o bundle é copiado<br/>para docs/site_libs/quarto-contrib/"]
-    flt["<b>Filtros</b><br/>blocos.lua, applet-bloco.lua + numeração,<br/>@referências, callouts, abas"]
-    html["<b>Monta a página</b><br/>menu, sumário, busca,<br/>macros.html, KaTeX"]
+    flt["<b>Filtros</b><br/>macros.lua, blocos.lua, applet-bloco.lua<br/>+ numeração, @referências, callouts, abas"]
+    html["<b>Monta a página</b><br/>menu, sumário, busca"]
+    pre["<b>Depois de todas as páginas</b><br/>prerender-math.ts desenha as fórmulas<br/>e tira o KaTeX do navegador"]
     out(["<b>docs/capitulos/nome.html</b><br/>+ imagens em docs/assets/img/"])
 
-    start --> cfg --> theme --> parse --> sc --> flt --> html --> out
+    start --> cfg --> theme --> parse --> sc --> flt --> html --> pre --> out
 ```
 
 > **Importante:** o `quarto render` **não** compila os applets. Se o bundle não
@@ -640,8 +647,8 @@ Faixas, caixas de seleção, campos e botões. O modelo é
 - **`id` único por página.** Cada applet usa `id` como chave em `instancias` e para achar `<id>-status`. Dois applets com o mesmo `id` na mesma página quebram ambos.
 - **Rótulos diferentes.** O JSXGraph faz de cada quadro uma região com nome; dois quadros com o mesmo rótulo na mesma página confundem quem navega pelo leitor de tela (o axe acusa).
 - **A grade do Quarto e a largura de 320 px.** A `.grid` tem 12 colunas e 11 espaços entre elas; com o espaço padrão (1,5 rem), só os espaços já passavam da coluna a 320 px. `custom.scss` o reduz para 1 rem. Uma parte na grade ou no grupo também pode ficar mais estreita que o desenho já feito (`min-width: 0`), para o JSXGraph redesenhar o quadro quando a janela estreita.
-- **Applets e KaTeX.** Os nomes dos objetos, as leituras e os rótulos dos controles são desenhados pelo KaTeX da página, e o Pandoc só carrega o KaTeX em páginas com fórmulas. Por isso o shortcode e o bloco põem em cada applet uma fórmula sem conteúdo visível (`{}`, em `applet-comum.lua`), escondida pelo CSS (`.bloco-applet > .math`). Ela não pode ser vazia: o script do Pandoc que desenha as fórmulas para ao encontrar uma vazia. Fórmulas longas rolam dentro da leitura a 320 px, como as fórmulas em destaque do texto (`.katex-display`, em `custom.scss`): prefira leituras curtas.
-- **Macros no KaTeX.** `macros.html` define as macros com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública. Ao trocar a versão do KaTeX (os arquivos de `vendor/katex/` e a linha de `vendor/VERSIONS.md`; e, para a página de desenvolvimento, `applets-src/package.json`), o verificador acusa erro se ela sumir, e o console da página avisa.
+- **Applets e KaTeX.** As fórmulas do texto saem desenhadas (`tools/prerender-math.ts`), e o KaTeX do Pandoc sai das páginas; mas os nomes dos objetos, as leituras e os rótulos dos controles dos applets são desenhados no navegador, pelo KaTeX da página. Por isso `applet-comum.lua` põe o KaTeX de `vendor/katex/` nas páginas com applet: o script, a folha e as macros, cada um numa dependência (o Quarto 1.11 perde um a cada dois elementos do `head` de uma dependência só), e o script antes da folha (o Quarto cerca o primeiro script do KaTeX com as linhas que guardam o `window.define`, e põe a de volta antes da primeira folha). Até a fase 5 da migração, que traz os applets do livro-base. Fórmulas longas rolam dentro da leitura a 320 px, como as fórmulas em destaque do texto (`.katex-display`, em `custom.scss`): prefira leituras curtas.
+- **Macros no KaTeX.** Nas fórmulas do texto, as macros já vêm expandidas (`filters/macros.lua`). Para os applets, `applet-comum.lua` as define no KaTeX da página com `katex.__defineMacro`, a função que as extensões do KaTeX usam, mas que não é pública, no `DOMContentLoaded` (numa página sem o post-render, o KaTeX do Pandoc chega depois e toma o lugar do outro). Ao trocar a versão do KaTeX (os arquivos de `vendor/katex/` e a linha de `vendor/VERSIONS.md`; e, para a página de desenvolvimento, `applets-src/package.json`), o verificador acusa erro se ela sumir, e o console da página avisa.
 - **Cores e medidas lidas uma vez.** `cores.js` e `tools/styles.js` leem as variáveis CSS quando o bundle carrega. Mudanças de cor ou de medida exigem recarregar a página.
 - **Toque.** O `touch-action` do quadro (`.applet-jxg`, em `custom.scss`) tem `!important` porque o JSXGraph escreve outro valor no quadro a cada toque, com um toque de atraso; quem impede a rolagem quando o dedo pega um ponto é `criarQuadro`. Um applet que crie o quadro sem `criarQuadro` perde esse cuidado.
 - **Depuração no navegador.** O bundle expõe o global `AppletsLivro`. No console: `AppletsLivro.instancias` lista os applets ativos; `AppletsLivro.resetarApplet("<id>")` reinicia um deles.

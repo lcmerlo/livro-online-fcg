@@ -10,7 +10,7 @@ Copiados para cá para que o site não dependa de outro servidor: se um deles sa
 
 Quem lê cada um:
 
-- **KaTeX:** `_quarto.yml` (`html-math-method` e `resources`, que copia a pasta para `docs/`) e o `_metadata.yml` de `capitulos/` e de `laboratorio/`, com o caminho a partir dessas pastas. O verificador desenha as fórmulas com o mesmo `katex.min.js`. `applets-src/package.json` repete a versão, só para a página de desenvolvimento (`npm run dev`), e muda junto. Os applets usam `katex.render` e `katex.__defineMacro` (`components/macros.html`), que não é uma função pública: numa versão nova, o verificador acusa erro se ela sumir.
+- **KaTeX:** `_quarto.yml` (`html-math-method` e `resources`, que copia a pasta para `docs/`) e o `_metadata.yml` de `capitulos/` e de `laboratorio/`, com o caminho a partir dessas pastas. As fórmulas do texto são desenhadas com o mesmo `katex.min.js` quando o site é gerado (`tools/prerender-math.ts`), e o verificador as confere com ele; o navegador só o recebe nas páginas com applet (`components/applet-comum.lua`). `applets-src/package.json` repete a versão, só para a página de desenvolvimento (`npm run dev`), e muda junto. Os applets usam `katex.render` e `katex.__defineMacro` (`components/applet-comum.lua`, para as macros), que não é uma função pública: numa versão nova, o verificador acusa erro se ela sumir.
 - **Fontes:** `_brand.yml` (`source: file`). Só o recorte latino e só as faces que as páginas usam; uma face que falte (um itálico nos títulos, por exemplo) o navegador imita a partir das outras. Cada arquivo traz, por dentro, o aviso de copyright e o endereço da licença.
 
 O JSXGraph não está aqui: ainda vem do pacote npm, dentro do bundle dos applets (`applets-src/`), até a fase 5 do plano de migração.

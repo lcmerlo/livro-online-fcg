@@ -16,7 +16,7 @@ Estas diretrizes dizem **o quê** e **o porquê**. **O como** (medidas, nomes de
 |---|---|
 | O ponto que se move se distingue do fixo pela forma, e o texto também diz | disco com anel, `pontoArrastavel`, 10 px e 25 px |
 | Nenhum número enganoso nos applets | a escrita "NaN", `finito`, `casos` |
-| A notação é definida num só lugar | `macros.html`, `__defineMacro` |
+| A notação é definida num só lugar | `math/macros.json`, `filters/macros.lua` |
 | Ângulos notáveis aparecem como fração de π | denominadores de 1 a 9 ou 12 |
 
 Assim, trocar um valor ou uma técnica (25 px por 30 px, por exemplo) é uma mudança de código, com commit, sem decisão registrada nem edição destas diretrizes.

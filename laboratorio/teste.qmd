@@ -20,7 +20,7 @@ Um vetor $\vet{AB}$ tem norma $\norm{\vet{AB}}$, com coordenadas em $\R^2$.
 
 ## Comparação de setas em `\vet`
 
-<!-- Macros só desta página, para comparar com \vet de components/macros.html.
+<!-- Macros só desta página, para comparar com \vet de math/macros.json.
      Em HTML bruto para o Pandoc não expandir nem remover as definições. -->
 
 

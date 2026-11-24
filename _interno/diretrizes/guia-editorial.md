@@ -102,7 +102,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - Números: ponto decimal e vírgula entre coordenadas, como `$x = 1.5$` e `$A = (2.5, 3)$`. Convenção provisória, a reavaliar (`pendencias.md`, §2).
 - Vetor, por enquanto com dois comandos: `\vec{u}` quando o nome tem uma só letra; `\vet{AB}` (tabela abaixo) quando o nome é formado por dois pontos, como `AB` ou `P_0P`. A busca por um comando único está em `pendencias.md`, §2.
 - Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
-- **Macros** (definidas em `components/macros.html` e válidas em todas as páginas HTML):
+- **Macros** (definidas em `math/macros.json` e expandidas em toda fórmula, em qualquer formato de saída, e também nos applets):
 
   | Escrever | Resulta em | Uso |
   |---|---|---|
@@ -110,7 +110,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
   | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 
-  Para alterar a notação em todo o livro, edite a lista de `components/macros.html`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). Por que num só lugar: `diretrizes-tecnicas.md`, §5.
+  Para alterar a notação em todo o livro, edite a lista de `math/macros.json`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). Por que num só lugar: `diretrizes-tecnicas.md`, §5.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
 - Use as macros: não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
 - Introduzir a notação antes de usá-la com frequência.

@@ -4,8 +4,8 @@ title: "Teste dos controles"
 
 <!-- Página de teste dos controles dos applets (pendencias.md, plano de
      2026-11-05): o mesmo applet em quatro arranjos.
-     Renderizar: (cd applets-src && npm run build) e
-     quarto render _interno/oficina/testes/teste-controles.qmd
+     Ver: (cd applets-src && npm run build) e
+     quarto preview --profile lab (_quarto-lab.yml)
      O applet está em applets-src/src/applets/teste-controles.js; os
      controles, em applets-src/src/tools/controles.js e tools/estado.js. -->
 

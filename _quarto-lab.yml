@@ -1,0 +1,27 @@
+# Perfil "lab": o livro com a parte Laboratório (as páginas de teste e os modelos de
+# capítulo de laboratorio/), só na máquina de quem escreve. O site publicado é o docs/,
+# gerado sem perfil, e não tem essas páginas.
+#   quarto preview --profile lab               prévia, em docs-lab/
+#   quarto render --profile lab --to html      o site inteiro, em docs-lab/
+#   quarto preview --profile lab,axe           também com a verificação de acessibilidade
+#   node tests/verificar-site.mjs --lab        a verificação, em docs-lab/
+# O Quarto junta este arquivo ao _quarto.yml: as listas se somam, e um valor simples, como
+# output-dir, troca o de lá. Por isso fica aqui só o que é do laboratório, e as páginas
+# saem com a mesma configuração do livro, sem uma cópia dela.
+project:
+  # Uma pasta à parte: docs/ continua sendo só o site público, o que o verificador lê
+  # sem --lab e o que o GitHub Pages publica.
+  output-dir: docs-lab
+
+book:
+  chapters:
+    # Testes livres: o que se decide aqui não vira regra; uma página nova entra nesta
+    # lista. A parte vem depois dos capítulos de _quarto.yml.
+    - part: "Laboratório"
+      chapters:
+        - laboratorio/modelo-capitulo-completo.qmd
+        - laboratorio/modelo-capitulo.qmd
+        - laboratorio/arranjos.qmd
+        - laboratorio/teste-controles.qmd
+        - laboratorio/teste-cores.qmd
+        - laboratorio/teste.qmd

@@ -864,7 +864,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 - **GeoGebra:** applets incorporados por iframe, vindos de projetos anteriores (lista em `pendencias.md`). Enquanto estiverem no livro, valem os termos de uso do GeoGebra e a licença de cada material; registrar, para cada applet, o autor e o endereço de origem. Os applets JSXGraph que os substituem são código novo do projeto.
 - **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). O bundle gerado (`applets-livro.iife.js`) hoje **não** contém o aviso de licença, que a minificação remove; incluí-lo antes da publicação aberta.
-- **Fontes (Atkinson Hyperlegible e Source Serif 4):** declaradas em `_brand.yml` com origem Google Fonts. Confirmar a licença de cada fonte, se o site de fato as carrega e se a publicação precisa de aviso.
+- **Fontes (Atkinson Hyperlegible e Source Serif 4):** vêm com o site, em `vendor/fonts/`, e não do Google Fonts (desde 2026-11-24): só o recorte latino das faces que as páginas usam. Licença SIL OFL 1.1, com o texto em `vendor/fonts/` e, dentro de cada arquivo, o aviso de copyright e o endereço da licença. As dúvidas a resolver antes da publicação aberta estão em `pendencias.md`, §6.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 
 ## 44. Registro de decisões

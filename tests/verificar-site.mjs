@@ -12,7 +12,8 @@
 // e comandos TeX suspeitos; as de laboratorio/ também sem --lab.
 // Site gerado (docs/ ou docs-lab/): iframes sem title, imagens sem alt, applets sem
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
-// ids duplicados e saltos na hierarquia de títulos.
+// ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
+// (no HTML e nas folhas de estilo que as páginas carregam).
 // Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
 // components/macros.html, e caracteres que ele não conhece.
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
@@ -156,11 +157,27 @@ const registrados = new Set(
 );
 // Applets que alguma página do livro usa, fora do laboratório.
 const usados = new Set();
+// As folhas de estilo locais que as páginas carregam, conferidas depois.
+const folhas = new Set();
+// Um endereço de outro servidor: com protocolo (https://) ou sem (//).
+const deFora = /^(?:https?:)?\/\//i;
 
 for (const arquivo of paginas) {
   const html = readFileSync(arquivo, "utf8");
   const nome = rel(arquivo);
   const fonte = fonteDe(arquivo);
+
+  // Tudo o que a página carrega vem do site (plano de migração do livro-base,
+  // fase 2): o que vem de outro servidor some quando ele sai do ar, e o servidor
+  // fica sabendo de cada visita. Um link para outro site (<a>) pode. É erro também
+  // no laboratório: o que uma página carrega vem da configuração do livro, e só as
+  // páginas com fórmulas mostram de onde vem o KaTeX.
+  for (const m of html.matchAll(/<(?:script|link|img|iframe|source|video|audio)\b[^>]*?\s(?:src|href)="([^"]+)"[^>]*>/g)) {
+    if (deFora.test(m[1])) erros.push(`${nome}: depende de outro servidor: ${m[1]}`);
+    else if (/^<link\b/.test(m[0]) && /\srel="stylesheet"/.test(m[0])) {
+      folhas.add(resolve(dirname(arquivo), m[1].split(/[?#]/)[0]));
+    }
+  }
 
   for (const m of html.matchAll(/<iframe\b[^>]*>/g)) {
     if (!/\stitle="[^"]+"/.test(m[0])) erro(nome, "iframe sem title");
@@ -201,6 +218,16 @@ for (const arquivo of paginas) {
     const nivel = Number(m[1]);
     if (anterior && nivel > anterior + 1) avisoOuConta(fonte, nome, `salto de título: h${anterior} para h${nivel}`);
     anterior = nivel;
+  }
+}
+
+// O que as folhas de estilo pedem: fontes e imagens (url()) e outras folhas
+// (@import). O Cosmo e o _brand.yml pediam fontes ao Google por aqui.
+for (const folha of folhas) {
+  if (!existsSync(folha)) continue;
+  const css = readFileSync(folha, "utf8");
+  for (const m of css.matchAll(/(?:@import\s*(?:url\(\s*)?|url\(\s*)["']?([^"')\s]+)/g)) {
+    if (deFora.test(m[1])) erro(rel(folha), `depende de outro servidor: ${m[1]}`);
   }
 }
 

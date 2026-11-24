@@ -44,8 +44,13 @@ format:
     filters:
       - components/blocos.lua
       - components/applet-bloco.lua
-    include-before-body: components/macros.html
 
+
+# As macros do livro (\vet, \norm, \R…), de math/macros.json, expandidas em toda
+# fórmula, para qualquer formato de saída: a fórmula chega ao KaTeX, às prévias das
+# referências e ao PDF já em TeX comum.
+filters:
+  - filters/macros.lua
 
 execute:
   echo: false

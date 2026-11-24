@@ -391,12 +391,6 @@ p:has(> .bloco-rotulo) {
   background: var(--cor-superf-suave);
 }
 
-/* A fórmula sem conteúdo que os filtros põem no applet para a página
-   carregar o KaTeX (components/applet-comum.lua) não ocupa lugar */
-.bloco-applet > .math {
-  display: none;
-}
-
 /* Quadro JSXGraph: a área da figura, com fundo branco e borda fina. Ocupa a
    largura da coluna, até 640 px, e a altura segue a proporção da região do
    plano que o applet mostra. O applet define essa proporção (aspect-ratio) a

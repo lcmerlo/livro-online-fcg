@@ -14,8 +14,8 @@
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
 // ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
 // (no HTML e nas folhas de estilo que as páginas carregam).
-// Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
-// components/macros.html, e caracteres que ele não conhece.
+// Fórmulas (no site gerado): as que o KaTeX não desenha (as macros já vêm
+// expandidas por filters/macros.lua) e caracteres que ele não conhece.
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
 // com valores diferentes dos do livro, cores dos applets com contraste abaixo
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
@@ -234,9 +234,10 @@ for (const folha of folhas) {
 // ---------- Fórmulas ----------
 
 // Cada fórmula do site gerado passa pelo KaTeX que o livro carrega
-// (vendor/katex/katex.min.js, que também funciona como módulo do Node) e com
-// as macros do livro, definidas como em components/macros.html. Uma fórmula
-// que ele não desenha apareceria ao estudante como TeX, em vermelho.
+// (vendor/katex/katex.min.js, que também funciona como módulo do Node). As
+// macros do livro já vêm expandidas (filters/macros.lua, com a lista de
+// math/macros.json). Uma fórmula que ele não desenha apareceria ao estudante
+// como TeX, em vermelho.
 let katex = null;
 try {
   katex = createRequire(import.meta.url)(join(raiz, "vendor/katex/katex.min.js"));
@@ -245,20 +246,10 @@ try {
 }
 
 if (katex && paginas.length) {
-  const fonteMacros = join(raiz, "components/macros.html");
-  const listaMacros = existsSync(fonteMacros)
-    ? readFileSync(fonteMacros, "utf8").match(/<script type="application\/json" id="macros-tex">([\s\S]*?)<\/script>/)?.[1]
-    : undefined;
-  let macros = {};
-  try {
-    macros = JSON.parse(listaMacros);
-  } catch {
-    erro("components/macros.html", "lista de macros ausente ou fora do formato JSON");
-  }
+  // Os applets antigos recebem as macros no KaTeX da página, por __defineMacro
+  // (components/applet-comum.lua), que não é uma função pública do KaTeX.
   if (typeof katex.__defineMacro !== "function") {
-    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: components/macros.html não definiria as macros`);
-  } else {
-    for (const [nome, corpo] of Object.entries(macros)) katex.__defineMacro(nome, corpo);
+    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: as macros não chegariam aos applets (components/applet-comum.lua)`);
   }
 
   const entidades = { lt: "<", gt: ">", amp: "&", quot: '"', apos: "'", nbsp: " " };

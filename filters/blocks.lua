@@ -14,12 +14,12 @@
 -- Rodar antes também quer dizer: rodar antes dos outros filtros do projeto (macros,
 -- fórmulas comentadas, applets), que recebem as abas já montadas.
 --
--- Vem do livro-base (filters/blocks.lua), sem os três blocos de antes que ele ainda
--- aceita (.prerequisites, .interaction, .pitfall): nenhum capítulo do livro os usa
--- (escolha do autor, 2026-11-25). Os blocos do livro de antes da fase 7 da migração
--- (.bloco-*, .dica, .solucao, .resposta, #exrr-…) e os avisos do Quarto (.callout-…)
--- não têm mais filtro nem estilo: tests/verificar-site.mjs dá erro num capítulo que
--- os use, porque uma .solucao, por exemplo, sairia com a solução à vista.
+-- Vem do livro-base (filters/blocks.lua), igual a menos dos comentários. Os blocos do
+-- livro de antes da fase 7 da migração (.bloco-*, .dica, .solucao, .resposta, #exrr-…),
+-- os três de antes que o livro-base tinha (.prerequisites, .interaction, .pitfall, que
+-- saíram de lá em 2026-11-25) e os avisos do Quarto (.callout-…) não têm filtro nem
+-- estilo: tests/verificar-site.mjs dá erro num capítulo que os use, porque uma .solucao,
+-- por exemplo, sairia com a solução à vista.
 --
 -- Duas escolhas valem para o livro todo, em _quarto.yml, e podem ser trocadas num
 -- trecho com um atributo no div que o envolve (é assim que o laboratório compara):

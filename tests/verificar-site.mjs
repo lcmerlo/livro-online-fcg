@@ -96,7 +96,7 @@ function avisoOuConta(fonte, arquivo, msg, comoErro = false) {
 
 // Blocos que nenhum filtro do livro conhece desde a fase 7 da migração
 // (filters/blocks.lua): os do livro de antes dela, os três de antes que o livro-base
-// ainda aceita e os avisos do Quarto, que ficaram sem estilo. Uma .solucao sairia
+// tinha (saíram de lá em 2026-11-25) e os avisos do Quarto, que ficaram sem estilo. Uma .solucao sairia
 // com a solução à vista; os outros, sem rótulo, sem número ou com a aparência
 // padrão do Quarto. Por isso é erro, também nos exemplos de código. A troca de cada
 // um está no Apêndice F do livro-base, seção "No capítulo".

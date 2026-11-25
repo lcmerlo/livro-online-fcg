@@ -1,6 +1,6 @@
 ---
 title: "Arranjos dos applets"
-subtitle: "Tamanho do quadro, centro, partes lado a lado, grupo, texto ao lado e lugar dos controles"
+subtitle: "Tamanho do quadro, centro, formato, colunas, texto ao lado e em volta, grupo, largura e expressões no texto"
 format:
   html:
     # linhas longas de código quebram em vez de rolar: o código inteiro fica
@@ -8,500 +8,239 @@ format:
     code-overflow: wrap
 ---
 
-<!-- Página de consulta dos arranjos dos applets JSXGraph, no estilo do
-     capítulo 10 do estudo do JSX-quarto (estudo/10-layout.qmd), com as regras
-     do livro: nenhum CSS no capítulo, só os arranjos do guia editorial (§6).
-     Ver: (cd applets-src && npm run build) e
-     quarto preview --profile lab (_quarto-lab.yml)
-     O applet de todos os exemplos está em
-     applets-src/src/applets/teste-controles.js; as classes dos arranjos, em
-     styles/old-applets.scss. -->
+<!-- Página de consulta dos arranjos dos applets: cada um funcionando, com o que se
+     escreve no capítulo. Vem de modelos/arranjos.qmd do livro-base (fase 5 da
+     migração), sem os links para os apêndices de lá. Ver com
+     quarto preview --profile lab (_quarto-lab.yml). O applet de todos os exemplos
+     é applets/scalar-multiple.js; a sintaxe, filters/applet.lua; os arranjos,
+     styles/applet.scss e a parte "Colunas" de styles/page.scss. -->
 
-Um applet aparece na página em **partes**: um ou mais quadros, a leitura (uma fórmula que acompanha a figura), os controles, o texto de estado e o botão "Reiniciar". O applet diz *o que* vai em cada parte. *Onde* elas ficam e *com que tamanho* é decidido no capítulo, só com as classes do livro: o capítulo não tem CSS próprio (regra fundamental 6). Esta página mostra cada arranjo do guia editorial (§6), com o resultado e, logo abaixo, o que se escreve no `.qmd`.
+Um applet aparece na página em **partes**: quadros, controles e expressões. O arquivo do applet diz *o que* se desenha; o capítulo diz *onde* cada parte fica, sempre com a mesma sintaxe, do caso mais simples ao mais rico. Cada arranjo está aqui funcionando, com o que se escreve; todos usam o mesmo applet, `scalar-multiple`, e só muda o que está em volta. Cada parte e cada opção, com o padrão, estão no guia editorial, §6, e no Apêndice B do `livro-base`, "Um applet no capítulo".
 
-Todos os exemplos usam o mesmo applet de teste, `teste-controles`: o vetor $\vec{u}$, de ponta arrastável, e o vetor $a\vec{u}$, com uma faixa e um campo para o número $a$, uma caixa que mostra a reta de $\vec{u}$ e o botão Animar. Só muda o que está em volta. Cada exemplo é um applet independente dos outros.
+## O caso mais simples
 
-**Para ver o resultado antes da explicação**, comece pela seção [Tudo junto](#tudo-junto), que junta vários arranjos num applet só.
+Duas linhas. O applet põe o quadro e, logo abaixo, os controles.
 
-## As três peças {#pecas}
-
-Toda página com applets tem três peças, e cada uma responde a uma pergunta:
-
-- **O capítulo** diz *onde* fica cada parte, com o shortcode `{{{< applet >}}}` ou o bloco `::: {.applet}`, no `.qmd`.
-- **As classes do livro** dizem *com que tamanho* e *alinhado como*. Estão em `styles/old-applets.scss`; o capítulo só escreve os nomes delas.
-- **O applet** diz *o que* se desenha e *quais* partes e controles existem. É um arquivo de `applets-src/src/applets/`.
-
-No JSX-quarto, a segunda peça é um bloco de CSS em cada página. No livro, ela fica num lugar só, e isso tem três consequências:
-
-- uma mudança de aparência vale para todos os capítulos de uma vez;
-- cada arranjo foi conferido a 320 px uma vez, e continua conferido em todo capítulo que o usa;
-- um arranjo que não está nesta página pede uma classe nova em `styles/old-applets.scss`, por decisão, e não um ajuste num capítulo ([Fora dos arranjos](#fora)).
-
-### Shortcode ou bloco {#shortcode-ou-bloco}
-
-- **Um quadro, com os controles logo abaixo:** o shortcode `{{{< applet >}}}`, com o nome do applet, o `id` e o `rotulo`.
-- **Mais de uma parte, ou uma parte num lugar escolhido:** o bloco `::: {.applet}`, com o `nome`, o `id` e o `rotulo`, e as partes dentro dele.
-
-No bloco, cada parte é um div com o id `<id>-<parte>` e uma de três classes:
-
-- **`.quadro`** vira um quadro, onde o JSXGraph desenha. Precisa de `rotulo`, diferente do rótulo dos outros quadros da página.
-- **`.leitura`** vira uma fórmula escrita pelo applet. Uma fórmula mais larga que a coluna rola dentro da leitura.
-- **`.controles`** é o lugar dos controles. Sem ela, os controles ficam logo abaixo do quadro.
-
-O applet diz quais partes existem; o capítulo escolhe quais mostrar e onde. O `teste-controles` tem quatro, todas opcionais:
-
-| Parte | O que mostra |
-|---|---|
-| `figura` | o quadro com $\vec{u}$ e $a\vec{u}$ |
-| `numero` | um segundo quadro, com o número $a$ na reta numérica |
-| `leitura` | a conta de $a\vec{u}$ |
-| `controles` | a faixa, o campo, a caixa e o botão Animar |
-
-O texto de estado e o botão "Reiniciar" entram sozinhos no fim do applet, no shortcode e no bloco.
-
-### O que o livro já faz {#padrao}
-
-Sem nenhum arranjo, valem estas regras de `styles/old-applets.scss` (resumidas):
-
-```scss
-.applet-jxg {                  // todo quadro
-  width: calc(100% - 2px);     // a largura da coluna (menos a borda)…
-  max-width: 640px;            // … até 640 px
-  margin: 0 0 0.75rem;         // encostado à esquerda
-}
-.applet-controles {            // os controles
-  display: flex;               // lado a lado…
-  flex-wrap: wrap;             // … e na linha de baixo, se não couberem
-  gap: 0.5rem 1.25rem;         // espaço entre linhas e entre controles
-}
-```
-
-Dois fatos explicam quase tudo o que vem a seguir:
-
-- **A largura vem do CSS, e a altura vem da região.** O applet mostra uma região do plano (a `regiao` de `criarQuadro`), e o quadro tem a proporção dela. Mudar a largura muda a altura junto, e o JSXGraph redesenha o quadro quando a janela muda.
-- **Os controles formam uma linha que quebra.** Ficam na ordem em que o applet os cria, que é também a ordem da tecla Tab, e passam para a linha de baixo quando não cabem.
-
-## O quadro sozinho: tamanho e centro {#tamanho}
-
-Os quatro applets desta seção são o mesmo shortcode; só muda o `arranjo`.
-
-### Padrão {#tam-padrao}
-
-{{< applet teste-controles id="arr-padrao" rotulo="Os vetores u e a·u, no quadro padrão" >}}
+::: {.applet name="scalar-multiple" spoken="Exemplo: o caso mais simples"}
+:::
 
 ```markdown
-{{{< applet teste-controles id="arr-padrao" rotulo="Os vetores u e a·u, no quadro padrão" >}}}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+:::
 ```
 
-O quadro ocupa a largura da coluna, até 640 px, e começa na borda esquerda dela.
+## Só o que interessa
 
-### Estreito {#tam-estreito}
+Se o capítulo escreve algum quadro, aparecem só os quadros escritos. Se ele não diz onde ficam os controles, eles vêm logo abaixo dos quadros, para não sumirem por esquecimento; `controls="none"` os tira. Aqui, só o quadro:
 
-{{< applet teste-controles id="arr-estreito" rotulo="Os vetores u e a·u, num quadro estreito" arranjo="estreito" >}}
+::: {.applet name="scalar-multiple" spoken="Exemplo: só o quadro" controls="none"}
+[]{.board name="plane" width="22rem"}
+:::
 
 ```markdown
-{{{< applet teste-controles id="arr-estreito" rotulo="Os vetores u e a·u, num quadro estreito" arranjo="estreito" >}}}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor" controls="none"}
+[]{.board name="plane" width="22rem"}
+:::
 ```
 
-O quadro vai até 20 rem, cerca de 340 px com a letra do livro. Numa tela estreita, ele continua encolhendo com a coluna; só não passa do limite.
+## Tamanho e centro
 
-### No centro {#tam-centro}
+`width` limita o quadro, que continua encolhendo em tela estreita. `.center` o põe no centro.
 
-{{< applet teste-controles id="arr-centro" rotulo="Os vetores u e a·u, num quadro no centro" arranjo="centro" >}}
+::: {.applet name="scalar-multiple" spoken="Exemplo: quadro estreito no centro"}
+[]{.board .center name="plane" width="18rem"}
+
+[]{.controls .center}
+:::
 
 ```markdown
-{{{< applet teste-controles id="arr-centro" rotulo="Os vetores u e a·u, num quadro no centro" arranjo="centro" >}}}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+[]{.board .center name="plane" width="18rem"}
+
+[]{.controls .center}
+:::
 ```
 
-`centro` divide entre os dois lados o espaço que sobra na linha. Mas a coluna do livro tem cerca de 600 px, menos que os 640 px do quadro padrão: não sobra espaço, e o quadro fica onde estava. Sozinho, `centro` só muda os controles, que no shortcode também vão para o centro. Para o quadro ir para o centro, ele precisa ser `estreito`.
+## Formato do quadro
 
-### Estreito e no centro {#tam-estreito-centro}
+A altura segue a região que o applet mostra, com a mesma escala nos dois eixos. `ratio` pede outro formato, com as escalas livres (a de $x$ pode ser diferente da de $y$), como num gráfico de função. Num celular, esse quadro tem uma altura mínima, para não virar uma faixa fina demais para ler.
 
-{{< applet teste-controles id="arr-estreito-centro" rotulo="Os vetores u e a·u, num quadro estreito no centro" arranjo="estreito centro" >}}
+Quadros de um applet que mostram o mesmo plano, como os três da combinação linear do `livro-base`, têm a mesma escala em qualquer arranjo: um quadro estreito mostra menos plano, e não vetores menores. Quem decide isso é o applet; no capítulo, nada muda.
+
+::: {.applet name="scalar-multiple" spoken="Exemplo: quadro largo e baixo"}
+[]{.board name="plane" ratio="3 / 1"}
+
+[]{.controls}
+:::
 
 ```markdown
-{{{< applet teste-controles id="arr-estreito-centro" rotulo="Os vetores u e a·u, num quadro estreito no centro" arranjo="estreito centro" >}}}
+[]{.board name="plane" ratio="3 / 1"}
 ```
 
-- **`arranjo`** recebe as classes separadas por espaço, em qualquer ordem.
-- **No bloco**, as mesmas classes vão na parte do quadro, ao lado de `.quadro`. Ali, `.centro` vale só para o quadro; os controles vão para o centro com `.centro` na parte deles ([Controles no centro](#ctl-centro)).
-- **Outro tamanho**, como um quadro de 400 px, não é um arranjo: seria uma classe nova. O tamanho de **todos** os quadros está na regra `.applet-jxg` de `styles/old-applets.scss`.
+## Lado a lado
 
-## A proporção do quadro {#proporcao}
+`cols` divide o espaço: `cols="2"` em duas colunas iguais, `cols="7fr 5fr"` nessa proporção, `cols="auto"` em tantas colunas quantas couberem. A divisão se desfaz conforme a largura do próprio applet, e não a da janela: num espaço estreito, as partes ficam uma embaixo da outra.
 
-O tamanho do quadro é a largura; a altura vem da região que o applet mostra. Aqui, o bloco tem dois quadros, um embaixo do outro: a figura mostra uma região de 10 por 8, e a reta numérica, uma região de 5 por 2. Com o mesmo CSS, as alturas saem diferentes:
+::: {.applet name="scalar-multiple" spoken="Exemplo: dois quadros lado a lado" cols="2" controls="none"}
+[]{.board name="plane"}
 
-:::: {.applet nome="teste-controles" id="arr-prop" rotulo="Os vetores u e a·u, com o número a na reta numérica embaixo"}
-::: {#arr-prop-figura .quadro rotulo="Quadro com os vetores u e a·u, de região 10 por 8"}
+[]{.board name="number"}
 :::
-::: {#arr-prop-numero .quadro rotulo="Reta numérica com o número a, de região 5 por 2"}
-:::
-::::
 
 ```markdown
-:::: {.applet nome="teste-controles" id="arr-prop" rotulo="Os vetores u e a·u, com o número a na reta numérica embaixo"}
-::: {#arr-prop-figura .quadro rotulo="Quadro com os vetores u e a·u, de região 10 por 8"}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor" cols="2"}
+[]{.board name="plane"}
+
+[]{.board name="number"}
 :::
-::: {#arr-prop-numero .quadro rotulo="Reta numérica com o número a, de região 5 por 2"}
-:::
-::::
 ```
 
-- **A região faz parte da matemática** e fica no applet: o capítulo não a muda. Uma região mais larga que alta dá um quadro baixo, como o da reta.
-- **A escala é a mesma nos dois eixos:** um quadrado do plano aparece quadrado, e os ângulos não se deformam. O JSX-quarto permite escalas diferentes, úteis no gráfico de uma função; o livro, não ([Fora dos arranjos](#fora)).
-- **Mudar a região não muda a largura do quadro.** Uma região maior só afasta o desenho.
-- **Antes de o applet carregar**, o quadro tem a proporção 4:3; o applet a acerta quando desenha.
-- **Os dois quadros mudam juntos:** a faixa move $a\vec{u}$ na figura e o ponto $a$ na reta.
+## Texto ao lado
 
-## Partes lado a lado: a grade {#grade}
+Qualquer conteúdo pode ser uma célula. Para juntar vários parágrafos numa célula, use um div sem classe (`::: {}`). Com `.middle`, as células ficam centradas na altura da fileira: um texto curto não fica pendurado no alto, ao lado de um quadro alto.
 
-A grade do Quarto, `.grid`, divide a largura em **doze colunas**, e cada parte diz quantas ocupa. `.g-col-12` é a linha toda; `.g-col-md-6` é metade, a partir de 768 px de largura de janela. Assim, as partes ficam lado a lado em tela larga e uma embaixo da outra no celular.
+::::: {.applet .middle name="scalar-multiple" spoken="Exemplo: texto ao lado do quadro" cols="7fr 5fr"}
+[]{.board name="plane"}
 
-### Quadro e leitura {#grade-leitura}
+:::: {}
+**O múltiplo de um vetor.** Mude $a$ e veja: $a\vec{u}$ fica sobre a mesma reta de $\vec{u}$.
 
-::::: {.applet nome="teste-controles" id="arr-grade" rotulo="Os vetores u e a·u, com a conta ao lado"}
-:::: {.grid}
-::: {#arr-grade-figura .quadro .g-col-12 .g-col-md-6 rotulo="Quadro com os vetores u e a·u, com a conta ao lado"}
-:::
-::: {#arr-grade-leitura .leitura .g-col-12 .g-col-md-6}
-:::
+[product]{.live}
+
+[]{.controls .stack}
 ::::
 :::::
 
 ```markdown
-::::: {.applet nome="teste-controles" id="arr-grade" rotulo="Os vetores u e a·u, com a conta ao lado"}
-:::: {.grid}
-::: {#arr-grade-figura .quadro .g-col-12 .g-col-md-6 rotulo="Quadro com os vetores u e a·u, com a conta ao lado"}
-:::
-::: {#arr-grade-leitura .leitura .g-col-12 .g-col-md-6}
-:::
+::::: {.applet .middle name="scalar-multiple" spoken="Múltiplo de um vetor" cols="7fr 5fr"}
+[]{.board name="plane"}
+
+:::: {}
+**O múltiplo de um vetor.** Mude $a$ e veja...
+
+[product]{.live}
+
+[]{.controls .stack}
 ::::
 :::::
 ```
 
-- **Três níveis de div**, com cinco, quatro e três dois-pontos: o bloco, a grade e as partes. O de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina.
-- **Outras divisões** somam 12: `.g-col-md-4` com `.g-col-md-8`, ou três partes de `.g-col-md-4`. As larguras de quebra são `sm` (576 px), `md` (768), `lg` (992) e `xl` (1200).
-- **A grade preenche a coluna inteira.** Para quadros de tamanho fixo, juntos no centro, há o grupo ([seção seguinte](#grupo)).
-- **Os controles**, sem parte própria, ficam embaixo da grade, antes do texto de estado.
+## Texto contornando o quadro
 
-### Dois quadros {#grade-quadros}
+`.float-right` e `.float-left` põem o quadro à direita ou à esquerda, com o texto em volta. Numa janela com menos de 576 px de largura, o texto vai para baixo do quadro.
 
-::::: {.applet nome="teste-controles" id="arr-dois" rotulo="Os vetores u e a·u, com o número a na reta numérica ao lado"}
-:::: {.grid}
-::: {#arr-dois-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com a reta numérica ao lado"}
+::: {.applet name="scalar-multiple" spoken="Exemplo: texto contornando o quadro"}
+[]{.board .float-right name="plane"}
+
+**Vetores e flechas.** Uma flecha no plano tem uma origem e uma extremidade. Duas flechas com o mesmo comprimento, a mesma direção e o mesmo sentido representam o mesmo vetor: o vetor é o que elas têm em comum, e cada flecha é um representante dele.
+
+Este texto contorna o quadro. Os parágrafos correm pela esquerda enquanto o quadro está ao lado e, quando ele termina, voltam a ocupar a largura toda da coluna. Por isso o contorno combina com quadros pequenos e com textos que comentam o quadro: quem lê vê a figura enquanto lê a explicação, sem rolar a página.
+
+[]{.controls}
 :::
-::: {#arr-dois-numero .quadro .g-col-12 .g-col-md-5 rotulo="Reta numérica com o número a, ao lado dos vetores"}
-:::
-::::
-:::::
 
 ```markdown
-::::: {.applet nome="teste-controles" id="arr-dois" rotulo="Os vetores u e a·u, com o número a na reta numérica ao lado"}
-:::: {.grid}
-::: {#arr-dois-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com a reta numérica ao lado"}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+[]{.board .float-right name="plane"}
+
+**Vetores e flechas.** Uma flecha no plano...
 :::
-::: {#arr-dois-numero .quadro .g-col-12 .g-col-md-5 rotulo="Reta numérica com o número a, ao lado dos vetores"}
-:::
-::::
-:::::
 ```
 
-- **Cada quadro tem a altura da própria região** e começa no alto da célula.
-- **A divisão 7 e 5** dá mais espaço ao quadro principal; com 6 e 6, os dois teriam a mesma largura.
+## Quadros de tamanho fixo, juntos
 
-## Quadros de tamanho fixo: o grupo {#grupo}
+`.board-group` mantém os quadros juntos, no centro; os que não cabem na linha passam para a de baixo.
 
-::::: {.applet nome="teste-controles" id="arr-grupo" rotulo="Os vetores u e a·u e o número a na reta numérica, num grupo"}
-:::: {.grupo}
-::: {#arr-grupo-figura .quadro rotulo="Quadro com os vetores u e a·u, no grupo"}
-:::
-::: {#arr-grupo-numero .quadro rotulo="Reta numérica com o número a, no grupo"}
-:::
-::::
-:::::
+:::: {.applet name="scalar-multiple" spoken="Exemplo: quadros de tamanho fixo, juntos" controls="none"}
+::: {.board-group}
+[]{.board name="plane"}
 
-```markdown
-::::: {.applet nome="teste-controles" id="arr-grupo" rotulo="Os vetores u e a·u e o número a na reta numérica, num grupo"}
-:::: {.grupo}
-::: {#arr-grupo-figura .quadro rotulo="Quadro com os vetores u e a·u, no grupo"}
-:::
-::: {#arr-grupo-numero .quadro rotulo="Reta numérica com o número a, no grupo"}
-:::
-::::
-:::::
-```
-
-- **Cada quadro começa com 13 rem** (cerca de 220 px) e não cresce; encolhe se faltar espaço. Em tela larga, dois cabem lado a lado na coluna do livro; os que não cabem descem e também ficam no centro.
-- **Cada quadro tem a sua altura**, e os dois se alinham pelo alto.
-- **Grade ou grupo:** a grade divide a coluna toda, em proporções; o grupo junta quadros de um tamanho só, no centro da coluna.
-- **O grupo arruma as partes `.quadro` de um bloco.** Para dois applets inteiros lado a lado, use a grade, com um applet em cada célula ([Dois applets lado a lado](#dois-applets)).
-
-## Texto ao lado do applet {#texto}
-
-Uma célula da grade aceita qualquer conteúdo do capítulo: parágrafos, listas, fórmulas, um applet. Aqui, a célula da esquerda tem o applet; a da direita, o texto:
-
-::::: {.grid}
-:::: {.g-col-12 .g-col-md-7}
-{{< applet teste-controles id="arr-texto" rotulo="Os vetores u e a·u, com o texto ao lado" >}}
-::::
-:::: {.g-col-12 .g-col-md-5}
-**O vetor $a\vec{u}$.** Mova a faixa: com $a > 0$, o vetor $a\vec{u}$ tem o sentido de $\vec{u}$; com $a < 0$, o sentido oposto; com $a = 0$, é o vetor nulo.
-
-Em tela estreita, este texto desce para baixo do applet.
-::::
-:::::
-
-```markdown
-::::: {.grid}
-:::: {.g-col-12 .g-col-md-7}
-{{{< applet teste-controles id="arr-texto" rotulo="Os vetores u e a·u, com o texto ao lado" >}}}
-::::
-:::: {.g-col-12 .g-col-md-5}
-**O vetor $a\vec{u}$.** Mova a faixa: com $a > 0$, …
-
-Em tela estreita, este texto desce para baixo do applet.
-::::
-:::::
-```
-
-- **O applet começa no alto da célula**, junto com o texto ao lado.
-- **A ordem no arquivo** é a ordem lado a lado e também a ordem no celular: o que vem primeiro fica à esquerda e, em tela estreita, em cima. Para o texto à esquerda, escreva a célula dele primeiro.
-- **A proporção** vem dos números das células, que somam 12: 7 e 5 deixam espaço para os controles do applet; 6 e 6 dividem ao meio.
-- **O bloco** `::: {.applet}` também vai numa célula, no lugar do shortcode.
-
-### Dois applets lado a lado {#dois-applets}
-
-O mesmo arranjo, com um applet em cada célula:
-
-::::: {.grid}
-:::: {.g-col-12 .g-col-md-6}
-{{< applet teste-controles id="arr-par-1" rotulo="Os vetores u e a·u, o primeiro de dois applets lado a lado" >}}
-::::
-:::: {.g-col-12 .g-col-md-6}
-{{< applet teste-controles id="arr-par-2" rotulo="Os vetores u e a·u, o segundo de dois applets lado a lado" >}}
-::::
-:::::
-
-```markdown
-::::: {.grid}
-:::: {.g-col-12 .g-col-md-6}
-{{{< applet teste-controles id="arr-par-1" rotulo="Os vetores u e a·u, o primeiro de dois applets lado a lado" >}}}
-::::
-:::: {.g-col-12 .g-col-md-6}
-{{{< applet teste-controles id="arr-par-2" rotulo="Os vetores u e a·u, o segundo de dois applets lado a lado" >}}}
-::::
-:::::
-```
-
-- **Cada applet é inteiro:** tem os seus controles, o seu texto de estado e o seu "Reiniciar". Mexer num não muda o outro.
-- **Na metade da coluna**, os controles quebram em mais linhas.
-- **Para dois quadros do mesmo applet**, que mudam juntos, use o bloco com duas partes `.quadro` ([Dois quadros](#grade-quadros)).
-
-## Os controles {#controles}
-
-**Sem parte `.controles`**, os controles ficam logo abaixo do quadro, como em todos os exemplos até aqui. No bloco, ficam no fim, antes do texto de estado: embaixo da grade ou do grupo. A parte `.controles` serve para pô-los em outro lugar.
-
-### Em cima do quadro {#ctl-cima}
-
-:::: {.applet nome="teste-controles" id="arr-cima" rotulo="Os vetores u e a·u, com os controles em cima"}
-::: {#arr-cima-controles .controles}
-:::
-::: {#arr-cima-figura .quadro rotulo="Quadro com os vetores u e a·u, com os controles em cima"}
+[]{.board name="number"}
 :::
 ::::
 
 ```markdown
-:::: {.applet nome="teste-controles" id="arr-cima" rotulo="Os vetores u e a·u, com os controles em cima"}
-::: {#arr-cima-controles .controles}
-:::
-::: {#arr-cima-figura .quadro rotulo="Quadro com os vetores u e a·u, com os controles em cima"}
+:::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+::: {.board-group}
+[]{.board name="plane"}
+
+[]{.board name="number"}
 :::
 ::::
 ```
 
-A parte `.controles` vem antes da parte `.quadro`. A tecla Tab segue a página: passa pelos controles antes do ponto do quadro.
+## Mais largo que o texto
 
-### Ao lado do quadro {#ctl-lado}
+Em tela larga, a classe `.column-page-right`, do Quarto, deixa o applet crescer até o fim da coluna da direita (240 px além do texto), e o texto continua na largura boa para ler. Em tela estreita, ela não muda nada.
 
-::::: {.applet nome="teste-controles" id="arr-lado" rotulo="Os vetores u e a·u, com os controles ao lado"}
-:::: {.grid}
-::: {#arr-lado-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com os controles ao lado"}
+::: {.applet .column-page-right name="scalar-multiple" spoken="Exemplo: mais largo que o texto" cols="3fr 2fr" controls="none"}
+[]{.board name="plane"}
+
+[]{.board name="number"}
 :::
-::: {#arr-lado-controles .controles .g-col-12 .g-col-md-5}
-:::
-::::
-:::::
 
 ```markdown
-::::: {.applet nome="teste-controles" id="arr-lado" rotulo="Os vetores u e a·u, com os controles ao lado"}
-:::: {.grid}
-::: {#arr-lado-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com os controles ao lado"}
-:::
-::: {#arr-lado-controles .controles .g-col-12 .g-col-md-5}
-:::
-::::
-:::::
+::: {.applet .column-page-right name="scalar-multiple" spoken="..." cols="3fr 2fr"}
 ```
 
-- **Na célula estreita**, os controles ficam um embaixo do outro, porque a linha quebra; a faixa encolhe, se precisar.
-- **A divisão 7 e 5** é a conferida: deixa espaço para a faixa e o valor dela.
-- **Abaixo de 768 px**, os controles descem para baixo do quadro e ocupam a largura toda, como no padrão.
+## Expressões no meio do texto
 
-### No centro {#ctl-centro}
+Uma expressão pode estar dentro ou fora do bloco do applet. Fora dele, ela pertence ao último applet que veio antes dela na página; com `of="id"`, ao applet que tem esse id.
 
-:::: {.applet nome="teste-controles" id="arr-ctl-centro" rotulo="Os vetores u e a·u, com o quadro e os controles no centro"}
-::: {#arr-ctl-centro-figura .quadro .estreito .centro rotulo="Quadro estreito no centro, com os vetores u e a·u"}
+::: {#exemplo-expressao .applet name="scalar-multiple" spoken="Exemplo: expressões no texto"}
+[]{.board name="plane" width="22rem"}
+
+[]{.controls}
 :::
-::: {#arr-ctl-centro-controles .controles .centro}
-:::
-::::
+
+Enquanto você mexe no applet acima, este parágrafo acompanha: agora $a =$ [a]{.live}, e [product]{.live}.
 
 ```markdown
-:::: {.applet nome="teste-controles" id="arr-ctl-centro" rotulo="Os vetores u e a·u, com o quadro e os controles no centro"}
-::: {#arr-ctl-centro-figura .quadro .estreito .centro rotulo="Quadro estreito no centro, com os vetores u e a·u"}
-:::
-::: {#arr-ctl-centro-controles .controles .centro}
-:::
-::::
+Enquanto você mexe no applet acima, este parágrafo acompanha:
+agora $a =$ [a]{.live}, e [product]{.live}.
 ```
 
-No bloco, cada parte vai para o centro por si: `.centro` no quadro e `.centro` nos controles. No shortcode, `arranjo="centro"` vale para os dois ([No centro](#tam-centro)).
+## Texto e cor
 
-### A ordem e as linhas {#ctl-ordem}
+Num parágrafo, a marca liga uma palavra a um elemento da figura, pela cor do papel que o elemento tem: dado, resultado ou apoio. A marca é um sublinhado na cor do papel, e a palavra continua na cor do texto. Assim a cor pode ser mais clara: um sublinhado precisa de menos contraste com a página do que um texto colorido.
 
-- **A ordem dos controles** é a do código do applet, que é também a da tecla Tab. O capítulo não a muda.
-- **Os controles formam uma linha só**, que quebra quando falta espaço. O capítulo não escolhe onde ela quebra.
-- **O que o JSX-quarto faz com CSS na página**, como o botão empurrado para a direita, a faixa na largura toda ou várias linhas de controles, não é arranjo do livro ([Fora dos arranjos](#fora)).
+::: {#exemplo-marcas .applet name="scalar-multiple" spoken="Exemplo: palavras ligadas aos elementos da figura"}
+[]{.board name="plane" width="22rem"}
 
-## Tudo junto {#tudo-junto}
-
-Uma parte vai em qualquer lugar dentro do bloco: numa célula da grade, fora dela, ou junto com outra parte, dentro de um div sem classe de parte. Este applet usa as quatro partes do `teste-controles`: a figura à esquerda; a reta numérica e os controles à direita, na mesma célula; e a conta embaixo, na largura toda.
-
-:::::: {.applet nome="teste-controles" id="arr-junto" rotulo="Os vetores u e a·u, com o número a na reta numérica, os controles e a conta"}
-::::: {.grid}
-::: {#arr-junto-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com a reta numérica e os controles ao lado"}
+[]{.controls}
 :::
-:::: {.g-col-12 .g-col-md-5}
-::: {#arr-junto-numero .quadro rotulo="Reta numérica com o número a, acima dos controles"}
-:::
-::: {#arr-junto-controles .controles}
-:::
-::::
-:::::
-::: {#arr-junto-leitura .leitura}
-:::
-::::::
+
+No applet acima, [$\vec{u}$]{.mark-given} é dado, [$a\vec{u}$]{.mark-result} é o resultado e, ao marcar a caixa, a [reta de $\vec{u}$]{.mark-support} aparece como apoio. Cada sublinhado tem a cor do elemento da figura a que a palavra se refere.
 
 ```markdown
-:::::: {.applet nome="teste-controles" id="arr-junto" rotulo="Os vetores u e a·u, com o número a na reta numérica, os controles e a conta"}
-::::: {.grid}
-::: {#arr-junto-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, com a reta numérica e os controles ao lado"}
-:::
-:::: {.g-col-12 .g-col-md-5}
-::: {#arr-junto-numero .quadro rotulo="Reta numérica com o número a, acima dos controles"}
-:::
-::: {#arr-junto-controles .controles}
-:::
-::::
-:::::
-::: {#arr-junto-leitura .leitura}
-:::
-::::::
+[$\vec{u}$]{.mark-given} é dado,
+[$a\vec{u}$]{.mark-result} é o resultado e,
+ao marcar a caixa, a [reta de $\vec{u}$]{.mark-support}
+aparece como apoio.
 ```
-
-De fora para dentro:
-
-- **seis dois-pontos:** o bloco `.applet`, o applet inteiro;
-- **cinco:** a grade, com duas células;
-- **três:** a primeira célula, que é a parte `figura`;
-- **quatro:** a segunda célula, um div sem classe de parte, que junta as partes `numero` e `controles`, com três dois-pontos cada;
-- **três:** a parte `leitura`, fora da grade, na largura toda.
-
-A conta ficou embaixo, e não na célula estreita, por causa da largura: a 800 px de janela, a célula de 5 colunas tem cerca de 210 px, e a conta, uns 240 px. Ela rolaria dentro da leitura.
-
-O navegador recebe, em resumo, isto:
-
-```html
-<div id="arr-junto" class="bloco-applet" data-applet="teste-controles" role="group" aria-label="…">
-  <div class="grid">
-    <div id="arr-junto-figura" class="applet-jxg g-col-12 g-col-md-7" data-parte="figura" aria-label="…"></div>
-    <div class="g-col-12 g-col-md-5">
-      <div id="arr-junto-numero" class="applet-jxg" data-parte="numero" aria-label="…"></div>
-      <div id="arr-junto-controles" class="applet-controles" data-parte="controles"></div>
-    </div>
-  </div>
-  <div id="arr-junto-leitura" class="applet-leitura" data-parte="leitura"></div>
-  <p id="arr-junto-status" class="applet-status" role="status" aria-live="polite"></p>
-  <button type="button" class="applet-botao" data-reset="arr-junto">Reiniciar applet</button>
-</div>
-```
-
-As partes chegam **vazias**. O CSS do livro já as arruma antes de o applet rodar; o applet só desenha nos quadros, escreve a leitura e acrescenta os controles.
 
 ## Num capítulo: entre a instrução e a pergunta {#interacao}
 
 No capítulo, a instrução vem num parágrafo logo antes do applet, e a pergunta, logo depois, sem bloco em volta: o applet já se apresenta (guia editorial, §6). Qualquer arranjo desta página vale aí.
 
-Arraste a ponta de $\vec{u}$ e mova a faixa.
+Arraste a ponta de $\vec{u}$ e mova a faixa de valores de $a$.
 
-{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, entre a instrução e a pergunta" arranjo="estreito centro" >}}
+::: {.applet name="scalar-multiple" spoken="Exemplo: entre a instrução e a pergunta"}
+[]{.board .center name="plane" width="18rem"}
+
+[]{.controls .center}
+:::
 
 Para que valor de $a$ o vetor $a\vec{u}$ tem o sentido oposto ao de $\vec{u}$ e o dobro do comprimento dele?
 
 ```markdown
-Arraste a ponta de $\vec{u}$ e mova a faixa.
+Arraste a ponta de $\vec{u}$ e mova a faixa de valores de $a$.
 
-{{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, entre a instrução e a pergunta" arranjo="estreito centro" >}}}
+::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+[]{.board .center name="plane" width="18rem"}
+
+[]{.controls .center}
+:::
 
 Para que valor de $a$ o vetor $a\vec{u}$ tem o sentido oposto ao de $\vec{u}$ e o dobro do comprimento dele?
-```
-
-Até a fase 7 da migração, o applet ia dentro de um `.bloco-interacao`, com o rótulo "Interação" no alto. O bloco saiu (decisão E3 do livro-base): a instrução já diz o que fazer.
-
-## Fora dos arranjos {#fora}
-
-O capítulo 10 do estudo do JSX-quarto mostra outros arranjos, que o livro deixou de fora por decisão (`decisoes.md`, 2026-11-04 e 2026-11-05):
-
-- **Quadro de qualquer tamanho**, com `max-width` no `style`: no livro, só o padrão e `estreito`. Outro tamanho seria uma classe nova.
-- **Escalas diferentes nos eixos**, com `aspectRatio`: não há. O livro mantém a mesma escala, para não deformar distâncias e ângulos; o gráfico de uma função pediria uma decisão.
-- **Texto contornando o quadro** (`float`) e **texto em colunas** (`columns`, `layout-ncol`): fora, porque pediriam CSS no capítulo.
-- **Applet na margem da página** (`.column-margin`): fora, porque a margem do livro tem cerca de 130 px.
-- **Controles arrumados dentro da linha**, como o botão empurrado para a direita, a faixa na largura toda, várias linhas ou outra ordem: fora, porque pediriam CSS no capítulo.
-- **Faixa vertical e botões de opção:** ainda não; entram quando um applet precisar (diretrizes, §4.5).
-
-Para trazer um deles: proposta ao autor e, aprovada, uma classe em `styles/old-applets.scss`, uma linha no guia editorial (§6), o registro em `decisoes.md` e um exemplo nesta página.
-
-## Armadilhas {#armadilhas}
-
-Cada item diz o sintoma, a causa provável e a correção.
-
-- **O render avisa que um quadro está sem rótulo.** A parte `.quadro` não tem `rotulo`. Escreva um, diferente do rótulo dos outros quadros da página.
-- **O render avisa que o id deve ser `<id>-<parte>`.** O id da parte não começa pelo id do applet. Num applet com `id="arr-grade"`, a parte é `#arr-grade-figura`.
-- **O render avisa que uma parte está fora de um bloco.** A parte ficou fora do bloco, ou o bloco fechou antes dela. Confira os dois-pontos: o de fora com mais que os de dentro.
-- **Uma parte fica vazia.** O applet não tem uma parte com esse nome. As partes estão no comentário do início do arquivo do applet.
-- **Numa grade, uma parte fica estreitíssima.** Falta `.g-col-12`: sem ela, a parte ocupa uma das doze colunas.
-- **As partes ficam uma embaixo da outra em tela larga.** Falta `.g-col-md-6` (ou outra divisão). Abaixo de 768 px, ficar embaixo é o esperado.
-- **`centro` não muda o quadro.** O quadro padrão já ocupa a coluna toda. Use `estreito centro`.
-- **No bloco, o quadro vai para o centro, e os controles não.** No bloco, cada parte se arruma por si. Ponha `.centro` também na parte `.controles`.
-- **O applet não aparece.** O nome no shortcode ou no bloco não é o de um arquivo de `applets-src/src/applets/`, ou o bundle está velho. Confira o nome e gere o bundle de novo (`npm run build`, na pasta `applets-src`).
-
-## Experimente {#experimente}
-
-Abra a prévia do laboratório e, no editor, o arquivo desta página, `arranjos.qmd`, na pasta `laboratorio/`. Faça uma mudança de cada vez: a cada arquivo salvo, a prévia refaz a página.
-
-```{.default}
-quarto preview --profile lab
-```
-
-1. Em [Estreito e no centro](#tam-estreito-centro), apague `centro` e veja o quadro voltar para a esquerda.
-2. Em [Quadro e leitura](#grade-leitura), troque `.g-col-md-6` por `.g-col-md-8` no quadro e por `.g-col-md-4` na leitura.
-3. Em [Em cima do quadro](#ctl-cima), passe a parte `.controles` para depois da parte `.quadro`: os controles descem.
-4. Em [O grupo](#grupo), apague a parte `numero`: a figura fica sozinha no centro.
-5. Em [Tudo junto](#tudo-junto), apague a parte `.leitura`: a conta some, e o resto continua.
-6. Estreite a janela até uns 320 px e veja as partes se rearrumarem.
-
-Para desfazer tudo no fim:
-
-```{.default}
-git restore laboratorio/arranjos.qmd
 ```

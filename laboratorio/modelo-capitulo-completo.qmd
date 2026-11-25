@@ -139,14 +139,15 @@ De fato, [demonstração em texto corrido, fora do bloco].
 
 Arraste os pontos [ … ] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado relevante] aparece em texto abaixo do quadro.
 
-{{< applet nome-do-applet id="jxg-modelo-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
+::: {.applet name="scalar-multiple" spoken="[Nome do applet para o leitor de tela]"}
+:::
 
 [Pergunta de observação logo depois do applet.]
 
 <!--
-Applets GeoGebra (shortcode geogebra) ficam só nos capítulos que ainda não têm a
-versão JSXGraph e não entram em capítulos novos sem decisão do autor
-(diretrizes-tecnicas.md, §4).
+O applet de exemplo é o scalar-multiple, de applets/: num capítulo, `name` é o
+nome do arquivo do applet, sem o .js, e `spoken` é o nome que o leitor de tela diz.
+O GeoGebra saiu na fase 5 da migração (diretrizes-tecnicas.md, §4).
 -->
 
 ::: {#exr-modelo-pergunta}

@@ -1,14 +1,17 @@
 project:
   type: book
   output-dir: docs
-  # O que as páginas carregam e o Quarto não copia sozinho: o script de toda página
-  # (src/site/*.js; apply-prefs.html vai dentro de cada página) e o KaTeX, que vem com
-  # o site (vendor/VERSIONS.md). A barra inicial prende o padrão à raiz: sem ela, o
-  # padrão vale em qualquer subpasta, e o render do perfil lab levaria docs/vendor/
-  # para dentro de docs-lab/.
+  # O que as páginas carregam e o Quarto não copia sozinho: os scripts (src/, sem
+  # compilação; apply-prefs.html vai dentro de cada página), os applets, o KaTeX e o
+  # JSXGraph, que vêm com o site (vendor/VERSIONS.md), e as macros, que os applets leem.
+  # A barra inicial prende o padrão à raiz: sem ela, o padrão vale em qualquer subpasta,
+  # e o render do perfil lab levaria docs/vendor/ para dentro de docs-lab/.
   resources:
-    - /src/site/*.js
+    - /src/**/*.js
+    - /applets/*.js
     - /vendor/katex/**
+    - /vendor/jsxgraph/**
+    - /math/macros.json
   # Depois de gerar as páginas: as fórmulas são desenhadas, uma vez, e não no
   # navegador de cada leitor; e as seções de cada capítulo entram no menu lateral.
   post-render:
@@ -21,14 +24,12 @@ lang: pt-BR
 # de tema escuro, e a página fica clara mesmo com o sistema em modo escuro.
 brand:
   light: _brand.yml
-shortcodes:
-  - components/applet.lua
 
 format:
   html:
     # O tema: o Cosmo, as cores e as fontes de _brand.yml, e as folhas do livro, nesta
-    # ordem: as cores pelo que significam, a página, os blocos, as fórmulas comentadas e
-    # o sistema antigo de applets (sai na fase 5 da migração).
+    # ordem: as cores pelo que significam, a página, os blocos, as fórmulas comentadas,
+    # os applets e o painel de acessibilidade.
     theme:
       - cosmo
       - brand
@@ -36,7 +37,8 @@ format:
       - styles/page.scss
       - styles/blocks.scss
       - styles/annotations.scss
-      - styles/old-applets.scss
+      - styles/applet.scss
+      - styles/settings.scss
     # As larguras da página, num só lugar: o menu, a coluna de texto (que continua boa
     # de ler em tela grande) e a coluna da direita, para os applets largos
     # (.column-page-right) que vêm com os applets novos. A grade que usa estes números
@@ -64,9 +66,6 @@ format:
     # O menu recolhido vale antes de a página aparecer; sem JavaScript, dicas e soluções
     # ficam à vista.
     include-in-header: src/site/apply-prefs.html
-    filters:
-      - components/applet-bloco.lua
-
 
 # Blocos do capítulo (filters/blocks.lua): dicas e soluções em abas que se recolhem
 # (decisões D6 e E2 do livro-base); o rótulo de um bloco na linha do texto, como
@@ -80,14 +79,14 @@ block-labels: run-in
 # referências e ao PDF já em TeX comum; as fórmulas comentadas; e os blocos. O filtro
 # dos blocos roda antes do Quarto (`at: pre-ast`): o Quarto tem um ambiente .solution
 # próprio, que deixaria a solução à vista, sem aba (decisão E15 do livro-base); com
-# isso, ele roda também antes dos outros. Em toda página HTML, o que roda em toda
-# página (src/site/boot.js).
+# isso, ele roda também antes dos outros. Por último, os applets (filters/applet.lua),
+# que põe em toda página HTML o que roda em toda página (src/site/boot.js).
 filters:
   - filters/macros.lua
   - filters/annotations.lua
   - path: filters/blocks.lua
     at: pre-ast
-  - filters/site.lua
+  - filters/applet.lua
 
 execute:
   echo: false

@@ -21,7 +21,6 @@
     "docs-lab/**",
     "_scratch/**",
     "**/node_modules/**",
-    "assets/js/applets-dist/**",
     "**/*_files/**",
     "_interno/**/*.html",
     "**/package-lock.json",

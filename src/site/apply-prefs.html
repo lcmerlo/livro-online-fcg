@@ -1,7 +1,11 @@
 <script>
-/* O menu recolhido (o modo de leitura do Quarto) vale antes de a página aparecer:
-   styles/page.scss leva o texto para o meio, e a página não pisca com o menu aberto. */
+/* Aplica as preferências guardadas (src/site/prefs.js) antes de a página aparecer: ela
+   nunca pisca na aparência padrão para um leitor que escolheu outra. O menu recolhido
+   (o modo de leitura do Quarto) também: styles/page.scss leva o texto para o meio, e a
+   página não pisca com o menu aberto. */
 try {
+  const prefs = JSON.parse(localStorage.getItem('book-prefs')) ?? {};
+  for (const [key, value] of Object.entries(prefs)) document.documentElement.dataset[key] = value;
   if (localStorage.getItem('quarto-reader-mode') === 'true') document.documentElement.dataset.reader = 'on';
 } catch {}
 </script>

@@ -1,4 +1,8 @@
-// Roda em toda página (filters/site.lua o põe), e por isso é pequeno.
+// Roda em toda página (filters/applet.lua o põe), e por isso é pequeno: uma página sem
+// applets e sem fórmulas comentadas não carrega mais nada. Vem do livro-base
+// (src/site/boot.js), sem o painel de acessibilidade em toda página (initSettings: os
+// atalhos do Tab e o botão do cabeçalho), que chega na fase 6 da migração; até lá, o
+// painel se abre pelo botão de cada applet.
 
 import { watchScrollers } from './scrollers.js';
 
@@ -119,4 +123,8 @@ if (sectionLinks.length > 0) {
 // módulo que as arruma.
 if (document.querySelector('.annotated')) {
   import('./annotations.js').then(({ drawAnnotations }) => drawAnnotations());
+}
+
+if (document.querySelector('.applet[data-applet]')) {
+  import('../applet/runtime.js').then(({ startApplets }) => startApplets());
 }

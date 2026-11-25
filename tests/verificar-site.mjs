@@ -9,19 +9,20 @@
 //                    `quarto render --profile lab`), com as páginas de laboratorio/
 //
 // Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição,
-// comandos TeX suspeitos e blocos que nenhum filtro do livro conhece (os de antes
-// da fase 7 da migração e os avisos do Quarto); as de laboratorio/ também sem --lab.
+// comandos TeX suspeitos, blocos que nenhum filtro do livro conhece (os de antes
+// da fase 7 da migração e os avisos do Quarto) e a marcação dos applets de antes
+// da fase 5 (os shortcodes applet e geogebra, o bloco com nome=, as partes
+// .quadro, .controles e .leitura); as de laboratorio/ também sem --lab.
 // Site gerado (docs/ ou docs-lab/): iframes sem title, imagens sem alt, applets sem
-// arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
-// ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
-// (no HTML e nas folhas de estilo que as páginas carregam).
+// arquivo em applets/ ou sem o nome lido (spoken), o que os applets carregam e não
+// chegou ao site, ids duplicados, saltos na hierarquia de títulos e pedidos a
+// outros servidores (no HTML e nas folhas de estilo que as páginas carregam).
 // Fórmulas (no site gerado, onde já vêm desenhadas por tools/prerender-math.ts):
 // as que ficaram em TeX, as que o KaTeX não desenha, caracteres que ele não
-// conhece e página sem applet que ainda carrega o KaTeX.
-// Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
-// com valores diferentes dos do livro, cores dos applets com contraste abaixo
-// de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
-// no livro (fora de laboratorio/).
+// conhece e página que ainda carrega o KaTeX sem precisar dele.
+// Cores (no CSS gerado): as cores dos papéis dos applets com contraste abaixo de
+// 3:1 sobre o fundo do quadro, e cor de teste (de uma paleta de teste de
+// _brand.yml) em applet usado no livro (fora de laboratorio/).
 // Links internos e âncoras são verificados pelo lychee no workflow.
 //
 // Protótipos (`estado: prototipo` no cabeçalho do capítulo; diretrizes
@@ -48,10 +49,10 @@ const saida = args.includes("--lab") ? "docs-lab" : "docs";
 const erros = [];
 const avisos = [];
 // As páginas do laboratório são testes e modelos, alguns com exemplos que não
-// funcionam de propósito (o applet "nome-do-applet", macros só da página): o que
-// se acha nelas é listado à parte e não reprova, nem com --estrito. Os blocos delas
-// passaram à sintaxe nova na fase 7 da migração; os applets passam na fase 5 (plano
-// de migração do livro-base).
+// funcionam de propósito (macros só da página, em teste.qmd): o que se acha nelas é
+// listado à parte e não reprova, nem com --estrito. Os blocos delas passaram à
+// sintaxe nova na fase 7 da migração, e os applets, na fase 5 (plano de migração do
+// livro-base).
 const noLaboratorio = [];
 const doLaboratorio = (arquivo) => /^(docs-lab\/)?laboratorio\//.test(arquivo);
 const erro = (arquivo, msg) => (doLaboratorio(arquivo) ? noLaboratorio : erros).push(`${arquivo}: ${msg}`);
@@ -113,6 +114,18 @@ const blocosSemFiltro = [
   ["\\.callout-[a-z]+", '::: {.note} ou ::: {.note title="..."}'],
 ].map(([nome, troca]) => [new RegExp(`^:{3,}\\s*\\{[^}\\n]*?(${nome})(?=[\\s}])`, "gm"), troca]);
 
+// A marcação dos applets de antes da fase 5 da migração. O sistema antigo saiu, com
+// os shortcodes applet e geogebra (components/): o Quarto deixaria o shortcode na
+// página como texto, e um bloco com nome= ficaria sem applet. Erro também nos
+// exemplos de código. A troca de cada um está no Apêndice F do livro-base, seção "No
+// capítulo"; um applet do GeoGebra se reescreve pela tabela "Do GeoGebra para a base".
+const appletsDeAntes = [
+  [/\{\{\{?<\s*applet\b/g, "o shortcode applet", '::: {.applet name="..." spoken="..."}'],
+  [/\{\{\{?<\s*geogebra\b/g, "o shortcode geogebra", "um applet de applets/"],
+  [/^:{3,}\s*\{[^}\n]*\.applet(?=[\s}])[^}\n]*\snome=/gm, "um bloco .applet com nome=", '::: {.applet name="..." spoken="..."}'],
+  [/^:{3,}\s*\{[^}\n]*?\.(?:quadro|controles|leitura)(?=[\s}])/gm, "uma parte .quadro, .controles ou .leitura", '[]{.board name="..."}, []{.controls} ou [nome]{.live}'],
+];
+
 const semComentarios = (texto) => texto.replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, " "));
 const linhaDe = (texto, indice) => texto.slice(0, indice).split("\n").length;
 
@@ -152,6 +165,12 @@ for (const arquivo of fontes.filter(existsSync)) {
     }
   }
 
+  for (const [padrao, oQue, troca] of appletsDeAntes) {
+    for (const m of texto.matchAll(padrao)) {
+      erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `${oQue}, do sistema de applets que saiu na fase 5 da migração: use ${troca}`);
+    }
+  }
+
   // Forma do guia (guia-editorial.md, §4): \color{#993300}, com #, que vale
   // em qualquer motor de fórmulas; sem #, só o KaTeX aplica a cor.
   for (const m of texto.matchAll(/\\color\{[0-9A-Fa-f]{6}\}/g)) {
@@ -175,16 +194,18 @@ if (saida === "docs") {
   }
 }
 
-// Applets registrados: um por arquivo de applets-src/src/applets/, com o nome
-// do arquivo (a mesma regra de main.js).
-const pastaApplets = join(raiz, "applets-src/src/applets");
+// Os applets: um por arquivo de applets/, com o nome do arquivo, que
+// src/applet/runtime.js carrega pelo nome escrito no capítulo.
+const pastaApplets = join(raiz, "applets");
 const registrados = new Set(
   existsSync(pastaApplets)
     ? readdirSync(pastaApplets).filter((f) => f.endsWith(".js")).map((f) => f.slice(0, -".js".length))
     : [],
 );
-// Applets que alguma página do livro usa, fora do laboratório.
+// Applets que alguma página do livro usa, fora do laboratório; e as páginas com
+// applet, também as do laboratório.
 const usados = new Set();
+const comApplet = [];
 // As folhas de estilo locais que as páginas carregam, conferidas depois.
 const folhas = new Set();
 // Um endereço de outro servidor: com protocolo (https://) ou sem (//).
@@ -215,24 +236,21 @@ for (const arquivo of paginas) {
     if (!/\salt="[^"]+"/.test(m[0])) avisoOuConta(fonte, nome, `imagem sem alt: ${(m[0].match(/src="([^"]*)"/) ?? [])[1]}`);
   }
 
-  for (const m of html.matchAll(/data-applet="([^"]*)"/g)) {
+  // Todo applet precisa do nome que o leitor de tela diz: o spoken="..." do
+  // capítulo, que filters/applet.lua faz aria-label.
+  for (const m of html.matchAll(/<div\b[^>]*\bdata-applet="([^"]*)"[^>]*>/g)) {
     if (!doLaboratorio(nome)) usados.add(m[1]);
-    if (!registrados.has(m[1])) erro(nome, `applet sem arquivo applets-src/src/applets/${m[1]}.js`);
-  }
-
-  // Quadro (.applet-jxg) e bloco de applet com várias partes precisam de
-  // nome para o leitor de tela: o rotulo do shortcode ou do bloco.
-  for (const m of html.matchAll(/<div\b[^>]*>/g)) {
-    const quadro = /\sclass="(?:[^"]*\s)?applet-jxg[\s"]/.test(m[0]);
-    const bloco = /\sclass="(?:[^"]*\s)?bloco-applet[\s"]/.test(m[0]) && /\sdata-applet=/.test(m[0]);
-    if ((quadro || bloco) && !/\saria-label="[^"]+"/.test(m[0])) {
-      erro(nome, `${quadro ? "quadro" : "applet"} sem rotulo: ${(m[0].match(/\sid="([^"]*)"/) ?? [])[1]}`);
+    comApplet.push(nome);
+    if (!registrados.has(m[1])) erro(nome, `applet sem arquivo: applets/${m[1]}.js`);
+    else if (!existsSync(join(raiz, saida, "applets", `${m[1]}.js`))) {
+      erro(nome, `applets/${m[1]}.js não chegou ao site: confira resources, em _quarto.yml`);
     }
+    if (!/\saria-label="[^"]+"/.test(m[0])) erro(nome, `applet sem spoken (o nome lido): ${m[1]}`);
   }
 
   // Só o <body>: o <head> do Quarto repete ids de estilos em todas as páginas.
   // Sem os blocos de código: o Pandoc não troca as aspas no texto de um <pre>, e
-  // um exemplo como {{< applet … id="x" >}} pareceria um segundo id="x".
+  // um exemplo como ::: {#x .applet …} pareceria um segundo id="x".
   const vistos = new Set();
   const dentroDoBody = html.slice(html.indexOf("<body")).replace(/<pre\b[\s\S]*?<\/pre>/g, "");
   for (const m of dentroDoBody.matchAll(/\sid="([^"]+)"/g)) {
@@ -246,6 +264,15 @@ for (const arquivo of paginas) {
     const nivel = Number(m[1]);
     if (anterior && nivel > anterior + 1) avisoOuConta(fonte, nome, `salto de título: h${anterior} para h${nivel}`);
     anterior = nivel;
+  }
+}
+
+// O que os applets carregam, além do arquivo de cada um (src/applet/runtime.js e
+// tex.js): sem um deles, nenhum applet aparece. Tudo vai ao site por resources, em
+// _quarto.yml, que o Quarto não acusa quando falta.
+if (comApplet.length) {
+  for (const arquivo of ["src/site/boot.js", "src/applet/runtime.js", "vendor/jsxgraph/jsxgraphcore.mjs", "vendor/jsxgraph/jsxgraph.css", "vendor/katex/katex.min.js", "math/macros.json"]) {
+    if (!existsSync(join(raiz, saida, arquivo))) erro(comApplet[0], `${arquivo} não chegou ao site, e os applets não aparecem: confira resources, em _quarto.yml`);
   }
 }
 
@@ -268,8 +295,8 @@ for (const folha of folhas) {
 //   vermelho), ou o post-render não rodou (rode o render inteiro);
 // - a desenhada guarda o TeX numa anotação, que passa de novo pelo KaTeX, à procura
 //   de caracteres que ele não conhece (o desenho sai, mas sem a fonte certa);
-// - uma página sem applet que ainda carrega katex.min.js é erro: as fórmulas
-//   deviam vir prontas (os applets antigos usam o KaTeX da página).
+// - uma página que ainda carrega katex.min.js sem ter fórmula em TeX é erro: o
+//   post-render não a limpou (os applets carregam o KaTeX deles, src/applet/tex.js).
 // As macros do livro já vêm expandidas (filters/macros.lua, com a lista de
 // math/macros.json).
 let katex = null;
@@ -281,12 +308,6 @@ try {
 }
 
 if (katex && paginas.length) {
-  // Os applets antigos recebem as macros no KaTeX da página, por __defineMacro
-  // (components/applet-comum.lua), que não é uma função pública do KaTeX.
-  if (typeof katex.__defineMacro !== "function") {
-    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: as macros não chegariam aos applets (components/applet-comum.lua)`);
-  }
-
   const entidades = { lt: "<", gt: ">", amp: "&", quot: '"', apos: "'", nbsp: " " };
   const decodificar = (texto) =>
     texto.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (inteira, e) => {
@@ -322,8 +343,10 @@ if (katex && paginas.length) {
       if (falha) erro(nome, `fórmula desenhada que o KaTeX não desenha de novo, ${falha}`);
     }
 
+    let emTex = 0;
     for (const m of html.matchAll(/<span class="math (inline|display)">([\s\S]*?)<\/span>/g)) {
       formulas++;
+      emTex++;
       // Sem os delimitadores \( \) e \[ \], que só o modo MathJax do Pandoc põe.
       const tex = decodificar(m[2]).replace(/^\\\(([\s\S]*)\\\)$|^\\\[([\s\S]*)\\\]$/, "$1$2");
       const falha = conferirTex(tex, m[1] === "display", arquivo, nome);
@@ -331,8 +354,8 @@ if (katex && paginas.length) {
       else erro(nome, `fórmula em TeX, sem desenhar, "${tex.trim().replace(/\s+/g, " ").slice(0, 60)}": rode o render inteiro, com o post-render (tools/prerender-math.ts)`);
     }
 
-    if (/<script\b[^>]*\ssrc="[^"]*katex\.min\.js"/.test(html) && !/\sdata-applet="/.test(html)) {
-      erro(nome, "página sem applet que carrega o KaTeX no navegador: as fórmulas deviam vir desenhadas (tools/prerender-math.ts)");
+    if (/<script\b[^>]*\ssrc="[^"]*katex\.min\.js"/.test(html) && emTex === 0) {
+      erro(nome, "página que carrega o KaTeX no navegador sem precisar dele: o post-render (tools/prerender-math.ts) devia tê-lo tirado");
     }
   }
 }
@@ -379,44 +402,32 @@ if (!cssTema) {
 } else {
   const doLivro = variaveis(cssTema);
 
-  // A página de desenvolvimento repete à mão as variáveis do livro, que fora
-  // dele não existem; uma diferença faz a página mostrar outra coisa.
-  const paginaDev = join(raiz, "applets-src/index.html");
-  const raizDev = existsSync(paginaDev) ? readFileSync(paginaDev, "utf8").match(/:root\s*\{([^}]*)\}/)?.[1] ?? "" : "";
-  for (const [nome, valor] of variaveis(raizDev)) {
-    const noLivro = doLivro.get(nome);
-    if (noLivro === undefined) aviso("applets-src/index.html", `${nome} não existe no CSS do livro`);
-    else if (noLivro !== valor) aviso("applets-src/index.html", `${nome} vale ${valor}, mas no livro vale ${noLivro}`);
-  }
-
-  // Cores que os applets leem (cor("--color-…") em cores.js), menos a do
-  // fundo, sobre o fundo do quadro: linhas e pontos precisam de 3:1 (§32).
-  const fonteCores = join(raiz, "applets-src/src/cores.js");
-  const lidas = existsSync(fonteCores)
-    ? [...readFileSync(fonteCores, "utf8").matchAll(/cor\("(--color-[\w-]+)"\)/g)].map((m) => m[1])
-    : [];
+  // As cores dos papéis (role) que os applets leem (src/applet/theme.js) e a do
+  // texto, sobre o fundo do quadro: linhas e pontos precisam de 3:1 (§32).
   const fundo = doLivro.get("--color-board");
-  for (const nome of lidas.filter((n) => n !== "--color-board")) {
-    const valor = doLivro.get(nome);
+  for (const papel of ["given", "result", "support", "text"]) {
+    const valor = doLivro.get(`--color-${papel}`);
     if (valor === undefined) {
-      aviso("applets-src/src/cores.js", `${nome} não existe no CSS do livro`);
+      erro("styles/tokens.scss", `--color-${papel} não existe no CSS do livro`);
       continue;
     }
     const razao = contraste(valor, fundo);
     if (razao !== null && razao < 3) {
-      aviso("applets-src/src/cores.js", `${nome} (${valor}) tem contraste ${razao.toFixed(2)}:1 sobre o fundo do quadro; o mínimo para linhas e pontos é 3:1`);
+      aviso("styles/tokens.scss", `--color-${papel} (${valor}) tem contraste ${razao.toFixed(2)}:1 sobre o fundo do quadro; o mínimo para linhas e pontos é 3:1`);
     }
   }
 }
 
-// As cores de teste (paleta(), de cores.js) ficam nos testes; no livro, a
-// cor vem do papel didático (diretrizes-tecnicas.md, §4.5).
+// As cores das paletas de teste de _brand.yml (Okabe–Ito, Tableau, IBM e as
+// outras, com o sufixo da paleta) ficam nos applets do laboratório; no livro, a cor
+// vem do papel (role; diretrizes-tecnicas.md, §4.5).
+const corDeTeste = /\bcolor:\s*['"][a-z-]+-(?:ds|oi|tb|tm|td|cb|d2)['"]/;
 for (const nomeApplet of usados) {
   const arquivo = join(pastaApplets, `${nomeApplet}.js`);
   if (!existsSync(arquivo)) continue;
   const codigo = readFileSync(arquivo, "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
-  if (/\bpaleta\s*\(/.test(codigo)) {
-    aviso(rel(arquivo), "cor de teste (paleta) num applet usado no livro: use as cores dos papéis (CORES)");
+  if (corDeTeste.test(codigo)) {
+    aviso(rel(arquivo), "cor de teste num applet usado no livro: use os papéis (role)");
   }
 }
 

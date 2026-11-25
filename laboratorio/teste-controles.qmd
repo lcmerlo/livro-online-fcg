@@ -2,57 +2,58 @@
 title: "Teste dos controles"
 ---
 
-<!-- Página de teste dos controles dos applets (pendencias.md, plano de
-     2026-11-05): o mesmo applet em quatro arranjos.
-     Ver: (cd applets-src && npm run build) e
-     quarto preview --profile lab (_quarto-lab.yml)
-     O applet está em applets-src/src/applets/teste-controles.js; os
-     controles, em applets-src/src/tools/controles.js e tools/estado.js. -->
+<!-- Página de teste dos controles dos applets: o mesmo applet em quatro arranjos.
+     Ver com quarto preview --profile lab (_quarto-lab.yml).
+     O applet é applets/scalar-multiple.js, do livro-base; os controles estão em
+     src/applet/controls.js, o state e a animação em src/applet/state.js, e os campos
+     para quem não arrasta em src/applet/access.js. -->
 
-O vetor $\vec{u}$, de ponta arrastável, e o vetor $a\vec{u}$, com uma faixa e um campo para o número $a$, uma caixa que mostra a reta de $\vec{u}$ e o botão Animar. Os quatro applets são independentes.
+O vetor $\vec{u}$, de ponta arrastável, e o vetor $a\vec{u}$, com uma faixa de valores para o número $a$, uma caixa que mostra a reta de $\vec{u}$ e o botão Animar. Os quatro applets são independentes; o primeiro mostra também os campos para digitar, que o leitor escolhe no painel de acessibilidade (aqui, ligados por `show="fields"`).
 
 O que conferir em cada arranjo:
 
-1. A faixa e o campo acompanham um ao outro, e o texto de estado acompanha os dois. O campo aceita `1.5` e `1,5`; um valor fora de $[-2, 2]$ vira a ponta mais próxima, e um texto que não é número é desfeito.
-2. Só com o teclado: Tab passa pelo ponto, pela faixa, pelo campo, pela caixa, pelo botão Animar e pelo Reiniciar, nessa ordem (no terceiro arranjo, os controles vêm antes do ponto); as setas movem a faixa; Enter confirma o campo; a barra de espaço marca a caixa e aciona os botões.
-3. O botão Animar começa a animação, e Pausar a para. Mexer na faixa ou no campo também a para; arrastar a ponta de $\vec{u}$, não.
+1. A faixa de valores e o valor escrito ao lado dela andam juntos, e a expressão e o texto que descreve a figura acompanham. No primeiro applet, o campo de $a$ e os campos da ponta de $\vec{u}$ aceitam `1.5`, `1,5` e `3/2`; um valor fora de $[-2, 2]$ vira a ponta mais próxima, e um texto que não é número é desfeito.
+2. Só com o teclado: Tab passa pelos botões Reiniciar e Opções de acessibilidade, pelo ponto, pela faixa de valores, pela caixa e pelo botão Animar, na ordem em que aparecem na tela (no terceiro arranjo, os controles vêm antes do quadro); as setas movem o ponto e a faixa de valores; Enter confirma um campo; a barra de espaço marca a caixa e aciona os botões.
+3. O botão Animar começa a animação, e Pausar a para. Mexer na faixa de valores também a para; arrastar a ponta de $\vec{u}$, não. Com "Reduzir movimento" (no sistema ou no painel), o botão avança um passo por toque.
 4. Reiniciar volta a ponta de $\vec{u}$, o número $a$, a caixa e o botão ao início, e para a animação.
-5. Com o VoiceOver (Cmd+F5 no Mac): a faixa se chama "a" e diz o valor; o campo se chama "digite a"; a caixa, "mostrar a reta de u"; o botão diz "Animar" ou "Pausar".
-6. Larguras: 320, cerca de 800 e 1200 px, e as intermediárias em que o menu lateral aparece. Nenhum controle passa da borda; no segundo arranjo, os controles ficam ao lado do quadro a partir de 768 px e embaixo dele antes disso.
-7. Só o quadro tem fundo branco e borda; os controles, o texto de estado e o botão ficam fora dele, no fundo da página. Os nomes $\vec{u}$ e $a\vec{u}$ aparecem como no texto e não encostam nas setas, também logo depois de a página carregar.
+5. Opções de acessibilidade abre o painel; uma opção marcada lá vale na hora, para os quatro applets, e continua valendo depois de recarregar a página.
+6. Com o VoiceOver (Cmd+F5 no Mac): cada applet diz o nome dele; a faixa de valores se chama "a" e diz o valor; a caixa, "mostrar a reta de u"; o botão diz "Animar" ou "Pausar"; a descrição da figura é lida quando ela muda.
+7. Larguras: 320, cerca de 800 e 1200 px, e as intermediárias em que o menu lateral aparece. Nenhum controle passa da borda; no segundo arranjo, os controles ficam ao lado do quadro enquanto cabem, e embaixo dele num espaço estreito.
+8. Só o quadro tem fundo branco e borda; os controles, o texto e os botões ficam fora dele, no fundo da página. Os nomes $\vec{u}$ e $a\vec{u}$ aparecem como no texto e não encostam nas setas, também logo depois de a página carregar.
 
 ## Controles embaixo do quadro
 
-O shortcode `{{{< applet >}}}`, sem parte de controles: eles ficam logo abaixo do quadro.
+O caso mais simples: o applet põe o quadro e, logo abaixo, os controles. Com os campos para digitar.
 
-{{< applet teste-controles id="tcl-embaixo" rotulo="Os vetores u e a·u, com os controles embaixo" >}}
+::: {.applet name="scalar-multiple" spoken="Os vetores u e a vezes u, com os controles embaixo" show="fields"}
+:::
 
 ## Controles ao lado do quadro
 
-O bloco `::: {.applet}`, com o quadro e os controles numa grade de 7 e 5 colunas.
+O quadro e os controles em duas colunas, de 7 e 5.
 
-::::: {.applet nome="teste-controles" id="tcl-lado" rotulo="Os vetores u e a·u, com os controles ao lado"}
-:::: {.grid}
-::: {#tcl-lado-figura .quadro .g-col-12 .g-col-md-7 rotulo="Quadro com os vetores u e a·u, controles ao lado"}
+::: {.applet .middle name="scalar-multiple" spoken="Os vetores u e a vezes u, com os controles ao lado" cols="7fr 5fr"}
+[]{.board name="plane"}
+
+[]{.controls .stack}
 :::
-::: {#tcl-lado-controles .controles .g-col-12 .g-col-md-5}
-:::
-::::
-:::::
 
 ## Controles em cima do quadro
 
-O bloco, com a parte de controles antes do quadro.
+A parte dos controles antes do quadro.
 
-:::: {.applet nome="teste-controles" id="tcl-cima" rotulo="Os vetores u e a·u, com os controles em cima"}
-::: {#tcl-cima-controles .controles}
+::: {.applet name="scalar-multiple" spoken="Os vetores u e a vezes u, com os controles em cima"}
+[]{.controls}
+
+[]{.board name="plane"}
 :::
-::: {#tcl-cima-figura .quadro rotulo="Quadro com os vetores u e a·u, controles em cima"}
-:::
-::::
 
 ## Quadro estreito no centro
 
-O shortcode com `arranjo="estreito centro"`: o quadro e os controles ficam no centro.
+`width` limita o quadro, e `.center` o põe no centro, com os controles.
 
-{{< applet teste-controles id="tcl-centro" rotulo="Os vetores u e a·u, num quadro estreito no centro" arranjo="estreito centro" >}}
+::: {.applet name="scalar-multiple" spoken="Os vetores u e a vezes u, num quadro estreito no centro"}
+[]{.board .center name="plane" width="18rem"}
+
+[]{.controls .center}
+:::

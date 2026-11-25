@@ -4,7 +4,7 @@ Responda sempre em português do Brasil.
 
 As orientações do projeto valem para todos os assistentes e estão resumidas em `AGENTS.md`, na raiz; o documento completo é `_interno/diretrizes/diretrizes-tecnicas.md`. Este arquivo acrescenta o que é próprio do Copilot.
 
-Neste repositório, atue sobre a parte de software do projeto: JavaScript, JSXGraph, Vite, CSS, SCSS, HTML, JSON e arquivos de build e configuração. O Copilot fica desligado nos arquivos de texto (`.vscode/settings.json`).
+Neste repositório, atue sobre a parte de software do projeto: JavaScript, JSXGraph, CSS, SCSS, HTML, JSON e arquivos de configuração (não há etapa de compilação: `src/` e `applets/` são servidos como estão). O Copilot fica desligado nos arquivos de texto (`.vscode/settings.json`).
 
 Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito. Quando houver pedido, siga os tipos de mudança do `AGENTS.md`. Nos capítulos com `estado: prototipo`, que serão reescritos, não sugira correções de forma.
 
@@ -24,8 +24,7 @@ As regras das diretrizes são fundamentais (uma lista curta, que não se contorn
 
 Quando sugerir mudanças relevantes, indique como testar:
 
-- `npm run watch`
-- `npm run build`
-- `quarto preview`, apenas quando a mudança afetar a integração com o livro
+- `node --test "tests/unit/*.test.mjs"`, quando a mudança afetar `src/math/` ou as cores
+- `quarto preview --profile lab`, com os applets das páginas de teste de `laboratorio/`
 - `node tests/verificar-site.mjs`, depois de `quarto render --to html`
 - `node tests/verificar-site.mjs --lab`, depois de `quarto render --profile lab --to html`, quando a mudança afetar as páginas de teste de `laboratorio/`

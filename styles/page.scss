@@ -12,18 +12,47 @@
   src: url('vendor/icons/bootstrap-icons-subset.woff2') format('woff2');
 }
 
+// A cor do texto vem do papel (tokens.scss), e o contraste alto do painel a troca.
+body {
+  color: var(--color-text);
+}
+
+// "Mais espaço entre as linhas", no painel de acessibilidade.
+:root[data-wide-spacing='on'] {
+  body {
+    line-height: 1.95;
+    letter-spacing: 0.012em;
+    word-spacing: 0.06em;
+  }
+  p,
+  li {
+    margin-bottom: 0.9em;
+  }
+}
+
 // Foco bem visível, só para quem navega pelo teclado (e não a cada clique do mouse).
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 
-// Quem pede ao sistema menos movimento: animações e transições quase instantâneas.
-@media (prefers-reduced-motion: reduce) {
+// Menos movimento: animações e transições quase instantâneas. Vale para quem o pede ao
+// sistema, a menos que desligue a opção no painel, e para quem a liga no painel.
+@mixin no-motion {
   * {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+:root[data-reduce-motion='on'] {
+  @include no-motion;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-reduce-motion='off']) {
+    @include no-motion;
   }
 }
 
@@ -139,6 +168,53 @@ dt code:not(.sourceCode),
     max-width: 100%;
     margin-inline: auto;
     text-align: center;
+  }
+}
+
+// ---- Colunas (cols="…" num div; filters/applet.lua) ----
+
+// Um applet e o texto ao lado, dois boards, ou qualquer conteúdo em colunas usam a mesma
+// grade. O espaço entre as colunas é o mesmo que separa duas fileiras de colunas.
+.cols-scope {
+  container-type: inline-size;
+  margin-bottom: var(--space-block);
+
+  + .cols-scope {
+    margin-top: var(--space-gap);
+  }
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: var(--cols);
+  gap: var(--space-gap);
+  align-items: start;
+
+  > * {
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  > div > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child,
+  > div > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// .middle: as células ficam centradas na altura da fileira. Um texto curto ao lado de
+// um board alto, ou dois boards de alturas diferentes, ficam equilibrados.
+.middle > .cols-scope > .cols {
+  align-items: center;
+}
+
+// Abaixo desta largura, uma segunda coluna seria estreita demais para ler ou tocar.
+@container (max-width: 28rem) {
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

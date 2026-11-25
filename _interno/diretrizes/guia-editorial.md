@@ -21,15 +21,13 @@ A lista de dez itens do `README.md` e do `index.qmd` é um repertório, não um 
 
 ## 3. Componentes
 
-Use as classes e shortcodes, sem formatar à mão (§23, §35). Desde a fase 7 da migração (25/11/2026), os blocos são os do Apêndice B do livro-base ("Blocos"), e os de antes (`.bloco-*`, `.dica`, `.solucao`, `.resposta`, `#exrr-…`, `.fig-leg` e os avisos `.callout-…` do Quarto) dão erro no verificador; a troca de cada um está no Apêndice F do livro-base ("No capítulo").
+Use as classes e os blocos, sem formatar à mão (§23, §35). Desde a fase 7 da migração (25/11/2026), os blocos são os do Apêndice B do livro-base ("Blocos"), e os de antes (`.bloco-*`, `.dica`, `.solucao`, `.resposta`, `#exrr-…`, `.fig-leg` e os avisos `.callout-…` do Quarto) dão erro no verificador; a troca de cada um está no Apêndice F do livro-base ("No capítulo").
 
 | Para | Use |
 |---|---|
 | Objetivo, com o que é preciso saber antes | `::: {.objective}` … `:::`, com os pré-requisitos numa frase no fim: "Antes de começar: …". O rótulo "Objetivo." entra sozinho, na linha do texto (`filters/blocks.lua`). |
 | Erro comum, nota, cuidado, destaque | `::: {.note title="Erro comum"}` … `:::`, com o título que o trecho pedir; sem título, o rótulo é "Observação." |
-| Applet JSXGraph próprio | `{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição para leitor de tela" >}}` (o nome é o de um arquivo de `applets-src/src/applets/`); quadro estreito ou no centro: `arranjo="estreito centro"` (§6) |
-| Applet com várias partes (quadros, leituras) | bloco `::: {.applet nome="…" id="…" rotulo="…"}` em volta das partes `.quadro` e `.leitura` (§6) |
-| Applet GeoGebra (provisório) | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}`, só nos capítulos que ainda não têm a versão JSXGraph; em conteúdo novo, só por decisão do autor (`diretrizes-tecnicas.md`, §4) |
+| Applet | `::: {.applet name="nome-do-applet" spoken="Nome para o leitor de tela"}` … `:::` (o nome é o de um arquivo de `applets/`); dentro, só se o capítulo quiser escolher o lugar delas, as partes: quadros, controles, expressões (§6) |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
 | Exemplo | `::: {#exm-nome}` … `:::` |
@@ -41,7 +39,7 @@ Use as classes e shortcodes, sem formatar à mão (§23, §35). Desde a fase 7 d
 **Uso dos componentes (08/10/2026; a sintaxe, de 25/11/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
 - Abertura: `.objective`, uma ou duas frases, com os pré-requisitos numa frase no fim ("Antes de começar: …", com links de revisão).
-- Interação: a instrução num parágrafo imediatamente antes do applet, sem bloco em volta (o applet já se apresenta), poucos controles e uma pergunta de observação logo depois. O applet (shortcode ou bloco `.applet`) gera sozinho a parte interativa (`.bloco-applet`), que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as leituras, o texto de estado e o botão "Reiniciar" ficam fora dele, no fundo da página.
+- Interação: a instrução num parágrafo imediatamente antes do applet, sem bloco em volta (o applet já se apresenta), poucos controles e uma pergunta de observação logo depois. O bloco `.applet` gera sozinho a parte interativa, que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as expressões e os botões de reiniciar e de acessibilidade (logo acima de cada quadro) ficam fora dele, no fundo da página.
 - Erro comum: `.note title="Erro comum"`, sempre aberto; apresentar o equívoco e a correção.
 - Pergunta para conferir (o antigo checkpoint): uma pergunta conceitual breve (até três itens), escrita como exercício, `{#exr-…}`, com a resposta numa `.solution`. Diagnostica a compreensão (decisão E15 do livro-base).
 - Dicas e soluções ficam fechadas: só se abrem por ação do estudante.
@@ -139,37 +137,61 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
 ## 6. Applets (§29, §30)
 
-No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (uma pergunta para conferir, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
+No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (uma pergunta para conferir, por exemplo). Começa em estado compreensível e com poucos controles. Os botões de reiniciar e de acessibilidade, o texto que descreve a figura (para o leitor de tela, e à vista para quem o pede), o teclado e as alternativas ao arraste vêm com todo applet: o capítulo não escreve nada para tê-los.
 
-- Inserir com `{{< applet <nome> id="…" rotulo="…" >}}`, com a instrução num parágrafo antes e a pergunta depois, sem bloco em volta. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
-- Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula, os controles em outro lugar) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, `.leitura` ou `.controles`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
+Desde a fase 5 da migração (25/11/2026), a sintaxe é a do Apêndice B do livro-base ("Um applet no capítulo"); a de antes (os shortcodes `applet` e `geogebra`, o bloco com `nome=` e as partes `.quadro`, `.controles` e `.leitura`) saiu, e o verificador dá erro onde ela estiver. A troca de cada uma está no Apêndice F do livro-base, seção "No capítulo".
+
+- **O caso mais simples:** a instrução num parágrafo antes, a pergunta depois, sem bloco em volta. O applet põe o quadro e, logo abaixo, os controles.
 
   ```markdown
-  ::::: {.applet nome="nome-do-applet" id="nda" rotulo="Descrição do applet"}
-  :::: {.grid}
-  ::: {#nda-figura .quadro .g-col-12 .g-col-md-6 rotulo="Descrição do quadro"}
+  Arraste a ponta de $\vec{u}$ e veja o que acontece com $a\vec{u}$.
+
+  ::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
   :::
-  ::: {#nda-leitura .leitura .g-col-12 .g-col-md-6}
+  ```
+
+  `name` é o nome do arquivo em `applets/`, sem o `.js`; `spoken` é o nome que o leitor de tela diz, e todo applet precisa de um.
+- **Escolher onde as partes ficam:** escrevem-se as partes, na ordem e no lugar desejados. As partes que um applet oferece estão nas primeiras linhas do arquivo dele.
+
+  ```markdown
+  ::::: {.applet name="scalar-multiple" spoken="Múltiplo de um vetor"}
+  :::: {.middle cols="7fr 5fr"}
+  []{.board name="plane"}
+
+  ::: {}
+  Agora, [product]{.live}.
+
+  []{.controls .stack}
   :::
   ::::
   :::::
   ```
 
-  O div de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina. O texto de estado e o botão "Reiniciar" entram sozinhos no fim do bloco.
-- Os controles (faixas, caixas de seleção, campos, botões) vêm do applet e ficam logo abaixo do quadro, no shortcode e no bloco; o capítulo só escreve a parte `.controles` para pô-los em outro lugar.
+  O bloco de fora tem mais dois-pontos que os de dentro, para que se leia onde cada um termina.
+
+  | Parte | O que é |
+  |---|---|
+  | `[]{.board name="…"}` | um quadro; só os quadros escritos são desenhados. Aceita `spoken`, `width` (como `20rem`), `ratio` (como `3 / 1`, que solta as escalas dos eixos) e as classes `.center`, `.float-right` e `.float-left` |
+  | `[]{.controls}` | o lugar dos controles (padrão: abaixo dos quadros); aceita `.center` e `.stack` (um embaixo do outro) |
+  | `[nome]{.live}` | uma expressão escrita pelo applet; sozinha na linha, em destaque; numa frase, em linha. Fora do bloco, pertence ao applet anterior, ou ao indicado por `of="id"` |
+
 - **Arranjos**, sem CSS no capítulo:
 
   | Para | Escreva |
   |---|---|
-  | Quadro mais estreito que a coluna, ou no centro | no shortcode, `arranjo="estreito"`, `arranjo="centro"` ou `arranjo="estreito centro"`; no bloco, `.estreito` e `.centro` na parte `.quadro` |
-  | Partes lado a lado, uma embaixo da outra no celular | `:::: {.grid}` em volta das partes e `.g-col-12 .g-col-md-6` em cada uma; outras divisões somam 12 (`.g-col-md-4` com `.g-col-md-8`) |
-  | Quadros de tamanho fixo juntos, no centro | `:::: {.grupo}` em volta dos quadros; os que não cabem descem, também no centro |
-  | Texto ao lado do applet | `::::: {.grid}` em volta de duas células: `:::: {.g-col-12 .g-col-md-7}` com o applet (shortcode ou bloco) e `:::: {.g-col-12 .g-col-md-5}` com o texto. A primeira célula fica à esquerda e, no celular, em cima |
-  | Controles em outro lugar | no bloco, a parte `::: {#<id>-controles .controles}` onde eles devem ficar; antes do quadro, eles ficam em cima. `.centro` na parte os centraliza; no shortcode, `arranjo="centro"` centraliza o quadro e os controles |
-  | Controles ao lado do quadro, embaixo dele no celular | `:::: {.grid}` em volta do quadro, com `.g-col-12 .g-col-md-7`, e da parte `.controles`, com `.g-col-12 .g-col-md-5`. Na célula estreita, os controles ficam um embaixo do outro |
+  | só alguns quadros | só esses; os outros não são desenhados |
+  | um quadro mais estreito ou no centro | `width="20rem"` e `.center` no quadro |
+  | outro formato de quadro | `ratio="3 / 1"`; as escalas dos eixos ficam livres |
+  | partes lado a lado | `cols="2"`, `cols="7fr 5fr"` ou `cols="auto"`; desfazem-se num espaço estreito |
+  | texto ao lado do quadro | uma célula de `cols` com o texto; para vários parágrafos na mesma célula, `::: {}` |
+  | células centradas na altura | `.middle`, junto de `cols` |
+  | texto contornando o quadro | `.float-right` ou `.float-left` no quadro |
+  | quadros de tamanho fixo, juntos | `::: {.board-group}` em volta deles |
+  | mais largo que o texto | `.column-page-right` no bloco do applet |
+  | sem controles | `controls="none"` no bloco do applet |
+  | controles em outro lugar | `[]{.controls}` onde eles devem ficar |
 
-- Cada quadro tem um rótulo diferente dos outros quadros da página. As fórmulas das leituras são curtas: a 320 px, uma fórmula mais larga que a coluna rola dentro da leitura.
-- Fora dos arranjos por enquanto: o applet na margem da página (a margem do livro tem cerca de 130 px), o texto contornando o quadro e o texto em colunas.
+- Cada quadro tem um nome lido diferente dos outros quadros da página.
 - Cada arranjo funcionando, com o que se escreve no `.qmd`: `laboratorio/arranjos.qmd` (ver com `quarto preview --profile lab`).
 - Como criar, testar e aceitar um applet, e como reescrever um GeoGebra: `diretrizes-tecnicas.md`, §4.
 
@@ -182,7 +204,6 @@ Os valores mínimos estão no §32 dos Princípios; quais deles são regras fund
 Na raiz do projeto:
 
 ```bash
-(cd applets-src && npm ci && npm run build)  # bundle dos applets: não é versionado, gere ao clonar e após mexer em applets
 quarto render --to html
 node tests/verificar-site.mjs                # os erros também bloqueiam a publicação no GitHub Actions
 quarto render --profile lab --to html        # o laboratório: se não renderizar, a publicação também para
@@ -213,7 +234,8 @@ O **comprimento** de $AB$ é $d(A,B)$.
 
 Mova os pontos $A$ e $B$ e observe como o comprimento muda.
 
-{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Segmento com dois pontos móveis" >}}
+::: {.applet name="nome-do-applet" spoken="Segmento com dois pontos móveis"}
+:::
 
 ::: {#exr-segmento-degenerado}
 O que acontece com o segmento quando $A$ e $B$ coincidem?

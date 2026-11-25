@@ -24,21 +24,21 @@ As macros do livro: $\vet{AB}$, $\norm{\vec{u}}$, $\N$, $\Z$, $\Q$, $\R$ e $\C$.
 
 ## A seta de `\vet`
 
-A macro `\vet` ao lado das duas formas que o livro-base comparou (no livro-base, `\vet` passou a `\overrightarrow`, com a seta ajustada no estilo do site: decisão E6).
+A macro `\vet` escreve `\overrightarrow`, o comando comum do TeX para uma seta sobre uma expressão, e o desenho da seta é ajustado num só lugar do estilo do site (`styles/page.scss`), como no livro-base (decisão E6). Até 2026-11-25, ela escrevia `\overset{\rightarrow}`.
 
-| | O que se escreve | Como aparece |
+| | O que a macro escreve | Como aparece |
 |---|---|---|
-| A macro | `\vet{AB}` | $\vet{AB}$, $\vet{P_1P_2}$, $x_{\vet{AB}}$ |
-| Sem macro | `\overset{\rightarrow}{AB}` | $\overset{\rightarrow}{AB}$, $\overset{\rightarrow}{P_1P_2}$, $x_{\overset{\rightarrow}{AB}}$ |
-| A seta do KaTeX | `\overrightarrow{AB}` | $\overrightarrow{AB}$, $\overrightarrow{P_1P_2}$, $x_{\overrightarrow{AB}}$ |
+| Antes | `\overset{\rightarrow}{AB}` | $\overset{\rightarrow}{AB}$, $\overset{\rightarrow}{P_1P_2}$, $x_{\overset{\rightarrow}{AB}}$ |
+| A seta do KaTeX, sem ajuste | `\overrightarrow{AB}` | [$\overrightarrow{AB}$, $\overrightarrow{P_1P_2}$, $x_{\overrightarrow{AB}}$]{.arrow-default} |
+| Agora | `\overrightarrow{AB}`, com o ajuste | $\vet{AB}$, $\vet{P_1P_2}$, $x_{\vet{AB}}$ |
 
-Em destaque, com índices:
+A seta de agora acompanha a largura da expressão, é um pouco mais curta que ela e centrada nela, tem a ponta 20% menor que a do KaTeX e fica perto das letras sem tocá-las; nos índices, diminui junto com as letras:
 
 $$
 \vet{AB} = B - A, \qquad \vet{OP} + \vet{PQ} = \vet{OQ}, \qquad \operatorname{Proj}_{\vet{A'B'}}\,\vec{v}
 $$
 
-As setas escritas à mão: $\overrightarrow{AB}$, $\overleftarrow{AB}$ e $\overleftrightarrow{AB}$.
+As setas escritas à mão, `\overrightarrow`, `\overleftarrow` e `\overleftrightarrow`, recebem o mesmo ajuste: $\overrightarrow{AB}$, $\overleftarrow{AB}$ e $\overleftrightarrow{AB}$.
 
 ## Uma fórmula longa
 

@@ -46,6 +46,48 @@ h6 {
   overflow-y: hidden;
 }
 
+// A seta de \vet{AB} (math/macros.json: \overrightarrow) e das outras setas que o
+// KaTeX estica sobre uma expressão (decisão E6 do livro-base). A do KaTeX tem a ponta
+// grande e encosta nas letras; aqui ela fica um pouco menor, um pouco mais curta que a
+// expressão e centrada nela, perto das letras sem tocá-las. O desenho é o mesmo, em
+// escala: o contorno (--arrow-bold) devolve ao traço a espessura que a escala tira.
+:root {
+  --arrow-scale: 0.8;
+  --arrow-lift: 0.04em;
+  --arrow-inset: 0.15em;
+  --arrow-bold: 18;
+}
+
+// A seta do KaTeX sem esses ajustes, para comparar (laboratorio/formulas.qmd).
+.arrow-default {
+  --arrow-scale: 1;
+  --arrow-lift: 0em;
+  --arrow-inset: 0em;
+  --arrow-bold: 0;
+}
+
+.katex .katex-accent .svg-align {
+  > .hide-tail,
+  > .katex-stretchy:has(> .halfarrow-left),
+  .halfarrow-left,
+  .halfarrow-right {
+    height: calc(0.522em * var(--arrow-scale)) !important;
+  }
+
+  > .hide-tail,
+  > .katex-stretchy:has(> .halfarrow-left) {
+    width: calc(100% - 2 * var(--arrow-inset));
+    min-width: calc(0.888em * var(--arrow-scale)) !important;
+    margin-bottom: var(--arrow-lift);
+    margin-left: var(--arrow-inset);
+
+    path {
+      stroke: currentColor;
+      stroke-width: var(--arrow-bold);
+    }
+  }
+}
+
 // Uma tabela mais larga que a coluna também rola, em vez de alargar a página a 320 px.
 main.content section > table,
 main.content > table,

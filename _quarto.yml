@@ -1,16 +1,19 @@
 project:
   type: book
   output-dir: docs
-  # O que as páginas carregam e o Quarto não copia sozinho: o KaTeX, que vem com o
-  # site (vendor/VERSIONS.md). A barra inicial prende o padrão à raiz: sem ela, o
+  # O que as páginas carregam e o Quarto não copia sozinho: o script de toda página
+  # (src/site/*.js; apply-prefs.html vai dentro de cada página) e o KaTeX, que vem com
+  # o site (vendor/VERSIONS.md). A barra inicial prende o padrão à raiz: sem ela, o
   # padrão vale em qualquer subpasta, e o render do perfil lab levaria docs/vendor/
   # para dentro de docs-lab/.
   resources:
+    - /src/site/*.js
     - /vendor/katex/**
-  # Depois de gerar as páginas, as fórmulas são desenhadas, uma vez, e não no
-  # navegador de cada leitor.
+  # Depois de gerar as páginas: as fórmulas são desenhadas, uma vez, e não no
+  # navegador de cada leitor; e as seções de cada capítulo entram no menu lateral.
   post-render:
     - tools/prerender-math.ts
+    - tools/sidebar-sections.ts
 
 lang: pt-BR
 # Só o tema claro: com `brand: _brand.yml`, o Quarto gera também uma folha escura,
@@ -23,15 +26,28 @@ shortcodes:
 
 format:
   html:
+    # O tema: o Cosmo, as cores e as fontes de _brand.yml, e as folhas do livro, nesta
+    # ordem: as cores pelo que significam, a página, os blocos e o sistema antigo de
+    # applets (sai na fase 5 da migração).
     theme:
       - cosmo
       - brand
-      - assets/css/custom.scss
-    toc: true
-    toc-location: left
-    toc-title: "Neste capítulo"
-    toc-depth: 2
-    toc-expand: 1
+      - styles/tokens.scss
+      - styles/page.scss
+      - styles/blocks.scss
+      - styles/old-applets.scss
+    # As larguras da página, num só lugar: o menu, a coluna de texto (que continua boa
+    # de ler em tela grande) e a coluna da direita, para os applets largos
+    # (.column-page-right) que vêm com os applets novos. A grade que usa estes números
+    # está em styles/page.scss (decisões E4 e E8 do livro-base).
+    grid:
+      sidebar-width: 200px
+      body-width: 720px
+      margin-width: 240px
+      gutter-width: 1.5rem
+    # Sem a coluna "Neste capítulo": as seções ficam no menu lateral, como subitens de
+    # cada capítulo (tools/sidebar-sections.ts).
+    toc: false
     number-sections: true
     number-depth: 2
     smooth-scroll: true
@@ -45,6 +61,8 @@ format:
     html-math-method:
       method: katex
       url: "vendor/katex/"
+    # O menu recolhido vale antes de a página aparecer.
+    include-in-header: src/site/apply-prefs.html
     filters:
       - components/blocos.lua
       - components/applet-bloco.lua
@@ -52,9 +70,11 @@ format:
 
 # As macros do livro (\vet, \norm, \R…), de math/macros.json, expandidas em toda
 # fórmula, para qualquer formato de saída: a fórmula chega ao KaTeX, às prévias das
-# referências e ao PDF já em TeX comum.
+# referências e ao PDF já em TeX comum. E, em toda página HTML, o que roda em toda
+# página (src/site/boot.js).
 filters:
   - filters/macros.lua
+  - filters/site.lua
 
 execute:
   echo: false
@@ -86,6 +106,15 @@ book:
   search:
     location: navbar
     type: overlay
+  # O cabeçalho, como no livro-base (decisão E4): o ícone que recolhe o menu, o título
+  # e a lupa da busca, que sem ele não aparecia em lugar nenhum.
+  navbar:
+    background: light
+    collapse: false
+    search: true
+  sidebar:
+    style: floating
+    collapse-level: 1
   chapters:
     - index.qmd
     #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd

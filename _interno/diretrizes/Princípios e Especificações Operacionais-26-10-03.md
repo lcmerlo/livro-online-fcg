@@ -633,7 +633,7 @@ O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os req
 | Imagem informativa | texto alternativo (`alt`) que preserve a função pedagógica | 1.1.1 |
 | Iframe | `title` descritivo | 4.1.2 |
 
-Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. Esta versão do livro não usa tema escuro (decisão do autor, 2026-11-24): as decisões sobre ele, a começar pela medição do contraste, só se tomam se e quando ele for escolhido. As cores de `_brand.yml` e `custom.scss` mudaram depois dessa medição; a nova medição está em `pendencias.md`.
+Os pares de cores da paleta atual (texto, links, bordas dos blocos e cores dos objetos matemáticos sobre o fundo claro) foram calculados em 04/10/2026 e atendem a esses valores; a menor razão encontrada é 3,99:1, na borda de "pré-requisitos" (`azul-5`, que desde 2026-11-25 se chama `blue-5`), que satisfaz o critério de 3:1 para elementos gráficos, mas não serviria para texto. Esta versão do livro não usa tema escuro (decisão do autor, 2026-11-24): as decisões sobre ele, a começar pela medição do contraste, só se tomam se e quando ele for escolhido. As cores de `_brand.yml` e os estilos (em `styles/` desde 2026-11-25; antes, `assets/css/custom.scss`) mudaram depois dessa medição: os títulos, por exemplo, passaram a `gray-5`, porque o azul de antes ficava abaixo de 4,5:1. A nova medição está em `pendencias.md`.
 
 Recursos mais sofisticados de acessibilidade dinâmica, como anúncios contextuais complexos por regiões ARIA, devem ser adicionados e testados conforme o comportamento dos componentes interativos exigir.
 
@@ -682,7 +682,7 @@ Essa organização é uma referência de funções, **não** uma instrução par
 | Função (§34) | Local atual |
 |---|---|
 | `_quarto.yml`, `_brand.yml` | idem, na raiz |
-| `styles/` | `assets/css/custom.scss` |
+| `styles/` | `styles/` (desde 2026-11-25; antes, `assets/css/custom.scss`) |
 | `scripts/` e `applets/` (código-fonte) | `applets-src/` (Vite), com bundle gerado em `assets/js/applets-dist/` |
 | `components/` | `components/` (filtros e shortcodes Lua) |
 | `assets/images/` | `assets/img/` |

@@ -1,5 +1,5 @@
 {
-  "\\vet": "\\overset{\\rightarrow}{#1}",
+  "\\vet": "\\overrightarrow{#1}",
   "\\norm": "\\lVert #1 \\rVert",
   "\\N": "\\mathbb{N}",
   "\\Z": "\\mathbb{Z}",

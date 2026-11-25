@@ -15,7 +15,7 @@ format:
      quarto preview --profile lab (_quarto-lab.yml)
      O applet de todos os exemplos está em
      applets-src/src/applets/teste-controles.js; as classes dos arranjos, em
-     assets/css/custom.scss, na parte "Applets JSXGraph e GeoGebra". -->
+     styles/old-applets.scss. -->
 
 Um applet aparece na página em **partes**: um ou mais quadros, a leitura (uma fórmula que acompanha a figura), os controles, o texto de estado e o botão "Reiniciar". O applet diz *o que* vai em cada parte. *Onde* elas ficam e *com que tamanho* é decidido no capítulo, só com as classes do livro: o capítulo não tem CSS próprio (regra fundamental 6). Esta página mostra cada arranjo do guia editorial (§6), com o resultado e, logo abaixo, o que se escreve no `.qmd`.
 
@@ -28,14 +28,14 @@ Todos os exemplos usam o mesmo applet de teste, `teste-controles`: o vetor $\vec
 Toda página com applets tem três peças, e cada uma responde a uma pergunta:
 
 - **O capítulo** diz *onde* fica cada parte, com o shortcode `{{{< applet >}}}` ou o bloco `::: {.applet}`, no `.qmd`.
-- **As classes do livro** dizem *com que tamanho* e *alinhado como*. Estão em `custom.scss`; o capítulo só escreve os nomes delas.
+- **As classes do livro** dizem *com que tamanho* e *alinhado como*. Estão em `styles/old-applets.scss`; o capítulo só escreve os nomes delas.
 - **O applet** diz *o que* se desenha e *quais* partes e controles existem. É um arquivo de `applets-src/src/applets/`.
 
 No JSX-quarto, a segunda peça é um bloco de CSS em cada página. No livro, ela fica num lugar só, e isso tem três consequências:
 
 - uma mudança de aparência vale para todos os capítulos de uma vez;
 - cada arranjo foi conferido a 320 px uma vez, e continua conferido em todo capítulo que o usa;
-- um arranjo que não está nesta página pede uma classe nova em `custom.scss`, por decisão, e não um ajuste num capítulo ([Fora dos arranjos](#fora)).
+- um arranjo que não está nesta página pede uma classe nova em `styles/old-applets.scss`, por decisão, e não um ajuste num capítulo ([Fora dos arranjos](#fora)).
 
 ### Shortcode ou bloco {#shortcode-ou-bloco}
 
@@ -61,7 +61,7 @@ O texto de estado e o botão "Reiniciar" entram sozinhos no fim do applet, no sh
 
 ### O que o livro já faz {#padrao}
 
-Sem nenhum arranjo, valem estas regras de `custom.scss` (resumidas):
+Sem nenhum arranjo, valem estas regras de `styles/old-applets.scss` (resumidas):
 
 ```scss
 .applet-jxg {                  // todo quadro
@@ -125,7 +125,7 @@ O quadro vai até 20 rem, cerca de 340 px com a letra do livro. Numa tela estrei
 
 - **`arranjo`** recebe as classes separadas por espaço, em qualquer ordem.
 - **No bloco**, as mesmas classes vão na parte do quadro, ao lado de `.quadro`. Ali, `.centro` vale só para o quadro; os controles vão para o centro com `.centro` na parte deles ([Controles no centro](#ctl-centro)).
-- **Outro tamanho**, como um quadro de 400 px, não é um arranjo: seria uma classe nova. O tamanho de **todos** os quadros está na regra `.applet-jxg` de `custom.scss`.
+- **Outro tamanho**, como um quadro de 400 px, não é um arranjo: seria uma classe nova. O tamanho de **todos** os quadros está na regra `.applet-jxg` de `styles/old-applets.scss`.
 
 ## A proporção do quadro {#proporcao}
 
@@ -474,7 +474,7 @@ O capítulo 10 do estudo do JSX-quarto mostra outros arranjos, que o livro deixo
 - **Controles arrumados dentro da linha**, como o botão empurrado para a direita, a faixa na largura toda, várias linhas ou outra ordem: fora, porque pediriam CSS no capítulo.
 - **Faixa vertical e botões de opção:** ainda não; entram quando um applet precisar (diretrizes, §4.5).
 
-Para trazer um deles: proposta ao autor e, aprovada, uma classe em `custom.scss`, uma linha no guia editorial (§6), o registro em `decisoes.md` e um exemplo nesta página.
+Para trazer um deles: proposta ao autor e, aprovada, uma classe em `styles/old-applets.scss`, uma linha no guia editorial (§6), o registro em `decisoes.md` e um exemplo nesta página.
 
 ## Armadilhas {#armadilhas}
 

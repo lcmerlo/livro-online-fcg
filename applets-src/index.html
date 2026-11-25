@@ -6,32 +6,31 @@
   <title>Applets — página de desenvolvimento</title>
   <style>
     /* Cores e medidas lidas por src/cores.js e src/tools/styles.js; no livro
-       vêm de assets/css/custom.scss. */
+       vêm de styles/tokens.scss. */
     :root {
-      --cor-texto: #1f2933;
-      --cor-superf: #fafafa;
-      --cor-superf-suave: #ffffff;
+      --color-text: #1f2933;
+      --color-board: #ffffff;
 
-      --cor-dado: #1d4ed8;
-      --cor-resultado: #b45309;
-      --cor-apoio: #64748b;
+      --color-given: #1d4ed8;
+      --color-result: #b45309;
+      --color-support: #64748b;
 
-      --applet-ponto-raio: 4;
-      --applet-anel-largura: 9;
-      --applet-anel-opacidade: 0.3;
-      --applet-anel-opacidade-destaque: 0.65;
-      --applet-captura: 10;
+      --point-radius: 4;
+      --ring-width: 9;
+      --ring-opacity: 0.3;
+      --ring-opacity-active: 0.65;
+      --capture-radius: 10;
     }
-    @media (pointer: coarse) { :root { --applet-anel-largura: 14; } }
+    @media (pointer: coarse) { :root { --ring-width: 14; } }
     .applet-arrastavel { cursor: grab; }
     .applet-arrastavel:active { cursor: grabbing; }
-    .applet-arrastavel:focus-visible { stroke-opacity: var(--applet-anel-opacidade-destaque); }
+    .applet-arrastavel:focus-visible { stroke-opacity: var(--ring-opacity-active); }
     :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
-    /* Fundo da página do livro (areia-1): só o quadro é branco, com borda. */
+    /* Fundo da página do livro (sand-1): só o quadro é branco, com borda. */
     body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; background: #fbfaf6; }
     .applet-jxg {
       box-sizing: content-box; width: calc(100% - 2px); max-width: 640px; aspect-ratio: 4 / 3;
-      border: 1px solid rgba(31, 41, 51, .12); border-radius: 4px; background: var(--cor-superf-suave);
+      border: 1px solid rgba(31, 41, 51, .12); border-radius: 4px; background: var(--color-board);
       touch-action: manipulation !important;
     }
     .bloco-applet > .math { display: none; }
@@ -44,29 +43,29 @@
       .g-col-md-6 { grid-column: auto / span 6; }
       .g-col-md-7 { grid-column: auto / span 7; }
     }
-    /* Controles (src/tools/controles.js): o essencial da seção de custom.scss. */
-    .applet-controles { display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: .5rem 1.25rem; margin: .75rem 0; accent-color: var(--cor-dado); }
+    /* Controles (src/tools/controles.js): o essencial de styles/old-applets.scss. */
+    .applet-controles { display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: .5rem 1.25rem; margin: .75rem 0; accent-color: var(--color-given); }
     .applet-controle { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; max-width: 100%; min-height: 24px; }
     .applet-campo input { width: 5rem; font: inherit; }
     .applet-faixa input[type="range"] {
-      --cursor: calc(1px * var(--applet-ponto-raio) + 1px + .5px * var(--applet-anel-largura));
-      --anel: var(--applet-anel-opacidade);
+      --cursor: calc(1px * var(--point-radius) + 1px + .5px * var(--ring-width));
+      --anel: var(--ring-opacity);
       -webkit-appearance: none; appearance: none; flex: 0 1 10rem; width: 10rem; min-width: 4rem;
       height: max(24px, 2 * var(--cursor)); margin: 0; cursor: pointer;
       background:
-        linear-gradient(var(--cor-dado), var(--cor-dado)) var(--cursor) center / calc(var(--fracao, 0) * (100% - 2 * var(--cursor))) 3px no-repeat,
-        linear-gradient(var(--cor-apoio), var(--cor-apoio)) center / calc(100% - 2 * var(--cursor)) 1px no-repeat;
+        linear-gradient(var(--color-given), var(--color-given)) var(--cursor) center / calc(var(--fracao, 0) * (100% - 2 * var(--cursor))) 3px no-repeat,
+        linear-gradient(var(--color-support), var(--color-support)) center / calc(100% - 2 * var(--cursor)) 1px no-repeat;
     }
-    .applet-faixa input[type="range"]:is(:hover, :active, :focus-visible) { --anel: var(--applet-anel-opacidade-destaque); }
+    .applet-faixa input[type="range"]:is(:hover, :active, :focus-visible) { --anel: var(--ring-opacity-active); }
     .applet-faixa input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none; box-sizing: border-box; width: calc(2 * var(--cursor)); height: calc(2 * var(--cursor)); border-radius: 50%;
-      border: calc(.5px * var(--applet-anel-largura)) solid color-mix(in srgb, var(--cor-dado) calc(100% * var(--anel)), transparent);
-      background: padding-box var(--cor-dado);
+      border: calc(.5px * var(--ring-width)) solid color-mix(in srgb, var(--color-given) calc(100% * var(--anel)), transparent);
+      background: padding-box var(--color-given);
     }
     .applet-faixa input[type="range"]::-moz-range-thumb {
       box-sizing: border-box; width: calc(2 * var(--cursor)); height: calc(2 * var(--cursor)); border-radius: 50%;
-      border: calc(.5px * var(--applet-anel-largura)) solid color-mix(in srgb, var(--cor-dado) calc(100% * var(--anel)), transparent);
-      background: padding-box var(--cor-dado);
+      border: calc(.5px * var(--ring-width)) solid color-mix(in srgb, var(--color-given) calc(100% * var(--anel)), transparent);
+      background: padding-box var(--color-given);
     }
     .applet-faixa input[type="range"]::-moz-range-track { background: none; }
     .applet-valor { flex: none; min-width: 4.5rem; font-variant-numeric: tabular-nums; }

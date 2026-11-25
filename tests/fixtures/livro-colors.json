@@ -1,0 +1,415 @@
+{
+"source": "livro-quarto/_brand.yml, 2026-11-08",
+"colors": [
+{
+"oldName": "areia-0",
+"name": "sand-0",
+"value": "#FCFBF9"
+},
+{
+"oldName": "areia-1",
+"name": "sand-1",
+"value": "#FBFAF6"
+},
+{
+"oldName": "areia-2",
+"name": "sand-2",
+"value": "#F7F4ED"
+},
+{
+"oldName": "areia-3",
+"name": "sand-3",
+"value": "#EFE7D8"
+},
+{
+"oldName": "branco-1",
+"name": "white-1",
+"value": "#FFFFFF"
+},
+{
+"oldName": "branco-2",
+"name": "white-2",
+"value": "#FAFAFA"
+},
+{
+"oldName": "branco-3",
+"name": "white-3",
+"value": "#F3F4F6"
+},
+{
+"oldName": "grafite-1",
+"name": "graphite-1",
+"value": "#334155"
+},
+{
+"oldName": "grafite-2",
+"name": "graphite-2",
+"value": "#1F2933"
+},
+{
+"oldName": "grafite-3",
+"name": "graphite-3",
+"value": "#111827"
+},
+{
+"oldName": "cinza-2",
+"name": "gray-2",
+"value": "#5B677A"
+},
+{
+"oldName": "cinza-5",
+"name": "gray-5",
+"value": "#64748B"
+},
+{
+"oldName": "cinza-6",
+"name": "gray-6",
+"value": "#475569"
+},
+{
+"oldName": "azul-1",
+"name": "blue-1",
+"value": "#3B79A8"
+},
+{
+"oldName": "azul-2",
+"name": "blue-2",
+"value": "#1E5B8A"
+},
+{
+"oldName": "azul-3",
+"name": "blue-3",
+"value": "#153F60"
+},
+{
+"oldName": "azul-5",
+"name": "blue-5",
+"value": "#5B7C99"
+},
+{
+"oldName": "azul-8",
+"name": "blue-8",
+"value": "#1D4ED8"
+},
+{
+"oldName": "verde-2",
+"name": "green-2",
+"value": "#276749"
+},
+{
+"oldName": "ambar-2",
+"name": "amber-2",
+"value": "#946200"
+},
+{
+"oldName": "ambar-3",
+"name": "amber-3",
+"value": "#6B4700"
+},
+{
+"oldName": "laranja-2",
+"name": "orange-2",
+"value": "#B45309"
+},
+{
+"oldName": "vermelho-6",
+"name": "red-6",
+"value": "#991B1B"
+},
+{
+"oldName": "red-ds",
+"name": "red-ds",
+"value": "#C74440"
+},
+{
+"oldName": "blue-ds",
+"name": "blue-ds",
+"value": "#2D70B3"
+},
+{
+"oldName": "green-ds",
+"name": "green-ds",
+"value": "#388C46"
+},
+{
+"oldName": "purple-ds",
+"name": "purple-ds",
+"value": "#6042A6"
+},
+{
+"oldName": "orange-ds",
+"name": "orange-ds",
+"value": "#FA7E19"
+},
+{
+"oldName": "black-ds",
+"name": "black-ds",
+"value": "#000000"
+},
+{
+"oldName": "orange-oi",
+"name": "orange-oi",
+"value": "#E69F00"
+},
+{
+"oldName": "cyan-oi",
+"name": "cyan-oi",
+"value": "#56B4E9"
+},
+{
+"oldName": "teal-oi",
+"name": "teal-oi",
+"value": "#009E73"
+},
+{
+"oldName": "yellow-oi",
+"name": "yellow-oi",
+"value": "#F0E442"
+},
+{
+"oldName": "blue-oi",
+"name": "blue-oi",
+"value": "#0072B2"
+},
+{
+"oldName": "red-oi",
+"name": "red-oi",
+"value": "#D55E00"
+},
+{
+"oldName": "magenta-oi",
+"name": "magenta-oi",
+"value": "#CC79A7"
+},
+{
+"oldName": "black-oi",
+"name": "black-oi",
+"value": "#000000"
+},
+{
+"oldName": "blue-tb",
+"name": "blue-tb",
+"value": "#4477AA"
+},
+{
+"oldName": "cyan-tb",
+"name": "cyan-tb",
+"value": "#66CCEE"
+},
+{
+"oldName": "green-tb",
+"name": "green-tb",
+"value": "#228833"
+},
+{
+"oldName": "yellow-tb",
+"name": "yellow-tb",
+"value": "#CCBB44"
+},
+{
+"oldName": "red-tb",
+"name": "red-tb",
+"value": "#EE6677"
+},
+{
+"oldName": "purple-tb",
+"name": "purple-tb",
+"value": "#AA3377"
+},
+{
+"oldName": "grey-tb",
+"name": "grey-tb",
+"value": "#BBBBBB"
+},
+{
+"oldName": "blue-tm",
+"name": "blue-tm",
+"value": "#332288"
+},
+{
+"oldName": "cyan-tm",
+"name": "cyan-tm",
+"value": "#88CCEE"
+},
+{
+"oldName": "teal-tm",
+"name": "teal-tm",
+"value": "#44AA99"
+},
+{
+"oldName": "green-tm",
+"name": "green-tm",
+"value": "#117733"
+},
+{
+"oldName": "yellow-dark-tm",
+"name": "yellow-dark-tm",
+"value": "#999933"
+},
+{
+"oldName": "yellow-tm",
+"name": "yellow-tm",
+"value": "#DDCC77"
+},
+{
+"oldName": "pink-tm",
+"name": "pink-tm",
+"value": "#CC6677"
+},
+{
+"oldName": "red-tm",
+"name": "red-tm",
+"value": "#882255"
+},
+{
+"oldName": "magenta-tm",
+"name": "magenta-tm",
+"value": "#AA4499"
+},
+{
+"oldName": "grey-tm",
+"name": "grey-tm",
+"value": "#DDDDDD"
+},
+{
+"oldName": "blue-td",
+"name": "blue-td",
+"value": "#222255"
+},
+{
+"oldName": "cyan-td",
+"name": "cyan-td",
+"value": "#225555"
+},
+{
+"oldName": "green-td",
+"name": "green-td",
+"value": "#225522"
+},
+{
+"oldName": "yellow-td",
+"name": "yellow-td",
+"value": "#666633"
+},
+{
+"oldName": "red-td",
+"name": "red-td",
+"value": "#663333"
+},
+{
+"oldName": "grey-td",
+"name": "grey-td",
+"value": "#555555"
+},
+{
+"oldName": "purple-cb",
+"name": "purple-cb",
+"value": "#6929C4"
+},
+{
+"oldName": "purple-light-cb",
+"name": "purple-light-cb",
+"value": "#A56EFF"
+},
+{
+"oldName": "cyan-cb",
+"name": "cyan-cb",
+"value": "#1192E8"
+},
+{
+"oldName": "teal-cb",
+"name": "teal-cb",
+"value": "#005D5D"
+},
+{
+"oldName": "teal-light-cb",
+"name": "teal-light-cb",
+"value": "#009D9A"
+},
+{
+"oldName": "magenta-cb",
+"name": "magenta-cb",
+"value": "#9F1853"
+},
+{
+"oldName": "pink-cb",
+"name": "pink-cb",
+"value": "#EE538B"
+},
+{
+"oldName": "red-cb",
+"name": "red-cb",
+"value": "#FA4D56"
+},
+{
+"oldName": "red-dark-cb",
+"name": "red-dark-cb",
+"value": "#570408"
+},
+{
+"oldName": "green-cb",
+"name": "green-cb",
+"value": "#198038"
+},
+{
+"oldName": "blue-cb",
+"name": "blue-cb",
+"value": "#002D9C"
+},
+{
+"oldName": "blue-dark-cb",
+"name": "blue-dark-cb",
+"value": "#012749"
+},
+{
+"oldName": "yellow-cb",
+"name": "yellow-cb",
+"value": "#B28600"
+},
+{
+"oldName": "orange-cb",
+"name": "orange-cb",
+"value": "#8A3800"
+},
+{
+"oldName": "teal-d2",
+"name": "teal-d2",
+"value": "#1B9E77"
+},
+{
+"oldName": "orange-d2",
+"name": "orange-d2",
+"value": "#D95F02"
+},
+{
+"oldName": "purple-d2",
+"name": "purple-d2",
+"value": "#7570B3"
+},
+{
+"oldName": "magenta-d2",
+"name": "magenta-d2",
+"value": "#E7298A"
+},
+{
+"oldName": "green-d2",
+"name": "green-d2",
+"value": "#66A61E"
+},
+{
+"oldName": "yellow-d2",
+"name": "yellow-d2",
+"value": "#E6AB02"
+},
+{
+"oldName": "brown-d2",
+"name": "brown-d2",
+"value": "#A6761D"
+},
+{
+"oldName": "grey-d2",
+"name": "grey-d2",
+"value": "#666666"
+}
+]
+}

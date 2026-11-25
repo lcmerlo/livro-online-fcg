@@ -133,8 +133,8 @@ Mudanças que não criam nem alteram uma regra (trocar um valor, corrigir um err
    - diretrizes (`_interno/diretrizes/`), `README.md`, `AGENTS.md`, `.github/copilot-instructions.md`;
    - modelos de capítulo e páginas de teste (`laboratorio/`);
    - capítulos revisados e `index.qmd`; nos protótipos, só o necessário para o site funcionar (na troca do MathJax pelo KaTeX, por exemplo, as fórmulas que deixaram de ser desenhadas);
-   - componentes (`components/`), estilos (`_brand.yml`, `assets/css/custom.scss`) e applets (`applets-src/`);
-   - verificações (`tests/verificar-site.mjs`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
+   - componentes (`components/`), estilos (`_brand.yml`, `styles/`, `src/site/`) e applets (`applets-src/`);
+   - verificações (`tests/verificar-site.mjs`, `tests/unit/`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
 3. Registre em `decisoes.md` o que foi ajustado.
 
 Quando o ajuste não cabe numa mudança só (reescrever dezenas de applets, por exemplo), a decisão diz isso e o trabalho restante vai para `pendencias.md`, com a lista do que falta. Assim a diferença fica registrada, e não escondida. O trabalho fica barato quando cada fato está escrito num só lugar (§1.1).
@@ -265,7 +265,7 @@ Onde o livro faz diferente, e por quê:
 
 ## 6. Aparência
 
-- **Cada valor definido uma vez** (regra fundamental 6): as cores numa paleta com nomes, e os papéis de cor como variáveis do livro. Applets e capítulos usam esses nomes, nunca cores escritas à mão (§24, §35). Quando um valor aparece em dois arquivos, um prevalece e o outro engana: escolhe-se um e apaga-se o outro (caso pendente: o tamanho da fonte, `pendencias.md`, §2).
+- **Cada valor definido uma vez** (regra fundamental 6): as cores numa paleta com nomes, e os papéis de cor como variáveis do livro. Applets e capítulos usam esses nomes, nunca cores escritas à mão (§24, §35). Quando um valor aparece em dois arquivos, um prevalece e o outro engana: escolhe-se um e apaga-se o outro (como o tamanho e a entrelinha do texto, que desde 2026-11-25 estão só em `_brand.yml`).
 - **Cores do livro e cores de teste.** A paleta tem as cores do livro, as únicas que os papéis usam, e as cores de teste, que são as paletas comparadas no JSX-quarto. As de teste servem aos applets de teste e não chegam aos capítulos.
 - **Novas cores no livro ou outro modelo de cor** entram por decisão, depois de medir o contraste e conferir com simulação de daltonismo (§24, §32). Uma cor de teste passa a ser do livro só por essa decisão.
 

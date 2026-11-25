@@ -1,0 +1,475 @@
+/*-- scss:rules --*/
+
+// A página: o que não é um bloco nem um applet. As larguras estão em `grid` (_quarto.yml).
+
+// O Quarto carrega a fonte inteira de ícones (176 KB) para os poucos ícones que o livro
+// mostra. Esta, pequena, vai na frente; um ícone que não esteja nela ainda vem da fonte
+// inteira, sem erro e sem aviso, e o ganho some. A lista dos ícones e o modo de refazê-la
+// estão em vendor/VERSIONS.md.
+@font-face {
+  font-family: 'bootstrap-icons';
+  font-display: block;
+  src: url('vendor/icons/bootstrap-icons-subset.woff2') format('woff2');
+}
+
+// Foco bem visível, só para quem navega pelo teclado (e não a cada clique do mouse).
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+// Quem pede ao sistema menos movimento: animações e transições quase instantâneas.
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// O Quarto clareia os títulos menores (opacity: 0.9), e a cor deles cairia abaixo de
+// 4.5:1 sobre a página.
+h3,
+h4,
+h5,
+h6 {
+  opacity: 1;
+}
+
+// ---- Fórmulas ----
+
+// Uma fórmula em destaque mais larga que a coluna (no celular, a 320 px) rola dentro
+// dela, em vez de ser cortada na borda. O KaTeX não quebra uma fórmula em destaque em
+// linhas. src/site/scrollers.js a põe ao alcance do Tab.
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// A seta de \vet{AB} (math/macros.json: \overrightarrow) e das outras setas que o
+// KaTeX estica sobre uma expressão (decisão E6 do livro-base). A do KaTeX tem a ponta
+// grande e encosta nas letras; aqui ela fica um pouco menor, um pouco mais curta que a
+// expressão e centrada nela, perto das letras sem tocá-las. O desenho é o mesmo, em
+// escala: o contorno (--arrow-bold) devolve ao traço a espessura que a escala tira.
+:root {
+  --arrow-scale: 0.8;
+  --arrow-lift: 0.04em;
+  --arrow-inset: 0.15em;
+  --arrow-bold: 18;
+}
+
+// A seta do KaTeX sem esses ajustes, para comparar (laboratorio/formulas.qmd).
+.arrow-default {
+  --arrow-scale: 1;
+  --arrow-lift: 0em;
+  --arrow-inset: 0em;
+  --arrow-bold: 0;
+}
+
+.katex .katex-accent .svg-align {
+  > .hide-tail,
+  > .katex-stretchy:has(> .halfarrow-left),
+  .halfarrow-left,
+  .halfarrow-right {
+    height: calc(0.522em * var(--arrow-scale)) !important;
+  }
+
+  > .hide-tail,
+  > .katex-stretchy:has(> .halfarrow-left) {
+    width: calc(100% - 2 * var(--arrow-inset));
+    min-width: calc(0.888em * var(--arrow-scale)) !important;
+    margin-bottom: var(--arrow-lift);
+    margin-left: var(--arrow-inset);
+
+    path {
+      stroke: currentColor;
+      stroke-width: var(--arrow-bold);
+    }
+  }
+}
+
+// Uma tabela mais larga que a coluna também rola, em vez de alargar a página a 320 px.
+main.content section > table,
+main.content > table,
+.table-responsive {
+  display: block;
+  overflow-x: auto;
+}
+
+// Um trecho de código no meio do texto quebra a linha quando não cabe, também numa
+// lista e no termo de uma lista de definições. O Quarto só faz isso em parágrafos e
+// definições (dd); num item de lista ou num termo (dt), um nome de arquivo ou uma
+// chamada longa alargaria a página a 320 px. Num título também.
+li code:not(.sourceCode),
+dt code:not(.sourceCode),
+:is(h1, h2, h3, h4, h5, h6) code:not(.sourceCode) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+// O ícone de link que o Quarto põe no fim de cada título vem colado à última palavra,
+// sem espaço, e não podia ir para a linha de baixo: a 320 px, ele passava da borda.
+// Como inline-block, ele desce sozinho quando não cabe.
+.anchorjs-link {
+  display: inline-block;
+}
+
+// Figuras com legenda: ::: {.fig-leg .w30 #fig-...}. A classe .wNN dá a largura da
+// imagem (padrão: 70%); a legenda nunca fica mais estreita que metade da coluna.
+.fig-leg {
+  --figure-width: 70%;
+
+  @each $width in 30, 40, 50, 60, 70, 80 {
+    &.w#{$width} {
+      --figure-width: #{$width}#{'%'};
+    }
+  }
+
+  img {
+    display: block;
+    width: var(--figure-width);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  figcaption,
+  .quarto-float-caption {
+    width: max(var(--figure-width), 50%);
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+}
+
+// ---- Cabeçalho ----
+
+// Da esquerda para a direita: o ícone que recolhe o menu (só em janela larga, onde o
+// menu é uma coluna), o título e a lupa da busca, logo depois do título (decisão E4 do
+// livro-base). Cada ícone ocupa um quadrado do mesmo tamanho.
+$header-icon: 2.25rem;
+$header-gap: 0.6rem;
+
+#quarto-header .navbar-container {
+  justify-content: flex-start;
+  gap: $header-gap;
+  flex-wrap: nowrap;
+}
+
+// Sem links à direita no cabeçalho, o Quarto empurra o ícone do menu para a direita
+// (.tools-end, com !important).
+#quarto-header .quarto-navbar-tools {
+  order: -1;
+  margin: 0 !important;
+}
+
+#quarto-header .navbar-brand-container {
+  order: 0;
+  // O título fica um pouco mais longe da lupa que a lupa do quadrado seguinte: os
+  // desenhos, menores que os quadrados, é que precisam ficar à mesma distância.
+  margin: 0 0.65rem 0 0 !important;
+}
+
+#quarto-header .navbar-brand {
+  margin-right: 0;
+}
+
+#quarto-header #quarto-search {
+  order: 1;
+  margin: 0 !important;
+}
+
+#quarto-header #quarto-search .aa-DetachedSearchButton,
+#quarto-header .quarto-reader-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $header-icon;
+  height: $header-icon;
+  margin: 0;
+  padding: 0 !important;
+  border-radius: 0.375rem;
+}
+
+#quarto-header #quarto-search .aa-DetachedSearchButtonIcon {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+// O ícone do menu é o mesmo da barra que abre o menu numa janela estreita. Marcado
+// (menu recolhido), ele ganha um fundo, como o Quarto faz.
+#quarto-header .quarto-reader-toggle {
+  color: var(--color-text-soft);
+
+  .quarto-reader-toggle-btn {
+    margin: 0;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .bi::before {
+    content: '\f461';
+    width: auto;
+    height: auto;
+    background-image: none !important;
+    font-family: 'bootstrap-icons';
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  &.reader .bi::before {
+    color: #fff;
+  }
+}
+
+// Num celular não cabe o título do livro; fica a lupa, à direita.
+@media (max-width: 575.98px) {
+  #quarto-header .navbar-brand-container,
+  #quarto-header .navbar-title {
+    display: none;
+  }
+
+  #quarto-header .navbar {
+    padding-inline: 0.5rem;
+  }
+
+  #quarto-header .navbar-container {
+    justify-content: flex-end;
+    min-width: 0;
+    padding-inline: 0;
+  }
+}
+
+// O cabeçalho se esconde quando a página rola para baixo; ele precisa voltar para
+// quem chega a ele pelo teclado, ou o foco ficaria fora da vista (WCAG 2.4.11).
+#quarto-header:focus-within {
+  transform: none !important;
+}
+
+// ---- Navegação ----
+
+// Os links pequenos do caminho no alto da página também precisam de um alvo de 24 px
+// (WCAG 2.5.8).
+.quarto-page-breadcrumbs .breadcrumb-item a {
+  display: inline-block;
+  min-height: 24px;
+}
+
+// Anterior e próximo: num celular, com um título longo, um em cima do outro.
+.page-navigation {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .nav-page {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+// Os links de página do Quarto, com contraste suficiente sobre o fundo de areia. O
+// último link do caminho no alto da página tem uma regra própria do Quarto
+// (.quarto-title-breadcrumbs .breadcrumb li:last-of-type a, #6c757d, 4.48:1), que só
+// aparecia num capítulo sem número, em que o texto fica direto no link, sem o
+// .chapter-title; por isso o :last-of-type aqui também.
+.nav-page .nav-page-text,
+.nav-page .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item,
+.quarto-title-breadcrumbs .breadcrumb-item a,
+.quarto-title-breadcrumbs .breadcrumb .breadcrumb-item:last-of-type a,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-number,
+.sidebar-navigation .chapter-title,
+.sidebar-navigation .menu-text {
+  color: var(--color-text-soft);
+}
+
+.sidebar-navigation .sidebar-item-container .active .menu-text,
+.sidebar-navigation .active .menu-text {
+  color: var(--color-accent-strong);
+  font-weight: 700;
+}
+
+// ---- A grade da página (decisão E4 do livro-base, de 2026-11-12) ----
+
+// Da esquerda para a direita: uma margem fixa, o menu, o texto e a coluna da direita,
+// da parte larga dos applets largos (.column-page-right); não há notas de margem
+// (.column-margin). A coluna "Neste capítulo" do Quarto saiu: as seções estão no menu.
+// O menu fica preso à esquerda; numa janela mais larga, o espaço a mais fica depois da
+// coluna da direita, e nada muda de lugar. A grade é a mesma em todas as páginas,
+// tenham ou não conteúdo de margem (o Quarto daria outra às que têm, a slimcontent),
+// para o texto não mudar de lugar de um capítulo para outro. Os nomes das linhas são
+// os do Quarto.
+//
+// Larguras: o menu tem $grid-sidebar-width; o texto, $grid-body-width; a coluna da
+// direita, $grid-margin-width (_quarto.yml). Entre o menu e o texto, $text-gap.
+$text-gap: 2.5rem;
+$margin-gap: 1.5rem;
+// A partir desta largura de janela cabe a coluna da direita inteira, com o texto
+// também inteiro (1224 px); abaixo dela, a coluna da direita não aparece. A conta: as
+// larguras de _quarto.yml e os espaços em rem, a 16 px cada.
+$wide-page: $grid-sidebar-width + $grid-body-width + $grid-margin-width + (2.5 - 3 + 1.5 + 3) * 16px;
+
+@mixin page-grid($margin-column) {
+  grid-template-columns:
+    [screen-start] 1.5rem
+    [screen-start-inset page-start] #{0.2 * $grid-sidebar-width}
+    [page-start-inset] #{0.6 * $grid-sidebar-width}
+    [body-start-outset] #{0.2 * $grid-sidebar-width}
+    [body-start] $text-gap
+    [body-content-start] minmax(500px, calc(#{$grid-body-width} - 3rem))
+    [body-content-end] $margin-gap
+    [body-end body-end-outset] $margin-column
+    [page-end-inset page-end] 1fr
+    [screen-end-inset] 1.5rem
+    [screen-end];
+}
+
+// O texto no meio da janela, sem o menu e sem a coluna da direita: o tablet, e o
+// menu recolhido em qualquer largura.
+@mixin centered-grid {
+  grid-template-columns:
+    [screen-start] 1.5rem
+    [screen-start-inset] 5fr
+    [page-start page-start-inset body-start-outset body-start] 1rem
+    [body-content-start] minmax(500px, calc(#{$grid-body-width} - 3rem))
+    [body-content-end] 1.5rem
+    [body-end body-end-outset] 5fr
+    [page-end-inset page-end screen-end-inset] 1.5rem
+    [screen-end];
+}
+
+// Os três nomes de página que o Quarto usa num livro com menu flutuante.
+$page-grids: 'body.floating .page-columns, body.floating.fullcontent .page-columns, body.floating.slimcontent .page-columns';
+
+@media (min-width: 992px) {
+  #{$page-grids} {
+    @include page-grid(0);
+  }
+}
+
+@media (min-width: $wide-page) {
+  #{$page-grids} {
+    @include page-grid($grid-margin-width);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #{$page-grids} {
+    @include centered-grid;
+  }
+}
+
+// ---- Menu recolhido ----
+
+// O botão de "modo de leitura" do Quarto recolhe o menu. Aqui ele recolhe também as
+// colunas: o texto vai para o meio, como numa janela estreita. Do menu, fica só o
+// ícone, no cabeçalho, para trazê-lo de volta; o Quarto poria no lugar do menu uma
+// lista com o nome do capítulo. src/site/apply-prefs.html marca data-reader no <html>
+// antes de a página aparecer, e src/site/boot.js, a cada toque no botão.
+:root[data-reader='on'] {
+  @media (min-width: 992px) {
+    #{$page-grids} {
+      @include centered-grid;
+    }
+
+    #quarto-sidebar,
+    #quarto-sidebarnav-toggle {
+      display: none !important;
+    }
+  }
+}
+
+// O ícone do menu só existe onde o menu é uma coluna; numa janela estreita, o menu se
+// abre pela barra de baixo do cabeçalho, como o Quarto faz.
+@media (max-width: 991.98px) {
+  #quarto-header .quarto-navbar-tools {
+    display: none;
+  }
+}
+
+// ---- Menu lateral: as seções de cada capítulo (tools/sidebar-sections.ts) ----
+
+// De uma linha do menu à seguinte, pouco mais de 24 px: as setas de dois capítulos
+// vizinhos não se sobrepõem, e cada uma é um alvo inteiro (WCAG 2.5.8).
+.sidebar-navigation .sidebar-item {
+  margin-top: 0.45rem;
+}
+
+.sidebar-item.has-sections {
+  position: relative;
+
+  // Lugar para a seta, ao lado do título do capítulo.
+  > .sidebar-item-container {
+    padding-right: 1.75rem;
+  }
+}
+
+.sidebar-sections {
+  // O Quarto dá uma margem a todo <details>.
+  margin: 0;
+
+  // A seta fica na linha do título, à direita, como a das partes do livro.
+  > summary {
+    position: absolute;
+    top: -0.225rem;
+    right: -0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.45rem;
+    list-style: none;
+    color: var(--color-text-soft);
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: '\f285';
+      font-family: 'bootstrap-icons';
+      font-size: 0.7rem;
+      transition: transform 200ms ease;
+    }
+  }
+
+  &[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  // O espaço em volta da lista só existe com ela aberta: fechada, não ocupa nada.
+  &[open] {
+    padding: 0.4rem 0 0.6rem 0.3rem;
+  }
+
+  > ul {
+    margin: 0;
+    border-left: 1px solid var(--color-border);
+  }
+
+  li {
+    margin: 0;
+  }
+
+  // Pelo menos 24 px de altura (WCAG 2.5.8).
+  a {
+    display: block;
+    margin-left: -1px;
+    padding: 0.22rem 0 0.22rem 0.7rem;
+    border-left: 2px solid transparent;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--color-text-soft);
+
+    &:hover {
+      color: var(--color-accent-strong);
+    }
+
+    // A seção que está na tela (src/site/boot.js).
+    &.active {
+      border-left-color: var(--color-accent);
+      color: var(--color-accent-strong);
+    }
+  }
+}

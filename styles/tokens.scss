@@ -1,0 +1,52 @@
+/*-- scss:defaults --*/
+// As linhas "scss:defaults" e "scss:rules" são marcadores do Quarto: as variáveis Sass
+// (do Bootstrap) vêm antes do tema; as regras, no fim da folha. A ordem das folhas está
+// em _quarto.yml: cosmo, brand, e depois as daqui.
+
+// O Cosmo pediria a fonte dele ao Google em toda página, sem que nenhum texto a use. As
+// fontes do livro vêm de _brand.yml.
+$web-font-path: false;
+
+/*-- scss:rules --*/
+
+// As cores pelo que significam. O site e os applets leem estes nomes, e uma mudança
+// aqui chega aos dois; os valores estão em _brand.yml. A interpolação #{…} é necessária
+// porque o Sass não avalia expressões dentro de variáveis CSS.
+:root {
+  --color-text: #{$brand-graphite-2};
+  --color-text-strong: #{$brand-graphite-3};
+  --color-text-soft: #{$brand-gray-2};
+  --color-accent: #{$brand-blue-2};
+  --color-accent-strong: #{$brand-blue-3};
+  --color-surface: #{$brand-white-3};
+  --color-border: #{rgba($brand-graphite-2, 0.12)};
+
+  // Applets: o que o leitor controla ou o enunciado dá, o que se calcula a partir
+  // disso, e as construções que ajudam a ler; o fundo do quadro. Dois objetos do mesmo
+  // papel se distinguem pelo nome; a forma de um ponto diz se ele se move. Lidas por
+  // applets-src/src/cores.js.
+  --color-given: #{$brand-blue-8};
+  --color-result: #{$brand-orange-2};
+  --color-support: #{$brand-gray-5};
+  --color-board: #{$brand-white-1};
+
+  // Os pontos dos applets, em px, lidos por applets-src/src/tools/styles.js: o raio do
+  // disco, igual no ponto fixo e no que se arrasta; o anel do que se arrasta (metade
+  // fica fora do disco), com a opacidade em repouso e sob o cursor ou com o foco do
+  // teclado; o raio mínimo de captura (o dedo usa 2.5 vezes).
+  --point-radius: 4;
+  --ring-width: 9;
+  --ring-opacity: 0.3;
+  --ring-opacity-active: 0.65;
+  --capture-radius: 10;
+
+  // O espaço entre um bloco e o seguinte.
+  --space-block: 0.75rem;
+}
+
+// O dedo esconde o que toca: um anel mais largo.
+@media (pointer: coarse) {
+  :root {
+    --ring-width: 14;
+  }
+}

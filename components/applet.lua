@@ -13,7 +13,7 @@ return {
     local nome = comum.escapar(comum.texto(args[1]))
     local id = comum.escapar(comum.texto(kwargs["id"]))
     local rotulo = comum.escapar(comum.texto(kwargs["rotulo"]))
-    -- Classes de arranjo do quadro (custom.scss): estreito, centro.
+    -- Classes de arranjo do quadro (styles/old-applets.scss): estreito, centro.
     local arranjo = comum.escapar(comum.texto(kwargs["arranjo"]))
     local classes = arranjo == "" and "applet-jxg" or ("applet-jxg " .. arranjo)
 

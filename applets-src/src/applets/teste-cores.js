@@ -31,9 +31,9 @@ function modelos() {
     // que fecham o paralelogramo são apoio.
     livro: { u: CORES.dado, v: CORES.dado, soma: CORES.resultado, apoio: CORES.apoio },
     // Neutro com um destaque: só o resultado tem cor.
-    destaque: { u: paleta("grafite-2"), v: paleta("grafite-2"), soma: paleta("laranja-2"), apoio: paleta("cinza-5") },
+    destaque: { u: paleta("graphite-2"), v: paleta("graphite-2"), soma: paleta("orange-2"), apoio: paleta("gray-5") },
     // Uma cor por objeto, com a Okabe–Ito, na ordem usada no JSX-quarto.
-    okabe: { u: paleta("blue-oi"), v: paleta("red-oi"), soma: paleta("teal-oi"), apoio: paleta("cinza-5") },
+    okabe: { u: paleta("blue-oi"), v: paleta("red-oi"), soma: paleta("teal-oi"), apoio: paleta("gray-5") },
   };
 }
 

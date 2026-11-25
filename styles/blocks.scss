@@ -125,6 +125,15 @@ p:has(> .bloco-rotulo) {
   color: var(--color-text-soft);
 }
 
+// O Quarto clareia o título, que cairia abaixo de 4.5:1 sobre o fundo da página.
+.callout.callout-style-simple.callout-titled > .callout-header {
+  opacity: 1;
+}
+
+.callout.callout-style-simple .callout-title-container {
+  color: var(--color-text-soft);
+}
+
 // ---- Dicas e resoluções: abas recolhíveis (Dica, Resolução) ----
 
 // Alinhadas ao rótulo do exm/exr/exrr ou do checkpoint, dentro do qual ficam. O elemento

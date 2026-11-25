@@ -22,6 +22,15 @@ main.content {
   }
 }
 
+// O Quarto clareia os títulos menores (opacity: 0.9), e a cor deles cairia abaixo de
+// 4.5:1 sobre a página.
+h3,
+h4,
+h5,
+h6 {
+  opacity: 1;
+}
+
 /* Ícones do Quarto: o Quarto carrega a fonte inteira de ícones do Bootstrap
    (176 KB) para os poucos que o livro mostra. Este recorte, de 1 KB, vem
    depois da fonte inteira e é tentado primeiro; um ícone que não esteja nele
@@ -66,6 +75,38 @@ main.content {
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+// ---- Navegação ----
+
+// Os links pequenos do caminho no alto da página também precisam de um alvo de 24 px
+// (WCAG 2.5.8).
+.quarto-page-breadcrumbs .breadcrumb-item a {
+  display: inline-block;
+  min-height: 24px;
+}
+
+// Os links de página do Quarto, com contraste suficiente sobre o fundo de areia. O
+// último link do caminho no alto da página tem uma regra própria do Quarto
+// (.quarto-title-breadcrumbs .breadcrumb li:last-of-type a, #6c757d, 4.48:1), que só
+// aparecia num capítulo sem número, em que o texto fica direto no link, sem o
+// .chapter-title; por isso o :last-of-type aqui também.
+.nav-page .nav-page-text,
+.nav-page .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item,
+.quarto-title-breadcrumbs .breadcrumb-item a,
+.quarto-title-breadcrumbs .breadcrumb .breadcrumb-item:last-of-type a,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-number,
+.sidebar-navigation .chapter-title,
+.sidebar-navigation .menu-text {
+  color: var(--color-text-soft);
+}
+
+.sidebar-navigation .sidebar-item-container .active .menu-text,
+.sidebar-navigation .active .menu-text {
+  color: var(--color-accent-strong);
+  font-weight: 700;
 }
 
 // Figuras com legenda: ::: {.fig-leg .w30 #fig-...}. A classe .wNN dá a largura da

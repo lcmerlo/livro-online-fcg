@@ -179,7 +179,10 @@ typography:
   headings:
     family: Source Serif 4
     weight: 600
-    color: blue-5  # graphite-2
+    # Era blue-5: 4.2:1 sobre a página, abaixo dos 4.5:1 que um título menor que 24 px
+    # precisa. gray-5 é a cor mais próxima da paleta acima disso (decisão D8 do
+    # livro-base, de 2026-11-10; aqui desde 2026-11-25).
+    color: gray-5
     line-height: 1.25
 
   link:

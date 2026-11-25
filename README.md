@@ -39,16 +39,18 @@ _quarto.yml 	- Configuração principal do livro
 _quarto-lab.yml - Perfil lab: acrescenta ao livro a parte Laboratório (as páginas de laboratorio/), gerada em docs-lab/ e fora do site publicado
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
-assets/css/custom.scss - Estilos próprios
-tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
+styles/ 		- Estilos próprios: as cores pelo que significam (tokens.scss), a página (page.scss), os blocos (blocks.scss) e o sistema antigo de applets (old-applets.scss)
+src/site/ 		- O que roda em toda página (boot.js, posto por filters/site.lua): a seção atual no menu e o ícone que recolhe o menu
+tests/ 			- Verificação automática (tests/verificar-site.mjs) e testes de unidade (tests/unit/), executados no workflow
 math/macros.json 	- Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`), expandidas em toda fórmula por filters/macros.lua
 tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador, a não ser as que têm applet
+tools/sidebar-sections.ts - Depois do render, põe as seções de cada capítulo no menu lateral (não há coluna "Neste capítulo")
 components/ - Filtros Lua (`blocos.lua`, `applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
 assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
-vendor/ 		- KaTeX e fontes, copiados para que o site não dependa de outro servidor (versões e licenças em vendor/VERSIONS.md)
+vendor/ 		- KaTeX, fontes e um recorte da fonte de ícones, copiados para que o site não dependa de outro servidor (versões e licenças em vendor/VERSIONS.md)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
 docs-lab/ 		- Site do perfil lab, com o laboratório (não versionado nem publicado)
 _interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, referências)
@@ -63,6 +65,7 @@ quarto render       - gera o site HTML completo em docs/ (o projeto não tem sa�
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
+node --test tests/unit/ - testes de unidade (hoje, que nenhuma cor da paleta se perdeu)
 quarto render --profile lab --to html e node tests/verificar-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (o que o verificador acha nas páginas de teste é listado, sem reprovar)
 
 
@@ -95,7 +98,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 
 ### Checklist antes de commit
 - [ ] O projeto renderiza sem erro.
-- [ ] `node tests/verificar-site.mjs` não acusa erros.
+- [ ] `node tests/verificar-site.mjs` não acusa erros, e `node --test tests/unit/` passa.
 - [ ] O laboratório renderiza sem erro (`quarto render --profile lab --to html`).
 - [ ] O capítulo novo está listado em `_quarto.yml`.
 - [ ] Fórmulas, imagens e links funcionam.

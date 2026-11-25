@@ -100,13 +100,13 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - Fórmulas são texto (LaTeX), nunca imagem. O site as desenha com o KaTeX, que aceita quase todo o LaTeX matemático, mas não todo; `tests/verificar-site.mjs` acusa a fórmula que ele não desenha.
 - Plica com o apóstrofo do teclado: `$a'$`, `$A'B'$`. O apóstrofo curvo `’`, que alguns editores põem sozinhos, aparece como apóstrofo, e não como plica (o verificador avisa).
 - Números: ponto decimal e vírgula entre coordenadas, como `$x = 1.5$` e `$A = (2.5, 3)$`. Convenção provisória, a reavaliar (`pendencias.md`, §2).
-- Vetor, por enquanto com dois comandos: `\vec{u}` quando o nome tem uma só letra; `\vet{AB}` (tabela abaixo) quando o nome é formado por dois pontos, como `AB` ou `P_0P`. A busca por um comando único está em `pendencias.md`, §2.
+- Vetor, com dois comandos: `\vec{u}` quando o nome tem uma só letra; `\vet{AB}` (tabela abaixo) quando o nome é formado por dois pontos, como `AB` ou `P_0P`. A seta de `\vet` acompanha a largura do nome, com o desenho ajustado no estilo do site (`styles/page.scss`; decisão E6 do livro-base). Um comando único ainda pode ser escolhido (`pendencias.md`, §2).
 - Implicações: `\Rightarrow`, `\Leftrightarrow`. Paralelo e perpendicular: `\parallel`, `\perp`.
 - **Macros** (definidas em `math/macros.json` e expandidas em toda fórmula, em qualquer formato de saída, e também nos applets):
 
   | Escrever | Resulta em | Uso |
   |---|---|---|
-  | `\vet{AB}` | `\overset{\rightarrow}{AB}` | vetor representado pelo segmento orientado `AB` |
+  | `\vet{AB}` | `\overrightarrow{AB}`, com a seta ajustada | vetor representado pelo segmento orientado `AB` |
   | `\norm{\vec{u}}` | `\lVert \vec{u} \rVert` | norma |
   | `\N`, `\Z`, `\Q`, `\R`, `\C` | `\mathbb{N}` … `\mathbb{C}` | conjuntos numéricos |
 

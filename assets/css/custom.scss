@@ -9,10 +9,6 @@ do Quarto e não devem ser removidas:
 Cores de fundo, texto e link vêm de _brand.yml (background, foreground, link).
 */
 
-/* Tipografia do corpo do texto */
-$font-size-base: 1.05rem;
-$line-height-base: 1.65;
-
 /* Sem fonte do Google: o Cosmo pediria a dele (Source Sans Pro) em toda página,
    sem que nenhum texto a use. As fontes do livro vêm de _brand.yml. */
 $web-font-path: false;
@@ -32,25 +28,25 @@ $web-font-path: false;
    tons: -suave, normal e -forte; os papéis dos objetos matemáticos, um só. */
 :root {
   /* Fundos */
-  --cor-fundo-suave: #{$brand-areia-1};
-  --cor-fundo: #{$brand-areia-2};
-  --cor-fundo-forte: #{$brand-areia-3};
+  --cor-fundo-suave: #{$brand-sand-1};
+  --cor-fundo: #{$brand-sand-2};
+  --cor-fundo-forte: #{$brand-sand-3};
 
   /* Superfícies */
-  --cor-superf-suave: #{$brand-branco-1};
-  --cor-superf: #{$brand-branco-2};
-  --cor-superf-forte: #{$brand-branco-3};
+  --cor-superf-suave: #{$brand-white-1};
+  --cor-superf: #{$brand-white-2};
+  --cor-superf-forte: #{$brand-white-3};
 
   /* Texto */
-  --cor-texto: #{$brand-grafite-2};
-  --cor-texto-forte: #{$brand-grafite-3};
-  --cor-texto-suave: #{$brand-cinza-2};
+  --cor-texto: #{$brand-graphite-2};
+  --cor-texto-forte: #{$brand-graphite-3};
+  --cor-texto-suave: #{$brand-gray-2};
 
   /* Interface */
-  --cor-azul-princ-suave: #{$brand-azul-1};
-  --cor-azul-princ: #{$brand-azul-2};
-  --cor-azul-princ-forte: #{$brand-azul-3};
-  --cor-azul-apoio: #{$brand-azul-5};
+  --cor-azul-princ-suave: #{$brand-blue-1};
+  --cor-azul-princ: #{$brand-blue-2};
+  --cor-azul-princ-forte: #{$brand-blue-3};
+  --cor-azul-apoio: #{$brand-blue-5};
 
   /* Objetos matemáticos dos applets: três papéis, um tom cada, lidos em
      applets-src/src/cores.js (renomear uma variável aqui exige renomeá-la
@@ -59,16 +55,16 @@ $web-font-path: false;
      própria (tracejado curto e texto de estado). */
 
   /* Dado: o que o estudante controla ou o que o enunciado fornece (ex.: u e v na soma) */
-  --cor-dado: #{$brand-azul-8};
+  --cor-dado: #{$brand-blue-8};
 
   /* Resultado: o que o applet calcula a partir dos dados, foco da ideia (ex.: u + v) */
-  --cor-resultado: #{$brand-laranja-2};
+  --cor-resultado: #{$brand-orange-2};
 
   /* Apoio: construções que ajudam a ler (cópias, projeções, linhas de chamada) */
-  --cor-apoio: #{$brand-cinza-5};
+  --cor-apoio: #{$brand-gray-5};
 
   /* Elementos estruturais: borda discreta (cor do texto, 12% de opacidade) */
-  --cor-borda-suave: #{rgba($brand-grafite-2, 0.12)};
+  --cor-borda-suave: #{rgba($brand-graphite-2, 0.12)};
 }
 
 

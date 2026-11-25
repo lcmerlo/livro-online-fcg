@@ -28,7 +28,7 @@ export function cor(nome, fallback = "#000000") {
 }
 
 // Cor da paleta de _brand.yml pelo nome, para testes: paleta("blue-oi"),
-// paleta("laranja-2"). O Quarto cria uma variável --brand-<nome> para cada
+// paleta("orange-2"). O Quarto cria uma variável --brand-<nome> para cada
 // cor da paleta. Num applet publicado, a cor vem do papel didático (CORES,
 // abaixo); o verificador avisa se um applet usado no livro chamar paleta().
 export function paleta(nome) {

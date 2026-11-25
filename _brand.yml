@@ -8,45 +8,48 @@ color:
     # Os papéis de cor do site e dos applets (assets/css/custom.scss, seção 1)
     # usam só estas cores. Cor nova aqui entra por decisão, depois de medidos
     # o contraste e a legibilidade com daltonismo (diretrizes-tecnicas.md, §6).
-    areia-0: "#FCFBF9"
-    areia-1: "#FBFAF6"
-    areia-2: "#F7F4ED"
-    areia-3: "#EFE7D8"
+    # Os nomes passaram para o inglês em 2026-11-25, os mesmos do livro-base, com os
+    # mesmos valores: tests/fixtures/livro-colors.json guarda a tabela dos nomes de
+    # antes e de agora, e tests/unit/palette.test.mjs confere que nenhuma cor se perdeu.
+    sand-0: "#FCFBF9"
+    sand-1: "#FBFAF6"
+    sand-2: "#F7F4ED"
+    sand-3: "#EFE7D8"
 
-    branco-1: "#FFFFFF"
-    branco-2: "#FAFAFA"
-    branco-3: "#F3F4F6"
+    white-1: "#FFFFFF"
+    white-2: "#FAFAFA"
+    white-3: "#F3F4F6"
 
-    grafite-1: "#334155"
-    grafite-2: "#1F2933"
-    grafite-3: "#111827"
+    graphite-1: "#334155"
+    graphite-2: "#1F2933"
+    graphite-3: "#111827"
 
-    cinza-2: "#5B677A"
-    cinza-5: "#64748B"
-    cinza-6: "#475569"
+    gray-2: "#5B677A"
+    gray-5: "#64748B"
+    gray-6: "#475569"
 
-    azul-1: "#3B79A8"
-    azul-2: "#1E5B8A"
-    azul-3: "#153F60"
-    azul-5: "#5B7C99"
-    azul-8: "#1D4ED8"
+    blue-1: "#3B79A8"
+    blue-2: "#1E5B8A"
+    blue-3: "#153F60"
+    blue-5: "#5B7C99"
+    blue-8: "#1D4ED8"
 
-    verde-2: "#276749"
+    green-2: "#276749"
 
-    ambar-2: "#946200"
-    ambar-3: "#6B4700"
+    amber-2: "#946200"
+    amber-3: "#6B4700"
 
-    laranja-2: "#B45309"
+    orange-2: "#B45309"
 
-    vermelho-6: "#991B1B"
+    red-6: "#991B1B"
 
     # ---- Cores de teste (do JSX-quarto) ----
     # As paletas comparadas no JSX-quarto, com os nomes de lá: <matiz>-<fonte>,
     # com o nome oficial no comentário quando é outro. Fontes:
     #   ds Desmos · oi Okabe–Ito · tb Tol Bright · tm Tol Muted · td Tol Dark
     #   cb IBM Carbon · d2 ColorBrewer Dark2
-    # Os neutros do JSX-quarto (branco-1, areia-0, areia-1, areia-2, grafite-1,
-    # cinza-5) são as cores do livro acima, com os mesmos valores.
+    # Os neutros do JSX-quarto (white-1, sand-0, sand-1, sand-2, graphite-1,
+    # gray-5) são as cores do livro acima, com os mesmos valores.
     # Servem aos testes: um applet as usa por paleta("<nome>"), de
     # applets-src/src/cores.js, e o verificador avisa se um applet publicado
     # fizer isso. Abaixo de 3:1 sobre o branco, servem só a preenchimentos:
@@ -129,21 +132,21 @@ color:
     grey-d2:    "#666666"   # 8
 
   # Cores semânticas do tema
-  foreground: grafite-2
-  background: areia-1
+  foreground: graphite-2
+  background: sand-1
   
-  primary: azul-2
-  secondary: cinza-6 # azul-5
-  tertiary: areia-2
-  link: azul-2
+  primary: blue-2
+  secondary: gray-6 # blue-5
+  tertiary: sand-2
+  link: blue-2
 
-  success: verde-2
-  info: azul-2
-  warning: ambar-2
-  danger: vermelho-6
+  success: green-2
+  info: blue-2
+  warning: amber-2
+  danger: red-6
 
-  light: branco-1
-  dark: grafite-2
+  light: white-1
+  dark: graphite-2
 
 typography:
   # As fontes vêm com o site (vendor/fonts/, com as licenças; vendor/VERSIONS.md), e
@@ -165,19 +168,21 @@ typography:
         - { path: vendor/fonts/source-serif-4-latin-600-normal.woff2, weight: 600, style: normal }
         - { path: vendor/fonts/source-serif-4-latin-700-normal.woff2, weight: 700, style: normal }
 
+  # O tamanho e a entrelinha do texto, só aqui: até 2026-11-25, este arquivo dizia
+  # 1.0625rem e 1.6, e assets/css/custom.scss, que prevalecia, 1.05rem e 1.65.
   base:
     family: Atkinson Hyperlegible
-    size: 1.0625rem
+    size: 1.05rem
     weight: 400
-    line-height: 1.6
+    line-height: 1.65
 
   headings:
     family: Source Serif 4
     weight: 600
-    color: azul-5  # grafite-2
+    color: blue-5  # graphite-2
     line-height: 1.25
 
   link:
-    color: azul-2
+    color: blue-2
     decoration: underline
 

@@ -22,19 +22,19 @@ O que observar:
 :::::: {.applet nome="teste-cores" id="tc" rotulo="A soma de dois vetores em três modelos de cor"}
 ::::: {.grid}
 :::: {.g-col-12 .g-col-md-6}
-**1. O livro: papéis enxutos.** $\vec{u}$ e $\vec{v}$: dado (`azul-8`); $\vec{u} + \vec{v}$: resultado (`laranja-2`); apoio (`cinza-5`).
+**1. O livro: papéis enxutos.** $\vec{u}$ e $\vec{v}$: dado (`blue-8`); $\vec{u} + \vec{v}$: resultado (`orange-2`); apoio (`gray-5`).
 
 ::: {#tc-livro .quadro rotulo="Modelo 1, o do livro"}
 :::
 ::::
 :::: {.g-col-12 .g-col-md-6}
-**2. Neutro com um destaque.** $\vec{u}$ e $\vec{v}$: cor do texto (`grafite-2`); $\vec{u} + \vec{v}$: destaque (`laranja-2`); apoio (`cinza-5`).
+**2. Neutro com um destaque.** $\vec{u}$ e $\vec{v}$: cor do texto (`graphite-2`); $\vec{u} + \vec{v}$: destaque (`orange-2`); apoio (`gray-5`).
 
 ::: {#tc-destaque .quadro rotulo="Modelo 2, neutro com um destaque"}
 :::
 ::::
 :::: {.g-col-12 .g-col-md-6}
-**3. Uma cor por objeto (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`cinza-5`).
+**3. Uma cor por objeto (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`gray-5`).
 
 ::: {#tc-okabe .quadro rotulo="Modelo 3, uma cor por objeto"}
 :::

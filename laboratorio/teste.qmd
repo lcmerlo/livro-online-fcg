@@ -126,4 +126,5 @@ Demonstração de teste.
 
 Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
 
-{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
+::: {.applet name="scalar-multiple" spoken="[Nome do applet para o leitor de tela]"}
+:::

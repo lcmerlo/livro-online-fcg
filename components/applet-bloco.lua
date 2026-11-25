@@ -112,7 +112,9 @@ return {
     -- De fora para dentro: o bloco é visto antes das partes.
     traverse = "topdown",
     Div = function(div)
-      if div.classes:includes("applet") then
+      -- Um .applet sem nome= é do sistema novo (filters/applet.lua), até este
+      -- filtro sair, no fim da fase 5 da migração.
+      if div.classes:includes("applet") and div.attributes.nome then
         return preparar_applet(div), false
       end
       if tipo_da_parte(div) then

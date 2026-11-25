@@ -4,13 +4,11 @@ title: "Teste de cores"
 
 <!-- Página de teste de cores dos applets: o modelo do livro (papéis
      enxutos, decisoes.md, 2026-11-04) ao lado de alternativas.
-     Ver: (cd applets-src && npm run build) e
-     quarto preview --profile lab (_quarto-lab.yml)
-     O applet está em applets-src/src/applets/teste-cores.js; as cores de cada
-     modelo estão na função modelos() de lá, chamadas pelo nome da paleta
-     de _brand.yml com paleta("…"). -->
+     Ver com quarto preview --profile lab (_quarto-lab.yml).
+     O applet é applets/color-models.js; as cores de cada modelo estão na lista
+     models de lá, pelo nome da paleta de _brand.yml. -->
 
-A mesma soma de vetores em três modelos de cor: o do livro, adotado em 2026-11-04 depois desta comparação, e duas alternativas. Arraste as pontas de $\vec{u}$ e $\vec{v}$ em qualquer quadro: os outros acompanham.
+A mesma soma de vetores em três modelos de cor: o do livro, adotado em 2026-11-04 depois desta comparação, e duas alternativas. Arraste as pontas de $\vec{u}$ e $\vec{v}$ em qualquer quadro: os outros acompanham. Os traços são os mesmos nos três (o do resultado mais grosso, o de apoio tracejado); só a cor muda.
 
 O que observar:
 
@@ -19,27 +17,24 @@ O que observar:
 3. Qual quadro fica mais fácil de ler, e qual cansa?
 4. Com daltonismo simulado, algum par de cores se confunde? No Chrome: Ver > Programador > Ferramentas do programador, menu ⋮ > More tools > Rendering > *Emulate vision deficiencies*; confira *Protanopia*, *Deuteranopia*, *Tritanopia* e *Achromatopsia* (tons de cinza).
 
-:::::: {.applet nome="teste-cores" id="tc" rotulo="A soma de dois vetores em três modelos de cor"}
-::::: {.grid}
-:::: {.g-col-12 .g-col-md-6}
+:::: {.applet name="color-models" spoken="A soma de dois vetores em três modelos de cor" cols="2"}
+::: {}
 **1. O livro: papéis enxutos.** $\vec{u}$ e $\vec{v}$: dado (`blue-8`); $\vec{u} + \vec{v}$: resultado (`orange-2`); apoio (`gray-5`).
 
-::: {#tc-livro .quadro rotulo="Modelo 1, o do livro"}
+[]{.board name="book"}
 :::
-::::
-:::: {.g-col-12 .g-col-md-6}
+
+::: {}
 **2. Neutro com um destaque.** $\vec{u}$ e $\vec{v}$: cor do texto (`graphite-2`); $\vec{u} + \vec{v}$: destaque (`orange-2`); apoio (`gray-5`).
 
-::: {#tc-destaque .quadro rotulo="Modelo 2, neutro com um destaque"}
+[]{.board name="highlight"}
+:::
+
+::: {}
+**3. Uma cor por elemento (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`gray-5`).
+
+[]{.board name="okabe"}
 :::
 ::::
-:::: {.g-col-12 .g-col-md-6}
-**3. Uma cor por objeto (Okabe–Ito).** $\vec{u}$: `blue-oi`; $\vec{v}$: `red-oi`; $\vec{u} + \vec{v}$: `teal-oi`; apoio (`gray-5`).
 
-::: {#tc-okabe .quadro rotulo="Modelo 3, uma cor por objeto"}
-:::
-::::
-:::::
-::::::
-
-Para testar outras cores, troque os nomes na função `modelos()` do applet: valem as cores do livro e as de teste da paleta de `_brand.yml`.
+Para testar outras cores, troque os nomes na lista `models` do applet: valem as cores do livro e as de teste da paleta de `_brand.yml`.

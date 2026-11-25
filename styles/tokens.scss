@@ -12,8 +12,7 @@ $web-font-path: false;
 // As cores pelo que significam. O site e os applets leem estes nomes, e uma mudança
 // aqui chega aos dois; os valores estão em _brand.yml. A interpolação #{…} é necessária
 // porque o Sass não avalia expressões dentro de variáveis CSS. As medidas que o JSXGraph
-// usa são números simples, em px, lidos por src/applet/theme.js (e, até o fim da fase 5
-// da migração, os dos pontos, por applets-src/src/tools/styles.js).
+// usa são números simples, em px, lidos por src/applet/theme.js.
 :root {
   --color-text: #{$brand-graphite-2};
   --color-text-strong: #{$brand-graphite-3};

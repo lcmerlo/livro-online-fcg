@@ -18,17 +18,12 @@ _interno/**/*.html
 # macOS
 .DS_Store
 
-# Node/Vite
+# Node
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
-# Build gerado dos applets
-applets-src/dist/
-applets-src/.vite/
-assets/js/applets-dist/
 
 # VS Code:
 *.code-workspace

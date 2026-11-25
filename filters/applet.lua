@@ -10,9 +10,7 @@
 -- cols="auto"; com .middle, as células ficam centradas na altura.
 -- Este filtro só normaliza a marcação; src/applet/ faz o resto.
 --
--- Vem do livro-base (filters/applet.lua), igual a menos dos comentários e da convivência
--- com o sistema antigo, que sai no fim da fase 5 da migração: um .applet com nome= é do
--- filtro antigo (components/applet-bloco.lua), e este o deixa como está.
+-- Vem do livro-base (filters/applet.lua), igual a menos dos comentários.
 
 local project = quarto.project.directory or '.'
 local offset = quarto.project.offset or '.'
@@ -153,7 +151,6 @@ return {
       if class then return normalize_part(span, class) end
     end,
     Div = function(div)
-      if div.classes:includes('applet') and div.attributes.nome then return nil end
       wrap_columns(div)
       local class = part_class(div)
       if class then normalize_part(div, class) end

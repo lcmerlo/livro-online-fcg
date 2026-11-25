@@ -26,25 +26,17 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
+      # Os applets são servidos como estão, sem compilação: o Node só roda os testes de
+      # unidade e o verificador.
       - name: Instalar Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: applets-src/package-lock.json
 
       # O padrão entre aspas: o Node 22 não aceita uma pasta, e quem expande o padrão é
       # ele, e não o shell.
       - name: Testes de unidade
         run: node --test "tests/unit/*.test.mjs"
-
-      - name: Instalar dependências dos applets
-        working-directory: applets-src
-        run: npm ci
-
-      - name: Gerar applets
-        working-directory: applets-src
-        run: npm run build
 
       - name: Instalar Quarto
         uses: quarto-dev/quarto-actions/setup@v2

@@ -39,13 +39,14 @@ _quarto.yml 	- Configuração principal do livro
 _quarto-lab.yml - Perfil lab: acrescenta ao livro a parte Laboratório (as páginas de laboratorio/), gerada em docs-lab/ e fora do site publicado
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
-styles/ 		- Estilos próprios: as cores pelo que significam (tokens.scss), a página (page.scss), os blocos (blocks.scss) e o sistema antigo de applets (old-applets.scss)
-src/site/ 		- O que roda em toda página (boot.js, posto por filters/site.lua): a seção atual no menu e o ícone que recolhe o menu
+styles/ 		- Estilos próprios: as cores pelo que significam (tokens.scss), a página (page.scss), os blocos (blocks.scss), as fórmulas comentadas (annotations.scss) e o sistema antigo de applets (old-applets.scss)
+src/site/ 		- O que roda em toda página (boot.js, posto por filters/site.lua): a seção atual no menu, o ícone que recolhe o menu e as abas das dicas e soluções; numa página com fórmula comentada, annotations.js
 tests/ 			- Verificação automática (tests/verificar-site.mjs) e testes de unidade (tests/unit/), executados no workflow
 math/macros.json 	- Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`), expandidas em toda fórmula por filters/macros.lua
 tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador, a não ser as que têm applet
 tools/sidebar-sections.ts - Depois do render, põe as seções de cada capítulo no menu lateral (não há coluna "Neste capítulo")
-components/ - Filtros Lua (`blocos.lua`, `applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
+filters/ 		- Filtros Lua: as macros (macros.lua), os blocos (blocks.lua: objetivo, observação, dicas e soluções em abas) e as fórmulas comentadas (annotations.lua), vindos do livro-base, e o que põe o script de toda página (site.lua)
+components/ - O sistema antigo de applets, até a fase 5 da migração: filtro (`applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab
 applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)

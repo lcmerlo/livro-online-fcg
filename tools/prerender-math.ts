@@ -42,8 +42,7 @@ const pandocKatex = new RegExp(
 const katexSheet = /<link rel="stylesheet" href="[^"]*katex\.min\.css">\s*/g;
 
 // O único comando de HTML que uma fórmula pode usar: a marca de uma parte comentada
-// (filters/annotations.lua, no livro-base). O resto da extensão de HTML do KaTeX fica
-// desligado.
+// (filters/annotations.lua). O resto da extensão de HTML do KaTeX fica desligado.
 const trust = ({ command, attributes }: { command: string; attributes?: Record<string, string> }) =>
   command === '\\htmlData' && Object.keys(attributes ?? {}).every((key) => key === 'data-note');
 

@@ -281,7 +281,7 @@ Onde o livro faz diferente, e por quê:
   ```
 
   Labels só mudam por decisão, junto com todas as referências `@…`.
-- **Linguagem de autoria** (classes `.bloco-…`, `.dica`, `.solucao`, `.resposta`, shortcodes): mudar um nome exige ajustar, na mesma mudança, todos os capítulos, os modelos e o guia.
+- **Linguagem de autoria** (classes `.objective`, `.note`, `.hint`, `.solution`, `.annotated`, `.figure-note`, shortcodes): mudar um nome exige ajustar, na mesma mudança, todos os capítulos, os modelos e o guia.
 - **Internos** (código de `applets-src/`, `_interno/`, classes que os capítulos não usam): podem mudar quando houver ganho, dentro de um plano, com todas as referências ajustadas.
 
 ## 8. Verificação e publicação

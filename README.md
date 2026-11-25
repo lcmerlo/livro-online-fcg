@@ -39,19 +39,20 @@ _quarto.yml 	- Configuração principal do livro
 _quarto-lab.yml - Perfil lab: acrescenta ao livro a parte Laboratório (as páginas de laboratorio/), gerada em docs-lab/ e fora do site publicado
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
-styles/ 		- Estilos próprios: as cores pelo que significam (tokens.scss), a página (page.scss), os blocos (blocks.scss), as fórmulas comentadas (annotations.scss) e o sistema antigo de applets (old-applets.scss)
-src/site/ 		- O que roda em toda página (boot.js, posto por filters/site.lua): a seção atual no menu, o ícone que recolhe o menu e as abas das dicas e soluções; numa página com fórmula comentada, annotations.js
+styles/ 		- Estilos próprios: as cores pelo que significam e as preferências do leitor (tokens.scss), a página (page.scss), os blocos (blocks.scss), as fórmulas comentadas (annotations.scss), os applets (applet.scss) e o painel de acessibilidade (settings.scss)
+src/site/ 		- O que roda em toda página (boot.js, posto por filters/applet.lua): a seção atual no menu, o ícone que recolhe o menu e as abas das dicas e soluções; numa página com fórmula comentada, annotations.js; numa página com applet, os applets e o painel de acessibilidade (settings.js, prefs.js)
+src/applet/ 	- O que roda onde há applet: o quadro, o estado, os controles, as alternativas ao arraste (do livro-base, sem compilação)
+src/elements/ 	- Os elementos novos do JSXGraph: handle, vector, marcas
+src/math/ 		- Contas e escrita de números, sem desenho
+applets/ 		- Um arquivo por applet; o nome do arquivo é o nome usado no capítulo
 tests/ 			- Verificação automática (tests/verificar-site.mjs) e testes de unidade (tests/unit/), executados no workflow
 math/macros.json 	- Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`), expandidas em toda fórmula por filters/macros.lua
-tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador, a não ser as que têm applet
+tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador; os applets o carregam quando precisam
 tools/sidebar-sections.ts - Depois do render, põe as seções de cada capítulo no menu lateral (não há coluna "Neste capítulo")
-filters/ 		- Filtros Lua: as macros (macros.lua), os blocos (blocks.lua: objetivo, observação, dicas e soluções em abas) e as fórmulas comentadas (annotations.lua), vindos do livro-base, e o que põe o script de toda página (site.lua)
-components/ - O sistema antigo de applets, até a fase 5 da migração: filtro (`applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
+filters/ 		- Filtros Lua, vindos do livro-base: as macros (macros.lua), os blocos (blocks.lua: objetivo, observação, dicas e soluções em abas), as fórmulas comentadas (annotations.lua) e os applets (applet.lua, que também põe o script de toda página)
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab
-applets-src/ 	- Código-fonte dos applets JSXGraph (Vite)
-assets/js/applets-dist/ - Bundle gerado por 'npm run build' (não versionado)
-vendor/ 		- KaTeX, fontes e um recorte da fonte de ícones, copiados para que o site não dependa de outro servidor (versões e licenças em vendor/VERSIONS.md)
+vendor/ 		- KaTeX, JSXGraph, fontes e um recorte da fonte de ícones, copiados para que o site não dependa de outro servidor (versões e licenças em vendor/VERSIONS.md)
 docs/ 			- Site gerado por 'quarto render' (não versionado)
 docs-lab/ 		- Site do perfil lab, com o laboratório (não versionado nem publicado)
 _interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, referências)
@@ -63,18 +64,16 @@ quarto preview      - preview local
 quarto preview --profile axe - preview local com a verificação de acessibilidade do Quarto (resultado no console do navegador)
 quarto preview --profile lab - preview local com o laboratório (páginas de teste e modelos de capítulo); com `--profile lab,axe`, também com a verificação de acessibilidade
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
-cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
-cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
-node --test "tests/unit/*.test.mjs" - testes de unidade (hoje, que nenhuma cor da paleta se perdeu)
+node --test "tests/unit/*.test.mjs" - testes de unidade (a paleta, as fórmulas comentadas e as contas e a escrita dos números dos applets, src/math/)
 quarto render --profile lab --to html e node tests/verificar-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (o que o verificador acha nas páginas de teste é listado, sem reprovar)
 
 
 ## Applets
 
-Os applets são JSXGraph próprios, com o código em `applets-src/`. Os applets GeoGebra que ainda estão nos capítulos serão reescritos (lista em `_interno/diretrizes/pendencias.md`, §5).
+Os applets são JSXGraph próprios: um arquivo em `applets/`, com o que vem pronto em `src/` (o sistema do livro-base, desde a fase 5 da migração, sem compilação: os arquivos são servidos como estão). Os applets GeoGebra dos capítulos de antes ficam em `_interno/oficina/nao-publicados/`, como modelo; um capítulo novo que pedir um deles o ganha reescrito (lista em `_interno/diretrizes/pendencias.md`, §5).
 
-- Como inserir um applet num capítulo (shortcode, bloco com várias partes, arranjos): `_interno/diretrizes/guia-editorial.md`, §3 e §6.
+- Como inserir um applet num capítulo (o bloco `::: {.applet}`, as partes, os arranjos): `_interno/diretrizes/guia-editorial.md`, §6, e a página Arranjos do laboratório.
 - O que cada applet garante, como é aceito e por quê: `_interno/diretrizes/diretrizes-tecnicas.md`, §4.
 - Como criar um applet, passo a passo: `_interno/diretrizes/arquitetura.md`, §7.
 
@@ -111,7 +110,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 ### Arquivos principais Git
 
 .gitignore (pastas e arquivos que não devem ir para o commit): ver o arquivo na raiz.
-Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `docs-lab/`, `index.tex`, `*_files/`), `node_modules/` e o bundle dos applets, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
+Grupos principais: cache e saída do Quarto (`.quarto/`, `docs/`, `docs-lab/`, `index.tex`, `*_files/`), `node_modules/`, `.DS_Store`, `*.code-workspace`, `_scratch/` (local, não versionado) e HTML gerado em `_interno/`, temporários do LaTeX.
 
 ## Licença
 	Definir antes da divulgação (`_interno/diretrizes/pendencias.md`, §6).

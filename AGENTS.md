@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Livro online de matemática interativa em Quarto (HTML publicado no GitHub Pages), com SCSS e applets JSXGraph próprios empacotados pelo Vite. O projeto está em fase de testes e tem um só autor, que decide o conteúdo e aprova as decisões técnicas, mas não avalia código: explique as consequências.
+Livro online de matemática interativa em Quarto (HTML publicado no GitHub Pages), com SCSS e applets JSXGraph próprios, sem etapa de compilação (os arquivos de `src/` e `applets/` são servidos como estão). O projeto está em fase de testes e tem um só autor, que decide o conteúdo e aprova as decisões técnicas, mas não avalia código: explique as consequências.
 
 Este arquivo resume `_interno/diretrizes/diretrizes-tecnicas.md` (as diretrizes). Responda em português do Brasil.
 
@@ -27,7 +27,7 @@ Os capítulos com `estado: prototipo` no cabeçalho dão uma ideia do livro e se
 1. Corrigir erros reais.
 2. Manter a legibilidade do livro e do código.
 3. Evitar dependências desnecessárias.
-4. Manter os applets em `applets-src/` e o texto nos capítulos.
+4. Manter os applets em `applets/` (um arquivo por applet) e o texto nos capítulos.
 5. Preservar a publicação no GitHub Pages.
 
 ## O que se pode mudar
@@ -46,6 +46,7 @@ Nomes públicos (arquivos de capítulo, labels, ids) ficam estáveis a partir da
 
 - Os applets são JSXGraph. Os applets GeoGebra são inspiração, não modelo: reescreva-os do zero em JSXGraph nativo, sem rastros do GeoGebra (nomes, ids, textos, cores, pixels, ordem de construção, funções de conversão).
 - Expressões do GeoGebra usadas pelo autor num pedido são lidas pela intenção e escritas em JSXGraph. Imite o GeoGebra só se o autor pedir explicitamente.
+- Um applet é um arquivo de `applets/`, escrito com o que `src/applet/` e `src/elements/` dão prontos (o sistema do `livro-base`, desde a fase 5 da migração); no capítulo, `::: {.applet name="..." spoken="..."}` (`guia-editorial.md`, §6).
 - Garantias e ficha de aceitação: `diretrizes-tecnicas.md`, §4. Lista dos applets a reescrever: `_interno/diretrizes/pendencias.md`, §5.
 
 ## Decisões e consistência
@@ -57,7 +58,7 @@ Nomes públicos (arquivos de capítulo, labels, ids) ficam estáveis a partir da
 ## Ao terminar
 
 - Verifique, quando possível:
-  - `(cd applets-src && npm run build)`
+  - `node --test "tests/unit/*.test.mjs"`
   - `quarto render --to html`
   - `node tests/verificar-site.mjs`
   - `quarto render --profile lab --to html` e `node tests/verificar-site.mjs --lab` (o laboratório, em `docs-lab/`)

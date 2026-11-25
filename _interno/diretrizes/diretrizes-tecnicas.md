@@ -41,7 +41,7 @@ Em cada item, "flexível" diz o que não fica preso.
 4. **Acessibilidade mínima (§32):** tudo funciona pelo teclado; quem navega com Tab vê onde está; a página funciona a 320 px de largura, sem rolar para o lado; a cor não é a única informação (forma, nome ou texto também distinguem). São fundamentais porque sairiam caros de acrescentar depois, embutidos nos applets e nas páginas. Flexível: o jeito de cumprir cada item.
    - Contraste e títulos sem saltos são provisórios: as cores estão definidas num só lugar, e o verificador confere os títulos e o contraste das cores dos applets.
    - O texto alternativo das imagens fica para antes da divulgação (`pendencias.md`, §6); toda imagem nova já nasce com ele.
-   - A alternativa ao arraste está adiada até o piloto, por decisão do autor (`pendencias.md`, §1).
+   - A alternativa ao arraste, adiada até o piloto, vem com todo applet desde a fase 5 da migração (2026-11-25): o painel de acessibilidade, com as opções "Campos para digitar os pontos e os valores" e "Tocar no ponto e depois no destino".
 5. **Animação só a pedido do estudante:** nenhum applet se move sozinho, e o movimento pode ser pausado. Flexível: velocidade, aparência do botão, quais applets animam.
 6. **Conteúdo separado da aparência; cada valor definido num só lugar.** O capítulo diz o que um trecho é, com as classes do guia, e nunca como ele aparece; cada cor ou tamanho é definido uma vez. Flexível: os próprios valores (cores, tamanhos, layout).
 7. **O site publicado funciona:** renderiza e passa no verificador sem erros. É a única regra que vale também para os protótipos.
@@ -133,7 +133,7 @@ Mudanças que não criam nem alteram uma regra (trocar um valor, corrigir um err
    - diretrizes (`_interno/diretrizes/`), `README.md`, `AGENTS.md`, `.github/copilot-instructions.md`;
    - modelos de capítulo e páginas de teste (`laboratorio/`);
    - capítulos revisados e `index.qmd`; nos protótipos, só o necessário para o site funcionar (na troca do MathJax pelo KaTeX, por exemplo, as fórmulas que deixaram de ser desenhadas);
-   - componentes (`components/`), estilos (`_brand.yml`, `styles/`, `src/site/`) e applets (`applets-src/`);
+   - filtros (`filters/`), estilos (`_brand.yml`, `styles/`), o que roda nas páginas (`src/`) e applets (`applets/`);
    - verificações (`tests/verificar-site.mjs`, `tests/unit/`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
 3. Registre em `decisoes.md` o que foi ajustado.
 
@@ -148,8 +148,8 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 
 ## 3. Ferramentas e dependências
 
-- **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, empacotados pelo Vite; fórmulas com KaTeX.
-- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph tem a mesma versão em todos os projetos JSXGraph do autor e, quando muda, muda em todos juntos. O KaTeX e as fontes vêm com o site, em `vendor/`, copiados do `livro-base`, com a versão e a licença em `vendor/VERSIONS.md`; o verificador desenha as fórmulas com o mesmo arquivo das páginas, e `applets-src/package.json` repete a versão do KaTeX só para a página de desenvolvimento.
+- **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, sem etapa de compilação (os módulos de `src/` e `applets/` são servidos como estão, desde a fase 5 da migração); fórmulas com KaTeX.
+- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph, o KaTeX e as fontes vêm com o site, em `vendor/`, copiados do `livro-base`, que confere primeiro uma versão nova, com a versão e a licença em `vendor/VERSIONS.md`; o verificador desenha as fórmulas com o mesmo arquivo das páginas. O JSX-quarto não acompanha essas versões (decisão do autor em 2026-11-22).
 - **Dependências de execução**, que chegam ao navegador do estudante (bibliotecas, fontes, serviços externos), pesam no desempenho, na acessibilidade e na licença (§17, §33). Entram por decisão registrada, com o ganho mostrado.
 - **Dependências de desenvolvimento**, que só rodam no computador de quem desenvolve ou no CI (testes, verificadores, formatadores), não chegam ao estudante. Entram quando automatizam uma verificação útil, com versão fixada e uma linha em `decisoes.md`.
 - **Outras ferramentas de applets** (Desmos, CindyJS…): só por decisão, quando uma representação não puder ser feita bem com JSXGraph (§20).
@@ -158,7 +158,7 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 
 ### 4.1 Aonde se quer chegar
 
-Todos os applets do livro serão applets JSXGraph próprios, escritos neste projeto. Os applets GeoGebra que hoje estão nos capítulos vieram de projetos anteriores e ficam ali só até serem substituídos; a lista está em `pendencias.md`, §5. Um applet GeoGebra novo só entra num capítulo por decisão do autor, como solução provisória.
+Todos os applets do livro são applets JSXGraph próprios, escritos neste projeto. Os applets GeoGebra de projetos anteriores ficaram nos capítulos de antes, em `_interno/oficina/nao-publicados/`, como modelo; a lista está em `pendencias.md`, §5. O livro não tem mais como incorporar um applet GeoGebra: o shortcode saiu na fase 5 da migração (2026-11-25), e trazê-lo de volta seria uma decisão do autor.
 
 ### 4.2 O GeoGebra é inspiração, não modelo (fundamental)
 
@@ -172,9 +172,9 @@ Todos os applets do livro serão applets JSXGraph próprios, escritos neste proj
 1. **Função pedagógica.** O que o estudante deve perceber com o applet (§9)? Se uma figura ou uma sequência de exemplos bastar, proponha isso ao autor.
 2. **Especificação curta.** Objetos, o que se move, o que se calcula, os casos especiais e o que o applet mostra em cada um, o texto de estado e a pergunta associada.
 3. **O que já existe.** Se o JSX-quarto já tem um applet migrado do mesmo material (`pendencias.md`, §5), parta da ideia e da estrutura dele, adaptadas ao livro (§4.7). O original `.ggb` serve para conferir objetos, valores iniciais e casos especiais.
-4. **Escrever e testar** o applet (§4.5) com `npm run dev`.
+4. **Escrever e testar** o applet (§4.5) numa página do laboratório, com `quarto preview --profile lab`.
 5. **Ficha de aceitação** (§4.6).
-6. **Trocar no capítulo** o shortcode `{{< geogebra … >}}` pelo `{{< applet … >}}`, revendo a instrução e a pergunta para o applet novo. É mudança de texto didático: o autor aprova.
+6. **Pôr no capítulo** o bloco `::: {.applet name="…" spoken="…"}` (`guia-editorial.md`, §6), com a instrução e a pergunta escritas para o applet novo. É texto didático: o autor aprova.
 7. **Atualizar** `pendencias.md` (o applet sai da lista) e o que mais a troca afetar (§2.3).
 
 Para ler o `.ggb` e decidir o destino de cada objeto, a referência de método é o manual de migração do JSX-quarto (`migracao/manual.qmd` e `migracao/dicionario.qmd`): inventariar, classificar cada objeto (estado, derivado, auxiliar, apresentação), modelar antes de desenhar, desenhar e ligar, limpar e verificar. Onde o livro e o JSX-quarto diferem, valem estas diretrizes (§4.7).
@@ -188,39 +188,39 @@ As garantias marcadas como fundamentais vêm da lista do §1.3; as outras são p
 | Matemática correta (fundamental) | A figura, o texto de estado e os números mostrados vêm da mesma conta, escrita uma vez. As contas do applet são conteúdo matemático: o autor aprova. |
 | Casos especiais decididos (fundamental) | Cada caso especial (pontos coincidentes, vetores paralelos, divisão por zero) tem um comportamento escolhido e visível; nunca aparece um número enganoso (0, `NaN`, valores enormes). Se o caso importa para a aula, o estudante consegue alcançá-lo, por exemplo com encaixe na grade. |
 | Teclado (fundamental) | Tudo funciona pelo teclado (§32). |
-| Alternativa ao arraste | Toda ação de arraste tem alternativa sem arraste, como campos numéricos ou botões (§32). Adiada até o piloto, por decisão do autor (`pendencias.md`, §1): até lá, o applet segue sem ela. |
-| Estado em texto | O que muda na figura aparece em texto no parágrafo `<id>-status`, com atraso para não anunciar cada passo do arraste. |
+| Alternativa ao arraste | Toda ação de arraste tem alternativa sem arraste (§32): quem escolhe no painel de acessibilidade ganha campos para digitar as coordenadas de cada ponto e o valor de cada faixa de valores, ou move um ponto tocando nele e depois no destino. Vem com todo applet, montada a partir dos pontos e das faixas de valores, sem código no applet (`src/applet/access.js`), desde a fase 5 da migração. |
+| Descrição em texto | O que a figura mostra aparece em palavras (`addStatus`), refeito pouco depois do último movimento, para não anunciar cada passo do arraste. O leitor de tela a recebe sempre; à vista, só para quem a pede no painel. |
 | Cor não é a única informação (fundamental) | Forma, rótulo ou texto também distinguem os objetos; contraste de pelo menos 3:1 com o fundo (§32; o contraste é provisório). |
 | Tela estreita (fundamental) e toque | Funciona a 320 px de largura e com toque; o quadro acompanha a largura da coluna e aparece no tamanho certo também quando começa escondido (aba ou bloco recolhido). O dedo fora dos pontos rola a página; sobre um ponto, arrasta o ponto; a região mostrada não se desloca nem muda de escala. |
-| Reinício | O botão "Reiniciar applet" volta pontos, parâmetros e animações ao estado inicial. |
-| Movimento (fundamental) | Animação não começa sozinha e pode ser pausada; com a preferência por menos movimento ativada no sistema, não há movimento automático. |
+| Reinício | O botão de reiniciar, logo acima de cada quadro, volta pontos, valores e animações ao estado inicial, em todos os quadros do applet. |
+| Movimento (fundamental) | Animação não começa sozinha e pode ser pausada; com menos movimento, escolhido no sistema ou no painel, a animação avança em passos, a cada toque. |
 | Texto no lugar certo | Instruções, títulos e perguntas ficam no `.qmd`; na figura, só nomes e medidas presos aos objetos. |
 | Notação do livro | Mesmos símbolos, macros e formato de números do texto (§5). |
 | Sem rastros do GeoGebra (fundamental) | §4.2. |
 
 ### 4.5 Como se escreve um applet hoje
 
-Regras provisórias (§1.2). Os nomes das funções, as medidas e os passos estão no código e no `arquitetura.md` (§4.5 e §7).
+Regras provisórias (§1.2). Desde a fase 5 da migração, um applet é escrito com o que o sistema do `livro-base` dá pronto; as funções e os elementos novos, com uma ficha para cada um, estão no Apêndice C do `livro-base` ("Guia de autoria de applets"), e os passos, no `arquitetura.md`, §7.
 
 - **Um arquivo por applet**, registrado pelo nome do arquivo, que é o nome usado no capítulo.
 - **Janela pela matemática.** O quadro mostra uma região do plano dada por números simples, e a mesma região em qualquer largura; nada é posicionado em pixels de tela. Afastamentos pequenos a partir de um objeto, como o nome ao lado do ponto, são aceitos.
-- **Só a figura tem fundo e borda.** Leituras, controles, texto de estado e o botão "Reiniciar" ficam no fundo da página e se leem como parte do texto.
+- **Só a figura tem fundo e borda.** Expressões, controles, a descrição e os botões de reiniciar e de acessibilidade ficam no fundo da página e se leem como parte do texto.
 - **O plano fica parado.** Ele não se desloca nem muda de escala (mouse, dedos, teclado), porque a região mostrada faz parte da matemática. No toque, o dedo fora dos pontos rola a página, como no resto do livro, e sobre um ponto o arrasta; quando dois pontos estão ao alcance do mesmo toque, vence o mais próximo; o ponto arrastado não sai da região mostrada. Todo quadro é criado pelo código comum que garante isso.
 - **A forma diz se o ponto se move.** O ponto arrastável, o fixo (ou que depende de outros) e o extremo aberto têm formas diferentes, e o arrastável é fácil de pegar com o dedo. A forma não substitui o texto: a instrução e o estado também dizem o que se move.
 - **Contas e escrita dos números num só lugar.** A figura e o texto de estado usam as mesmas funções de conta, e os números e as fórmulas são escritos por um só módulo, onde muda o formato. Uma conta não definida (vetor nulo, vetores paralelos) não vira 0 nem some: aparece de um jeito fácil de achar na ficha de aceitação, até o applet decidir o caso (§4.4; escrita provisória: `pendencias.md`, §2).
 - **Unidades.** As contas são feitas em radianos e em unidades do plano; graus só na saída. Um controle mostra a unidade que o estudante lê e é convertido na conta. Ângulos notáveis em radianos aparecem como fração de π. A velocidade de uma animação é escolhida pelo efeito visível.
 - **Cores pelos papéis.** Três papéis, um tom cada: **dado**, o que o estudante controla ou o que o enunciado fornece; **resultado**, o que o applet calcula a partir dos dados, foco da ideia; **apoio**, tracejado, para construções que ajudam a ler (cópias, projeções, linhas de chamada). Nomes, origem e pontos de referência ficam na cor do texto. Dois objetos do mesmo papel se distinguem pelo nome junto a eles, e não pela cor. Erro ou contraexemplo não tem cor própria: muda o traço, e o texto de estado diz o que há. Uma quarta cor se confundiria com as outras para quem tem daltonismo; um terceiro papel colorido é uma decisão (§6). O applet nunca escreve uma cor: usa as do livro. Nos testes, um applet pode chamar qualquer cor de `_brand.yml` pelo nome; num applet usado no livro, a cor vem do papel, e o verificador avisa.
 - **Nomes no quadro como no texto.** Os nomes dos objetos são escritos como no capítulo (TeX, com as macros do livro), para que a figura e o texto mostrem a mesma notação. Os números dos eixos ficam em texto simples.
-- **Nomes no código.** Os objetos levam o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código fica em português descritivo, também no que vem da `lib/` do JSX-quarto.
+- **Nomes no código.** Os elementos levam o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código fica em inglês, com os nomes do glossário do `livro-base`, de onde vem o sistema dos applets (desde a fase 5 da migração; antes, em português).
 - **Comentários** explicam o porquê, em português.
 - **Código compartilhado.** Uma construção usada por dois applets vai para um módulo comum; a de um applet só fica no próprio arquivo.
-- **Applets com várias partes.** Quadros, leituras e controles que o capítulo põe em lugares diferentes ficam num bloco que os envolve; o applet trata como opcional a parte que o capítulo pode omitir; um só texto de estado e um só "Reiniciar" servem ao applet inteiro. Os arranjos na página são classes do livro, sem CSS nos capítulos (`guia-editorial.md`, §6).
+- **Applets com várias partes.** Quadros, expressões e controles que o capítulo põe em lugares diferentes ficam dentro do bloco do applet; o applet trata como opcional a parte que o capítulo pode omitir; os quadros de um applet se redesenham juntos, e uma só descrição serve ao applet inteiro. Os arranjos na página são atributos e classes do livro, sem CSS nos capítulos (`guia-editorial.md`, §6).
 - **Controles.** Faixas, caixas de seleção, campos e botões ficam ligados a um estado: mudar um valor, venha a mudança de onde vier, redesenha a figura e acerta os outros controles, e "Reiniciar" volta tudo ao início.
   - Por padrão, ficam logo abaixo do quadro, para que um capítulo que não os posicionou não os perca; o capítulo pode pô-los em outro lugar (`guia-editorial.md`, §6). A ordem em que aparecem é a da tecla Tab.
   - Cada controle tem um nome fixo, em texto simples, para o leitor de tela; as fórmulas que se veem ficam escondidas dele.
-  - O campo aceita o número escrito com ponto ou com vírgula.
+  - Uma faixa de valores não leva campo de digitar ao lado: quem prefere digitar escolhe os campos no painel. O campo aceita o número escrito com ponto ou com vírgula, e uma fração, como `3/2`.
   - A animação só começa pelo botão (regra fundamental 5) e para quando o estudante mexe no mesmo valor e no reinício; por isso funciona também com "Reduzir movimento".
-  - Botões de opção e faixa vertical entram quando um applet precisar.
+  - Faixa vertical entra quando um applet precisar.
 
 ### 4.6 Ficha de aceitação
 
@@ -230,16 +230,16 @@ Antes de um applet entrar num capítulo:
 - [ ] Cada garantia de §4.4, em especial:
   - [ ] **320 px:** modo de dispositivo das ferramentas do programador, com largura 320, e também num celular;
   - [ ] **teclado:** só com Tab, setas e Enter, sem mouse;
-  - [ ] **sem arraste:** a mesma tarefa sem arrastar nada (adiado até o piloto: registre o item como pendente);
-  - [ ] **leitor de tela:** o VoiceOver (Cmd+F5 no Mac) lê o rótulo e o estado;
+  - [ ] **sem arraste:** a mesma tarefa sem arrastar nada, com "Campos para digitar os pontos e os valores" e, depois, com "Tocar no ponto e depois no destino" (no painel de acessibilidade, pelo botão acima do quadro);
+  - [ ] **leitor de tela:** o VoiceOver (Cmd+F5 no Mac) lê o nome do applet, de cada quadro e de cada ponto, e a descrição;
   - [ ] **casos especiais:** cada um da especificação (§4.3, passo 2);
   - [ ] **reinício**, depois de mexer em tudo;
-  - [ ] **menos movimento:** Ajustes do Sistema > Acessibilidade > Tela > Reduzir movimento;
+  - [ ] **menos movimento:** Ajustes do Sistema > Acessibilidade > Tela > Reduzir movimento, e a opção do painel;
   - [ ] **daltonismo:** ferramentas do programador > Rendering > Emulate vision deficiencies;
   - [ ] **toque:** num celular, rolar a página passando o dedo sobre o quadro, fora dos pontos, e arrastar cada ponto tocando um pouco ao lado dele.
-  - [ ] **várias partes:** a 320 px, cada quadro e cada leitura cabem na coluna; mexer num quadro atualiza os outros, a leitura e o texto de estado; cada quadro tem rótulo próprio, diferente dos outros da página.
-- [ ] Sem rastros do GeoGebra: `git grep -n -i -E "geogebra|ggb|material-" applets-src/src` não acusa nada no applet novo.
-- [ ] `npm run build` e `node tests/verificar-site.mjs` sem erros.
+  - [ ] **várias partes:** a 320 px, cada quadro e cada expressão cabem na coluna; mexer num quadro atualiza os outros, as expressões e a descrição; cada quadro tem nome lido próprio, diferente dos outros da página.
+- [ ] Sem rastros do GeoGebra: `git grep -n -i -E "geogebra|ggb|material-" applets/` não acusa nada no applet novo.
+- [ ] `node --test "tests/unit/*.test.mjs"` e `node tests/verificar-site.mjs` sem erros.
 - [ ] Desvios das regras provisórias explicados em comentário e no commit; `pendencias.md` e `decisoes.md` atualizados, se for o caso.
 
 ### 4.7 Relação com o JSX-quarto
@@ -248,19 +248,18 @@ O JSX-quarto (<https://github.com/lcmerlo/JSX-quarto>) é o laboratório dos app
 
 Onde o livro faz diferente, e por quê:
 
-- **Carregamento:** os applets e o JSXGraph vão num só arquivo, carregado só nas páginas que têm applet. Nada vem de outro servidor (CDN, Google Fonts): o site continua funcionando se um deles sair do ar, nenhum deles fica sabendo de cada visita, e a versão fica fixada. O verificador acusa o que uma página carregar de fora.
+- **Carregamento:** os módulos dos applets e o JSXGraph, sem compilação, são carregados só quando um applet chega perto da tela. Nada vem de outro servidor (CDN, Google Fonts): o site continua funcionando se um deles sair do ar, nenhum deles fica sabendo de cada visita, e a versão fica fixada. O verificador acusa o que uma página carregar de fora.
 - **Cores:** três papéis (§4.5), e não uma cor por objeto; escolha do autor em 2026-11-04, depois de comparar quatro modelos lado a lado. Nos testes, as cores do JSX-quarto são chamadas pelo nome.
-- **Nomes no código:** em português (§4.5).
 - **Toque:** o dedo fora dos pontos rola a página, e vence o ponto mais próximo; no JSX-quarto, o quadro bloqueia a rolagem da página.
 - **Valor indefinido:** nunca vira 0 nem some (regra fundamental 2).
 - **Ângulos em radianos:** fração de π só quando o ângulo é exatamente uma fração notável; o JSX-quarto arredondava para centésimos de π.
 - **Foco do teclado e largura mínima:** contorno de foco visível também nos pontos e 320 px, e não 360 (regra fundamental 4).
 - **Arranjos na página:** sem CSS nos capítulos (regra fundamental 6); a margem da página, estreita no livro, não recebe applets.
-- **Controles:** o número entra com ponto ou vírgula; o nome lido pelo leitor de tela não muda com o valor; a animação só começa a pedido (regra fundamental 5); os controles ficam logo abaixo do quadro ou onde o capítulo os puser.
+- **Controles:** o número entra com ponto ou vírgula; o nome lido pelo leitor de tela não muda com o valor; a animação só começa a pedido (regra fundamental 5); os controles ficam logo abaixo do quadro ou onde o capítulo os puser; as alternativas de acessibilidade aparecem só para quem as escolhe no painel.
 
 ## 5. Notação matemática
 
-- A notação é definida num só lugar (regra fundamental 3) e vale no texto, nas prévias das referências cruzadas e nos applets (leituras, controles e nomes no quadro); o verificador confere as fórmulas com a mesma definição. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única.
+- A notação é definida num só lugar (regra fundamental 3) e vale no texto, nas prévias das referências cruzadas e nos applets (expressões, controles e nomes no quadro); o verificador confere as fórmulas com a mesma definição. Se o motor de fórmulas mudar ou surgir outro formato (PDF), a definição continua única.
 - As convenções de escrita (números, vetores, macros, símbolos) estão no `guia-editorial.md`, §4, e valem também nos applets. As dos números e dos vetores são provisórias e serão reavaliadas (`pendencias.md`, §2).
 
 ## 6. Aparência
@@ -281,14 +280,14 @@ Onde o livro faz diferente, e por quê:
   ```
 
   Labels só mudam por decisão, junto com todas as referências `@…`.
-- **Linguagem de autoria** (classes `.objective`, `.note`, `.hint`, `.solution`, `.annotated`, `.figure-note`, shortcodes): mudar um nome exige ajustar, na mesma mudança, todos os capítulos, os modelos e o guia.
-- **Internos** (código de `applets-src/`, `_interno/`, classes que os capítulos não usam): podem mudar quando houver ganho, dentro de um plano, com todas as referências ajustadas.
+- **Linguagem de autoria** (classes `.objective`, `.note`, `.hint`, `.solution`, `.annotated`, `.figure-note`; o bloco `.applet` e as partes `.board`, `.controls` e `.live`): mudar um nome exige ajustar, na mesma mudança, todos os capítulos, os modelos e o guia.
+- **Internos** (código de `src/` e `applets/`, `_interno/`, classes que os capítulos não usam): podem mudar quando houver ganho, dentro de um plano, com todas as referências ajustadas.
 
 ## 8. Verificação e publicação
 
-- **Antes de integrar uma mudança:** os comandos do `guia-editorial.md`, §8 (bundle, render, verificador, `git diff`).
+- **Antes de integrar uma mudança:** os comandos do `guia-editorial.md`, §8 (render, verificador, laboratório, `git diff`), e os testes de unidade.
 - **O verificador** (`tests/verificar-site.mjs`) separa erros, que bloqueiam a publicação, de avisos, que não bloqueiam. O que ele confere está em `arquitetura.md`, §4.6. Passar nele sem erros é fundamental (regra 7); as regras dele, como as outras, são provisórias (§2.4). Nos protótipos, ele só conta os avisos (§1.4).
-- **Publicação:** o GitHub Actions publica a cada push na `main`, depois do build, do render, do verificador e da conferência de links. Um erro interrompe a publicação, e o site anterior continua no ar.
+- **Publicação:** o GitHub Actions publica a cada push na `main`, depois dos testes de unidade, do render, do verificador, da conferência de links e do laboratório. Um erro interrompe a publicação, e o site anterior continua no ar.
 - **Branch:** cada mudança num branch, integrada à `main` depois de verificada, de preferência por pull request. Num pull request para a `main`, o GitHub Actions faz as mesmas verificações, sem publicar, e mostra o resultado na página do pull request; integre só com o resultado verde.
 - **Commits:** mensagem curta, no imperativo, um assunto por commit.
 

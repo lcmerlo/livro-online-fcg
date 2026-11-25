@@ -2,15 +2,8 @@
 title: "Teste"
 ---
 
-::: {.bloco-objetivo}
-Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro.
-:::
-
-::: {.bloco-pre-requisitos}
-Antes de começar, certifique-se de dominar:
-
-- [Pré-requisito 1](../index.qmd)
-- [Pré-requisito 2](../index.qmd)
+::: {.objective}
+Arquivo de teste: confere se tema, blocos, macros e applets saem como no livro. Antes de começar: [Pré-requisito 1](../index.qmd) e [Pré-requisito 2](../index.qmd).
 :::
 
 
@@ -97,7 +90,7 @@ Exemplo de teste.
 :::
 
 
-::: {.bloco-erro}
+::: {.note title="Erro comum"}
 É frequente confundir $A$ com $B$. Lembre-se de que [explicação da distinção].
 :::
 
@@ -105,22 +98,22 @@ Exemplo de teste.
 
 
 
-::: {#exrr-teste}
+::: {#exr-teste}
 Exercício resolvido de teste.
 
-::: {.solucao}
+::: {.solution}
 Resolução simples: $\norm{\vet{AB}} = 1$.
 :::
 :::
 
-::: {#exrr-teste-dica}
+::: {#exr-teste-dica}
 Exercício resolvido com dica.
 
-::: {.dica}
+::: {.hint}
 Dica: compare $A$ com $B$.
 :::
 
-::: {.solucao}
+::: {.solution}
 Resolução: $\norm{\vet{AB}} = 1$.
 :::
 :::
@@ -129,10 +122,8 @@ Resolução: $\norm{\vet{AB}} = 1$.
 Demonstração de teste.
 :::
 
-::: {.bloco-interacao}
 **[Título do applet].** [Objetivo em uma frase.]
 
 Arraste [os pontos ou controles] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado ou resultado relevante] aparece em texto abaixo do quadro.
 
 {{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
-:::

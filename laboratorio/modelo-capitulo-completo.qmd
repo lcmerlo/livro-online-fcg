@@ -2,23 +2,20 @@
 
 <!--
 Modelo de capítulo com a estrutura atual (guia-editorial.md §3) e TODOS os tipos de bloco
-disponíveis no livro. É a referência de forma até o primeiro capítulo revisado (§9).
+disponíveis no livro, na sintaxe do Apêndice B do livro-base (desde a fase 7 da migração).
+É a referência de forma até o primeiro capítulo revisado (§9).
 
 Como usar: copiar para capitulos/nome.qmd, listar em _quarto.yml, substituir os
 [colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o
-conteúdo. Os rótulos {#def-…}, {#prp-…}, {#exrr-…}, {#fig-…} são globais e devem ser únicos,
+conteúdo. Os rótulos {#def-…}, {#prp-…}, {#exr-…}, {#fig-…} são globais e devem ser únicos,
 também entre o capítulo e esta página, que o perfil lab põe no mesmo livro.
 Navegação anterior/próxima é gerada pelo livro; não escrever links de navegação.
 
 Ver este teste: quarto preview --profile lab (_quarto-lab.yml)
 -->
 
-::: {.bloco-objetivo}
-[Verbo] [conceito central]; [verbo] [segunda habilidade].
-:::
-
-::: {.bloco-pre-requisitos}
-[Pré-requisito] ([Capítulo anterior](../index.qmd)).
+::: {.objective}
+[Verbo] [conceito central]; [verbo] [segunda habilidade]. Antes de começar: [pré-requisito] ([Capítulo anterior](../index.qmd)).
 :::
 
 ## Primeira seção
@@ -51,7 +48,7 @@ Pela @def-modelo-conceito, [consequência].
 
 Na @fig-modelo, [comentário].
 
-::: {.bloco-erro}
+::: {.note title="Erro comum"}
 Não confunda [A] com [B]: [explicação da distinção e correção].
 :::
 
@@ -90,61 +87,59 @@ De fato, [demonstração em texto corrido, fora do bloco].
 ::: {#exr-modelo-exercício}
 [Enunciado de exercício com uma dica.]
 
-::: {.dica}
+::: {.hint}
 [Pista que não entrega a resposta.]
 :::
 :::
 
-::: {#exrr-modelo-resolucao}
-[Enunciado de exercício resolvido com resolução simples.]
+::: {#exr-modelo-resolucao}
+[Enunciado de exercício resolvido com solução simples.]
 
-::: {.solucao}
+::: {.solution}
 1. [Primeiro passo.]
 2. [Conclusão.]
 :::
 :::
 
-::: {#exrr-modelo-dica-resolucao}
-[Enunciado de exercício resolvido com dica e resolução.]
+::: {#exr-modelo-dica-resolucao}
+[Enunciado de exercício resolvido com dica e solução.]
 
-::: {.dica}
+::: {.hint}
 [Pista que não entrega a resposta.]
 :::
 
-::: {.solucao}
-[Resolução.]
+::: {.solution}
+[Solução.]
 :::
 :::
 
-::: {#exrr-modelo-varias-abas}
-[Enunciado de exercício com duas dicas e duas resoluções.]
+::: {#exr-modelo-varias-abas}
+[Enunciado de exercício com duas dicas e duas soluções. Cada dica vale para a solução escrita logo depois dela: aqui, as duas valem para a primeira.]
 
-::: {.dica}
+::: {.hint}
 [Primeira pista.]
 :::
 
-::: {.dica}
+::: {.hint}
 [Segunda pista, mais próxima da resposta.]
 :::
 
-::: {.solucao}
-[Primeira resolução.]
+::: {.solution}
+[Primeira solução.]
 :::
 
-::: {.solucao}
-[Resolução alternativa.]
+::: {.solution}
+[Solução alternativa.]
 :::
 :::
 
 ## Exploração interativa
 
-::: {.bloco-interacao}
 **[Título do applet].** [Objetivo em uma frase.]
 
 Arraste os pontos [ … ] com o mouse ou o dedo. Pelo teclado, use Tab para selecionar um ponto e as setas para movê-lo. [Estado relevante] aparece em texto abaixo do quadro.
 
 {{< applet nome-do-applet id="jxg-modelo-1" rotulo="[Descrição para leitor de tela: o que o applet mostra e quais são os controles.]" >}}
-:::
 
 [Pergunta de observação logo depois do applet.]
 
@@ -154,37 +149,37 @@ versão JSXGraph e não entram em capítulos novos sem decisão do autor
 (diretrizes-tecnicas.md, §4).
 -->
 
-::: {.bloco-checkpoint}
+::: {#exr-modelo-pergunta}
 [Pergunta conceitual breve.]
 
 (A) [alternativa]
 (B) [alternativa]
 (C) [alternativa]
 
-::: {.resposta}
+::: {.solution}
 **Resposta correta: (B).** [Explicação.]
 :::
 :::
 
-## Callouts
+## Observações
 
-::: {.callout-note title="Nota"}
+::: {.note}
 [Observação complementar.]
 :::
 
-::: {.callout-tip title="Dica"}
+::: {.note title="Dica"}
 [Sugestão.]
 :::
 
-::: {.callout-warning title="Aviso"}
+::: {.note title="Aviso"}
 [Aviso.]
 :::
 
-::: {.callout-caution title="Cuidado"}
+::: {.note title="Cuidado"}
 [Cuidado.]
 :::
 
-::: {.callout-important title="Importante"}
+::: {.note title="Importante"}
 [Destaque.]
 :::
 

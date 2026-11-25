@@ -50,6 +50,34 @@ if (readerToggle) {
   });
 }
 
+// Dicas e soluções (filters/blocks.lua): abrir uma parte fecha as outras
+// do grupo, e um segundo toque a recolhe. Um só listener para a página inteira.
+document.addEventListener('click', ({ target }) => {
+  const tab = target.closest?.('.reveal-tab');
+  if (tab) {
+    const group = tab.closest('.reveals');
+    for (const other of tab.parentElement.children) {
+      const open = other === tab && tab.getAttribute('aria-expanded') !== 'true';
+      other.setAttribute('aria-expanded', String(open));
+      group.querySelector(`[id="${other.getAttribute('aria-controls')}"]`).hidden = !open;
+    }
+    return;
+  }
+
+  // "Mais uma dica": mostra a próxima; o foco vai para ela, e o leitor de tela a lê.
+  const next = target.closest?.('.reveal-next');
+  if (next) {
+    const total = Number(next.dataset.total);
+    const waiting = [...next.parentElement.querySelectorAll(':scope > .reveal-step[hidden]')];
+    const [shown] = waiting;
+    shown.hidden = false;
+    shown.tabIndex = -1;
+    if (waiting.length === 1) next.remove();
+    else next.textContent = `Mais uma dica (${total - waiting.length + 2} de ${total})`;
+    shown.focus({ preventScroll: true });
+  }
+});
+
 // No menu lateral, marca a seção que está na tela (tools/sidebar-sections.ts pôs as
 // seções de cada capítulo lá). A seção atual é a última cujo título já passou do
 // terço de cima da tela. O Quarto reescreve os endereços do menu, e por isso as

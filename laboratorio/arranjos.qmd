@@ -438,30 +438,25 @@ O navegador recebe, em resumo, isto:
 
 As partes chegam **vazias**. O CSS do livro já as arruma antes de o applet rodar; o applet só desenha nos quadros, escreve a leitura e acrescenta os controles.
 
-## Num capítulo: o bloco de interação {#interacao}
+## Num capítulo: entre a instrução e a pergunta {#interacao}
 
-No capítulo, o applet fica dentro de um `.bloco-interacao`, com a instrução antes e a pergunta depois (guia editorial, §6). Qualquer arranjo desta página vai dentro dele.
+No capítulo, a instrução vem num parágrafo logo antes do applet, e a pergunta, logo depois, sem bloco em volta: o applet já se apresenta (guia editorial, §6). Qualquer arranjo desta página vale aí.
 
-:::: {.bloco-interacao}
 Arraste a ponta de $\vec{u}$ e mova a faixa.
 
-{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, num bloco de interação" arranjo="estreito centro" >}}
+{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, entre a instrução e a pergunta" arranjo="estreito centro" >}}
 
 Para que valor de $a$ o vetor $a\vec{u}$ tem o sentido oposto ao de $\vec{u}$ e o dobro do comprimento dele?
-::::
 
 ```markdown
-:::: {.bloco-interacao}
 Arraste a ponta de $\vec{u}$ e mova a faixa.
 
-{{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, num bloco de interação" arranjo="estreito centro" >}}}
+{{{< applet teste-controles id="arr-interacao" rotulo="Os vetores u e a·u, entre a instrução e a pergunta" arranjo="estreito centro" >}}}
 
 Para que valor de $a$ o vetor $a\vec{u}$ tem o sentido oposto ao de $\vec{u}$ e o dobro do comprimento dele?
-::::
 ```
 
-- **O rótulo "Interação"** entra sozinho no alto do bloco.
-- **Com o bloco** `::: {.applet}` dentro, o bloco de interação ganha mais dois-pontos que ele: `::::::` para o de interação, se o applet tiver cinco.
+Até a fase 7 da migração, o applet ia dentro de um `.bloco-interacao`, com o rótulo "Interação" no alto. O bloco saiu (decisão E3 do livro-base): a instrução já diz o que fazer.
 
 ## Fora dos arranjos {#fora}
 

@@ -1,93 +1,28 @@
 /*-- scss:rules --*/
 
-// Blocos didáticos (rótulos postos por components/blocos.lua), exemplos e exercícios,
-// avisos do Quarto e as abas das dicas e resoluções.
+// Blocos didáticos (filters/blocks.lua). Um sistema visual só: o que um bloco é se lê
+// no rótulo e na posição; nenhum tem cor, ícone ou fundo próprios. Vem do livro-base
+// (styles/blocks.scss), sem os três blocos de antes que ele ainda aceita e sem os
+// avisos do Quarto (.callout-…), que o livro não usa (escolha do autor, 2026-11-25).
 
-.bloco-objetivo,
-.bloco-pre-requisitos,
-.bloco-interacao,
-.bloco-erro,
-.bloco-checkpoint {
-  padding: 1rem 1.1rem;
+.objective,
+.note {
   margin: var(--space-block) 0;
 
-  // Sem margem sobrando no fim do bloco.
   > :last-child {
     margin-bottom: 0;
   }
 }
 
-// Interação, erro comum e checkpoint: texto alinhado ao de definições e proposições
-// (#def-, #prp-), que não têm padding.
-.bloco-interacao,
-.bloco-erro,
-.bloco-checkpoint {
-  padding: 0;
+.objective {
+  padding: 1rem 1.1rem;
 }
 
-// Abertura: objetivo e pré-requisitos lidos como um único bloco.
-.bloco-objetivo + .bloco-pre-requisitos {
-  margin-top: calc(-1 * var(--space-block));
-  padding-top: 0.25rem;
-}
-
-// Exemplos e exercícios (exm, exr, exrr): uma só família visual, distinguida pelo
-// prefixo. exrr é um float personalizado e precisa ser alinhado ao estilo dos blocos
-// nativos.
-.theorem.example,
-.theorem.exercise,
-figure.quarto-float-exrr {
-  margin: var(--space-block) 0;
-}
-
-// O wrapper do float traz margem inferior própria (.quarto-figure).
-.quarto-float.quarto-figure:has(> figure.quarto-float-exrr) {
-  margin: 0;
-}
-
-figure.quarto-float-exrr {
-  display: block;
-  text-align: left;
-
-  // Rótulo na mesma linha do texto, como em exm e exr.
-  > figcaption.quarto-float-caption {
-    float: left;
-    margin: 0 0.4em 0 0;
-    font-size: inherit;
-    font-weight: 700;
-    text-align: left;
-    color: inherit;
-  }
-
-  // O Quarto centraliza o conteúdo de figuras (.quarto-figure-center).
-  > figcaption + div {
-    text-align: left;
-  }
-
-  > figcaption + div > :first-child {
-    margin-top: 0;
-  }
-
-  > figcaption + div > :last-child {
-    margin-bottom: 0;
-  }
-
-  // Encerra o float do rótulo dentro da figura.
-  &::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
-
-// O rótulo fica dentro de um <p>, que traz a margem inferior padrão do parágrafo; é ela
-// que cria o espaço excessivo.
-p:has(> .bloco-rotulo) {
+p:has(> .block-label:not(.run-in)) {
   margin-bottom: 0.25rem;
 }
 
-// Rótulo do bloco ("Objetivo", "Erro comum"…): pequeno, em maiúsculas.
-.bloco-rotulo {
+.block-label {
   display: block;
   font-size: 0.85rem;
   font-weight: 700;
@@ -96,94 +31,174 @@ p:has(> .bloco-rotulo) {
   color: var(--color-accent-strong);
 }
 
-// ---- Avisos do Quarto (callouts), alinhados aos blocos didáticos ----
+// O rótulo na linha do texto (block-labels: run-in), como o título de uma definição.
+// O bloco fica na margem do texto, sem recuo.
+.block-label.run-in {
+  display: inline;
+  font-size: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-strong);
+}
 
-// Sem borda lateral e com o mesmo espaçamento dos blocos.
-.callout.callout-style-simple {
-  border: none;
-  padding: 1rem 1.1rem;
+.objective:has(> p > .run-in) {
+  padding: 0;
+}
+
+// Exemplos e exercícios: uma família, distinguida pelo prefixo. O exercício com dica, o
+// resolvido e a pergunta para conferir são todos o exercício do Quarto (questão E15).
+.theorem.example,
+.theorem.exercise {
   margin: var(--space-block) 0;
 }
 
-// Corpo no tamanho do texto corrido (o Quarto o reduz).
-.callout.callout-style-simple .callout-body {
-  font-size: inherit;
+// ---- Dicas e soluções: fechadas até o leitor pedir (filters/blocks.lua) ----
 
-  > :last-child {
-    margin-bottom: 0;
-  }
+// Abas que se recolhem: uma linha de botões e, embaixo, a parte aberta. Ocupam uma
+// linha, quantas forem as partes; abrir uma fecha as outras.
+.reveals {
+  margin: 0.35rem 0 var(--space-block);
 }
 
-// Título do aviso no estilo do .bloco-rotulo, sem fundo.
-.callout.callout-style-simple > .callout-header {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04rem;
-  text-transform: uppercase;
-  opacity: 1;
+:has(+ .reveals) {
+  margin-bottom: 0.25rem;
+}
+
+.reveal-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+// Pelo menos 24 px de altura (WCAG 2.5.8). O triângulo diz que há o que abrir.
+.reveal-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-height: 28px;
+  margin-bottom: -1px;
+  padding: 0.1rem 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
   background: none;
+  font: inherit;
+  font-size: 0.925rem;
+  font-weight: 700;
   color: var(--color-text-soft);
-}
+  cursor: pointer;
 
-// O Quarto clareia o título, que cairia abaixo de 4.5:1 sobre o fundo da página.
-.callout.callout-style-simple.callout-titled > .callout-header {
-  opacity: 1;
-}
-
-.callout.callout-style-simple .callout-title-container {
-  color: var(--color-text-soft);
-}
-
-// ---- Dicas e resoluções: abas recolhíveis (Dica, Resolução) ----
-
-// Alinhadas ao rótulo do exm/exr/exrr ou do checkpoint, dentro do qual ficam. O elemento
-// logo antes das abas fica sem margem, para colá-las ao enunciado.
-:has(+ .abas-recolhiveis) {
-  margin-bottom: 0;
-}
-
-.abas-recolhiveis .panel-tabset {
-  margin: 0.25rem 0 0;
-
-  // Abas como texto com sublinhado, sem as "orelhas" do Bootstrap.
-  .nav-tabs {
-    gap: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
+  &::before {
+    content: '';
+    border: solid transparent;
+    border-width: 0.3em 0 0.3em 0.45em;
+    border-left-color: currentColor;
+    transition: transform 150ms ease;
   }
 
-  .nav-tabs .nav-link {
-    border: none;
-    border-bottom: 2px solid transparent;
-    background: none;
-    padding: 0.1rem 0 0.3rem;
-    font-size: inherit;
-    font-weight: 700;
-    color: var(--color-text-soft);
+  &:hover {
+    color: var(--color-accent-strong);
   }
 
-  // Aba aberta: sublinhado azul e texto mais escuro.
-  .nav-tabs .nav-link.active {
+  &[aria-expanded='true'] {
     border-bottom-color: var(--color-accent);
-    color: var(--color-text-strong);
-  }
+    color: var(--color-accent-strong);
 
-  // Conteúdo sem a moldura padrão do panel-tabset.
-  .tab-content {
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .tab-pane {
-    padding-top: 0.75rem;
-
-    > :last-child {
-      margin-bottom: 0;
+    &::before {
+      transform: rotate(90deg);
     }
   }
 }
 
-// Avisos sem ícone.
-.callout-icon-container {
-  display: none;
+.reveal-panel {
+  padding: 0.6rem 0 0;
+  border-bottom: 1px solid var(--color-border);
+
+  > :last-child {
+    margin-bottom: 0.6rem;
+  }
+}
+
+// Alternativa `inline`: as partes como palavras sublinhadas, sem a linha das abas.
+.reveals.inline {
+  .reveal-tabs {
+    gap: 0 1rem;
+    border-bottom: 0;
+  }
+
+  .reveal-tab {
+    border-bottom: 0;
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &[aria-expanded='true'] {
+      font-weight: 700;
+    }
+  }
+
+  .reveal-panel {
+    padding-left: 0.9rem;
+    border-bottom: 0;
+    border-left: 2px solid var(--color-border);
+  }
+}
+
+// Alternativa `steps`: as dicas de uma parte aparecem uma de cada vez. A dica nova
+// recebe o foco para o leitor de tela lê-la; não é um controle, e não ganha contorno.
+.reveal-step + .reveal-step {
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.reveal-step:focus {
+  outline: none;
+}
+
+.reveal-next {
+  min-height: 24px;
+  margin-bottom: 0.6rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+// Sanfona, com o <details> do navegador: várias dicas dentro de uma aba e a
+// alternativa `accordion`.
+.reveal {
+  margin: 0.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+
+  > summary {
+    min-height: 24px;
+    padding: 0.2rem 0;
+    font-size: 0.925rem;
+    font-weight: 700;
+    color: var(--color-text-soft);
+    cursor: pointer;
+  }
+
+  &[open] > summary {
+    color: var(--color-text-strong);
+  }
+
+  > :last-child {
+    margin-bottom: 0.75rem;
+  }
+}
+
+// Dentro de uma aba, a última dica não repete a linha de baixo do painel.
+.reveal-panel > .reveal:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+:has(+ .reveal) {
+  margin-bottom: 0.25rem;
 }

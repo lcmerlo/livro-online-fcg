@@ -511,7 +511,7 @@ para pré-visualização.
 | Testar um applet fora do livro | `npm run dev` (abre `index.html`) | `applets-src/` |
 | Gerar o site completo | `quarto render` | raiz |
 | Rodar as verificações | `node tests/verificar-site.mjs` | raiz |
-| Rodar os testes de unidade | `node --test tests/unit/` | raiz |
+| Rodar os testes de unidade | `node --test "tests/unit/*.test.mjs"` | raiz |
 | Ver as páginas de teste e os modelos de capítulo (laboratório) | `quarto preview --profile lab` (com `--profile lab,axe`, também a verificação de acessibilidade) | raiz |
 | Gerar e verificar o laboratório | `quarto render --profile lab --to html` e `node tests/verificar-site.mjs --lab` | raiz |
 

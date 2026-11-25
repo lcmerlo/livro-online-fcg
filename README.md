@@ -65,7 +65,7 @@ quarto render       - gera o site HTML completo em docs/ (o projeto não tem sa�
 cd applets-src && npm ci && npm run build - gera o bundle dos applets (necessário antes do render local)
 cd applets-src && npm run watch - refaz o bundle a cada alteração em applets-src/src/ (use junto com o quarto preview ao editar applets)
 node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
-node --test tests/unit/ - testes de unidade (hoje, que nenhuma cor da paleta se perdeu)
+node --test "tests/unit/*.test.mjs" - testes de unidade (hoje, que nenhuma cor da paleta se perdeu)
 quarto render --profile lab --to html e node tests/verificar-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (o que o verificador acha nas páginas de teste é listado, sem reprovar)
 
 
@@ -98,7 +98,7 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 
 ### Checklist antes de commit
 - [ ] O projeto renderiza sem erro.
-- [ ] `node tests/verificar-site.mjs` não acusa erros, e `node --test tests/unit/` passa.
+- [ ] `node tests/verificar-site.mjs` não acusa erros, e `node --test "tests/unit/*.test.mjs"` passa.
 - [ ] O laboratório renderiza sem erro (`quarto render --profile lab --to html`).
 - [ ] O capítulo novo está listado em `_quarto.yml`.
 - [ ] Fórmulas, imagens e links funcionam.

@@ -30,6 +30,13 @@ $web-font-path: false;
   --color-support: #{$brand-gray-5};
   --color-board: #{$brand-white-1};
 
+  // Fórmulas comentadas (styles/annotations.scss): as cores que ligam cada parte ao
+  // seu comentário.
+  --note-1: #{$brand-blue-8};
+  --note-2: #{$brand-orange-2};
+  --note-3: #{$brand-green-2};
+  --note-4: #{$brand-red-6};
+
   // Os pontos dos applets, em px, lidos por applets-src/src/tools/styles.js: o raio do
   // disco, igual no ponto fixo e no que se arrasta; o anel do que se arrasta (metade
   // fica fora do disco), com a opacidade em repouso e sob o cursor ou com o foco do

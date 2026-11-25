@@ -1,0 +1,190 @@
+---
+title: "Fórmulas comentadas"
+format:
+  html:
+    # As linhas longas de código quebram, e o código aparece inteiro também a 320 px
+    # (no livro-base, o _metadata.yml de modelos/).
+    code-overflow: wrap
+---
+
+<!-- Página de conferência das fórmulas comentadas: a de modelos/formulas-comentadas.qmd
+     do livro-base, sem os links para os apêndices de lá e sem o painel de
+     acessibilidade, que chega na fase 6 da migração. Serve à fase 7 do plano de
+     migração (filters/annotations.lua, src/site/annotations.js,
+     styles/annotations.scss).
+     Ver: quarto preview --profile lab (_quarto-lab.yml) -->
+
+As quatro formas de comentar as partes de uma fórmula, com a mesma fórmula, e outros casos de cada uma: as de `modelos/formulas-comentadas.qmd` do livro-base. Cada parte marcada ganha uma caixa na cor do seu comentário, e uma linha da mesma cor liga a caixa ao comentário (ou, na legenda, ao número dele). Os comentários são exemplos para ver o mecanismo, e não texto revisado do livro. Como se escreve, e qual forma escolher, está no Apêndice B do livro-base, seção "Fórmulas comentadas".
+
+| Forma | Como aparece | O que se escreve |
+|---|---|---|
+| **Linhas** (a padrão) | os comentários em volta da fórmula, cada um ligado à caixa da sua parte; fórmula e comentários juntos, no centro da coluna | `::: {.annotated}` |
+| **Ao lado** | os comentários numa lista ao lado da fórmula, cada um com o seu número; uma linha liga cada caixa ao número do seu comentário | `::: {.annotated .beside}` |
+| **Legenda** | em volta da fórmula ficam só os números, cada um ligado por uma linha à caixa da sua parte; os comentários ficam numa lista embaixo, com os mesmos números | `::: {.annotated .legend}` |
+| **Chave** | um comentário curto colado na parte | `\underbrace{...}_{...}`, do próprio KaTeX |
+
+As três primeiras se escrevem do mesmo jeito: trocar uma pela outra é acrescentar, trocar ou tirar uma palavra. Estreite a janela ou abra num celular: onde não cabem os comentários em volta da fórmula, a lista ao lado dela ou os números em volta dela, os comentários ficam numa lista embaixo, com os números, e cada um começa pela parte a que se refere.
+
+## A mesma fórmula nas quatro {#comparacao}
+
+### Linhas {.unnumbered .unlisted}
+
+::: {#comparacao-linhas .annotated}
+$$
+d(P,r) = \frac{\note{1}{|ax_0 + by_0 + c|}}{\note{2}{\sqrt{a^2 + b^2}}}
+$$
+
+1. O primeiro membro da equação de $r$, calculado em $P = (x_0, y_0)$. É zero exatamente quando $P$ está em $r$.
+2. A norma de $(a, b)$, vetor perpendicular a $r$.
+:::
+
+### Ao lado {.unnumbered .unlisted}
+
+::: {#comparacao-ao-lado .annotated .beside}
+$$
+d(P,r) = \frac{\note{1}{|ax_0 + by_0 + c|}}{\note{2}{\sqrt{a^2 + b^2}}}
+$$
+
+1. O primeiro membro da equação de $r$, calculado em $P = (x_0, y_0)$. É zero exatamente quando $P$ está em $r$.
+2. A norma de $(a, b)$, vetor perpendicular a $r$.
+:::
+
+### Legenda {.unnumbered .unlisted}
+
+::: {#comparacao-legenda .annotated .legend}
+$$
+d(P,r) = \frac{\note{1}{|ax_0 + by_0 + c|}}{\note{2}{\sqrt{a^2 + b^2}}}
+$$
+
+1. O primeiro membro da equação de $r$, calculado em $P = (x_0, y_0)$. É zero exatamente quando $P$ está em $r$.
+2. A norma de $(a, b)$, vetor perpendicular a $r$.
+:::
+
+### Chave {.unnumbered .unlisted}
+
+$$
+d(P,r) = \frac{\overbrace{|ax_0 + by_0 + c|}^{\text{zero quando } P \in r}}{\underbrace{\sqrt{a^2 + b^2}}_{\text{norma de } (a,\, b)}}
+$$
+
+A chave só comporta poucas palavras: um comentário longo alarga a fórmula, e no celular ela passa a rolar para o lado.
+
+## Linhas: outros casos {#linhas-outros-casos}
+
+Uma parte no numerador recebe o comentário por cima; no denominador, por baixo. Assim a linha não atravessa a fórmula.
+
+::: {.annotated}
+$$
+\operatorname{Proj}_{\vec{u}}\,\vec{v} = \note{1}{\frac{\langle \vec{v},\vec{u}\rangle}{\norm{\vec{u}}^2}}\;\note{2}{\vec{u}}
+$$
+
+1. Um número real. É negativo quando o ângulo entre $\vec{u}$ e $\vec{v}$ é obtuso.
+2. A projeção é esse número vezes $\vec{u}$.
+:::
+
+Um comentário pode valer para mais de uma parte:
+
+::: {.annotated}
+$$
+(x - \note{1}{x_0})^2 + (y - \note{1}{y_0})^2 = \note{2}{r^2}
+$$
+
+1. As coordenadas do centro.
+2. O quadrado do raio: o raio é $r$, não $r^2$.
+:::
+
+Com três comentários numa fórmula baixa, eles se dividem entre cima e baixo quando não cabem numa fileira só:
+
+::: {#tres-linhas .annotated}
+$$
+\note{1}{\langle \vec{u}, \vec{v} \rangle} = \note{2}{\norm{\vec{u}}\,\norm{\vec{v}}}\, \note{3}{\cos \sphericalangle(\vec{u}, \vec{v})}
+$$
+
+1. Um número, não um vetor.
+2. O produto dos comprimentos.
+3. O cosseno do ângulo entre os vetores: é ele que dá o sinal.
+:::
+
+## Ao lado: os mesmos casos {#ao-lado-mesmos-casos}
+
+Quando não há nada da fórmula à direita de uma parte, a linha dela vai direto para a lista. Quando há, a linha passa por cima do resto da fórmula, numa faixa só dela; passa por baixo se o comentário dessa parte vem, na lista, depois dos comentários das partes à direita. Assim as linhas não se cruzam.
+
+::: {.annotated .beside}
+$$
+\operatorname{Proj}_{\vec{u}}\,\vec{v} = \note{1}{\frac{\langle \vec{v},\vec{u}\rangle}{\norm{\vec{u}}^2}}\;\note{2}{\vec{u}}
+$$
+
+1. Um número real. É negativo quando o ângulo entre $\vec{u}$ e $\vec{v}$ é obtuso.
+2. A projeção é esse número vezes $\vec{u}$.
+:::
+
+::: {.annotated .beside}
+$$
+(x - \note{1}{x_0})^2 + (y - \note{1}{y_0})^2 = \note{2}{r^2}
+$$
+
+1. As coordenadas do centro.
+2. O quadrado do raio: o raio é $r$, não $r^2$.
+:::
+
+::: {.annotated .beside}
+$$
+\note{1}{\langle \vec{u}, \vec{v} \rangle} = \note{2}{\norm{\vec{u}}\,\norm{\vec{v}}}\, \note{3}{\cos \sphericalangle(\vec{u}, \vec{v})}
+$$
+
+1. Um número, não um vetor.
+2. O produto dos comprimentos.
+3. O cosseno do ângulo entre os vetores: é ele que dá o sinal.
+:::
+
+## Legenda: os mesmos casos {#legenda-mesmos-casos}
+
+Uma parte do numerador recebe o número por cima; uma do denominador, por baixo; as outras, por baixo também. Quando as caixas de um mesmo comentário estão longe uma da outra, as duas linhas chegam juntas ao número.
+
+::: {.annotated .legend}
+$$
+\operatorname{Proj}_{\vec{u}}\,\vec{v} = \note{1}{\frac{\langle \vec{v},\vec{u}\rangle}{\norm{\vec{u}}^2}}\;\note{2}{\vec{u}}
+$$
+
+1. Um número real. É negativo quando o ângulo entre $\vec{u}$ e $\vec{v}$ é obtuso.
+2. A projeção é esse número vezes $\vec{u}$.
+:::
+
+::: {.annotated .legend}
+$$
+(x - \note{1}{x_0})^2 + (y - \note{1}{y_0})^2 = \note{2}{r^2}
+$$
+
+1. As coordenadas do centro.
+2. O quadrado do raio: o raio é $r$, não $r^2$.
+:::
+
+::: {.annotated .legend}
+$$
+\note{1}{\langle \vec{u}, \vec{v} \rangle} = \note{2}{\norm{\vec{u}}\,\norm{\vec{v}}}\, \note{3}{\cos \sphericalangle(\vec{u}, \vec{v})}
+$$
+
+1. Um número, não um vetor.
+2. O produto dos comprimentos.
+3. O cosseno do ângulo entre os vetores: é ele que dá o sinal.
+:::
+
+## Como se escreve
+
+```markdown
+::: {.annotated}
+$$
+d(P,r) = \frac{\note{1}{|ax_0 + by_0 + c|}}{\note{2}{\sqrt{a^2 + b^2}}}
+$$
+
+1. O primeiro membro da equação de $r$, calculado em $P = (x_0, y_0)$.
+2. A norma de $(a, b)$, vetor perpendicular a $r$.
+:::
+```
+
+Para as outras formas, troque a primeira linha por `::: {.annotated .beside}` ou `::: {.annotated .legend}`. Para a chave, sem bloco:
+
+```markdown
+$$
+d(P,r) = \frac{\overbrace{|ax_0 + by_0 + c|}^{\text{zero quando } P \in r}}{\underbrace{\sqrt{a^2 + b^2}}_{\text{norma de } (a,\, b)}}
+$$
+```

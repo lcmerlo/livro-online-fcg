@@ -27,14 +27,15 @@ shortcodes:
 format:
   html:
     # O tema: o Cosmo, as cores e as fontes de _brand.yml, e as folhas do livro, nesta
-    # ordem: as cores pelo que significam, a página, os blocos e o sistema antigo de
-    # applets (sai na fase 5 da migração).
+    # ordem: as cores pelo que significam, a página, os blocos, as fórmulas comentadas e
+    # o sistema antigo de applets (sai na fase 5 da migração).
     theme:
       - cosmo
       - brand
       - styles/tokens.scss
       - styles/page.scss
       - styles/blocks.scss
+      - styles/annotations.scss
       - styles/old-applets.scss
     # As larguras da página, num só lugar: o menu, a coluna de texto (que continua boa
     # de ler em tela grande) e a coluna da direita, para os applets largos
@@ -76,12 +77,14 @@ block-labels: run-in
 
 # Para qualquer formato de saída: as macros do livro (\vet, \norm, \R…), de
 # math/macros.json, expandidas em toda fórmula, que chega ao KaTeX, às prévias das
-# referências e ao PDF já em TeX comum; e os blocos. O filtro dos blocos roda antes do
-# Quarto (`at: pre-ast`): o Quarto tem um ambiente .solution próprio, que deixaria a
-# solução à vista, sem aba (decisão E15 do livro-base); com isso, ele roda também antes
-# dos outros. Em toda página HTML, o que roda em toda página (src/site/boot.js).
+# referências e ao PDF já em TeX comum; as fórmulas comentadas; e os blocos. O filtro
+# dos blocos roda antes do Quarto (`at: pre-ast`): o Quarto tem um ambiente .solution
+# próprio, que deixaria a solução à vista, sem aba (decisão E15 do livro-base); com
+# isso, ele roda também antes dos outros. Em toda página HTML, o que roda em toda
+# página (src/site/boot.js).
 filters:
   - filters/macros.lua
+  - filters/annotations.lua
   - path: filters/blocks.lua
     at: pre-ast
   - filters/site.lua

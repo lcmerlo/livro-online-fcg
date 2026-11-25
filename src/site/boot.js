@@ -114,3 +114,9 @@ if (sectionLinks.length > 0) {
     });
   }
 }
+
+// As fórmulas comentadas (filters/annotations.lua): só a página que as tem carrega o
+// módulo que as arruma.
+if (document.querySelector('.annotated')) {
+  import('./annotations.js').then(({ drawAnnotations }) => drawAnnotations());
+}

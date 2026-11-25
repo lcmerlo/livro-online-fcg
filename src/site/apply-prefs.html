@@ -5,3 +5,9 @@ try {
   if (localStorage.getItem('quarto-reader-mode') === 'true') document.documentElement.dataset.reader = 'on';
 } catch {}
 </script>
+<noscript><style>
+/* Sem JavaScript, nada se abre: dicas e soluções ficam à vista, cada uma com o nome. */
+.reveal-tabs, .reveal-next { display: none; }
+.reveal-panel[hidden], .reveal-step[hidden] { display: block !important; }
+.reveal-panel::before { content: attr(data-label); display: block; font-weight: 700; }
+</style></noscript>

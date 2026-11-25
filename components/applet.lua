@@ -1,5 +1,5 @@
 -- Shortcodes para applets do livro. A saída vem num <div class="bloco-applet">;
--- orientações e perguntas ficam em volta, no bloco .bloco-interacao.
+-- a instrução fica num parágrafo antes, e a pergunta, depois, sem bloco em volta.
 --   {{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição acessível" >}}
 --   {{< applet nome-do-applet id="…" rotulo="…" arranjo="estreito centro" >}}
 --   {{< geogebra f2zqppmu titulo="Applet: descrição" >}}

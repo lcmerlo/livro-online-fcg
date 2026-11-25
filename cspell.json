@@ -120,6 +120,8 @@
     "vermillion",
     "fontsource",
     "prerender",
+    "Proj",
+    "ast",
     "Vite"
   ]
 }

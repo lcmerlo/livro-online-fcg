@@ -114,12 +114,12 @@ dt code:not(.sourceCode),
   display: inline-block;
 }
 
-// Figuras com legenda: ::: {.fig-leg .w30 #fig-...}. A classe .wNN dá a largura da
+// Figuras com legenda: ::: {.figure-note .w30 #fig-...}. A classe .wNN dá a largura da
 // imagem (padrão: 70%); a legenda nunca fica mais estreita que metade da coluna.
-.fig-leg {
+.figure-note {
   --figure-width: 70%;
 
-  @each $width in 30, 40, 50, 60, 70, 80 {
+  @each $width in 30, 40, 50, 60, 70, 80, 90, 100 {
     &.w#{$width} {
       --figure-width: #{$width}#{'%'};
     }

@@ -21,52 +21,54 @@ A lista de dez itens do `README.md` e do `index.qmd` é um repertório, não um 
 
 ## 3. Componentes
 
-Use as classes e shortcodes, sem formatar à mão (§23, §35).
+Use as classes e shortcodes, sem formatar à mão (§23, §35). Desde a fase 7 da migração (25/11/2026), os blocos são os do Apêndice B do livro-base ("Blocos"), e os de antes (`.bloco-*`, `.dica`, `.solucao`, `.resposta`, `#exrr-…`, `.fig-leg` e os avisos `.callout-…` do Quarto) dão erro no verificador; a troca de cada um está no Apêndice F do livro-base ("No capítulo").
 
 | Para | Use |
 |---|---|
-| Objetivo, pré-requisitos, interação, erro comum, checkpoint | `::: {.bloco-objetivo}` … `:::` (também `-pre-requisitos`, `-interacao`, `-erro`, `-checkpoint`). O rótulo visível é inserido automaticamente por `components/blocos.lua`. |
+| Objetivo, com o que é preciso saber antes | `::: {.objective}` … `:::`, com os pré-requisitos numa frase no fim: "Antes de começar: …". O rótulo "Objetivo." entra sozinho, na linha do texto (`filters/blocks.lua`). |
+| Erro comum, nota, cuidado, destaque | `::: {.note title="Erro comum"}` … `:::`, com o título que o trecho pedir; sem título, o rótulo é "Observação." |
 | Applet JSXGraph próprio | `{{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Descrição para leitor de tela" >}}` (o nome é o de um arquivo de `applets-src/src/applets/`); quadro estreito ou no centro: `arranjo="estreito centro"` (§6) |
 | Applet com várias partes (quadros, leituras) | bloco `::: {.applet nome="…" id="…" rotulo="…"}` em volta das partes `.quadro` e `.leitura` (§6) |
 | Applet GeoGebra (provisório) | `{{< geogebra f2zqppmu titulo="Applet GeoGebra: descrição específica" >}}`, só nos capítulos que ainda não têm a versão JSXGraph; em conteúdo novo, só por decisão do autor (`diretrizes-tecnicas.md`, §4) |
 | Definição | `::: {#def-nome}` … `:::` (padrão adotado; ver abaixo) |
 | Proposição | `::: {#prp-nome}` … `:::` (ver abaixo) |
 | Exemplo | `::: {#exm-nome}` … `:::` |
-| Exercício / exercício resolvido | `::: {#exr-nome}` / `::: {#exrr-nome}`, com `.dica` e `.solucao` opcionais dentro, após o enunciado |
-| Dica, resolução, resposta | `::: {.dica}`, `::: {.solucao}`, `::: {.resposta}` dentro de `#exm`, `#exr`, `#exrr` ou `.bloco-checkpoint`: viram abas recolhíveis "Dica", "Resolução", "Resposta", numeradas quando há mais de uma do mesmo tipo (gerado por `components/blocos.lua`) |
-| Figura com legenda | `::: {.fig-leg #fig-nome}` (largura opcional: `.w30` … `.w80`) |
+| Exercício, exercício resolvido e pergunta para conferir | `::: {#exr-nome}` … `:::`, com `.hint` e `.solution` opcionais dentro, depois do enunciado |
+| Dica e solução | `::: {.hint}`, `::: {.solution}` dentro de `#exm` ou `#exr`: viram abas que começam fechadas, "Dica" e "Solução" (gerado por `filters/blocks.lua`) |
+| Fórmula comentada | `::: {.annotated}` em volta da fórmula em destaque e da lista dos comentários (§4) |
+| Figura com legenda | `::: {.figure-note #fig-nome}` (largura opcional: `.w30` … `.w100`) |
 
-**Uso dos componentes (08/10/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
+**Uso dos componentes (08/10/2026; a sintaxe, de 25/11/2026).** Ver as quatro famílias visuais no §23 dos Princípios.
 
-- Abertura: `.bloco-objetivo` (uma ou duas frases) seguido imediatamente de `.bloco-pre-requisitos` (lista curta, com links de revisão); os dois aparecem como um só bloco, com os rótulos "Objetivo" e "Antes de começar".
-- Interação (`.bloco-interacao`): orientações e o applet (shortcode ou bloco `.applet`); os dois geram sozinhos a parte interativa (`.bloco-applet`), que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as leituras, o texto de estado e o botão "Reiniciar" ficam fora dele, no fundo da página. Instrução imediatamente antes, poucos controles e uma pergunta de observação logo depois. Sem callouts dentro do bloco.
-- Erro comum: sempre aberto; apresentar o equívoco e a correção.
-- Checkpoint: uma pergunta conceitual breve (até três itens) com resposta colapsada. Diagnostica a compreensão; não é exercício e não recebe `{#exr-…}`.
-- Dicas, respostas e resoluções ficam fechadas: só se abrem por ação do estudante.
+- Abertura: `.objective`, uma ou duas frases, com os pré-requisitos numa frase no fim ("Antes de começar: …", com links de revisão).
+- Interação: a instrução num parágrafo imediatamente antes do applet, sem bloco em volta (o applet já se apresenta), poucos controles e uma pergunta de observação logo depois. O applet (shortcode ou bloco `.applet`) gera sozinho a parte interativa (`.bloco-applet`), que não se escreve à mão. Só o quadro, onde fica a figura, tem fundo branco e borda; os controles, as leituras, o texto de estado e o botão "Reiniciar" ficam fora dele, no fundo da página.
+- Erro comum: `.note title="Erro comum"`, sempre aberto; apresentar o equívoco e a correção.
+- Pergunta para conferir (o antigo checkpoint): uma pergunta conceitual breve (até três itens), escrita como exercício, `{#exr-…}`, com a resposta numa `.solution`. Diagnostica a compreensão (decisão E15 do livro-base).
+- Dicas e soluções ficam fechadas: só se abrem por ação do estudante.
 
-Dicas e resoluções ficam dentro do exercício (ou exemplo), depois do enunciado, separadas por linhas em branco. Divs `.dica`, `.solucao` e `.resposta` consecutivas formam um só conjunto de abas, na ordem Dica, Resolução, Resposta; abas do mesmo tipo são numeradas ("Dica 1", "Dica 2").
+Dicas e soluções ficam dentro do exercício (ou exemplo), depois do enunciado, separadas por linhas em branco. Divs `.hint` e `.solution` seguidas formam um só conjunto de abas, e cada dica vale para a solução escrita depois dela. Com mais de uma solução, as abas são numeradas ("Solução 1", "Solução 2"); duas dicas seguidas ficam na mesma aba, uma embaixo da outra ("Dica a", "Dica b"). Sem JavaScript, dicas e soluções ficam à vista, cada uma com o nome.
 
 ```markdown
-::: {#exrr-nome}
+::: {#exr-nome}
 Enunciado.
 
-::: {.dica}
+::: {.hint}
 …
 :::
 
-::: {.solucao}
+::: {.solution}
 …
 :::
 :::
 ```
 
-No checkpoint:
+Na pergunta para conferir:
 
 ```markdown
-::: {.bloco-checkpoint}
+::: {#exr-nome}
 Pergunta.
 
-::: {.resposta}
+::: {.solution}
 **Resposta correta: (B).** …
 :::
 :::
@@ -113,6 +115,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
   Para alterar a notação em todo o livro, edite a lista de `math/macros.json`, em que cada barra invertida aparece dobrada (`"\\R": "\\mathbb{R}"`). Por que num só lugar: `diretrizes-tecnicas.md`, §5.
 - Cor não pode ser o único modo de distinguir termos em uma fórmula: se usar `\color`, indicar o sentido também no texto. Cores hexadecimais são escritas com `#`: `\color{#993300}`, forma que vale em qualquer motor de fórmulas. O KaTeX também aplica `\color{993300}`, mas o MathJax não; `\color[HTML]{993300}` produz erro nos dois (testado no KaTeX em 05/11/2026 e no MathJax em 04/10/2026).
 - Use as macros: não escrever `\overrightarrow`, `\vec{AB}`, `\lVert`, `\|…\|` ou `\mathbb{R}` à mão.
+- **Fórmula comentada**, quando as partes de uma fórmula pedem explicação: um bloco `::: {.annotated}` com a fórmula em destaque, cada parte marcada com `\note{n}{…}`, e logo depois a lista numerada dos comentários, um por número. As formas (`.annotated`, `.annotated .beside`, `.annotated .legend`, e a chave `\underbrace`) e quando usar cada uma: Apêndice B do livro-base, "Fórmulas comentadas"; funcionando, `laboratorio/formulas-comentadas.qmd`.
 - Introduzir a notação antes de usá-la com frequência.
 - Alterações de conteúdo matemático e de texto didático só entram com a aprovação do autor responsável. O que conta como cada tipo de mudança está em `diretrizes-tecnicas.md`, §9.
 
@@ -123,7 +126,7 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - Toda imagem informativa tem texto alternativo (`fig-alt`) que diga **o que ela mostra para a aprendizagem**, não apenas "Figura". O texto entre colchetes **não** é o alt: no Quarto ele vira legenda.
 
   ```markdown
-  ::: {.fig-leg #fig-segmentos}
+  ::: {.figure-note #fig-segmentos}
   ![](../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="Reta suporte passando por A e B; o trecho entre A e B, destacado, é o segmento AB."}
 
   Segmento $AB$ de extremos $A$ e $B$ e sua reta suporte.
@@ -136,9 +139,9 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 
 ## 6. Applets (§29, §30)
 
-No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (um checkpoint, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
+No capítulo, todo applet tem: título ou identificação, objetivo breve, instrução de interação, área interativa e uma pergunta ou atividade associada (uma pergunta para conferir, por exemplo). Quando necessário, também tem botão de reinício e texto com o estado ou resultado relevante. Começa em estado compreensível e com poucos controles.
 
-- Inserir com `{{< applet <nome> id="…" rotulo="…" >}}` dentro de um `.bloco-interacao`, com a instrução antes e a pergunta depois. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
+- Inserir com `{{< applet <nome> id="…" rotulo="…" >}}`, com a instrução num parágrafo antes e a pergunta depois, sem bloco em volta. O `id` deve ser único na página; o `rotulo` descreve o applet para o leitor de tela.
 - Um applet com várias partes (dois quadros ligados, uma leitura com a fórmula, os controles em outro lugar) usa um bloco que envolve as partes. Cada parte é um div com id `<id>-<parte>`: `.quadro`, com o seu `rotulo`, `.leitura` ou `.controles`. O applet diz quais partes existem e quais são opcionais; o capítulo decide onde cada uma fica:
 
   ```markdown
@@ -192,7 +195,7 @@ git diff
 
 ## 9. Página-modelo
 
-Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `laboratorio/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, checkpoint com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
+Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `laboratorio/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, pergunta para conferir com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 
@@ -200,7 +203,7 @@ Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não 
 ```markdown
 ## Comprimento de um segmento
 
-::: {.bloco-objetivo}
+::: {.objective}
 Calcular o comprimento de um segmento a partir de seus extremos.
 :::
 
@@ -208,13 +211,15 @@ Calcular o comprimento de um segmento a partir de seus extremos.
 O **comprimento** de $AB$ é $d(A,B)$.
 :::
 
-::: {.bloco-interacao}
 Mova os pontos $A$ e $B$ e observe como o comprimento muda.
 
 {{< applet nome-do-applet id="jxg-nome-do-applet-1" rotulo="Segmento com dois pontos móveis" >}}
-:::
 
-::: {.bloco-checkpoint}
+::: {#exr-segmento-degenerado}
 O que acontece com o segmento quando $A$ e $B$ coincidem?
+
+::: {.solution}
+…
+:::
 :::
 ```

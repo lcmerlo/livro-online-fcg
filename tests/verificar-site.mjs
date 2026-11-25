@@ -8,8 +8,9 @@
 //   --lab            confere o site do perfil lab (docs-lab/, de
 //                    `quarto render --profile lab`), com as páginas de laboratorio/
 //
-// Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição
-// e comandos TeX suspeitos; as de laboratorio/ também sem --lab.
+// Fontes (.qmd): caminhos de imagem inválidos, títulos de definição/proposição,
+// comandos TeX suspeitos e blocos que nenhum filtro do livro conhece (os de antes
+// da fase 7 da migração e os avisos do Quarto); as de laboratorio/ também sem --lab.
 // Site gerado (docs/ ou docs-lab/): iframes sem title, imagens sem alt, applets sem
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
 // ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
@@ -48,8 +49,9 @@ const erros = [];
 const avisos = [];
 // As páginas do laboratório são testes e modelos, alguns com exemplos que não
 // funcionam de propósito (o applet "nome-do-applet", macros só da página): o que
-// se acha nelas é listado à parte e não reprova, nem com --estrito. Elas passam à
-// sintaxe nova na fase 7 da migração (plano de migração do livro-base).
+// se acha nelas é listado à parte e não reprova, nem com --estrito. Os blocos delas
+// passaram à sintaxe nova na fase 7 da migração; os applets passam na fase 5 (plano
+// de migração do livro-base).
 const noLaboratorio = [];
 const doLaboratorio = (arquivo) => /^(docs-lab\/)?laboratorio\//.test(arquivo);
 const erro = (arquivo, msg) => (doLaboratorio(arquivo) ? noLaboratorio : erros).push(`${arquivo}: ${msg}`);
@@ -92,6 +94,25 @@ function avisoOuConta(fonte, arquivo, msg, comoErro = false) {
   else aviso(arquivo, msg);
 }
 
+// Blocos que nenhum filtro do livro conhece desde a fase 7 da migração
+// (filters/blocks.lua): os do livro de antes dela, os três de antes que o livro-base
+// tinha (saíram de lá em 2026-11-25) e os avisos do Quarto, que ficaram sem estilo. Uma .solucao sairia
+// com a solução à vista; os outros, sem rótulo, sem número ou com a aparência
+// padrão do Quarto. Por isso é erro, também nos exemplos de código. A troca de cada
+// um está no Apêndice F do livro-base, seção "No capítulo".
+const blocosSemFiltro = [
+  ["\\.bloco-objetivo", "::: {.objective}"],
+  ["\\.(?:bloco-pre-requisitos|prerequisites)", 'uma frase no fim do .objective ("Antes de começar: ...")'],
+  ["\\.(?:bloco-interacao|interaction)", "nenhum bloco: a instrução é um parágrafo antes do applet"],
+  ["\\.(?:bloco-erro|pitfall)", '::: {.note title="Erro comum"}'],
+  ["\\.bloco-checkpoint", "::: {#exr-nome}, com a resposta numa .solution"],
+  ["\\.dica", "::: {.hint}"],
+  ["\\.(?:solucao|resposta)", "::: {.solution}"],
+  ["#exrr-[^\\s}]*", "::: {#exr-nome}, com a solução numa .solution"],
+  ["\\.fig-leg", "::: {.figure-note #fig-nome}"],
+  ["\\.callout-[a-z]+", '::: {.note} ou ::: {.note title="..."}'],
+].map(([nome, troca]) => [new RegExp(`^:{3,}\\s*\\{[^}\\n]*?(${nome})(?=[\\s}])`, "gm"), troca]);
+
 const semComentarios = (texto) => texto.replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, " "));
 const linhaDe = (texto, indice) => texto.slice(0, indice).split("\n").length;
 
@@ -123,6 +144,12 @@ for (const arquivo of fontes.filter(existsSync)) {
   // Comando TeX inteiramente em maiúsculas (ex.: \MATHBB) não existe.
   for (const m of texto.matchAll(/\\[A-Z]{4,}\b/g)) {
     erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `comando TeX suspeito: ${m[0]}`);
+  }
+
+  for (const [padrao, troca] of blocosSemFiltro) {
+    for (const m of texto.matchAll(padrao)) {
+      erro(`${rel(arquivo)}:${linhaDe(texto, m.index)}`, `bloco ${m[1]}, que nenhum filtro do livro conhece desde a fase 7 da migração: use ${troca}`);
+    }
   }
 
   // Forma do guia (guia-editorial.md, §4): \color{#993300}, com #, que vale

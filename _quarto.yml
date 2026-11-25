@@ -27,14 +27,15 @@ shortcodes:
 format:
   html:
     # O tema: o Cosmo, as cores e as fontes de _brand.yml, e as folhas do livro, nesta
-    # ordem: as cores pelo que significam, a página, os blocos e o sistema antigo de
-    # applets (sai na fase 5 da migração).
+    # ordem: as cores pelo que significam, a página, os blocos, as fórmulas comentadas e
+    # o sistema antigo de applets (sai na fase 5 da migração).
     theme:
       - cosmo
       - brand
       - styles/tokens.scss
       - styles/page.scss
       - styles/blocks.scss
+      - styles/annotations.scss
       - styles/old-applets.scss
     # As larguras da página, num só lugar: o menu, a coluna de texto (que continua boa
     # de ler em tela grande) e a coluna da direita, para os applets largos
@@ -51,7 +52,6 @@ format:
     number-sections: true
     number-depth: 2
     smooth-scroll: true
-    callout-appearance: simple
     # A verificação de acessibilidade (axe) fica no perfil `axe` (_quarto-axe.yml),
     # fora do site publicado.
     # Fórmulas: o KaTeX de vendor/katex/, que vem com o site, e não de outro
@@ -61,34 +61,38 @@ format:
     html-math-method:
       method: katex
       url: "vendor/katex/"
-    # O menu recolhido vale antes de a página aparecer.
+    # O menu recolhido vale antes de a página aparecer; sem JavaScript, dicas e soluções
+    # ficam à vista.
     include-in-header: src/site/apply-prefs.html
     filters:
-      - components/blocos.lua
       - components/applet-bloco.lua
 
 
-# As macros do livro (\vet, \norm, \R…), de math/macros.json, expandidas em toda
-# fórmula, para qualquer formato de saída: a fórmula chega ao KaTeX, às prévias das
-# referências e ao PDF já em TeX comum. E, em toda página HTML, o que roda em toda
+# Blocos do capítulo (filters/blocks.lua): dicas e soluções em abas que se recolhem
+# (decisões D6 e E2 do livro-base); o rótulo de um bloco na linha do texto, como
+# "Definição 1.1" (E3). Os outros valores: reveal: inline | steps | accordion;
+# block-labels: above.
+reveal: tabs
+block-labels: run-in
+
+# Para qualquer formato de saída: as macros do livro (\vet, \norm, \R…), de
+# math/macros.json, expandidas em toda fórmula, que chega ao KaTeX, às prévias das
+# referências e ao PDF já em TeX comum; as fórmulas comentadas; e os blocos. O filtro
+# dos blocos roda antes do Quarto (`at: pre-ast`): o Quarto tem um ambiente .solution
+# próprio, que deixaria a solução à vista, sem aba (decisão E15 do livro-base); com
+# isso, ele roda também antes dos outros. Em toda página HTML, o que roda em toda
 # página (src/site/boot.js).
 filters:
   - filters/macros.lua
+  - filters/annotations.lua
+  - path: filters/blocks.lua
+    at: pre-ast
   - filters/site.lua
 
 execute:
   echo: false
   warning: false
   error: false
-
-crossref:
-  custom:
-    - key: exrr
-      kind: float
-      reference-prefix: Exercício Resolvido
-      caption-prefix: "Exercício Resolvido"
-      caption-location: top
-
 
 book:
   title: "Fundamentos de Cálculo e Geometria"

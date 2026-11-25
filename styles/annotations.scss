@@ -1,0 +1,184 @@
+/*-- scss:rules --*/
+
+// Fórmulas comentadas (filters/annotations.lua), decisão E1 do livro-base, de
+// 2026-11-12: linha e cor juntas. Vem do livro-base. Cada parte marcada ganha uma caixa na cor do seu comentário, e uma linha
+// da mesma cor liga a caixa ao comentário (ou, na legenda, ao rótulo dele). Quatro
+// aparências, o mesmo texto:
+//  - lista: os comentários embaixo, cada um com o seu rótulo (o número, na cor da
+//    parte) e começando pela parte a que se refere. É como a página chega (tela
+//    estreita, sem JavaScript, comentários que não cabem em volta da fórmula);
+//  - .is-drawn (src/site/annotations.js): os comentários em volta da fórmula, e o
+//    conjunto, fórmula e comentários, no centro da coluna;
+//  - .beside.is-beside: a lista ao lado da fórmula, com uma linha de cada caixa até o
+//    rótulo do seu comentário;
+//  - .legend.is-labeled: só os rótulos em volta da fórmula, cada um ligado às suas
+//    caixas; os comentários ficam na lista de sempre, embaixo.
+
+@mixin note-number {
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.35em;
+  border-radius: 0.75em;
+  background: var(--note-color, var(--color-accent-strong));
+  color: var(--color-board);
+  font-family: var(--bs-body-font-family);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.annotated {
+  display: flow-root;
+  position: relative;
+  margin: var(--space-block) 0;
+
+  // A caixa passa um pouco da altura da fórmula, que corta o que sai dela.
+  .katex-display {
+    padding-block: 0.5em;
+  }
+
+  > ol {
+    padding-left: 0;
+    list-style: none;
+
+    > li {
+      position: relative;
+      margin-bottom: 0.4em;
+
+      > p {
+        display: inline;
+      }
+    }
+  }
+}
+
+// A cor liga a parte ao comentário. Quem não distingue as cores tem a mesma
+// informação no texto: cada comentário começa pela parte a que se refere. São as
+// cores do livro, e passam de 3:1 sobre o fundo da página.
+@for $n from 1 through 8 {
+  .annotated .katex [data-note='#{$n}'],
+  .annotated > ol > li:nth-child(#{$n}),
+  .annotated > .note-label[data-note='#{$n}'],
+  .annotated-lines [data-note='#{$n}'] {
+    --note-color: var(--note-#{($n - 1) % 4 + 1});
+  }
+}
+
+// A caixa de cada parte marcada: uma fração ou uma raiz é marcada inteira.
+.annotated .katex [data-note] {
+  display: inline-block;
+  margin: 0 0.05em;
+  padding: 0.05em 0.14em;
+  border-radius: 0.2em;
+  background: color-mix(in srgb, var(--note-color) 12%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--note-color) 55%, transparent);
+  outline-offset: -1px;
+}
+
+// O rótulo de cada comentário: o número, num círculo da cor da parte.
+.note-label {
+  @include note-number;
+  position: absolute;
+  left: 0.35em;
+  top: 0.4em;
+}
+
+// ---- Lista ----
+
+// A lista fica no centro, sob a fórmula, com as linhas alinhadas à esquerda. É a de
+// sempre, e a da legenda também, com os rótulos em volta da fórmula.
+.annotated:not(.is-drawn) > ol {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.25rem auto 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+
+  > li {
+    margin-bottom: 0.25em;
+    padding: 0.1em 0.5em 0.1em 2.2em;
+  }
+}
+
+// ---- Em volta da fórmula, com linhas ----
+
+.annotated.is-drawn:not(.beside) {
+  > ol {
+    margin: 0;
+
+    > li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: max-content;
+      max-width: min(15em, 100%);
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.35;
+      color: var(--color-text-soft);
+      text-align: center;
+      text-wrap: balance;
+    }
+  }
+
+  // A linha é que mostra a parte: o rótulo sai, e a cópia da parte fica só para o
+  // leitor de tela.
+  .note-label {
+    display: none;
+  }
+
+  .note-part {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+// ---- A lista ao lado da fórmula, com linhas até os rótulos ----
+
+.annotated.beside.is-beside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.25rem;
+
+  > p {
+    flex: none;
+    margin: 0;
+  }
+
+  .katex-display {
+    margin: 0;
+  }
+
+  > ol {
+    flex: 0 1 24rem;
+    min-width: 0;
+    margin: 0;
+  }
+}
+
+// As linhas: finas, na cor do comentário; quem aparece é a fórmula.
+.annotated-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+
+  path {
+    fill: none;
+    stroke: var(--note-color, var(--color-support));
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}

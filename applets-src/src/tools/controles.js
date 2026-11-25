@@ -20,7 +20,7 @@
 //     tex: (a) => `a = ${tex.numero(a)}` });
 //   criarBotaoAnimacao(onde, animacao);
 // Os controles aparecem na ordem do código, que é também a da tecla Tab, e
-// passam para a linha de baixo quando não cabem (custom.scss).
+// passam para a linha de baixo quando não cabem (styles/old-applets.scss).
 //
 // Leitor de tela: cada controle tem um nome fixo, em texto simples (nome);
 // o que se vê pode ter fórmulas (tex, ou $…$ no rotulo), que o leitor de
@@ -145,7 +145,7 @@ export function criarFaixa(onde, estado, chave, { min = 0, max = 1, passo = 0.1,
   function acertar() {
     const v = estado[chave];
     entrada.value = v;
-    // Até onde vai o trecho grosso do trilho (custom.scss).
+    // Até onde vai o trecho grosso do trilho (styles/old-applets.scss).
     entrada.style.setProperty("--fracao", (entrada.value - min) / (max - min || 1));
     entrada.setAttribute("aria-valuetext", texto(v));
 

@@ -44,7 +44,7 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
   elemento.innerHTML = "";
 
   // A altura segue a região (largura/altura = Δx/Δy); a largura vem do CSS
-  // (.applet-jxg, em custom.scss).
+  // (.applet-jxg, em styles/old-applets.scss).
   const [xMin, yMax, xMax, yMin] = regiao;
   elemento.style.aspectRatio = `${xMax - xMin} / ${yMax - yMin}`;
 
@@ -126,7 +126,7 @@ export function criarQuadro({ JXG, id, regiao, eixos = false, grade = false, ...
     { capture: true },
   );
 
-  // Toque: o CSS (.applet-jxg, em custom.scss) deixa a página rolar com o
+  // Toque: o CSS (.applet-jxg, em styles/old-applets.scss) deixa a página rolar com o
   // dedo sobre o quadro. Quando o dedo pega um ponto, o JSXGraph já entrou no
   // modo de arraste no pointerdown, que vem antes do touchstart; cancelar o
   // touchstart impede a rolagem durante esse toque. (O browserPan do JSXGraph

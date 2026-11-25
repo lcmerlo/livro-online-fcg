@@ -362,14 +362,14 @@ if (!cssTema) {
     else if (noLivro !== valor) aviso("applets-src/index.html", `${nome} vale ${valor}, mas no livro vale ${noLivro}`);
   }
 
-  // Cores que os applets leem (cor("--cor-…") em cores.js), menos as de
+  // Cores que os applets leem (cor("--color-…") em cores.js), menos a do
   // fundo, sobre o fundo do quadro: linhas e pontos precisam de 3:1 (§32).
   const fonteCores = join(raiz, "applets-src/src/cores.js");
   const lidas = existsSync(fonteCores)
-    ? [...readFileSync(fonteCores, "utf8").matchAll(/cor\("(--cor-[\w-]+)"\)/g)].map((m) => m[1])
+    ? [...readFileSync(fonteCores, "utf8").matchAll(/cor\("(--color-[\w-]+)"\)/g)].map((m) => m[1])
     : [];
-  const fundo = doLivro.get("--cor-superf-suave");
-  for (const nome of lidas.filter((n) => !n.startsWith("--cor-superf"))) {
+  const fundo = doLivro.get("--color-board");
+  for (const nome of lidas.filter((n) => n !== "--color-board")) {
     const valor = doLivro.get(nome);
     if (valor === undefined) {
       aviso("applets-src/src/cores.js", `${nome} não existe no CSS do livro`);

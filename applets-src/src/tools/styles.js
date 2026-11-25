@@ -15,7 +15,7 @@
 // dado no ponto arrastável, a cor do texto no fixo e no aberto; a forma
 // padrão é o disco.
 //
-// As medidas vêm das variáveis --applet-… de custom.scss.
+// As medidas vêm das variáveis de styles/tokens.scss (--point-radius…).
 
 import { CORES } from "../cores.js";
 
@@ -33,13 +33,13 @@ function medida(nome) {
 }
 
 // Lidas uma vez, quando o bundle é carregado (como as cores). No toque,
-// custom.scss alarga o anel.
+// styles/tokens.scss alarga o anel.
 const MEDIDAS = {
-  raio: medida("--applet-ponto-raio"),
-  anel: medida("--applet-anel-largura"),
-  anelOpacidade: medida("--applet-anel-opacidade"),
-  anelDestaque: medida("--applet-anel-opacidade-destaque"),
-  captura: medida("--applet-captura"),
+  raio: medida("--point-radius"),
+  anel: medida("--ring-width"),
+  anelOpacidade: medida("--ring-opacity"),
+  anelDestaque: medida("--ring-opacity-active"),
+  captura: medida("--capture-radius"),
 };
 
 // Formas cheias (atributo face do JSXGraph): disco, quadrado, losango e
@@ -98,7 +98,7 @@ export function pontoArrastavel(cor = CORES.dado, nomeForma = "o") {
     },
     // Entra na ordem do Tab; com foco, move-se pelas setas.
     tabindex: 0,
-    // Cursor de mão e reforço do anel com o foco (custom.scss).
+    // Cursor de mão e reforço do anel com o foco (styles/old-applets.scss).
     cssClass: "applet-arrastavel",
     highlightCssClass: "applet-arrastavel",
     ...forma(nomeForma, [...CHEIAS, "seta"]),

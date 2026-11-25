@@ -23,10 +23,16 @@ shortcodes:
 
 format:
   html:
+    # O tema: o Cosmo, as cores e as fontes de _brand.yml, e as folhas do livro, nesta
+    # ordem: as cores pelo que significam, a página, os blocos e o sistema antigo de
+    # applets (sai na fase 5 da migração).
     theme:
       - cosmo
       - brand
-      - assets/css/custom.scss
+      - styles/tokens.scss
+      - styles/page.scss
+      - styles/blocks.scss
+      - styles/old-applets.scss
     toc: true
     toc-location: left
     toc-title: "Neste capítulo"

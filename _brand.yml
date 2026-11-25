@@ -5,7 +5,7 @@ meta:
 color:
   palette:
     # ---- Cores do livro ----
-    # Os papéis de cor do site e dos applets (assets/css/custom.scss, seção 1)
+    # Os papéis de cor do site e dos applets (styles/tokens.scss)
     # usam só estas cores. Cor nova aqui entra por decisão, depois de medidos
     # o contraste e a legibilidade com daltonismo (diretrizes-tecnicas.md, §6).
     # Os nomes passaram para o inglês em 2026-11-25, os mesmos do livro-base, com os

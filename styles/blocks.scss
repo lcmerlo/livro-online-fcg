@@ -1,0 +1,180 @@
+/*-- scss:rules --*/
+
+// Blocos didáticos (rótulos postos por components/blocos.lua), exemplos e exercícios,
+// avisos do Quarto e as abas das dicas e resoluções.
+
+.bloco-objetivo,
+.bloco-pre-requisitos,
+.bloco-interacao,
+.bloco-erro,
+.bloco-checkpoint {
+  padding: 1rem 1.1rem;
+  margin: var(--space-block) 0;
+
+  // Sem margem sobrando no fim do bloco.
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Interação, erro comum e checkpoint: texto alinhado ao de definições e proposições
+// (#def-, #prp-), que não têm padding.
+.bloco-interacao,
+.bloco-erro,
+.bloco-checkpoint {
+  padding: 0;
+}
+
+// Abertura: objetivo e pré-requisitos lidos como um único bloco.
+.bloco-objetivo + .bloco-pre-requisitos {
+  margin-top: calc(-1 * var(--space-block));
+  padding-top: 0.25rem;
+}
+
+// Exemplos e exercícios (exm, exr, exrr): uma só família visual, distinguida pelo
+// prefixo. exrr é um float personalizado e precisa ser alinhado ao estilo dos blocos
+// nativos.
+.theorem.example,
+.theorem.exercise,
+figure.quarto-float-exrr {
+  margin: var(--space-block) 0;
+}
+
+// O wrapper do float traz margem inferior própria (.quarto-figure).
+.quarto-float.quarto-figure:has(> figure.quarto-float-exrr) {
+  margin: 0;
+}
+
+figure.quarto-float-exrr {
+  display: block;
+  text-align: left;
+
+  // Rótulo na mesma linha do texto, como em exm e exr.
+  > figcaption.quarto-float-caption {
+    float: left;
+    margin: 0 0.4em 0 0;
+    font-size: inherit;
+    font-weight: 700;
+    text-align: left;
+    color: inherit;
+  }
+
+  // O Quarto centraliza o conteúdo de figuras (.quarto-figure-center).
+  > figcaption + div {
+    text-align: left;
+  }
+
+  > figcaption + div > :first-child {
+    margin-top: 0;
+  }
+
+  > figcaption + div > :last-child {
+    margin-bottom: 0;
+  }
+
+  // Encerra o float do rótulo dentro da figura.
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+// O rótulo fica dentro de um <p>, que traz a margem inferior padrão do parágrafo; é ela
+// que cria o espaço excessivo.
+p:has(> .bloco-rotulo) {
+  margin-bottom: 0.25rem;
+}
+
+// Rótulo do bloco ("Objetivo", "Erro comum"…): pequeno, em maiúsculas.
+.bloco-rotulo {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+// ---- Avisos do Quarto (callouts), alinhados aos blocos didáticos ----
+
+// Sem borda lateral e com o mesmo espaçamento dos blocos.
+.callout.callout-style-simple {
+  border: none;
+  padding: 1rem 1.1rem;
+  margin: var(--space-block) 0;
+}
+
+// Corpo no tamanho do texto corrido (o Quarto o reduz).
+.callout.callout-style-simple .callout-body {
+  font-size: inherit;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Título do aviso no estilo do .bloco-rotulo, sem fundo.
+.callout.callout-style-simple > .callout-header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  opacity: 1;
+  background: none;
+  color: var(--color-text-soft);
+}
+
+// ---- Dicas e resoluções: abas recolhíveis (Dica, Resolução) ----
+
+// Alinhadas ao rótulo do exm/exr/exrr ou do checkpoint, dentro do qual ficam. O elemento
+// logo antes das abas fica sem margem, para colá-las ao enunciado.
+:has(+ .abas-recolhiveis) {
+  margin-bottom: 0;
+}
+
+.abas-recolhiveis .panel-tabset {
+  margin: 0.25rem 0 0;
+
+  // Abas como texto com sublinhado, sem as "orelhas" do Bootstrap.
+  .nav-tabs {
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-tabs .nav-link {
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    padding: 0.1rem 0 0.3rem;
+    font-size: inherit;
+    font-weight: 700;
+    color: var(--color-text-soft);
+  }
+
+  // Aba aberta: sublinhado azul e texto mais escuro.
+  .nav-tabs .nav-link.active {
+    border-bottom-color: var(--color-accent);
+    color: var(--color-text-strong);
+  }
+
+  // Conteúdo sem a moldura padrão do panel-tabset.
+  .tab-content {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tab-pane {
+    padding-top: 0.75rem;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Avisos sem ícone.
+.callout-icon-container {
+  display: none;
+}

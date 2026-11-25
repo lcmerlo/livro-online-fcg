@@ -1,0 +1,97 @@
+/*-- scss:rules --*/
+
+// A página: o que não é um bloco nem um applet.
+
+// A coluna de texto, com cerca de 76 caracteres por linha.
+main.content {
+  max-width: 76ch;
+}
+
+// Foco bem visível, só para quem navega pelo teclado (e não a cada clique do mouse).
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+// Quem pede ao sistema menos movimento: animações e transições quase instantâneas.
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ícones do Quarto: o Quarto carrega a fonte inteira de ícones do Bootstrap
+   (176 KB) para os poucos que o livro mostra. Este recorte, de 1 KB, vem
+   depois da fonte inteira e é tentado primeiro; um ícone que não esteja nele
+   ainda vem da fonte inteira, sem erro e sem aviso, e o ganho some. Ao usar
+   um ícone novo, ou ao trocar a versão do Quarto, refazer o recorte e
+   conferir na aba Rede do navegador que bootstrap-icons.woff não é pedido.
+
+   O recorte vai dentro da regra (data:), e não num arquivo: o Quarto procura
+   o arquivo de um url() do tema a partir da pasta do projeto, e este arquivo
+   servia também ao projeto de testes da oficina, noutra pasta, onde o render
+   falhava. Desde 2026-11-24, as páginas de teste estão no perfil lab, no mesmo
+   projeto, e um arquivo (como vendor/icons/ no livro-base) renderiza nos dois
+   perfis; a fase 4 da migração decide onde o recorte fica.
+
+   Bootstrap Icons 1.13.1 (a do Quarto 1.11.9), licença MIT. Os ícones:
+     f461 layout-text-sidebar-reverse  botão do menu, em tela estreita
+     f12c arrow-left-short             página anterior, no pé
+     f135 arrow-right-short            página seguinte, no pé
+     f285 chevron-right                seção recolhível no menu (part:)
+     f229 caret-down-fill              sumário que vira menu sob um elemento largo
+     f52a search                       busca (configurada, mas não aparece:
+     f3b1 file-richtext                  o livro não tem barra no topo)
+     f290 clipboard, f272 check2       copiar o link da busca
+     f333 exclamation-circle           erro na busca
+   Para refazer (fonttools; a fonte inteira está na instalação do Quarto):
+     pyftsubset /Applications/quarto/share/formats/html/bootstrap/dist/bootstrap-icons.woff \
+       --flavor=woff2 --no-layout-closure --output-file=recorte.woff2 \
+       --unicodes="U+f461,U+f12c,U+f135,U+f285,U+f229,U+f52a,U+f3b1,U+f290,U+f272,U+f333"
+     base64 -i recorte.woff2 | tr -d '\n'
+   e trocar o texto depois de "base64," abaixo. */
+@font-face {
+  font-family: "bootstrap-icons";
+  font-display: block;
+  src: url("data:font/woff2;base64,d09GMgABAAAAAAR0AAsAAAAAB/QAAAQmAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCoGYAB8ColQiA0BNgIkAxoLGAAEIAWBEAcgG1YGIC4HbGMY5Yc6OBimixvX0qbDsuV4LPL5Irafz03fhwDpD5KaOsw0UhGdKXQOm0em6ie99TYzeHgZa++fI5oYUa3dOp7xdTxkQtF0o3INGiFaVlm3dtKAZtwFlqBlPtvv4pntfIQbTgYTrgsTD/aQNCjKaM2AEpjPKWct0loaSwzfnv/84/PtNyuiDapaysTC/XSCmTbiPRKZxupKMk1rayZpKZqFMh3DAfpKYtbXAQKAhemTmBgwjAH9Tu2ELvCQAgB21pOJiEHLIQ3gokcgStUs12j4+gqqJPDzjVozNcDlUmrFAPCOgeALIORUJLYSuSwEJWlKy1/hplmSupQtYuzyq+h9dZYfobey8aXxQcPbhpU6s26S9nk9T+3G74SXUMx203iDign0hJ1G1Y2Op6VEUNNQtHkYnJxCaFqnc9A7OGq1NK3V6rQ0xq463ixgnCuaBavbGMniPlYWRZccyibykCkqT5Jl19Gi2WWUYI178rHi5ZsbUZiMKLgwF6qPI6Y4i/PINjTk/6h8I2yAKYX4Z6qcrLuB+eyZ2IeQZS/GYMRE0Lgd5kOoMYr3SdyQ3I2sAjAXdiRjzixh3vrwKq4f5c2VuLhve69e4fXleX4eLy96sm0ESNLBFBNhfvMhXmGiYz6h+bJrZnsNdznBKtQNZpoxo5xl3+zZA2j26Rp7EY+7keBTrGfFIlOsCR4OZrvSPjHMj3Z29GFOMWIBde78vm1HL968XedbLty5JcGKNtnixpn3n7aePWg5dM525sA7MWUkOqcEkiYyaHLQryN5ZVTSlE5/AIYE80lRK5MzCkKRQDlgwepoMunXkMdVYiZONrNOkPwWb1/f319QWF1k7/T1TABXH0Q69XQLK6jLiWQ1Qa3vCUEaGNLkbGDp614wnBfozFlyL3l9i5wn1wpga+cmb4IhnDszCKPSWWk0Y1o77MynLYitIUejB0UfHTR3JkUaw8ONY1b74R6zVVwryT30h7X3lGiyKmMCnpChUhcQLMkS0PelnqyljT7fDsfAxECCIXqWDO7/8wRAqAeaY4juEGH64SFN9vRug4mWaJZ+9wPqhOHcl5/bq3nPYlLqe5/dC7+VIqSylsWKdDvRVEjMHiZB8bNr3aQSkth4zlAr+x3+YCZA953XZO7RtPE/NHvga9MZpT+reA/fOyrc6jM7Z6T30kbTCp+L/Rn/lz/02yZ2TwAAAHzwocpRCj7Es9Afkr0OGuTtKBZuCMXYJ4ZQAgQABNYcf1JWG3K+sQ7FAIAZ3YfNPGVfMRglc4OkAIUIggbQEGAJIK9DwfOB/fbhbSqqIXaWYlhoP0ltBCWUcgDED9OooOdHK0M0wUYVN0NEzY9Tp1u3CcabYJxaPWJtqtety3hjNGo2UYda43AajTNeK2CbAONGjEl6bSsBAAAA") format("woff2");
+}
+
+// ---- Fórmulas ----
+
+// Uma fórmula em destaque mais larga que a coluna (no celular, a 320 px) rola dentro
+// dela, como a leitura dos applets, em vez de ser cortada na borda. O KaTeX não quebra
+// uma fórmula em destaque em linhas.
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// Figuras com legenda: ::: {.fig-leg .w30 #fig-...}. A classe .wNN dá a largura da
+// imagem (padrão: 70%); a legenda nunca fica mais estreita que metade da coluna.
+.fig-leg {
+  --figure-width: 70%;
+
+  @each $width in 30, 40, 50, 60, 70, 80 {
+    &.w#{$width} {
+      --figure-width: #{$width}#{'%'};
+    }
+  }
+
+  img {
+    display: block;
+    width: var(--figure-width);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  figcaption,
+  .quarto-float-caption {
+    width: max(var(--figure-width), 50%);
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+}

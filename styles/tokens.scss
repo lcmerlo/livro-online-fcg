@@ -11,7 +11,9 @@ $web-font-path: false;
 
 // As cores pelo que significam. O site e os applets leem estes nomes, e uma mudança
 // aqui chega aos dois; os valores estão em _brand.yml. A interpolação #{…} é necessária
-// porque o Sass não avalia expressões dentro de variáveis CSS.
+// porque o Sass não avalia expressões dentro de variáveis CSS. As medidas que o JSXGraph
+// usa são números simples, em px, lidos por src/applet/theme.js (e, até o fim da fase 5
+// da migração, os dos pontos, por applets-src/src/tools/styles.js).
 :root {
   --color-text: #{$brand-graphite-2};
   --color-text-strong: #{$brand-graphite-3};
@@ -22,13 +24,14 @@ $web-font-path: false;
   --color-border: #{rgba($brand-graphite-2, 0.12)};
 
   // Applets: o que o leitor controla ou o enunciado dá, o que se calcula a partir
-  // disso, e as construções que ajudam a ler; o fundo do quadro. Dois objetos do mesmo
-  // papel se distinguem pelo nome; a forma de um ponto diz se ele se move. Lidas por
-  // applets-src/src/cores.js.
+  // disso, e as construções que ajudam a ler; o fundo do quadro e a malha. Dois
+  // elementos do mesmo papel (role) se distinguem pelo nome; a forma de um ponto diz se
+  // ele se move.
   --color-given: #{$brand-blue-8};
   --color-result: #{$brand-orange-2};
   --color-support: #{$brand-gray-5};
   --color-board: #{$brand-white-1};
+  --color-grid: #e2e8f0;
 
   // Fórmulas comentadas (styles/annotations.scss): as cores que ligam cada parte ao
   // seu comentário.
@@ -37,23 +40,82 @@ $web-font-path: false;
   --note-3: #{$brand-green-2};
   --note-4: #{$brand-red-6};
 
-  // Os pontos dos applets, em px, lidos por applets-src/src/tools/styles.js: o raio do
-  // disco, igual no ponto fixo e no que se arrasta; o anel do que se arrasta (metade
-  // fica fora do disco), com a opacidade em repouso e sob o cursor ou com o foco do
-  // teclado; o raio mínimo de captura (o dedo usa 2.5 vezes).
+  // Os traços (forte, normal, fino) e a opacidade das regiões.
+  --stroke-strong: 3;
+  --stroke-normal: 2.5;
+  --stroke-thin: 1.5;
+  --region-opacity: 0.16;
+  // Os pontos: o raio do disco, igual no ponto fixo e no que se arrasta; o anel do que
+  // se arrasta (metade fica fora do disco), com a opacidade em repouso e sob o cursor ou
+  // com o foco do teclado; o raio mínimo de captura (o dedo usa 2.5 vezes); o traço a
+  // mais de uma figura que se arrasta inteira.
   --point-radius: 4;
   --ring-width: 9;
   --ring-opacity: 0.3;
   --ring-opacity-active: 0.65;
   --capture-radius: 10;
+  --movable-extra: 1.5;
+  // Os nomes na figura, e a escala que o tamanho do texto escolhido no painel lhes dá.
+  --label-size: 16;
+  --vector-label-size: 18;
+  --text-scale: 1;
 
-  // O espaço entre um bloco e o seguinte.
+  // Espaços: entre um bloco e o seguinte; entre colunas e entre fileiras de colunas.
   --space-block: 0.75rem;
+  --space-gap: 1.25rem;
 }
 
 // O dedo esconde o que toca: um anel mais largo.
 @media (pointer: coarse) {
   :root {
     --ring-width: 14;
+  }
+}
+
+// ---- As preferências do leitor (src/site/prefs.js) ----
+
+// O painel de acessibilidade marca cada escolha no <html> (data-…); a página e os
+// applets reagem aqui. Contraste alto e menos movimento seguem o sistema enquanto o
+// leitor não escolhe.
+@mixin when-chosen($key, $system-query) {
+  :root[data-#{$key}='on'] {
+    @content;
+  }
+  @media #{$system-query} {
+    :root:not([data-#{$key}]) {
+      @content;
+    }
+  }
+}
+
+:root[data-big-targets='on'] {
+  --point-radius: 6;
+  --ring-width: 18;
+  --ring-opacity: 0.35;
+  --capture-radius: 20;
+}
+
+@include when-chosen('contrast', '(prefers-contrast: more)') {
+  --color-text: #000;
+  --color-text-strong: #000;
+  --color-text-soft: #{$brand-graphite-2};
+  --color-accent: #{$brand-blue-3};
+  --color-accent-strong: #000;
+  --color-border: #{$brand-graphite-1};
+  --color-given: #{$brand-blue-cb};
+  --color-result: #{$brand-orange-cb};
+  --color-support: #{$brand-graphite-1};
+  --color-grid: #b6c0cc;
+  --stroke-strong: 4;
+  --stroke-normal: 3.5;
+  --stroke-thin: 2.5;
+  --ring-opacity: 0.45;
+  --ring-opacity-active: 0.8;
+}
+
+@each $size, $scale in ('115': 1.15, '130': 1.3, '150': 1.5) {
+  :root[data-text-size='#{$size}'] {
+    font-size: 100% * $scale;
+    --text-scale: #{$scale};
   }
 }

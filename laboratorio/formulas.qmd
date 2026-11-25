@@ -1,0 +1,61 @@
+---
+title: "Fórmulas"
+---
+
+<!-- Página de conferência das fórmulas: as de modelos/formulas.qmd do livro-base,
+     com as macros do livro e as prévias das referências cruzadas. Serve à fase 3 do
+     plano de migração (fórmulas desenhadas quando o site é gerado), e às seguintes:
+     o que muda no desenho de uma fórmula aparece aqui.
+     Ver: quarto preview --profile lab (_quarto-lab.yml) -->
+
+As fórmulas de `modelos/formulas.qmd` do livro-base, para conferir o desenho e as macros. O que observar: as fórmulas aparecem desenhadas, sem TeX cru, também enquanto a página carrega; as prévias das referências (passe o mouse sobre os links da última seção) mostram as fórmulas.
+
+## No texto e em destaque
+
+Uma fórmula no meio da frase, como $\norm{a\vec{u}} = |a|\,\norm{\vec{u}}$, e uma em destaque, num parágrafo só dela:
+
+$$
+\vet{AB} = B - A
+$$
+
+## A notação, num só lugar
+
+As macros do livro: $\vet{AB}$, $\norm{\vec{u}}$, $\N$, $\Z$, $\Q$, $\R$ e $\C$.
+
+## A seta de `\vet`
+
+A macro `\vet` ao lado das duas formas que o livro-base comparou (no livro-base, `\vet` passou a `\overrightarrow`, com a seta ajustada no estilo do site: decisão E6).
+
+| | O que se escreve | Como aparece |
+|---|---|---|
+| A macro | `\vet{AB}` | $\vet{AB}$, $\vet{P_1P_2}$, $x_{\vet{AB}}$ |
+| Sem macro | `\overset{\rightarrow}{AB}` | $\overset{\rightarrow}{AB}$, $\overset{\rightarrow}{P_1P_2}$, $x_{\overset{\rightarrow}{AB}}$ |
+| A seta do KaTeX | `\overrightarrow{AB}` | $\overrightarrow{AB}$, $\overrightarrow{P_1P_2}$, $x_{\overrightarrow{AB}}$ |
+
+Em destaque, com índices:
+
+$$
+\vet{AB} = B - A, \qquad \vet{OP} + \vet{PQ} = \vet{OQ}, \qquad \operatorname{Proj}_{\vet{A'B'}}\,\vec{v}
+$$
+
+As setas escritas à mão: $\overrightarrow{AB}$, $\overleftarrow{AB}$ e $\overleftrightarrow{AB}$.
+
+## Uma fórmula longa
+
+Uma fórmula longa rola dentro da coluna, sem levar a página junto:
+
+$$
+\vet{AB} + \vet{BC} + \vet{CD} + \vet{DE} + \vet{EF} + \vet{FG} + \vet{GH} + \vet{HI} = \vet{AI}
+$$
+
+## Referências cruzadas
+
+::: {#def-formulas-norma}
+A norma de $\vec{u} = (x, y)$ em $\R^2$ é $\norm{\vec{u}} = \sqrt{x^2 + y^2}$.
+:::
+
+$$
+\norm{a\vec{u}} = |a|\,\norm{\vec{u}}
+$$ {#eq-formulas-multiplo}
+
+Pela @def-formulas-norma, $\norm{(3, 4)} = 5$; pela @eq-formulas-multiplo, $\norm{(1.5, 2)} = \norm{0.5\,(3, 4)} = 0.5 \cdot 5 = 2.5$.

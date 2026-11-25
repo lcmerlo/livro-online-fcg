@@ -41,7 +41,8 @@ _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 assets/css/custom.scss - Estilos próprios
 tests/ 			- Verificação automática (tests/verificar-site.mjs), executada no workflow
-components/macros.html - Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`)
+math/macros.json 	- Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`), expandidas em toda fórmula por filters/macros.lua
+tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador, a não ser as que têm applet
 components/ - Filtros Lua (`blocos.lua`, `applet-bloco.lua`) e shortcodes (`applet.lua`); o bundle dos applets só é carregado nas páginas que têm applet
 capitulos/ 		- Capítulos listados em '_quarto.yml'
 laboratorio/ 	- Páginas de teste e modelos de capítulo, com a configuração do livro; só no perfil lab

@@ -7,6 +7,10 @@ project:
   # para dentro de docs-lab/.
   resources:
     - /vendor/katex/**
+  # Depois de gerar as páginas, as fórmulas são desenhadas, uma vez, e não no
+  # navegador de cada leitor.
+  post-render:
+    - tools/prerender-math.ts
 
 lang: pt-BR
 # Só o tema claro: com `brand: _brand.yml`, o Quarto gera também uma folha escura,
@@ -44,8 +48,13 @@ format:
     filters:
       - components/blocos.lua
       - components/applet-bloco.lua
-    include-before-body: components/macros.html
 
+
+# As macros do livro (\vet, \norm, \R…), de math/macros.json, expandidas em toda
+# fórmula, para qualquer formato de saída: a fórmula chega ao KaTeX, às prévias das
+# referências e ao PDF já em TeX comum.
+filters:
+  - filters/macros.lua
 
 execute:
   echo: false

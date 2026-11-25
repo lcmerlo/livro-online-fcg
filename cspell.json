@@ -119,6 +119,7 @@
     "Typst",
     "vermillion",
     "fontsource",
+    "prerender",
     "Vite"
   ]
 }

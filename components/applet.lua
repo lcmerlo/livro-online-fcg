@@ -27,7 +27,6 @@ return {
       pandoc.RawBlock("html", string.format(
         '<div id="%s" class="%s" data-applet="%s" aria-label="%s"></div>',
         id, classes, nome, rotulo)),
-      comum.formula_para_katex(),
       pandoc.RawBlock("html", comum.estado_e_reinicio(id)),
     }, pandoc.Attr("", { "bloco-applet" }))
   end,

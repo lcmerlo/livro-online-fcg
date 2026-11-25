@@ -14,8 +14,9 @@
 // arquivo em applets-src/src/applets/, quadros e blocos de applet sem rótulo,
 // ids duplicados, saltos na hierarquia de títulos e pedidos a outros servidores
 // (no HTML e nas folhas de estilo que as páginas carregam).
-// Fórmulas (no site gerado): as que o KaTeX não desenha, com as macros de
-// components/macros.html, e caracteres que ele não conhece.
+// Fórmulas (no site gerado, onde já vêm desenhadas por tools/prerender-math.ts):
+// as que ficaram em TeX, as que o KaTeX não desenha, caracteres que ele não
+// conhece e página sem applet que ainda carrega o KaTeX.
 // Cores (no CSS gerado): a página de desenvolvimento (applets-src/index.html)
 // com valores diferentes dos do livro, cores dos applets com contraste abaixo
 // de 3:1 sobre o fundo do quadro e cores de teste (paleta()) em applet usado
@@ -233,11 +234,19 @@ for (const folha of folhas) {
 
 // ---------- Fórmulas ----------
 
-// Cada fórmula do site gerado passa pelo KaTeX que o livro carrega
-// (vendor/katex/katex.min.js, que também funciona como módulo do Node) e com
-// as macros do livro, definidas como em components/macros.html. Uma fórmula
-// que ele não desenha apareceria ao estudante como TeX, em vermelho.
+// As fórmulas chegam ao site já desenhadas: tools/prerender-math.ts (post-render)
+// passa cada uma pelo KaTeX e tira da página o KaTeX do navegador. Aqui, com o
+// mesmo vendor/katex/katex.min.js (que também funciona como módulo do Node):
+// - a que ficou em TeX é erro: ou o KaTeX não a desenha (o estudante a veria em
+//   vermelho), ou o post-render não rodou (rode o render inteiro);
+// - a desenhada guarda o TeX numa anotação, que passa de novo pelo KaTeX, à procura
+//   de caracteres que ele não conhece (o desenho sai, mas sem a fonte certa);
+// - uma página sem applet que ainda carrega katex.min.js é erro: as fórmulas
+//   deviam vir prontas (os applets antigos usam o KaTeX da página).
+// As macros do livro já vêm expandidas (filters/macros.lua, com a lista de
+// math/macros.json).
 let katex = null;
+let formulas = 0;
 try {
   katex = createRequire(import.meta.url)(join(raiz, "vendor/katex/katex.min.js"));
 } catch (e) {
@@ -245,20 +254,10 @@ try {
 }
 
 if (katex && paginas.length) {
-  const fonteMacros = join(raiz, "components/macros.html");
-  const listaMacros = existsSync(fonteMacros)
-    ? readFileSync(fonteMacros, "utf8").match(/<script type="application\/json" id="macros-tex">([\s\S]*?)<\/script>/)?.[1]
-    : undefined;
-  let macros = {};
-  try {
-    macros = JSON.parse(listaMacros);
-  } catch {
-    erro("components/macros.html", "lista de macros ausente ou fora do formato JSON");
-  }
+  // Os applets antigos recebem as macros no KaTeX da página, por __defineMacro
+  // (components/applet-comum.lua), que não é uma função pública do KaTeX.
   if (typeof katex.__defineMacro !== "function") {
-    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: components/macros.html não definiria as macros`);
-  } else {
-    for (const [nome, corpo] of Object.entries(macros)) katex.__defineMacro(nome, corpo);
+    erro("vendor/katex/", `o KaTeX ${katex.version} não tem __defineMacro: as macros não chegariam aos applets (components/applet-comum.lua)`);
   }
 
   const entidades = { lt: "<", gt: ">", amp: "&", quot: '"', apos: "'", nbsp: " " };
@@ -268,25 +267,45 @@ if (katex && paginas.length) {
       return String.fromCodePoint(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1)));
     });
 
+  // Passa o TeX pelo KaTeX; devolve a mensagem de erro, ou null se ele o desenha.
+  function conferirTex(tex, emDestaque, arquivo, nome) {
+    const trecho = tex.trim().replace(/\s+/g, " ").slice(0, 60);
+    try {
+      katex.renderToString(tex, {
+        displayMode: emDestaque,
+        throwOnError: true,
+        strict: (codigo, mensagem) => {
+          if (codigo === "unknownSymbol") avisoOuConta(fonteDe(arquivo), nome, `caractere que o KaTeX não conhece em "${trecho}": ${mensagem}`);
+          return "ignore";
+        },
+      });
+      return null;
+    } catch (e) {
+      return `"${trecho}": ${e.message}`;
+    }
+  }
+
   for (const arquivo of paginas) {
     const nome = rel(arquivo);
     const html = readFileSync(arquivo, "utf8");
+
+    for (const m of html.matchAll(/(<span class="katex-display">)?<span class="katex">[\s\S]*?<annotation encoding="application\/x-tex">([\s\S]*?)<\/annotation>/g)) {
+      formulas++;
+      const falha = conferirTex(decodificar(m[2]), Boolean(m[1]), arquivo, nome);
+      if (falha) erro(nome, `fórmula desenhada que o KaTeX não desenha de novo, ${falha}`);
+    }
+
     for (const m of html.matchAll(/<span class="math (inline|display)">([\s\S]*?)<\/span>/g)) {
+      formulas++;
       // Sem os delimitadores \( \) e \[ \], que só o modo MathJax do Pandoc põe.
       const tex = decodificar(m[2]).replace(/^\\\(([\s\S]*)\\\)$|^\\\[([\s\S]*)\\\]$/, "$1$2");
-      const trecho = tex.trim().replace(/\s+/g, " ").slice(0, 60);
-      try {
-        katex.renderToString(tex, {
-          displayMode: m[1] === "display",
-          throwOnError: true,
-          strict: (codigo, mensagem) => {
-            if (codigo === "unknownSymbol") avisoOuConta(fonteDe(arquivo), nome, `caractere que o KaTeX não conhece em "${trecho}": ${mensagem}`);
-            return "ignore";
-          },
-        });
-      } catch (e) {
-        erro(nome, `fórmula que o KaTeX não desenha, "${trecho}": ${e.message}`);
-      }
+      const falha = conferirTex(tex, m[1] === "display", arquivo, nome);
+      if (falha) erro(nome, `fórmula que o KaTeX não desenha, ${falha}`);
+      else erro(nome, `fórmula em TeX, sem desenhar, "${tex.trim().replace(/\s+/g, " ").slice(0, 60)}": rode o render inteiro, com o post-render (tools/prerender-math.ts)`);
+    }
+
+    if (/<script\b[^>]*\ssrc="[^"]*katex\.min\.js"/.test(html) && !/\sdata-applet="/.test(html)) {
+      erro(nome, "página sem applet que carrega o KaTeX no navegador: as fórmulas deviam vir desenhadas (tools/prerender-math.ts)");
     }
   }
 }
@@ -390,6 +409,6 @@ const falhou = erros.length > 0 || (estrito && avisos.length > 0);
 console.log(
   falhou
     ? "Verificação falhou."
-    : `Verificação concluída: ${paginas.length} páginas, ${fontes.length} fontes, ${avisos.length} avisos.`,
+    : `Verificação concluída: ${paginas.length} páginas, ${fontes.length} fontes, ${formulas} fórmulas, ${avisos.length} avisos.`,
 );
 process.exit(falhou ? 1 : 0);

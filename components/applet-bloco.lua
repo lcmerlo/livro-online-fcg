@@ -13,8 +13,7 @@
 -- O bloco vira a parte interativa do applet, como a do shortcode
 -- {{< applet >}} (applet.lua): <div class="bloco-applet" data-applet="…">,
 -- com as partes onde o texto as pôs (numa .grid, num .grupo, numa célula…),
--- a fórmula que carrega o KaTeX, o texto de estado e o botão "Reiniciar"
--- no fim. Cada parte tem id <id>-<parte>; o applet a recebe pelo nome da
+-- o texto de estado e o botão "Reiniciar" no fim. Cada parte tem id <id>-<parte>; o applet a recebe pelo nome da
 -- parte, em `partes` (applets-src/src/main.js).
 --   .quadro     → <div class="applet-jxg" aria-label="rotulo">, onde o JSXGraph desenha
 --   .leitura    → <div class="applet-leitura">, onde o applet escreve uma fórmula
@@ -103,7 +102,6 @@ local function preparar_applet(div)
   -- As partes formam um grupo, com o nome do applet para o leitor de tela.
   div.attributes["role"] = "group"
   div.attributes["aria-label"] = rotulo
-  div.content:insert(comum.formula_para_katex())
   div.content:insert(pandoc.RawBlock("html", comum.estado_e_reinicio(comum.escapar(id))))
 
   return div

@@ -34,16 +34,16 @@ O **[outro conceito]** é [definição].
 
 Pela @def-modelo-conceito, [consequência].
 
-::: {.fig-leg #fig-modelo}
+::: {.figure-note #fig-modelo}
 ![](../assets/img/segmentos/segmento-ab-reta-suporte.png){fig-alt="[Descrição da imagem para quem não a vê.]"}
 
 [Legenda: o que a figura significa no texto.]
 :::
 
-::: {.fig-leg .w30 #fig-modelo-estreita}
+::: {.figure-note .w30 #fig-modelo-estreita}
 ![](../assets/img/segmentos/segmento-degenerado.png){fig-alt="[Descrição da imagem.]"}
 
-[Legenda de figura com largura reduzida (.w30 … .w80).]
+[Legenda de figura com largura reduzida (.w30 … .w100).]
 :::
 
 Na @fig-modelo, [comentário].

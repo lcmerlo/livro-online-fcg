@@ -1,10 +1,15 @@
 /*-- scss:rules --*/
 
-// A página: o que não é um bloco nem um applet.
+// A página: o que não é um bloco nem um applet. As larguras estão em `grid` (_quarto.yml).
 
-// A coluna de texto, com cerca de 76 caracteres por linha.
-main.content {
-  max-width: 76ch;
+// O Quarto carrega a fonte inteira de ícones (176 KB) para os poucos ícones que o livro
+// mostra. Esta, pequena, vai na frente; um ícone que não esteja nela ainda vem da fonte
+// inteira, sem erro e sem aviso, e o ganho some. A lista dos ícones e o modo de refazê-la
+// estão em vendor/VERSIONS.md.
+@font-face {
+  font-family: 'bootstrap-icons';
+  font-display: block;
+  src: url('vendor/icons/bootstrap-icons-subset.woff2') format('woff2');
 }
 
 // Foco bem visível, só para quem navega pelo teclado (e não a cada clique do mouse).
@@ -31,82 +36,40 @@ h6 {
   opacity: 1;
 }
 
-/* Ícones do Quarto: o Quarto carrega a fonte inteira de ícones do Bootstrap
-   (176 KB) para os poucos que o livro mostra. Este recorte, de 1 KB, vem
-   depois da fonte inteira e é tentado primeiro; um ícone que não esteja nele
-   ainda vem da fonte inteira, sem erro e sem aviso, e o ganho some. Ao usar
-   um ícone novo, ou ao trocar a versão do Quarto, refazer o recorte e
-   conferir na aba Rede do navegador que bootstrap-icons.woff não é pedido.
-
-   O recorte vai dentro da regra (data:), e não num arquivo: o Quarto procura
-   o arquivo de um url() do tema a partir da pasta do projeto, e este arquivo
-   servia também ao projeto de testes da oficina, noutra pasta, onde o render
-   falhava. Desde 2026-11-24, as páginas de teste estão no perfil lab, no mesmo
-   projeto, e um arquivo (como vendor/icons/ no livro-base) renderiza nos dois
-   perfis; a fase 4 da migração decide onde o recorte fica.
-
-   Bootstrap Icons 1.13.1 (a do Quarto 1.11.9), licença MIT. Os ícones:
-     f461 layout-text-sidebar-reverse  botão do menu, em tela estreita
-     f12c arrow-left-short             página anterior, no pé
-     f135 arrow-right-short            página seguinte, no pé
-     f285 chevron-right                seção recolhível no menu (part:)
-     f229 caret-down-fill              sumário que vira menu sob um elemento largo
-     f52a search                       busca (configurada, mas não aparece:
-     f3b1 file-richtext                  o livro não tem barra no topo)
-     f290 clipboard, f272 check2       copiar o link da busca
-     f333 exclamation-circle           erro na busca
-   Para refazer (fonttools; a fonte inteira está na instalação do Quarto):
-     pyftsubset /Applications/quarto/share/formats/html/bootstrap/dist/bootstrap-icons.woff \
-       --flavor=woff2 --no-layout-closure --output-file=recorte.woff2 \
-       --unicodes="U+f461,U+f12c,U+f135,U+f285,U+f229,U+f52a,U+f3b1,U+f290,U+f272,U+f333"
-     base64 -i recorte.woff2 | tr -d '\n'
-   e trocar o texto depois de "base64," abaixo. */
-@font-face {
-  font-family: "bootstrap-icons";
-  font-display: block;
-  src: url("data:font/woff2;base64,d09GMgABAAAAAAR0AAsAAAAAB/QAAAQmAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCoGYAB8ColQiA0BNgIkAxoLGAAEIAWBEAcgG1YGIC4HbGMY5Yc6OBimixvX0qbDsuV4LPL5Irafz03fhwDpD5KaOsw0UhGdKXQOm0em6ie99TYzeHgZa++fI5oYUa3dOp7xdTxkQtF0o3INGiFaVlm3dtKAZtwFlqBlPtvv4pntfIQbTgYTrgsTD/aQNCjKaM2AEpjPKWct0loaSwzfnv/84/PtNyuiDapaysTC/XSCmTbiPRKZxupKMk1rayZpKZqFMh3DAfpKYtbXAQKAhemTmBgwjAH9Tu2ELvCQAgB21pOJiEHLIQ3gokcgStUs12j4+gqqJPDzjVozNcDlUmrFAPCOgeALIORUJLYSuSwEJWlKy1/hplmSupQtYuzyq+h9dZYfobey8aXxQcPbhpU6s26S9nk9T+3G74SXUMx203iDign0hJ1G1Y2Op6VEUNNQtHkYnJxCaFqnc9A7OGq1NK3V6rQ0xq463ixgnCuaBavbGMniPlYWRZccyibykCkqT5Jl19Gi2WWUYI178rHi5ZsbUZiMKLgwF6qPI6Y4i/PINjTk/6h8I2yAKYX4Z6qcrLuB+eyZ2IeQZS/GYMRE0Lgd5kOoMYr3SdyQ3I2sAjAXdiRjzixh3vrwKq4f5c2VuLhve69e4fXleX4eLy96sm0ESNLBFBNhfvMhXmGiYz6h+bJrZnsNdznBKtQNZpoxo5xl3+zZA2j26Rp7EY+7keBTrGfFIlOsCR4OZrvSPjHMj3Z29GFOMWIBde78vm1HL968XedbLty5JcGKNtnixpn3n7aePWg5dM525sA7MWUkOqcEkiYyaHLQryN5ZVTSlE5/AIYE80lRK5MzCkKRQDlgwepoMunXkMdVYiZONrNOkPwWb1/f319QWF1k7/T1TABXH0Q69XQLK6jLiWQ1Qa3vCUEaGNLkbGDp614wnBfozFlyL3l9i5wn1wpga+cmb4IhnDszCKPSWWk0Y1o77MynLYitIUejB0UfHTR3JkUaw8ONY1b74R6zVVwryT30h7X3lGiyKmMCnpChUhcQLMkS0PelnqyljT7fDsfAxECCIXqWDO7/8wRAqAeaY4juEGH64SFN9vRug4mWaJZ+9wPqhOHcl5/bq3nPYlLqe5/dC7+VIqSylsWKdDvRVEjMHiZB8bNr3aQSkth4zlAr+x3+YCZA953XZO7RtPE/NHvga9MZpT+reA/fOyrc6jM7Z6T30kbTCp+L/Rn/lz/02yZ2TwAAAHzwocpRCj7Es9Afkr0OGuTtKBZuCMXYJ4ZQAgQABNYcf1JWG3K+sQ7FAIAZ3YfNPGVfMRglc4OkAIUIggbQEGAJIK9DwfOB/fbhbSqqIXaWYlhoP0ltBCWUcgDED9OooOdHK0M0wUYVN0NEzY9Tp1u3CcabYJxaPWJtqtety3hjNGo2UYda43AajTNeK2CbAONGjEl6bSsBAAAA") format("woff2");
-}
-
 // ---- Fórmulas ----
 
 // Uma fórmula em destaque mais larga que a coluna (no celular, a 320 px) rola dentro
-// dela, como a leitura dos applets, em vez de ser cortada na borda. O KaTeX não quebra
-// uma fórmula em destaque em linhas.
+// dela, em vez de ser cortada na borda. O KaTeX não quebra uma fórmula em destaque em
+// linhas. src/site/scrollers.js a põe ao alcance do Tab.
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-// ---- Navegação ----
+// Uma tabela mais larga que a coluna também rola, em vez de alargar a página a 320 px.
+main.content section > table,
+main.content > table,
+.table-responsive {
+  display: block;
+  overflow-x: auto;
+}
 
-// Os links pequenos do caminho no alto da página também precisam de um alvo de 24 px
-// (WCAG 2.5.8).
-.quarto-page-breadcrumbs .breadcrumb-item a {
+// Um trecho de código no meio do texto quebra a linha quando não cabe, também numa
+// lista e no termo de uma lista de definições. O Quarto só faz isso em parágrafos e
+// definições (dd); num item de lista ou num termo (dt), um nome de arquivo ou uma
+// chamada longa alargaria a página a 320 px. Num título também.
+li code:not(.sourceCode),
+dt code:not(.sourceCode),
+:is(h1, h2, h3, h4, h5, h6) code:not(.sourceCode) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+// O ícone de link que o Quarto põe no fim de cada título vem colado à última palavra,
+// sem espaço, e não podia ir para a linha de baixo: a 320 px, ele passava da borda.
+// Como inline-block, ele desce sozinho quando não cabe.
+.anchorjs-link {
   display: inline-block;
-  min-height: 24px;
-}
-
-// Os links de página do Quarto, com contraste suficiente sobre o fundo de areia. O
-// último link do caminho no alto da página tem uma regra própria do Quarto
-// (.quarto-title-breadcrumbs .breadcrumb li:last-of-type a, #6c757d, 4.48:1), que só
-// aparecia num capítulo sem número, em que o texto fica direto no link, sem o
-// .chapter-title; por isso o :last-of-type aqui também.
-.nav-page .nav-page-text,
-.nav-page .chapter-title,
-.quarto-title-breadcrumbs .breadcrumb-item,
-.quarto-title-breadcrumbs .breadcrumb-item a,
-.quarto-title-breadcrumbs .breadcrumb .breadcrumb-item:last-of-type a,
-.quarto-title-breadcrumbs .breadcrumb-item .chapter-title,
-.quarto-title-breadcrumbs .breadcrumb-item .chapter-number,
-.sidebar-navigation .chapter-title,
-.sidebar-navigation .menu-text {
-  color: var(--color-text-soft);
-}
-
-.sidebar-navigation .sidebar-item-container .active .menu-text,
-.sidebar-navigation .active .menu-text {
-  color: var(--color-accent-strong);
-  font-weight: 700;
 }
 
 // Figuras com legenda: ::: {.fig-leg .w30 #fig-...}. A classe .wNN dá a largura da
@@ -134,5 +97,337 @@ h6 {
     max-width: 100%;
     margin-inline: auto;
     text-align: center;
+  }
+}
+
+// ---- Cabeçalho ----
+
+// Da esquerda para a direita: o ícone que recolhe o menu (só em janela larga, onde o
+// menu é uma coluna), o título e a lupa da busca, logo depois do título (decisão E4 do
+// livro-base). Cada ícone ocupa um quadrado do mesmo tamanho.
+$header-icon: 2.25rem;
+$header-gap: 0.6rem;
+
+#quarto-header .navbar-container {
+  justify-content: flex-start;
+  gap: $header-gap;
+  flex-wrap: nowrap;
+}
+
+// Sem links à direita no cabeçalho, o Quarto empurra o ícone do menu para a direita
+// (.tools-end, com !important).
+#quarto-header .quarto-navbar-tools {
+  order: -1;
+  margin: 0 !important;
+}
+
+#quarto-header .navbar-brand-container {
+  order: 0;
+  // O título fica um pouco mais longe da lupa que a lupa do quadrado seguinte: os
+  // desenhos, menores que os quadrados, é que precisam ficar à mesma distância.
+  margin: 0 0.65rem 0 0 !important;
+}
+
+#quarto-header .navbar-brand {
+  margin-right: 0;
+}
+
+#quarto-header #quarto-search {
+  order: 1;
+  margin: 0 !important;
+}
+
+#quarto-header #quarto-search .aa-DetachedSearchButton,
+#quarto-header .quarto-reader-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $header-icon;
+  height: $header-icon;
+  margin: 0;
+  padding: 0 !important;
+  border-radius: 0.375rem;
+}
+
+#quarto-header #quarto-search .aa-DetachedSearchButtonIcon {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+// O ícone do menu é o mesmo da barra que abre o menu numa janela estreita. Marcado
+// (menu recolhido), ele ganha um fundo, como o Quarto faz.
+#quarto-header .quarto-reader-toggle {
+  color: var(--color-text-soft);
+
+  .quarto-reader-toggle-btn {
+    margin: 0;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .bi::before {
+    content: '\f461';
+    width: auto;
+    height: auto;
+    background-image: none !important;
+    font-family: 'bootstrap-icons';
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  &.reader .bi::before {
+    color: #fff;
+  }
+}
+
+// Num celular não cabe o título do livro; fica a lupa, à direita.
+@media (max-width: 575.98px) {
+  #quarto-header .navbar-brand-container,
+  #quarto-header .navbar-title {
+    display: none;
+  }
+
+  #quarto-header .navbar {
+    padding-inline: 0.5rem;
+  }
+
+  #quarto-header .navbar-container {
+    justify-content: flex-end;
+    min-width: 0;
+    padding-inline: 0;
+  }
+}
+
+// O cabeçalho se esconde quando a página rola para baixo; ele precisa voltar para
+// quem chega a ele pelo teclado, ou o foco ficaria fora da vista (WCAG 2.4.11).
+#quarto-header:focus-within {
+  transform: none !important;
+}
+
+// ---- Navegação ----
+
+// Os links pequenos do caminho no alto da página também precisam de um alvo de 24 px
+// (WCAG 2.5.8).
+.quarto-page-breadcrumbs .breadcrumb-item a {
+  display: inline-block;
+  min-height: 24px;
+}
+
+// Anterior e próximo: num celular, com um título longo, um em cima do outro.
+.page-navigation {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .nav-page {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+// Os links de página do Quarto, com contraste suficiente sobre o fundo de areia. O
+// último link do caminho no alto da página tem uma regra própria do Quarto
+// (.quarto-title-breadcrumbs .breadcrumb li:last-of-type a, #6c757d, 4.48:1), que só
+// aparecia num capítulo sem número, em que o texto fica direto no link, sem o
+// .chapter-title; por isso o :last-of-type aqui também.
+.nav-page .nav-page-text,
+.nav-page .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item,
+.quarto-title-breadcrumbs .breadcrumb-item a,
+.quarto-title-breadcrumbs .breadcrumb .breadcrumb-item:last-of-type a,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-title,
+.quarto-title-breadcrumbs .breadcrumb-item .chapter-number,
+.sidebar-navigation .chapter-title,
+.sidebar-navigation .menu-text {
+  color: var(--color-text-soft);
+}
+
+.sidebar-navigation .sidebar-item-container .active .menu-text,
+.sidebar-navigation .active .menu-text {
+  color: var(--color-accent-strong);
+  font-weight: 700;
+}
+
+// ---- A grade da página (decisão E4 do livro-base, de 2026-11-12) ----
+
+// Da esquerda para a direita: uma margem fixa, o menu, o texto e a coluna da direita,
+// da parte larga dos applets largos (.column-page-right); não há notas de margem
+// (.column-margin). A coluna "Neste capítulo" do Quarto saiu: as seções estão no menu.
+// O menu fica preso à esquerda; numa janela mais larga, o espaço a mais fica depois da
+// coluna da direita, e nada muda de lugar. A grade é a mesma em todas as páginas,
+// tenham ou não conteúdo de margem (o Quarto daria outra às que têm, a slimcontent),
+// para o texto não mudar de lugar de um capítulo para outro. Os nomes das linhas são
+// os do Quarto.
+//
+// Larguras: o menu tem $grid-sidebar-width; o texto, $grid-body-width; a coluna da
+// direita, $grid-margin-width (_quarto.yml). Entre o menu e o texto, $text-gap.
+$text-gap: 2.5rem;
+$margin-gap: 1.5rem;
+// A partir desta largura de janela cabe a coluna da direita inteira, com o texto
+// também inteiro (1224 px); abaixo dela, a coluna da direita não aparece. A conta: as
+// larguras de _quarto.yml e os espaços em rem, a 16 px cada.
+$wide-page: $grid-sidebar-width + $grid-body-width + $grid-margin-width + (2.5 - 3 + 1.5 + 3) * 16px;
+
+@mixin page-grid($margin-column) {
+  grid-template-columns:
+    [screen-start] 1.5rem
+    [screen-start-inset page-start] #{0.2 * $grid-sidebar-width}
+    [page-start-inset] #{0.6 * $grid-sidebar-width}
+    [body-start-outset] #{0.2 * $grid-sidebar-width}
+    [body-start] $text-gap
+    [body-content-start] minmax(500px, calc(#{$grid-body-width} - 3rem))
+    [body-content-end] $margin-gap
+    [body-end body-end-outset] $margin-column
+    [page-end-inset page-end] 1fr
+    [screen-end-inset] 1.5rem
+    [screen-end];
+}
+
+// O texto no meio da janela, sem o menu e sem a coluna da direita: o tablet, e o
+// menu recolhido em qualquer largura.
+@mixin centered-grid {
+  grid-template-columns:
+    [screen-start] 1.5rem
+    [screen-start-inset] 5fr
+    [page-start page-start-inset body-start-outset body-start] 1rem
+    [body-content-start] minmax(500px, calc(#{$grid-body-width} - 3rem))
+    [body-content-end] 1.5rem
+    [body-end body-end-outset] 5fr
+    [page-end-inset page-end screen-end-inset] 1.5rem
+    [screen-end];
+}
+
+// Os três nomes de página que o Quarto usa num livro com menu flutuante.
+$page-grids: 'body.floating .page-columns, body.floating.fullcontent .page-columns, body.floating.slimcontent .page-columns';
+
+@media (min-width: 992px) {
+  #{$page-grids} {
+    @include page-grid(0);
+  }
+}
+
+@media (min-width: $wide-page) {
+  #{$page-grids} {
+    @include page-grid($grid-margin-width);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #{$page-grids} {
+    @include centered-grid;
+  }
+}
+
+// ---- Menu recolhido ----
+
+// O botão de "modo de leitura" do Quarto recolhe o menu. Aqui ele recolhe também as
+// colunas: o texto vai para o meio, como numa janela estreita. Do menu, fica só o
+// ícone, no cabeçalho, para trazê-lo de volta; o Quarto poria no lugar do menu uma
+// lista com o nome do capítulo. src/site/apply-prefs.html marca data-reader no <html>
+// antes de a página aparecer, e src/site/boot.js, a cada toque no botão.
+:root[data-reader='on'] {
+  @media (min-width: 992px) {
+    #{$page-grids} {
+      @include centered-grid;
+    }
+
+    #quarto-sidebar,
+    #quarto-sidebarnav-toggle {
+      display: none !important;
+    }
+  }
+}
+
+// O ícone do menu só existe onde o menu é uma coluna; numa janela estreita, o menu se
+// abre pela barra de baixo do cabeçalho, como o Quarto faz.
+@media (max-width: 991.98px) {
+  #quarto-header .quarto-navbar-tools {
+    display: none;
+  }
+}
+
+// ---- Menu lateral: as seções de cada capítulo (tools/sidebar-sections.ts) ----
+
+// De uma linha do menu à seguinte, pouco mais de 24 px: as setas de dois capítulos
+// vizinhos não se sobrepõem, e cada uma é um alvo inteiro (WCAG 2.5.8).
+.sidebar-navigation .sidebar-item {
+  margin-top: 0.45rem;
+}
+
+.sidebar-item.has-sections {
+  position: relative;
+
+  // Lugar para a seta, ao lado do título do capítulo.
+  > .sidebar-item-container {
+    padding-right: 1.75rem;
+  }
+}
+
+.sidebar-sections {
+  // O Quarto dá uma margem a todo <details>.
+  margin: 0;
+
+  // A seta fica na linha do título, à direita, como a das partes do livro.
+  > summary {
+    position: absolute;
+    top: -0.225rem;
+    right: -0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.45rem;
+    list-style: none;
+    color: var(--color-text-soft);
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: '\f285';
+      font-family: 'bootstrap-icons';
+      font-size: 0.7rem;
+      transition: transform 200ms ease;
+    }
+  }
+
+  &[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  // O espaço em volta da lista só existe com ela aberta: fechada, não ocupa nada.
+  &[open] {
+    padding: 0.4rem 0 0.6rem 0.3rem;
+  }
+
+  > ul {
+    margin: 0;
+    border-left: 1px solid var(--color-border);
+  }
+
+  li {
+    margin: 0;
+  }
+
+  // Pelo menos 24 px de altura (WCAG 2.5.8).
+  a {
+    display: block;
+    margin-left: -1px;
+    padding: 0.22rem 0 0.22rem 0.7rem;
+    border-left: 2px solid transparent;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--color-text-soft);
+
+    &:hover {
+      color: var(--color-accent-strong);
+    }
+
+    // A seção que está na tela (src/site/boot.js).
+    &.active {
+      border-left-color: var(--color-accent);
+      color: var(--color-accent-strong);
+    }
   }
 }

@@ -109,12 +109,19 @@ book:
   search:
     location: navbar
     type: overlay
-  # O cabeçalho, como no livro-base (decisão E4): o ícone que recolhe o menu, o título
-  # e a lupa da busca, que sem ele não aparecia em lugar nenhum.
+  # O cabeçalho, como no livro-base (decisão E4): o ícone que recolhe o menu, o título,
+  # a lupa da busca e o ícone de acessibilidade. src/site/settings.js faz do ícone o
+  # botão que abre o painel; sem JavaScript, ele é um link para a página que explica as
+  # opções. O nome "Acessibilidade" fica só para o leitor de tela (styles/page.scss).
   navbar:
     background: light
     collapse: false
     search: true
+    right:
+      - icon: universal-access
+        href: acessibilidade.qmd
+        aria-label: "Acessibilidade"
+        text: "Acessibilidade"
   sidebar:
     style: floating
     collapse-level: 1
@@ -123,5 +130,10 @@ book:
     #- _interno/referencia/relatorio-design-pedagogico-26-05-14.qmd
     #- _interno/referencia/biblioteca-estruturas-site-diretrizes.qmd
     # Os 20 capítulos de antes, protótipos, estão em _interno/oficina/nao-publicados/,
-    # como modelo para os novos, que entram aqui (2026-11-22).
+    # como modelo para os novos, que entram aqui, antes da página de acessibilidade
+    # (2026-11-22).
+    # O que cada opção do painel de acessibilidade faz; o ícone do cabeçalho leva a
+    # ela quando o painel não abre (sem JavaScript). Sem número, depois dos capítulos,
+    # como no livro-base.
+    - acessibilidade.qmd
     # O perfil lab (_quarto-lab.yml) acrescenta a parte Laboratório no fim desta lista.

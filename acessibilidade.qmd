@@ -1,0 +1,31 @@
+# Acessibilidade {.unnumbered}
+
+O site começa com a apresentação mais enxuta. Quem precisa de outro modo de ler ou de manipular os applets escolhe nas opções, disponíveis em qualquer página, no ícone <i class="bi bi-universal-access" aria-hidden="true"></i> do alto da tela ou na primeira parada da tecla Tab. As escolhas valem na hora, para todas as páginas, e ficam guardadas neste navegador.
+
+<button type="button" data-open-settings class="applet-button">Abrir as opções de acessibilidade</button>
+
+## Para mover os pontos e mudar os valores dos applets
+
+| Opção | O que muda |
+|---|---|
+| **Teclado** (sempre disponível) | Tab escolhe um ponto, uma figura móvel ou uma faixa de valores; as setas movem o ponto ou a figura, ou mudam o valor. |
+| **Tocar no ponto e depois no destino** | Não é preciso arrastar: um toque escolhe o ponto, e o toque seguinte diz para onde ele vai. A página continua rolando normalmente. |
+| **Campos para digitar os pontos e os valores** | Abaixo de cada applet aparecem as coordenadas de cada ponto livre ou restrito; ao lado de cada faixa de valores, o valor dela. Dá para digitar (com vírgula ou ponto, e também frações como 3/2 e ângulos como pi/6) ou ajustar com os triângulos ▲ e ▼ ao lado do campo, ou com as setas do teclado. |
+| **Pontos maiores e mais fáceis de pegar** | Os pontos crescem, e a área em que se pega cada um fica maior. Os triângulos ao lado dos campos também crescem. |
+
+## Para acompanhar os applets
+
+| Opção | O que muda |
+|---|---|
+| **Mostrar a descrição em texto do que muda** | Um texto abaixo do applet diz o que está na figura. Quem usa leitor de tela já recebe esse texto, com ou sem a opção. |
+| **Reduzir movimento** | As animações avançam em passos, sem movimento contínuo. Se o sistema já pede menos movimento, a opção começa marcada. |
+
+## Para ler
+
+| Opção | O que muda |
+|---|---|
+| **Contraste alto** | Texto mais escuro e linhas mais grossas nos applets. Se o sistema já pede mais contraste, a opção começa marcada. |
+| **Mais espaço entre as linhas** | Aumenta o espaço entre linhas, parágrafos e palavras. |
+| **Tamanho do texto** | Aumenta o texto, os controles e os nomes nos applets. |
+
+As fórmulas são texto: o leitor de tela as lê, e elas acompanham o zoom do navegador.

@@ -121,6 +121,11 @@ export function initSettings() {
     // O Quarto marca os links do cabeçalho de um livro como a página atual, em toda página.
     tool.removeAttribute('aria-current');
     tool.classList.remove('active');
+    // O nome vem do texto escondido ao lado do ícone. O Quarto dá ao ícone o mesmo nome
+    // (role="img", com o aria-label de _quarto.yml), e o leitor de tela diria
+    // "Acessibilidade Acessibilidade". Sem JavaScript, o nome repetido fica: sem o
+    // aria-label, o ícone seria uma imagem sem nome.
+    tool.querySelector('.bi')?.setAttribute('aria-hidden', 'true');
     tool.addEventListener('click', (event) => {
       event.preventDefault();
       openSettings();

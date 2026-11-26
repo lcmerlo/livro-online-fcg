@@ -364,8 +364,7 @@ export function drawAnnotations() {
   blocks.forEach((block) => observer.observe(block));
   const redo = () => blocks.forEach(layout);
   // O tamanho do texto e o espaçamento mudam os comentários, não a largura. Quem
-  // avisa é o painel de acessibilidade: desde a fase 5 da migração, onde há applet;
-  // em toda página, a partir da fase 6.
+  // avisa é o painel de acessibilidade, em toda página desde a fase 6 da migração.
   document.addEventListener('prefs-change', () => requestAnimationFrame(redo));
   document.fonts?.ready.then(redo);
 }

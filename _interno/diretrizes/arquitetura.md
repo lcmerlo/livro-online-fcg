@@ -32,7 +32,7 @@ Há três "linhas de montagem" que se encontram no final:
 ```mermaid
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
 flowchart TD
-    qmd["<b>1 · Conteúdo</b><br/>capitulos/*.qmd<br/>index.qmd"]
+    qmd["<b>1 · Conteúdo</b><br/>capitulos/*.qmd<br/>index.qmd, acessibilidade.qmd"]
     estilo["<b>2 · Aparência</b><br/>_brand.yml<br/>styles/*.scss"]
     src["<b>3 · Applets</b><br/>applets/*.js<br/>src/*/*.js"]
 
@@ -79,6 +79,7 @@ livro-quarto/
 ├── _brand.yml                  ⚙️  Identidade visual: paleta de cores e fontes
 ├── _language.yml               ⚙️  Traduções de rótulos ("Demonstração", "Solução"…)
 ├── index.qmd                   ✏️  Página inicial (Apresentação)
+├── acessibilidade.qmd          ✏️  O que cada opção do painel de acessibilidade faz
 ├── README.md                   ✏️  Resumo do projeto e comandos
 ├── AGENTS.md                   ✏️  Resumo das diretrizes para assistentes de IA
 ├── cspell.json                 ⚙️  Corretor ortográfico (pt-BR + termos técnicos)
@@ -106,10 +107,10 @@ livro-quarto/
 │   └── settings.scss           ✏️  O painel de acessibilidade
 ├── src/                        ✏️  O que roda no navegador, sem compilação (vem do livro-base)
 │   ├── site/                   ✏️  O que roda em toda página
-│   │   ├── boot.js             ✏️  Seção atual no menu, ícone que recolhe o menu, abas, nomes em português; carrega o resto onde houver uso
+│   │   ├── boot.js             ✏️  O painel em toda página, seção atual no menu, ícone que recolhe o menu, abas, nomes em português; carrega o resto onde houver uso
 │   │   ├── scrollers.js        ✏️  Fórmula ou tabela que rola dentro da coluna, ao alcance do Tab
 │   │   ├── annotations.js      ✏️  Fórmulas comentadas: os comentários em volta da fórmula e as linhas
-│   │   ├── settings.js         ✏️  O painel de acessibilidade (por enquanto, aberto pelo botão de cada applet)
+│   │   ├── settings.js         ✏️  O painel de acessibilidade, os atalhos do Tab e o ícone do cabeçalho
 │   │   ├── prefs.js            ✏️  As preferências do leitor, guardadas no navegador
 │   │   └── apply-prefs.html    ✏️  No <head>: as preferências e o menu recolhido, antes de a página aparecer; sem JavaScript, as abas abertas
 │   ├── applet/                 ✏️  O que roda onde há applet: o quadro, o estado, os controles, as alternativas ao arraste
@@ -163,12 +164,13 @@ alteração some na próxima geração.
 
 | Arquivo | Finalidade | Quem lê |
 |---|---|---|
-| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, o KaTeX de `vendor/katex/` (`html-math-method`, e `resources`, que o copia para `docs/`), camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa; depois do Cosmo e de `brand`, as folhas de `styles/`), as larguras da página (`grid`) e nenhuma coluna "Neste capítulo" (`toc: false`), o cabeçalho (`book.navbar`: o ícone que recolhe o menu, o título e a busca) e o menu (`book.sidebar`), filtros (o das macros, o das fórmulas comentadas, o dos blocos, que roda antes do Quarto, e o dos applets, que também põe `src/site/boot.js` em toda página, num `filters:` de primeiro nível, que vale para qualquer formato), como aparecem dicas e soluções e os rótulos dos blocos (`reveal`, `block-labels`), os passos depois do render (`post-render`: `tools/prerender-math.ts` e `tools/sidebar-sections.ts`), o que as páginas carregam além delas (`resources`: os módulos de `src/`, os applets, o KaTeX, o JSXGraph e `math/macros.json`; o Quarto não acusa um que falte, e o verificador sim), numeração de seções e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
+| `_quarto.yml` | Diz ao Quarto: tipo de projeto (`book`), pasta de saída (`docs`), lista e ordem dos capítulos, o KaTeX de `vendor/katex/` (`html-math-method`, e `resources`, que o copia para `docs/`), camadas de tema (só o claro: `brand: light: _brand.yml`; com `brand: _brand.yml`, o Quarto gera também uma folha escura que nenhuma página usa; depois do Cosmo e de `brand`, as folhas de `styles/`), as larguras da página (`grid`) e nenhuma coluna "Neste capítulo" (`toc: false`), o cabeçalho (`book.navbar`: o ícone que recolhe o menu, o título, a busca e, em `right`, o ícone de acessibilidade, um link para `acessibilidade.qmd` que `src/site/settings.js` faz abrir o painel) e o menu (`book.sidebar`), filtros (o das macros, o das fórmulas comentadas, o dos blocos, que roda antes do Quarto, e o dos applets, que também põe `src/site/boot.js` em toda página, num `filters:` de primeiro nível, que vale para qualquer formato), como aparecem dicas e soluções e os rótulos dos blocos (`reveal`, `block-labels`), os passos depois do render (`post-render`: `tools/prerender-math.ts` e `tools/sidebar-sections.ts`), o que as páginas carregam além delas (`resources`: os módulos de `src/`, os applets, o KaTeX, o JSXGraph e `math/macros.json`; o Quarto não acusa um que falte, e o verificador sim), numeração de seções e a faixa de aviso no alto das páginas (`book.announcement`: desde o Quarto 1.11, um livro ignora a faixa de `website`). | Quarto |
 | `_brand.yml` | Paleta nomeada, em duas seções: as cores do livro (`blue-2`, `sand-1`…; os nomes do livro-base desde 2026-11-25, com os mesmos valores: `tests/fixtures/livro-colors.json` tem a tabela dos nomes de antes) e as cores de teste, do JSX-quarto (`blue-oi`, `red-tb`…; §5.2); papéis das cores (`primary`, `background`…), fontes (Atkinson Hyperlegible no texto, Source Serif 4 nos títulos), com os arquivos de `vendor/fonts/` (`source: file`), e não do Google, e o tamanho e a entrelinha do texto. O Quarto transforma cada cor da paleta em uma variável SCSS `$brand-<nome>` e numa variável CSS `--brand-<nome>`. | Quarto (camada `brand` do tema) |
 | `_language.yml` | Substitui rótulos padrão do Quarto ("Proof" → "Demonstração"). Lido automaticamente por estar na raiz do projeto. | Quarto |
 | `capitulos/_metadata.yml`, `laboratorio/_metadata.yml` | O caminho do KaTeX para as páginas dessas pastas (`../vendor/katex/`): o de `_quarto.yml` é relativo à página. Uma pasta nova de páginas precisa do mesmo arquivo. | Quarto |
 | `_quarto-axe.yml` | Perfil `axe`: liga a verificação de acessibilidade do Quarto (axe-core) com `quarto preview --profile axe`. O site publicado é gerado sem perfil e não a leva ao estudante. | Quarto |
 | `index.qmd` | Primeira página do livro (sem número de capítulo). | Quarto |
+| `acessibilidade.qmd` | O que cada opção do painel de acessibilidade faz, com um botão que abre o painel; sem número, depois dos capítulos. O ícone do cabeçalho leva a ela quando o painel não abre (sem JavaScript). Vem do livro-base, igual (desde a fase 6 da migração). | Quarto |
 | `cspell.json` | Dicionário e padrões ignorados pelo verificador ortográfico do editor. | Extensão Code Spell Checker |
 
 ### 4.2 `capitulos/`
@@ -203,15 +205,15 @@ linha não aparece na página. Um capítulo combina:
 | Caminho | Finalidade |
 |---|---|
 | `styles/tokens.scss` | As cores pelo que significam (`--color-text`, `--color-accent`, `--color-given`, `--color-result`, `--color-support`, `--color-board`, `--color-grid`…), derivadas de `_brand.yml`, e as medidas dos applets (traços, pontos, nomes; `--point-radius`, `--stroke-normal`…), em px, que `src/applet/theme.js` lê; o site e os applets leem estes nomes. Também as preferências do leitor que mudam esses valores: pontos maiores, contraste alto (que segue o do sistema enquanto o leitor não escolhe) e o tamanho do texto. Tira do Cosmo o pedido da fonte dele ao Google (`$web-font-path: false`). Os nomes são os do livro-base desde 2026-11-25 (eram `--cor-…` e `--applet-…`). |
-| `styles/page.scss` | A página: o recorte da fonte de ícones (`vendor/icons/`), a cor do texto e "Mais espaço entre as linhas", o foco, o movimento reduzido (do sistema ou do painel), a opacidade dos títulos menores (contraste), a seta de `\vet` (decisão E6 do livro-base), fórmulas e tabelas largas que rolam dentro da coluna, código no meio do texto que quebra a linha, figuras `.figure-note`, as colunas de `cols="…"` (`.cols`), o cabeçalho, as cores dos links de navegação, a grade da página (as larguras de `grid`, em `_quarto.yml`; decisão E4 do livro-base), o menu recolhido e as seções no menu. |
+| `styles/page.scss` | A página: o recorte da fonte de ícones (`vendor/icons/`), a cor do texto e "Mais espaço entre as linhas", o foco, o movimento reduzido (do sistema ou do painel), a opacidade dos títulos menores (contraste), a seta de `\vet` (decisão E6 do livro-base), fórmulas e tabelas largas que rolam dentro da coluna, código no meio do texto que quebra a linha, figuras `.figure-note`, as colunas de `cols="…"` (`.cols`), os atalhos do Tab (`.skip-links`, escondidos até receberem o foco), o cabeçalho (com o ícone de acessibilidade, cujo nome fica só para o leitor de tela), as cores dos links de navegação, a grade da página (as larguras de `grid`, em `_quarto.yml`; decisão E4 do livro-base), o menu recolhido e as seções no menu. |
 | `styles/blocks.scss` | O objetivo e a observação, com o rótulo; exemplos e exercícios; as abas das dicas e soluções e as outras três formas de `reveal` (`inline`, `steps`, `accordion`). Vem do livro-base, sem a aparência dos avisos do Quarto (`.callout-…`), que o livro não usa. |
 | `styles/annotations.scss` | As fórmulas comentadas: a caixa de cada parte, na cor do seu comentário (`--note-1` a `--note-4`, em `tokens.scss`), os comentários em volta da fórmula, ao lado dela ou numa lista, e as linhas. Vem do livro-base, igual. |
 | `styles/applet.scss` | Os applets: só o quadro tem fundo branco e borda fina; os dois botões logo acima de cada quadro; os pontos que se arrastam; os controles, que quebram a linha na ordem do código; os campos para quem não arrasta; os arranjos (`width`, `.center`, `.float-right`, `.board-group`); as marcas que ligam uma palavra do texto a um elemento da figura (`.mark-given`…). Vem do livro-base, sem a parte do apêndice de cores de lá. |
 | `styles/settings.scss` | O painel de acessibilidade. Vem do livro-base, igual. |
-| `src/site/boot.js` | Roda em toda página (`filters/applet.lua`): marca no menu a seção que está na tela, dá ao ícone que recolhe o menu o nome do que ele faz e a barra de espaço, leva o `<html>` junto quando o menu se recolhe, abre e fecha as abas das dicas e soluções (e "Mais uma dica"), tira dos links de anterior e próximo um nome que não bate com o que está na tela, traduz o nome da busca e, numa página com fórmula comentada, carrega `annotations.js`; numa página com applet, `src/applet/runtime.js`. Vem do livro-base, sem o painel de acessibilidade em toda página (`initSettings`: os atalhos do Tab e o botão do cabeçalho), que chega na fase 6 da migração. |
+| `src/site/boot.js` | Roda em toda página (`filters/applet.lua`): marca no menu a seção que está na tela, dá ao ícone que recolhe o menu o nome do que ele faz e a barra de espaço, leva o `<html>` junto quando o menu se recolhe, abre e fecha as abas das dicas e soluções (e "Mais uma dica"), tira dos links de anterior e próximo um nome que não bate com o que está na tela, traduz o nome da busca e, numa página com fórmula comentada, carrega `annotations.js`; numa página com applet, `src/applet/runtime.js`. Põe o painel de acessibilidade em toda página (`initSettings`, de `settings.js`), desde a fase 6 da migração. Vem do livro-base, igual a menos dos comentários. |
 | `src/site/annotations.js` | Numa página com fórmula comentada: leva os comentários para perto das partes, ou a lista para o lado da fórmula, onde couber, e desenha as linhas; onde não couber, fica a lista. Refaz tudo quando a largura muda. Vem do livro-base, igual. |
 | `src/site/scrollers.js` | Uma fórmula, tabela ou bloco de código mais largo que a coluna rola dentro dela; este módulo o põe ao alcance do Tab, só quando de fato rola. Vem do livro-base, igual. |
-| `src/site/settings.js` e `prefs.js` | O painel de acessibilidade e as preferências do leitor: mover os pontos sem arrastar (tocar no destino, campos para digitar), pontos maiores, a descrição em texto à vista, menos movimento, contraste alto, mais espaço entre as linhas e o tamanho do texto. As escolhas ficam guardadas no navegador (`localStorage`) e viram atributos `data-…` no `<html>`; os applets são remontados quando uma delas muda. Até a fase 6 da migração, o painel se abre pelo botão de acessibilidade acima de cada quadro. Vêm do livro-base, iguais a menos dos comentários. |
+| `src/site/settings.js` e `prefs.js` | O painel de acessibilidade e as preferências do leitor: mover os pontos sem arrastar (tocar no destino, campos para digitar), pontos maiores, a descrição em texto à vista, menos movimento, contraste alto, mais espaço entre as linhas e o tamanho do texto. As escolhas ficam guardadas no navegador (`localStorage`) e viram atributos `data-…` no `<html>`; os applets são remontados quando uma delas muda. O painel se abre de três lugares: o ícone do cabeçalho, a segunda parada do Tab ("Abrir as opções de acessibilidade", depois de "Ir para o conteúdo", que toma o lugar do atalho do Quarto) e o botão acima de cada quadro; até a fase 6 da migração, só pelo último. Vêm do livro-base, iguais a menos dos comentários. |
 | `src/site/apply-prefs.html` | No `<head>` de toda página (`include-in-header`): aplica as preferências guardadas e marca o menu recolhido antes de a página aparecer, para ela não piscar; sem JavaScript, deixa dicas e soluções à vista, cada uma com o nome. |
 
 ### 4.5 `src/applet/`, `src/elements/`, `src/math/` e `applets/` — os applets
@@ -236,7 +238,7 @@ O sistema de applets do livro-base, desde a fase 5 da migração (2026-11-25), s
 
 Script Node. Roda sem instalar nada: confere as fórmulas com `vendor/katex/katex.min.js`, o mesmo arquivo que `tools/prerender-math.ts` usa e que os applets carregam. Verifica:
 
-- **nas fontes** (`index.qmd`, `capitulos/*.qmd` e `laboratorio/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`, blocos que nenhum filtro do livro conhece desde a fase 7 da migração (os de antes, `.bloco-*`, `.dica`, `.solucao`, `.resposta`, `#exrr-…`, `.fig-leg`; os três de antes que o livro-base tinha; os avisos `.callout-…` do Quarto), com a troca na mensagem, também em exemplos de código: uma `.solucao` sairia com a solução à vista; e a marcação dos applets de antes da fase 5 (os shortcodes `applet` e `geogebra`, o bloco com `nome=`, as partes `.quadro`, `.controles` e `.leitura`), também em exemplos de código;
+- **nas fontes** (`index.qmd`, `acessibilidade.qmd`, `capitulos/*.qmd` e `laboratorio/*.qmd`): imagens inexistentes, "Definição"/"Proposição" escritas como título em vez de bloco, comandos TeX suspeitos (ex.: `\MATHBB`), cores `\color{…}` sem `#`, blocos que nenhum filtro do livro conhece desde a fase 7 da migração (os de antes, `.bloco-*`, `.dica`, `.solucao`, `.resposta`, `#exrr-…`, `.fig-leg`; os três de antes que o livro-base tinha; os avisos `.callout-…` do Quarto), com a troca na mensagem, também em exemplos de código: uma `.solucao` sairia com a solução à vista; e a marcação dos applets de antes da fase 5 (os shortcodes `applet` e `geogebra`, o bloco com `nome=`, as partes `.quadro`, `.controles` e `.leitura`), também em exemplos de código;
 - **no site gerado** (`docs/`; com `--lab`, `docs-lab/`): `iframe` sem `title`, imagem sem `alt` (aviso), applet usado sem arquivo correspondente em `applets/` (ou que não chegou ao site), applet sem `spoken`, o que os applets carregam e não chegou ao site (`resources`), `id` duplicado (fora dos blocos de código), saltos na hierarquia de títulos (aviso), o que a página carrega de outro servidor, no HTML ou nas folhas de estilo locais que ela carrega (`url()` e `@import`; erro também no laboratório, porque vem da configuração do livro);
 - **nas fórmulas** do site gerado, que chegam desenhadas (`tools/prerender-math.ts`), com as macros já expandidas (`filters/macros.lua`): o TeX de cada uma, guardado numa anotação, passa de novo pelo KaTeX, e é aviso se tem um caractere que ele não conhece (como `’` no lugar de `'`); uma fórmula que ficou em TeX é erro: ou o KaTeX não a desenha (comando inexistente, macro com nome errado, `\color[HTML]{…}`), ou o post-render não rodou; e é erro uma página que ainda carrega o KaTeX no navegador sem ter fórmula em TeX (o post-render não rodou). O resumo conta as fórmulas;
 - **nas cores**, a partir do CSS do tema que as páginas de `docs/` carregam (avisos): as cores dos papéis (`--color-given`, `--color-result`, `--color-support`) e a do texto com contraste abaixo de 3:1 sobre o fundo do quadro (`--color-board`); applet usado no livro que pede uma cor das paletas de teste (`color: 'blue-oi'`);
@@ -268,7 +270,7 @@ As setas significam "é lido / usado por".
 %%{init: {"themeVariables": {"fontSize": "20px"}, "flowchart": {"wrappingWidth": 420}}}%%
 flowchart LR
     quarto["<b>_quarto.yml</b>"]
-    quarto -->|"chapters"| caps["index.qmd<br/>capitulos/*.qmd"]
+    quarto -->|"chapters"| caps["index.qmd<br/>capitulos/*.qmd<br/>acessibilidade.qmd"]
     quarto -->|"brand"| brand["_brand.yml"]
     quarto -->|"theme"| tema["cosmo<br/>+ brand<br/>+ styles/*.scss"]
     quarto -->|"filters"| blocos["filters/blocks.lua<br/>filters/annotations.lua<br/>filters/applet.lua"]
@@ -355,6 +357,7 @@ flowchart TD
     math["src/math/<br/>vec, exact, format"]
     painel["src/site/settings.js<br/>prefs.js"]
 
+    boot --> painel
     boot -.->|"import() se há<br/>.applet na página"| runtime
     runtime -->|"import(), quando o<br/>applet chega perto da tela"| jxg
     runtime --> tex

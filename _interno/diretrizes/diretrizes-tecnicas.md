@@ -230,7 +230,7 @@ Antes de um applet entrar num capítulo:
 - [ ] Cada garantia de §4.4, em especial:
   - [ ] **320 px:** modo de dispositivo das ferramentas do programador, com largura 320, e também num celular;
   - [ ] **teclado:** só com Tab, setas e Enter, sem mouse;
-  - [ ] **sem arraste:** a mesma tarefa sem arrastar nada, com "Campos para digitar os pontos e os valores" e, depois, com "Tocar no ponto e depois no destino" (no painel de acessibilidade, pelo botão acima do quadro);
+  - [ ] **sem arraste:** a mesma tarefa sem arrastar nada, com "Campos para digitar os pontos e os valores" e, depois, com "Tocar no ponto e depois no destino" (no painel de acessibilidade, pelo ícone do cabeçalho ou pelo botão acima do quadro);
   - [ ] **leitor de tela:** o VoiceOver (Cmd+F5 no Mac) lê o nome do applet, de cada quadro e de cada ponto, e a descrição;
   - [ ] **casos especiais:** cada um da especificação (§4.3, passo 2);
   - [ ] **reinício**, depois de mexer em tudo;

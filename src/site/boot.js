@@ -1,11 +1,13 @@
 // Roda em toda página (filters/applet.lua o põe), e por isso é pequeno: uma página sem
-// applets e sem fórmulas comentadas não carrega mais nada. Vem do livro-base
-// (src/site/boot.js), sem o painel de acessibilidade em toda página (initSettings: os
-// atalhos do Tab e o botão do cabeçalho), que chega na fase 6 da migração; até lá, o
-// painel se abre pelo botão de cada applet.
+// applets e sem fórmulas comentadas não carrega mais nada além do painel de opções. Vem
+// do livro-base (src/site/boot.js). O painel de acessibilidade está em toda página desde
+// a fase 6 da migração (initSettings: os atalhos do Tab e o botão do cabeçalho); antes,
+// só se abria pelo botão de cada applet.
 
 import { watchScrollers } from './scrollers.js';
+import { initSettings } from './settings.js';
 
+initSettings();
 watchScrollers();
 
 // O Quarto dá aos links de anterior e próximo um nome sem o número do capítulo que

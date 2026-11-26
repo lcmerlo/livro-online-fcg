@@ -8,8 +8,9 @@ format:
 ---
 
 <!-- Página de conferência das fórmulas comentadas: a de modelos/formulas-comentadas.qmd
-     do livro-base, sem os links para os apêndices de lá e sem o painel de
-     acessibilidade, que chega na fase 6 da migração. Serve à fase 7 do plano de
+     do livro-base, sem os links para os apêndices de lá (o painel de
+     acessibilidade, que a página cita, está em toda página desde a fase 6 da
+     migração). Serve à fase 7 do plano de
      migração (filters/annotations.lua, src/site/annotations.js,
      styles/annotations.scss).
      Ver: quarto preview --profile lab (_quarto-lab.yml) -->
@@ -23,7 +24,7 @@ As quatro formas de comentar as partes de uma fórmula, com a mesma fórmula, e 
 | **Legenda** | em volta da fórmula ficam só os números, cada um ligado por uma linha à caixa da sua parte; os comentários ficam numa lista embaixo, com os mesmos números | `::: {.annotated .legend}` |
 | **Chave** | um comentário curto colado na parte | `\underbrace{...}_{...}`, do próprio KaTeX |
 
-As três primeiras se escrevem do mesmo jeito: trocar uma pela outra é acrescentar, trocar ou tirar uma palavra. Estreite a janela ou abra num celular: onde não cabem os comentários em volta da fórmula, a lista ao lado dela ou os números em volta dela, os comentários ficam numa lista embaixo, com os números, e cada um começa pela parte a que se refere.
+As três primeiras se escrevem do mesmo jeito: trocar uma pela outra é acrescentar, trocar ou tirar uma palavra. Estreite a janela, aumente o texto no painel de acessibilidade ou abra num celular: onde não cabem os comentários em volta da fórmula, a lista ao lado dela ou os números em volta dela, os comentários ficam numa lista embaixo, com os números, e cada um começa pela parte a que se refere.
 
 ## A mesma fórmula nas quatro {#comparacao}
 

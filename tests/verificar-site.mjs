@@ -133,6 +133,7 @@ const linhaDe = (texto, indice) => texto.slice(0, indice).split("\n").length;
 
 const fontes = [
   join(raiz, "index.qmd"),
+  join(raiz, "acessibilidade.qmd"),
   ...listar(join(raiz, "capitulos"), ".qmd"),
   ...listar(join(raiz, "laboratorio"), ".qmd"),
 ];

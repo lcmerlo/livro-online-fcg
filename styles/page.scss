@@ -218,11 +218,47 @@ dt code:not(.sourceCode),
   }
 }
 
+// ---- As primeiras paradas do Tab: escondidas até receberem o foco ----
+
+// "Ir para o conteúdo" e "Abrir as opções de acessibilidade", que src/site/settings.js
+// põe no começo de toda página (no lugar do atalho do Quarto).
+.skip-links {
+  position: absolute;
+  z-index: 2000;
+  inset: 0 auto auto 0;
+
+  a,
+  button {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    padding: 0.5rem 0.9rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 0.375rem;
+    background: var(--color-board);
+    color: var(--color-accent-strong);
+    font: inherit;
+    white-space: nowrap;
+
+    &:not(:focus) {
+      clip-path: inset(50%);
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
 // ---- Cabeçalho ----
 
 // Da esquerda para a direita: o ícone que recolhe o menu (só em janela larga, onde o
-// menu é uma coluna), o título e a lupa da busca, logo depois do título (decisão E4 do
-// livro-base). Cada ícone ocupa um quadrado do mesmo tamanho.
+// menu é uma coluna), o título, a lupa e o ícone de acessibilidade (decisão E4 do
+// livro-base). A lupa e o ícone de acessibilidade ficam logo depois do título, nessa
+// ordem, à mesma distância um do outro. Cada ícone ocupa um quadrado do mesmo tamanho,
+// e por isso a distância entre os desenhos é a mesma. O nome "Acessibilidade" fica só
+// para o leitor de tela.
 $header-icon: 2.25rem;
 $header-gap: 0.6rem;
 
@@ -232,16 +268,14 @@ $header-gap: 0.6rem;
   flex-wrap: nowrap;
 }
 
-// Sem links à direita no cabeçalho, o Quarto empurra o ícone do menu para a direita
-// (.tools-end, com !important).
 #quarto-header .quarto-navbar-tools {
   order: -1;
-  margin: 0 !important;
+  margin: 0;
 }
 
 #quarto-header .navbar-brand-container {
   order: 0;
-  // O título fica um pouco mais longe da lupa que a lupa do quadrado seguinte: os
+  // O título fica um pouco mais longe da lupa que a lupa do ícone seguinte: os
   // desenhos, menores que os quadrados, é que precisam ficar à mesma distância.
   margin: 0 0.65rem 0 0 !important;
 }
@@ -255,7 +289,13 @@ $header-gap: 0.6rem;
   margin: 0 !important;
 }
 
+#quarto-header .navbar-nav {
+  order: 2;
+  margin: 0 !important;
+}
+
 #quarto-header #quarto-search .aa-DetachedSearchButton,
+#quarto-header .navbar-nav .nav-link,
 #quarto-header .quarto-reader-toggle {
   display: inline-flex;
   align-items: center;
@@ -271,6 +311,19 @@ $header-gap: 0.6rem;
   margin: 0;
   padding: 0;
   cursor: pointer;
+}
+
+#quarto-header .nav-link .bi-universal-access {
+  font-size: 1.25rem;
+}
+
+#quarto-header .nav-link .menu-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 // O ícone do menu é o mesmo da barra que abre o menu numa janela estreita. Marcado
@@ -298,13 +351,15 @@ $header-gap: 0.6rem;
   }
 }
 
-// Num celular não cabe o título do livro; fica a lupa, à direita.
+// Num celular não cabe o título do livro; ficam os ícones, à direita, com o nome lido
+// pelo leitor de tela.
 @media (max-width: 575.98px) {
   #quarto-header .navbar-brand-container,
   #quarto-header .navbar-title {
     display: none;
   }
 
+  // A busca e as opções lado a lado, mesmo com o texto no maior tamanho.
   #quarto-header .navbar {
     padding-inline: 0.5rem;
   }

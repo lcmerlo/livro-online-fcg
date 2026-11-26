@@ -35,12 +35,13 @@ Exercícios de fixação
 
 ### Arquivos principais
 index.qmd 		- Página inicial
+acessibilidade.qmd 	- O que cada opção do painel de acessibilidade faz (o ícone do cabeçalho leva a ela sem JavaScript)
 _quarto.yml 	- Configuração principal do livro
 _quarto-lab.yml - Perfil lab: acrescenta ao livro a parte Laboratório (as páginas de laboratorio/), gerada em docs-lab/ e fora do site publicado
 _brand.yml 		- Identidade visual
 _language.yml 	- Traduções dos títulos de definições, proposições etc.
 styles/ 		- Estilos próprios: as cores pelo que significam e as preferências do leitor (tokens.scss), a página (page.scss), os blocos (blocks.scss), as fórmulas comentadas (annotations.scss), os applets (applet.scss) e o painel de acessibilidade (settings.scss)
-src/site/ 		- O que roda em toda página (boot.js, posto por filters/applet.lua): a seção atual no menu, o ícone que recolhe o menu e as abas das dicas e soluções; numa página com fórmula comentada, annotations.js; numa página com applet, os applets e o painel de acessibilidade (settings.js, prefs.js)
+src/site/ 		- O que roda em toda página (boot.js, posto por filters/applet.lua): o painel de acessibilidade (settings.js, prefs.js), aberto pelo ícone do cabeçalho, pela segunda parada do Tab e pelo botão acima de cada quadro; a seção atual no menu, o ícone que recolhe o menu e as abas das dicas e soluções; numa página com fórmula comentada, annotations.js; numa página com applet, os applets
 src/applet/ 	- O que roda onde há applet: o quadro, o estado, os controles, as alternativas ao arraste (do livro-base, sem compilação)
 src/elements/ 	- Os elementos novos do JSXGraph: handle, vector, marcas
 src/math/ 		- Contas e escrita de números, sem desenho

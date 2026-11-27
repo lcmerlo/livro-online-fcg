@@ -19,11 +19,17 @@
     padding: 1.25rem;
   }
 
+  // "Acessibilidade" é uma palavra só: a 320 px, com o texto a 150%, ela não cabe na
+  // linha e passava da borda. Quebra com hífen, pelas regras do português (lang: pt-BR,
+  // em _quarto.yml); num navegador sem elas, quebra mesmo assim, sem hífen.
   h2 {
     margin: 0 0 0.25rem;
     font-size: 1.4rem;
     color: var(--color-text-strong);
     border: 0;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: anywhere;
   }
 
   fieldset {

@@ -3,7 +3,7 @@
 <!--
 Modelo de capítulo com a estrutura atual (guia-editorial.md §3) e TODOS os tipos de bloco
 disponíveis no livro, na sintaxe do Apêndice B do livro-base (desde a fase 7 da migração).
-É a referência de forma até o primeiro capítulo revisado (§9).
+É a página-modelo do guia (§9).
 
 Como usar: copiar para capitulos/nome.qmd, listar em _quarto.yml, substituir os
 [colchetes] e apagar o que não se aplica: ordem e presença dos componentes variam com o

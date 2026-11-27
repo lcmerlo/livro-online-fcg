@@ -6,7 +6,7 @@ As orientações do projeto valem para todos os assistentes e estão resumidas e
 
 Neste repositório, atue sobre a parte de software do projeto: JavaScript, JSXGraph, CSS, SCSS, HTML, JSON e arquivos de configuração (não há etapa de compilação: `src/` e `applets/` são servidos como estão). O Copilot fica desligado nos arquivos de texto (`.vscode/settings.json`).
 
-Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito. Quando houver pedido, siga os tipos de mudança do `AGENTS.md`. Nos capítulos com `estado: prototipo`, que serão reescritos, não sugira correções de forma.
+Não sugira alterações de conteúdo matemático, texto didático, capítulos `.qmd`, arquivos Markdown narrativos ou LaTeX, salvo pedido explícito. Quando houver pedido, siga os tipos de mudança do `AGENTS.md`. Nos capítulos antigos, guardados como modelo em `_interno/oficina/nao-publicados/`, não sugira correções de forma.
 
 Os applets são JSXGraph próprios. Um applet GeoGebra é só inspiração: escreva o código em JSXGraph nativo, sem rastros do GeoGebra, salvo pedido explícito para imitá-lo.
 
@@ -26,5 +26,6 @@ Quando sugerir mudanças relevantes, indique como testar:
 
 - `node --test "tests/unit/*.test.mjs"`, quando a mudança afetar `src/math/` ou as cores
 - `quarto preview --profile lab`, com os applets das páginas de teste de `laboratorio/`
-- `node tests/verificar-site.mjs`, depois de `quarto render --to html`
-- `node tests/verificar-site.mjs --lab`, depois de `quarto render --profile lab --to html`, quando a mudança afetar as páginas de teste de `laboratorio/`
+- `node tests/check-site.mjs`, depois de `quarto render --to html`
+- `node tests/check-site.mjs --lab`, depois de `quarto render --profile lab --to html`, quando a mudança afetar as páginas de teste de `laboratorio/`
+- `(cd tests && npm ci && node browser.mjs)`, depois do render do laboratório, quando a mudança afetar os applets, os estilos ou `src/`

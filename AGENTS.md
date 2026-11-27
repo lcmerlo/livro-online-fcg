@@ -11,9 +11,9 @@ Este arquivo resume `_interno/diretrizes/diretrizes-tecnicas.md` (as diretrizes)
 - **Código que funciona:** não mexa sem pedido, a menos que a mudança mostre ganho real (diretrizes, §1.6).
 - As diretrizes dizem o quê e o porquê; o como (medidas, nomes de funções, valores) fica no código, e o `arquitetura.md` diz onde. Não acrescente detalhes de implementação às diretrizes.
 
-## Protótipos
+## Os capítulos antigos
 
-Os capítulos com `estado: prototipo` no cabeçalho dão uma ideia do livro e serão reescritos. Num protótipo, não aponte nem corrija desvios das diretrizes, e não os leve a revisões ou a `pendencias.md`. Mexa nele só a pedido do autor ou quando for necessário para o site renderizar e o verificador passar sem erros. As diretrizes valem por inteiro quando o capítulo passa a `estado: revisado` (diretrizes, §1.4).
+Os 20 capítulos de antes da reescrita estão em `_interno/oficina/nao-publicados/`, fora do livro, como modelo: não aponte nem corrija desvios neles, e não os leve a revisões ou a `pendencias.md` (diretrizes, §1.4). A linha `estado: prototipo` do cabeçalho deles é de antes e não tem mais efeito. Os capítulos novos, em `capitulos/`, seguem as diretrizes desde o primeiro rascunho.
 
 ## Antes de mudar
 
@@ -36,7 +36,7 @@ Os capítulos com `estado: prototipo` no cabeçalho dão uma ideia do livro e se
 |---|---|---|
 | Conteúdo matemático | enunciados, definições, demonstrações, resoluções, valores, fórmulas, contas dos applets, notação nova | propor; alterar só com aprovação do autor |
 | Texto didático | explicações, instruções, perguntas, legendas, textos alternativos | propor; alterar só com aprovação do autor |
-| Forma prevista nas diretrizes | macro no lugar da escrita à mão, erro evidente de digitação, link quebrado, classe ou shortcode no formato do guia | num capítulo revisado, alterar e mostrar no diff; num protótipo, não |
+| Forma prevista nas diretrizes | macro no lugar da escrita à mão, erro evidente de digitação, link quebrado, classe ou bloco no formato do guia | num capítulo, alterar e mostrar no diff; nos capítulos antigos, não |
 | Técnica | código, estilos, configuração, verificações, documentação técnica | alterar dentro do plano combinado |
 | Estrutura do livro | ordem e divisão de capítulos e tópicos, renomeação de capítulos e labels | só por decisão do autor |
 
@@ -51,7 +51,7 @@ Nomes públicos (arquivos de capítulo, labels, ids) ficam estáveis a partir da
 
 ## Decisões e consistência
 
-- Uma decisão só está concluída quando todo o material está de acordo com ela: diretrizes, `README.md`, este arquivo, modelos, capítulos revisados, componentes, estilos, applets e verificações. Nos protótipos, só o necessário para o site funcionar. Procure o termo antigo com `git grep`. O que não der para ajustar agora vai para `pendencias.md`.
+- Uma decisão só está concluída quando todo o material está de acordo com ela: diretrizes, `README.md`, este arquivo, modelos, capítulos, componentes, estilos, applets e verificações; os capítulos antigos ficam como estão. Procure o termo antigo com `git grep`. O que não der para ajustar agora vai para `pendencias.md`.
 - Registre a decisão em `_interno/diretrizes/decisoes.md` (data, decisão, motivo, material ajustado). Trocar um valor ou uma técnica sem mudar uma regra não precisa de registro: basta o commit.
 - Dependências que chegam ao estudante só entram por decisão; ferramentas de desenvolvimento entram quando automatizam uma verificação útil (`diretrizes-tecnicas.md`, §3).
 
@@ -60,8 +60,9 @@ Nomes públicos (arquivos de capítulo, labels, ids) ficam estáveis a partir da
 - Verifique, quando possível:
   - `node --test "tests/unit/*.test.mjs"`
   - `quarto render --to html`
-  - `node tests/verificar-site.mjs`
-  - `quarto render --profile lab --to html` e `node tests/verificar-site.mjs --lab` (o laboratório, em `docs-lab/`)
+  - `node tests/check-site.mjs`
+  - `quarto render --profile lab --to html` e `node tests/check-site.mjs --lab` (o laboratório, em `docs-lab/`)
+  - numa mudança de applet, estilo ou `src/`: `(cd tests && npm ci && node browser.mjs)`, que lê `docs-lab/` (alguns minutos; não edite nada enquanto roda)
   - `git diff`
 - Mostre o diff: o resumo (arquivos e linhas) e os trechos relevantes; o diff completo quando pedido.
 - Trabalhe em branch. Mensagens de commit curtas, no imperativo, com um assunto por commit.

@@ -3,7 +3,7 @@
 Livro interativo online de **Fundamentos de Cálculo e Geometria - FCG**,  desenvolvido em [Quarto](https://quarto.org/) pelo corpo docente do GGM-IME-UFF e publicado em GitHub Pages.
 
 ## Status
-Em desenvolvimento. O site publicado leva o aviso "Material em construção". Os capítulos estão sendo escritos do zero. Os de antes, protótipos (`estado: prototipo` no cabeçalho; `_interno/diretrizes/diretrizes-tecnicas.md`, §1.4), saíram do site em 2026-11-22 e ficam em `_interno/oficina/nao-publicados/`, como modelo.
+Em desenvolvimento. O site publicado leva o aviso "Material em construção". Os capítulos estão sendo escritos do zero. Os de antes saíram do site em 2026-11-22 e ficam em `_interno/oficina/nao-publicados/`, como modelo, sem conferência (`_interno/diretrizes/diretrizes-tecnicas.md`, §1.4).
 
 ## Componentes de um capítulo
 Repertório, não roteiro obrigatório: cada capítulo usa os componentes de que precisa, na ordem que o conteúdo pedir (ver `_interno/diretrizes/guia-editorial.md`).
@@ -46,7 +46,7 @@ src/applet/ 	- O que roda onde há applet: o quadro, o estado, os controles, as 
 src/elements/ 	- Os elementos novos do JSXGraph: handle, vector, marcas
 src/math/ 		- Contas e escrita de números, sem desenho
 applets/ 		- Um arquivo por applet; o nome do arquivo é o nome usado no capítulo
-tests/ 			- Verificação automática (tests/verificar-site.mjs) e testes de unidade (tests/unit/), executados no workflow
+tests/ 			- As verificações, do livro-base: testes de unidade (tests/unit/), as fontes e o site gerado (tests/check-site.mjs) e o site no Chrome (tests/browser.mjs, com o Playwright e o axe-core de tests/package.json)
 math/macros.json 	- Macros de matemática (`\vet`, `\norm`, `\N`, `\Z`, `\Q`, `\R`, `\C`), expandidas em toda fórmula por filters/macros.lua
 tools/prerender-math.ts - Desenha as fórmulas depois do render (post-render em '_quarto.yml'): as páginas não levam o KaTeX ao navegador; os applets o carregam quando precisam
 tools/sidebar-sections.ts - Depois do render, põe as seções de cada capítulo no menu lateral (não há coluna "Neste capítulo")
@@ -57,7 +57,7 @@ vendor/ 		- KaTeX, JSXGraph, fontes e um recorte da fonte de ícones, copiados p
 docs/ 			- Site gerado por 'quarto render' (não versionado)
 docs-lab/ 		- Site do perfil lab, com o laboratório (não versionado nem publicado)
 _interno/ 		- Material interno fora do livro: diretrizes/ (princípios, guia editorial, diretrizes técnicas, decisões, pendências, mapa arquitetural), referencia/ (material anterior aos princípios, que não orienta o trabalho atual) e oficina/ (nao-publicados/ com capítulos ainda fora do índice do livro, referências)
-.github/workflows/publish.yml - Verifica cada pull request; renderiza e publica no GitHub Pages a cada push na main
+.github/workflows/publish.yml - Verifica cada pull request (testes de unidade, render, check-site.mjs e browser.mjs, também no laboratório); renderiza e publica no GitHub Pages a cada push na main
 AGENTS.md 		- Resumo das diretrizes para assistentes de IA
 
 ### Comandos principais
@@ -65,9 +65,10 @@ quarto preview      - preview local
 quarto preview --profile axe - preview local com a verificação de acessibilidade do Quarto (resultado no console do navegador)
 quarto preview --profile lab - preview local com o laboratório (páginas de teste e modelos de capítulo); com `--profile lab,axe`, também com a verificação de acessibilidade
 quarto render       - gera o site HTML completo em docs/ (o projeto não tem saída em PDF)
-node tests/verificar-site.mjs - verifica fontes e docs/ após o render (--estrito trata avisos como erros)
+node tests/check-site.mjs - verifica fontes e docs/ após o render, também os links internos e as âncoras (--strict trata avisos como erros)
 node --test "tests/unit/*.test.mjs" - testes de unidade (a paleta, as fórmulas comentadas e as contas e a escrita dos números dos applets, src/math/)
-quarto render --profile lab --to html e node tests/verificar-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (o que o verificador acha nas páginas de teste é listado, sem reprovar)
+quarto render --profile lab --to html e node tests/check-site.mjs --lab - geram e verificam o laboratório, em docs-lab/ (só as fórmulas do experimento de teste.qmd são listadas, sem reprovar)
+(cd tests && npm ci && node browser.mjs) - o site do laboratório no Chrome: larguras, teclado, toque, painel, applets e o axe-core (alguns minutos; depois do render do laboratório)
 
 
 ## Applets
@@ -99,14 +100,15 @@ Depois, no GitHub, abrir um pull request do branch para a `main`. O GitHub Actio
 
 ### Checklist antes de commit
 - [ ] O projeto renderiza sem erro.
-- [ ] `node tests/verificar-site.mjs` não acusa erros, e `node --test "tests/unit/*.test.mjs"` passa.
+- [ ] `node tests/check-site.mjs` (e, com `--lab`, no laboratório) não acusa erros, e `node --test "tests/unit/*.test.mjs"` passa.
+- [ ] Numa mudança de applet ou de estilo, `node browser.mjs` (em `tests/`) passa.
 - [ ] O laboratório renderiza sem erro (`quarto render --profile lab --to html`).
 - [ ] O capítulo novo está listado em `_quarto.yml`.
 - [ ] Fórmulas, imagens e links funcionam.
 - [ ] Applets carregam localmente.
 - [ ] O conteúdo funciona em tela estreita.
 - [ ] Não há arquivos temporários no commit.
-- [ ] Se houve decisão nova, ela está em `_interno/diretrizes/decisoes.md` e todo o material foi ajustado a ela (nos protótipos, só o necessário para o site funcionar).
+- [ ] Se houve decisão nova, ela está em `_interno/diretrizes/decisoes.md` e todo o material foi ajustado a ela (os capítulos antigos, em `_interno/oficina/nao-publicados/`, ficam como estão).
 
 ### Arquivos principais Git
 

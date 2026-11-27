@@ -4,7 +4,7 @@
 #   quarto preview --profile lab               prévia, em docs-lab/
 #   quarto render --profile lab --to html      o site inteiro, em docs-lab/
 #   quarto preview --profile lab,axe           também com a verificação de acessibilidade
-#   node tests/verificar-site.mjs --lab        a verificação, em docs-lab/
+#   node tests/check-site.mjs --lab            a verificação, em docs-lab/
 # O Quarto junta este arquivo ao _quarto.yml: as listas se somam, e um valor simples, como
 # output-dir, troca o de lá. Por isso fica aqui só o que é do laboratório, e as páginas
 # saem com a mesma configuração do livro, sem uma cópia dela.

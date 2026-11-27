@@ -41,3 +41,6 @@ _scratch/
 **/*.quarto_ipynb
 
 /.quarto/
+
+# As capturas de tela que os testes do navegador gravam, para olhar
+tests/output/

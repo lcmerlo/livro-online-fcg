@@ -1,0 +1,16 @@
+{
+  "name": "livro-quarto-tests",
+  "private": true,
+  "type": "module",
+  "description": "Só ferramentas de desenvolvimento: nada daqui chega ao leitor.",
+  "scripts": {
+    "unit": "node --test \"unit/*.test.mjs\"",
+    "site": "node check-site.mjs && node check-site.mjs --lab",
+    "browser": "node browser.mjs",
+    "all": "npm run unit && npm run site && npm run browser"
+  },
+  "devDependencies": {
+    "axe-core": "4.11.0",
+    "playwright-core": "1.56.1"
+  }
+}

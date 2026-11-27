@@ -1,6 +1,6 @@
 # Programas de terceiros que chegam ao estudante
 
-Copiados para cá para que o site não dependa de outro servidor: se um deles sai do ar, o livro continua funcionando, e nenhum deles fica sabendo de cada visita. Os arquivos vêm do `livro-base`, que é onde uma versão nova se confere primeiro (plano de migração de lá, seção "Versões"); para atualizar, copie de lá os arquivos da versão nova, mude a tabela e rode a verificação (`node tests/check-site.mjs`, nos dois modos). Não edite os arquivos.
+Copiados para cá para que o site não dependa de outro servidor: se um deles sai do ar, o livro continua funcionando, e nenhum deles fica sabendo de cada visita. Os arquivos vêm do `livro-base`, que é onde uma versão nova se confere primeiro (plano de migração de lá, seção "Versões"); para atualizar, copie de lá os arquivos da versão nova, mude a tabela e rode a verificação (`node tests/check-site.mjs`, nos dois modos, e os testes do navegador, `node browser.mjs`, em `tests/`). Não edite os arquivos.
 
 | Programa | Versão | Licença | Arquivos usados | Origem |
 |---|---|---|---|---|

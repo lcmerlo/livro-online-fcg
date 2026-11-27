@@ -59,6 +59,26 @@ jobs:
       - name: Verificar o laboratório
         run: node tests/check-site.mjs --lab
 
+      # O site do laboratório (docs-lab/, que tem também as páginas do site público) no
+      # Chrome: larguras, teclado, toque, painel, applets e o axe-core. Leva alguns
+      # minutos. O Chrome é o que a máquina do GitHub já tem (/usr/bin/google-chrome, que
+      # tests/lib.mjs procura); o npm ci instala o Playwright e o axe-core, com versão fixa.
+      - name: Testes no navegador
+        working-directory: tests
+        run: |
+          npm ci
+          node browser.mjs
+
+      # As capturas de tela dos testes do navegador, para olhar na página da verificação,
+      # também quando algo falha.
+      - name: Guardar as capturas de tela
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas
+          path: tests/output
+          if-no-files-found: ignore
+
       - name: Enviar artefato para GitHub Pages
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3

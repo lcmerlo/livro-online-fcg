@@ -282,6 +282,21 @@ await check('o painel abre de qualquer página, em qualquer largura', async () =
   }
 });
 
+await check('a 320 px, com o texto a 150% e mais espaço, o título do painel cabe nele', async () => {
+  // "Acessibilidade" é uma palavra só: sem lugar para quebrar, ela passava da borda e perdia
+  // a última letra.
+  const page = await open('index.html', { width: 320, height: 640, touch: true, prefs: { textSize: '150', wideSpacing: 'on' } });
+  await page.locator('#quarto-header a[href$="acessibilidade.html"]').first().click();
+  const title = await page.locator('#settings-title').evaluate((h) => {
+    const range = document.createRange();
+    range.selectNodeContents(h);
+    const right = Math.max(...[...range.getClientRects()].map((r) => r.right));
+    return { overflow: h.scrollWidth - h.clientWidth, beyond: Math.round(right - h.getBoundingClientRect().right) };
+  });
+  assert(title.overflow <= 0 && title.beyond <= 1, `o título passa da borda: ${JSON.stringify(title)}`);
+  await page.context().close();
+});
+
 await check('pelo teclado: a primeira parada do Tab leva ao painel, e Esc fecha', async () => {
   const page = await open(chapter);
   await page.keyboard.press('Tab');
@@ -849,6 +864,21 @@ await check('cabeçalho: o leitor de tela ouve "Acessibilidade" uma vez só, no 
   // O nome que o leitor de tela recebe, pela árvore de acessibilidade do navegador.
   const tree = await page.locator('#quarto-header .navbar-nav').ariaSnapshot();
   assert(/button "Acessibilidade"/.test(tree) && !/Acessibilidade Acessibilidade/.test(tree), tree);
+  await page.context().close();
+});
+
+await check('a busca, com resultados, não baixa a fonte inteira de ícones', async () => {
+  // Cada resultado tem um ícone (bi-file-richtext, U+f3b1); um ícone fora do recorte de
+  // vendor/icons/ faz o navegador baixar a fonte inteira (176 KB), sem erro nem aviso. O
+  // endereço dela termina num ?hash.
+  const page = await open(chapter);
+  await page.locator('#quarto-header .aa-DetachedSearchButton').first().click();
+  await page.locator('.aa-Input').fill('vetor');
+  await page.locator('.aa-Item').first().waitFor();
+  await page.waitForTimeout(300);
+  assert((await page.locator('.aa-Item').count()) > 0, 'a busca não achou nada');
+  const fonts = await page.evaluate(() => performance.getEntriesByType('resource').map((r) => r.name).filter((name) => /bootstrap-icons\.woff2?(?:\?|$)/.test(name)));
+  assert(fonts.length === 0, `baixou a fonte inteira: ${fonts.join(', ')}`);
   await page.context().close();
 });
 

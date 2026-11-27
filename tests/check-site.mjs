@@ -8,7 +8,8 @@
 //   Fontes:   imagens que não existem, títulos usados como definições, TeX mal escrito,
 //             cor sem #, nomes do código na prosa (board, slider, handle, glider,
 //             state), blocos que saíram (questão E15; em 2026-11-25, os três de antes
-//             da E3) e a marcação de antes do livro-quarto (blocos e applets).
+//             da E3; em 2026-11-27, os avisos do Quarto) e a marcação de antes do
+//             livro-quarto (blocos e applets).
 //   Site:     imagens sem alt, iframes sem title, applets sem arquivo ou sem nome, o que
 //             os applets carregam e não chegou ao site, ids repetidos, níveis de título
 //             pulados, pedidos a outros servidores (também nas folhas de estilo), links
@@ -124,12 +125,11 @@ const oldSyntax = [
   [/^:{3,}\s*\{[^}\n]*?\.(?:quadro|controles|leitura)(?=[\s}])/gm, () => 'uma parte .quadro, .controles ou .leitura, de antes do livro-base: use []{.board name="..."}, []{.controls} ou [nome]{.live}'],
 ];
 
-// Os avisos do Quarto, de antes da decisão E3 do livro-base. Aqui, a folha dos blocos não
-// os desenha (styles/blocks.scss, desde a fase 7), e eles são erro em toda fonte. No
-// livro-base, que os desenha, continuam funcionando, e num capítulo o aviso diz a forma nova.
-const calloutsStyled = /^[ \t]*\.callout[\w.-]*[ \t]*[{,]/m.test(existsSync(join(root, 'styles/blocks.scss')) ? readFileSync(join(root, 'styles/blocks.scss'), 'utf8') : '');
+// Os avisos do Quarto, de antes da decisão E3 do livro-base, saíram daqui na fase 7 do
+// plano de migração (de lá, em 2026-11-27): a folha dos blocos não os desenha, e um aviso
+// sairia com a aparência padrão do Quarto, fora do sistema dos blocos. Erro em toda fonte,
+// menos em modelos/ e apendice/, que o livro não tem.
 const callout = /^:{3,}\s*\{[^}\n]*?\.(callout-[a-z]+)\b/gm;
-const calloutInstead = '::: {.note} ou ::: {.note title="..."}';
 
 // ---------- Fontes ----------
 
@@ -163,9 +163,8 @@ for (const file of sources.filter(existsSync)) {
       for (const m of text.matchAll(pattern)) fail(at(m), message(m));
     }
   }
-  for (const m of text.matchAll(callout)) {
-    if (!calloutsStyled && !showsOldSyntax(file)) fail(at(m), `bloco .${m[1]}, que nenhum filtro conhece: use ${calloutInstead}`);
-    else if (calloutsStyled && /^capitulos\//.test(rel(file))) warn(at(m), `bloco .${m[1]}, de antes da decisão E3: use ${calloutInstead}`);
+  if (!showsOldSyntax(file)) {
+    for (const m of text.matchAll(callout)) fail(at(m), `bloco .${m[1]}, um aviso do Quarto, que saiu: use ::: {.note} ou ::: {.note title="..."}`);
   }
   const reading = prose(text);
   for (const m of reading.matchAll(codeNames)) {

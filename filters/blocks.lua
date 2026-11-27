@@ -18,7 +18,7 @@
 -- livro de antes da fase 7 da migração (.bloco-*, .dica, .solucao, .resposta, #exrr-…),
 -- os três de antes que o livro-base tinha (.prerequisites, .interaction, .pitfall, que
 -- saíram de lá em 2026-11-25) e os avisos do Quarto (.callout-…) não têm filtro nem
--- estilo: tests/verificar-site.mjs dá erro num capítulo que os use, porque uma .solucao,
+-- estilo: tests/check-site.mjs dá erro num capítulo que os use, porque uma .solucao,
 -- por exemplo, sairia com a solução à vista.
 --
 -- Duas escolhas valem para o livro todo, em _quarto.yml, e podem ser trocadas num

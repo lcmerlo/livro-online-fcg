@@ -2,7 +2,7 @@
 
 Guia curto para quem escreve ou revisa capítulos. A justificativa de cada orientação está em `Princípios e Especificações Operacionais-26-10-03.md` (§ entre parênteses); o desenvolvimento técnico (applets, código, verificação) está em `diretrizes-tecnicas.md`.
 
-As orientações deste guia são provisórias, pela regra "siga ou explique", menos as que repetem uma regra fundamental (`diretrizes-tecnicas.md`, §1.2 e §1.3). Valem para os capítulos revisados; nos protótipos (`estado: prototipo` no cabeçalho), vale o §1.4 das diretrizes técnicas. Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.5 das diretrizes técnicas.
+As orientações deste guia são provisórias, pela regra "siga ou explique", menos as que repetem uma regra fundamental (`diretrizes-tecnicas.md`, §1.2 e §1.3). Valem para os capítulos de `capitulos/` desde o primeiro rascunho; os capítulos antigos, guardados como modelo em `_interno/oficina/nao-publicados/`, ficam como estão (`diretrizes-tecnicas.md`, §1.4). Quando o guia diverge de outro documento, a divergência é um defeito a corrigir; o que fazer até lá está no §1.5 das diretrizes técnicas.
 
 ## 1. Estrutura de um tópico (§5, §22)
 
@@ -93,11 +93,11 @@ Pela @prp-formula-distancia-ponto-reta, temos …
 - O título (`## …`, primeira linha do bloco) é opcional; use-o só quando nomear o resultado ajuda.
 - O bloco contém o enunciado. Demonstração ("De fato…"), exemplos e observações ficam depois dele.
 - Referir-se a um resultado sempre com `@def-…` ou `@prp-…`, não com "Proposição 1" digitado, pois a numeração é automática (ex.: "Proposição 18.2").
-- `tests/verificar-site.mjs` acusa erro se um título começar com "Definição" ou "Proposição".
+- `tests/check-site.mjs` acusa erro se um título começar com "Definição" ou "Proposição".
 
 ## 4. Matemática (§27)
 
-- Fórmulas são texto (LaTeX), nunca imagem. O site as desenha com o KaTeX, que aceita quase todo o LaTeX matemático, mas não todo; `tests/verificar-site.mjs` acusa a fórmula que ele não desenha.
+- Fórmulas são texto (LaTeX), nunca imagem. O site as desenha com o KaTeX, que aceita quase todo o LaTeX matemático, mas não todo; o render e `tests/check-site.mjs` acusam a fórmula que ele não desenha.
 - Plica com o apóstrofo do teclado: `$a'$`, `$A'B'$`. O apóstrofo curvo `’`, que alguns editores põem sozinhos, aparece como apóstrofo, e não como plica (o verificador avisa).
 - Números: ponto decimal e vírgula entre coordenadas, como `$x = 1.5$` e `$A = (2.5, 3)$`. Convenção provisória, a reavaliar (`pendencias.md`, §2).
 - Vetor, com dois comandos: `\vec{u}` quando o nome tem uma só letra; `\vet{AB}` (tabela abaixo) quando o nome é formado por dois pontos, como `AB` ou `P_0P`. A seta de `\vet` acompanha a largura do nome, com o desenho ajustado no estilo do site (`styles/page.scss`; decisão E6 do livro-base). Um comando único ainda pode ser escolhido (`pendencias.md`, §2).
@@ -205,18 +205,21 @@ Na raiz do projeto:
 
 ```bash
 quarto render --to html
-node tests/verificar-site.mjs                # os erros também bloqueiam a publicação no GitHub Actions
+node tests/check-site.mjs                    # os erros também bloqueiam a publicação no GitHub Actions
 quarto render --profile lab --to html        # o laboratório: se não renderizar, a publicação também para
+node tests/check-site.mjs --lab
 git diff
 ```
 
+Numa mudança de applet ou de estilo, também os testes do navegador, que levam alguns minutos e leem o laboratório: `(cd tests && npm ci && node browser.mjs)`.
+
 - Trabalhar em branch e integrar à `main` depois da verificação, de preferência por pull request (`diretrizes-tecnicas.md`, §8).
-- Corrigir os erros do script e, nos capítulos revisados, os avisos; nos protótipos, os avisos aparecem só contados (`diretrizes-tecnicas.md`, §1.4).
+- Corrigir os erros e os avisos. O que fazer com cada mensagem está no Apêndice B do livro-base, "Quando algo dá errado".
 - Mensagens de commit curtas, no imperativo, com um assunto por commit.
 
 ## 9. Página-modelo
 
-Os capítulos de hoje são protótipos (`diretrizes-tecnicas.md`, §1.4) e não servem de modelo. Até o primeiro capítulo revisado, a referência de forma é `laboratorio/modelo-capitulo-completo.qmd`, que reúne os componentes deste guia com texto de exemplo. O primeiro capítulo reescrito e marcado `estado: revisado` passa a ser a página-modelo (§37): objetivo, pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, pergunta para conferir com resposta recolhível e exercício resolvido. Onde a página e as diretrizes divergem, valem as diretrizes.
+A página-modelo do §37 é `laboratorio/modelo-capitulo-completo.qmd`: reúne os componentes deste guia com texto de exemplo (objetivo com os pré-requisitos, definições em blocos, figuras com `fig-alt` e legenda, applet, erro comum, pergunta para conferir, exercícios com dica e solução) e se vê com `quarto preview --profile lab`. Para começar um capítulo, copie um dos dois modelos do laboratório, este ou `laboratorio/modelo-capitulo.qmd` (organizado pelas quatro ênfases do §22 dos Princípios), e troque os rótulos (`#def-…`, `#exr-…`). Um capítulo novo, escolhido pelo autor, pode passar a ser a página-modelo. Onde a página e as diretrizes divergem, valem as diretrizes.
 
 ## 10. Exemplo mínimo de trecho correto
 
@@ -234,7 +237,7 @@ O **comprimento** de $AB$ é $d(A,B)$.
 
 Mova os pontos $A$ e $B$ e observe como o comprimento muda.
 
-::: {.applet name="nome-do-applet" spoken="Segmento com dois pontos móveis"}
+::: {.applet name="nome-do-applet" spoken="Segmento com os extremos livres"}
 :::
 
 ::: {#exr-segmento-degenerado}

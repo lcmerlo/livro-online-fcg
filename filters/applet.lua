@@ -52,7 +52,7 @@ end
 
 -- spoken="..." é o nome que o leitor de tela diz, a mesma palavra do código (decisão
 -- E12 do livro-base); vira aria-label. Um label="..." de antes da troca não é lido: só
--- gera um aviso, e o nome fica faltando, para que tests/verificar-site.mjs o acuse.
+-- gera um aviso, e o nome fica faltando, para que tests/check-site.mjs o acuse.
 local function take_spoken(attributes, where)
   if attributes.label then
     warn(string.format('%s: label= foi trocado por spoken=, e não é lido', where))

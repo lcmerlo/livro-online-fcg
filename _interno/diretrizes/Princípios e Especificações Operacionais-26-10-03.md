@@ -430,7 +430,7 @@ O conjunto inicial deve contemplar:
 - erro comum;
 - dica;
 - applet;
-- checkpoint;
+- pergunta para conferir;
 - solução;
 - remediação;
 - desafio.
@@ -449,8 +449,8 @@ Os componentes formam um sistema visual único, organizado em quatro famílias:
 
 - **abertura**: objetivo e pré-requisitos, lidos como um só bloco;
 - **matemática**: definição, proposição, teorema, exemplo, exercício e exercício resolvido; exemplos e exercícios compartilham a mesma aparência e se distinguem pelo prefixo;
-- **atividade e interação**: checkpoint e applet;
-- **apoio**: erro comum, dica, resposta e resolução.
+- **atividade e interação**: pergunta para conferir e applet;
+- **apoio**: erro comum, dica e solução.
 
 A função de cada bloco deve ser reconhecível pelo rótulo e pela posição, sem que o estudante precise aprender um código de cores, bordas e ícones. Não se cria cor, ícone ou fundo exclusivo para cada tipo; o agrupamento por proximidade e espaço em branco tem preferência sobre caixas aninhadas.
 
@@ -616,7 +616,7 @@ São requisitos desde o início:
 - alternativas para ações que dependam exclusivamente de arraste;
 - descrição textual de conteúdo visual relevante.
 
-Na fase de testes, esses requisitos não esperam todos do mesmo jeito (decisão de 2026-11-06; regras fundamentais em `diretrizes-tecnicas.md`, §1.3). Navegação por teclado, foco visível, reflow em 320 px e cor que não é a única informação valem desde já, porque sairiam caros de acrescentar depois. A descrição textual das imagens pode esperar até a divulgação, e toda imagem nova já nasce com ela. As alternativas ao arraste esperam o piloto dos applets, por decisão do autor. Os demais, como contraste e hierarquia de títulos, valem como regras provisórias.
+Na fase de testes, esses requisitos não esperam todos do mesmo jeito (decisão de 2026-11-06; regras fundamentais em `diretrizes-tecnicas.md`, §1.3). Navegação por teclado, foco visível, reflow em 320 px e cor que não é a única informação valem desde já, porque sairiam caros de acrescentar depois. A descrição textual das imagens pode esperar até a divulgação, e toda imagem nova já nasce com ela. As alternativas ao arraste, que esperavam o piloto dos applets por decisão do autor, vêm com todo applet desde 2026-11-25 (fase 5 da migração). Os demais, como contraste e hierarquia de títulos, valem como regras provisórias.
 
 O objetivo deve ser compatibilidade progressiva com WCAG 2.2 AA. Para que os requisitos acima sejam verificáveis, adotam-se os seguintes valores (critérios de sucesso da WCAG 2.2):
 
@@ -683,15 +683,15 @@ Essa organização é uma referência de funções, **não** uma instrução par
 |---|---|
 | `_quarto.yml`, `_brand.yml` | idem, na raiz |
 | `styles/` | `styles/` (desde 2026-11-25; antes, `assets/css/custom.scss`) |
-| `scripts/` e `applets/` (código-fonte) | `applets-src/` (Vite), com bundle gerado em `assets/js/applets-dist/` |
-| `components/` | `components/` (filtros e shortcodes Lua) |
+| `scripts/` e `applets/` (código-fonte) | `src/` (o que roda no navegador) e `applets/` (um arquivo por applet), servidos como estão, sem compilação (desde 2026-11-25; antes, `applets-src/`, com Vite) |
+| `components/` | `filters/` (filtros Lua; desde 2026-11-25, antes `components/`, também com shortcodes) |
 | `assets/images/` | `assets/img/` |
 | `chapters/` | `capitulos/` e `index.qmd` |
 | `references/` | `_interno/oficina/references.*` (bibliografia ainda não ativada) |
 | `tests/` | `tests/` |
 | documentação interna | `_interno/diretrizes/`, `_interno/oficina/` e `_interno/referencia/` |
 
-Dentro de `applets-src/src/applets/`, deve-se adotar convenção clara de nomes e, quando necessário, separar código reutilizável de implementações específicas.
+Dentro de `applets/`, deve-se adotar convenção clara de nomes (o nome do arquivo é o usado no capítulo) e separar código reutilizável, que vai para `src/`, de implementações específicas.
 
 Arquivos CSS e JavaScript globais devem permanecer centralizados.
 
@@ -742,7 +742,7 @@ Ela deve incluir:
 - exemplo;
 - componente de erro ou observação;
 - applet simples;
-- checkpoint;
+- pergunta para conferir;
 - elemento expansível;
 - navegação anterior/próxima.
 
@@ -862,8 +862,8 @@ O repositório ainda não define a licença do conteúdo nem do código (o READM
 
 Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
-- **GeoGebra:** applets incorporados por iframe, vindos de projetos anteriores (lista em `pendencias.md`). Enquanto estiverem no livro, valem os termos de uso do GeoGebra e a licença de cada material; registrar, para cada applet, o autor e o endereço de origem. Os applets JSXGraph que os substituem são código novo do projeto.
-- **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). O bundle gerado (`applets-livro.iife.js`) hoje **não** contém o aviso de licença, que a minificação remove; incluí-lo antes da publicação aberta.
+- **GeoGebra:** os applets incorporados por iframe, vindos de projetos anteriores, saíram do livro em 2026-11-25 (fase 5 da migração) e ficam só nos capítulos antigos, fora do site (lista em `pendencias.md`, §5). Se algum voltar, valem os termos de uso do GeoGebra e a licença de cada material; registrar, para cada applet, o autor e o endereço de origem. Os applets JSXGraph que os substituem são código novo do projeto.
+- **JSXGraph:** distribuído com licença dupla (LGPL e MIT, conforme os arquivos de licença do pacote). Vem com o site, em `vendor/jsxgraph/`, como é distribuído, com os dois arquivos de licença ao lado (`vendor/VERSIONS.md`), desde 2026-11-25; antes, ia num bundle cuja minificação removia o aviso de licença.
 - **Fontes (Atkinson Hyperlegible e Source Serif 4):** vêm com o site, em `vendor/fonts/`, e não do Google Fonts (desde 2026-11-24): só o recorte latino das faces que as páginas usam. Licença SIL OFL 1.1, com o texto em `vendor/fonts/` e, dentro de cada arquivo, o aviso de copyright e o endereço da licença. As dúvidas a resolver antes da publicação aberta estão em `pendencias.md`, §6.
 - **Figuras:** muitas imagens vieram de exportações de ferramentas externas (nomes como `Untitled.png` e `material-xxxx.png`). Registrar a origem de cada uma ao substituí-la ou reescrevê-la.
 
@@ -871,7 +871,7 @@ Materiais de terceiros presentes hoje, a verificar antes da publicação:
 
 Decisões que alteram a arquitetura devem ser registradas em uma linha, com data, decisão, motivo e material ajustado, em `_interno/diretrizes/decisoes.md`. O registro evita rediscutir escolhas já feitas e permite revê-las quando surgir evidência nova (§18).
 
-Como aplicar uma decisão a todo o material, e o que fica de fora (o conteúdo dos protótipos): `diretrizes-tecnicas.md`, §2.3.
+Como aplicar uma decisão a todo o material, e o que fica de fora (os capítulos antigos, guardados como modelo): `diretrizes-tecnicas.md`, §2.3.
 
 ## Conclusão
 

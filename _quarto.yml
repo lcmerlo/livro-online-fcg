@@ -97,6 +97,9 @@ book:
   title: "Fundamentos de Cálculo e Geometria"
   author: "Projeto FCG"
   date: today
+  # O ícone da aba, do livro-base (uma seta branca sobre o azul do livro). Sem ele, o
+  # navegador pede /favicon.ico, que não existe, e o console mostra um erro 404.
+  favicon: src/site/favicon.svg
   reader-mode: true
   page-navigation: true
   # Faixa no alto de todas as páginas enquanto o livro está em testes; sai na

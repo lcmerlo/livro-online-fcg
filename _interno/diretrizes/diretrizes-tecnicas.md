@@ -27,7 +27,7 @@ Assim, trocar um valor ou uma técnica (25 px por 30 px, por exemplo) é uma mud
 - **Todo o resto é provisório**, pela regra **"siga ou explique"**: vale por padrão; se atrapalhar o que foi pedido, faz-se diferente e explica-se o porquê no commit e na resposta ao autor. Um desvio que se repete vira proposta de mudar a regra.
 - **Por que uma regra é fundamental:** pelo dano ao estudante com o livro em uso, pelo custo alto de corrigir depois ou pela escolha explícita do autor. A regra fixa o objetivo, não a forma de cumpri-lo.
 - **Código que funciona** não se muda sem pedido, a menos que a mudança mostre ganho real (§1.6).
-- **O estado do material também conta.** As regras, fundamentais e provisórias, valem para o código e para os capítulos revisados; um protótipo só precisa cumprir a regra 7 do §1.3 e o que o autor pedir (§1.4).
+- **Valem para todo o material do livro:** o código, os capítulos, as páginas da raiz e o laboratório. Os capítulos antigos, guardados como modelo fora do livro, ficam como estão (§1.4).
 
 ### 1.3 As regras fundamentais
 
@@ -41,16 +41,16 @@ Em cada item, "flexível" diz o que não fica preso.
 4. **Acessibilidade mínima (§32):** tudo funciona pelo teclado; quem navega com Tab vê onde está; a página funciona a 320 px de largura, sem rolar para o lado; a cor não é a única informação (forma, nome ou texto também distinguem). São fundamentais porque sairiam caros de acrescentar depois, embutidos nos applets e nas páginas. Flexível: o jeito de cumprir cada item.
    - Contraste e títulos sem saltos são provisórios: as cores estão definidas num só lugar, e o verificador confere os títulos e o contraste das cores dos applets.
    - O texto alternativo das imagens fica para antes da divulgação (`pendencias.md`, §6); toda imagem nova já nasce com ele.
-   - A alternativa ao arraste, adiada até o piloto, vem com todo applet desde a fase 5 da migração (2026-11-25): o painel de acessibilidade, com as opções "Campos para digitar os pontos e os valores" e "Tocar no ponto e depois no destino".
+   - Inclui a alternativa ao arraste: toda ação de arraste também se faz sem arrastar, com as opções "Campos para digitar os pontos e os valores" e "Tocar no ponto e depois no destino" do painel de acessibilidade, que valem para todo applet sem código nele (desde a fase 5 da migração, 2026-11-25).
 5. **Animação só a pedido do estudante:** nenhum applet se move sozinho, e o movimento pode ser pausado. Flexível: velocidade, aparência do botão, quais applets animam.
 6. **Conteúdo separado da aparência; cada valor definido num só lugar.** O capítulo diz o que um trecho é, com as classes do guia, e nunca como ele aparece; cada cor ou tamanho é definido uma vez. Flexível: os próprios valores (cores, tamanhos, layout).
-7. **O site publicado funciona:** renderiza e passa no verificador sem erros. É a única regra que vale também para os protótipos.
+7. **O site publicado funciona:** o livro e o laboratório renderizam e passam nas verificações sem erros (§8).
 
 **Por escolha do autor**
 
 8. **O autor decide a matemática, o texto didático e a estrutura do livro** (§2.1). Quem propõe espera a aprovação.
 9. **Applets JSXGraph próprios, sem rastros do GeoGebra** (§4.2); imitar o GeoGebra só a pedido explícito. Flexível: como cada applet é construído.
-10. **Uma decisão só termina quando todo o material concorda com ela** (§2.3), menos o conteúdo dos protótipos, que só recebe o necessário para o site funcionar; o resto entra na reescrita de cada capítulo.
+10. **Uma decisão só termina quando todo o material concorda com ela** (§2.3), menos os capítulos antigos guardados como modelo (§1.4).
 
 **Para evitar um custo que cresce**
 
@@ -60,21 +60,11 @@ Em cada item, "flexível" diz o que não fica preso.
 
 12. **Endereços estáveis e licenças** (§7). Antes da divulgação, reorganizar sai barato; depois, mudar o nome de um capítulo ou de um rótulo quebra links salvos. As licenças dizem quem pode copiar e reaproveitar texto e código.
 
-### 1.4 Protótipos e capítulos revisados
+### 1.4 Os capítulos antigos
 
-Os capítulos de hoje dão uma ideia de como o livro ficará, e o conteúdo deles será revisto e reformulado. O cabeçalho de cada capítulo diz o estado dele:
+Os 20 capítulos de antes da reescrita estão em `_interno/oficina/nao-publicados/`, fora do livro, como modelo (decisão do autor, 2026-11-22). Nenhum projeto os renderiza, e as verificações não os leem: não se apontam nem se corrigem desvios neles, e eles não vão para revisões nem para `pendencias.md`. A linha `estado: prototipo` do cabeçalho deles é de antes e não tem mais efeito.
 
-```yaml
----
-# Protótipo: dá uma ideia do capítulo e será reescrito (ver AGENTS.md).
-estado: prototipo
----
-```
-
-- **Protótipo:** não se apontam nem se corrigem desvios das diretrizes, e eles não vão para revisões nem para `pendencias.md`. Mexe-se nele só a pedido do autor ou quando for necessário para o site renderizar e o verificador passar sem erros (regra 7). O verificador continua acusando como erro o que quebra a página e só conta os avisos e as conferências de forma.
-- **Revisado:** quando um capítulo é reescrito e aprovado pelo autor, a linha passa a `estado: revisado`, e todas as diretrizes voltam a valer para ele.
-- A marca vale para os capítulos de `capitulos/` e de `_interno/oficina/nao-publicados/`. Sem ela, como em `index.qmd` ou num capítulo novo, o arquivo é tratado como revisado.
-- A marca fica no próprio arquivo, e não numa lista: quem abre o capítulo a vê, e o verificador a lê.
+Os capítulos novos nascem em `capitulos/`, escritos do zero, e todas as diretrizes valem para eles desde o primeiro rascunho. Um capítulo novo do mesmo assunto de um antigo pode reaproveitar o nome do arquivo: o endereço continua valendo.
 
 ### 1.5 Documentos
 
@@ -83,7 +73,7 @@ estado: prototipo
 | `Princípios e Especificações Operacionais-26-10-03.md` | Por que (aprendizagem, acessibilidade) e o que a fase inicial deve alcançar | o autor revê um princípio ou uma meta da fase |
 | `guia-editorial.md` | Como escrever e revisar um capítulo | muda um componente ou uma convenção de escrita |
 | `diretrizes-tecnicas.md` (este) | O quê e o porquê do desenvolvimento, e como decidir | muda uma regra ou o processo |
-| `arquitetura.md` | Como o projeto é hoje e onde está o como: arquivos, dependências, fluxos, receitas | o código muda (o mapa acompanha) |
+| `arquitetura.md` | Como o projeto é hoje e onde está o como: as pastas, o caminho de uma página, as verificações, os comandos, as receitas | o código muda (o mapa acompanha) |
 | `decisoes.md` | O que foi decidido, quando e por quê | a cada decisão |
 | `pendencias.md` | O que está em aberto: regras fundamentais adiadas, decisões a tomar, o que falta antes da divulgação, applets a reescrever | algo é descoberto ou resolvido |
 | `AGENTS.md`, `.github/copilot-instructions.md` | Resumo para assistentes de IA | estas diretrizes mudam |
@@ -126,15 +116,15 @@ Mudanças que não criam nem alteram uma regra (trocar um valor, corrigir um err
 
 ### 2.3 Aplicar a todo o material
 
-**Uma decisão só está concluída quando todo o material do projeto estiver de acordo com ela** (regra fundamental 10), menos o conteúdo dos protótipos (§1.4). Na mesma mudança:
+**Uma decisão só está concluída quando todo o material do projeto estiver de acordo com ela** (regra fundamental 10), menos os capítulos antigos (§1.4). Na mesma mudança:
 
 1. Procure o que a decisão afeta, pelo termo antigo: `git grep -n -i "termo"`.
 2. Ajuste cada lugar. Onde procurar:
    - diretrizes (`_interno/diretrizes/`), `README.md`, `AGENTS.md`, `.github/copilot-instructions.md`;
    - modelos de capítulo e páginas de teste (`laboratorio/`);
-   - capítulos revisados e `index.qmd`; nos protótipos, só o necessário para o site funcionar (na troca do MathJax pelo KaTeX, por exemplo, as fórmulas que deixaram de ser desenhadas);
+   - capítulos, `index.qmd` e `acessibilidade.qmd`;
    - filtros (`filters/`), estilos (`_brand.yml`, `styles/`), o que roda nas páginas (`src/`) e applets (`applets/`);
-   - verificações (`tests/verificar-site.mjs`, `tests/unit/`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
+   - verificações (`tests/check-site.mjs`, `tests/browser.mjs`, `tests/unit/`, `.github/workflows/publish.yml`) e o dicionário do corretor (`cspell.json`).
 3. Registre em `decisoes.md` o que foi ajustado.
 
 Quando o ajuste não cabe numa mudança só (reescrever dezenas de applets, por exemplo), a decisão diz isso e o trabalho restante vai para `pendencias.md`, com a lista do que falta. Assim a diferença fica registrada, e não escondida. O trabalho fica barato quando cada fato está escrito num só lugar (§1.1).
@@ -149,7 +139,7 @@ Isso vale também para as verificações automáticas. Se o verificador acusa al
 ## 3. Ferramentas e dependências
 
 - **Base:** Quarto (livro HTML publicado no GitHub Pages), SCSS e JavaScript; applets em JSXGraph, sem etapa de compilação (os módulos de `src/` e `applets/` são servidos como estão, desde a fase 5 da migração); fórmulas com KaTeX.
-- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph, o KaTeX e as fontes vêm com o site, em `vendor/`, copiados do `livro-base`, que confere primeiro uma versão nova, com a versão e a licença em `vendor/VERSIONS.md`; o verificador desenha as fórmulas com o mesmo arquivo das páginas. O JSX-quarto não acompanha essas versões (decisão do autor em 2026-11-22).
+- **Versões:** o CI fixa a versão do Quarto (`.github/workflows/publish.yml`). O JSXGraph, o KaTeX e as fontes vêm com o site, em `vendor/`, copiados do `livro-base`, que confere primeiro uma versão nova, com a versão e a licença em `vendor/VERSIONS.md`; as verificações desenham as fórmulas com o mesmo arquivo das páginas. Os testes do navegador usam o Playwright e o axe-core, com a versão fixa em `tests/package.json`: são ferramentas de desenvolvimento e não chegam ao estudante. O JSX-quarto não acompanha essas versões (decisão do autor em 2026-11-22).
 - **Dependências de execução**, que chegam ao navegador do estudante (bibliotecas, fontes, serviços externos), pesam no desempenho, na acessibilidade e na licença (§17, §33). Entram por decisão registrada, com o ganho mostrado.
 - **Dependências de desenvolvimento**, que só rodam no computador de quem desenvolve ou no CI (testes, verificadores, formatadores), não chegam ao estudante. Entram quando automatizam uma verificação útil, com versão fixada e uma linha em `decisoes.md`.
 - **Outras ferramentas de applets** (Desmos, CindyJS…): só por decisão, quando uma representação não puder ser feita bem com JSXGraph (§20).
@@ -170,7 +160,7 @@ Todos os applets do livro são applets JSXGraph próprios, escritos neste projet
 ### 4.3 Do GeoGebra ao capítulo
 
 1. **Função pedagógica.** O que o estudante deve perceber com o applet (§9)? Se uma figura ou uma sequência de exemplos bastar, proponha isso ao autor.
-2. **Especificação curta.** Objetos, o que se move, o que se calcula, os casos especiais e o que o applet mostra em cada um, o texto de estado e a pergunta associada.
+2. **Especificação curta.** Objetos, o que se move, o que se calcula, os casos especiais e o que o applet mostra em cada um, a descrição e a pergunta associada.
 3. **O que já existe.** Se o JSX-quarto já tem um applet migrado do mesmo material (`pendencias.md`, §5), parta da ideia e da estrutura dele, adaptadas ao livro (§4.7). O original `.ggb` serve para conferir objetos, valores iniciais e casos especiais.
 4. **Escrever e testar** o applet (§4.5) numa página do laboratório, com `quarto preview --profile lab`.
 5. **Ficha de aceitação** (§4.6).
@@ -185,7 +175,7 @@ As garantias marcadas como fundamentais vêm da lista do §1.3; as outras são p
 
 | Garantia | Na prática |
 |---|---|
-| Matemática correta (fundamental) | A figura, o texto de estado e os números mostrados vêm da mesma conta, escrita uma vez. As contas do applet são conteúdo matemático: o autor aprova. |
+| Matemática correta (fundamental) | A figura, a descrição e os números mostrados vêm da mesma conta, escrita uma vez. As contas do applet são conteúdo matemático: o autor aprova. |
 | Casos especiais decididos (fundamental) | Cada caso especial (pontos coincidentes, vetores paralelos, divisão por zero) tem um comportamento escolhido e visível; nunca aparece um número enganoso (0, `NaN`, valores enormes). Se o caso importa para a aula, o estudante consegue alcançá-lo, por exemplo com encaixe na grade. |
 | Teclado (fundamental) | Tudo funciona pelo teclado (§32). |
 | Alternativa ao arraste | Toda ação de arraste tem alternativa sem arraste (§32): quem escolhe no painel de acessibilidade ganha campos para digitar as coordenadas de cada ponto e o valor de cada faixa de valores, ou move um ponto tocando nele e depois no destino. Vem com todo applet, montada a partir dos pontos e das faixas de valores, sem código no applet (`src/applet/access.js`), desde a fase 5 da migração. |
@@ -207,9 +197,9 @@ Regras provisórias (§1.2). Desde a fase 5 da migração, um applet é escrito 
 - **Só a figura tem fundo e borda.** Expressões, controles, a descrição e os botões de reiniciar e de acessibilidade ficam no fundo da página e se leem como parte do texto.
 - **O plano fica parado.** Ele não se desloca nem muda de escala (mouse, dedos, teclado), porque a região mostrada faz parte da matemática. No toque, o dedo fora dos pontos rola a página, como no resto do livro, e sobre um ponto o arrasta; quando dois pontos estão ao alcance do mesmo toque, vence o mais próximo; o ponto arrastado não sai da região mostrada. Todo quadro é criado pelo código comum que garante isso.
 - **A forma diz se o ponto se move.** O ponto arrastável, o fixo (ou que depende de outros) e o extremo aberto têm formas diferentes, e o arrastável é fácil de pegar com o dedo. A forma não substitui o texto: a instrução e o estado também dizem o que se move.
-- **Contas e escrita dos números num só lugar.** A figura e o texto de estado usam as mesmas funções de conta, e os números e as fórmulas são escritos por um só módulo, onde muda o formato. Uma conta não definida (vetor nulo, vetores paralelos) não vira 0 nem some: aparece de um jeito fácil de achar na ficha de aceitação, até o applet decidir o caso (§4.4; escrita provisória: `pendencias.md`, §2).
+- **Contas e escrita dos números num só lugar.** A figura e a descrição usam as mesmas funções de conta, e os números e as fórmulas são escritos por um só módulo, onde muda o formato. Uma conta não definida (vetor nulo, vetores paralelos) não vira 0 nem some: aparece de um jeito fácil de achar na ficha de aceitação, até o applet decidir o caso (§4.4; escrita provisória: `pendencias.md`, §2).
 - **Unidades.** As contas são feitas em radianos e em unidades do plano; graus só na saída. Um controle mostra a unidade que o estudante lê e é convertido na conta. Ângulos notáveis em radianos aparecem como fração de π. A velocidade de uma animação é escolhida pelo efeito visível.
-- **Cores pelos papéis.** Três papéis, um tom cada: **dado**, o que o estudante controla ou o que o enunciado fornece; **resultado**, o que o applet calcula a partir dos dados, foco da ideia; **apoio**, tracejado, para construções que ajudam a ler (cópias, projeções, linhas de chamada). Nomes, origem e pontos de referência ficam na cor do texto. Dois objetos do mesmo papel se distinguem pelo nome junto a eles, e não pela cor. Erro ou contraexemplo não tem cor própria: muda o traço, e o texto de estado diz o que há. Uma quarta cor se confundiria com as outras para quem tem daltonismo; um terceiro papel colorido é uma decisão (§6). O applet nunca escreve uma cor: usa as do livro. Nos testes, um applet pode chamar qualquer cor de `_brand.yml` pelo nome; num applet usado no livro, a cor vem do papel, e o verificador avisa.
+- **Cores pelos papéis.** Três papéis, um tom cada: **dado**, o que o estudante controla ou o que o enunciado fornece; **resultado**, o que o applet calcula a partir dos dados, foco da ideia; **apoio**, tracejado, para construções que ajudam a ler (cópias, projeções, linhas de chamada). Nomes, origem e pontos de referência ficam na cor do texto. Dois objetos do mesmo papel se distinguem pelo nome junto a eles, e não pela cor. Erro ou contraexemplo não tem cor própria: muda o traço, e a descrição diz o que há. Uma quarta cor se confundiria com as outras para quem tem daltonismo; um terceiro papel colorido é uma decisão (§6). O applet nunca escreve uma cor: usa as do livro. Nos testes, um applet pode chamar qualquer cor de `_brand.yml` pelo nome; num applet usado no livro, a cor vem do papel, e o verificador avisa.
 - **Nomes no quadro como no texto.** Os nomes dos objetos são escritos como no capítulo (TeX, com as macros do livro), para que a figura e o texto mostrem a mesma notação. Os números dos eixos ficam em texto simples.
 - **Nomes no código.** Os elementos levam o nome que o estudante lê no texto (`A`, `B`, `u`, `v`); o resto do código fica em inglês, com os nomes do glossário do `livro-base`, de onde vem o sistema dos applets (desde a fase 5 da migração; antes, em português).
 - **Comentários** explicam o porquê, em português.
@@ -224,13 +214,13 @@ Regras provisórias (§1.2). Desde a fase 5 da migração, um applet é escrito 
 
 ### 4.6 Ficha de aceitação
 
-Antes de um applet entrar num capítulo:
+Antes de um applet entrar num capítulo. Os itens marcados com (T) os testes do navegador (`tests/browser.mjs`) já conferem: um applet numa página do laboratório entra nas conferências de largura, de console e do axe-core; as de teclado e de alternativas ao arraste são feitas num applet só, e por isso valem "em parte". Os outros se conferem à mão.
 
-- [ ] Console do navegador sem erros (no Chrome: Ver > Programador > Ferramentas do programador).
+- [ ] Console do navegador sem erros (T; no Chrome: Ver > Programador > Ferramentas do programador).
 - [ ] Cada garantia de §4.4, em especial:
-  - [ ] **320 px:** modo de dispositivo das ferramentas do programador, com largura 320, e também num celular;
-  - [ ] **teclado:** só com Tab, setas e Enter, sem mouse;
-  - [ ] **sem arraste:** a mesma tarefa sem arrastar nada, com "Campos para digitar os pontos e os valores" e, depois, com "Tocar no ponto e depois no destino" (no painel de acessibilidade, pelo ícone do cabeçalho ou pelo botão acima do quadro);
+  - [ ] **320 px** (T): modo de dispositivo das ferramentas do programador, com largura 320, e também num celular;
+  - [ ] **teclado** (T, em parte): só com Tab, setas e Enter, sem mouse;
+  - [ ] **sem arraste** (T, em parte): a mesma tarefa sem arrastar nada, com "Campos para digitar os pontos e os valores" e, depois, com "Tocar no ponto e depois no destino" (no painel de acessibilidade, pelo ícone do cabeçalho ou pelo botão acima do quadro);
   - [ ] **leitor de tela:** o VoiceOver (Cmd+F5 no Mac) lê o nome do applet, de cada quadro e de cada ponto, e a descrição;
   - [ ] **casos especiais:** cada um da especificação (§4.3, passo 2);
   - [ ] **reinício**, depois de mexer em tudo;
@@ -239,7 +229,7 @@ Antes de um applet entrar num capítulo:
   - [ ] **toque:** num celular, rolar a página passando o dedo sobre o quadro, fora dos pontos, e arrastar cada ponto tocando um pouco ao lado dele.
   - [ ] **várias partes:** a 320 px, cada quadro e cada expressão cabem na coluna; mexer num quadro atualiza os outros, as expressões e a descrição; cada quadro tem nome lido próprio, diferente dos outros da página.
 - [ ] Sem rastros do GeoGebra: `git grep -n -i -E "geogebra|ggb|material-" applets/` não acusa nada no applet novo.
-- [ ] `node --test "tests/unit/*.test.mjs"` e `node tests/verificar-site.mjs` sem erros.
+- [ ] As verificações do §8 sem erros, também as do laboratório e os testes do navegador.
 - [ ] Desvios das regras provisórias explicados em comentário e no commit; `pendencias.md` e `decisoes.md` atualizados, se for o caso.
 
 ### 4.7 Relação com o JSX-quarto
@@ -285,20 +275,20 @@ Onde o livro faz diferente, e por quê:
 
 ## 8. Verificação e publicação
 
-- **Antes de integrar uma mudança:** os comandos do `guia-editorial.md`, §8 (render, verificador, laboratório, `git diff`), e os testes de unidade.
-- **O verificador** (`tests/verificar-site.mjs`) separa erros, que bloqueiam a publicação, de avisos, que não bloqueiam. O que ele confere está em `arquitetura.md`, §4.6. Passar nele sem erros é fundamental (regra 7); as regras dele, como as outras, são provisórias (§2.4). Nos protótipos, ele só conta os avisos (§1.4).
-- **Publicação:** o GitHub Actions publica a cada push na `main`, depois dos testes de unidade, do render, do verificador, da conferência de links e do laboratório. Um erro interrompe a publicação, e o site anterior continua no ar.
+- **Antes de integrar uma mudança:** os comandos do `guia-editorial.md`, §8 (render, verificações, laboratório, `git diff`); numa mudança de applet, estilo ou código de `src/`, também os testes do navegador.
+- **As verificações** são três, vindas do `livro-base`: os testes de unidade (`tests/unit/`), a das fontes e do site gerado (`tests/check-site.mjs`) e a do navegador (`tests/browser.mjs`). As duas primeiras separam erros, que bloqueiam a publicação, de avisos, que não bloqueiam. O que cada uma confere está em `arquitetura.md`. Passar nelas sem erros é fundamental (regra 7); as regras delas, como as outras, são provisórias (§2.4).
+- **Publicação:** o GitHub Actions publica a cada push na `main`, depois dos testes de unidade, do render, das verificações do livro e do laboratório e dos testes do navegador. Um erro interrompe a publicação, e o site anterior continua no ar.
 - **Branch:** cada mudança num branch, integrada à `main` depois de verificada, de preferência por pull request. Num pull request para a `main`, o GitHub Actions faz as mesmas verificações, sem publicar, e mostra o resultado na página do pull request; integre só com o resultado verde.
 - **Commits:** mensagem curta, no imperativo, um assunto por commit.
 
 ## 9. Assistentes de IA
 
-O `AGENTS.md` resume estas diretrizes para os assistentes. O ponto central é o tipo de mudança; nos protótipos, vale o §1.4:
+O `AGENTS.md` resume estas diretrizes para os assistentes. O ponto central é o tipo de mudança:
 
 | Tipo | Exemplos | O assistente |
 |---|---|---|
 | Conteúdo matemático | enunciados, definições, demonstrações, resoluções, valores, fórmulas, contas dos applets, notação nova | propõe; só altera com aprovação do autor |
 | Texto didático | explicações, instruções, perguntas, legendas, textos alternativos | propõe; só altera com aprovação do autor |
-| Forma prevista nas diretrizes | escrita à mão trocada pela macro equivalente, erro evidente de digitação, link quebrado, classe ou shortcode no formato do guia | num capítulo revisado, altera e mostra no diff; num protótipo, não |
+| Forma prevista nas diretrizes | escrita à mão trocada pela macro equivalente, erro evidente de digitação, link quebrado, classe ou bloco no formato do guia | num capítulo, altera e mostra no diff; nos capítulos antigos (§1.4), não |
 | Técnica | código, estilos, configuração, verificações, documentação técnica | altera dentro do plano combinado e explica as decisões em linguagem simples (§2.1) |
 | Estrutura do livro | ordem e divisão de capítulos e tópicos, renomeação de capítulos e labels | só por decisão do autor |

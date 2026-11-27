@@ -26,8 +26,7 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
-      # Os applets são servidos como estão, sem compilação: o Node só roda os testes de
-      # unidade e o verificador.
+      # Os applets são servidos como estão, sem compilação: o Node só roda os testes.
       - name: Instalar Node
         uses: actions/setup-node@v4
         with:
@@ -46,23 +45,39 @@ jobs:
       - name: Renderizar site HTML
         run: quarto render --to html
 
-      - name: Verificar fontes e HTML gerado
-        run: node tests/verificar-site.mjs
+      # Também os links internos e as âncoras (antes, à parte, pelo lychee).
+      - name: Verificar fontes e site gerado
+        run: node tests/check-site.mjs
 
-      - name: Verificar links internos e âncoras
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: --offline --include-fragments --no-progress 'docs/**/*.html'
-          fail: true
-
-      # O laboratório (_quarto-lab.yml) não é publicado, mas, se ele não renderizar, a
-      # publicação para: é onde tema, filtros e applets se conferem enquanto não há
-      # capítulos. O que o verificador acha nas páginas dele é listado, sem reprovar.
+      # O laboratório (_quarto-lab.yml) não é publicado, mas, se ele não renderizar ou não
+      # passar na verificação, a publicação para: é onde tema, filtros e applets se
+      # conferem enquanto não há capítulos. Só as fórmulas de teste.qmd (o experimento das
+      # setas) são listadas, sem reprovar.
       - name: Renderizar o laboratório
         run: quarto render --profile lab --to html
 
       - name: Verificar o laboratório
-        run: node tests/verificar-site.mjs --lab
+        run: node tests/check-site.mjs --lab
+
+      # O site do laboratório (docs-lab/, que tem também as páginas do site público) no
+      # Chrome: larguras, teclado, toque, painel, applets e o axe-core. Leva alguns
+      # minutos. O Chrome é o que a máquina do GitHub já tem (/usr/bin/google-chrome, que
+      # tests/lib.mjs procura); o npm ci instala o Playwright e o axe-core, com versão fixa.
+      - name: Testes no navegador
+        working-directory: tests
+        run: |
+          npm ci
+          node browser.mjs
+
+      # As capturas de tela dos testes do navegador, para olhar na página da verificação,
+      # também quando algo falha.
+      - name: Guardar as capturas de tela
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas
+          path: tests/output
+          if-no-files-found: ignore
 
       - name: Enviar artefato para GitHub Pages
         if: github.event_name != 'pull_request'

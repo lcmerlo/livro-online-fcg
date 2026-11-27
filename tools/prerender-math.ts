@@ -7,11 +7,11 @@
 //
 // Vem do livro-base (tools/prerender-math.ts), com duas diferenças:
 // - o KaTeX é o vendor/katex/katex.min.js, o mesmo arquivo que as páginas e os applets
-//   carregam (e que o verificador usa), lido como módulo CommonJS: o livro não tem o
+//   carregam (e que tests/check-site.mjs usa), lido como módulo CommonJS: o livro não tem o
 //   katex.mjs, que lá serve só ao Node;
 // - numa página do laboratório, uma fórmula que o KaTeX não desenha não para o render:
 //   fica para o KaTeX do navegador, que a mostra em vermelho, como antes (teste.qmd tem
-//   macros do MathJax, de um experimento). O verificador a lista, sem reprovar.
+//   macros do MathJax, de um experimento). tests/check-site.mjs a lista, sem reprovar.
 
 const katexSource = Deno.readTextFileSync(new URL('../vendor/katex/katex.min.js', import.meta.url));
 const katexModule = { exports: {} as any };

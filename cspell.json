@@ -121,6 +121,8 @@
     "prerender",
     "Proj",
     "ast",
-    "Vite"
+    "Vite",
+    "Playwright",
+    "lychee"
   ]
 }
